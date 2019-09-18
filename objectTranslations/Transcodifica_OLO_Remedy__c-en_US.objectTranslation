@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Transcodifica_OLO_Remedy</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Transcodifica_OLO_Remedy</value>
+    </caseValues>
+    <fields>
+        <label><!-- Codice Cliente SAP --></label>
+        <name>Codice_Cliente_SAP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Fiscale --></label>
+        <name>Codice_Fiscale__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comune --></label>
+        <name>Comune__c</name>
+    </fields>
+    <fields>
+        <label><!-- CustomerId --></label>
+        <name>CustomerId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nome Remedy --></label>
+        <name>Nome_Remedy__c</name>
+    </fields>
+    <fields>
+        <label><!-- Partita IVA CEE --></label>
+        <name>Partita_IVA_CEE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Partita IVA --></label>
+        <name>Partita_IVA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ragione Sociale --></label>
+        <name>Ragione_Sociale__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

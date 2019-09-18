@@ -1,0 +1,566 @@
+<apex:page Controller="PO_KIT_AttInserita_Controller" id="pageID" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+       <html lang="it">  
+        <head> 
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <!-- /#wrapper -->
+              
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <style>
+                .navbar {
+                min-height: 15px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                .statoR{
+                    color: #DC143C;
+                }
+                
+            </style>
+        </head> 
+         
+        <body>
+            <div id="wrapper">
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <c:PO_SideBarComponent />
+                    
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" id="side-menu">
+                            </ul>
+                        </div>
+                        <!-- /.sidebar-collapse -->
+                    </div>
+                    <!-- /.navbar-static-side -->
+                </nav> 
+                
+    <div id="page-wrapper" style="min-height: 534px;">    
+        <div class="row">            
+            <apex:form >
+                <apex:actionFunction action="{!salvaModifche}" name="saveKitLog" />
+                <div class="panel panel-default" style="width:73.666667%;">
+                    <div class="panel-heading">
+		                <apex:outputPanel rendered="{!!confirmPage}">
+		                        <i></i>Bozza Richiesta
+		                </apex:outputPanel>
+		                <apex:outputPanel rendered="{!AND(confirmPage,!error,!success)}">
+		                        <i></i>Conferma Richiesta
+		                </apex:outputPanel>
+		                <apex:outputPanel rendered="{!OR(error,success)}">
+		                        <i></i>KIT
+		                </apex:outputPanel>
+            	    </div>
+	                <div class="panel-body">
+                        <apex:actionStatus id="actStatusId" >								               
+                            <apex:facet name="start">
+                            <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.25; z-index: 1000; background-color: black;">
+                                &nbsp;
+                                </div>
+                                <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 15% 50%">
+                                    <div style="display: inline-block; padding: 2px; background-color: #fff; width: 125px;">
+                                    <img src="/img/loading.gif" style="float: left; margin: 8px;" />
+                                    <span style="display: inline-block; padding: 10px 0px;">Please Wait...</span>
+                                </div>
+                            </div>
+                            </apex:facet>
+                        </apex:actionStatus>       
+	                    <div class="row">
+	                        <div style="color:red;" id="showerror">
+	                            <apex:pageMessages id="errors" /> 
+	                        </div>
+	                        <apex:outputPanel rendered="{!error}" >
+		                    <div class="panel-heading red" >
+		                        <i></i>Richiesta errata: {!motivoErr}
+		                   </div>
+		                </apex:outputPanel>
+		                <!--@@Commento inserito PG 08-11
+    		                <apex:outputPanel rendered="{!success}" >
+    		                    <div class="panel-heading red" >
+    		                        <i></i>Richiesta Inserita Correttamente
+    		                   </div>
+    		                </apex:outputPanel>
+                        -->
+                        <apex:outputPanel rendered="{!showAnnulla}">
+                             <div class="panel-heading red" >
+    	                        <i></i>Richiesta Annullata
+    	                     </div>
+    	                </apex:outputPanel> 
+    		                
+	                        <form role="form" class="form-horizontal">
+	                           <!-- campi in sola lettura -->
+	                            <apex:outputPanel rendered="{!NOT(richiestaAttivazione)}" >  
+	                            <fieldset class="form-group">
+	                                 <div class="form-group">
+	                                   <!--  <div class="col-lg-6">
+	                                         <label>Nome del KIT : </label> &nbsp; &nbsp;
+	                                         <apex:outputField id="NomedelKit" styleClass="form-control" value="{!sl.Nome_del_KIT__c}" />
+	                                     </div>
+	                                     -->
+	                                     <div class="col-lg-6">
+	                                         <label>Codice KIT : </label> &nbsp; &nbsp;
+	                                         <apex:outputField id="codiceKit" styleClass="form-control" value="{!sl.OF_PP_NomeRichiesta__c}" />
+	                                     </div>
+	                                     <div class="col-lg-6">
+	                                         <label>Servizio Commerciale : </label> &nbsp; &nbsp;
+	                                         <apex:outputField id="Traffico" styleClass="form-control" value="{!sl.Traffico__c}"/>
+	                                     </div>
+	                                     <!--
+	                                     <div class="col-lg-6">
+	                                        <label>Modello di Servizio :</label> &nbsp; &nbsp;
+	                                        <apex:outputField id="ModellodiServizio" styleClass="form-control" value="{!sl.Modello_di_Servizio__c}"/>
+	                                      </div>                                                                                                                                                    
+	                                                                                    
+	                                     <div class="col-lg-6">
+	                                        <label> Posizione ODF :</label> &nbsp; &nbsp;
+	                                        <apex:outputField id="PosizioneODF" styleClass="form-control" value="{!sl.Posizione_ODF__c }"/>
+	                                     </div>-->
+	                                     <div class="col-lg-6">
+	                                         <label>POP di consegna :</label> &nbsp; &nbsp;
+	                                         <apex:outputField id="POP" styleClass="form-control"  value="{!sl.POP__c}" />
+	                                     </div>
+    	                                 <div class="col-lg-6">
+    	                                     <label>Banda :</label> &nbsp; &nbsp;
+    	                                     <apex:outputField id="BandaInterfaccia" styleClass="form-control" value="{!sl.Banda_Interfaccia__c }"/>
+    	                                 </div>
+    	                                 <div class="col-lg-6">
+    	                                     <label>Interfaccia :</label> &nbsp; &nbsp;
+    	                                     <apex:outputField id="Interfaccia" styleClass="form-control" value="{!sl.PO_PP_Interfaccia__c }"/>
+    	                                 </div>
+    	                                 <!--
+    	                                 <div class="col-lg-6" >
+    	                                     <label>Stato Richiesta :</label> &nbsp; &nbsp;
+    	                                     <span class="statoR">
+    	                                        <apex:outputField styleClass="form-control"  value="{!sl.EOF_Stato_Richiesta__c }"/>
+    	                                     </span>
+    	                                 </div>
+    	                                 -->
+	                                     <!--
+	                                     <div class="col-lg-6">
+	                                          <label>Servizi per utenti finali : </label> &nbsp; &nbsp;
+	                                          <apex:outputField id="Serviziperutentifinali" styleClass="form-control"  value="{!sl.Servizi_per_utenti_finali__c}"/>
+	                                     </div>
+	                                     
+	                                     <div class="col-lg-6">
+	                                        <label>Note : </label> &nbsp; &nbsp;
+	                                        <apex:outputField id="note" styleClass="form-control"  value="{!sl.EOF_Note__c }"/>
+	                                     </div>
+	                                      --> 
+	                                   <div class="col-lg-6">
+	                                        <label>Note : </label> &nbsp; &nbsp;
+	                                        <apex:outputField id="noteOLO" styleClass="form-control"  value="{!sl.EOF_Comunicazioni_con_OLO__c }"/>
+	                                    </div>
+	                                    
+	                                        <!--Rajani Nome Kit and stato constant----->
+                                       
+                                        <apex:outputPanel rendered="{!isAvailable }">
+                                        <div class="col-lg-6">
+                                            <label>Nome KIT : </label> &nbsp; &nbsp;
+                                            <apex:outputField styleClass="form-control"  value="{!sl.Nome_del_KIT__c}"/>
+                                        </div>
+                                         
+                                        <div>
+                                        &nbsp; &nbsp;<label>Stato: </label> &nbsp; &nbsp;
+                                            <apex:outputText value="{!Stato}"/>
+                                        </div>
+                                        </apex:outputPanel>
+                                        <!---Rajani--->
+	                                    
+	                               </div>
+	                                 
+	                            </fieldset>
+	                             
+	                        </apex:outputPanel>
+	                        
+                            <!-- INIZIO BLOCCO PER MODIFICA CAMPI -->
+                            <apex:outputPanel rendered="{!richiestaAttivazione}">  
+	                            <fieldset class="form-group">
+	                                 <div class="form-group">
+
+	                                     <!--<div class="col-lg-6">
+	                                         <label>Nome del KIT : </label> &nbsp; &nbsp;
+	                                         <apex:inputField id="NomedelKit_MOD" styleClass="form-control" value="{!sl.Nome_del_KIT__c}" />
+	                                     </div>-->
+                                                    
+	                                     <!-- <div class="col-lg-6">
+	                                         <label>Traffico : </label> &nbsp; &nbsp;
+	                                         <apex:inputField id="Traffico_MOD" styleClass="form-control" value="{!sl.Traffico__c}"/>
+	                                     </div>
+	                                     
+	                                     <div class="col-lg-6">
+	                                        <label>Modello di Servizio :</label> &nbsp; &nbsp;
+	                                        <apex:inputField id="ModellodiServizio_MOD" styleClass="form-control" value="{!sl.Modello_di_Servizio__c}"/>
+	                                      </div>                                                                                                                                                    
+	                                                                                    
+	                                    <div class="col-lg-6">
+	                                        <label> Posizione ODF :</label> &nbsp; &nbsp;
+	                                        <apex:inputField id="PosizioneODF_MOD" styleClass="form-control" value="{!sl.Posizione_ODF__c }"/>
+	                                     </div>
+	                                     -->
+	                                     <div class="col-lg-6">
+	                                         <label>POP di consegna: </label> &nbsp; &nbsp;
+	                                         <apex:inputField id="POP_MOD" styleClass="form-control"  value="{!sl.POP__c}" />
+	                                     </div>
+    	                                 <div class="col-lg-6">
+    	                                     <label>Banda : </label> &nbsp; &nbsp;
+    	                                     <apex:inputField id="BandaInterfaccia_MOD" styleClass="form-control"  value="{!sl.Banda_Interfaccia__c }"/>
+    	                                 </div>
+    	                                 <div class="col-lg-6">                                                        
+                                             <label>Interfaccia :</label>                                                    
+                         	                 <apex:selectList id="Interfaccia_MOD" size="1" styleClass="form-control" value="{!sl.PO_PP_Interfaccia__c}">
+                                    			<apex:selectOptions value="{!elencoInterfacce}" />		
+                                    		 </apex:selectList>
+                                         </div>
+                                         <div class="col-lg-6">                                                        
+                                            <label>Servizio Commerciale*</label>                                                    
+                                            <apex:selectList id="Traffico_MOD" size="1" styleClass="form-control" value="{!sl.Traffico__c}">
+                                                <apex:selectOptions value="{!elencoTraffico}" />		
+                                            </apex:selectList>
+                                        </div>  
+
+	                                    <!--
+	                                     <div class="col-lg-6">
+	                                          <label>Servizi per utenti finali : </label> &nbsp; &nbsp;
+	                                          <apex:inputField id="Serviziperutentifinali_MOD" styleClass="form-control"  value="{!sl.Servizi_per_utenti_finali__c}"/>
+	                                     </div>
+	                                     -->
+	                                   <div class="col-lg-6">
+	                                     <label>Note : </label> &nbsp; &nbsp;
+	                                     <apex:inputField id="note_mod" styleClass="form-control"  value="{!sl.EOF_Note__c }"/>
+	                                    </div>
+	                                
+	                                 </div>
+	                             </fieldset>
+	                             	 <div class="col-lg-6">
+	                                     <div class="btn-group" role="group" aria-label="Basic example">                                      
+	                                         <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px; margin-top:10px;" onclick="validateform(); return false;" value="Salva" /><!-- action="{!salvaModifche}"/> -->
+	                                     </div>
+	                                 </div>
+                                    <div class="col-lg-6">
+                                        <div class="btn-group" role="group" aria-label="Basic example">                                      
+                                            <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px; margin-top:10px;" value="Annulla" action="{!annullaModifica}"/>        
+                                        </div>
+	                                </div>
+	                             </apex:outputPanel>
+                                 <!-- FINE BLOCCO PER MODIFICA CAMPI -->
+	                             
+	                            <!--  <apex:outputPanel rendered="{!richiestaAttivazione}">-->
+	                            <apex:outputPanel rendered="{!AND(confirmPage,!success,!error)}"> 
+	                                 <div class="col-lg-6">
+	                                     <div class="btn-group" role="group" aria-label="Basic example">                                      
+	                                         <apex:commandButton styleClass="btn btn-primary" style="margin-top:10px; margin-left:16px;" value="Modifica" action="{!editsl}"/>        
+	                                     </div>
+	                                 </div>  
+	                             </apex:outputPanel>
+
+        		                <apex:outputPanel rendered="{!showAnnullabtn}" >
+        		                     <div class="col-lg-6">
+	                                    <div class="btn-group" role="group" aria-label="Basic example">          
+        		                            <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px; margin-top:10px;" 
+        		                                value="Annulla Richiesta" action="{!inoltraRequestAnnnulla}"/>        
+        		                        </div>
+	                                 </div>  
+	                            </apex:outputPanel>	 
+	                            
+                                <apex:outputPanel rendered="{!showInsertVLAN}" >
+                                    <div class="col-lg-6" >
+                                        <div class="btn-group" role="group" aria-label="Basic example" >          
+                                            <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px; margin-top:10px;" 
+                                                value="Inserisci VLAN" action="{!insertVLAN}"/>        
+                                        </div>
+                                    </div>  
+                                </apex:outputPanel>	 
+
+        		                <apex:outputPanel rendered="{!showDesospBtn}" >
+        		                     <div class="col-lg-6">
+	                                     <div class="btn-group" role="group" aria-label="Basic example">          
+        		                    <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px; margin-top:10px;" value="Desospendi" action="{!desosp}"/>        
+        		                      </div>
+	                                 </div>  
+        		                </apex:outputPanel>	  
+        		                
+	                        </form>
+	                    </div>    
+	                    <br/>
+	                    
+	                    <!-- Add by PG - 09-11 - Tabella di VLAN inserite -->
+	                    <apex:pageBlock rendered="{!showInsertVLAN}" >
+	                    <apex:pageBlockTable value="{!slListVlan}" var="logV" id="myTable" styleClass="table table-striped table-bordered">
+
+                            <apex:column >
+                                <apex:facet name="header">
+                                   <ul class="list-unstyled">
+    							    	<li class="">Codice VLAN</li>
+                                    </ul>
+                                </apex:facet>
+                                <apex:outputField value="{!logV.OF_PP_NomeRichiesta_Figlio__c}" />
+                            </apex:column>
+                            
+                            <apex:column >
+                                <apex:facet name="header">
+                                   <ul class="list-unstyled">
+    							    	<li class="">Stato Ordine</li>
+                                    </ul>
+                                </apex:facet>
+                                <apex:outputField value="{!logV.Caso__r.status}" />
+                            </apex:column>
+
+                            <apex:column >
+                                 <apex:facet name="header">
+                                 	<ul class="list-unstyled">
+    							    	<li class="">POP di raccolta</li>
+                                    </ul>
+                                 </apex:facet>
+                                 <apex:outputField value="{!logV.PO_PP_POP_raccolta__c}" />
+                            </apex:column>
+                            
+                            <apex:column >
+                                 <apex:facet name="header">
+                                 	<ul class="list-unstyled">
+    							    	<li class="">COS Remarking</li>
+                                    </ul>
+                                 </apex:facet>
+                                 <apex:outputField value="{!logV.PO_PP_cos_remarking__c}" />
+                            </apex:column>
+                             
+                             <apex:column >
+                                 <apex:facet name="header">
+                                 	<ul class="list-unstyled">
+    							    	<li class="">DHCP Option82</li>
+                                    </ul>
+                                 </apex:facet>
+                                 <apex:outputField value="{!logV.PO_PP_dhcp_Option82__c}" />
+                             </apex:column>
+                             
+                            <apex:column >
+                                 <apex:facet name="header">
+                                 	<ul class="list-unstyled">
+    							    	<li class="">Service VLAN</li>
+                                    </ul>
+                                 </apex:facet>
+                                 <apex:outputField value="{!logV.SVLAN__c}" />
+                            </apex:column>
+                             
+                            <apex:column >
+                                 <apex:facet name="header">
+                                 	<ul class="list-unstyled">
+    							    	<li class="">User VLAN</li>
+                                    </ul>
+                                 </apex:facet>
+                                 <apex:outputField value="{!logV.PO_PP_User_VLAN__c}" />
+                            </apex:column>
+
+                            <apex:column >
+                                 <apex:facet name="header">
+                                 	<ul class="list-unstyled">
+                                 		<li>COS Type</li>
+                                 	</ul>
+                                 </apex:facet>
+                                 <apex:outputField value="{!logV.PO_PP_cos_type__c}" />                                             
+                            </apex:column>
+                            
+                            <apex:column >
+                                 <apex:facet name="header">
+                                 	<ul class="list-unstyled">
+                                 		<li>COS Class</li>
+                                 	</ul>
+                                 </apex:facet>
+                                 <apex:outputField value="{!logV.PO_PP_cos_class__c}" />                                             
+                             </apex:column>
+                             
+                        </apex:pageBlockTable>
+                        </apex:pageBlock>    
+                                     
+	                    <!-- Add by PG - 09-11 - Lista VLAN -->  
+	                    <!--
+	                    <apex:outputPanel id="panelVlan">
+                            <apex:repeat value="{!slListVlan}" var="slV" >
+                                <div class="panel panel-default" style="margin-top:10px;">
+                                    <div class="panel-heading">
+                                        <i></i>VLAN:
+                                    </div>
+                                    <div class="panel-body">
+                                        <fieldset class="form-group">   
+                                            <div class="form-group">
+                                                <div class="col-lg-6">
+                                                     <label>Codice VLAN : </label> &nbsp; &nbsp;
+                                                     <apex:outputField id="cod_Vlan" styleClass="form-control"  value="{!slV.OF_PP_NomeRichiesta_Figlio__c}" />
+                                                 </div>
+                                                 <div class="col-lg-6">
+                                                     <label>POP di raccolta : </label> &nbsp; &nbsp;
+                                                     <apex:outputField id="POP" styleClass="form-control"  value="{!slV.PO_PP_POP_raccolta__c}" />
+                                                 </div>
+                 
+                                                 <div class="col-lg-6">
+                                                      <label>COS Remarking : </label> &nbsp; &nbsp;
+                                                      <apex:outputField id="cos_remarking" styleClass="form-control" value="{!slV.PO_PP_cos_remarking__c}"/>
+                                                 </div>
+                                                 <div class="col-lg-6">
+                                                      <label>DHCP Option82 : </label> &nbsp; &nbsp;
+                                                      <apex:outputField id="dhcp" styleClass="form-control" value="{!slV.PO_PP_dhcp_Option82__c}"/>
+                                                 </div>
+                                                 <div class="col-lg-6">
+                                                      <label>COS Type : </label> &nbsp; &nbsp;
+                                                      <apex:outputField id="cos_type" styleClass="form-control" value="{!slV.PO_PP_cos_type__c}"/>
+                                                 </div>
+                                                 <div class="col-lg-6" id="cos_mono">
+                                                          <label>COS Class : </label> &nbsp; &nbsp;
+                                                          <apex:outputField id="cos_class" styleClass="form-control" value="{!slV.PO_PP_cos_class__c}"/>
+                                                 </div>
+                                                 <apex:outputPanel >
+                                                     <div class="col-lg-6">
+                                                          <label>Stato Ordine: </label> &nbsp; &nbsp;
+                                                          <span class="statoV">
+                                                             <apex:outputField id="stato_vlan" styleClass="form-control" value="{!slV.EOF_STATO_ORDINE__c}"/>
+                                                          </span>     
+                                                     </div>
+                                                 </apex:outputPanel>
+                                                 <div class="col-lg-6">
+                                                      <label>Note: </label> &nbsp; &nbsp;
+                                                      <apex:outputField id="note" styleClass="form-control" value="{!slV.EOF_NOTE__c}"/>
+                                                 </div>
+                                            </div>    
+                                         </fieldset>
+                                         
+                                     </div>
+                                </div>
+                            </apex:repeat> 
+                        </apex:outputPanel>
+	                    -->
+	                   
+	                    <apex:outputPanel rendered="{!AND(confirmPage,!success,!error)}">
+                            <!-- <div class="col-lg-6" >
+                            <div class="btn-group" role="group" aria-label="Basic example">                                      
+                               <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px; margin-top:10px;" value="Annulla Inoltro" action="{!annullaInoltro}" />       
+                            </div> 
+                            </div> -->
+                            <div class="col-lg-6" >
+                               <div class="btn-group" role="group" aria-label="Basic example">                                      
+                                   <apex:commandButton styleClass="btn btn-primary" value="Conferma Inoltro" style="margin-right:10px; margin-top:10px;" action="{!inoltraRequest}" status="actStatusId"/>
+                               </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="btn-group" role="group" aria-label="Basic example">                                      
+                                    <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px; margin-top:10px;" value="Elimina Richiesta" action="{!deletesl}"/>                
+                                </div>
+                            </div> 
+	                    </apex:outputPanel>
+	                     
+	                </div>
+                </div>
+            </apex:form>
+            </div>
+            </div>
+            </div>
+            <script type='text/javascript'>            
+                
+                function validateform()
+            	{
+                    var invalidflg = false;       
+                    var pop = $('[id$=POP_MOD]').val();
+                    //var traffico = $('[id$=traffico]').val();
+                    var banda = $('[id$=BandaInterfaccia_MOD]').val();
+                    var interfaccia = $('[id$=Interfaccia_MOD]').val();
+                    //var modello = $('[id$=modello]').val();
+                    //var servizi = $('[id$=servizi]').val();
+                    //var nomeKit = $('[id$=nomeKit]').val();
+                    //var posizione = $('[id$=posizione]').val();                    
+               
+                    var PO_Offerta = 'KIT';
+                    //alert(PO_Offerta);
+ 
+                    if(pop.length == 0)
+                    {
+                        $('[id$=POP_MOD]').next('div.red').remove();
+                        $('[id$=POP_MOD]').after('<div class="red">Campo obbligatorio</div>');
+                        invalidflg = true;
+                    }
+                    else
+                    {
+                        $('[id$=POP_MOD]').next('div.red').remove();
+                    } 
+                    
+                    if(pop.length >=10)
+                    {
+                        $('[id$=POP_MOD]').next('div.red').remove();
+                        $('[id$=POP_MOD]').after('<div class="red">La lunghezza massima consentita è 10</div>');
+                        invalidflg = true;
+                    }
+                    else
+                    {
+                        $('[id$=POP_MOD]').next('div.red').remove();
+                    } 
+                    /*
+                    if(banda.length == 0)
+                    {
+                        $('[id$=BandaInterfaccia_MOD]').next('div.red').remove();
+                        $('[id$=BandaInterfaccia_MOD]').after('<div class="red">Campo obbligatorio</div>');
+                        invalidflg = true;
+                    }
+                    else
+                    {
+                        $('[id$=BandaInterfaccia_MOD]').next('div.red').remove();
+                    }
+                    */
+                    /*  
+                    if(traffico.length == 0)
+                    {
+                        $('[id$=traffico]').next('div.red').remove();
+                        $('[id$=traffico]').after('<div class="red">Campo obbligatorio</div>');
+                        invalidflg = true;
+                    }
+                    else
+                    {
+                        $('[id$=traffico]').next('div.red').remove();
+                    }   */
+                    if (!invalidflg){
+                       
+                        saveKitLog();
+                    }
+            	}    
+    
+            </script>
+        </body>
+    
+    </html>
+</apex:page>

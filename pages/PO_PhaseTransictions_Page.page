@@ -1,0 +1,248 @@
+<apex:page showHeader="true" sidebar="true" standardController="Case" extensions="PO_ServiziFattibilita_Controller">
+	<apex:includeScript value="/support/console/36.0/integration.js"/>
+	<apex:includeScript value="/soap/ajax/20.0/connection.js"/>
+	<apex:stylesheet value="{!URLFOR($Resource.LDS, 'assets/styles/salesforce-lightning-design-system.min.css')}"/>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>    
+	<apex:includeScript value="{!URLFOR($Resource.sweetalert, '/sweetalert/sweetalert/sweetalert.min.js')}"/>
+	
+	    
+	<script type="text/javascript"> 
+	function returnToCase(){
+		if ({!mostraNotePerOLO}){
+			if(document.getElementById("{!$Component.theForm.thePageBlock.pageBlockSection.pageBlockSectionItem.checkOper}").value=='') {
+				//alert('Compilare il campo Note per OLO');
+				swal("Errore", "Compilare il campo Note per OLO", "error");
+				return;
+			}
+		}
+		if ({!mostraNoteTecFatToNetCre}){
+			if(document.getElementById("{!$Component.theForm.thePageBlock.pageBlockSectionFattibilita.pageBlockSectionItemFattibilita.checkFat}").value=='') {
+				//alert('Compilare il campo Note per Network Creation');
+				swal("Errore", "Compilare il campo Note per Network Creation", "error");
+				return;
+			}
+		}
+		
+		if ({!mostraNoteInterneNetworkCreation}){
+			if(document.getElementById("{!$Component.theForm.thePageBlock.pageBlockSectionNetworkCreation.pageBlockSectionItemNetworkCreation.checkNet}").value=='') {
+				//alert('Compilare il campo Note per Referente Fattibilità');
+				swal("Errore", "Compilare il campo Note per Referente Fattibilità", "error");
+				return;
+			}
+		}
+		if ({!mostraNoteOperatore}){
+			if(document.getElementById("{!$Component.theForm.thePageBlock.pageBlockSectionNoteOperatore.pageBlockSectionItemNoteOperatore.checkNoteOperatore}").value=='') {
+				//alert('Compilare il campo Note per Operatore');
+				swal("Errore", "Compilare il campo Note per Operatore", "error");
+				return;
+			}
+		}
+		
+		if ({!mostraNoteRefFatToSupVen}){
+			if(document.getElementById("{!$Component.theForm.thePageBlock.pageBlockSectionNoteRefFat.pageBlockSectionItemNoteRefFat.checkNoteRefFat}").value=='') {
+				//alert('Compilare il campo Note per Supporto Vendite');
+				swal("Errore", "Compilare il campo Note per Supporto Vendite", "error");
+				return;
+			}
+		}
+		
+		
+        if(sforce.console.isInConsole()){       
+          //alert('Operazione Effettuata Correttamente');
+          //swal("OK", "Operazione Effettuata Correttamentee", "success");
+          testCloseTab(); 
+        }
+        else{
+          //alert('Operazione Effettuata Correttamente');
+          //swal("OK", "Operazione Effettuata Correttamentee", "success"); 
+          	window.top.location.href ='/{!originalCase.Id}';
+        }
+    }
+    function testCloseTab(){
+        //First find the ID of the current tab to close it
+        sforce.console.getEnclosingTabId(closeSubtab);
+    }
+        
+    var closeSubtab = function closeSubtab(result){
+        //Now that we have the tab ID, we can close it
+        var tabId = result.id;
+        sforce.console.closeTab(tabId);
+    };
+         
+ 
+    </script>
+	<apex:sectionHeader title="{!originalCase.recordType.Name}" subtitle="Note operatore" />
+	<apex:form id="theForm">
+	<apex:pageBlock title="Note" id="thePageBlock">
+	
+	<apex:messages ></apex:messages>
+		<apex:pageBlockButtons location="top">
+			 
+   			<apex:commandLink action="{!InserisciNote}" value="Invia" reRender="buttonBlock"
+                     styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                     oncomplete="returnToCase()">
+   			</apex:commandLink>
+   			<apex:commandLink action="{!Cancel}" value="Annulla" reRender="buttonBlock"
+                     styleClass="slds-button slds-button--brand" style="margin-right:5px;">
+   			</apex:commandLink>
+			
+		</apex:pageBlockButtons>
+        
+           <!-- EC 2018 - 08 - 31 Start P2P Attiva -->
+
+        <apex:pageBlockSection title="Note per Network Creation P2P Attiva" id="p2pAtt1" rendered="{!IF(AND(p2pAttivabool,mostraNoteTecFatToNetCre),'true','false')}">
+			
+			<apex:pageBlockSectionItem id="pageBlockSectionItemFattibilita1">	
+				<apex:inputField style="width: 500px; height: 100px" value="{!originalCase.PO_Note_Tecnico_Fattibilita__c}" id="checkFat" required="true" />
+					</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem id="pageBlockSectionItemFattibilita2">	
+			
+				<apex:outputField style="width: 500px; height: 100px" value="{!originalCase.EOF_Note_Interne__c}"/>				
+			</apex:pageBlockSectionItem>
+		
+		</apex:pageBlockSection>
+		
+		<apex:pageBlockSection title="Note per Tecnico Fattibilità  P2P Attiva" id="pageBlockSectionNetworkCreation1" rendered="{!IF(AND(p2pAttivabool,mostraNoteTecFatToNetCre),'true','false')}">
+			
+			<apex:pageBlockSectionItem id="pageBlockSectionItemNetworkCreation1">	
+				<apex:inputField style="width: 500px; height: 100px" value="{!originalCase.PO_Note_Network_Creation__c}" id="checkNet" required="true" />	
+				
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem id="pageBlockSectionItemNetworkCreation2">	
+			
+				<apex:outputField style="width: 500px; height: 100px" value="{!originalCase.EOF_Note_Interne__c}"/>				
+			</apex:pageBlockSectionItem>
+		
+		</apex:pageBlockSection>
+		
+		<apex:pageBlockSection title="Note per Referente Fattibilità  P2P Attiva" id="pageBlockSectionTecFat1" rendered="{!IF(AND(p2pAttivabool,mostraNoteTecFatToNetCre),'true','false')}">
+			
+			<apex:pageBlockSectionItem id="pageBlockSectionItemTecFat1">	
+				<apex:inputField style="width: 500px; height: 100px" value="{!originalCase.PO_Note_Tecnico_Fattibilita__c}" id="checkTecFat" />	
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem id="pageBlockSectionItemTecFat2">	
+			
+				<apex:outputField style="width: 500px; height: 100px" value="{!originalCase.EOF_Note_Interne__c}"/>				
+			</apex:pageBlockSectionItem>
+		
+		</apex:pageBlockSection>
+		
+		<apex:pageBlockSection title="Note per Referente Fattibilità  P2P Attiva" id="pageBlockSectionSupVen1" rendered="{!IF(AND(p2pAttivabool,mostraNoteTecFatToNetCre),'true','false')}">
+			
+			<apex:pageBlockSectionItem id="pageBlockSectionItemSupVen1">	
+				<apex:inputField style="width: 500px; height: 100px" value="{!originalCase.PO_Note_Supporto_Vendite__c}" id="checkSupVen" />	
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem id="pageBlockSectionItemSupVen2">	
+			
+				<apex:outputField style="width: 500px; height: 100px" value="{!originalCase.EOF_Note_Interne__c}"/>				
+			</apex:pageBlockSectionItem>
+		
+		</apex:pageBlockSection>
+				
+		<apex:pageBlockSection title="Note per Supporto Vendite P2P Attiva" id="pageBlockSectionNoteRefFat1" rendered="{!IF(AND(p2pAttivabool,mostraNoteTecFatToNetCre),'true','false')}">
+			
+			<apex:pageBlockSectionItem id="pageBlockSectionItemNoteRefFat1">	
+				<apex:inputField style="width: 500px; height: 100px" value="{!originalCase.PO_Note_Referente_Fattibilita__c}" id="checkNoteRefFat" required="true" />	
+			</apex:pageBlockSectionItem>
+		
+		</apex:pageBlockSection>
+		
+		<!-- 9/10/2018 MM : Aggiunta sezione note per Ingegneria P2P Attiva -->
+
+		<apex:pageBlockSection title="Note per Supporto Vendite P2P Attiva" id="pageBlockSectionNoteIng" rendered="{!kitP2PAttiva}">
+			
+			<apex:pageBlockSectionItem id="pageBlockSectionItemNoteRefFat1">	
+				<apex:inputField style="width: 500px; height: 100px" value="{!originalCase.PO_Note_Referente_Fattibilita__c}" id="checkNoteRefIng" required="true" />	
+			</apex:pageBlockSectionItem>
+		
+		</apex:pageBlockSection>		
+		<!-- 9/10/2018 MM :  fine Aggiunta sezione note per Ingegneria P2P Attiva -->
+		
+
+		 <apex:pageBlockSection title="Note per Desospensione P2P Attiva" id="pageBlockSectionDes" rendered="{!IF(AND(p2pAttivabool,collegamentoFattibilita, desospensione),'true','false')}">
+			
+			<apex:pageBlockSectionItem id="pageBlockSectionItemNoteRefFatDes">	
+				<apex:inputField style="width: 500px; height: 100px" value="{!originalCase.PO_Note_Supporto_Vendite__c}" id="checkNoteRefFatDes" required="true" />	
+			</apex:pageBlockSectionItem>
+		
+		</apex:pageBlockSection>
+        
+        <!-- EC 2018 - 08 -31 end P2P Attiva -->
+		
+		<apex:pageBlockSection title="Note per Network Creation" id="pageBlockSectionFattibilita" rendered="{!mostraNoteTecFatToNetCre}">
+			
+			<apex:pageBlockSectionItem id="pageBlockSectionItemFattibilita">	
+				<apex:inputField style="width: 500px; height: 100px" value="{!originalCase.PO_Note_Tecnico_Fattibilita__c}" id="checkFat" required="true" />	
+			</apex:pageBlockSectionItem>
+		
+		</apex:pageBlockSection>
+		
+		<apex:pageBlockSection title="Note per Tecnico Fattibilità" id="pageBlockSectionNetworkCreation" rendered="{!mostraNoteNetCreToTecFat}">
+			
+			<apex:pageBlockSectionItem id="pageBlockSectionItemNetworkCreation">	
+				<apex:inputField style="width: 500px; height: 100px" value="{!originalCase.PO_Note_Network_Creation__c}" id="checkNet" required="true" />	
+			</apex:pageBlockSectionItem>
+		
+		</apex:pageBlockSection>
+		
+		<apex:pageBlockSection title="Note per Referente Fattibilità" id="pageBlockSectionTecFat" rendered="{!mostraNoteTecFatToRefFat}">
+			
+			<apex:pageBlockSectionItem id="pageBlockSectionItemTecFat">	
+				<apex:inputField style="width: 500px; height: 100px" value="{!originalCase.PO_Note_Tecnico_Fattibilita__c}" id="checkTecFat" />	
+			</apex:pageBlockSectionItem>
+		
+		</apex:pageBlockSection>
+		
+		<apex:pageBlockSection title="Note per Referente Fattibilità" id="pageBlockSectionSupVen" rendered="{!mostraNoteSupVenToRefFat}">
+			
+			<apex:pageBlockSectionItem id="pageBlockSectionItemSupVen">	
+				<apex:inputField style="width: 500px; height: 100px" value="{!originalCase.PO_Note_Supporto_Vendite__c}" id="checkSupVen" />	
+			</apex:pageBlockSectionItem>
+		
+		</apex:pageBlockSection>
+		
+		<apex:pageBlockSection title="Note per Operatore" id="pageBlockSectionNoteOperatore" rendered="{!mostraNoteOperatore}">
+			
+			<apex:pageBlockSectionItem id="pageBlockSectionItemNoteOperatore">	
+
+				 <apex:inputField style="width: 500px; height: 100px" value="{!originalCase.Note_Sospensione_Operatore__c}" id="checkNoteOperatore" required="true" />	
+			</apex:pageBlockSectionItem>
+		
+		</apex:pageBlockSection>
+		
+		<apex:pageBlockSection title="Note per Supporto Vendite" id="pageBlockSectionNoteRefFat" rendered="{!mostraNoteRefFatToSupVen}">
+			
+			<apex:pageBlockSectionItem id="pageBlockSectionItemNoteRefFat">	
+				<apex:inputField style="width: 500px; height: 100px" value="{!originalCase.PO_Note_Referente_Fattibilita__c}" id="checkNoteRefFat" required="true" />	
+			</apex:pageBlockSectionItem>
+		
+		</apex:pageBlockSection>
+		
+	
+		<apex:pageBlockSection title="Note Interne" rendered="{!mostraNoteInterneOrdine}">
+		
+			<apex:pageBlockSectionItem >
+				<apex:outputField style="width: 500px; height: 100px" value="{!originalCase.EOF_Note_Interne__c}" id="output" />
+			</apex:pageBlockSectionItem>
+			
+			<apex:pageBlockSectionItem >	
+				<apex:inputField style="width: 500px; height: 100px" value="{!originalCase.EOF_Note_Operatore__c}"  />	
+			</apex:pageBlockSectionItem>
+		
+		</apex:pageBlockSection>
+	
+		<apex:pageBlockSection title="Note per OLO" rendered="{!mostraNotePerOLO}" id="pageBlockSection">
+		
+			<apex:pageBlockSectionItem >
+				<apex:outputField style="width: 500px; height: 100px" value="{!originalCase.EOF_Comunicazioni_con_OLO__c}" id="output" />
+			</apex:pageBlockSectionItem>
+			
+			<apex:pageBlockSectionItem id="pageBlockSectionItem">	
+				<apex:inputField style="width: 500px; height: 100px" value="{!originalCase.EOF_Note__c}" id="checkOper" required="true" />	
+			</apex:pageBlockSectionItem>
+		
+		</apex:pageBlockSection>
+	</apex:pageBlock>
+	</apex:form>
+</apex:page>

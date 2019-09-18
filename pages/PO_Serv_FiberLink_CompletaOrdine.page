@@ -1,0 +1,281 @@
+<apex:page controller="PO_Serv_FiberLink_CompletaOrdine_Cntrl" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false" id="pgId">
+    <html lang="en">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+            </style>
+            <script type="text/javascript">
+            var datefield=document.createElement("input")
+            datefield.setAttribute("type", "date")
+            if (datefield.type!="date"){ //if browser doesn't support input type="date", load files for jQuery UI Date Picker
+                document.write('<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />\n')
+                document.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"><\/script>\n')
+                document.write('<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"><\/script>\n') 
+            }
+            </script>
+            <script>
+            if (datefield.type!="date"){ //if browser doesn't support input type="date", initialize date picker widget:
+                jQuery(function($){ //on document.ready
+                    $('#date4').datepicker({dateFormat: 'dd/mm/yy'});                   
+                })
+            }
+            </script>
+        </head>
+        <body>
+            <div id="wrapper">
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <!--<c:POHeaderComp />-->
+                    <c:PO_SideBarComponent Rec="{!recordOfferta}" />
+                    
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" id="side-menu">
+                            </ul>
+                        </div>
+                        <!-- /.sidebar-collapse -->
+                    </div>
+                    <!-- /.navbar-static-side -->
+                </nav>
+                
+                <div id="page-wrapper">
+                    <div class="row">
+                        <div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i></i>Dati Ordine
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">                                        
+                                        <div style="color:red;" id="showerror">
+                                            <apex:pageMessages id="errors" /> 
+                                        </div>
+                                        <apex:form styleClass="form-horizontal" id="frmId">  
+                                            <!--<form>-->
+                                            <div style="color:red;" id="showerror">
+                                                <apex:pageMessages id="errors" />    
+                                            </div>
+                                            <div class="container">
+                                                <apex:outputPanel id="panelid" >
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-3" for="date4">Data Attivazione Richiesta Cliente</label>
+                                                        <div class="col-sm-6">
+                                                            <!-- LM CR02-->
+                                                            <apex:inputfield value="{!ordercasedit.PO_Case_Collegamento__r.PO_Tempi_di_attivazione_mesi__c}"  id="tempAttMes"    style="display:none !important;" showDatePicker="false" />
+                                                            <div style ="display:none;">
+                                                                <apex:inputfield value="{!ordercasedit.PO_Case_Collegamento__r.PO_Disponibilit_della_rete_a_partire_da__c}"  id="dataRicCliente"  style="display:none !important;" showDatePicker="false"/>
+                                                            </div>
+                                                            <!-- LM CR02-->
+                                                            <!-- giovanni 28/11/2018 inizio
+<input type="date" id="date4"  />
+giovanni 28/11/2018 fine   -->
+                                                            <input type="date" id="date4" value="{!ordercasedit.PO_Data_Attivazione_Richiesta__c}" />
+                                                            
+                                                            <apex:inputHidden id="hdnRep2" value="{!date4}"/>  
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-3" for="PMRiferimento">PM Riferimento</label>
+                                                        <div class="col-sm-6">
+                                                            <apex:inputfield value="{!ordercasedit.PO_Nome_E_Cognome_PM__c}" id="PMRiferimento" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-3" for="Telefono">Telefono PM</label>
+                                                        <div class="col-sm-6">
+                                                            <apex:inputfield value="{!ordercasedit.PO_Numero_Telefonico_PM__c}" id="Telefono" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-3" for="NSRif">NS. Rif.</label>
+                                                        <div class="col-sm-6">
+                                                            <apex:inputfield value="{!ordercasedit.NS_Rif__c}" id="NSRif" />
+                                                        </div>
+                                                    </div>  
+                                                    <!-- LM CR01-->
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-3" for="NoteOp">Note</label>
+                                                        <div class="col-sm-6">
+                                                            <apex:inputTextarea value="{!ordercasedit.EOF_Note_Operatore__c}" id="NoteOp" html-maxlength="255"/>
+                                                        </div>
+                                                    </div> 
+                                                    <!-- LM CR01-->
+                                                </apex:outputPanel>
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                                <div class="form-group">
+                                                    <div class="col-lg-6 col-offset-6">
+                                                    </div>
+                                                    <div class="col-lg-6 col-offset-6">
+                                                        <apex:commandButton styleClass="btn btn-primary" value="Annulla" style="margin-right:10px;" action="{!orderAnnulla}" /> 
+                                                        <apex:commandButton styleClass="btn btn-primary" value="Salva" style="margin-right:10px;"  onclick="validateform();" reRender="errors"/>                                                
+                                                    </div>
+                                                    <div class="col-lg-6 col-offset-6">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--</form>-->
+                                            <apex:actionFunction action="{!SaveOrderCase}" name="SaveOrderCasemethod" /   >
+                                                <!--<apex:param name="datevalue1" assignTo="{!childrecdate}" value="" />-->
+                                            </apex:form>    
+                                            <br/>
+                                        </div>
+                                        <!-- /.row (nested) -->
+                                    </div>
+                                    <!-- /.panel-body -->
+                                </div>       
+                                <!-- /.col-lg-4 -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /#page-wrapper -->
+                    </div>
+                </div>
+                <!-- /#wrapper -->
+                <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+                
+                <!-- Bootstrap Core JavaScript -->
+                <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+                <script src='https://www.google.com/recaptcha/api.js'></script>
+                <script>
+                    j$ = jQuery.noConflict();   
+                
+                $( function() {
+                    $( "#datepicker" ).datepicker();
+                } ); 
+                
+                
+                function validateform(){
+                    
+                    var hiddenRep = document.getElementById('pgId:frmId:hdnRep2');
+                    hiddenRep.value = document.getElementById('date4').value;
+                    //LM CR02
+                    var tempAttMes = document.getElementById('pgId:frmId:tempAttMes').value;
+                    var numberMesi = parseInt(document.getElementById('pgId:frmId:tempAttMes').value);
+                    var dataRicCliente = document.getElementById('pgId:frmId:dataRicCliente').value;
+                    //MODIFICA LM
+                    if(dataRicCliente == undefined){ 
+                        dataRicCliente = document.getElementById('pgId:frmId:dataRicCliente').innerHTML;
+                    }
+                    //MODIFICA LM 
+                    dataRicCliente = dataRicCliente.replace(/\//g, "-");
+                    dataRicCliente = dataRicCliente.split('-')[1]+'-'+dataRicCliente.split('-')[0]+'-'+dataRicCliente.split('-')[2]
+                    var myDate =  new Date(dataRicCliente);
+                    myDate.setMonth (myDate.getMonth() +numberMesi);
+                    var strDate = myDate.toString();
+                    var parts = strDate.split(" ");
+                    var months = {
+                        Jan: "01",
+                        Feb: "02",
+                        Mar: "03",
+                        Apr: "04",
+                        May: "05",
+                        Jun: "06",
+                        Jul: "07",
+                        Aug: "08",
+                        Sep: "09",
+                        Oct: "10",
+                        Nov: "11",
+                        Dec: "12"
+                    };
+                    var dateActivation = parts[3]+"-"+months[parts[1]]+"-"+parts[2];
+                    //LM end CR02
+                    
+                    var invalidflg = false;
+                    var PMRiferimento = j$('[id$=PMRiferimento]').val();
+                    var Telefono = j$('[id$=Telefono]').val();
+                    var date4= j$('[id$=date4]').val();
+                    
+                    var checkdateinscript = '{!stringdate_In_PO_ModalController}';
+                    /* if( date4.length == 0 || date4<checkdateinscript){
+                    
+                    j$('[id$=date4]').next('div.red').remove();
+                    j$('[id$=date4]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                    //return true;
+                       
+                }else{
+                    j$('[id$=date4]').next('div.red').remove();
+                    
+                   
+                }  */
+                    
+                    //LM CR02
+                    if(hiddenRep.value != ""){
+                        if( hiddenRep.value < dateActivation){
+                            invalidflg = true;
+                            j$('[id$=date4]').next('div.red').remove();
+                            j$('[id$=date4]').after('<div class="red">La data richiesta non può essere inferiore alla data di attivazione della rete</div>');
+                        }else{
+                            j$('[id$=date4]').next('div.red').remove();
+                        }
+                    }
+                    //END LM CR02
+                    
+                    if(PMRiferimento.length == 0){
+                        j$('[id$=PMRiferimento]').next('div.red').remove();
+                        j$('[id$=PMRiferimento]').after('<div class="red">Campo obbligatorio</div>');
+                        invalidflg = true;
+                    }else{
+                        j$('[id$=PMRiferimento]').next('div.red').remove();
+                    }
+                    if(Telefono.length == 0){
+                        j$('[id$=Telefono]').next('div.red').remove();
+                        j$('[id$=Telefono]').after('<div class="red">Campo obbligatorio</div>');
+                        invalidflg = true;
+                    }else{
+                        j$('[id$=Telefono]').next('div.red').remove();
+                    }
+                    if(invalidflg){
+                        return false;
+                    }
+                    
+                    SaveOrderCasemethod();
+                }
+                </script> 
+            </body>
+        </html>
+    </apex:page>

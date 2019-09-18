@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>CD_ListinoCanoneName__c</fullName>
+        <externalId>false</externalId>
+        <label>CD ListinoCanoneName</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CosType__c</fullName>
+        <externalId>false</externalId>
+        <label>CosType</label>
+        <length>15</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IsPortalValid__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Serve per distinguere i valori validi da Portal e Non</description>
+        <externalId>false</externalId>
+        <label>IsPortalValid</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>OF_ListinoCanoneName__c</fullName>
+        <externalId>false</externalId>
+        <label>Listino Canone name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_ProfiloCommerciale__c</fullName>
+        <externalId>false</externalId>
+        <label>Profilo Commerciale</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Profilolistino__c</fullName>
+        <externalId>false</externalId>
+        <label>Profilo listino</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PO_CD_Profilo_Commerciale__c</fullName>
+        <externalId>false</externalId>
+        <label>PO CD Profilo Commerciale</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PO_PREPROV_ListinoCanoneName__c</fullName>
+        <externalId>false</externalId>
+        <label>Listino Canone PreProvisioning</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>servizio__c</fullName>
+        <externalId>false</externalId>
+        <label>servizio</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Codifica Profilo Listini</label>
+    <listViews>
+        <fullName>P2P_Attiva</fullName>
+        <columns>NAME</columns>
+        <columns>servizio__c</columns>
+        <columns>OF_ListinoCanoneName__c</columns>
+        <columns>OF_ProfiloCommerciale__c</columns>
+        <columns>OF_Profilolistino__c</columns>
+        <columns>CosType__c</columns>
+        <columns>IsPortalValid__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>servizio__c</field>
+            <operation>equals</operation>
+            <value>P2P Attiva</value>
+        </filters>
+        <label>P2P Attiva</label>
+        <language>en_US</language>
+    </listViews>
+    <visibility>Public</visibility>
+</CustomObject>

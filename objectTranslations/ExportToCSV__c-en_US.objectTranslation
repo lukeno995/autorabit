@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>ExportToCSV</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>ExportsToCSV</value>
+    </caseValues>
+    <fields>
+        <label><!-- City --></label>
+        <name>City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comments --></label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- CurrencyCode2 --></label>
+        <name>CurrencyCode2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- IdBuilding --></label>
+        <name>IdBuilding__c</name>
+    </fields>
+    <fields>
+        <label><!-- OdaOrder --></label>
+        <name>OdaOrder__c</name>
+    </fields>
+    <fields>
+        <label><!-- Price --></label>
+        <name>Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Province --></label>
+        <name>Province__c</name>
+    </fields>
+    <fields>
+        <label><!-- ResourceID --></label>
+        <name>ResourceID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Street --></label>
+        <name>Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- SuspendDate --></label>
+        <name>SuspendDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- UI --></label>
+        <name>UI__c</name>
+    </fields>
+    <fields>
+        <label><!-- actionCode --></label>
+        <name>actionCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- additionalFee --></label>
+        <name>additionalFee__c</name>
+    </fields>
+    <fields>
+        <label><!-- addserviceId --></label>
+        <name>addserviceId__c</name>
+    </fields>
+    <fields>
+        <label><!-- agreementCode --></label>
+        <name>agreementCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- altExpectedDate2 --></label>
+        <name>altExpectedDate2__c</name>
+    </fields>
+    <fields>
+        <label><!-- altExpectedDate --></label>
+        <name>altExpectedDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- altOrderDate --></label>
+        <name>altOrderDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- apparatusType --></label>
+        <name>apparatusType__c</name>
+    </fields>
+    <fields>
+        <label><!-- billingEndDate --></label>
+        <name>billingEndDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- billingStartDate --></label>
+        <name>billingStartDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- calendartypeCode --></label>
+        <name>calendartypeCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- cashFlow --></label>
+        <name>cashFlow__c</name>
+    </fields>
+    <fields>
+        <label><!-- chargePeriod --></label>
+        <name>chargePeriod__c</name>
+    </fields>
+    <fields>
+        <label><!-- codeComunicationOLO --></label>
+        <name>codeComunicationOLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- codeIav --></label>
+        <name>codeIav__c</name>
+    </fields>
+    <fields>
+        <label><!-- codeOperationalAgreement --></label>
+        <name>codeOperationalAgreement__c</name>
+    </fields>
+    <fields>
+        <label><!-- codeOrderOLO --></label>
+        <name>codeOrderOLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- connectiontype --></label>
+        <name>connectiontype__c</name>
+    </fields>
+    <fields>
+        <label><!-- currencyCode --></label>
+        <name>currencyCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- descIav --></label>
+        <name>descIav__c</name>
+    </fields>
+    <fields>
+        <label><!-- durationService --></label>
+        <name>durationService__c</name>
+    </fields>
+    <fields>
+        <label><!-- endDate --></label>
+        <name>endDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- executionActivity --></label>
+        <name>executionActivity__c</name>
+    </fields>
+    <fields>
+        <label><!-- expectedDate2 --></label>
+        <name>expectedDate2__c</name>
+    </fields>
+    <fields>
+        <label><!-- expectedDate --></label>
+        <name>expectedDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- flagPromotionAchieved --></label>
+        <name>flagPromotionAchieved__c</name>
+    </fields>
+    <fields>
+        <label><!-- franchiseCode --></label>
+        <name>franchiseCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- installmentInd --></label>
+        <name>installmentInd__c</name>
+    </fields>
+    <fields>
+        <label><!-- niNumber --></label>
+        <name>niNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- offerTypeCode --></label>
+        <name>offerTypeCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- orderDate --></label>
+        <name>orderDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- orderTypeCode --></label>
+        <name>orderTypeCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- overrideReasonCode --></label>
+        <name>overrideReasonCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- pclassCode --></label>
+        <name>pclassCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- pqtyunitCode --></label>
+        <name>pqtyunitCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- priceCode --></label>
+        <name>priceCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- priceId --></label>
+        <name>priceId__c</name>
+    </fields>
+    <fields>
+        <label><!-- productCode --></label>
+        <name>productCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- productStatus --></label>
+        <name>productStatus__c</name>
+    </fields>
+    <fields>
+        <label><!-- promotionCode --></label>
+        <name>promotionCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- promotionTarget --></label>
+        <name>promotionTarget__c</name>
+    </fields>
+    <fields>
+        <label><!-- psourceOrdnum --></label>
+        <name>psourceOrdnum__c</name>
+    </fields>
+    <fields>
+        <label><!-- purchaseOrderNo --></label>
+        <name>purchaseOrderNo__c</name>
+    </fields>
+    <fields>
+        <label><!-- quantity2 --></label>
+        <name>quantity2__c</name>
+    </fields>
+    <fields>
+        <label><!-- quantity --></label>
+        <name>quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- reasonCode --></label>
+        <name>reasonCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- reasonDescription --></label>
+        <name>reasonDescription__c</name>
+    </fields>
+    <fields>
+        <label><!-- reportunEarnedInd --></label>
+        <name>reportunEarnedInd__c</name>
+    </fields>
+    <fields>
+        <label><!-- seqNo --></label>
+        <name>seqNo__c</name>
+    </fields>
+    <fields>
+        <label><!-- sourceOrditemNum --></label>
+        <name>sourceOrditemNum__c</name>
+    </fields>
+    <fields>
+        <label><!-- sourceOrdnum --></label>
+        <name>sourceOrdnum__c</name>
+    </fields>
+    <fields>
+        <label><!-- sourcePrevserviceNumber --></label>
+        <name>sourcePrevserviceNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- sourcePricetypeCode --></label>
+        <name>sourcePricetypeCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- sourceServiceNumber --></label>
+        <name>sourceServiceNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- sourceSystemCode --></label>
+        <name>sourceSystemCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- staircaiseIdOF --></label>
+        <name>staircaiseIdOF__c</name>
+    </fields>
+    <fields>
+        <label><!-- staircaiseId --></label>
+        <name>staircaiseId__c</name>
+    </fields>
+    <fields>
+        <label><!-- startDate --></label>
+        <name>startDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- statementDirection --></label>
+        <name>statementDirection__c</name>
+    </fields>
+    <fields>
+        <label><!-- streetNumber --></label>
+        <name>streetNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- systemServiceId --></label>
+        <name>systemServiceId__c</name>
+    </fields>
+    <fields>
+        <label><!-- technicalNum --></label>
+        <name>technicalNum__c</name>
+    </fields>
+    <fields>
+        <label><!-- toponymyParticle --></label>
+        <name>toponymyParticle__c</name>
+    </fields>
+    <fields>
+        <label><!-- ttNumber --></label>
+        <name>ttNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- verticalOperator --></label>
+        <name>verticalOperator__c</name>
+    </fields>
+    <fields>
+        <label><!-- wcrmId --></label>
+        <name>wcrmId__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

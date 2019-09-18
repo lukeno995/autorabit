@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>CA_OF_vede_tutto</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CA OF vede tutto</label>
+        <sharedTo>
+            <role>CA_Utenti_Open_Fiber</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>CA Amministratori</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>SN_Social_Cases</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Social Cases</label>
+        <sharedTo>
+            <role>SN_Social_Administrator</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SN Social Request</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>TP_ShareSoc</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>TP_ShareSoc</label>
+        <sharedTo>
+            <group>TP_Group_Coda_SOC</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>PO_TP_Causale_Apertura_Segnalazione__c</field>
+            <operation>equals</operation>
+            <value>Segnalazione Provisioning</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>CA_Case_sharing_OF_con_Imprese</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>CA Case sharing OF con Imprese</label>
+        <sharedTo>
+            <role>CA_Utenti_Imprese</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>CA_Utenti_Open_Fiber</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>CA_Imprese_e_OF</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CA Imprese e OF</label>
+        <sharedTo>
+            <role>CA_Utenti_Open_Fiber</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>CA_Utenti_Imprese</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Closed_Cases_Assigned_to_SOC</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Closed Cases Assigned to SOC</label>
+        <sharedTo>
+            <group>TP_Group_Coda_SOC</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>TP_Group_Coda_SOC</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>PO_All_Partner_with_exact_internal</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>PO All Partner with exact internal</label>
+        <sharedTo>
+            <group>PO_Exact_internal_users</group>
+        </sharedTo>
+        <sharedFrom>
+            <allPartnerUsers></allPartnerUsers>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>PO_All_cases_shared_read2</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>PO All cases shared read</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>PO_Back_Office</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>PO_Back_Office</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>PO_All_users_shares</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>PO All users shares</label>
+        <sharedTo>
+            <group>PO_All_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>PO_All_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>SV_SV</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>SV &amp; SV</label>
+        <sharedTo>
+            <role>PO_Supporto_Vendite</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>PO_Supporto_Vendite</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>TP_ShareDeliveryCentroToSoc</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>TP_ShareDeliveryCentroToSoc</label>
+        <sharedTo>
+            <group>TP_Group_Coda_SOC</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>TP_Group_Delivery_Centro</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>TP_ShareDeliveryNordToSoc</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>TP_ShareDeliveryNordToSoc</label>
+        <sharedTo>
+            <group>TP_Group_Coda_SOC</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>TP_Group_Delivery_Nord</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>TP_ShareDeliverySudToSoc</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>TP_ShareDeliverySudToSoc</label>
+        <sharedTo>
+            <group>TP_Group_Coda_SOC</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>TP_Group_Delivery_Sud</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

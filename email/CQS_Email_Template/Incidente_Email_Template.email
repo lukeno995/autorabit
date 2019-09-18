@@ -1,0 +1,21 @@
+Buongiorno,
+
+è stato inserito il seguente Evento: 
+
+Tipo di evento: {!OF_CQS_Evento__c.RecordType}
+
+Numero evento: {!OF_CQS_Evento__c.Name}
+
+Impresa Affidataria:  {!OF_CQS_Evento__c.OF_CQS_Impresa_Mandataria__c}
+
+Impresa Esecutrice:
+ {!OF_CQS_Evento__c.OF_CQS_Impresa_Esecutrice_Eventi__c}
+
+Gravità Incidente: {!OF_CQS_Evento__c.CQS_Indice_Gravita_Taglio_Danneggiamento__c}
+
+Owner: {!OF_CQS_Evento__c.OwnerFullName}
+
+
+Cliccando sul seguente link si accede direttamente alla pagina dell'incidente inserito: {!OF_CQS_Evento__c.Link}
+
+Please take charge of the practice

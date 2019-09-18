@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Read</externalSharingModel>
+    <fields>
+        <fullName>CQS_PAJ_Area_Lotto__c</fullName>
+        <externalId>false</externalId>
+        <label>Area/Lotto</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_PAJ_Comune__c</fullName>
+        <externalId>false</externalId>
+        <label>Comune</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_PAJ_Data_Contratto__c</fullName>
+        <externalId>false</externalId>
+        <label>Data Contratto</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_PAJ_Importo_Aggiudicato__c</fullName>
+        <externalId>false</externalId>
+        <label>Importo Aggiudicato</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_PAJ_LDOService2__c</fullName>
+        <externalId>false</externalId>
+        <formula>CQS_Praj_Progetto__r.CQS_Pro_LDO_Service2__c</formula>
+        <label>LDO Service 2</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_PAJ_LDOService3__c</fullName>
+        <externalId>false</externalId>
+        <formula>CQS_Praj_Progetto__r.CQS_Pro_LDO_Service3__c</formula>
+        <label>LDO Service 3</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_PAJ_LDOService__c</fullName>
+        <externalId>false</externalId>
+        <formula>CQS_Praj_Progetto__r.CQS_Pro_LDO_Service__c</formula>
+        <label>LDO Service</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_PAJ_Mandante_1__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Mandante 1</label>
+        <referenceTo>OF_CQS_Anagrafica__c</referenceTo>
+        <relationshipLabel>Progetti Anagrafiche junctions (Mandante 1)</relationshipLabel>
+        <relationshipName>Progetti_Anagrafiche_junctions2</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CQS_PAJ_Mandante_2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Mandante 2</label>
+        <referenceTo>OF_CQS_Anagrafica__c</referenceTo>
+        <relationshipLabel>Progetti Anagrafiche junctions (Mandante 2)</relationshipLabel>
+        <relationshipName>Progetti_Anagrafiche_junctions3</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CQS_PAJ_Mandante_3__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Mandante 3</label>
+        <referenceTo>OF_CQS_Anagrafica__c</referenceTo>
+        <relationshipLabel>Progetti Anagrafiche junctions (Mandante 3)</relationshipLabel>
+        <relationshipName>Progetti_Anagrafiche_junctions4</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CQS_PAJ_Mandante_4__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Mandante 4</label>
+        <referenceTo>OF_CQS_Anagrafica__c</referenceTo>
+        <relationshipLabel>Progetti Anagrafiche junctions (Mandante 4)</relationshipLabel>
+        <relationshipName>Progetti_Anagrafiche_junctions5</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CQS_PAJ_Mandataria_Capogruppo__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Mandataria Capogruppo</label>
+        <referenceTo>OF_CQS_Anagrafica__c</referenceTo>
+        <relationshipLabel>Progetti Anagrafiche junctions (Mandataria Capogruppo)</relationshipLabel>
+        <relationshipName>Progetti_Anagrafiche_junctions1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CQS_PAJ_SS2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Società Services 2</label>
+        <referenceTo>CQS_SocietaServices__c</referenceTo>
+        <relationshipLabel>Progetti Anagrafiche junctions (Società Services 2)</relationshipLabel>
+        <relationshipName>Progetti_Anagrafiche_junctions</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CQS_PAJ_SS3__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Società Services 3</label>
+        <referenceTo>CQS_SocietaServices__c</referenceTo>
+        <relationshipLabel>Progetti Anagrafiche junctions (Società Services 3)</relationshipLabel>
+        <relationshipName>SocietaService3</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CQS_PAJ_SS__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Società Service</label>
+        <referenceTo>CQS_SocietaServices__c</referenceTo>
+        <relationshipLabel>Progetti Soc Services junctions</relationshipLabel>
+        <relationshipName>Progetti_SocService_junctions</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CQS_Paj_Email_Affidataria__c</fullName>
+        <externalId>false</externalId>
+        <label>Email Affidataria</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_Praj_Progetto__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Progetto</label>
+        <referenceTo>CQS_Progetto__c</referenceTo>
+        <relationshipLabel>Progetti Anagrafiche</relationshipLabel>
+        <relationshipName>Progetti_Anagrafiche_junctions</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CQS_Praj_Ragione_Sociale__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Ragione Sociale</label>
+        <referenceTo>OF_CQS_Anagrafica__c</referenceTo>
+        <relationshipLabel>Anagrafiche Progetti</relationshipLabel>
+        <relationshipName>Progetti_Anagrafiche_junctions</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CQS_Praju_LDO__c</fullName>
+        <externalId>false</externalId>
+        <formula>CQS_Praj_Progetto__r.CQS_Pro_LDO__c</formula>
+        <label>Lettera D&apos;Ordine</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Progetto Anagrafica junction</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>CQS_Praj_Progetto__c</columns>
+        <columns>CQS_Praju_LDO__c</columns>
+        <columns>CQS_Praj_Ragione_Sociale__c</columns>
+        <columns>CQS_PAJ_Comune__c</columns>
+        <columns>CQS_PAJ_Importo_Aggiudicato__c</columns>
+        <columns>CQS_Paj_Email_Affidataria__c</columns>
+        <columns>CQS_PAJ_LDOService__c</columns>
+        <columns>CQS_PAJ_SS__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>PaJ{0000}</displayFormat>
+        <label>Progetto Anagrafica junction Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Progetti Anagrafiche junctions</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>CQS_Praj_Progetto__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CQS_Praju_LDO__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CQS_Praj_Ragione_Sociale__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CQS_Paj_Email_Affidataria__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CQS_PAJ_LDOService__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CQS_PAJ_SS__c</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Read</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,169 @@
+<apex:page controller="OF_CV_Home_Controller" id="thePage" standardstylesheets="false" sidebar="true">
+<apex:slds />
+    <html lang="en">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            
+            <style>
+            
+                .fsWrapper{
+                    width: 960px;
+                    margin: 0 auto;
+                }
+                
+                .fontHeader{
+                    font-size: 13px;
+                }
+                
+                .headerTitle{
+                    font-family: arial, sans-serif;
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: #fff!important;
+                    text-align: left;
+                    text-transform: uppercase;
+                    background: #4e75a3;
+                    display: block;
+                    padding: 10px;
+                    margin:0;
+                }
+                
+                .dataTable table{
+                    width: 100%;
+                    font-family: arial, sans-serif;
+                    border: solid 1px #E0E3E5;
+                    border-collapse: collapse;
+                }
+                
+                .dataTable  th{
+                    background: #999999;
+                    border-top: solid 1px #E0E3E5;
+                    border-right: solid 1px #E0E3E5;
+                    color: #fff;
+                    font-size: 0.8em;
+                    font-weight: normal;
+                    padding: 11px 2px 10px 5px;
+                }
+                
+                .dataTable td {
+                    border-top: solid 1px #E0E3E5;
+                    border-right: solid 1px #E0E3E5;
+                    color: #797979;
+                    font-size: 15px;
+                    padding: 5px 2px 5px 5px;
+                }
+
+                #buttons{
+                    text-transform: uppercase;
+                    padding-top: 10px;
+                    padding-right: 10px;
+                    padding-bottom: 10px;
+                    background-color: ;
+                }
+                
+                .slds-scope .slds-button--brand, .slds-scope .slds-button_brand {
+                    background-color: rgb(52, 81, 138);
+                    border-color: rgb(52, 81, 138);
+                }
+            </style>
+        </head>
+        <body>
+            
+            <apex:form id="form" styleClass="fsWrapper">
+                <div style='color:red;font-size: 16px; font-family: verdana;font-weight: bold;'>
+                    <apex:messages />
+                </div>
+                <apex:outputPanel styleClass="dataTable">
+                    <apex:pageBlock id="pageB" >
+                        <h2 class="headerTitle">ELENCO VENDIBILITA'</h2>
+                        <apex:pageBlockTable id="idBt" value="{!elencoVend}" var="Vendite" onRowClick="rowSelected(this)">
+                            <!-- <apex:dataTable value="{!accounts}" var="account" id="theTable"
+                                rowClasses="odd,even" styleClass="dataTable">    
+                            -->
+                        <apex:facet name="caption"></apex:facet>
+                        <apex:facet name="header"></apex:facet>
+                        <apex:facet name="footer"></apex:facet>
+                     
+                        <apex:column id="col_codOp" onclick="highlight(this);" style="width: 350px;" >
+                            <apex:facet name="header">
+                               <p class="fontHeader">OPERATORE</p>
+                            </apex:facet>  
+                            
+                            <apex:outputText id="cod_op" value="{!Vendite.Codice_OLO__c}"/>
+                        </apex:column>
+                
+                        <apex:column id="col_Stato" style="width: 350px;" >
+                            <apex:facet name="header">
+                                <p class="fontHeader">SERVIZIO</p>
+                            </apex:facet>                            
+                            <apex:outputText id="name" value="{!Vendite.Servizio__c}"/>
+                        </apex:column>
+                        
+                        <apex:column style="text-align: center;">
+                            <apex:facet name="header">
+                                <p class="fontHeader">ESTRAI VENDIBILITA'</p>
+                            </apex:facet>     
+                            <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:90px;"  value="Estrai" action="{!estraiVendibilita}" >
+                                <apex:param name="olo" assignTo="{!olo}" value="{!Vendite.Codice_OLO__c}" />
+                                <apex:param name="servizio" assignTo="{!servizio}" value="{!Vendite.Servizio__c}" />
+                            </apex:commandLink>
+                        </apex:column>
+                    </apex:pageBlockTable>
+                    <div class="slds-form-element" id="buttons">
+                        <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;" onclick="return isErrore()" value="Visualizza regole" action="{!visualizzaRegole}" />
+                        <apex:commandLink styleClass="slds-button slds-button--brand" value="Crea nuova regola" action="{!creaNuovaRegola}"/>
+                    </div>
+                </apex:pageBlock>
+            </apex:outputPanel>
+            
+            <apex:actionFunction name="echo" action="{!valorizzaDati}" reRender="resultPanel" status="myStatus">
+                <apex:param name="olo" assignTo="{!olo}" value="" />
+                <apex:param name="servizio" assignTo="{!servizio}" value="" />
+            </apex:actionFunction>
+
+        </apex:form>
+        <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+        
+        <script type="text/javascript">
+   
+          $j = jQuery.noConflict(); 
+            var lastRow; 
+            var olo=''; 
+            
+
+            function rowSelected(v){
+                 if(lastRow != undefined)
+                    lastRow.style.backgroundColor = 'white';
+                     
+                 echo(v.cells[0].firstChild.innerHTML,v.cells[1].firstChild.innerHTML);
+                 olo=v.cells[0].firstChild.innerHTML;
+                 v.style.backgroundColor = 'lightblue'; 
+                 lastRow = v;
+                }
+                
+                
+                
+            function isErrore(){
+                if(olo =='' ){
+                    alert ('Selezionare un elemento dalla lista!');
+                    return null;
+                 }
+                     
+            }
+            
+            
+            function popup(){
+                if(olo =='' ){
+                    alert ('Riceverà a breve una mail contenente il file relativo alla vendibilità.');
+                    return null;
+                 }
+                     
+            }
+
+         </script>
+        </body>
+    </html>
+</apex:page>

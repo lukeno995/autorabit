@@ -1,0 +1,12 @@
+<apex:page standardController="OF_CQS_Evento__c" extensions="CQS_HomeTipoEvento_cController" showHeader="false" action="{!ricusaIntegrazione}" >
+    <script>
+   		function back(){
+               
+        	open(location, '_self').close();
+             
+                 
+        }  
+    </script>
+ 
+    
+</apex:page>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>ElencoComuniItaliani</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>ElenchiComuniItaliani</value>
+    </caseValues>
+    <fields>
+        <label><!-- Codice Istat --></label>
+        <name>OF_CodiceIstat__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comune --></label>
+        <name>OF_Comune__c</name>
+    </fields>
+    <fields>
+        <label><!-- Provincia --></label>
+        <name>OF_Provincia__c</name>
+    </fields>
+    <fields>
+        <label><!-- Regione --></label>
+        <name>OF_Regione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ripartizione geografica --></label>
+        <name>OF_Ripartizionegeografica__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ripartizione geografica NC --></label>
+        <name>PO_Ripartizione_geografica_NC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Titolarità NC --></label>
+        <name>PO_Titolarit_NC__c</name>
+    </fields>
+    <layouts>
+        <layout>ElencoComuniItaliani Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

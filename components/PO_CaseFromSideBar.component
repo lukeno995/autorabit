@@ -1,0 +1,88 @@
+<apex:component controller="PO_RegistrationController" allowDML="true">
+    <style>
+        #myinfo{
+        font-size: 180px;
+        }
+        span.dateFormat{
+        
+        display:none;
+        
+        }
+        .red{color:red;}
+    </style>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+             
+        </div>
+        <div id="page-wrapper">
+                    <div class="row">
+                        <div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i></i>Servizio a Fattibilità
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        
+                                        <div style="color:red;" id="showerror">
+                                            <apex:Messages id="errors" /> 
+                                        </div>
+                                        
+                                        
+                                        <apex:form styleClass="form-horizontal">  
+                                            <div class="container">
+                                                <div class="form-group">
+                                                    <label class="control-label col-sm-3" for="Azienda">Azienda</label>
+                                                    <div class="col-sm-6">
+                                                        <!--<input class="form-control" id="disabledInput" type="text" value="{!parentCase.accountid}" disabled = "True"/>-->
+                                                        <apex:outputField value="{!parentCase.accountid}" styleClass="form-control" id="Azienda" />
+                                                  
+                                                    </div>
+                                                </div>
+                                                
+                                               
+                                                <div class="form-group">
+                                                    <label class="control-label col-sm-3" for="Offerta">Offerta*</label>
+                                                    <div class="col-sm-6">
+                                                        <apex:outputText value="{!parentCase.PO_Offerta__c}" styleClass="form-control" id="Offerta"/>  
+                                                     </div>
+                                                </div>
+                                                <!--14/06/2017 Modified By Rajani --->
+                                                <div class="form-group">
+                                                   <label class="control-label col-sm-3" for="NomeProgetto">Nome Progetto*</label>
+                                                    <div class="col-sm-6">
+                                                        <apex:inputField value="{!parentCase.PO_Nome_Progetto__c}" styleClass="form-control" id="NomeProgetto"  />
+                                                                         </div>
+                                                </div>
+                                                <!----Rajani--->
+                                                <br/><br/><br/>
+                                                <div class="form-group">
+                                                    <div class="col-lg-6 col-offset-6">
+                                                    </div>
+                                                    
+                                                    <div class="col-lg-6 col-offset-6">
+                                                        <apex:commandButton styleClass="btn btn-primary" value="Annulla" style="margin-right:10px;" action="{!DeleteParentCase}" immediate="true"
+                                                                         html-formnovalidate="formnovalidate"/> 
+     
+                                                        <apex:commandButton styleClass="btn btn-primary" value="Inserisci Collegamento" action="{!childcase}" /> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </apex:form>    
+                                        
+                                        <br/>
+                                    </div>
+                                    <!-- /.row (nested) -->
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>       
+                            <!-- /.col-lg-4 -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /#page-wrapper -->
+                    
+                </div>
+    </div>
+    
+</apex:component>

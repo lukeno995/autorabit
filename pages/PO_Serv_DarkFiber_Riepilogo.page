@@ -1,0 +1,820 @@
+<apex:page controller="PO_Serv_DarkFiber_Riepilogo_Controller" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+    <html lang="en">
+        <head> 
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>          
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                } 
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+            </style>
+        </head>
+        <body> 
+            <div id="wrapper">
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <c:PO_SideBarComponent Rec="DarkFiber" />
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" id="side-menu">
+                            </ul>
+                        </div>
+                        <!-- /.sidebar-collapse -->
+                    </div>
+                    <!-- /.navbar-static-side -->
+                </nav>
+                
+                <div id="page-wrapper">
+                    <div class="row">
+                        <div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" id="ricFatt">
+                                    <i></i>Richiesta Fattibilità
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <!-- Error message -->
+                                        <div style="color:red;" id="showerror">
+                                            <apex:pageMessages id="errors" /> 
+                                        </div> 
+                                        
+                                        <apex:form styleClass="form-horizontal" id="theform">  
+                                            <apex:actionRegion >
+                                                <div class="form-group">
+                                                    <div class="col-lg-6 col-offset-6">
+                                                    
+                                                        <apex:commandButton styleClass="btn btn-primary" value="Nuovo collegamento" action="{!inserisciNuovoCollegamento}" id="button2" rendered="{!parentLogObj.EOF_Stato_Richiesta__c='Bozza'}" reRender="pageBlock"/> &nbsp;&nbsp;                                                        
+                                                        <apex:commandButton styleClass="btn btn-primary" value="Upload Offerta Accettata" action="{!AddParentAttachment}" id="button8" rendered="{!parentfile && parentLogObj.EOF_Stato_Richiesta__c != 'Bozza' && parentLogObj.PO_Offerta_Caricata__c = false}" /> &nbsp;&nbsp;    <!---->                                                            
+                                                        <!-- <apex:commandButton styleClass="btn btn-primary" value="Aggiungi KIT" action="{!inserisciNuovoKit}" id="button9" rendered="{!parentLogObj.EOF_Stato_Richiesta__c='Bozza Portale'}"/> &nbsp;&nbsp;  -->
+                                                        <!-- Bottoni -->
+                                                        <apex:outputPanel id="AvailableButtons" rendered="{!IF(parentLogObj.Caso__r.Status=='In approvazione Cliente','true','false')}"> 
+                                                            <!--<apex:commandButton styleClass="btn btn-primary" value="Accetta Offerta" action="{!OpportunityStageNameUpdate}"  id="button2" /> &nbsp;&nbsp; --> 
+                                                            <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">Accetta Offerta</button>-->
+                                                            <apex:commandButton styleClass="btn btn-primary" value="Accetta Offerta" onclick="accettaOfferta();"  />
+                                                            <!-- EC 2018 - 08 - 17 <apex:outputPanel rendered="{!parentCaseObj.PO_Offerta__c=='P2P Attiva'}">
+<apex:commandButton styleClass="btn btn-primary" value="Accetta Offerta" action="{!OpportunityStageNameUpdate}" rendered="{parentCaseObj.PO_Offerta__c=='P2P Attiva'}"  />                                                           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal18">Accetta Offerta</button>
+</apex:outputPanel> EC commentiamo perché non è questo il bottone che viene mostrato -->
+                                                            <apex:outputPanel id="id2">  <!-- rendered="{!parentCaseObj.PO_Offerta__c!='Fiber Lease'}" --> 
+                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Modifica</button>
+                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">Rifiuta Offerta</button>
+                                                            </apex:outputPanel>                                                         
+                                                        </apex:outputPanel>
+                                                        <apex:commandLink styleClass="btn btn-primary" onclick="checkInvio(); return false;"  value="Invia Richiesta" rendered="{!parentLogObj.EOF_Stato_Richiesta__c=='Bozza'}"/> &nbsp;&nbsp;
+                                                        <apex:actionstatus id="loadingStatus">
+                                                            <apex:facet name="start">
+                                                                    <img class="waitingImage" src="/img/loading.gif" title="Caricamento..." />
+                                                            </apex:facet>
+                                                        </apex:actionstatus> 
+                                                        <apex:commandButton styleClass="btn btn-primary"  action="{!deleteLog}" value="Elimina" rendered="{!parentLogObj.EOF_Stato_Richiesta__c='Bozza'}"/>  &nbsp;&nbsp;
+                                                        <apex:commandButton styleClass="btn btn-primary"  action="{!Annulla}" value="Indietro"/> 
+                                                        <apex:outputPanel rendered="{!parentLogObj.PO_Offerta_Caricata__c && parentLogObj.EOF_Stato_Richiesta__c !='Bozza' && parentLogObj.PO_Offerta_Inoltrata__c = false}">
+                                                            <apex:commandButton styleClass="btn btn-primary" value="Invia Ordine" action="{!ParentDataOrderUpdation}" />             
+                                                        </apex:outputPanel>
+                                                    </div> 
+                                                </div>
+                                                <apex:outputPanel id="infopage">
+                                                    <table id="theTable" class="table table-striped table-bordered" width="100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>ID Richiesta Offerta  </th>
+                                                                <th>Nome Progetto </th>
+                                                                <th>Tipologia</th>
+                                                                <apex:outputPanel rendered="{!IF( parentLogObj.EOF_STATO_ORDINE__c != 'Bozza Portale' , true , false)}">
+                                                                    <th>Stato</th>
+                                                                </apex:outputPanel>
+                                                                <th>Data Apertura </th>
+                                                                <th>Data Chiusura </th>
+                                                                <th>Note</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <!--<apex:repeat value="{!testlog}" var="parentLogObj">-->
+                                                            <tr>
+                                                                <td>
+                                                                    <apex:commandlink action="{!redirectparentlogdetail}" value="{!parentLogObj.EOF_Codice_Ordine_OLO__c}">
+                                                                        <!-- <apex:param name="Id" assignTo="{!Id}" value="{!parentLogObj.id}"/>    -->
+                                                                    </apex:commandlink> 
+                                                                </td>
+                                                                <td>
+                                                                    <apex:outputText value="{!parentLogObj.PO_Nome_Progetto__c}"/>
+                                                                </td>
+                                                                <td>
+                                                                    <apex:outputText value="{!parentLogObj.PO_Offerta__c}"/>
+                                                                </td>
+                                                                <apex:outputPanel rendered="{!IF( parentLogObj.EOF_STATO_ORDINE__c != 'Bozza Portale' , true , false)}">
+                                                                    <td>
+                                                                        <apex:outputText value="{!parentLogObj.EOF_STATO_ORDINE__c}"/>
+                                                                    </td>
+                                                                </apex:outputPanel>
+                                                                <td>
+                                                                    <apex:outputfield value="{!parentLogObj.CreatedDate}" />
+                                                                </td>
+                                                                <td>
+                                                                    <apex:outputfield value="{!parentLogObj.caso__r.closeddate}" />
+                                                                </td>
+                                                                <td>
+                                                                    <apex:outputText value="{!parentLogObj.PO_Nota_sito__c}" />
+                                                                </td>
+                                                            </tr>
+                                                            <!--</apex:repeat>-->
+                                                        </tbody>
+                                                    </table>
+                                                    <apex:outputPanel rendered="{!DarkFiberLogList.size>0}">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                <i></i>Elenco Collegamenti 
+                                                            </div>
+                                                        </div>     
+                                                        <!--
+                                                 la lista di ordini:        {!orderLogs}        
+                                                        -->
+                                                        <table id="theTable" class="table table-striped table-bordered" width="100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>ID Richiesta di Collegamento</th>
+                                                                    <th>ID Richiesta Offerta</th>
+                                                                    <th>ID Ordine Collegamento</th>
+                                                                    <th>Tipo Percorso </th>
+                                                                    <th>Indirizzo Collegamento </th>
+                                                                    <th>Comune</th>
+                                                                    <th>Stato</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <apex:variable var="count" value="{!0}"/> 
+                                                                <apex:repeat value="{!DarkFiberLogList}" var="logObj" >
+                                                                    <tr>
+                                                                        <td> 
+                                                                            <apex:commandlink value="{!logObj.EOF_Codice_Ordine_OLO__c}" action="{!EditLogInfo}" rendered="{!logObj.EOF_Stato_Richiesta__c == 'Bozza'}">
+                                                                                <apex:param name="cLogId" assignTo="{!childlogdisplayid}" value="{!logObj.Id}"/>
+                                                                            </apex:commandlink>
+                                                                            
+                                                                            <apex:commandLink action="{!redirectchildlogdetail}"  value="{!logObj.EOF_Codice_Ordine_OLO__c}" rendered="{!logObj.EOF_Stato_Richiesta__c != 'Bozza'}">
+                                                                                <apex:param name="CaseDetail" assignTo="{!childlogdisplayid}" value="{!logObj.Id}"/>
+                                                                            </apex:commandlink> 
+                                                                            
+                                                                        </td>
+                                                                        <td>
+                                                                            <apex:outputText value="{!parentLogObj.EOF_Codice_Ordine_OLO__c}"/>
+                                                                            
+                                                                            <!--
+                                                                            <apex:outputText value="{!logObj.EOF_Codice_Ordine_OLO__c}"/>
+                                                                            -->
+                                                                        </td>                                                                
+                                                                        <td>
+                                                                            <!--ORDINE DI COLLEGAMENTO-->
+                                                                            
+                                                                            <apex:outputPanel rendered="{!caseobj.PO_Incluso_nell_offerta__c == true}">
+                                                                                <apex:outputField value="{!orderCases[count].casenumber}"  rendered="{!orderCases.size>0 }"/>
+                                                                                <apex:variable value="{!count+1}" var="count"/>
+                                                                            </apex:outputPanel>
+                                                                            
+                                                                        </td> 
+                                                                        <td>
+                                                                            <apex:outputText value="{!logObj.PO_Tipo_percorso__c}"
+                                                                                rendered="{!logObj.EOF_STATO_ORDINE__c == 'Bozza'}"/>
+                                                                            <apex:outputText value="{!logObj.caso__r.PO_Tipo_percorso__c}"
+                                                                                rendered="{!logObj.EOF_STATO_ORDINE__c != 'Bozza'}"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <apex:outputText value="{!logObj.Particella_Toponomastica_1__c }   {!logObj.PO_Indirizzo_collegamento__c }   {!logObj.PO_Civico__c }"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <apex:outputText value="{!logObj.EOF_Comune__c}"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <apex:outputText value="{!logObj.EOF_STATO_ORDINE__c}"/>
+                                                                        </td>
+                                                                    </tr>
+                                                                </apex:repeat> 
+                                                            </tbody>
+                                                        </table>
+                                                    </apex:outputPanel> 
+                                                        <apex:outputPanel rendered="{!orderLogs.size>0}" id="ordersec">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                <i></i>Elenco Ordine  
+                                                            </div>
+                                                        </div>    
+                                                        <table id="theTable" class="table table-striped table-bordered" width="100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>ID Ordine Collegamento </th>
+                                                                    <th>ID Richiesta di Collegamento </th>
+                                                                    <th>Tipo percorso</th>
+                                                                    <th>Indirizzo collegamento</th>
+                                                                    <th>Comune </th>
+                                                                    <th>Data Apertura </th>
+                                                                    <th>Data Chiusura </th>
+                                                                    <th>Stato</th>
+                                                                    <th></th>
+                                                                </tr>
+                                                            </thead>
+                                          
+                                                            <tbody>
+                                                                <apex:repeat value="{!orderLogs}" var="logobj1" >
+                                                                    <tr>
+                                                                        <td>
+                                                                            <apex:commandlink value="{!logobj1.EOF_Codice_Ordine_OLO__c}" action="{!redirectToOrdLogDetail}" >
+                                                                                <apex:param name="ordLogDetail" assignTo="{!ordLogId}" value="{!logobj1.Id}"/>
+                                                                            </apex:commandlink>
+                                                                        </td>
+                                                                        <td>
+                                                                            <apex:outputText value="{!logobj1.EOF_SL_Riferimento__r.EOF_Codice_Ordine_OLO__c}"/>
+                                                                        </td>                                                               
+                                                                        <td>
+                                                                            <apex:outputText value="{!logobj1.caso__r.po_case_collegamento__r.PO_Tipo_percorso__c}"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <apex:outputText value="{!logObj1.Particella_Toponomastica_1__c }   {!logObj1.PO_Indirizzo_collegamento__c }   {!logObj1.PO_Civico__c }"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <apex:outputText value="{!logobj1.EOF_Comune__c}"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <apex:outputfield value="{!logobj1.caso__r.CreatedDate}"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <apex:outputfield value="{!logobj1.caso__r.PO_Data_Espletamento_Ordine__c }"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <apex:outputText value="{!logobj1.EOF_STATO_ORDINE__c}"/>
+                                                                        </td>
+                                                                        <td>    
+                                                                            
+                                                                            
+                                                                            <apex:commandlink value="Completa Ordine" action="{!collegmentaDate}" styleClass="btn btn-primary" rendered="{!(logobj1.Caso__r.parent.parent.PO_isDataOrder__c=false && (logobj1.Caso__r.PO_Nome_E_Cognome_PM__c == null || logobj1.Caso__r.PO_Data_Attivazione_Richiesta__c == null || logobj1.Caso__r.PO_Numero_Telefonico_PM__c == null)) }" >
+                                                                                <apex:param value="{!logobj1.id}" name="recid" assignTo="{!recid}" />
+                                                                            </apex:commandlink>                                                                                                                                                         
+                                                                            <apex:commandButton value="Completa Ordine" styleClass="btn btn-success" disabled="{!AND(logobj1.Caso__r.PO_Nome_E_Cognome_PM__c != null, logobj1.Caso__r.PO_Data_Attivazione_Richiesta__c != null ,logobj1.Caso__r.PO_Numero_Telefonico_PM__c != null)}" rendered="{!AND(logobj1.Caso__r.PO_Nome_E_Cognome_PM__c != null, logobj1.Caso__r.PO_Data_Attivazione_Richiesta__c != null ,logobj1.Caso__r.PO_Numero_Telefonico_PM__c != null)}"/>                                                          
+                                                                            
+                                                                            <!--
+                                                                            <apex:commandlink value="Completa Ordine" action="{!collegmentaDate}" styleClass="btn btn-primary" rendered="{!parentLogObj.PO_Offerta_Inoltrata__c = false}"> 
+                                                                                <apex:param value="{!logobj1.id}" name="recid" assignTo="{!recid}" />
+                                                                            </apex:commandlink>   
+                                                                            <apex:commandButton value="Completa Ordine" styleClass="btn btn-success" disabled="true" rendered="{!parentLogObj.PO_Offerta_Inoltrata__c = true}"/>   
+                                                                            -->
+                                                                            
+                                                                            <!-- giovanni 27112018 fine -->
+                                                                            
+                                                                        </td>
+                                                                    </tr>
+                                                                </apex:repeat>                                                          
+                                                            </tbody>
+                                                        </table>
+                                                    </apex:outputPanel>                                                    
+                                                    
+                                                </apex:outputPanel> 
+                                                <apex:outputPanel rendered="{!newAtt.size>0}" id="attsec1">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <i></i>Offerta
+                                                        </div>
+                                                        <table id="theTable" class="table table-striped table-bordered" width="100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Allegato </th>
+                                                                    <th>Data Creazione </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <apex:repeat value="{!newAtt}" var="att">
+                                                                    <tr>
+                                                                        <td>         
+                                                                            <apex:outputLink value="{!URLFOR($Action.Attachment.Download, att.Id)}" target="_blank">{!att.Name}</apex:outputLink>                                                                                                                                                
+                                                                        </td> 
+                                                                        <td>
+                                                                            <apex:outputField value="{!att.createdDate}" />
+                                                                        </td>
+                                                                    </tr> 
+                                                                </apex:repeat>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </apex:outputPanel>
+                                                <apex:outputPanel rendered="{!attxlxs.size>0}" id="attsec3">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <i></i>Dettaglio Offerta
+                                                        </div>
+                                                        <table id="theTable" class="table table-striped table-bordered" width="100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Allegato </th>
+                                                                    <th>Data Creazione </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <apex:repeat value="{!attxlxs}" var="att">
+                                                                    <tr>
+                                                                        <td>
+                                                                            <apex:outputLink value="{!URLFOR($Action.Attachment.Download, att.Id)}" target="_blank">{!att.Name}</apex:outputLink>                                                                                                                                                
+                                                                        </td> 
+                                                                        <td>
+                                                                            <apex:outputField value="{!att.createdDate}" />
+                                                                        </td>
+                                                                    </tr> 
+                                                                </apex:repeat>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </apex:outputPanel>
+                                                <apex:outputPanel rendered="{!attlst.size>0}" id="attsec2">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <i></i>Elenco Offerte Precedenti 
+                                                        </div>
+                                                        <table id="theTable" class="table table-striped table-bordered" width="100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Allegato </th>
+                                                                    <th>Data Creazione </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <apex:repeat value="{!attlst}" var="att">
+                                                                    <tr>
+                                                                        <td>                                                                
+                                                                            <apex:outputLink value="{!URLFOR($Action.Attachment.Download, att.Id)}" target="_blank">{!att.Name}</apex:outputLink>                                                                    
+                                                                        </td> 
+                                                                        <td>
+                                                                            <apex:outputField value="{!att.createdDate}" />
+                                                                        </td>
+                                                                    </tr> 
+                                                                </apex:repeat>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </apex:outputPanel>
+                                                 <!-- EC 2018 - 11 - 17 -->
+                                                 <apex:outputPanel id="OffUploadedAcceptedToShow" rendered="{!showOffUploadedAccepted}"> <!-- EC 2018 - 11 - 17 inseriamo il tutto in un outputpanel per il rendered. START -->
+                                                    <div class="row">
+                                                        <div class="col-lg-6" style="width:100%;">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                    <i></i>Offerta Firmata
+                                                                </div>
+                                                                <div>
+                                                                    <table id="theTable" class="table table-striped table-bordered" width="100%">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Allegato </th>
+                                                                                <th>Data Creazione </th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <apex:repeat value="{!offUploadedList}" var="att">
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <apex:outputLink value="{!URLFOR($Action.Attachment.Download, att.Id)}" target="_blank">{!att.Name}</apex:outputLink>    
+                                                                                    </td> 
+                                                                                    <td>
+                                                                                        <apex:outputField value="{!att.createdDate}" />
+                                                                                    </td>
+                                                                                </tr> 
+                                                                            </apex:repeat>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>                
+                                                    </apex:outputPanel> <!-- EC 2018 - 11 - 17 inseriamo il tutto in un outputpanel per il rendered. END -->
+                                                                                
+                                                                                
+                                                
+                                                
+                                                <!--
+                                                      <apex:outputPanel rendered="{!kitList.size>0}" id="kitLogColl">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                <i></i>Elenco KIT
+                                                            </div>
+                                                        </div>                                                
+                                                        
+                                                        <table id="theTable" class="table table-striped table-bordered" width="100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Nome KIT</th>
+                                                                    <th>Indirizzo Consegna</th>
+                                                                    <th>Nome POP Openfiber</th>
+                                                                    <th>Optical Rate Limiting</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <apex:variable var="count" value="{!0}"/> 
+                                                                <apex:repeat value="{!kitList}" var="kLogObj" >
+                                                                    <tr>
+                                                                        <td> 
+                                                                            <apex:commandlink value="{!kLogObj.PO_P2PAttiva_Nome_del_KIT__c}" action="{!goToKITpage}">
+                                                                                <apex:param name="kitId" assignTo="{!kitLogId}" value="{!kLogObj.Id}"/>
+                                                                            </apex:commandlink>
+                                                                        </td>
+                                                                        
+                                                                        <td>
+                                                                            <apex:outputText value="{!kLogObj.PO_P2PAttiva_KIT_Indirizzo_Consegna__c}"/>
+                                                                        </td>
+                                                                        
+                                                                        <td>
+                                                                            <apex:outputText value="{!kLogObj.EOF_ID_Pop__c}"/>
+                                                                        </td>
+
+                                                                        <td>
+                                                                            <apex:outputText value="{!kLogObj.PO_P2PAttiva_Optical_Rate_Limiting__c}"/>
+                                                                        </td>
+                                                                    </tr>
+                                                                </apex:repeat>
+                                                            </tbody>
+                                                          </table>
+                                                </apex:outputPanel>
+                                                -->
+                                                                            <!--ORDINE DI COLLEGAMENTO-->
+                                                                            
+                                                 <!--EC 2018 - 09 - 20      <apex:outputPanel rendered="{!caseobj.PO_Incluso_nell_offerta__c == true}">
+                                                                                <apex:outputField value="{!orderCases[count].casenumber}"  rendered="{!orderCases.size>0 }"/>
+                                                                                <apex:variable value="{!count+1}" var="count"/>
+                                                                            </apex:outputPanel>
+                                                                            
+                                                                        </td> 
+                                                                        <td>
+                                                                            <apex:outputText value="{!logObj.PO_Tipo_percorso__c}"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <apex:outputText value="{!logObj.PO_Indirizzo_collegamento__c }"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <apex:outputText value="{!logObj.EOF_Comune__c}"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <apex:outputText value="{!logObj.EOF_STATO_ORDINE__c}"/>
+                                                                        </td>
+                                                                    </tr>
+                                                                </apex:repeat> 
+                                                            </tbody>
+                                                        </table>
+                                                    </apex:outputPanel>     
+                                                        -->
+                                                <!-- EC 2018 - 09 - 20 -->
+                                                
+                                                <div class="modal fade" id="myModal" role="dialog" style="width:100%">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">Modifica</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <lable>Note Modifica Offerta</lable>
+                                                                <!--<apex:inputTextarea value="{!textarea}" cols="3"  rows="3" style="height: 100px;width:500px;" />-->
+                                                                <apex:inputField style="width:100%" id="NoteModificaOfferta" value="{!parentLogObj.PO_Note_Modifica_Offerta__c}" />
+                                                                
+                                                                
+                                                            </div>
+                                                            <div class="modal-body"  style="width:100%">
+                                                            </div>
+                                                            <div>
+                                                                <table id="theTable" class="table table-striped table-bordered" width="100%">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Collegamento</th>
+                                                                            <th>Incluso nell’offerta</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <apex:repeat value="{!DarkFiberLogList}" var="logColl" >
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <!--
+                                                                                    <apex:outputfield value="{!logColl.Caso__r.casenumber}" />
+                                                                                    -->
+                                                                                    <apex:outputfield value="{!logColl.EOF_Codice_Ordine_OLO__c}" />
+                                                                                </td>
+                                                                                <td>
+                                                                                    <apex:inputfield value="{!logColl.PO_Incluso_nell_offerta__c}" />
+                                                                                </td>
+                                                                            </tr>
+                                                                        </apex:repeat>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <apex:commandButton value="Modifica" onclick="validateform();return false;" styleClass="btn btn-primary" />
+                                                                <apex:actionFunction name="OpportunityStageNameUpdate2method" action="{!OpportunityStageNameUpdate2}"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal fade" id="myModal1" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">Rifiuta Offerta</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <lable>Note Rifiuta Offerta</lable>
+                                                                <apex:inputTextarea value="{!textarea1}" cols="3"  rows="3" style="height: 100px;width:500px;" />
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <apex:commandButton value="Rifiuta" action="{!OpportunityStageNameUpdate3}" styleClass="btn btn-primary" rerender="theform" id="button7"  onComplete="$('#myModal1').modal('hide');$('body').removeClass('modal-open');$('.modal-backdrop').remove()"  /><!--onclick="javascript:window.location.reload()"-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                                <div class="modal fade" id="myModal2" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title"><p class="alert alert-success"><b>Success!!</b></p></h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p class="text-primary"><b>Casi di ordine creati con successo </b></p>
+                                                                <!--<p class="text-primary"> <b>collegamento inclusi nell'offerta.</b></p>                                                                
+<p class="text-primary"><b>Per ciascuno di tali collegamenti,entrare nel dettaglio e cliccare sul</b></p>                                                                
+<p class="text-primary"><b>bottone "Invia dati Ordine."</b></p>                                                                
+<p class="text-primary"><b> Al termine dell'inserimento di tutti i dati,sara possible cliccare sul</b></p>                                                                
+<p class="text-primary"><b>bottone "Invia Ordine." </b></p>-->                                                                
+                                                            </div>                                                            
+                                                            <div class="modal-footer">                                                                
+                                                                <apex:commandButton value="Continua" action="{!OpportunityStageNameUpdate}" styleClass="btn btn-primary" rerender="theform" onComplete="$('#myModal1').modal('hide');$('body').removeClass('modal-open');$('.modal-backdrop').remove()"  /><!--onclick="javascript:window.location.reload()"-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                                <div class="modal fade" id="myModal3" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title"><p class="text-danger"><b>Attenzione!!</b></p></h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p class="text-primary"><b>Per poter inviare I'ordine e necessario inserire ulteriori dati per tutti i </b></p>                                                                
+                                                                <p class="text-primary"> <b>collegamento inclusi nell'offerta.</b></p>                                                                
+                                                                <p class="text-primary"><b>Per ciascuno di tali collegamenti,entrare nel dettaglio e cliccare sul</b></p>                                                                
+                                                                <p class="text-primary"><b>bottone "Invia dati Ordine."</b></p>                                                                
+                                                                <p class="text-primary"><b> Al termine dell'inserimento di tutti i dati,sara possible cliccare sul</b></p>                                                                
+                                                                <p class="text-primary"><b>bottone "Invia Ordine." </b></p>                                                                
+                                                            </div>                                                            
+                                                            <div class="modal-footer">                                                                
+                                                                <apex:commandButton value="Continua" action="{!OpportunityStageNameUpdate}" styleClass="btn btn-primary" rerender="theform" onComplete="$('#myModal1').modal('hide');$('body').removeClass('modal-open');$('.modal-backdrop').remove()"  /><!--onclick="javascript:window.location.reload()"-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>                                                  
+                                                <div class="modal fade" id="myModal5" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <apex:pageMessages id="pgmid"/>
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">Collegamento</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form id="loginForm" method="post" class="form-horizontal">
+                                                                    <div class="form-group has-error">
+                                                                        <label class="control-label col-sm-3" for="date">Data Attivazione Richiesta Cliente</label>
+                                                                        <div class="col-sm-6">
+                                                                            <apex:input type="date"  value="{!childrecdate}" size="10" id="date"  onfocus="DatePicker.pickDate(false, 'myPage:myForm:demo', false);"  />
+                                                                            <!--<apex:inputfield value="{!childCaseObj.PO_Nome_E_Cognome_PM__c}"     />-->                                                                     
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-sm-3" for="PMRiferimento">PM Riferimento</label>
+                                                                        <div class="col-sm-6">
+                                                                            <apex:inputfield value="{!caseobj.PO_Nome_E_Cognome_PM__c}" id="txtid1" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-sm-3" for="Telefono">Telefono PM</label>
+                                                                        <div class="col-sm-6">
+                                                                            <apex:inputfield value="{!caseobj.PO_Numero_Telefonico_PM__c}" id="txtid" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="col-sm-6">
+                                                                            <label class="control-label col-sm-3" for="CaseNumber">Case Number</label>                                                               
+                                                                            <apex:outputfield value="{!caseobj.casenumber}" id="cseid" />
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">                                                         
+                                                                <apex:commandButton value="Annulla" action="{!DisplayCaseInfo}" styleClass="btn btn-primary" rerender="theform"  onComplete="$('#myModal1').modal('hide');$('body').removeClass('modal-open');$('.modal-backdrop').remove()"  immediate="true"  html-formnovalidate="formnovalidate"/>
+                                                                <!--onclick="javascript:window.location.reload()"-->
+                                                                <apex:commandButton value="Salva" action="{!collegmentaDate}" styleClass="btn btn-primary" rerender="theform,sec1,sce2"   onComplete="$('#myModal1').modal('hide');$('body').removeClass('modal-open');$('.modal-backdrop').remove()"  onclick="javascript:window.location.reload()" id="loginFormSubmit" reRender="pgmid"/><!--onclick="javascript:window.location.reload()"-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                                <div class="modal fade" id="myModal7" role="dialog">
+                                                    <div class="modal-dialog">                                                            
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title"><p class="text-danger"><b>Attenzione!!</b></p></h4>
+                                                            </div>
+                                                            <div class="modal-body">                                                                                                                                    
+                                                                <p class="text-primary"><b>Cliccare sul link per ciascum ordine in elenco e quindi sul bottone  </b></p>                                                                    
+                                                                <p class="text-primary"> <b>"invia dati ordine",per inserire i dati necessari.</b></p>                                                                    
+                                                                <p class="text-primary"><b>L'ordine sara lavorato solo ai termine dell'inserimento dei dati richiest per </b></p>                                                                    
+                                                                <p class="text-primary"><b>tutti gli ordini</b></p>                                                                                                                                        
+                                                            </div>                                                                
+                                                            <div class="modal-footer">                                                                             
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                                <div class="modal fade" id="myModal18" role="dialog" style="width:100%">
+                                                    <div class="modal-dialog">                                                        
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">Inserire il numero anni di affitto richiesto</h4>
+                                                            </div>                                                         
+                                                            <div class="modal-body"  style="width:100%">
+                                                                <apex:outputPanel rendered="{!parentCaseObj.PO_Offerta__c=='Fiber Link'}">
+                                                                    <!--<lable>Durata affitto</lable>-->
+                                                                    <apex:outputLabel >Durata affitto(anni)&nbsp;&nbsp;</apex:outputLabel>
+                                                                    <!--<apex:inputTextarea value="{!textarea}" cols="3"  rows="3" style="height: 100px;width:500px;" />-->
+                                                                    <!--   <apex:inputText id="Durataaffitto1" value="{!parentCaseObj.PO_Durata_affitto__c}"  /> -->
+                                                                </apex:outputPanel>
+                                                            </div>
+                                                            <div class="modal-footer">                                                                
+                                                                <!-- <apex:commandButton value="Modifica" onclick="validateform();return false;" styleClass="btn btn-primary"    />--oncomplete="getRemoteAccount()  reRender="theform""--->
+                                                                -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>                                                 
+                                            </apex:actionRegion>
+
+                                            <!--
+                                            <apex:actionFunction name="inviaRichiesta" reRender="tabResult" action="{!InviaRichiesta_2}" status="loadingStatus" onComplete="rienableButton()"/>        
+                                            -->
+                                            <apex:actionFunction name="inviaRichiesta" reRender="showerror, errors" action="{!InviaRichiesta_2}" status="loadingStatus" onComplete="rienableButton()"/> 
+                                            <apex:actionFunction name="accOfferta" reRender="showerror, errors" action="{!OpportunityStageNameUpdate}" status="loadingStatus" onComplete="rienableButton()"/> 
+
+                                        </apex:form>                                      
+                                    </div>
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>       
+                            <!-- /.col-lg-4 -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /#page-wrapper -->                        
+                </div>
+            </div>
+            <!-- /#wrapper -->        
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>                
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'></script>                
+            </body>                
+            </html>               
+            <script>
+            function validateform(){
+                var invalidflg = false; 
+                var PO_Offerta = '{!parentCaseObj.PO_Offerta__c}';  
+                var Durataaffitto = $('[id$=Durataaffitto]').val();
+                if(PO_Offerta == 'Fiber Link'){
+                    if(Durataaffitto.length == 0){
+                        $('[id$=Durataaffitto]').next('div.red').remove();
+                        $('[id$=Durataaffitto]').after('<div class="red">Inserire il numero di anni di affitto di interesse, cliccando su Modifica</div>');
+                        invalidflg = true;
+                    }else{
+                        $('[id$=Durataaffitto]').next('div.red').remove();
+                    }
+                }
+                if(invalidflg){
+                    return false;
+                }                 
+                OpportunityStageNameUpdate2method();
+            }   
+            /*    
+            function checkInvio(){
+            
+                var check=false;
+                var collCheckOK ='{!checkListColl}'; //EC 2018 - 11 - 16
+              
+            
+              //  if("{!DarkFiberLogList.size<=0}"){
+            //EC 2018 - 11 - 15
+            /*    if(checkListColl == 'true'){ //EC 2018 - 11 - 16  se la lista di collegamenti è vuota deve apparire un errore.
+                    alert('<div class="red">Per inviare la richiesta è necessario corredarla di almeno un collegamento.</div>');
+                 $('[id$=ricFatt]').next('div.red').remove();
+                    $('[id$=ricFatt]').after('<div class="red">Per inviare la richiesta è necessario corredarla di almeno un collegamento.</div>');
+                    check = true;
+                }
+                //EC End 2018 - 11 - 15
+                //giovanni
+                /*
+                if("{VlanCollegamentiOK}" == 'false'){ cera il !
+                    $('[id$=ricFatt]').next('div.red').remove();
+                    $('[id$=ricFatt]').after('<div class="red">Per inviare la richiesta ogni collegamento deve avere delle Vlan associate</div>');
+                    check = true;
+                }
+                else{
+                    $('[id$=ricFatt]').next('div.red').remove();
+                }
+                */
+        //       $('[id$=ricFatt]').next('div.red').remove();
+                
+                
+                //giovanni
+                /*
+                if(!check){
+                    if("{checkKitSenzaVlan}" == 'true'){ cera il !
+                        var r = window.confirm("Ci sono dei kit senza vlan associate che non verranno presi in considerazione. Continuare?")
+                        if(r == false ){
+                            check = true;
+                        }
+                    }
+                }
+                //
+               check = false;
+                
+                
+                
+                
+                if(!check){
+                    disableButton()
+                    inviaRichiesta();
+                }
+            }   */ 
+            
+            function accettaOfferta() {
+                disableButton();
+                accOfferta();
+            }
+            
+            function checkInvio(){
+            debugger;
+                var check=false;
+                if('{!checkListColl}' == 'true'){
+                    $('[id$=ricFatt]').next('div.red').remove();
+                    $('[id$=ricFatt]').after('<div class="red">Per inviare la richiesta è necessario corredarla di almeno un collegamento.</div>');
+                    check = true;
+                }
+           /*   else{
+                    $('[id$=ricFatt]').next('div.red').remove();
+                }*/
+                
+                if(!check){
+                    disableButton()
+                    inviaRichiesta();
+                }
+            }   
+            
+            
+            
+            function disableButton(){
+                $( ".btn" ).prop("disabled",true);
+            }
+            function rienableButton(){
+                $( ".btn" ).prop("disabled",false);
+            }
+            </script>
+        </apex:page>

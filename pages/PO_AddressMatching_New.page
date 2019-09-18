@@ -1,0 +1,553 @@
+<apex:page standardController="Case" id="pageID" extensions="PO_RegistrationController" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Open Fiber</title>  
+        
+        <!-- Bootstrap Core CSS -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+        
+        <!-- MetisMenu CSS -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+        
+        <!-- Custom CSS -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+        
+        <!-- Morris Charts CSS -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+        
+        <!-- Custom Fonts -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+        
+         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>            
+        <link rel = "stylesheet"  type = "text/css"  href = "//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+      
+  
+
+<!--Abhishek Anand 21112018 script start-->
+        <script type="text/javascript">
+        //var PLACEHOLDER = 'Digitare il comune poi selezionarlo dall\'elenco'; 
+        
+            var PLACEHOLDER = 'Digitare 3 caratteri o più, quindi selezionare dalla lista';
+            var comuneObjects;
+            var viaObjects;
+            var queryTerm;
+            var comuneCheckList;
+            var viaCheckList;
+            var ComuneErrorlabel;
+        var communeid;
+            $(document).ready(
+                function() {
+                $('[id$=comuneId]').autocomplete({
+                    minLength: 3,
+                    source: function(request, response)
+                    {
+                        queryTerm = request.term;
+                        PO_RegistrationController.searchComuneAdd(request.term, function(result, event){
+                            if(event.type == 'exception') {
+                                alert(event.message);
+                            } else {
+                                comuneObjects = result;                            
+                                response(comuneObjects);
+                                comuneCheckList= [];
+                                comuneObjects.forEach(function(element) {
+                                    comuneCheckList.push(element.label+' '+element.value);
+                                console.log('comuneCheckList'+comuneCheckList);
+                                   
+                                });
+                            }
+                        });
+                    },
+                    focus: function( event, ui ) {
+                        //  $('[id$=comuneId]').val( ui.item.OF_Comune__c+' '+ui.item.OF_Regione__c );
+                        return false;
+                    },
+                    select: function( event, ui ) {
+                     //Abhishek Anand 19122018 CR34 Start Code added to remove unwanted &#39; coming up in string values like ROMANO D'EZZELINO 
+                        var replacecommune= ui.item.label;
+                        console.log('replacecommune'+replacecommune);                        
+                        
+                        if ( replacecommune.includes('&#39;')) {
+                            console.log('Inside  replacecommune If condition');
+                            replacecommune =replacecommune.replace('&#39;','\'');
+                            console.log('replacecommune was changed'+replacecommune);
+                             $('[id$=comuneId]').val( replacecommune);
+                            }
+                          else  //Abhishek Anand 19122018 CR34 Start Code added to remove unwanted &#39; coming up in string values like ROMANO D'EZZELINO                      
+                       $('[id$=comuneId]').val( ui.item.label);
+                        //$('[id$=comuneId]').val( ui.item.value );
+                         searchcommuneId =ui.item.value;
+                        console.log('comunename'+searchcommuneId);                        
+                        console.log('#someButton was clicked'+ui.item.value);
+                         //added for CR34 Improvement Abhishek Anand 12122018
+                   if (searchcommuneId==' ' )
+                        return true;
+                        else 
+                            return false;
+                    },
+                })
+                
+                .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+                    //var entry = "<a>" + item.label+' '+item.value;
+                    var entry = "<a>" + item.label
+                    //console.log('entry: ',entry);
+                    entry = entry + "</a>";
+                    // console.log('entry1: ',entry);
+                    entry = entry.replace(queryTerm, "<b>" + queryTerm + "</b>");
+                    //console.log('entry2: ',entry);
+                    // console.log('entry4: ',$( "<li></li>" ));
+                    return $( "<li></li>" )
+                    .data( "ui-autocomplete-item", item )
+                    .append( entry )
+                    .appendTo( ul );
+                };
+                
+                // Add or remove placeholder values
+                $('[id$=comuneId]').val(PLACEHOLDER);
+                $('[id$=comuneId]').on("focus",  function(event){
+                    $tgt = $(event.target);
+                    if($tgt.val() === PLACEHOLDER ){
+                        $tgt.val('');
+                        $tgt.removeClass('placeHolder');
+                    }
+                });
+                $('[id$=comuneId]').on( "blur",  function(event){
+                        $tgt = $(event.target);
+                    if($tgt.val() === '' ){
+                        $tgt.val(PLACEHOLDER);
+                        $tgt.addClass('placeHolder');
+                    }
+                });
+                 
+                     //CR34 Urgent Fix 08012019 Abhishek Anand Start
+                   $('[id$=comuneId]').on( "click",  function(event){
+                        $('[id$=viaSearch]').val('');
+                        $('[id$=civicoSearch]').val('');
+                  
+                    });  //CR34 Urgent Fix 08012019 Abhishek Anand Ends
+                 
+                    //Comune Related function Ends Here
+                    
+                    //Viasearch function code start
+                     $('[id$=viaSearch]').autocomplete({
+                    minLength: 3,
+                    source: function(request, response) {
+                        queryTerm = request.term;
+                                       
+                        PO_RegistrationController.getviastring(request.term,searchcommuneId, function(result, event){
+                            if(event.type == 'exception') {
+                                alert(event.message);
+                            } else {
+                                comuneObjects = result;                            
+                                response(comuneObjects);
+                                comuneCheckList= [];
+                                comuneObjects.forEach(function(element) {
+                                    comuneCheckList.push(element.label+' '+element.value);
+                                
+                                });
+                            }
+                        });
+                    },
+                    focus: function( event, ui ) {
+                        //  $('[id$=comuneId]').val( ui.item.OF_Comune__c+' '+ui.item.OF_Regione__c );
+                        return false;
+                    },
+                    select: function( event, ui ) {
+                        //Abhishek Anand 19122018 CR34 Start Code added to remove unwanted &#39; coming up in string values like ROMANO D'EZZELINO
+                        var replacevia= ui.item.label; 
+                        console.log('replacevia'+replacevia);                       
+                        
+                        if ( replacevia.includes('&#39;')) {
+                            console.log('Inside  replacecommune If condition');
+                            replacevia =replacevia.replace('&#39;','\'');
+                            console.log('replacecommune was changed'+replacevia);
+                             $('[id$=viaSearch]').val( replacevia);
+                            }
+                          else   //Abhishek Anand 19122018 CR34 End Code added to remove unwanted &#39; coming up in string values like ROMANO D'EZZELINO                     
+                         $('[id$=viaSearch]').val( ui.item.label);
+                        //$('[id$=comuneId]').val( ui.item.label+' '+ui.item.value );
+                        // $('[id$=viaSearch]').val( ui.item.value );                         
+                        searchviaId =ui.item.value;
+                        console.log('vianame'+searchviaId);                        
+                        console.log('#someButton was clicked selection of viaId'+ui.item.value);
+                         //added for CR34 Improvement Abhishek Anand 12122018
+                        if (searchviaId==' ')
+                        return true;
+                        else 
+                            return false;                        
+                       
+                    },
+                })
+                
+                .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+                    //var entry = "<a>" + item.label+' '+item.value;
+                    var entry = "<a>" + item.label
+                    entry = entry + "</a>";
+                    entry = entry.replace(queryTerm, "<b>" + queryTerm + "</b>");
+                    return $( "<li></li>" )
+                    .data( "ui-autocomplete-item", item )
+                    .append( entry )
+                    .appendTo( ul );
+                };
+                    
+                    //CR34 Urgent Fix 08012019 Abhishek Anand Start
+                     $('[id$=viaSearch]').on( "click",  function(event){
+                        $tgt = $(event.target);
+                    if($tgt.val() !== '' ){
+                     
+                    $('[id$=civicoSearch]').val('');
+                    }
+                   
+               //CR34 Urgent Fix 08012019 Abhishek Anand Ends
+                }); 
+                    //Viasearch function code ends
+                    
+                    
+                    //Civicosearch function code start
+                     $('[id$=civicoSearch]').autocomplete({
+                    minLength: 1,
+                    source: function(request, response) {
+                        queryTerm = encodeURIComponent(request.term);
+                                       
+                        PO_RegistrationController.getcivicostring(request.term,searchviaId, function(result, event){
+                            if(event.type == 'exception') {
+                                alert(event.message);
+                            } else {
+                                comuneObjects = result;                            
+                                response(comuneObjects);
+                                comuneCheckList= [];
+                                comuneObjects.forEach(function(element) {
+                                    comuneCheckList.push(element.label+' '+element.value);
+                                
+                                });
+                            }
+                        });
+                    },
+                    focus: function( event, ui ) {
+                        //  $('[id$=comuneId]').val( ui.item.OF_Comune__c+' '+ui.item.OF_Regione__c );
+                        return false;
+                    },
+                    select: function( event, ui ) {
+                         $('[id$=civicoSearch]').val( ui.item.label);
+                       $('[id$=searchcivicoId]').val( ui.item.value );
+                        searchcivicoId =ui.item.value;
+                        console.log('civioId'+searchcivicoId);
+                        console.log('#someButton was clicked selection of civioId'+ui.item.value);
+                        //added for CR34 Improvement Abhishek Anand 12122018
+                        if (searchcivicoId==' ')
+                        return true;
+                        else 
+                            return false;      
+                    },
+                })
+                
+                .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+                    //var entry = "<a>" + item.label+' '+item.value;
+                    var entry = "<a>" + item.label
+                    entry = entry + "</a>";
+                    entry = entry.replace(queryTerm, "<b>" + queryTerm + "</b>");
+                    return $( "<li></li>" )
+                    .data( "ui-autocomplete-item", item )
+                    .append( entry )
+                    .appendTo( ul );
+                };
+                    //Civicosearch function code ends
+                         
+            }); 
+        
+        //Edited by Nikita and Priyanka on 21122018 for blancking the previous result before showing the new result.
+            $(document).ready(function(){
+              $('[id$=comuneId]').click(function(){
+               $('[id$=panel1]').hide();
+            });
+          });
+        
+       
+            $(document).ready(function(){
+              $('[id$=viaSearch]').click(function(){
+               $('[id$=panel1]').hide();
+            });
+          });
+        
+      
+        
+        $(document).ready(function(){
+              $('[id$=civicoSearch]').click(function(){
+               $('[id$=panel1]').hide();
+            });
+          });
+        
+       
+     
+        
+        
+          
+        
+            
+            </script>
+        <!--Abhishek Anand 21112018 script End-->
+        
+        <style>
+            table, td, th {
+                border: 1px solid white;
+            }
+            
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+            
+            td {
+                height: 50px;
+            }
+            .navbar {
+            min-height: 105px;
+            }
+            .navbar-header {
+            float: none;
+            }
+            .navbar-default {
+            background-color: #ffffff;
+            }
+            .panel-default>.panel-heading {
+            color: #ffffff;
+            background-color: #337ab7;
+            }
+            span.dateFormat{                
+            display:none;                
+            }
+            .red{color:red;}
+            .form-check-input{ 
+            margin-left: 45px !important;
+            margin-top: 10px;
+            }
+            
+            .displayNone { 
+            display:none; 
+            }
+            .displayBlock {
+            display:block;
+            }
+            .ui-autocomplete-loading { 
+            background: white url(/img/loading32.gif) right center no-repeat;
+            background-size:15px 15px; 
+            }
+            .placeHolder {
+            font-style: italic;
+            }
+            
+            .outBorder{
+            border:3px outset black;
+            }
+            .inBorder{
+            border-top:3px dotted black;
+            border-left:3px dotted black;
+            }  
+            
+           
+    }
+
+            
+        </style>
+        
+        
+        
+        
+        
+    </head>
+    <body>
+        
+        <div id="wrapper">
+            <!-- Navigation -->
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <!--<c:POHeaderComp />-->
+                <c:PO_SideBarComponent Rec="{!recordOfferta}" />
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav" id="side-menu">
+                        </ul>
+                    </div>
+                    <!-- /.sidebar-collapse -->
+                   
+                </div>
+                <!-- /.navbar-static-side -->
+            </nav>
+            
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-8" style="width:73.666667%;">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <i></i><b style="font-weight:800">Verifica Copertura rete Open Fiber</b>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <apex:actionRegion >
+                                        <apex:form id="formID">
+                                            
+                                            <div style="color:red;" id="showerror">
+                                                <apex:pageMessages id="errors" /> 
+                                            </div>
+                                            <apex:outputPanel id="testform">
+                                            </apex:outputPanel>
+                                            
+                                           <form role="form" class="form-horizontal" > 
+                                                <apex:outputPanel >
+                                                <apex:actionRegion >  
+                                                            <div class="form-group">
+                                                            <div class="col-lg-12">
+                                                    <label>Comune*</label>
+                                                                <span class="glyphicon glyphicon-search"></span> 
+                                                               <apex:inputText id="comuneId"  value="{!searchTerm}" style="width:100%;"  />
+                                                                <apex:inputHidden id="searchcommuneId" value="{!comunename}"/>
+                                                                <!--<apex:actionFunction name="passValueToController" action="{!someMethod}" rerender="searchcommuneId"/>-->
+                                                    </div> 
+                                                 <div class="col-lg-8" id="viapanel" style="margin-top :20px;">
+                                                    <label>Via*</label>
+                                                                <span class="glyphicon glyphicon-search"></span> 
+                                                               <apex:inputText id="viaSearch"  value="{!searchTerm}" style="width:100%;"  />
+                                                               <!--<apex:inputHidden id="searchviaId" value="{!IdEgonStrada}" /> -->
+                                                    </div>
+                                                    <div class="col-lg-4" style="margin-top :20px;">
+                                                        <label>N.CIVICO*</label>
+                                                                <span class="glyphicon glyphicon-search"></span> 
+                                                               <apex:inputText id="civicoSearch" value="{!searchTerm}" style="width:100%;"  />
+                                                               <apex:inputHidden id="searchcivicoId" value="{!IdEgoncivico}" /> 
+                                                    
+                                                    </div> 
+                                                   
+                                                  
+                                                  <div>
+                                                       <label></label>
+                                                      <label></label>
+                                         <center> <apex:commandButton styleClass="btn btn-primary" value="Verifica" action="{!getProductAvail}" reRender="panel1,panel2" /> </center></div>
+                                                   <apex:outputPanel id="panel1" layout="">
+                                                      <!--Edited on 21122018 by Priyanka and Nikita-->
+                                                    <div style="margin-top :30px; margin-left:15px; margin-right:15px; align:center;">  <!-- Rajani 8-1-2019 added Margin-left--->
+                                                         <table>
+                                                              <col width="80%" />
+                                                              <col width="20%" />
+                                                              
+                                                             <tr>
+                                                                
+                                                                <td> 
+                                                                    <div class="price">
+                                                                        <apex:outputText value="{!result3}" id="outputID3"  style="font-weight:800"></apex:outputText> <!--Rajani 8-1-2019 added style -->
+                                                                     </div>
+                                                                 </td>
+                                                                <td>
+                                                                    <!--<apex:image value="{! If(!result3=='Disponibile' ,!URLFOR($Resource.IconsCR34,'IconsCR34/trustresized1.jpg'),!URLFOR($Resource.IconsCR34,'IconsCR34/rejecticonresized.jpg')) }"/>-->
+                                                                    <apex:variable var="imageVar" value="{!AttivoFlag}"/>
+                                                                    <apex:image id="panel2" value="{!URLFOR($Resource.IconsCR34,imageVar)}" rendered="{! IF(imageVar!=null, true, false)}"/>
+                                                                </td>
+                                                             </tr>
+                                                             
+                                                             
+                                                         </table>
+                                                       </div>  
+                                                    <!--<div class="slds-table" style="margin-top :30px; margin-left:15px; margin-right:15px; align:center;">                                                      
+                                                          <table border="1px solid black" class="table" width="100%">
+                                                              <col width="30%" />
+                                                              <col width="30%" />
+                                                              <col width="30%" />
+                                                                        <tbody >
+                                                                         <tr>
+                                                                            <td>
+                                                                              <div class="price">
+                                                                                Servizio Attivo
+                                                                              </div>
+                                                                            </td>
+                                                                             <td>
+                                                                              <div class="price">
+                                                                                <apex:outputText value="{!result3}" id="outputID3" style="width:100%"></apex:outputText>
+                                                                                  
+                                                                              </div>
+                                                                            </td>
+                                                                             <td>
+                                                                             
+                                                                                 <!--<apex:image value="{! If(!result3=='Disponibile' ,!URLFOR($Resource.IconsCR34,'IconsCR34/trustresized1.jpg'),!URLFOR($Resource.IconsCR34,'IconsCR34/rejecticonresized.jpg')) }"/>-->
+                                                                                 
+                                                                                <!-- <apex:variable var="imageVar" value="{!AttivoFlag}"/>
+
+                                                                                    <apex:image value="{!URLFOR($Resource.IconsCR34,imageVar)}"/>
+
+                                        
+                                                                             </td>
+                                                                           </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                              <div class="price">
+                                                                                Servizio Passivo
+                                                                              </div>
+                                                                            </td>
+                                                                              <td>
+                                                                              <div class="price">
+                                                                                <apex:outputText value="{!result4}" id="outputID21" style="width:100%"></apex:outputText> 
+                                                                              </div>
+                                                                            </td>
+                                                                                <td>
+                                                                                    
+                                                                                    <apex:variable var="imageVar" value="{!PassivoFlag}"/>
+
+                                                                                    <apex:image value="{!URLFOR($Resource.IconsCR34,imageVar)}"/>
+                                                                                
+                                                                                </td>
+                                                                          </tr>
+                                                                        </tbody>
+                                                                      </table>
+                                                          </div> -->
+                                                                </apex:outputPanel> 
+                                                                </div>
+                                                    
+                                                    
+                                                </apex:actionRegion>
+                                                </apex:outputPanel> 
+                                                   
+
+                                                
+                                                </form><br/>
+                                        </apex:form>
+                                    </apex:actionRegion>
+                                </div>       
+                                
+                              </div>  
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        
+        
+        <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+        
+        
+        <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+        
+        <script type='text/javascript'>
+        /* function noenter(e){  
+            //alert(window.event.keyCode);             
+            if(window.event){  
+                key = window.event.keyCode;              
+            } 
+            else{                    
+                key = e.which;               
+            }               
+            if(key == 13) {   
+                var ele=document.getElementById('{!$Component.pageID:formID:SaveBttn}');                                          
+                ele.click();                     
+                return false;               
+            } else{                    
+                return true;               
+            }          
+        }  */   
+        </script> 
+    </body>
+</html>
+
+
+</apex:page>

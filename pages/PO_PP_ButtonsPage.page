@@ -1,0 +1,462 @@
+<apex:page standardController="Case" extensions="PO_PP_Buttons_Controller" showHeader="false" sidebar="false">
+<apex:includeScript value="/support/console/36.0/integration.js"/>
+<apex:includeScript value="/soap/ajax/20.0/connection.js"/>
+<apex:stylesheet value="{!URLFOR($Resource.LDS, 'assets/styles/salesforce-lightning-design-system.min.css')}"/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>   
+    
+<script type="text/javascript">
+    
+    function redirect(idNotify, recordTypeNotify){        
+        //Original redirect method
+        if(sforce.console.isInConsole()){
+        // global vars
+        var url2open = "";
+        var tabTitle = "";﻿
+         
+        // open URLs in new tabs - CONSOLE TOOLKIT REQUIRED﻿
+        function openUrl(p_url2open, p_tabTitle) {
+               try{
+                     window.parent.openUrl(p_url2open, p_tabTitle);
+               }catch(e){
+                      // load global variables
+                      url2open = p_url2open;
+                      tabTitle = p_tabTitle;
+                      // go
+                      sforce.console.getEnclosingPrimaryTabId(openurl_subtab);
+               }
+        };
+         
+         
+        var openurl_subtab = function(result) {
+               var primaryTabId = result.id;
+               // open tabs
+              sforce.console.openSubtab(primaryTabId, url2open, true, tabTitle, null, null);
+                
+              sforce.console.refreshPrimaryTabById(primaryTabId, true);
+        }﻿
+        var rtn = recordTypeNotify.replace(/Notifica/gi, "Not.");
+        openUrl("/"+idNotify+"/e?retURL={!Case.Id}", rtn);  
+        }
+        else if ("{!$User.UIThemeDisplayed}" == "Theme4d"){
+            sforce.one.navigateToURL("/"+y+"/e");
+            sforce.one.back(true);
+        }
+        else{
+            window.top.location.href ="/"+y+"/e?retURL={!Case.Id}"; 
+        }         
+    };
+    
+    function refresh(){
+        if (sforce.console.isInConsole()){
+                 
+            var refresh_subtab = function(result) {
+                var primaryTabId = result.id;
+                // open tabs
+                sforce.console.refreshPrimaryTabById(primaryTabId, true);
+            }﻿  
+            sforce.console.getEnclosingPrimaryTabId(refresh_subtab);
+            
+        }
+        else if ("{!$User.UIThemeDisplayed}" == "Theme4d"){
+            sforce.one.navigateToURL("/{!Case.Id}");
+            sforce.one.back(true);
+        }
+        else{
+             window.top.location.href ="/{!Case.Id}";
+        }           
+};
+    
+    
+    function refiresh2(ass){
+        //CRM Modifica 31_08_2017 Aggiunti due controlli ulteriori: 1.FL_1FieldEmpty 2.FL_2FieldEmpty
+        if(ass=="true"){
+            alert("Ci sono collegamenti non assegnati a nessuna area geografica");
+        }
+        else if(ass=="NO"){
+            alert("Il campo Esito Collegamento non è stato valorizzato");
+        }else if( ass === 'FL_1FieldEmpty')
+        {
+            alert("Il campo BB 1° interessato (m) non è stato valorizzato");
+        }
+        //14/09/2017 CRM Commentato perchè non va più fatto questo controllo
+        //19/09/2017 CRM decommentato
+        else if( ass === 'FL_2FieldEmpty')
+        {
+            alert("Il campo Posa 1 nuovo Drop (m) non è stato valorizzato");
+        }
+        //19/09/2017 CRM
+        else if( ass === 'LunghFieldEmpty')
+        {
+            alert("Il campo Lunghezza Drop FL 1 (m) non è stato valorizzato");
+        }
+        //19/09/2017 END CRM
+        else{ 
+            window.top.location.href ="/{!Case.Id}";
+        }
+    }
+    function refresh2(){
+       // window.top.location.href="/apex/BOOperatorAppuntamentoOKPage";  
+          if (sforce.console.isInConsole()){
+                 
+            var refresh_subtab = function(result) {
+                var primaryTabId = result.id;
+                // open tabs
+            //   sforce.console.refreshPrimaryTabById(primaryTabId, true);
+                alert("primary tab "+primaryTabId );
+            }﻿  
+            var showTabId = function showTabId(result) {
+                // Display the tab ID 
+                alert("Tab ID: " + result.id);
+            }
+            
+            sforce.console.getEnclosingPrimaryTabId(refresh_subtab);
+            alert("111--"+sforce.console.getEnclosingPrimaryTabId(refresh_subtab));
+            alert("hiiii");
+            //system.debug("focuseed --"+sforce.console.getFocusedPrimaryTabId(showTabId));
+            
+            donotchange();
+            
+        }
+        else if ("{!$User.UIThemeDisplayed}" == "Theme4d"){
+            sforce.one.navigateToURL("/{!Case.Id}");
+            sforce.one.back(true);
+        }
+        else{
+            window.top.location.href ="/{!Case.Id}";
+        }      
+};
+    function editCase(x){
+        if(sforce.console.isInConsole()){       
+          sforce.console.openPrimaryTab(null,"/apex/OF_TT_PhaseTransictions?retURL={!Case.Id}&Id={!Case.Id}&oper="+operatore,true, "{!Case.CaseNumber}");
+          testCloseTab(); 
+        }
+        else{
+          window.top.location.href ="/apex/OF_TT_PhaseTransictions?retURL={!Case.Id}&Id={!Case.Id}&oper="+operatore;
+        }
+    }
+    
+    function modificaCampi(){
+        if(sforce.console.isInConsole()){       
+          sforce.console.openPrimaryTab(null,"/apex/PO_PP_EditFieldsCaseKit?retURL={!Case.Id}&Id={!Case.Id}");
+          testCloseTab(); 
+        }
+        else{
+          window.top.location.href ="/apex/PO_PP_EditFieldsCaseKit?retURL={!Case.Id}&Id={!Case.Id}";
+        }
+    }
+    
+    function openPhaseTransictionsPage(operatore){
+        if(sforce.console.isInConsole()){       
+          sforce.console.openPrimaryTab(null,"/apex/OF_TT_PhaseTransictions?retURL={!Case.Id}&Id={!Case.Id}&oper="+operatore,true, "{!Case.CaseNumber}");
+          testCloseTab(); 
+        }
+        else{
+          window.top.location.href ="/apex/OF_TT_PhaseTransictions?retURL={!Case.Id}&Id={!Case.Id}&oper="+operatore;
+        }
+    }
+    function openNotifyCloseCase(x){
+        
+        if(x=='NetCreToTecFat'){
+            var oper=x;
+            var OLO='false';
+        }
+        if(x=='TecFatToRefFat'){
+            var oper=x;
+            var OLO='false';
+        }
+        if(x=='SupVenToNetCre'){
+            var oper=x;
+            var OLO='false';
+        }
+        if(x=='NetCreToSupVen'){
+            var oper=x;
+            var OLO='false';
+        }
+        
+        if(x=='DelToSupVen'){
+            var oper=x;
+            var OLO='false';
+        }
+        if(x=='SupVenToRefFat'){
+            var oper=x;
+            var OLO='false';
+        }
+        if(x=='RefFatToTecFat'){
+            var oper=x;
+            var OLO='false';
+        }
+        if(x=='RefFatToSupVen'){
+            var oper=x;
+            var OLO='false';
+        }
+        if(x=='SupVen'){
+            var oper=x;
+            var OLO='false';
+        }
+        if(x=='Note Referente'){
+            var oper='RefFatToSupVen';
+            var OLO='false';
+        }
+        if(x=='TecFatToNetCre'){
+            var oper=x;
+            var OLO='false';
+        }
+        if(x=='Note Delivery'){
+            var oper='Del';
+            var OLO='false';
+        }
+        if(x=='Note Ingegneria'){
+            var oper='ING';
+            var OLO='false';
+        }
+        if(x=='Espletato'){
+         /*   
+            var nomekit = '{!Case.PO_PP_NomeKit__c}';
+            var odf = '{!Case.PO_PP_Posizione_ODF__c}';
+            
+           if(nomekit.length == 0 ){
+                alert("Compilare il campo [ Nome KIT ] " );
+                return;
+            } 
+            
+            if (odf.length == 0) {
+                alert("Compilare il campo [ Posizione ODF ] " );
+                return;
+            }   */
+            var oper='EspOK';
+            var OLO='true';
+        }
+        if(x=='Data Attivazione Ordine'){
+            alert("Compilare il campo '"+x+"'");
+            return;
+        } 
+        if(x=='ID Risorsa'){
+            alert("Compilare il campo '"+x+"'");
+            return;
+        } 
+        if(x=='Espletato KO'){
+            var oper='EspKO';
+            var OLO='true';
+        }
+        if(x=='Sospensione'){
+            var oper='Sos'; 
+            var OLO='true';
+        }
+        if(x=='Desospensione'){
+            var oper='Des';
+            var OLO='true';
+        }
+        if(x=='Annullamento'){
+            var oper='Ann';
+            var OLO='false';
+        }
+        
+        if(sforce.console.isInConsole()){       
+          sforce.console.openPrimaryTab(null,"/apex/PO_PP_ButtonsPhaseTransition_Page?retURL={!Case.Id}&Id={!Case.Id}&Oper="+oper+"&OLO="+OLO,true, x);
+          testCloseTab(); 
+        }
+        else{
+          window.top.location.href ="/apex/PO_PP_ButtonsPhaseTransition_Page?retURL={!Case.Id}&Id={!Case.Id}&Oper="+oper+"&OLO="+OLO;
+        }
+    }
+
+    function openPhaseTransictionsPage(operatore){
+        if(sforce.console.isInConsole()){       
+          sforce.console.openPrimaryTab(null,"/apex/OF_TT_PhaseTransictions?retURL={!Case.Id}&Id={!Case.Id}&oper="+operatore,true, "{!Case.CaseNumber}");
+          testCloseTab(); 
+        }
+        else{
+          window.top.location.href ="/apex/OF_TT_PhaseTransictions?retURL={!Case.Id}&Id={!Case.Id}&oper="+operatore;
+        }
+    }
+
+
+    function testCloseTab(){
+            //First find the ID of the current tab to close it
+            sforce.console.getEnclosingTabId(closeSubtab);
+        }
+        
+    var closeSubtab = function closeSubtab(result){
+            //Now that we have the tab ID, we can close it
+            var tabId = result.id;
+            sforce.console.closeTab(tabId);
+        };    
+        
+        
+        
+        
+       
+  </script>
+    
+  <body id="buttonBlock"> 
+    <apex:form style="padding-top: 10px">
+        <apex:messages />
+
+    <apex:outputText rendered="{!If(Case.owner.type=='Queue','true','false')}" ><b>In {!Case.Owner.name}, in attesa di presa in carico </b></apex:outputText><br/>
+    <apex:outputText rendered="{!If(Case.Status=='Sospeso',true,false)}" ><b>KIT in attesa di desospensione</b></apex:outputText><br/>
+    
+    <apex:outputText rendered="{!nomeKitObb}" ><b>Nome KIT </b></apex:outputText><br/>
+    
+
+    <!--
+    <apex:outputText rendered="{!If(AND(Case.Status=='Acquisito',Case.EOF_Fase__c='In Attesa di Assegnazione',collegamentoFattibilita,Case.owner.type!='Queue'),true,false)}" ><b>Collegamento in attesa di assegnazione</b></apex:outputText>
+    <apex:outputText rendered="{!If(Case.ClosedDate!=null,true,false)}" ><b>Ticket in {!Case.Status}</b></apex:outputText> 
+    <apex:outputText rendered="{!If(AND(Case.Status=='Completato',collegamentoFattibilita,Case.owner.type!='Queue'),true,false)}" ><b>Collegamento Completato</b></apex:outputText>
+    <apex:outputText rendered="{!If(AND(Case.Status=='Accettato',richiestaFattibilita,Case.owner.type!='Queue'),true,false)}" ><b>Offerta Accettata</b></apex:outputText>
+    -->
+    
+<!--
+PRENDI IN CARICO : if owner = coda && (userinfo.getuserid==membro della coda || userinfo.getuserid==system administrator) 
+                    && status!=sospeso e status finali
+MODIFICA E SOSPENDI: if owner!=coda e (status !=sospeso e status finali)
+INVIA AL DELIVERY e ESPLETAMENTO KO: if if owner!=coda e (status !=sospeso e status finali) e fase = in lavorazione ingegneria
+INVIA A INGEGNERIA: if owner!=coda e (status !=sospeso e status finali) e fase = in lavorazione delivery
+ESPLETAMENTO OK: if owner!=coda e (status !=sospeso e status finali) e fase = in lavorazione ingegneria e gia passato per delivery.
+-->
+
+    <apex:commandLink action="{!PrendiInCarico}" value="Prendi In Carico" reRender="buttonBlock"  rendered="{!mostraPrendiInCarico}" 
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                      oncomplete="refresh2()">
+    </apex:commandLink>
+    <!-- prendi in carico: rendered="{!If(UserInQueue,'true','false')}" -->
+    
+    <apex:commandLink value="Modifica" reRender="buttonBlock" styleClass="slds-button slds-button--brand" style="margin-right:5px;" onclick="modificaCampi()"
+    rendered="{!mostraModifica}" >
+    </apex:commandLink>
+    
+    <!-- MODIFICA : rendered="{!IF(AND(OR(Case.status='Accettato',Case.status='In Lavorazione',Case.Status='Acquisito') ,Case.EOF_Fase__c!='In Attesa di Assegnazione', Case.owner.Id=$User.Id,Case.isClosed=false,Case.isPSM__c=false),'true','false')}"-->
+    
+    <apex:commandLink value="Invia al Delivery" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                      onClick="openNotifyCloseCase('Note Delivery')" rendered="{!mostraInviaDelivery}">
+    </apex:commandLink>
+<!-- invia a delivery: rendered="{!IF(AND(OR(Case.status='Accettato',Case.status='In Lavorazione') , ordineFattibilita , Case.EOF_Fase__c!='In Lavorazione Delivery' ,Case.EOF_Fase__c!='In Lavorazione Network Creation' , Case.owner.Id=$User.Id,Case.isClosed=false,Case.isPSM__c=false),'true','false')}" -->
+
+        <apex:commandLink value="Invia a Ingegneria" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                      onClick="openNotifyCloseCase('Note Ingegneria')" rendered="{!mostraInviaIng}">
+    </apex:commandLink>
+    
+    <apex:commandLink value="Espletamento OK"  reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                      onClick="openNotifyCloseCase('Espletato')" rendered="{!mostraEspletatoOK}">
+    </apex:commandLink>
+<!--espletato ok: rendered="{!IF(AND(OR(Case.status='Accettato',Case.status='In Lavorazione') ,ordineFattibilita, Case.owner.Id=$User.Id,Case.isClosed=false,Case.isPSM__c=false),'true','false')}" -->
+
+    <apex:commandLink value="Espletamento KO" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                      onClick="openNotifyCloseCase('Espletato KO')" rendered="{!mostraEspletatoKO}">
+    </apex:commandLink>
+<!-- espletato ko: rendered="{!IF(AND(OR(Case.status='Accettato',Case.status='In Lavorazione') ,ordineFattibilita, Case.owner.Id=$User.Id,Case.isClosed=false,Case.isPSM__c=false),'true','false')}" -->
+
+        <apex:commandLink value="Sospendi" reRender="buttonBlock"  
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                      onClick="openNotifyCloseCase('Sospensione')" rendered="{!mostraSospendi}" >
+    </apex:commandLink> 
+    
+            <apex:commandLink value="Annulla" reRender="buttonBlock"  
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                      onClick="openNotifyCloseCase('Annullamento')" rendered="{!mostraAnnulla}" >
+    </apex:commandLink> 
+<!-- SOSPENDI:  rendered="{!IF(AND(Case.status='Accettato',Case.EOF_Fase__c='NA', Case.owner.Id=$User.Id,Case.isClosed=false,Case.isPSM__c=false),'true','false')}" -->
+
+    <!--
+    <apex:commandLink value="Crea Ordine" action="{!creaOrdine}" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF(AND(Case.EOF_Fase__c='Offerta Accettata',richiestaFattibilita,Case.owner.type!='Queue',Case.isClosed=false,Case.isPSM__c=false),'true','false')}"
+                      oncomplete="refresh2()">
+    </apex:commandLink>
+    
+    <apex:commandLink value="Fattibilità Completata" action="{!esitiCompletati}" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF(AND(collegamentoFattibilita,Case.EOF_Fase__c='In Lavorazione Tecnico Fattibilità',Case.owner.Id=$User.Id,Case.isClosed=false,Case.isPSM__c=false),'true','false')}"
+                      oncomplete="refiresh2('{!checkEsiti}')">
+    </apex:commandLink>
+    <apex:commandLink value="Conferma Assegnazione" action="{!confermaAssegnazione}" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF(AND(Case.status='Acquisito',Case.EOF_Fase__c='In Lavorazione Supporto Vendite',richiestaFattibilita,Case.owner.type!='Queue',Case.isClosed=false,Case.isPSM__c=false),'true','false')}"
+                      oncomplete="refiresh2('{!erroreAssegnazione}')">
+    </apex:commandLink>
+    <apex:commandLink value="Assegna al Tecnico" action="{!assegnaAlTecnico}" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF(AND(Case.status='In Lavorazione',Case.EOF_Fase__c='In Lavorazione Referente Fattibilità',collegamentoFattibilita,Case.owner.Id=$User.Id,Case.isClosed=false,Case.isPSM__c=false),'true','false')}"
+                      oncomplete="refresh2()">
+    </apex:commandLink>
+    <apex:commandLink value="Invia al Network Creation" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF(AND(Case.EOF_Fase__c='In Lavorazione Tecnico Fattibilità', Case.owner.Id=$User.Id,Case.isClosed=false,Case.isPSM__c=false),'true','false')}"
+                      onClick="openNotifyCloseCase('TecFatToNetCre')">
+    </apex:commandLink>
+    <apex:commandLink value="Invia al Network Creation" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF(AND(Case.EOF_Fase__c='In Lavorazione Supporto Vendite',ordineFattibilita,Case.owner.Id=$User.Id,Case.isClosed=false,Case.isPSM__c=false),'true','false')}"
+                      onClick="openNotifyCloseCase('SupVenToNetCre')">
+    </apex:commandLink>
+    <apex:commandLink value="Invia al Tecnico Fattibilità" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF(AND(Case.status='In Lavorazione' , Case.EOF_Fase__c='In Lavorazione Network Creation' , collegamentoFattibilita ,Case.owner.Id=$User.Id,Case.isClosed=false,Case.isPSM__c=false),'true','false')}"
+                      onClick="openNotifyCloseCase('NetCreToTecFat')">
+    </apex:commandLink>
+    
+    <apex:commandLink value="Invia al Supporto Vendite" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF(AND(Case.EOF_Fase__c='In Lavorazione Referente Fattibilità' , Case.owner.Id=$User.Id,Case.isClosed=false,Case.isPSM__c=false),'true','false')}"
+                      onClick="openNotifyCloseCase('Note Referente')">
+    </apex:commandLink> 
+    <apex:commandLink value="Invia al Supporto Vendite" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF(AND(Case.EOF_Fase__c='In Lavorazione Network Creation' ,ordineFattibilita, Case.owner.Id=$User.Id,Case.isClosed=false,Case.isPSM__c=false),'true','false')}"
+                      onClick="openNotifyCloseCase('NetCreToSupVen')">
+    </apex:commandLink>
+    <apex:commandLink value="Invia al Supporto Vendite" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF(AND(Case.EOF_Fase__c='In Lavorazione Delivery' , Case.owner.Id=$User.Id,Case.isClosed=false,Case.isPSM__c=false),'true','false')}"
+                      onClick="openNotifyCloseCase('DelToSupVen')">
+    </apex:commandLink>
+    <apex:commandLink value="Invia al Referente Fattibilità" action="{!inviaAlRefFat}" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF(AND(OR(Case.EOF_Fase__c='In Lavorazione Supporto Vendite',Case.EOF_Fase__c='In Lavorazione Tecnico Fattibilità') ,collegamentoFattibilita, Case.owner.Id=$User.Id,Case.isClosed=false,Case.isPSM__c=false),'true','false')}"
+                      oncomplete="openNotifyCloseCase('{!ruoloDiPartenza}')">
+    </apex:commandLink>
+    -->
+    
+    <!-- 
+    <apex:commandLink value="Sospendi" reRender="buttonBlock"  
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF(AND(OR(Case.EOF_Fase__c='In Lavorazione Delivery',AND(Case.EOF_Fase__c='In Lavorazione Network Creation',ordineFattibilita), AND(Case.EOF_Fase__c='In Lavorazione Supporto Vendite',collegamentoFattibilita) ) , Case.owner.Id=$User.Id,Case.isClosed=false),'true','false')}"
+                      onClick="openNotifyCloseCase('Sospensione')">
+    </apex:commandLink> 
+     
+    <apex:commandLink value="Sospendi" reRender="buttonBlock"  
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF(AND(OR(AND(Case.EOF_Fase__c='In Lavorazione Supporto Vendite',ordineFattibilita), AND(Case.EOF_Fase__c='In Lavorazione Supporto Vendite',collegamentoFattibilita) ) , Case.owner.Id=$User.Id,Case.isClosed=false,Case.isPSM__c=false),'true','false')}"
+                      onClick="openNotifyCloseCase('Sospensione')">
+    </apex:commandLink>
+    <apex:commandLink value="Desospendi" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF(Case.status='Sospeso' && Case.owner.Id=$User.Id && Case.isClosed=false && Case.isPSM__c=false,'true','false')}"
+                      onClick="openNotifyCloseCase('Desospensione')">
+    </apex:commandLink>
+    <apex:commandLink value="Annulla" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF(AND(OR(Case.status='Accettato',Case.status='In Lavorazione') ,Case.EOF_Fase__c='In Lavorazione Supporto Vendite',ordineFattibilita, Case.owner.Id=$User.Id,Case.isClosed=false,Case.isPSM__c=false),'true','false')}"
+                      onClick="openNotifyCloseCase('Annullamento')">
+    </apex:commandLink>
+    
+
+
+    <apex:commandLink value="Invia a PSM" action="{!InvioPSM}" reRender="buttonBlock"
+                    styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF(AND(Case.status='Accettato', Case.EOF_Fase__c='In Lavorazione Supporto Vendite', Case.owner.Id=$User.Id,Case.isClosed=false,Case.isPSM__c=true),'true',viewPopUpPSM)}"
+                    oncomplete="refresh2()">
+    </apex:commandLink>
+      -->
+    
+     <!--
+    <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!viewPopUpPSM}">
+              <apex:pageMessage id="msg" escape="0" summary="L'integrazione con PSM ha restituito un KO. Si richiede la risottomissione dopo averne appurato le motivazioni." severity="warning" strength="1"/>
+    </apex:outputPanel>
+    
+    <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!viewErrorFilePopUpPSM}">
+              <apex:pageMessage id="msg2" escape="0" summary="I file allegati non sono stati inviati. La dimensione dei file supera i limiti consentiti (6MB)." severity="warning" strength="1"/>
+    </apex:outputPanel>  
+    
+    <apex:commandLink value="Cessazione" action="{!CessazionePSM}" reRender="buttonBlock"
+                    styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF(AND(Case.status='In Lavorazione' , Case.EOF_Fase__c='In Lavorazione Network Creation' ,Case.owner.Id=$User.Id,Case.isClosed=false,Case.isPSM__c=true),'true','false')}"
+                    oncomplete="refresh2()">
+    </apex:commandLink>
+
+    <apex:commandLink value="Annullamento" action="{!AnnullaPSM}" reRender="buttonBlock"
+                    styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF(AND(Case.status='In Lavorazione' , Case.EOF_Fase__c='In Lavorazione Network Creation' ,Case.owner.Id=$User.Id,Case.isClosed=false,Case.isPSM__c=true),'true','false')}"
+                    oncomplete="refresh2()">
+    </apex:commandLink>
+    -->
+    </apex:form>     
+    
+  </body>    
+</apex:page>

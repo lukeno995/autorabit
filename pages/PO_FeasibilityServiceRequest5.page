@@ -1,0 +1,229 @@
+<apex:page standardController="Case" extensions="PO_RegistrationController" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+    <html lang="en">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>open fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+            </style>
+        </head>
+        <body>
+            
+            <div id="wrapper">
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <c:POHeaderComp />
+                    
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" id="side-menu">
+                            </ul>
+                        </div>
+                        <!-- /.sidebar-collapse -->
+                    </div>
+                    <!-- /.navbar-static-side -->
+                </nav>
+                
+                <div id="page-wrapper">
+                    <div class="row">
+                        <div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i></i>Richiesta Servizi a Fattibilità
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        
+                                        <div style="color:red;" id="showerror">
+                                            <apex:pageMessages id="errors" /> 
+                                        </div>
+                                        
+                                        
+                                        <apex:form styleClass="form-horizontal">  
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <div class="col-lg-1 col-offset-1">
+                                                    </div>
+                                                    
+                                                    <div class="col-lg-4 col-lg-4 col-lg-4">
+                                                        
+                                                        <apex:commandButton styleClass="btn btn-primary" value="Fine" action="{!Home}"/> 
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <apex:commandButton styleClass="btn btn-primary" value="Indietro" action="{!currentUserParentCases}"/> 
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <apex:commandButton styleClass="btn btn-primary" value="Edit" action="{!EditCaseInfo}" rendered="{!showedit}"/> 
+                                                        <!-- <apex:commandButton styleClass="btn btn-primary" value="Desospendi" action="{!StausUpdate}" rendered="{!showedit}"/> -->
+                                                        
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <table id="theTable" class="table table-striped table-bordered" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Status</th>
+                                                        <th>Collegamento</th>
+                                                        <th>Data di Creazione</th>
+                                                        <th>Richiesta fattibilità</th>
+                                                        <th>Status</th>
+                                                        <th>Collegamento</th>
+                                                        <th>Area Geografica </th>
+                                                        <th>Prime Contractor</th>
+                                                        <th>Numero fibre richieste</th>
+                                                        <th>Tipo percorso </th>
+                                                        <th>Siti da collegare</th>
+                                                        <th>Note collegamento </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!--  <apex:repeat value="{!ChildCases}" var="cs"> -->
+                                                    <tr>
+                                                        
+                                                        <td>
+                                                            <apex:outputField id="Status" styleClass="form-control"  value="{!childCaseObj.status}"/>
+                                                            
+                                                        </td>
+                                                        <td>
+                                                            <apex:outputField id="Collegamento" styleClass="form-control" value="{!childCaseObj.CaseNumber}"/>
+                                                            
+                                                        </td>
+                                                        <td>
+                                                            <apex:outputField id="DatadiCreazione" styleClass="form-control"  value="{!childCaseObj.CreatedDate}"/>
+                                                        </td>
+                                                        <td>
+                                                            <apex:outputfield id="Richiestafattibilità" styleClass="form-control" value="{!childCaseObj.PO_Richiesta_a_fattibilit__r.casenumber}"/>
+                                                            
+                                                        </td>
+                                                        <td>
+                                                            <apex:outputField id="AreaGeografica" styleClass="form-control" value="{!childCaseObj.PO_Area_Geografica__c}"/>
+                                                        </td>
+                                                        <td>
+                                                            <apex:outputField id="PrimeContractor" styleClass="form-control" value="{!childCaseObj.PO_Prime_Contractor__c}"/>
+                                                            
+                                                        </td>
+                                                        <td>
+                                                            <apex:outputField id="Numero" styleClass="form-control" value="{!childCaseObj.PO_Numero_fibre_richieste__c}"/>
+                                                        </td>
+                                                        <td>
+                                                            <apex:outputField id="Tipopercorso" styleClass="form-control" value="{!childCaseObj.PO_Tipo_percorso__c}"/>
+                                                            
+                                                        </td>
+                                                        <td>
+                                                            <apex:outputField id="Sitidacollegare" styleClass="form-control" value="{!childCaseObj.PO_Siti_da_collegare__c}"/>
+                                                        </td>
+                                                        <td>
+                                                            <apex:outputField id="Notecollegamento" styleClass="form-control" value="{!childCaseObj.PO_Note_collegamento__c}"/>
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                    <!--  </apex:repeat>  -->
+                                                    
+                                                </tbody>
+                                            </table>
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <i></i>Elenco relativo della casistica genitore selezionata
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                            <table id="theTable" class="table table-striped table-bordered" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Collegamento</th>
+                                                        <th>Tipologia Offerta</th>
+                                                        <th>Date/Owner name</th>
+                                                        <th>Area Geografica</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <apex:repeat value="{!ChildCases}" var="caseobj">
+                                                        <tr>
+                                                            
+                                                            <td>
+                                                                <apex:commandlink value="{!caseobj.casenumber}" action="{!DisplayCaseInfo}">
+                                                                    <apex:param name="CaseDetail" assignTo="{!CaseDetail}" value="{!caseobj.id}"/>
+                                                                </apex:commandlink>
+                                                            </td>
+                                                            <td>
+                                                                <apex:outputText value="{!caseobj.PO_Offerta__c}"/>
+                                                            </td>
+                                                            <td>
+                                                                <apex:outputText value="{!caseobj.CreatedDate}"/>
+                                                            </td>
+                                                            <td>
+                                                                <apex:outputText value="{!caseobj.Status}"/>
+                                                            </td>
+                                                            
+                                                        </tr>
+                                                    </apex:repeat> 
+                                                    
+                                                </tbody>
+                                            </table>
+                                            
+                                        </apex:form>  
+                                        
+                                    </div>
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>       
+                            <!-- /.col-lg-4 -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /#page-wrapper -->
+                    
+                </div>
+            </div>
+            <!-- /#wrapper -->
+            
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            
+            </body>
+            </html>
+            </apex:page>

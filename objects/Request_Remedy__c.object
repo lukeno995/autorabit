@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>EOF_Account_OLO__c</fullName>
+        <externalId>false</externalId>
+        <label>EOF_Account_OLO</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EOF_Codice_Operatore_WS__c</fullName>
+        <externalId>false</externalId>
+        <label>EOF_Codice_Operatore_WS</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Comune__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Comune</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Contract__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Contract</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_ID_Servizio__c</fullName>
+        <externalId>false</externalId>
+        <label>OF ID Servizio</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_Processato_Errore__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>OF Remedy Processato Errore</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_Processato__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>OF Remedy Processato</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_actionDate__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy actionDate</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_buildingNumber__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy buildingNumber</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_createdBy__c</fullName>
+        <externalId>false</externalId>
+        <label>OF_Remedy createdBy</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_customerDivision__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy customerDivision</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_customerId__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy customerId</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_customerOrder__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy customerOrder</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_elementaryArea__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy elementaryArea</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_faultCause__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy faultCause</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_faultResolution__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy faultResolution</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_idBuilding__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy idBuilding</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_internalOrder__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy internalOrder</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_macroArea__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy macroArea</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_networkIdResource__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy networkIdResource</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_oloCommCode__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy oloCommCode</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_oloMessageCode__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy oloMessageCode</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_oloMessage__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy oloMessage</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_packageProvisioningCode__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy packageProvisioningCode</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_pop__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy pop</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_pricePlanProvisioningCode__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy pricePlanProvisioningCode</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_productProvisioningCode__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy productProvisioningCode</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_promoCode__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy promoCode</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_quantity__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy quantity</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_serialNumber__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy serialNumber</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_streetName__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy streetName</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_toponymyUnit__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy toponymyUnit</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_town__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy town</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_ttNumber__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy ttNumber</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Remedy_verticalOperator__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Remedy verticalOperator</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Service_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>OF Service Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Request_Number__c</fullName>
+        <displayFormat>{0000000000}</displayFormat>
+        <externalId>false</externalId>
+        <label>Request Number</label>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Request_Valida__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Request Valida</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Request Remedy</label>
+    <nameField>
+        <label>Request Remedy Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Requests Remedy</pluralLabel>
+    <recordTypes>
+        <fullName>EOF_Request_Assurance_Remedy</fullName>
+        <active>true</active>
+        <label>EOF Request Assurance Remedy</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EOF_Request_Attivazione_Remedy</fullName>
+        <active>true</active>
+        <label>EOF Request Attivazione Remedy</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EOF_Request_CPE_Remedy</fullName>
+        <active>true</active>
+        <label>EOF Request CPE Remedy</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EOF_Request_Cessazione_Remedy</fullName>
+        <active>true</active>
+        <label>EOF Request Cessazione Remedy</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EOF_Request_Provisioning_Remedy</fullName>
+        <active>true</active>
+        <label>EOF Request Provisioning Remedy</label>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

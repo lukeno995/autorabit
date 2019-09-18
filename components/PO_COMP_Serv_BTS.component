@@ -1,0 +1,32 @@
+<apex:component controller="PO_Serv_BTS_Controller" access="public" allowDML="true">
+
+    <ul class="nav">
+        <li id="perInfoFeservice" style="display:block;">
+            
+            <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>BTS</a>
+            
+            <ul class="nav">
+                <li id="perInfoFeservice" style="display:block;">
+                    <apex:outputPanel > 
+                        <apex:commandLink action="{!nuovaRichiesta}" target="_self">
+                        <apex:param name="bHinsNewReq" assignTo="{!sez}" value="BTS"/> 
+                            Inserimento nuova richiesta
+                        </apex:commandLink>
+                    </apex:outputPanel></li>
+                <li id="perInfoFeservice" style="display:block;">
+                    <apex:outputPanel >
+                        <apex:commandLink action="{!richiesteInserite}" target="_self" >
+                            <!--
+                            <apex:param name="bHReqInserted" assignTo="{!sez}" value="BTS"/> 
+                            --> 
+                            Richieste inserite                         
+                        </apex:commandLink>
+                    </apex:outputPanel>
+                </li>
+            </ul>
+            
+        </li>
+        
+    </ul>
+    
+</apex:component>

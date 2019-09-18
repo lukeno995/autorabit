@@ -1,0 +1,524 @@
+<apex:page Controller="PO_P2PAttiva_KIT_Controller" id="pageID" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+    <html lang="en">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                } 
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+            </style>
+        </head>
+        <body> 
+            <div id="wrapper">
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <c:PO_SideBarComponent Rec="{!recordOfferta}" />
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" id="side-menu">
+                            </ul>
+                        </div>
+                        <!-- /.sidebar-collapse -->
+                    </div>
+                    <!-- /.navbar-static-side -->
+                </nav>
+                <div id="page-wrapper">
+                    <div class="row">
+                        <div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i></i>Richiesta Inserimento KIT
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <!--<div style="color:red;" id="showerror">
+<apex:pageMessages id="errors" /> 
+</div>-->
+                                        <apex:form styleClass="form-horizontal" id="formID" >  
+                                            <!--<form>-->
+                                            <div style="color:red;" id="showerror">
+                                                <apex:pageMessages id="errors" />
+                                            </div>
+                                            
+                                            <br/>
+                                            
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3" >Seleziona KIT*</label>
+                                                <div class="col-sm-6">
+                                                    <apex:inputField id="selezKIT" styleClass="form-control"  value="{!slestratta.Service_Attribute__c}" onchange="showlistKIT(this);"/> 
+                                                    <apex:inputHidden id="serviceAttr" value="{!serviceAttribute}" />
+                                                </div> 
+                                            </div>
+                                            
+                                            <div class="form-group"  id="elencoKIT">
+                                                <label class="control-label col-sm-3" >Elenco KIT*</label>
+                                                <div class="col-sm-6">
+                                                    <apex:selectList label="Elenco KIT*" size="1"  styleClass="form-control" onkeypress="return noenter(event);"  
+                                                                     id="elencoKITValue" onchange="changeNameKit(this);" value="{!slestratta.PO_P2PAttiva_Nome_del_KIT__c}">
+                                                        <apex:selectOptions Value="{!optKITList}" />
+                                                        <!--<apex:actionFunction name="updateKitByName" action="{!updateByKitName}" rendered="true"  />-->
+                                                        <!-- <apex:actionFunction name="getKIT" action="{!getkitLogList}" /> -->
+                                                        <apex:inputHidden id="nameElencoKit" value="{!nameKitFromList}" />
+                                                        <apex:inputHidden id="nameElencoKitNew" value="{!nameKitFromListNew}" />
+                                                    </apex:selectList>	                                                
+                                                </div> 
+                                            </div>
+                                            
+                                            <div class="form-group"  id="elencoKIT2">
+                                                <label class="control-label col-sm-3" >Elenco KIT*</label>
+                                                <div class="col-sm-6">
+                                                    <apex:selectList label="Elenco KIT*" size="1"  styleClass="form-control" onkeypress="return noenter(event);"  id="elencoKITValue2" >
+                                                        <apex:selectOptions Value="{!elencoNull}" />
+                                                    </apex:selectList>	                                                         
+                                                </div> 
+                                            </div>
+                                            
+                                            <div class="form-group" id="nomeKitS" >
+                                                <label class="control-label col-sm-3" >Nome*</label>
+                                                <div class="col-sm-6">
+                                                    <apex:outputText value="{!slestratta.PO_P2PAttiva_Nome_del_KIT__c}" styleClass="form-control"  id="nomeKit" />
+                                                </div> 
+                                            </div>
+                                            
+                                            <div class="form-group" id="nomeKitS2">
+                                                <label class="control-label col-sm-3" >Nome*</label>
+                                                <div class="col-sm-6">
+                                                    <apex:outputText styleClass="form-control"  id="nomeKit2" value="{!slestratta.PO_P2PAttiva_Nome_del_KIT__c}"/>
+                                                    
+                                                </div> 
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3" >Indirizzo di Consegna</label>
+                                                <div class="col-sm-6">
+                                                    <apex:inputText value="{!slestratta.PO_P2PAttiva_KIT_Indirizzo_Consegna__c}" disabled="false" styleClass="form-control"  id="indConsegna" />
+                                                    
+                                                </div> 
+                                            </div>
+                                            
+                                            
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3" >Nome POP di Consegna*</label>
+                                                <div class="col-sm-6">
+                                                    <apex:selectList size="1" value="{!slestratta.EOF_ID_Pop__c}" styleClass="form-control" id="nomePOP" onchange="verifyPOP(this);">
+                                                        <apex:selectOptions value="{!optPopList}" />                                                      
+                                                        <!-- <apex:actionFunction name="checkPOP" action="{!checkPopAssignedKIT}" rendered="true"  />-->
+                                                        <apex:inputHidden id="myPop" value="{!hiddenValuePOP}" />
+                                                    </apex:selectList>
+                                                </div> 
+                                            </div>
+                                            
+                                            <div class="form-group" style="display:none;">
+                                                <label class="control-label col-sm-3" >LISTA KIT*</label>
+                                                <div class="col-sm-6">
+                                                    <apex:selectList size="1" styleClass="form-control"  id="pop">
+                                                        <apex:selectOptions value="{!assignedPop}" />                                                      
+                                                        
+                                                        
+                                                    </apex:selectList>
+                                                </div> 
+                                            </div>
+                                            
+                                            
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3" >Optical Rate Limiting*</label>
+                                                <div class="col-sm-6">
+                                                    <apex:inputField id="OptRateLim" value="{!slestratta.PO_P2PAttiva_Optical_Rate_Limiting__c}" styleClass="form-control" /> 
+                                                </div> 
+                                            </div>
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            
+                                            
+                                            <div class="col-lg-4" >
+                                            </div>
+                                            
+                                            <div class="col-lg-4" > 
+                                                <apex:commandButton styleClass="btn btn-primary" value="Annulla" style="margin-right:10px;" action="{!annullaKitLog}" immediate="true"
+                                                                    html-formnovalidate="formnovalidate"/> 
+                                                
+                                                <apex:commandLink styleClass="btn btn-primary" value="Elimina KIT" style="margin-right:10px;" onclick="checkDelete(); return false;"/> 
+                                                
+                                                <apex:commandLink styleClass="btn btn-primary" value="Salva KIT" style="margin-right:10px;" onclick="validateform('salva'); return false;" />
+                                            </div>  
+                                            <div class="col-lg-4" >
+                                            </div>
+                                            <apex:actionFunction name="updateKit" action="{!updateKitLog}"/>
+                                            <apex:actionFunction name="InsertKit" action="{!insertKitLog}"/>
+                                            <!--<apex:actionFunction name="switchType" action="{!switchKitType}"/>-->
+                                            <apex:inputHidden id="myName" value="{!hiddenName}" />
+                                            <!--<apex:actionFunction name="populateKit" action="{!checkPopAssignedKIT}" />-->
+                                            <apex:actionFunction name="deleteLogs" action="{!eliminaKitLog}"/>
+                                        </apex:form>   
+                                        <br/>
+                                    </div>
+                                    <!-- /.row (nested) -->
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>       
+                            <!-- /.col-lg-4 -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /#page-wrapper -->
+                    
+                </div>
+            </div>
+            <!-- /#wrapper -->            
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            
+            
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <script>
+                $(document).ready(function() {
+                
+                debugger;
+                var selezKIT = $('[id$=selezKIT]').val();
+                var elencoKIT = $('[id$=elencoKIT]').val();
+                var nomeKit =  $('[id$=nomeKit]').val();
+                if(selezKIT ==""){
+                    document.getElementById('elencoKIT2').style.display='none';  
+                    document.getElementById('elencoKIT').style.display='none';  
+                    document.getElementById('nomeKitS').style.display='none'; 
+                    document.getElementById('nomeKitS2').style.display='none'; 
+                     document.getElementById('pageID:formID:indConsegna').disabled =true;
+                    document.getElementById('pageID:formID:OptRateLim').disabled =true;
+                    document.getElementById('pageID:formID:nomePOP').disabled =true;
+                } 
+                else if(selezKIT =='EVPL'){
+                    document.getElementById('elencoKIT').style.display='block'; 
+                    document.getElementById('nomeKitS').style.display='block'; 
+                    document.getElementById('nomeKitS2').style.display='none'; 
+                    document.getElementById('elencoKIT2').style.display='none';  
+                    document.getElementById('pageID:formID:indConsegna').disabled =true;
+                    document.getElementById('pageID:formID:OptRateLim').disabled =true;
+                    document.getElementById('pageID:formID:nomePOP').disabled =true;
+                    
+                }
+                    else if(selezKIT=='EPL'){
+                        document.getElementById('elencoKIT').style.display='none'; 
+                        document.getElementById('nomeKitS').style.display='block'; 
+                        document.getElementById('nomeKitS2').style.display='none'; 
+                        document.getElementById('elencoKIT2').style.display='block';  
+                        document.getElementById('pageID:formID:elencoKITValue2').disabled=true;
+                    }
+                
+            });
+            
+            function kitByElenco(data){
+                debugger;
+                document.getElementById('pageID:formID:nameElencoKit').value= data.value;
+                updateKitByName();
+            }
+            function verifyPOP (data){
+                debugger; 
+                var listP = [];
+                var lengthPop =   document.getElementById('pageID:formID:pop').options.length;
+                for(var  i = 0  ; i< lengthPop ; i++){
+                    listP.push(document.getElementById('pageID:formID:pop').options[i].value);
+                }
+                for(var  j = 0 ; j< listP.length;j++){
+                    if(data.value== listP[j]){
+                        alert('Esistono Kit con questo POP.Vuoi procedere comunque?');
+                        break;
+                    }
+                }
+                if(data.value!="-"){
+                    document.getElementById('pageID:formID:myPop').value= data.value;
+                    //checkPOP( document.getElementById('pageID:formID:myPop').value); 
+                    document.getElementById('pageID:formID:myPop').value;
+                    /* var x = '{!$CurrentPage.parameters.isValid}';
+                     var c = '{!$CurrentPage.parameters.notValid}';
+                    if(c!=''){
+                  
+                        alert('Esistono Kit con questo POP. Si vuole procedere comunque?');
+                    
+                        }*/
+                }
+            }
+            
+            function changeNameKit (data){
+                debugger;
+                var selezKIT = $('[id$=selezKIT]').val();
+                
+                if(data.value!="-"){
+                     document.getElementById('nomeKitS2').style.display='none';
+                    document.getElementById('pageID:formID:nameElencoKit').value= data.value;
+                    //updateKitByName();
+                    document.getElementById('pageID:formID:nomeKit2').innerHTML = data.value;
+                    document.getElementById('pageID:formID:nomeKit').innerHTML = data.value;
+                    document.getElementById('pageID:formID:nomeKit2').disabled = true;
+                    document.getElementById('pageID:formID:nomeKit').disabled =true;
+                    document.getElementById('pageID:formID:indConsegna').disabled =true;
+                    document.getElementById('pageID:formID:OptRateLim').disabled =true;
+                    document.getElementById('pageID:formID:nomePOP').disabled =true;
+                }else{
+                    document.getElementById('pageID:formID:nomeKit2').disabled = false;
+                    document.getElementById('pageID:formID:nomeKit').disabled =false;
+                    document.getElementById('pageID:formID:indConsegna').disabled =false;
+                    document.getElementById('pageID:formID:OptRateLim').disabled =false;
+                    document.getElementById('pageID:formID:nomePOP').disabled =false;
+                }
+            }
+            function showlistKIT(data){
+                debugger;
+                var selezKIT = $('[id$=selezKIT]').val(); 
+                
+                if(selezKIT ==""){
+                    document.getElementById('elencoKIT2').style.display='none';  
+                    document.getElementById('elencoKIT').style.display='none';  
+                    document.getElementById('pageID:formID:nomeKit2').disabled = false;
+                    document.getElementById('pageID:formID:nomeKit').disabled =false;
+                    document.getElementById('pageID:formID:indConsegna').disabled =false;
+                    document.getElementById('pageID:formID:OptRateLim').disabled =false;
+                    document.getElementById('pageID:formID:nomePOP').disabled =false;
+                } else{
+                    //switchType();
+                    document.getElementById('pageID:formID:serviceAttr').value = selezKIT;
+                }  
+                if( document.getElementById('pageID:formID:elencoKITValue').length==0){
+                    if(data.value =='EVPL'){
+                        //updateKitByName()
+                        document.getElementById('elencoKIT').style.display='none'; 
+                        document.getElementById('nomeKitS').style.display='block'; 
+                        document.getElementById('nomeKitS2').style.display='none'; 
+                        document.getElementById('elencoKIT2').style.display='block';  
+                        document.getElementById('pageID:formID:elencoKITValue2').disabled=true;
+                    }else{
+                        if(data.value =='EPL'){
+                            //getKIT();
+                            document.getElementById('elencoKIT').style.display='none'; 
+                            document.getElementById('nomeKitS').style.display='block'; 
+                            document.getElementById('nomeKitS2').style.display='none'; 
+                            document.getElementById('elencoKIT2').style.display='block';  
+                            document.getElementById('pageID:formID:elencoKITValue2').disabled=true;
+                            document.getElementById('pageID:formID:nomeKit2').disabled = false;
+                            document.getElementById('pageID:formID:nomeKit').disabled =false;
+                            document.getElementById('pageID:formID:indConsegna').disabled =false;
+                            document.getElementById('pageID:formID:OptRateLim').disabled =false;
+                            document.getElementById('pageID:formID:nomePOP').disabled =false;
+                            
+                            alert('Si sta richiedendo un KIT nuovo e non in condivisione');
+                        }
+                    }
+                }
+                else{
+                    var elencoKIT = document.getElementById('pageID:formID:elencoKITValue').value;
+                    var nomeKit = elencoKIT;
+                    if(data.value =='EVPL'){
+                        if(elencoKIT =="-"){ 
+                            document.getElementById('pageID:formID:indConsegna').disabled =false;
+                            document.getElementById('pageID:formID:OptRateLim').disabled =false;
+                            document.getElementById('pageID:formID:nomePOP').disabled =false;
+                            document.getElementById('nomeKitS').style.display='none'; 
+                            document.getElementById('nomeKitS2').style.display='none';
+                            document.getElementById('elencoKIT2').style.display='none'; 
+                            document.getElementById('elencoKIT').style.display='block';
+                            if( document.getElementById('nomeKitS').style.display == 'block'){
+                                if( document.getElementById('pageID:formID:nomeKit').innerText ==""){
+                                    document.querySelector('[id$=elencoKITValue]').value = '-';
+                                }
+                            }
+                        }else{
+                            document.getElementById('pageID:formID:indConsegna').disabled =true;
+                            document.getElementById('pageID:formID:OptRateLim').disabled =true;
+                            document.getElementById('pageID:formID:nomePOP').disabled =true;
+                            document.getElementById('pageID:formID:elencoKITValue').disabled=false;
+                            document.getElementById('elencoKIT2').style.display='none'; 
+                            document.getElementById('elencoKIT').style.display='block';
+                            document.getElementById('nomeKitS').style.display='none'; 
+                            document.getElementById('nomeKitS2').style.display='block';
+                            document.getElementById('pageID:formID:nomeKit2').innerHTML = document.getElementById('pageID:formID:elencoKITValue').value ;
+                          
+                            
+                        }
+                        if(selezKIT =="EVPL" && document.getElementById('pageID:formID:elencoKITValue').options.length >0){
+                            // populateKit();
+                            //document.getElementById('pageID:formID:nomeKit').innerHTML =''; 
+                        }
+                        /* else{
+                        document.getElementById('pageID:formID:nomeKit').innerHTML  = nomeKit.innerHTML;
+                    }*/
+                    }else{
+                        if(data.value =='EPL'){
+                            document.getElementById('pageID:formID:nomeKit2').disabled = false;
+                            document.getElementById('pageID:formID:nomeKit').disabled =false;
+                            document.getElementById('pageID:formID:indConsegna').disabled =false;
+                            document.getElementById('pageID:formID:OptRateLim').disabled =false;
+                            document.getElementById('pageID:formID:nomePOP').disabled =false;
+                            document.getElementById('elencoKIT').style.display='none'; 
+                            document.getElementById('nomeKitS').style.display='none'; 
+                            document.getElementById('nomeKitS2').style.display='none'; 
+                            document.getElementById('elencoKIT2').style.display='block';  
+                            document.getElementById('pageID:formID:elencoKITValue2').disabled=true;
+                            alert('Si sta richiedendo un KIT nuovo e non in condivisione');
+                            document.getElementById('pageID:formID:nomeKit2').innerHTML ='';
+                            document.getElementById('pageID:formID:nomeKit').innerHTML = '';
+                            /*if(selezKIT =="EPL" && document.getElementById('pageID:formID:elencoKITValue').options.length >0){
+                            //document.getElementById('pageID:formID:nomeKit').innerHTML =''; 
+                        } 
+                        else{
+                            document.getElementById('pageID:formID:nomeKit').innerHTML  = nomeKit.innerHTML;
+                        }*/
+                        }
+                        // document.getElementById('elencoKIT').style.display='none';  
+                    }
+                }
+            }
+            function checkDelete(){
+                if("{!checkDelete}" == 'true'){
+                    var r = confirm("L'eliminazione del kit eliminerà anche le vlan associate. Continuare?");
+                    if(r == true){
+                        deleteLogs();
+                    }
+                }
+                else{
+                    deleteLogs();
+                }
+            }
+            function validateform(){
+                debugger;
+                var invalidflag = false;
+                var selezKIT = $('[id$=selezKIT]').val();
+                var nomeKit2=document.getElementById('pageID:formID:nomeKit2').disabled ;
+                var nomeKit=document.getElementById('pageID:formID:nomeKit').disabled;
+                var indConsegnaDisabled = document.getElementById('pageID:formID:indConsegna').disabled ;
+                var OptRateLimDisabled = document.getElementById('pageID:formID:OptRateLim').disabled ;
+                var  nomePOPDisabled = document.getElementById('pageID:formID:nomePOP').disabled ;
+                var elencokit = document.getElementById('pageID:formID:elencoKITValue').value;
+                if(elencokit=='-'){
+                    document.getElementById('pageID:formID:nameElencoKitNew').value = elencokit;
+                }
+                if(selezKIT==""){
+                    $('[id$=selezKIT]').next('div.red').remove();
+                    $('[id$=selezKIT]').after('<div class="red">Campo Obbligatorio</div>');
+                    invalidflag = true;
+                }
+                else{
+                    $('[id$=selezKIT]').next('div.red').remove();
+                }
+                
+                var nomeKit2=$('[id$=nomeKit2]').val();
+                document.getElementById('pageID:formID:myName').value = document.getElementById('pageID:formID:nomeKit').innerText;
+                //Aggiunta riga per list has no row campo nome kit vuoto se si salva , provvisorio...s
+                /*
+                if( document.getElementById('nomeKitS').style.display == 'block'){
+                    if( document.getElementById('pageID:formID:nomeKit').innerText ==""){
+                        $('[id$=nomeKit]').next('div.red').remove();
+                        $('[id$=nomeKit]').after('<div class="red">Selezionare un kit dall elenco</div>');
+                        invalidflag = true;
+                    }else{
+                        $('[id$=nomeKit]').next('div.red').remove();
+                    }
+                }*/
+                
+                /* if(nomeKit2==""){
+                    $('[id$=nomeKit2]').next('div.red').remove();
+                    $('[id$=nomeKit2]').after('<div class="red">Campo Obbligatorio</div>');
+                    invalidflag = true;
+                }
+                else{
+                    $('[id$=nomeKit2]').next('div.red').remove();
+                      document.getElementById('pageID:formID:hiddenName').value = nomeKit2;
+                }*/
+                
+                /*var indConsegna=$('[id$=indConsegna]').val();
+                if(indConsegna=="" && !indConsegnaDisabled){
+                    $('[id$=indConsegna]').next('div.red').remove();
+                    $('[id$=indConsegna]').after('<div class="red">Campo Obbligatorio</div>');
+                    invalidflag = true;
+                }
+                else{
+                    $('[id$=indConsegna]').next('div.red').remove();
+                }*/
+                var nomePOP=$('[id$=nomePOP]').val();
+                if(nomePOP==" - "  && !nomePOPDisabled){
+                    $('[id$=nomePOP]').next('div.red').remove();
+                    $('[id$=nomePOP]').after('<div class="red">Campo Obbligatorio</div>');
+                    invalidflag = true;
+                }
+                else{
+                    document.getElementById('pageID:formID:myPop').value=nomePOP;
+                    $('[id$=nomePOP]').next('div.red').remove();
+                }
+                var OptRateLim=$('[id$=OptRateLim]').val();
+                if(OptRateLim=="" && !OptRateLimDisabled){
+                    $('[id$=OptRateLim]').next('div.red').remove();
+                    $('[id$=OptRateLim]').after('<div class="red">Campo Obbligatorio</div>');
+                    invalidflag = true;
+                }
+                else{
+                    $('[id$=OptRateLim]').next('div.red').remove();
+                }
+                if(!invalidflag){
+                    //updateKit();
+                    InsertKit();
+                }
+            }
+            
+            function noenter(e){  
+                //alert('Test ');             
+                if(window.event){  
+                    key = window.event.keyCode;                
+                } 
+                else{                    
+                    key = e.which;               
+                }               
+                if(key == 13) {   
+                    var ele=document.getElementById('{!$Component.pageID:formID:SaveBttn}');                                          
+                    ele.click();                     
+                    return false;               
+                } else{                     
+                    return true;               
+                }          
+            }
+            
+            </script> 
+            
+        </body>
+        
+    </html>
+</apex:page>

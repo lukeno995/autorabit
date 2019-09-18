@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Coda Network Creation Ordini Nord</name>
+    <queueMembers>
+        <roles>
+            <role>PO_Network_Creation_Nord_Est</role>
+            <role>PO_Network_Creation_Nord_Ovest</role>
+        </roles>
+        <users>
+            <user>daniele.mariuzzo@openfiber.it</user>
+            <user>fabrizio.petrucci@openfiber.it</user>
+            <user>giorgio.sentuti@openfiber.it</user>
+            <user>nicola.barbangelo@openfiber.it</user>
+            <user>ugo.falgarini@openfiber.it</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

@@ -1,0 +1,39 @@
+<apex:page controller="Export_CD_ListaRichiesteInserite_Ctrl"  contentType="application/vnd.ms-excel#Export_ListaRichiesteInseriteOpStr_CD.xls" action="{!fetchList_OpStr_CD}" showHeader="false" sidebar="false" standardStylesheets="false" cache="true" >
+<html> PO_OpenStream_CeD_ExportRichIns.page 
+<head></head>
+<body>
+	<apex:pageBlock id="Export_ListaRichiesteInseriteOpStr_CD">
+    	<apex:pageBlockTable value="{!listRichiesteTP}" var="r">
+    		<apex:column >
+    			<apex:facet name="header">CODICE ORDINE OPERATORE</apex:facet> 
+    				{!r.EOF_Codice_Ordine_OLO__c}
+    		</apex:column> 
+    		<apex:column >
+    			<apex:facet name="header">TIPO RICHIESTA</apex:facet>
+                    {!r.EOF_Tipo_Comunicazione_String__c} 
+    		</apex:column> 
+    		<apex:column >
+    			<apex:facet name="header">STATO RICHIESTA</apex:facet>
+    				{!r.EOF_STATO_ORDINE__c}
+    		</apex:column>
+    		<apex:column >
+    			<apex:facet name="header">IDENTIFICATIVO DEL POP</apex:facet> 
+    				{!r.EOF_ID_Pop__c}
+    		</apex:column>
+    		<apex:column >
+    			<apex:facet name="header">DATA NOTIFICA</apex:facet>
+    				{!r.EOF_Data_Notifica__c}
+    		</apex:column>
+            <apex:column >
+    			<apex:facet name="header">DATA CREAZIONE</apex:facet>
+    			    {!r.PO_SA_Data_Inserimento_Ordine__c}"
+    		</apex:column> 
+             <apex:column >
+    			<apex:facet name="header">ID RISORSA</apex:facet>
+    			    {!r.EOF_ID_Risorsa__c}"
+    		</apex:column> 
+    	</apex:pageBlockTable>
+	</apex:pageBlock>
+</body>
+</html>
+</apex:page>

@@ -1,0 +1,161 @@
+<apex:component controller="PO_TP_COMP_ListaBozze_Controller" allowDML="true">
+
+<html lang="it">  
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Open Fiber</title>  
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+    <!-- Bootstrap Core CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+    
+    <!-- MetisMenu CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+    
+    <!-- Custom CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+    
+    <!-- Morris Charts CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+    
+    <!-- Custom Fonts -->
+    <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+    
+    <!-- /#wrapper -->
+    <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+    
+    <apex:includeScript value="{!URLFOR($Resource.multiselect, '/multiselect/js/bootstrap-multiselect.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.multiselect, '/multiselect/css/bootstrap-multiselect.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.daterangepicker, '/moment.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.daterangepicker, '/daterangepicker.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.daterangepicker, '/daterangepicker.css')}" />
+    
+    <!-- Bootstrap Core JavaScript -->
+    <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+    
+    <!-- excelJS -->
+    <apex:includeScript value="{!URLFOR($Resource.excelplus25, '/excelplus25/xlsx.full.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.excelplus25, '/excelplus25/excelplus-2.5.min.js')}"/>
+    
+    <apex:includeScript value="{!URLFOR($Resource.moment, 'moment-develop/min/moment-with-locales.min.js')}"/>
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <style>
+        .navbar {
+        min-height: 105px;
+        }
+        .navbar-header {
+        float: none;
+        }
+        .navbar-default {
+        background-color: #ffffff;
+        }
+        .panel-default>.panel-heading {
+        color: #ffffff;
+        background-color: #337ab7;
+        }
+        span.dateFormat{
+        
+        display:none;
+        
+        }
+        .red{color:red;}
+        .form-check-input{ 
+        margin-left: 45px !important;
+        margin-top: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+
+<apex:form id="myFormddd">
+<apex:outputPanel id="tabResult">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <apex:outputPanel >
+            <i></i>Bozze
+        </apex:outputPanel>
+    </div>
+    <form role="form" class="form-horizontal">
+        <apex:pageBlock rendered="{!richiesteBozza}" id="results">
+            <apex:outputPanel id="paginationPanel1">
+                <table class="table table-striped table-bordered">
+                    <tr>                                 
+                        <th>ID Risorsa</th>
+                        <th>Tipo Richiesta</th>
+                        <th>Stato </th>
+                        <th>Listino</th>
+                        <th>Profilo</th>
+                        <th>Data Attivazione</th>
+                    </tr>
+                    <apex:repeat value="{!listaBozzeWrapper}" var="c" >
+                    <tr>
+                        <td>        
+                            <a id='{!c.id}' onclick="doingSearch(this.id)" >{!c.IDRisorsa}</a>
+                            <!--  <a id="thePage:theForm:theCommandLink" onclick="generatedJs()">Save</a>
+                            <apex:commandlink value="{!c.IDRisorsa}" action="{!ViewDettagli}" id="idCommand"> 
+                            <apex:param assignTo="{!IdScelta}" name="goToResource" value="{!c.IDRisorsa}" /> 
+                            </apex:commandlink> -->
+                        </td>
+                        <td>
+                            {!c.tipoRichiesta}
+                        </td>
+                        <td>
+                            {!c.Stato}
+                        </td>
+                        <td>
+                            <!-- LISTINO -->
+                        </td>
+                        <td> 
+                            {!c.Profilo}
+                        </td>
+                        <td>
+                            {!c.DataAttivazione}
+                        </td>
+                    </tr>
+                    </apex:repeat>
+                </table> 
+            </apex:outputPanel>
+            <div>
+            <!--START - PAGINATION PANEL -->
+            <apex:outputPanel id="paginationPanel">
+                <apex:outputPanel rendered="{!showPag}">
+                    <apex:commandlink action="{!PageDown}" reRender="tabResult,paginationPanel">
+                        <apex:image style="margin-top:-8px;" url="{!$Resource.ArrowDestra}"
+                        styleClass="leftFloat" width="22" height="22"/>
+                    </apex:commandlink>
+                    <p style='float:left;display:inline;margin-left:10px;margin-right:10px;;margin-top:-8px;'>Pagina {!pageActual}  di {!totalpage} (Record : {!totalRecord})</p> 
+                    <apex:commandlink action="{!pageUp}" reRender="tabResult,paginationPanel">
+                    <apex:image style="margin-top:-8px;" url="{!$Resource.ArrowSinistra}" 
+                        styleClass="leftFloat" width="22" height="22"/>
+                    </apex:commandlink>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!!showPag}">                        
+                    <p style='float:left;display:inline;margin-left:10px;margin-right:10px;;margin-top:-8px;'>0 Pagine (Record : 0)</p>
+                </apex:outputPanel>
+            <!-- END - PAGINATION PANEL -->
+            </apex:outputPanel>
+            </div>
+        </apex:pageBlock>
+        <br></br>
+    </form>
+</div>
+
+<apex:actionFunction name="dettagli" reRender="tabResult,paginationPanel" action="{!ViewDettagliBozze}" >
+    <apex:param assignTo="{!IdScelta}" name="IdScelta" value="" /> 
+</apex:actionFunction>
+</apex:outputPanel>
+</apex:form>
+</body>
+
+<script>
+    var IdScelta='';
+    function doingSearch(IdScelta) {
+    debugger;
+    dettagli(IdScelta);
+}
+</script>
+</html>
+</apex:component>

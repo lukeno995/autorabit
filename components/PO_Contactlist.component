@@ -1,0 +1,57 @@
+<apex:component controller="PO_RegistrationController" allowDML="true">
+    <style>
+        #myinfo{
+        font-size: 180px;
+        }
+        span.dateFormat{
+        
+        display:none;
+        
+        }
+        .red{color:red;}
+    </style>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h1 class="page-header">Lista Utenti   
+                <apex:commandLink styleClass="btn btn-sm btn-primary btn-block" style="width: 25%;float: right;background:#337ab7;color:#fff" action="{!redirectToRegPage}" >&nbsp; Add New User</apex:commandLink>
+            </h1>  
+        </div>
+        <div class="panel-body">
+            <div class="row">                
+                <div class=" col-md-12 col-lg-12 "> 
+                    <table class="table table-user-information">
+                        <tbody>
+                            <tr>
+                                <td>Name</td>
+                                <td>E-mail</td>
+                                <td>Mode</td>
+                                
+                            </tr>
+                            <apex:repeat var="cn" value="{!contactUserList}" rendered="true"  id="Contact_list">
+                                <tr>
+                                    <td>{!cn.Contact.Name}</td>
+                                    <td>{!cn.Contact.Email}</td>
+                                    <td>                                                            
+                                        <apex:commandButton value="Edit" action="{!contactInformation}" rerender="mainblk2,secBId,ConInfoAdId" >
+                                            <apex:param value="{!cn.Contact.ID}" assignTo="{!conId}" name="paramId"/>
+                                        </apex:commandButton>   
+                                        &nbsp;&nbsp;&nbsp;
+                                        <apex:outputPanel rendered="{!if(cn.Isactive==true,true,false)}">
+                                            <apex:commandButton value="Delete" action="{!deleteUserContact}" rerender="mainblk2,secBId,ConInfoAdId"  >
+                                                <apex:param value="{!cn.Contact.ID}" assignTo="{!conId}" name="paramId"/>
+                                            </apex:commandButton> 
+                                        </apex:outputPanel>
+                                    </td>
+                                    
+                                </tr>
+                            </apex:repeat>                       
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+    
+</apex:component>

@@ -1,0 +1,221 @@
+<apex:page Controller="PO_PP_Dettaglio_VLAN_KIT_controller" id="pageID" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+       <html lang="it">  
+        <head> 
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <!-- /#wrapper -->
+              
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+            <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>            
+
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                .statoV{
+                    color: #DC143C;
+                }
+
+                
+            </style>
+        </head> 
+         
+        <body>
+            <div id="wrapper">
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <c:PO_SideBarComponent />
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" id="side-menu">
+                            </ul>
+                        </div>
+                        <!-- /.sidebar-collapse -->
+                    </div>
+                    <!-- /.navbar-static-side -->
+                </nav>
+                <div id="page-wrapper">
+                <apex:form >
+                    <!--@@ START - PG - 08-11 DETTAGLIO SINGOLA VLAN -->                
+                    <apex:outputPanel rendered="{!showDettaglioVLAN}">
+                        <div class="panel panel-default" style="margin-top:10px; width:73.666667%;">
+                            <div class="panel-heading">
+                                <i></i>VLAN
+                            </div>
+                            <div class="panel-body">
+                                <fieldset class="form-group">   
+                                    <div class="form-group">
+                                        <div class="col-lg-6">
+                                             <label>Codice VLAN : </label> &nbsp; &nbsp;
+                                             <apex:outputField id="cod_Vlan" styleClass="form-control"  value="{!slV.OF_PP_NomeRichiesta_Figlio__c}" />
+                                         </div>
+                                         <div class="col-lg-6">
+                                             <label>POP di raccolta : </label> &nbsp; &nbsp;
+                                             <apex:outputField id="POP" styleClass="form-control"  value="{!slV.PO_PP_POP_raccolta__c}" />
+                                         </div>
+                                         
+                                         <div class="col-lg-6">
+                                              <label>Service VLAN : </label> &nbsp; &nbsp;
+                                              <apex:outputField id="svlan" styleClass="form-control" value="{!slV.SVLAN__c}"/>
+                                         </div>
+                                         
+                                         <div class="col-lg-6">
+                                              <label>User VLAN : </label> &nbsp; &nbsp;
+                                              <apex:outputField id="user_vlan" styleClass="form-control" value="{!slV.PO_PP_User_VLAN__c}"/>
+                                         </div>
+                                         
+                                         <div class="col-lg-6">
+                                              <label>COS Remarking : </label> &nbsp; &nbsp;
+                                              <apex:outputField id="cos_remarking" styleClass="form-control" value="{!slV.PO_PP_cos_remarking__c}"/>
+                                         </div>
+                                         <div class="col-lg-6">
+                                              <label>DHCP Option82 : </label> &nbsp; &nbsp;
+                                              <apex:outputField id="dhcp" styleClass="form-control" value="{!slV.PO_PP_dhcp_Option82__c}"/>
+                                         </div>
+                                         <div class="col-lg-6">
+                                              <label>COS Type : </label> &nbsp; &nbsp;
+                                              <apex:outputField id="cos_type" styleClass="form-control" value="{!slV.PO_PP_cos_type__c}"/>
+                                         </div>
+                                         
+                                         <div class="col-lg-6" id="cos_class">
+                                              <label>COS Class : </label> &nbsp; &nbsp;
+                                              <apex:outputField id="cos_class" styleClass="form-control" value="{!slV.PO_PP_cos_class__c}"/>
+                                         </div>
+                                         
+                                         <!--  
+                                         <apex:outputPanel>
+                                             <div class="col-lg-6">
+                                                  <label>Stato Ordine: </label> &nbsp; &nbsp;
+                                                  <span class="statoV">
+                                                     <apex:outputField id="stato_vlan" styleClass="form-control" value="{!slV.EOF_STATO_ORDINE__c}"/>
+                                                  </span>     
+                                             </div>
+                                         </apex:outputPanel>
+                                         -->
+                                         <div class="col-lg-6">
+                                              <label>Note: </label> &nbsp; &nbsp;
+                                              <apex:outputField id="note" styleClass="form-control" value="{!slV.EOF_NOTE__c}"/>
+                                         </div>
+                                    </div>    
+                                 </fieldset>
+                             </div>
+                        </div>
+                    </apex:outputPanel> 
+                    <!--@@ END - PG - 08-11 DETTAGLIO SINGOLA VLAN -->  
+                    
+                    <!--@@ START - PG - 08-11 DETTAGLIO KIT -->   
+                    <!--
+                    <apex:outputPanel rendered="{!showDettaglioKIT}">
+                        <div class="panel panel-default" style="margin-top:10px; width:73.666667%;">
+                            <div class="panel-heading">
+                                <i></i>KIT
+                            </div>
+                            <div class="panel-body">
+                                <fieldset class="form-group">   
+                                    <div class="form-group">
+                                         <div class="col-lg-6">
+	                                         <label>Codice KIT : </label> &nbsp; &nbsp;
+	                                         <apex:outputField id="nomeRichiestaKit" styleClass="form-control" value="{!sl_kit.OF_PP_NomeRichiesta__c}" />
+	                                     </div>
+                                        
+                                        <div class="col-lg-6">
+	                                         <label>Nome del KIT : </label> &nbsp; &nbsp;
+	                                         <apex:outputField id="NomedelKit" styleClass="form-control" value="{!sl_kit.Nome_del_KIT__c}" />
+	                                     </div>
+                                         <div class="col-lg-6">
+	                                         <label>Servizio Commerciale : </label> &nbsp; &nbsp;
+	                                         <apex:outputField id="Traffico" styleClass="form-control" value="{!sl_kit.Traffico__c}"/>
+	                                     </div>
+	                   
+	                                     <div class="col-lg-6">
+	                                         <label>POP di consegna :</label> &nbsp; &nbsp;
+	                                         <apex:outputField id="POP_consegna" styleClass="form-control"  value="{!sl_kit.POP__c}" />
+	                                     </div>
+    	                                 <div class="col-lg-6">
+    	                                     <label>Banda :</label> &nbsp; &nbsp;
+    	                                     <apex:outputField id="BandaInterfaccia" styleClass="form-control" value="{!sl_kit.Banda_Interfaccia__c }"/>
+    	                                 </div>
+    	                                 <div class="col-lg-6">
+    	                                     <label>Interfaccia :</label> &nbsp; &nbsp;
+    	                                     <apex:outputField id="Interfaccia" styleClass="form-control" value="{!sl_kit.PO_PP_Interfaccia__c }"/>
+    	                                 </div>
+    	                                 
+    	                                 <!--
+    	                                 <div class="col-lg-6" >
+    	                                     <label>Stato Richiesta :</label> &nbsp; &nbsp;
+    	                                     <span class="statoR">
+    	                                        <apex:outputField styleClass="form-control"  value="{!sl_kit.EOF_Stato_Richiesta__c }"/>
+    	                                     </span>
+    	                                 </div>
+	                                      
+	                                     <div class="col-lg-6">
+	                                          <label>Servizi per utenti finali : </label> &nbsp; &nbsp;
+	                                          <apex:outputField id="Serviziperutentifinali" styleClass="form-control"  value="{!sl.Servizi_per_utenti_finali__c}"/>
+	                                     </div>
+	                                     
+	                                     <div class="col-lg-6">
+	                                        <label>Note : </label> &nbsp; &nbsp;
+	                                        <apex:outputField id="note" styleClass="form-control"  value="{!sl.EOF_Note__c }"/>
+	                                     </div>
+	                                    
+	                                   <div class="col-lg-6">
+	                                        <label>Note : </label> &nbsp; &nbsp;
+	                                        <apex:outputField id="noteOLO" styleClass="form-control"  value="{!sl_kit.EOF_Comunicazioni_con_OLO__c }"/>
+	                                    </div>
+	                                    
+                                    </div>    
+                                 </fieldset>
+                             </div>
+                        </div>
+                    </apex:outputPanel> 
+                     -->   
+                    <!--@@ END - PG - 08-11 DETTAGLIO KIT -->  
+                       
+            </apex:form>  
+            </div>
+        </div>
+    </body>
+</html>
+</apex:page>

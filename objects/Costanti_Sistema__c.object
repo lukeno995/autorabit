@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Email_Supporto__c</fullName>
+        <externalId>false</externalId>
+        <label>Email Supporto</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RT_Account_Cliente_BSN__c</fullName>
+        <externalId>false</externalId>
+        <label>RT Account Cliente BSN</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RT_Account_OLO__c</fullName>
+        <description>Contiene ID RT Account OLO</description>
+        <externalId>false</externalId>
+        <label>RT Account OLO</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RT_Asset_Risorsa__c</fullName>
+        <externalId>false</externalId>
+        <label>RT Asset Risorsa</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RT_Caso_Attivazione__c</fullName>
+        <description>Contiene ID RT Caso Attivazione</description>
+        <externalId>false</externalId>
+        <label>RT Caso Attivazione</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RT_Caso_Cessazione__c</fullName>
+        <description>Contiene ID RT Caso Cessazione</description>
+        <externalId>false</externalId>
+        <label>RT Caso Cessazione</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RT_Caso_TT__c</fullName>
+        <description>Contiene ID RT Caso TT</description>
+        <externalId>false</externalId>
+        <label>RT Caso TT</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Costanti di Sistema</label>
+    <visibility>Protected</visibility>
+</CustomObject>

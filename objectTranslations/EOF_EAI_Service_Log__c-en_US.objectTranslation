@@ -1,0 +1,2665 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>EAI Service Log</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>EAI Service Logs</value>
+    </caseValues>
+    <fields>
+        <label><!-- Accordo Operativo --></label>
+        <name>Accordo_Operativo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset --></label>
+        <name>Asset__c</name>
+        <relationshipLabel><!-- EAI Service Logs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Banda --></label>
+        <name>Banda_Interfaccia__c</name>
+    </fields>
+    <fields>
+        <label><!-- COS1_CIR --></label>
+        <name>COS1_CIR__c</name>
+    </fields>
+    <fields>
+        <label><!-- COS1_PIR --></label>
+        <name>COS1_PIR__c</name>
+    </fields>
+    <fields>
+        <label><!-- COS3_CIR --></label>
+        <name>COS3_CIR__c</name>
+    </fields>
+    <fields>
+        <label><!-- COS3_PIR --></label>
+        <name>COS3_PIR__c</name>
+    </fields>
+    <fields>
+        <label><!-- COS5_CIR --></label>
+        <name>COS5_CIR__c</name>
+    </fields>
+    <fields>
+        <label><!-- COS5_PIR --></label>
+        <name>COS5_PIR__c</name>
+    </fields>
+    <fields>
+        <label><!-- CaseNumber --></label>
+        <name>CaseNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Caso --></label>
+        <name>Caso__c</name>
+        <relationshipLabel><!-- EAI Service Logs (Caso) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Causale_Scarto --></label>
+        <name>Causale_Scarto__c</name>
+    </fields>
+    <fields>
+        <label><!-- Causale_Sospensione --></label>
+        <name>Causale_Sospensione__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cliente Indisponibile</masterLabel>
+            <translation><!-- Cliente Indisponibile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cliente Irreperibile</masterLabel>
+            <translation><!-- Cliente Irreperibile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sede OLO/CLIENTE FINALE inaccessibile</masterLabel>
+            <translation><!-- Sede OLO/CLIENTE FINALE inaccessibile --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Codice Comunicazione OLO --></label>
+        <name>Codice_Comunicazione_OLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Ordine SFDC --></label>
+        <name>Codice_Ordine_SFDC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Ordine SO --></label>
+        <name>Codice_Ordine_SO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Ordine Ticket Provisioning --></label>
+        <name>Codice_Ordine_Ticket_Provisioning__c</name>
+    </fields>
+    <fields>
+        <label><!-- CreatedDate-1 --></label>
+        <name>CreatedDateMeno1__c</name>
+    </fields>
+    <fields>
+        <label><!-- CreatedDate+1 --></label>
+        <name>CreatedDatePiu1__c</name>
+    </fields>
+    <fields>
+        <label><!-- DATA ORA CREAZIONE TTM --></label>
+        <name>DATA_ORA_CREAZIONE_TTM__c</name>
+    </fields>
+    <fields>
+        <label><!-- Descrizione Evento Risoluzione --></label>
+        <name>Descrizione_Evento_Risoluzione__c</name>
+        <picklistValues>
+            <masterLabel>Non Riscontrato: Con Uscita</masterLabel>
+            <translation><!-- Non Riscontrato: Con Uscita --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non Riscontrato: Senza Uscita</masterLabel>
+            <translation><!-- Non Riscontrato: Senza Uscita --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non Risolvibile: Causa CPE Cliente</masterLabel>
+            <translation><!-- Non Risolvibile: Causa CPE Cliente --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non Risolvibile: Causa Impianto Cliente</masterLabel>
+            <translation><!-- Non Risolvibile: Causa Impianto Cliente --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non Risolvibile: Problemi Di Rete Cliente (Es. Wi-Fi Poco Performante Causa Disposizione Casa Cliente, Configurazione PC)</masterLabel>
+            <translation><!-- Non Risolvibile: Problemi Di Rete Cliente (Es. Wi-Fi Poco Performante Causa Disposizione Casa Cliente, Configurazione PC) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non Risolvibile: Problemi Di Rete OLO (Es. Problema di Scheda In Centrale OLO, Problema Di Configurazione OLO)</masterLabel>
+            <translation><!-- Non Risolvibile: Problemi Di Rete OLO (Es. Problema di Scheda In Centrale OLO, Problema Di Configurazione OLO) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ribaltamento Effettuato</masterLabel>
+            <translation><!-- Ribaltamento Effettuato --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto Mediante Intervento Congiunto</masterLabel>
+            <translation><!-- Risolto Mediante Intervento Congiunto --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto OLO/CLIENTE: Configurazione CPE/ONT Cliente</masterLabel>
+            <translation><!-- Risolto OLO/CLIENTE: Configurazione CPE/ONT Cliente --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto OLO/CLIENTE: Reset CPE/ONT Cliente</masterLabel>
+            <translation><!-- Risolto OLO/CLIENTE: Reset CPE/ONT Cliente --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto OLO/CLIENTE: Sostituzione Bretella Ottica</masterLabel>
+            <translation><!-- Risolto OLO/CLIENTE: Sostituzione Bretella Ottica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto OLO/CLIENTE: Sostituzione CPE Cliente</masterLabel>
+            <translation><!-- Risolto OLO/CLIENTE: Sostituzione CPE Cliente --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto OLO/CLIENTE: Sostituzione ONT Cliente</masterLabel>
+            <translation><!-- Risolto OLO/CLIENTE: Sostituzione ONT Cliente --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto Tratta Orizzontale: Centrale</masterLabel>
+            <translation><!-- Risolto Tratta Orizzontale: Centrale --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto Tratta Orizzontale: Rete Primaria</masterLabel>
+            <translation><!-- Risolto Tratta Orizzontale: Rete Primaria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto Tratta Orizzontale: Rete Secondaria</masterLabel>
+            <translation><!-- Risolto Tratta Orizzontale: Rete Secondaria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto: Borchia Ottica</masterLabel>
+            <translation><!-- Risolto: Borchia Ottica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto: Sbraccio</masterLabel>
+            <translation><!-- Risolto: Sbraccio --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto: Tratta Verticale</masterLabel>
+            <translation><!-- Risolto: Tratta Verticale --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Durata Evento (mesi) --></label>
+        <name>Durata_Evento__c</name>
+    </fields>
+    <fields>
+        <label><!-- Apparato --></label>
+        <name>EOF_APPARATO__c</name>
+    </fields>
+    <fields>
+        <label><!-- EOF_CAUSALE_APPARATO --></label>
+        <name>EOF_CAUSALE_APPARATO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Causale Richiesta Annullamento --></label>
+        <name>EOF_CAUSALE_RICHIESTA_ANNULLAMENTO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cluster Promozione --></label>
+        <name>EOF_CLUSTER_PROMOZIONE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Motivazione --></label>
+        <name>EOF_CODICE_MOTIVAZIONE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Progetto Speciale --></label>
+        <name>EOF_CODICE_PROGETTO_SPECIALE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Richiesta Annullamento --></label>
+        <name>EOF_CODICE_RICHIESTA_ANNULLAMENTO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cognome Referente Tecnico OLO --></label>
+        <name>EOF_COGNOME_REFERENTE_TECNICO_OLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Collegamento P2P --></label>
+        <name>EOF_COLLEGAMENTO_P2P__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cognome Cliente --></label>
+        <name>EOF_COgnome_CLiente__c</name>
+    </fields>
+    <fields>
+        <label><!-- EOF_Categoria_Guasto --></label>
+        <name>EOF_Categoria_Guasto__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Degrado</masterLabel>
+            <translation><!-- Degrado --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Disservizio</masterLabel>
+            <translation><!-- Disservizio --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Post Provisioning</masterLabel>
+            <translation><!-- Post Provisioning --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- EOF_Causale_Apertura --></label>
+        <name>EOF_Causale_Apertura__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- EOF_Causale_Desospensione --></label>
+        <name>EOF_Causale_Desospensione__c</name>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Causale Errore --></label>
+        <name>EOF_Causale_Errore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Rifiuto Sospensione Annullamento --></label>
+        <name>EOF_Cod_Rifiuto_Sospensione_Annullamento__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Comunicazione OLO --></label>
+        <name>EOF_Codice_Comunicazione_OLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Errore --></label>
+        <name>EOF_Codice_Errore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Motivazione Rimodulazione --></label>
+        <name>EOF_Codice_Motivazione_Rimodulazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Operatore --></label>
+        <name>EOF_Codice_Operatore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Ordine EOF --></label>
+        <name>EOF_Codice_Ordine_EOF__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Ordine OLO --></label>
+        <name>EOF_Codice_Ordine_OLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comune --></label>
+        <name>EOF_Comune__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comunicazioni con OLO --></label>
+        <name>EOF_Comunicazioni_con_OLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Prevista Attivazione --></label>
+        <name>EOF_DATA_PREVISTA_ATTIVAZIONE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Espletamento Ordine --></label>
+        <name>EOF_Data_Espletamento_Ordine__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Notifica FORMULA --></label>
+        <name>EOF_Data_Notifica_FORMULA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Notifica --></label>
+        <name>EOF_Data_Notifica_String__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Notifica --></label>
+        <name>EOF_Data_Notifica__c</name>
+    </fields>
+    <fields>
+        <label><!-- EOF_Data_Ora_Autoripristinato --></label>
+        <name>EOF_Data_Ora_Autoripristinato__c</name>
+    </fields>
+    <fields>
+        <label><!-- EOF_Data_Ora_Creazione --></label>
+        <name>EOF_Data_Ora_Creazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- EOF_Data_Ora_Desospensione --></label>
+        <name>EOF_Data_Ora_Desospensione__c</name>
+    </fields>
+    <fields>
+        <label><!-- EOF_Data_Ora_Inizio_Guasto --></label>
+        <name>EOF_Data_Ora_Inizio_Guasto__c</name>
+    </fields>
+    <fields>
+        <label><!-- EOF_Data_Ora_Intervento_Congiunto --></label>
+        <name>EOF_Data_Ora_Intervento_Congiunto__c</name>
+    </fields>
+    <fields>
+        <label><!-- EOF_Data_Ora_Notifica_Annullamento --></label>
+        <name>EOF_Data_Ora_Notifica_Annullamento__c</name>
+    </fields>
+    <fields>
+        <label><!-- EOF_Data_Ora_Notifica_Chiusura --></label>
+        <name>EOF_Data_Ora_Notifica_Chiusura__c</name>
+    </fields>
+    <fields>
+        <label><!-- EOF_Data_Ora_Notifica_Desospensione --></label>
+        <name>EOF_Data_Ora_Notifica_Desospensione__c</name>
+    </fields>
+    <fields>
+        <label><!-- EOF_Data_Ora_Notifica_Sospensione --></label>
+        <name>EOF_Data_Ora_Notifica_Sospensione__c</name>
+    </fields>
+    <fields>
+        <label><!-- EOF_Data_Ora_Richiesta_Annullamento --></label>
+        <name>EOF_Data_Ora_Richiesta_Annullamento__c</name>
+    </fields>
+    <fields>
+        <label><!-- EOF_Data_Ora_Scarto --></label>
+        <name>EOF_Data_Ora_Scarto__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Provisioning Servizio --></label>
+        <name>EOF_Data_Provisioning_Servizio__c</name>
+    </fields>
+    <fields>
+        <label><!-- EOF_Descrizione_Causale_Scarto --></label>
+        <name>EOF_Descrizione_Causale_Scarto__c</name>
+    </fields>
+    <fields>
+        <label><!-- EOF_Descrizione_Problema --></label>
+        <name>EOF_Descrizione_Problema__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email Referente Tecnico OLO --></label>
+        <name>EOF_EMAIL_REFERENTE_TECNICO_OLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Esito Consegna Apparato --></label>
+        <name>EOF_Esito_Consegna_Apparato__c</name>
+    </fields>
+    <fields>
+        <label><!-- Flag Pagamento --></label>
+        <name>EOF_Flag_Pagamento__c</name>
+    </fields>
+    <fields>
+        <label><!-- GPON Attestazione --></label>
+        <name>EOF_GPON_Attestazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- GPON Vincolante --></label>
+        <name>EOF_GPON_VINCOLANTE__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Building --></label>
+        <name>EOF_ID_BUILDING__c</name>
+    </fields>
+    <fields>
+        <label><!-- Id Case Temporaneo --></label>
+        <name>EOF_ID_Case_Temp__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Notifica --></label>
+        <name>EOF_ID_Notifica__c</name>
+    </fields>
+    <fields>
+        <label><!-- Identificativo del POP --></label>
+        <name>EOF_ID_Pop__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Risorsa --></label>
+        <name>EOF_ID_Risorsa__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Servizio --></label>
+        <name>EOF_ID_SERVIZIO__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Splitter Secondario --></label>
+        <name>EOF_ID_Splitter_Secondario__c</name>
+    </fields>
+    <fields>
+        <label><!-- Indirizzo --></label>
+        <name>EOF_INDIRIZZO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Informazioni Logistica Apparati --></label>
+        <name>EOF_INFORMAZIONI_LOGISTICA_APPARATI__c</name>
+    </fields>
+    <fields>
+        <label><!-- Intervento Congiunto --></label>
+        <name>EOF_Intervento_Congiunto__c</name>
+        <picklistValues>
+            <masterLabel>N</masterLabel>
+            <translation><!-- N --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Y</masterLabel>
+            <translation><!-- Y --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Motivazione --></label>
+        <name>EOF_MOTIVAZIONE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Motivo Rifiuto Sospensione Annullamento --></label>
+        <name>EOF_MOT_RIFIUTO_SOSPENSIONE_ANNULLAMENTO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Motivazione Rimodulazione --></label>
+        <name>EOF_Motivazione_Rimodulazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nome Referente Tecnico OLO --></label>
+        <name>EOF_NOME_REFERENTE_TECNICO_OLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nota Sito --></label>
+        <name>EOF_NOTA_SITO__c</name>
+    </fields>
+    <fields>
+        <label><!-- NOTE CLIENTE --></label>
+        <name>EOF_NOTE_CLIENTE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note --></label>
+        <name>EOF_NOTE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Numero Civico --></label>
+        <name>EOF_NUMERO_CIVICO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Numero Telefonico Principale Linea --></label>
+        <name>EOF_NUMERO_TELEFONICO_PRINCIPALE_LINEA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nome Cliente --></label>
+        <name>EOF_Nome_Cliente__c</name>
+    </fields>
+    <fields>
+        <label><!-- Numero Operatore --></label>
+        <name>EOF_Numero_Operatore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nuova DAC --></label>
+        <name>EOF_Nuova_DAC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Opzione System Unico --></label>
+        <name>EOF_OPZIONE_SYSTEM_UNICO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Orario Appuntamento --></label>
+        <name>EOF_ORARIO_APPUNTAMENTO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ordine Invio OLO --></label>
+        <name>EOF_Ordine_Invio_OLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Particella Toponomastica --></label>
+        <name>EOF_PARTICELLA_TOPONOMASTICA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Password Apparato --></label>
+        <name>EOF_PASSWORD_APPARATO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pin Intervento A Vuoto --></label>
+        <name>EOF_PIN_INTERVENTO_A_VUOTO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Profilo --></label>
+        <name>EOF_PROFILO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Progetto Speciale --></label>
+        <name>EOF_PROGETTO_SPECIALE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Promozione --></label>
+        <name>EOF_PROMOZIONE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parametri Trasmissivi Ottici --></label>
+        <name>EOF_Parametri_Trasmissivi_Ottici__c</name>
+    </fields>
+    <fields>
+        <label><!-- Posizione Splitter Secondario --></label>
+        <name>EOF_Posizione_Splitter_Secondario__c</name>
+    </fields>
+    <fields>
+        <label><!-- Provincia --></label>
+        <name>EOF_Provincia__c</name>
+    </fields>
+    <fields>
+        <label><!-- Recapito Telefonico Cliente 1 --></label>
+        <name>EOF_RECAPITO_TELEFONICO_CLIENTE_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Recapito Telefonico Cliente 2 --></label>
+        <name>EOF_RECAPITO_TELEFONICO_CLIENTE_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Recapito Telefonico Cliente --></label>
+        <name>EOF_RECAPITO_TELEFONICO_CLIENTE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Recapito Test Linea --></label>
+        <name>EOF_RECAPITO_TEST_LINEA__c</name>
+    </fields>
+    <fields>
+        <label><!-- EOF_Referente_desospensione --></label>
+        <name>EOF_Referente_desospensione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Response --></label>
+        <name>EOF_Response__c</name>
+    </fields>
+    <fields>
+        <label><!-- Retry --></label>
+        <name>EOF_Retry__c</name>
+    </fields>
+    <fields>
+        <label><!-- Richiesta/Notifica --></label>
+        <name>EOF_Richiesta_Notifica__c</name>
+    </fields>
+    <fields>
+        <label><!-- EOF_Rischedulazione_Appuntamento --></label>
+        <name>EOF_Rischedulazione_Appuntamento__c</name>
+    </fields>
+    <fields>
+        <label><!-- Scala Palazzina --></label>
+        <name>EOF_SCALA_PALAZZINA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sito --></label>
+        <name>EOF_SITO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sla Date --></label>
+        <name>EOF_SLA_DATE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sla Premium Assurance --></label>
+        <name>EOF_SLA_PREMIUM_ASSURANCE__c</name>
+    </fields>
+    <fields>
+        <label><!-- SL Riferimento --></label>
+        <name>EOF_SL_Riferimento__c</name>
+        <relationshipLabel><!-- EAI Service Logs (SL Riferimento) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Sorgente --></label>
+        <name>EOF_SORGENTE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stato Ordine --></label>
+        <name>EOF_STATO_ORDINE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stato Richiesta --></label>
+        <name>EOF_Stato_Richiesta__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stato Ticket --></label>
+        <name>EOF_Stato_Ticket__c</name>
+    </fields>
+    <fields>
+        <label><!-- Telefono Referente OLO OnField NoTech --></label>
+        <name>EOF_TELEFONO_REFERENTE_OLO_ONFIELD_NOTEC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Telefono Referente Tecnico OLO --></label>
+        <name>EOF_TELEFONO_REFERENTE_TECNICO_OLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipologia Apparato --></label>
+        <name>EOF_TIPOLOGIA_APPARATO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipologia Servizio --></label>
+        <name>EOF_TIPOLOGIA_SERVIZIO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tracciato --></label>
+        <name>EOF_TRACCIATO__c</name>
+    </fields>
+    <fields>
+        <label><!-- EOF_Tec_Eof --></label>
+        <name>EOF_Tec_Eof__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tec_OLO --></label>
+        <name>EOF_Tec_OLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- EOF_Tel_Tec_Eof --></label>
+        <name>EOF_Tel_Tec_Eof__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tel_Tec_OLO --></label>
+        <name>EOF_Tel_Tec_OLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Tipo Comunicazione --></label>
+        <name>EOF_Tipo_Comunicazione_Int__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipo Comunicazione --></label>
+        <name>EOF_Tipo_Comunicazione_String__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipo Comunicazione --></label>
+        <name>EOF_Tipo_Comunicazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- EOF_Verifica_apparato_cliente --></label>
+        <name>EOF_Verifica_apparato_cliente__c</name>
+        <picklistValues>
+            <masterLabel>N</masterLabel>
+            <translation><!-- N --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Y</masterLabel>
+            <translation><!-- Y --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Elenco Kit --></label>
+        <name>Elenco_Kit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sede Master --></label>
+        <name>ID_Sede_Master__c</name>
+        <relationshipLabel><!-- EAI Service Logs (EAI Service Log) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- ID Sede --></label>
+        <name>ID_Sede__c</name>
+    </fields>
+    <fields>
+        <label><!-- Interfaccia CPE --></label>
+        <name>Interfaccia_CPE__c</name>
+        <picklistValues>
+            <masterLabel>Elettrica</masterLabel>
+            <translation><!-- Elettrica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ottica</masterLabel>
+            <translation><!-- Ottica --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Modello di Servizio --></label>
+        <name>Modello_di_Servizio__c</name>
+    </fields>
+    <fields>
+        <label><!-- NS. Rif. --></label>
+        <name>NS_Rif__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nome POP Openfiber --></label>
+        <name>Nome_POP_Openfiber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nome KIT --></label>
+        <name>Nome_del_KIT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note Sospensione Operatore --></label>
+        <name>Note_Sospensione_Operatore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Notify --></label>
+        <name>Notify__c</name>
+        <relationshipLabel><!-- EAI Service Logs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- NumberSede --></label>
+        <name>NumberSede__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Bretella_Ottica --></label>
+        <name>OF_Bretella_Ottica__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Codice_Operatore_Secondario --></label>
+        <name>OF_Codice_Operatore_Secondario__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Estensione_Impianto_Effettuata --></label>
+        <name>OF_Estensione_Impianto_Effettuata__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Estensione_Impianto --></label>
+        <name>OF_Estensione_Impianto__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Flag_Desospensione --></label>
+        <name>OF_Flag_Desospensione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Id Borchia --></label>
+        <name>OF_Id_Borchia__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Id_Comune --></label>
+        <name>OF_Id_Comune__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_LastModifiedValue --></label>
+        <name>OF_LastModifiedValue__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Metri_TOT --></label>
+        <name>OF_Metri_TOT__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_NomeKit_From_Coll --></label>
+        <name>OF_NomeKit_From_Coll__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_NomeKit --></label>
+        <name>OF_NomeKit__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_NotifyValue --></label>
+        <name>OF_NotifyValue__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_OM_Nuovo_Flusso --></label>
+        <name>OF_OM_Nuovo_Flusso__c</name>
+    </fields>
+    <fields>
+        <label><!-- Kit log --></label>
+        <name>OF_PP_KIT_Log__c</name>
+        <relationshipLabel><!-- SVLAN Logs (EAI Service Log) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- OF_PP_NomeRichiesta_Figlio --></label>
+        <name>OF_PP_NomeRichiesta_Figlio__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_PP_NomeRichiesta --></label>
+        <name>OF_PP_NomeRichiesta__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_RecentlyModified --></label>
+        <name>OF_RecentlyModified__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Remote_ID --></label>
+        <name>OF_Remote_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- ACK --></label>
+        <name>OF_SA_ACK__c</name>
+    </fields>
+    <fields>
+        <label><!-- Azione Apparato --></label>
+        <name>OF_SA_AZIONE_APPARATO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Azione --></label>
+        <name>OF_SA_Azione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Motivazione Consegna --></label>
+        <name>OF_SA_CODICE_MOTIVAZIONE_CONSEGNA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Motivazione Ritiro --></label>
+        <name>OF_SA_CODICE_MOTIVAZIONE_RITIRO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Motivazione Servizio --></label>
+        <name>OF_SA_CODICE_MOTIVAZIONE_SERVIZIO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer VLan --></label>
+        <name>OF_SA_CUSTOMER_VLAN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cpe Log --></label>
+        <name>OF_SA_Cpe_Log__c</name>
+        <relationshipLabel><!-- Cpe --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- DDT --></label>
+        <name>OF_SA_DDT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Desospensione Attivi --></label>
+        <name>OF_SA_Desospensione_Attivi__c</name>
+    </fields>
+    <fields>
+        <label><!-- Direzione Flusso --></label>
+        <name>OF_SA_Direzione_Flusso__c</name>
+    </fields>
+    <fields>
+        <label><!-- Esito Ritiro Apparato --></label>
+        <name>OF_SA_ESITO_RITIRO_APPARATO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Esito Servizio --></label>
+        <name>OF_SA_ESITO_SERVIZIO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Esito --></label>
+        <name>OF_SA_Esito__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Apparato Consegnato --></label>
+        <name>OF_SA_ID_APPARATO_CONSEGNATO__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Apparato --></label>
+        <name>OF_SA_ID_APPARATO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Informazioni Servizio --></label>
+        <name>OF_SA_INFORMAZIONI_SERVIZIO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Informazioni VLan --></label>
+        <name>OF_SA_INFORMAZIONI_VLAN__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_SA_Interfaccia_OM --></label>
+        <name>OF_SA_Interfaccia_OM__c</name>
+    </fields>
+    <fields>
+        <label><!-- Kit Consegna VLan --></label>
+        <name>OF_SA_KIT_CONSEGNA_VLAN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Modello Di Servizio VLan --></label>
+        <name>OF_SA_MODELLO_DI_SERVIZIO_VLAN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Motivazione Consegna --></label>
+        <name>OF_SA_MOTIVAZIONE_CONSEGNA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Motivazione Ritiro --></label>
+        <name>OF_SA_MOTIVAZIONE_RITIRO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Motivazione Servizio --></label>
+        <name>OF_SA_MOTIVAZIONE_SERVIZIO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Metodo --></label>
+        <name>OF_SA_Metodo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nome Servizio --></label>
+        <name>OF_SA_NOME_SERVIZIO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Password Apparato --></label>
+        <name>OF_SA_PASSWORD_APPARATO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Profilo VLan Picklist --></label>
+        <name>OF_SA_PROFILO_VLAN_PL__c</name>
+        <picklistValues>
+            <masterLabel>COS 0</masterLabel>
+            <translation><!-- COS 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COS 1</masterLabel>
+            <translation><!-- COS 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COS 5</masterLabel>
+            <translation><!-- COS 5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Profilo VLan --></label>
+        <name>OF_SA_PROFILO_VLAN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Service VLan --></label>
+        <name>OF_SA_SERVICE_VLAN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Servizi Aggiuntivi Log --></label>
+        <name>OF_SA_Servizi_Aggiuntivi_Log__c</name>
+        <relationshipLabel><!-- Servizi Aggiuntivi --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- User Vlan --></label>
+        <name>OF_SA_USER_VLAN__c</name>
+    </fields>
+    <fields>
+        <label><!-- VLan Log --></label>
+        <name>OF_SA_VLan_Log__c</name>
+        <relationshipLabel><!-- VLan Log --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- OF_SH_AppointmentDate --></label>
+        <name>OF_SH_AppointmentDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_SH_Appuntamento_OLO --></label>
+        <name>OF_SH_Appuntamento_OLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_SH_DeliveryCompany --></label>
+        <name>OF_SH_DeliveryCompany__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_SH_Fascia_App --></label>
+        <name>OF_SH_Fascia_App__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_SH_ID_WO --></label>
+        <name>OF_SH_ID_WO__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_SH_Token_id --></label>
+        <name>OF_SH_Token_id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Ora Inizio SLA --></label>
+        <name>OF_TT_Data_Ora_Inizio_SLA__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Tipo_ComunicazioneValue --></label>
+        <name>OF_Tipo_ComunicazioneValue__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ordine retry --></label>
+        <name>Ordine_retry__c</name>
+    </fields>
+    <fields>
+        <label><!-- POP --></label>
+        <name>POP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Accordo Quadro --></label>
+        <name>PO_Accordo_Quadro_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO Accordo Quadro --></label>
+        <name>PO_Accordo_Quadro__c</name>
+        <relationshipLabel><!-- EAI Service Logs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cavo esistente 1° via (m) --></label>
+        <name>PO_BB_1_via_interessato__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cavo esistente 2° via (m) --></label>
+        <name>PO_BB_2_via_interessato__c</name>
+    </fields>
+    <fields>
+        <label><!-- Civico --></label>
+        <name>PO_Civico_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Civico --></label>
+        <name>PO_Civico__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact --></label>
+        <name>PO_Contact__c</name>
+        <relationshipLabel><!-- EAI Service Logs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Data Attivazione Ordine --></label>
+        <name>PO_Data_Attivazione_Ordine__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Attivazione Richiesta --></label>
+        <name>PO_Data_Attivazione_Richiesta__c</name>
+    </fields>
+    <fields>
+        <label><!-- Disponibilità della rete a partire da --></label>
+        <name>PO_Disponibilit_della_rete_a_partire_da__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO_Incluso_nell_offerta --></label>
+        <name>PO_Incluso_nell_offerta__c</name>
+    </fields>
+    <fields>
+        <label><!-- Indirizzo Collegamento --></label>
+        <name>PO_Indirizzo_collegamento__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO_IndrizoCal --></label>
+        <name>PO_IndrizoCal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comune 2 --></label>
+        <name>PO_Log_Comune_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comune 3 --></label>
+        <name>PO_Log_Comune_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Comune 2 --></label>
+        <name>PO_Log_IdComune2__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Comune 3 --></label>
+        <name>PO_Log_IdComune3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Log Ordine --></label>
+        <name>PO_Log_Ordine__c</name>
+        <relationshipLabel><!-- EAI Service Logs (Log Ordine) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Lunghezza tratta prima via (m) --></label>
+        <name>PO_Lunghezza_tratta_prima_via__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lunghezza tratta seconda via (m) --></label>
+        <name>PO_Lunghezza_tratta_seconda_via__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nome e Cognome PM di Riferimento --></label>
+        <name>PO_Nome_E_Cognome_PM__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nome Progetto --></label>
+        <name>PO_Nome_Progetto__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nota sito --></label>
+        <name>PO_Nota_sito_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nota sito --></label>
+        <name>PO_Nota_sito_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nota sito --></label>
+        <name>PO_Nota_sito_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nota Sito --></label>
+        <name>PO_Nota_sito__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO_Note_Modifica_Offerta --></label>
+        <name>PO_Note_Modifica_Offerta__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note Operatore --></label>
+        <name>PO_Note_Operatore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Numero Telefonico PM di Riferimento --></label>
+        <name>PO_Numero_Telefonico_PM__c</name>
+    </fields>
+    <fields>
+        <label><!-- Numero fibre richieste --></label>
+        <name>PO_Numero_fibre_richieste__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2+2</masterLabel>
+            <translation><!-- 2+2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- PO_Offerta_Caricata --></label>
+        <name>PO_Offerta_Caricata__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO_Offerta_Inoltrata --></label>
+        <name>PO_Offerta_Inoltrata__c</name>
+    </fields>
+    <fields>
+        <label><!-- Offerta --></label>
+        <name>PO_Offerta__c</name>
+        <picklistValues>
+            <masterLabel>Backhauling</masterLabel>
+            <translation><!-- Backhauling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dark Fiber</masterLabel>
+            <translation><!-- Dark Fiber --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E-Access</masterLabel>
+            <translation><!-- E-Access --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E-Line</masterLabel>
+            <translation><!-- E-Line --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Evento Temporaneo</masterLabel>
+            <translation><!-- Evento Temporaneo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fiber Lease</masterLabel>
+            <translation><!-- Fiber Lease --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fiber Link</masterLabel>
+            <translation><!-- Fiber Link --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IRU</masterLabel>
+            <translation><!-- IRU --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KIT</masterLabel>
+            <translation><!-- KIT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>P2P Attiva</masterLabel>
+            <translation><!-- P2P Attiva --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>P2P Base</masterLabel>
+            <translation><!-- P2P Base --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Indirizzo Consegna --></label>
+        <name>PO_P2PAttiva_KIT_Indirizzo_Consegna__c</name>
+    </fields>
+    <fields>
+        <label><!-- Kit Consegna VLan --></label>
+        <name>PO_P2PAttiva_Kit_Consegna_VLan__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nome del KIT --></label>
+        <name>PO_P2PAttiva_Nome_del_KIT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Optical Rate Limiting --></label>
+        <name>PO_P2PAttiva_Optical_Rate_Limiting__c</name>
+        <picklistValues>
+            <masterLabel>1 GB</masterLabel>
+            <translation><!-- 1 GB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10 GB</masterLabel>
+            <translation><!-- 10 GB --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- PO_P2PAttiva_Opzione --></label>
+        <name>PO_P2PAttiva_Opzione__c</name>
+        <picklistValues>
+            <masterLabel>Flexible</masterLabel>
+            <translation><!-- Flexible --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Standard</masterLabel>
+            <translation><!-- Standard --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- ID Richiesta VLAN --></label>
+        <name>PO_PP_ID_RichiestaVLAN__c</name>
+        <relationshipLabel><!-- Lista Log VLAN --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- ID Richiesta testo --></label>
+        <name>PO_PP_ID_Richiesta_testo__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID VLAN --></label>
+        <name>PO_PP_ID_VLAN__c</name>
+        <relationshipLabel><!-- COS Logs (EAI Service Log) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Interfaccia --></label>
+        <name>PO_PP_Interfaccia__c</name>
+    </fields>
+    <fields>
+        <label><!-- MultiCos Class --></label>
+        <name>PO_PP_MultiCos_Class__c</name>
+    </fields>
+    <fields>
+        <label><!-- POP di raccolta --></label>
+        <name>PO_PP_POP_raccolta__c</name>
+    </fields>
+    <fields>
+        <label><!-- Progressivo Ordine --></label>
+        <name>PO_PP_Progressivo_Ordine__c</name>
+    </fields>
+    <fields>
+        <label><!-- User VLAN --></label>
+        <name>PO_PP_User_VLAN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cos Class --></label>
+        <name>PO_PP_cos_class__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cos Remarking --></label>
+        <name>PO_PP_cos_remarking__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cos Type --></label>
+        <name>PO_PP_cos_type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dhcp Option 82 --></label>
+        <name>PO_PP_dhcp_Option82__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pop (1) di riferimento --></label>
+        <name>PO_Pop_1_di_riferimento__c</name>
+        <picklistValues>
+            <masterLabel>POP1</masterLabel>
+            <translation><!-- POP1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POP2</masterLabel>
+            <translation><!-- POP2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POP3</masterLabel>
+            <translation><!-- POP3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POPN</masterLabel>
+            <translation><!-- POPN --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Pop (2) di riferimento --></label>
+        <name>PO_Pop_2_di_riferimento__c</name>
+        <picklistValues>
+            <masterLabel>POP1</masterLabel>
+            <translation><!-- POP1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POP2</masterLabel>
+            <translation><!-- POP2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POP3</masterLabel>
+            <translation><!-- POP3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POPN</masterLabel>
+            <translation><!-- POPN --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Posa nuovo cavo 1° via (m) --></label>
+        <name>PO_Posa_1_via_nuovo_Drop__c</name>
+    </fields>
+    <fields>
+        <label><!-- Posa nuovo cavo 2° via (m) --></label>
+        <name>PO_Posa_2_via_nuovo_Drop__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prime Contractor --></label>
+        <name>PO_Prime_Contractor__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Inserimento Ordine --></label>
+        <name>PO_SA_Data_Inserimento_Ordine__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sito --></label>
+        <name>PO_Sito_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sito --></label>
+        <name>PO_Sito__c</name>
+    </fields>
+    <fields>
+        <label><!-- Causale Apertura Segnalazione --></label>
+        <name>PO_TP_Causale_Apertura_Segnalazione__c</name>
+        <picklistValues>
+            <masterLabel>Problema Tecnico/Applicativo</masterLabel>
+            <translation><!-- Problema Tecnico/Applicativo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Segnalazione Provisioning</masterLabel>
+            <translation><!-- Segnalazione Provisioning --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Codice Ordine Ticket Provisioning --></label>
+        <name>PO_TP_Codice_Ordine_Ticket_Provisioning__c</name>
+    </fields>
+    <fields>
+        <label><!-- Descrizione Causale --></label>
+        <name>PO_TP_Descrizione_Causale__c</name>
+        <picklistValues>
+            <masterLabel>Nuova Segnalazione</masterLabel>
+            <translation><!-- Nuova Segnalazione --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Richiesta Informazioni</masterLabel>
+            <translation><!-- Richiesta Informazioni --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sollecito</masterLabel>
+            <translation><!-- Sollecito --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Dettaglio Richiesta --></label>
+        <name>PO_TP_Dettaglio_Richiesta__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sottocausale --></label>
+        <name>PO_TP_Sottocausale__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipo Risorsa --></label>
+        <name>PO_TT_Tipo_Risorsa__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tempi di attivazione (mesi) --></label>
+        <name>PO_Tempi_di_attivazione_mesi__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipo di Collegamento --></label>
+        <name>PO_Tipo_di_collegamento__c</name>
+        <picklistValues>
+            <masterLabel>Anello</masterLabel>
+            <translation><!-- Anello --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BACKBONE</masterLabel>
+            <translation><!-- BACKBONE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BTS</masterLabel>
+            <translation><!-- BTS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Backhauling</masterLabel>
+            <translation><!-- Backhauling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DWDM</masterLabel>
+            <translation><!-- DWDM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dark Fiber</masterLabel>
+            <translation><!-- Dark Fiber --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E-Access</masterLabel>
+            <translation><!-- E-Access --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E-Line</masterLabel>
+            <translation><!-- E-Line --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Housing</masterLabel>
+            <translation><!-- Housing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IP</masterLabel>
+            <translation><!-- IP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Layer 2</masterLabel>
+            <translation><!-- Layer 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MSAN</masterLabel>
+            <translation><!-- MSAN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NGN</masterLabel>
+            <translation><!-- NGN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>P2P - Cliente</masterLabel>
+            <translation><!-- P2P - Cliente --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Point-to-Point</masterLabel>
+            <translation><!-- Point-to-Point --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SDH</masterLabel>
+            <translation><!-- SDH --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Tipo Percorso --></label>
+        <name>PO_Tipo_percorso__c</name>
+        <picklistValues>
+            <masterLabel>Doppia Via</masterLabel>
+            <translation><!-- Doppia Via --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Doppia Via Diversificata</masterLabel>
+            <translation><!-- Doppia Via Diversificata --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Singola Via</masterLabel>
+            <translation><!-- Singola Via --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- PO_Traffic_Load_Balancing --></label>
+        <name>PO_Traffic_Load_Balancing__c</name>
+        <picklistValues>
+            <masterLabel>ACTIVE</masterLabel>
+            <translation><!-- ACTIVE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>STANDBY</masterLabel>
+            <translation><!-- STANDBY --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Indirizzo collegamento --></label>
+        <name>PO_indirizzo_collegamento_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Particella Toponomastica 1 --></label>
+        <name>Particella_Toponomastica_1__c</name>
+        <picklistValues>
+            <masterLabel>Corso</masterLabel>
+            <translation><!-- Corso --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Largo</masterLabel>
+            <translation><!-- Largo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Piazza</masterLabel>
+            <translation><!-- Piazza --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Piazzale</masterLabel>
+            <translation><!-- Piazzale --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Via</masterLabel>
+            <translation><!-- Via --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Viale</masterLabel>
+            <translation><!-- Viale --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vicolo</masterLabel>
+            <translation><!-- Vicolo --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Particella Toponomastica 2 --></label>
+        <name>Particella_Toponomastica_2__c</name>
+        <picklistValues>
+            <masterLabel>Corso</masterLabel>
+            <translation><!-- Corso --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Largo</masterLabel>
+            <translation><!-- Largo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Piazza</masterLabel>
+            <translation><!-- Piazza --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Piazzale</masterLabel>
+            <translation><!-- Piazzale --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Via</masterLabel>
+            <translation><!-- Via --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Viale</masterLabel>
+            <translation><!-- Viale --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vicolo</masterLabel>
+            <translation><!-- Vicolo --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Particella Toponomastica 3 --></label>
+        <name>Particella_Toponomastica_3__c</name>
+        <picklistValues>
+            <masterLabel>Corso</masterLabel>
+            <translation><!-- Corso --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Largo</masterLabel>
+            <translation><!-- Largo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Piazza</masterLabel>
+            <translation><!-- Piazza --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Piazzale</masterLabel>
+            <translation><!-- Piazzale --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Via</masterLabel>
+            <translation><!-- Via --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Viale</masterLabel>
+            <translation><!-- Viale --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vicolo</masterLabel>
+            <translation><!-- Vicolo --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Pop di raccolta --></label>
+        <name>Pop_di_raccolta__c</name>
+    </fields>
+    <fields>
+        <label><!-- Posizione ODF --></label>
+        <name>Posizione_ODF__c</name>
+    </fields>
+    <fields>
+        <label><!-- SVLAN ID --></label>
+        <name>SFL_SVLAN_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- SVLAN --></label>
+        <name>SVLAN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Service Attribute --></label>
+        <name>Service_Attribute__c</name>
+        <picklistValues>
+            <masterLabel>EPL</masterLabel>
+            <translation><!-- EPL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EVPL</masterLabel>
+            <translation><!-- EVPL --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Servizi per utenti finali --></label>
+        <name>Servizi_per_utenti_finali__c</name>
+    </fields>
+    <fields>
+        <label><!-- Severity --></label>
+        <name>Severity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sottocausale --></label>
+        <name>Sottocausale__c</name>
+    </fields>
+    <fields>
+        <label><!-- TRACCIATO_TRASCODIFICATO --></label>
+        <name>TRACCIATO_TRASCODIFICATO__c</name>
+    </fields>
+    <fields>
+        <label><!-- TTM NOTE --></label>
+        <name>TTM_NOTE__c</name>
+    </fields>
+    <fields>
+        <label><!-- TTM TICKETID --></label>
+        <name>TTM_TICKETID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipo Evento --></label>
+        <name>Tipo_Evento__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipologia Alimentazione --></label>
+        <name>Tipologia_Alimentazione__c</name>
+        <picklistValues>
+            <masterLabel>AC</masterLabel>
+            <translation><!-- AC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DC</masterLabel>
+            <translation><!-- DC --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Tipologia CPE --></label>
+        <name>Tipologia_CPE__c</name>
+        <picklistValues>
+            <masterLabel>High-End</masterLabel>
+            <translation><!-- High-End --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low-End</masterLabel>
+            <translation><!-- Low-End --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Tipologia Sede --></label>
+        <name>Tipologia_Sede__c</name>
+        <picklistValues>
+            <masterLabel>Master</masterLabel>
+            <translation><!-- Master --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Satellite</masterLabel>
+            <translation><!-- Satellite --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Traffic Load Balancing --></label>
+        <name>TrafficLoadBalancing__c</name>
+        <picklistValues>
+            <masterLabel>ACTIVE/ACTIVE</masterLabel>
+            <translation><!-- ACTIVE/ACTIVE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ACTIVE/STANDBY</masterLabel>
+            <translation><!-- ACTIVE/STANDBY --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Traffico --></label>
+        <name>Traffico__c</name>
+    </fields>
+    <fields>
+        <label><!-- actionDate Remedy --></label>
+        <name>actionDate_Remedy__c</name>
+    </fields>
+    <fields>
+        <label><!-- isBonificaFiglio --></label>
+        <name>isBonificaFiglio__c</name>
+    </fields>
+    <fields>
+        <label><!-- isBonificaOrdine --></label>
+        <name>isBonificaOrdine__c</name>
+    </fields>
+    <fields>
+        <label><!-- isBonifica --></label>
+        <name>isBonifica__c</name>
+    </fields>
+    <fields>
+        <label><!-- Kit in condivisione --></label>
+        <name>kit_in_condivisione__c</name>
+        <relationshipLabel><!-- EAI Service Logs (Kit in condivisione) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- remedy_customerId --></label>
+        <name>remedy_customerId__c</name>
+    </fields>
+    <fields>
+        <label><!-- remedy_customerOrder --></label>
+        <name>remedy_customerOrder__c</name>
+    </fields>
+    <layouts>
+        <layout>EAI Service Log Attivi Layout</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EAI Service Log Layout</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EAI Service Log Layout KIT</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EAI Service Log Layout Richiesta VLAN</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EAI Service Log Layout VLAN</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EAI_Billing_Log</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Detail --></label>
+            <section>Detail</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EAI_SERVICE_LOG_ATTIVI_HD</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EAI_Seervice_Log_Layout_HelpDesk</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>OF_CO_ChangeOrderLog</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>OF_PP_WS_VLAN_ACK_NACK</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Request --></label>
+            <section>Request</section>
+        </sections>
+        <sections>
+            <label><!-- Response --></label>
+            <section>Response</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>OF_TT_EAI_Service_Log_Layout</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>P2P Attiva KIT Layout</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO BTS Collegamento</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO BTS Ordine</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO BTS Request</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO Backhauling Collegamento</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO Backhauling Ordine</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO Backhauling Request</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO DarkFiber Collegamento</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO DarkFiber Ordine</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO DarkFiber Request</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO FiberLease Collegamento</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO FiberLease Ordine</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO FiberLease Request</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO FiberLink Collegamento</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO FiberLink Ordine</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO FiberLink Request</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO P2P Attiva</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO P2P Attiva Collegamento</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO P2P Attiva Ordine</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO P2PBase Collegamento</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO P2PBase Ordine</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO P2PBase Request</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO_FATT_WS_ACK_NACK</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Request --></label>
+            <section>Request</section>
+        </sections>
+        <sections>
+            <label><!-- Response --></label>
+            <section>Response</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PO_TP_TicketProvisioning_SLLayout</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori informazioni --></label>
+            <section>Ulteriori informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PSM_EAI_Service_Log</layout>
+        <sections>
+            <label><!-- Informazioni --></label>
+            <section>Informazioni</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Ulteriori Informazioni --></label>
+            <section>Ulteriori Informazioni</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PSM_WS_OUT_ACK_NACK</layout>
+        <sections>
+            <label><!-- Informazioni generali --></label>
+            <section>Informazioni generali</section>
+        </sections>
+        <sections>
+            <label><!-- Link personalizzati --></label>
+            <section>Link personalizzati</section>
+        </sections>
+        <sections>
+            <label><!-- Request --></label>
+            <section>Request</section>
+        </sections>
+        <sections>
+            <label><!-- Response --></label>
+            <section>Response</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- ACK --></label>
+        <name>ACK</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- BILL To SF --></label>
+        <name>BILL_To_SF</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DOM WS OUT ACK NACK --></label>
+        <name>DOM_WS_OUT_ACK_NACK</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DOM WS OUT Attivazione --></label>
+        <name>DOM_WS_OUT_Attivazione</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FiberNotify --></label>
+        <name>FiberNotify</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FiberRequest --></label>
+        <name>FiberRequest</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- NACK --></label>
+        <name>NACK</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Record Type utilizzato per creare un log in caso di errore generico sulle attività billing --></description>
+        <label><!-- Nack Billing --></label>
+        <name>Nack_Billing</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF - CO - ACK --></label>
+        <name>OF_CO_ACK</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF - CO - ChangeOrderNotify --></label>
+        <name>OF_CO_ChangeOrderNotify</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF - CO - ChangeOrderRequest --></label>
+        <name>OF_CO_ChangeOrderRequest</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF - CO - NACK --></label>
+        <name>OF_CO_NACK</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF FTTH ADD --></label>
+        <name>OF_FTTH_ADD</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF_PP_COS --></label>
+        <name>OF_PP_COS</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF - PP - KIT - ACK --></label>
+        <name>OF_PP_KIT_ACK</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF - PP - KIT - ActivationRequest --></label>
+        <name>OF_PP_KIT_ActivationRequest</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF - PP - KIT - NACK --></label>
+        <name>OF_PP_KIT_NACK</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF - PP - VLAN - ACK --></label>
+        <name>OF_PP_VLAN_ACK</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- recordtype log di servizio tra OLO e SF e tra SF e OM --></description>
+        <label><!-- OF - PP - VLAN - ActivationRequest --></label>
+        <name>OF_PP_VLAN_ActivationRequest</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF - PP - VLAN - NACK --></label>
+        <name>OF_PP_VLAN_NACK</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF - PP - VLAN - Notify --></label>
+        <name>OF_PP_VLAN_Notify</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF - PP - VLAN_Request --></label>
+        <name>OF_PP_VLAN_Request</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF RichiestaVLAN --></label>
+        <name>OF_RichiestaVLAN_LOG</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF - SA - ACK --></label>
+        <name>OF_SA_ACK</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- RecordType per le FiberNotify (i log delle comunicazioni per flusso da OM vs OLO) di attivazione dei servizi attivi afferenti ai cluster C e D --></description>
+        <label><!-- OF - SA - CD - FiberNotify --></label>
+        <name>OF_SA_CD_FiberNotify</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- RecordType per le request di attivazione dei servizi attivi afferenti ai cluster C e D --></description>
+        <label><!-- OF - SA - CeD - FiberRequest --></label>
+        <name>OF_SA_CeD_FiberRequest</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF - SA - Cpe --></label>
+        <name>OF_SA_Cpe</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF - SA - FiberNotify --></label>
+        <name>OF_SA_FiberNotify</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF - SA - FiberRequest --></label>
+        <name>OF_SA_FiberRequest</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF - SA - FiberRequest Attivazione --></label>
+        <name>OF_SA_FiberRequest_Attivazione</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF - SA - NACK --></label>
+        <name>OF_SA_NACK</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF - SA - Servizi Aggiuntivi --></label>
+        <name>OF_SA_Servizi_Aggiuntivi</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF - SA - Vlan --></label>
+        <name>OF_SA_Vlan</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF_SA_Vlan_ELine --></label>
+        <name>OF_SA_Vlan_ELine</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF_Tracciamento_PNI --></label>
+        <name>OF_Tracciamento_PNI</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OMNotify --></label>
+        <name>OMNotify</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- P2P Attiva Collegamento --></label>
+        <name>P2P_Attiva_Collegamento</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- RT per p2p Attiva Collegamento eLine --></description>
+        <label><!-- P2P Attiva Collegamento E-Line --></label>
+        <name>P2P_Attiva_Collegamento_ELine</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- RT per Log Ordine p2p Attiva eLine --></description>
+        <label><!-- P2P Attiva Ordine E-Line --></label>
+        <name>P2P_Attiva_Ordine_ELine</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- P2P Attiva Request E-Line --></label>
+        <name>P2P_Attiva_Request_E_Line</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO_CO_FiberRequest --></label>
+        <name>PO_CO_FiberRequest</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO_FATT_WS_ACK_NACK --></label>
+        <name>PO_FATT_WS_ACK_NACK</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO Log BTS Collegamento --></label>
+        <name>PO_Log_BTS_Collegamento</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO Log BTS Ordine --></label>
+        <name>PO_Log_BTS_Ordine</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO Log BTS Request --></label>
+        <name>PO_Log_BTS_Request</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO Log Backhauling Collegamento --></label>
+        <name>PO_Log_Backhauling_Collegamento</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO Log_Backhauling Ordine --></label>
+        <name>PO_Log_Backhauling_Ordine</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO Log Backhauling Request --></label>
+        <name>PO_Log_Backhauling_Request</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO_Log_CircuitiDiretti_Collegamento --></label>
+        <name>PO_Log_CircuitiDiretti_Collegamento</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO_Log_CircuitiDiretti_Ordine --></label>
+        <name>PO_Log_CircuitiDiretti_Ordine</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO_Log_CircuitiDiretti_Request --></label>
+        <name>PO_Log_CircuitiDiretti_Request</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO Log DarkFiber Collegamento --></label>
+        <name>PO_Log_DarkFiber_Collegamento</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO Log DarkFiber Ordine --></label>
+        <name>PO_Log_DarkFiber_Ordine</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO Log DarkFiber Request --></label>
+        <name>PO_Log_DarkFiber_Request</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO Log FiberLease Collegamento --></label>
+        <name>PO_Log_FiberLease_Collegamento</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO Log FiberLease Ordine --></label>
+        <name>PO_Log_FiberLease_Ordine</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO Log FiberLease Request --></label>
+        <name>PO_Log_FiberLease_Request</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO Log FiberLink Collegamento --></label>
+        <name>PO_Log_FiberLink_Collegamento</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO Log FiberLink Ordine --></label>
+        <name>PO_Log_FiberLink_Ordine</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO Log FiberLink Request --></label>
+        <name>PO_Log_FiberLink_Request</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO Log P2PBase Collegamento --></label>
+        <name>PO_Log_P2PBase_Collegamento</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO Log P2PBase Ordine --></label>
+        <name>PO_Log_P2PBase_Ordine</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO Log P2PBase Request --></label>
+        <name>PO_Log_P2PBase_Request</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO - P2P Attiva - KIT --></label>
+        <name>PO_Log_P2P_Attiva_KIT</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- P2P Attiva Request --></label>
+        <name>PO_P2PAttiva_Request</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- P2P Attiva Ordine --></label>
+        <name>PO_P2P_Attiva_Ordine</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO - P2P Attiva - VLAN --></label>
+        <name>PO_P2P_Attiva_VLAN</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO - PP - COS --></label>
+        <name>PO_PP_COS</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO - PP - KIT --></label>
+        <name>PO_PP_KIT</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO - PP - VLAN --></label>
+        <name>PO_PP_VLAN</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO_SA_CD_Log_ChangeOrderRequest --></label>
+        <name>PO_SA_CD_Log_ChangeOrderRequest</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- RecordType per le request di attivazione dei servizi passivi afferenti ai cluster C e D --></description>
+        <label><!-- PO - SA - CD - GponPassivaRequest --></label>
+        <name>PO_SA_CD_Log_GPONPRequest</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO - SA - CD - OpenStreamRequest --></label>
+        <name>PO_SA_CD_Log_OpenStreamRequest</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO - SA - FiberRequest --></label>
+        <name>PO_SA_FiberRequest</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO - TP - TicketProvisioningRequest --></label>
+        <name>PO_TP_TicketProvisioning_sLog</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PO - TT - TroubleTicketRequest --></label>
+        <name>PO_TT_TroubleTicketRequest</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PSM_WS_OUT_ACK_NACK --></label>
+        <name>PSM_WS_OUT_ACK_NACK</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PSM WS OUT Annullamento --></label>
+        <name>PSM_WS_OUT_Annullamento</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PSM WS OUT Attivazione --></label>
+        <name>PSM_WS_OUT_Attivazione</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PSM WS OUT Cessazione --></label>
+        <name>PSM_WS_OUT_Cessazione</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SF To BILL --></label>
+        <name>SF_To_BILL</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- TT - ACK --></label>
+        <name>TT_ACK</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- TT - NACK --></label>
+        <name>TT_NACK</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- TroubleTicketNotify --></label>
+        <name>TroubleTicketNotify</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- TroubleTicketRequest --></label>
+        <name>TroubleTicketRequest</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Trouble Ticket - Richiesta Scartata --></label>
+        <name>Trouble_Ticket_Richiesta_Scartata</name>
+    </recordTypes>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

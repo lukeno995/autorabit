@@ -1,0 +1,1513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Evento</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Eventi</value>
+    </caseValues>
+    <fields>
+        <label><!-- N.B. --></label>
+        <name>CQS_EV_N_B_DAN2__c</name>
+    </fields>
+    <fields>
+        <label><!-- POP --></label>
+        <name>CQS_EV_POP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Progetto WF EA --></label>
+        <name>CQS_EV_Progetto_WF_EA__c</name>
+    </fields>
+    <fields>
+        <help><!-- Sono state eseguite le indagini preventive del sottosuolo --></help>
+        <label><!-- Indagini Preventive del Sottosuolo --></label>
+        <name>CQS_Ev_Indagini_Preventive_Sottosuolo__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Lettera D&apos;Ordine --></label>
+        <name>CQS_Ev_Lettera_D_Ordine__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note CM per Lavorazione --></label>
+        <name>CQS_Ev_Note_CM_per_Lavorazione__c</name>
+    </fields>
+    <fields>
+        <help><!-- Le planimetrie dell&apos;ente gestore sono conformi a quanto riscontrato --></help>
+        <label><!-- Planimetrie Ente Gestore Conformi --></label>
+        <name>CQS_Ev_Planimetrie_Ente_Gestore_Conformi__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- le planimetrie georadar sono conformi a quanto riscontrato --></help>
+        <label><!-- Planimetrie Georadar Conformi --></label>
+        <name>CQS_Ev_Planimetrie_Georadar_Conformi__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Il prejob check è stato eseguito --></label>
+        <name>CQS_Ev_Prejob_check_eseguito__c</name>
+    </fields>
+    <fields>
+        <label><!-- Profondità (cm) --></label>
+        <name>CQS_Ev_Profondita__c</name>
+    </fields>
+    <fields>
+        <label><!-- Progetto --></label>
+        <name>CQS_Ev_Progetto__c</name>
+        <relationshipLabel><!-- Eventi --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Skip_Controller --></label>
+        <name>CQS_Ev_Skip_Controller__c</name>
+    </fields>
+    <fields>
+        <label><!-- Indice Frequenza Tagli o Danneggiamenti --></label>
+        <name>CQS_Index_Frequenza_Tagli_Danneggiamenti__c</name>
+    </fields>
+    <fields>
+        <help><!-- Fare riferimento alla tabella fornita da OF --></help>
+        <label><!-- Indice Gravità --></label>
+        <name>CQS_Indice_Gravita_Taglio_Danneggiamento__c</name>
+        <picklistValues>
+            <masterLabel>A - Alta</masterLabel>
+            <translation><!-- A - Alta --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>L - Lieve</masterLabel>
+            <translation><!-- L - Lieve --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>M - Media</masterLabel>
+            <translation><!-- M - Media --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NP - Non Pervenuto</masterLabel>
+            <translation><!-- NP - Non Pervenuto --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Luogo Identificativo dell&apos;evento --></label>
+        <name>CQS_Luogo_Identificativo_dell_even__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note --></label>
+        <name>CQS_Note_Interf_Approfondimento_cause__c</name>
+    </fields>
+    <fields>
+        <label><!-- ComunePL --></label>
+        <name>CQS_PLE_AREA_CENTRO__c</name>
+        <picklistValues>
+            <masterLabel>ANCONA</masterLabel>
+            <translation><!-- ANCONA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AREZZO</masterLabel>
+            <translation><!-- AREZZO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CAGLIARI</masterLabel>
+            <translation><!-- CAGLIARI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FIRENZE</masterLabel>
+            <translation><!-- FIRENZE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GROSSETO</masterLabel>
+            <translation><!-- GROSSETO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LATINA</masterLabel>
+            <translation><!-- LATINA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIVORNO</masterLabel>
+            <translation><!-- LIVORNO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LUCCA</masterLabel>
+            <translation><!-- LUCCA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PERUGIA</masterLabel>
+            <translation><!-- PERUGIA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PESCARA</masterLabel>
+            <translation><!-- PESCARA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PISA</masterLabel>
+            <translation><!-- PISA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PRATO</masterLabel>
+            <translation><!-- PRATO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SASSARI</masterLabel>
+            <translation><!-- SASSARI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TERNI</masterLabel>
+            <translation><!-- TERNI --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- ComunePLN --></label>
+        <name>CQS_PLE_AREA_NORD__c</name>
+        <picklistValues>
+            <masterLabel>ALESSANDRIA</masterLabel>
+            <translation><!-- ALESSANDRIA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BERGAMO</masterLabel>
+            <translation><!-- BERGAMO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BUSTO-ARSIZIO</masterLabel>
+            <translation><!-- BUSTO-ARSIZIO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CESENA</masterLabel>
+            <translation><!-- CESENA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COMO</masterLabel>
+            <translation><!-- COMO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FERRARA</masterLabel>
+            <translation><!-- FERRARA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FORLI</masterLabel>
+            <translation><!-- FORLI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LA SPEZIA</masterLabel>
+            <translation><!-- LA SPEZIA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MONZA</masterLabel>
+            <translation><!-- MONZA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NOVARA</masterLabel>
+            <translation><!-- NOVARA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PADOVA</masterLabel>
+            <translation><!-- PADOVA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PAVIA</masterLabel>
+            <translation><!-- PAVIA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PIACENZA</masterLabel>
+            <translation><!-- PIACENZA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RAVENNA</masterLabel>
+            <translation><!-- RAVENNA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>REGGIO EMILIA</masterLabel>
+            <translation><!-- REGGIO EMILIA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RIMINI</masterLabel>
+            <translation><!-- RIMINI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TREVISO</masterLabel>
+            <translation><!-- TREVISO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UDINE</masterLabel>
+            <translation><!-- UDINE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VARESE</masterLabel>
+            <translation><!-- VARESE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VENEZIA</masterLabel>
+            <translation><!-- VENEZIA --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- ComunePLS --></label>
+        <name>CQS_PLE_AREA_SUD__c</name>
+        <picklistValues>
+            <masterLabel>BARI</masterLabel>
+            <translation><!-- BARI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CATANIA</masterLabel>
+            <translation><!-- CATANIA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FOGGIA</masterLabel>
+            <translation><!-- FOGGIA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LECCE</masterLabel>
+            <translation><!-- LECCE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MATERA</masterLabel>
+            <translation><!-- MATERA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MESSINA</masterLabel>
+            <translation><!-- MESSINA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NAPOLI</masterLabel>
+            <translation><!-- NAPOLI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PALERMO</masterLabel>
+            <translation><!-- PALERMO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>REGGIO CALABRIA</masterLabel>
+            <translation><!-- REGGIO CALABRIA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SALERNO</masterLabel>
+            <translation><!-- SALERNO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SIRACUSA</masterLabel>
+            <translation><!-- SIRACUSA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TARANTO</masterLabel>
+            <translation><!-- TARANTO --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Punteggio Totale Gravità Sottoservizio --></label>
+        <name>CQS_Punteggio_Tot_Gravit_Sottoservizio__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipo Allegato --></label>
+        <name>CQS_ev_Tipo_Allegato__c</name>
+        <picklistValues>
+            <masterLabel>Altro</masterLabel>
+            <translation><!-- Altro --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Documento Post Ripristino</masterLabel>
+            <translation><!-- Documento Post Ripristino --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Documento Pre Ripristino</masterLabel>
+            <translation><!-- Documento Pre Ripristino --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Verbale Rilascio Ente Gestore</masterLabel>
+            <translation><!-- Verbale Rilascio Ente Gestore --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Data Chiusura Evento --></label>
+        <name>Data_Chiusura_Evento__c</name>
+    </fields>
+    <fields>
+        <label><!-- Proprietario --></label>
+        <name>EOF_CQS_Proprietario__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Infortunio --></label>
+        <name>ID_Infortunio__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Taglio --></label>
+        <name>ID_Taglio__c</name>
+    </fields>
+    <fields>
+        <label><!-- Numero Protocollo Assicurazione --></label>
+        <name>Numero_Protocollo_Assicurazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Numero Protocollo --></label>
+        <name>Numero_Protocollo__c</name>
+    </fields>
+    <fields>
+        <label><!-- N.B. --></label>
+        <name>OF_CQS_Allegato_Obbligatorio_DAN__c</name>
+    </fields>
+    <fields>
+        <label><!-- N.B. --></label>
+        <name>OF_CQS_Allegato_Obbligatorio_Infortunio__c</name>
+    </fields>
+    <fields>
+        <label><!-- N.B. --></label>
+        <name>OF_CQS_Allegato_Obbligatorio_Interf_SS__c</name>
+    </fields>
+    <fields>
+        <label><!-- Anzianità --></label>
+        <name>OF_CQS_Anzianita__c</name>
+    </fields>
+    <fields>
+        <label><!-- Area Cavo --></label>
+        <name>OF_CQS_Area_Cavo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bad Practice --></label>
+        <name>OF_CQS_Bad_Practice_Field__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bad Practice --></label>
+        <name>OF_CQS_Bad_Practice__c</name>
+    </fields>
+    <fields>
+        <help><!-- Inserire valori numerici --></help>
+        <label><!-- Cap --></label>
+        <name>OF_CQS_CAP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cantiere --></label>
+        <name>OF_CQS_Cantiere__c</name>
+        <relationshipLabel><!-- Eventi --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Codice Danneggiamento Correlato --></label>
+        <name>OF_CQS_Codice_Danneggiamento_Correlato__c</name>
+        <relationshipLabel><!-- Eventi (Codice Danneggiamento Correlato) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Codice Inail --></label>
+        <name>OF_CQS_Codice_Inail__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Infortunio Correlato --></label>
+        <name>OF_CQS_Codice_Infortunio_Correlato__c</name>
+        <relationshipLabel><!-- Codici Infortuni Correlati --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Codice Permesso --></label>
+        <name>OF_CQS_Codice_Permesso_IE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Permesso --></label>
+        <name>OF_CQS_Codice_Permesso__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Pratica --></label>
+        <name>OF_CQS_Codice_Pratica__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Richiesta Posa --></label>
+        <name>OF_CQS_Codice_RIchiesta_Posa__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comune --></label>
+        <name>OF_CQS_Comune_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- ComuneL --></label>
+        <name>OF_CQS_Comune__c</name>
+        <relationshipLabel><!-- Eventi (Comune) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Danneggiamento --></label>
+        <name>OF_CQS_Danneggiamento__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Apertura Pratica --></label>
+        <name>OF_CQS_Data_Apertura_Pratica__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Attivazione Assicurazione Impresa --></label>
+        <name>OF_CQS_Data_Att_Assicurazione_Impresa__c</name>
+    </fields>
+    <fields>
+        <help><!-- data rientro infortunato, data riparazione interferenza, o data riparazione danneggiamento a terzi --></help>
+        <label><!-- Data Chiusura Pratica --></label>
+        <name>OF_CQS_Data_Chiusura_Pratica__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Evento --></label>
+        <name>OF_CQS_Data_Evento__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Primo Conteggio --></label>
+        <name>OF_CQS_Data_Primo_Conteggio__c</name>
+    </fields>
+    <fields>
+        <label><!-- Decesso --></label>
+        <name>OF_CQS_Decesso__c</name>
+    </fields>
+    <fields>
+        <label><!-- Diffida --></label>
+        <name>OF_CQS_Diffida__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ente --></label>
+        <name>OF_CQS_Ente__c</name>
+    </fields>
+    <fields>
+        <label><!-- Età --></label>
+        <name>OF_CQS_Eta__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Evento Correlato --></label>
+        <name>OF_CQS_Evento_Correlato__c</name>
+        <relationshipLabel><!-- Eventi --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Giorni Persi22 --></label>
+        <name>OF_CQS_GIORNI_PERSI_INFORTUNIO2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Giorni Persi_leva --></label>
+        <name>OF_CQS_Giorni_Persi__c</name>
+    </fields>
+    <fields>
+        <label><!-- Giorni Persi --></label>
+        <name>OF_CQS_Giorni_Persi_e__c</name>
+    </fields>
+    <fields>
+        <label><!-- Giorni Prognosi Aggiuntiva Inseriti --></label>
+        <name>OF_CQS_Giorni_Prognosi_Add_Inseriti__c</name>
+    </fields>
+    <fields>
+        <label><!-- Guasto --></label>
+        <name>OF_CQS_Guasto__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Danneggiamento --></label>
+        <name>OF_CQS_ID_Danneggiamento__c</name>
+    </fields>
+    <fields>
+        <help><!-- Selezionare Impresa esecutrice utilizzando il comando di ricerca --></help>
+        <label><!-- Impresa Esecutrice --></label>
+        <name>OF_CQS_Impresa_Esecutrice_Eventi__c</name>
+        <relationshipLabel><!-- Eventi Impresa Esecutrice --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Selezionare Impresa affidataria utilizzando il comando di ricerca. --></help>
+        <label><!-- Impresa Affidataria --></label>
+        <name>OF_CQS_Impresa_Mandataria__c</name>
+        <relationshipLabel><!-- Eventi Impresa Mandataria --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Inadempienze Operative --></label>
+        <name>OF_CQS_Inadempienze_Operative__c</name>
+    </fields>
+    <fields>
+        <label><!-- Indagini --></label>
+        <name>OF_CQS_Indagini__c</name>
+        <picklistValues>
+            <masterLabel>NO</masterLabel>
+            <translation><!-- NO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NP - non pervenuto</masterLabel>
+            <translation><!-- NP - non pervenuto --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non rilevato da Geo-radar</masterLabel>
+            <translation><!-- Non rilevato da Geo-radar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SI</masterLabel>
+            <translation><!-- SI --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Questo campo mostra il rapporto tra il numero di infortuni e le ore lavorate --></help>
+        <label><!-- Indice Frequenza Infortuni --></label>
+        <name>OF_CQS_Indice_Frequenza_Infortuni__c</name>
+    </fields>
+    <fields>
+        <label><!-- Indice Gravità Infortunio --></label>
+        <name>OF_CQS_Indice_Gravita_Infortunio__c</name>
+        <picklistValues>
+            <masterLabel>&lt; 30gg di prognosi</masterLabel>
+            <translation><!-- &lt; 30gg di prognosi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>&gt; 30gg di prognosi</masterLabel>
+            <translation><!-- &gt; 30gg di prognosi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mortale</masterLabel>
+            <translation><!-- Mortale --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Infortunio --></label>
+        <name>OF_CQS_Infortunio__c</name>
+    </fields>
+    <fields>
+        <label><!-- Km Scavo --></label>
+        <name>OF_CQS_Km_Scavo_IE__c</name>
+    </fields>
+    <fields>
+        <help><!-- km di scavo realizzati sulla Città --></help>
+        <label><!-- Km Scavo --></label>
+        <name>OF_CQS_Km_Scavo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mansione --></label>
+        <name>OF_CQS_Mansione__c</name>
+    </fields>
+    <fields>
+        <label><!-- N.B. --></label>
+        <name>OF_CQS_N_B_Ev__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nominativo Infortunio --></label>
+        <name>OF_CQS_Nominativo_Infortunio__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note Merito Comportamento Impresa --></label>
+        <name>OF_CQS_Note_Merito_Comportamento_Impresa__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note Sinistro --></label>
+        <name>OF_CQS_Note_Sinistro__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note --></label>
+        <name>OF_CQS_Note__c</name>
+    </fields>
+    <fields>
+        <label><!-- Numero Civico --></label>
+        <name>OF_CQS_Numero_Civico__c</name>
+    </fields>
+    <fields>
+        <label><!-- Oggetto --></label>
+        <name>OF_CQS_Oggetto__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ore Lavorate --></label>
+        <name>OF_CQS_Ore_Lavorate_IE__c</name>
+    </fields>
+    <fields>
+        <help><!-- Ore lavorate sulla Città --></help>
+        <label><!-- Ore Lavorate --></label>
+        <name>OF_CQS_Ore_Lavorate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prognosi Riservata --></label>
+        <name>OF_CQS_Prognosi_Riservata__c</name>
+    </fields>
+    <fields>
+        <label><!-- Giorni Prognosi Aggiuntivi --></label>
+        <name>OF_CQS_Prognosi_aggiuntiva__c</name>
+    </fields>
+    <fields>
+        <label><!-- Provincia --></label>
+        <name>OF_CQS_Provincia_Evento__c</name>
+    </fields>
+    <fields>
+        <label><!-- Provincia --></label>
+        <name>OF_CQS_Provincia__c</name>
+        <relationshipLabel><!-- Eventi (Provincia) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Punteggio Gravità SS --></label>
+        <name>OF_CQS_Punteggio_Gravit_SS__c</name>
+    </fields>
+    <fields>
+        <label><!-- Punteggio Sottoservizio --></label>
+        <name>OF_CQS_Punteggio_Sottoservizio__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rapporto Contrattuale --></label>
+        <name>OF_CQS_Rapporto_Contrattuale__c</name>
+        <relationshipLabel><!-- Eventi --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Rete Superficiale --></label>
+        <name>OF_CQS_Rete_Superficiale__c</name>
+        <picklistValues>
+            <masterLabel>NO</masterLabel>
+            <translation><!-- NO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NP</masterLabel>
+            <translation><!-- NP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SI</masterLabel>
+            <translation><!-- SI --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Richiesta Danni --></label>
+        <name>OF_CQS_Richiesta_Danni__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ricovero --></label>
+        <name>OF_CQS_Ricovero__c</name>
+        <picklistValues>
+            <masterLabel>NO</masterLabel>
+            <translation><!-- NO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NP</masterLabel>
+            <translation><!-- NP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SI</masterLabel>
+            <translation><!-- SI --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Riparazione Danno --></label>
+        <name>OF_CQS_Riparazione_Danno__c</name>
+        <picklistValues>
+            <masterLabel>Eseguita Ente</masterLabel>
+            <translation><!-- Eseguita Ente --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Eseguita Impresa</masterLabel>
+            <translation><!-- Eseguita Impresa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non Eseguita</masterLabel>
+            <translation><!-- Non Eseguita --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Segnalare l’eventuale mancanza del rispetto dell’area di franco, ritardo nella comunicazione, mancanza di planimetrie degli enti, mancanza di cartografia georadar in cantiere, ecc. --></help>
+        <label><!-- Rispetto Procedura --></label>
+        <name>OF_CQS_Rispetto_Procedura__c</name>
+        <picklistValues>
+            <masterLabel>NP</masterLabel>
+            <translation><!-- NP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Soggetto Richiedente --></label>
+        <name>OF_CQS_Soggetto_Richiedente__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stato Evento --></label>
+        <name>OF_CQS_Stato_Evento__c</name>
+        <picklistValues>
+            <masterLabel>Chiuso Approvato</masterLabel>
+            <translation><!-- Chiuso Approvato --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chiuso Non Approvato</masterLabel>
+            <translation><!-- Chiuso Non Approvato --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Approvazione Direttore Lavori</masterLabel>
+            <translation><!-- In Approvazione Direttore Lavori --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Lavorazione Direttore Lavori</masterLabel>
+            <translation><!-- In Lavorazione Direttore Lavori --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In lavorazione Impresa</masterLabel>
+            <translation><!-- In lavorazione Impresa --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Stato Pratica --></label>
+        <name>OF_CQS_Stato_Pratica__c</name>
+        <picklistValues>
+            <masterLabel>Aperta</masterLabel>
+            <translation><!-- Aperta --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chiuso</masterLabel>
+            <translation><!-- Chiuso --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Lavorazione</masterLabel>
+            <translation><!-- In Lavorazione --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inserita</masterLabel>
+            <translation><!-- Inserita --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Integrata/In Approvazione</masterLabel>
+            <translation><!-- Integrata/In Approvazione --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sospesa</masterLabel>
+            <translation><!-- Sospesa --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Struttura Danneggiata --></label>
+        <name>OF_CQS_Struttura_Danneggiata__c</name>
+    </fields>
+    <fields>
+        <label><!-- Taglio --></label>
+        <name>OF_CQS_Taglio_Field__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipo di Evento --></label>
+        <name>OF_CQS_Tipo_di_Evento_BP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipo di Evento --></label>
+        <name>OF_CQS_Tipo_di_Evento_D__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipo di Evento --></label>
+        <name>OF_CQS_Tipo_di_Evento_I__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipo di Evento --></label>
+        <name>OF_CQS_Tipo_di_Evento_T__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipo di Evento --></label>
+        <name>OF_CQS_Tipo_di_Evento__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipo di Infortunio --></label>
+        <name>OF_CQS_Tipo_di_Infortunio__c</name>
+    </fields>
+    <fields>
+        <label><!-- Segnalazione Comune --></label>
+        <name>OF_CQS_ev_Segnalazione_Comune__c</name>
+    </fields>
+    <fields>
+        <label><!-- Persona Coinvolta --></label>
+        <name>Persona_Coinvolta__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pratica INAIL --></label>
+        <name>Pratica_INAIL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Giorni di Prognosi --></label>
+        <name>Prognosi__c</name>
+    </fields>
+    <fields>
+        <help><!-- Il  sotto-servizio era segnalato regolamente --></help>
+        <label><!-- Regolare Segnalazione --></label>
+        <name>Regolare_Segnalazione__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Rimborso Riconociuto --></label>
+        <name>Rimborso_Riconociuto__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rimborso richiesto --></label>
+        <name>Rimborso_richiesto__c</name>
+    </fields>
+    <fields>
+        <help><!-- Sono state rispettate le procedure operative --></help>
+        <label><!-- Rispetto Procedure Operative --></label>
+        <name>Rispetto_Procedure_Operative__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Skip Email --></label>
+        <name>Skip_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sottoservizio --></label>
+        <name>Sottoservizio__c</name>
+        <picklistValues>
+            <masterLabel>Acqua pubblica</masterLabel>
+            <translation><!-- Acqua pubblica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Altro</masterLabel>
+            <translation><!-- Altro --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fibra ottica</masterLabel>
+            <translation><!-- Fibra ottica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Illuminazione pubblica</masterLabel>
+            <translation><!-- Illuminazione pubblica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rete elettrica</masterLabel>
+            <translation><!-- Rete elettrica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rete fognaria</masterLabel>
+            <translation><!-- Rete fognaria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rete gas</masterLabel>
+            <translation><!-- Rete gas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rete telefonica</masterLabel>
+            <translation><!-- Rete telefonica --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Taglio --></label>
+        <name>Taglio__c</name>
+    </fields>
+    <fields>
+        <label><!-- Indirizzo --></label>
+        <name>VIA__c</name>
+    </fields>
+    <layouts>
+        <layout>Bad Practice</layout>
+        <sections>
+            <label><!-- Caratteristiche Evento --></label>
+            <section>Caratteristiche Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Evento --></label>
+            <section>Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Evento --></label>
+            <section>Luogo Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Responsabile Redazione --></label>
+            <section>Responsabile Redazione</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Bad Practice Aperta</layout>
+        <sections>
+            <label><!-- Caratteristiche Evento --></label>
+            <section>Caratteristiche Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Evento --></label>
+            <section>Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Evento --></label>
+            <section>Luogo Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Note per la Lavorazione --></label>
+            <section>Note per la Lavorazione</section>
+        </sections>
+        <sections>
+            <label><!-- Responsabile Redazione --></label>
+            <section>Responsabile Redazione</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Bad Practice Chiusa</layout>
+        <sections>
+            <label><!-- Caratteristiche Evento --></label>
+            <section>Caratteristiche Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Evento --></label>
+            <section>Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Evento --></label>
+            <section>Luogo Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Responsabile Redazione --></label>
+            <section>Responsabile Redazione</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Bad Practice Integrata</layout>
+        <sections>
+            <label><!-- Caratteristiche Evento --></label>
+            <section>Caratteristiche Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Evento --></label>
+            <section>Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Evento --></label>
+            <section>Luogo Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Note per la Lavorazione --></label>
+            <section>Note per la Lavorazione</section>
+        </sections>
+        <sections>
+            <label><!-- Responsabile Redazione --></label>
+            <section>Responsabile Redazione</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Bad Practice in Lavorazione</layout>
+        <sections>
+            <label><!-- Caratteristiche Evento --></label>
+            <section>Caratteristiche Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Evento --></label>
+            <section>Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Evento --></label>
+            <section>Luogo Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Note per la Lavorazione --></label>
+            <section>Note per la Lavorazione</section>
+        </sections>
+        <sections>
+            <label><!-- Responsabile Redazione --></label>
+            <section>Responsabile Redazione</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Danneggiamento Aperta</layout>
+        <sections>
+            <label><!-- Caratteristiche Evento --></label>
+            <section>Caratteristiche Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Evento --></label>
+            <section>Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Evento --></label>
+            <section>Luogo Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Note per la Lavorazione --></label>
+            <section>Note per la Lavorazione</section>
+        </sections>
+        <sections>
+            <label><!-- Responsabile Redazione --></label>
+            <section>Responsabile Redazione</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Danneggiamento Chiusa</layout>
+        <sections>
+            <label><!-- Caratteristiche Evento --></label>
+            <section>Caratteristiche Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Evento --></label>
+            <section>Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Evento --></label>
+            <section>Luogo Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Note per la Lavorazione --></label>
+            <section>Note per la Lavorazione</section>
+        </sections>
+        <sections>
+            <label><!-- Responsabile Redazione --></label>
+            <section>Responsabile Redazione</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Danneggiamento Integrata</layout>
+        <sections>
+            <label><!-- Caratteristiche Evento --></label>
+            <section>Caratteristiche Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Evento --></label>
+            <section>Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Evento --></label>
+            <section>Luogo Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Note per la Lavorazione --></label>
+            <section>Note per la Lavorazione</section>
+        </sections>
+        <sections>
+            <label><!-- Responsabile Redazione --></label>
+            <section>Responsabile Redazione</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Danneggiamento in Lavorazione</layout>
+        <sections>
+            <label><!-- Caratteristiche Evento --></label>
+            <section>Caratteristiche Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Evento --></label>
+            <section>Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Evento --></label>
+            <section>Luogo Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Note per la Lavorazione --></label>
+            <section>Note per la Lavorazione</section>
+        </sections>
+        <sections>
+            <label><!-- Responsabile Redazione --></label>
+            <section>Responsabile Redazione</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Danneggiamento_Simple</layout>
+        <sections>
+            <label><!-- Caratteristiche Evento --></label>
+            <section>Caratteristiche Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Evento --></label>
+            <section>Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Evento --></label>
+            <section>Luogo Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Responsabile Redazione --></label>
+            <section>Responsabile Redazione</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Infortunio_Simple</layout>
+        <sections>
+            <label><!-- Caratteristiche Evento --></label>
+            <section>Caratteristiche Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Evento --></label>
+            <section>Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Evento --></label>
+            <section>Luogo Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Responsabile Redazione --></label>
+            <section>Responsabile Redazione</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Interferenza a Sotto-servizi</layout>
+        <sections>
+            <label><!-- Approfondimento Cause --></label>
+            <section>Approfondimento Cause</section>
+        </sections>
+        <sections>
+            <label><!-- Caratteristiche Evento --></label>
+            <section>Caratteristiche Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Evento --></label>
+            <section>Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Evento --></label>
+            <section>Luogo Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Responsabile Redazione --></label>
+            <section>Responsabile Redazione</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Interferenza a Sotto-servizi Aperta</layout>
+        <sections>
+            <label><!-- Approfondimento Cause --></label>
+            <section>Approfondimento Cause</section>
+        </sections>
+        <sections>
+            <label><!-- Caratteristiche Evento --></label>
+            <section>Caratteristiche Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Evento --></label>
+            <section>Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Evento --></label>
+            <section>Luogo Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Note per la Lavorazione --></label>
+            <section>Note per la Lavorazione</section>
+        </sections>
+        <sections>
+            <label><!-- Responsabile Redazione --></label>
+            <section>Responsabile Redazione</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Interferenza a Sotto-servizi Chiusa</layout>
+        <sections>
+            <label><!-- Caratteristiche Evento --></label>
+            <section>Caratteristiche Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Evento --></label>
+            <section>Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Evento --></label>
+            <section>Luogo Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Note per la Lavorazione --></label>
+            <section>Note per la Lavorazione</section>
+        </sections>
+        <sections>
+            <label><!-- Responsabile Redazione --></label>
+            <section>Responsabile Redazione</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Interferenza a Sotto-servizi Integrata</layout>
+        <sections>
+            <label><!-- Approfondimento Cause --></label>
+            <section>Approfondimento Cause</section>
+        </sections>
+        <sections>
+            <label><!-- Caratteristiche Evento --></label>
+            <section>Caratteristiche Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Evento --></label>
+            <section>Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Evento --></label>
+            <section>Luogo Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Note per la Lavorazione --></label>
+            <section>Note per la Lavorazione</section>
+        </sections>
+        <sections>
+            <label><!-- Responsabile Redazione --></label>
+            <section>Responsabile Redazione</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Interferenza a Sotto-servizi in Lavorazione</layout>
+        <sections>
+            <label><!-- Approfondimento Cause --></label>
+            <section>Approfondimento Cause</section>
+        </sections>
+        <sections>
+            <label><!-- Caratteristiche Evento --></label>
+            <section>Caratteristiche Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Evento --></label>
+            <section>Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Evento --></label>
+            <section>Luogo Evento</section>
+        </sections>
+        <sections>
+            <label><!-- Note per la Lavorazione --></label>
+            <section>Note per la Lavorazione</section>
+        </sections>
+        <sections>
+            <label><!-- Responsabile Redazione --></label>
+            <section>Responsabile Redazione</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description><!-- RecordType per mostrare il layout pensato per la fase di lavorazione (Fase Aperta) --></description>
+        <label><!-- Bad Practice Aperta --></label>
+        <name>Bad_Practice_Aperta</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Bad Practice Chiusa --></label>
+        <name>Bad_Practice_Chiusa</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Bad Practice Integrata --></label>
+        <name>Bad_Practice_Integrata</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Bad Practice in Lavorazione --></label>
+        <name>Bad_Practice_in_Lavorazione</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Danneggiamento a Terzi Aperta --></label>
+        <name>Danneggiamento_a_Terzi_Aperta</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Danneggiamento a Terzi Chiusa --></label>
+        <name>Danneggiamento_a_Terzi_Chiusa</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Danneggiamento a Terzi Integrata --></label>
+        <name>Danneggiamento_a_Terzi_Integrata</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Danneggiamento a Terzi in Lavorazione --></label>
+        <name>Danneggiamento_a_Terzi_in_Lavorazione</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Interferenza a Sotto-servizi Aperta --></label>
+        <name>Interferenza_a_Sotto_servizi_Aperta</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Interferenza a Sotto-servizi Chiusa --></label>
+        <name>Interferenza_a_Sotto_servizi_Chiusa</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Interferenza a Sotto-servizi Integrata --></label>
+        <name>Interferenza_a_Sotto_servizi_Integrata</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Interferenza a Sotto-servizi in Lavorazione --></label>
+        <name>Interferenza_a_Sotto_servizi_in_Lavorazione</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- in caso di eventi non identificabili con nessune delle altre categorie --></description>
+        <label><!-- Bad Practice --></label>
+        <name>OF_CQS_Bad_Practice</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- in caso di eventi riguardanti danni a privati o proprietà pubbliche --></description>
+        <label><!-- Danneggiamento a Terzi --></label>
+        <name>OF_CQS_Danni_Arrecati</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Infortuni giorni persi e tagli e/o danneggiamenti --></label>
+        <name>OF_CQS_Infofortuni_giorni_persi_tagli_danneggiamenti</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- in caso di infortuni riconducibili alle lavorazioni (no incidenti in itinere o esterni alle aree di cantiere) --></description>
+        <label><!-- Infortunio --></label>
+        <name>OF_CQS_Infortunio</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- in caso di Tagli e/o danneggiamenti delle reti di sotto-servizi esistenti --></description>
+        <label><!-- Interferenza a Sotto-servizi --></label>
+        <name>OF_CQS_Interferenza_Sottoservizi</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Ispezione --></label>
+        <name>OF_CQS_Ispezione</name>
+    </recordTypes>
+    <sharingReasons>
+        <label><!-- Progetto di competenza --></label>
+        <name>Progetto_di_competenza</name>
+    </sharingReasons>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- Il Comune specificato risulta non valido. Verificare la correttezza dei caratteri inseriti e la gestione di Open Fiber del Comune indicato. --></errorMessage>
+        <name>CQS_Controllo_Comuni_Evento</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Nel campo Cap è possibile inserire solo caratteri numerici. --></errorMessage>
+        <name>Cap_solo_numerico</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- I campi Impresa Mandataria e Impresa Esecutrice sono entrambi obbligatori! --></errorMessage>
+        <name>Impresa_Affidataria_o_Esecutrice_Obb</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Bisogna dichiarare se si stia censendo una diffida, una richiesta danni o una inadempienza operativa, inserendo un flag su almeno  uno dei campi presenti nella sezione &apos;Caratteristiche Evento&apos; in fondo alla pagina. --></errorMessage>
+        <name>Indica_la_Tipologia_di_Bad_Practice</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Non è possibile Chiudere una pratica di infortunio senza valorizzare almeno un campo tra Decesso, Prognosi Riservata o Giorni di Prognosi. --></errorMessage>
+        <name>Infortunio_Dati_Completi</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Attenzione! Hai provato ad inserire una pratica per una città che non è di tua competenza! --></errorMessage>
+        <name>No_Comune_Diverso_da_PG</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Non è possibile inserire eventi futuri, nè chiudere la pratica con una data futura --></errorMessage>
+        <name>No_Inserimento_Eventi_Futuri</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Non è prevista la possibilità di scegliere come data di apertura di una pratica una data futura, né è possibile aprire una pratica con una data antecedente la data in cui si è verificato l&apos;evento da censire. --></errorMessage>
+        <name>No_Inserimento_Pratiche_Future</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Non è possibile inserire dei giorni di prognosi se all&apos;apertura della pratica è già noto l&apos;avvenuto decesso. --></errorMessage>
+        <name>No_Prognosi_su_Decesso</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Non è possibile inserire il numero di giorni di prognosi, se la prognosi è riservata. --></errorMessage>
+        <name>No_Prognosi_su_Prognosi_Riservata</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Non sembra che l&apos;evento si sia verificato in una situazione di coerenza amministrativa: Controlli che la collaborazione tra l&apos;Esecutrice e la Mandataria sia effettivamente in essere nel comune per l&apos;area cavo  da lei indicata. --></errorMessage>
+        <name>OF_CQS_ImpresaEsecutricePossibile</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Spiacente, non è possibile selezionare sia la casella di Prognosi Riservata sia quella di Decesso. --></errorMessage>
+        <name>O_Decesso_o_Prognosi_Riservata</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Il valore del campo Profondità, da esprimersi in centimetri, può accettare solo caratteri numerici. --></errorMessage>
+        <name>Profondita_solo_numerico</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- CQS_SelezionaTipoEvento --></label>
+        <name>CQS_SelezionaTipoEvento</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Chiudi_Pratica --></label>
+        <name>Chiudi_Pratica</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- In_Lavorazione --></label>
+        <name>In_Lavorazione</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Pratica_Integrata --></label>
+        <name>Pratica_Integrata</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Print_Page --></label>
+        <name>Print_Page</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Rifiuta_Integrazione --></label>
+        <name>Rifiuta_Integrazione</name>
+    </webLinks>
+</CustomObjectTranslation>

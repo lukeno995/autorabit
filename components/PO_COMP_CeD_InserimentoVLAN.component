@@ -1,0 +1,238 @@
+<apex:component controller="PO_COMP_CeD_InserimentoVLAN_Controller" allowDML="true">
+<div class="row">
+	<head>  
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <!-- JQuery -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <script src='https://www.google.com/recaptcha/api.js' ></script>
+            
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+            </style>
+        </head>
+        <div class="panel panel-default">
+               <div class="panel-heading">
+		        <apex:outputPanel rendered="{!modifyMode}">
+		                <i></i>Modifica VLAN
+		       	</apex:outputPanel>
+		        <apex:outputPanel rendered="{!insertMode}">
+		                <i></i>Modifica VLAN
+		       	</apex:outputPanel>
+	       	</div>
+	        <div class="panel-body">
+	                                          
+				    <apex:form >
+				        <div style="color:red;" id="showerror">
+				            <apex:pageMessages id="errors" /> 
+				        </div>
+				        
+				        <form role="form" class="form-horizontal">
+				            <fieldset class="form-group">
+								<!--APERTURA DIV CONTAINER -->
+								<div class = "container-fluid" id="cont">	
+									<div class = "row">		              
+						                <div class="col-lg-6">
+						                    <!-- Start - Add PG - 10-12 -->
+						                    <!--
+						                    <label>Kit Consegna VLAN* : </label> &nbsp; &nbsp;
+						                    <apex:selectList value="{!slVlan.OF_SA_KIT_CONSEGNA_VLAN__c}" size="1" styleClass="dropDown form-control"  id="setRequired1" onchange="selectSVLAN('{!slVlan.OF_SA_KIT_CONSEGNA_VLAN__c}')">
+						                    	<apex:selectOptions value="{!ListaKIT}"  />
+					                    	</apex:selectList>
+											-->
+											<!-- End - Add PG - 10-12 -->
+											<label>Kit Consegna VLAN* : </label> &nbsp; &nbsp;
+											<apex:inputText id="kitVlan" styleClass="form-control" style="background-color: #ffffff;" required="true" value="{!slVlan.OF_SA_KIT_CONSEGNA_VLAN__c}"  />
+											<!-- 
+											<apex:selectList value="{!datacatForinsertKIT}" size="1" styleClass="dropDown form-control"  id="setRequired1">						                    
+                                                <apex:selectOptions value="{!ListaKIT}"/>
+                                                <apex:actionSupport event="onchange" action="{!showSVLAN}">
+    								                <apex:param name="SearchEngine" value="" assignTo="{!datacatForinsertKIT}" />
+    								            </apex:actionSupport>
+                                            </apex:selectList>   
+                                            -->                                       
+						                </div>
+						                
+						                <div class="col-lg-6" >
+						                    <label>Service VLAN* : </label> &nbsp; &nbsp;
+											<apex:inputText id="serviceVlan" styleClass="form-control" style="background-color: #ffffff;" required="true" value="{!slVlan.OF_SA_SERVICE_VLAN__c}"  />      
+						                    
+						                <!-- <apex:outputPanel id="svlan"> -->
+						                <!-- Start - Add PG - 10-12 -->
+						                <!--
+					                    <label>Service VLAN* : </label> &nbsp; &nbsp;
+					                        <apex:selectList value="{!slVlan.OF_SA_SERVICE_VLAN__c}" size="1" styleClass="dropDown form-control"  id="setRequired2" onchange="fillFieldsJS1()">
+                                            	<apex:selectOptions value="{!ListaSVLAN}"  />
+                                        <!-- End - Add PG - 10-12 -->
+                                            	<!--
+                                            	<apex:actionSupport event="onchange" action="{!fillFields}">
+								                    <apex:param name="SearchEngine" value="" assignTo="{!datacatForinsertSVLAN}" />
+								                 </apex:actionSupport>
+							            		-->
+							             <!-- Start - Add PG - 10-12 -->
+							             <!--</apex:selectList>-->
+                                         <!-- End - Add PG - 10-12 -->
+                                         
+					                     <!-- </apex:outputPanel> -->
+					                   </div>
+					                   
+									</div>
+									<!-- chiude row -->
+									
+									<div class = "row" id="svlanFields">
+										<div class="col-lg-6">
+						                    <label>User VLAN* : </label> &nbsp; &nbsp;
+						                    	<apex:inputText styleClass="form-control" id="userVLAN" required="true" value="{!slVlan.OF_SA_USER_VLAN__c}"  />                
+										</div>
+					                    
+					                    <div class="col-lg-6">
+					                         <label>Profilo VLAN* : </label> &nbsp; &nbsp;
+					                         <apex:inputText id="profiloVLAN" styleClass="form-control"  required="true"
+					                            style="background-color: #ffffff;" value="{!slVlan.OF_SA_PROFILO_VLAN__c}"  />
+		                                 </div>
+		                            </div> 
+		                            <div class = "row">    
+					                    <div class="col-lg-6">
+											<label>Customer VLAN* :</label> &nbsp; &nbsp;
+					                         <apex:inputText id="customerVLAN" styleClass="form-control" required="true" maxlength="4" value="{!slVlan.OF_SA_CUSTOMER_VLAN__c}" />
+					                    </div>                                 
+					                    <div class="col-lg-6">
+					                         <label>Modello Di Servizio VLAN : </label> &nbsp; &nbsp;
+					                         <apex:inputText id="modelloServizioVLAN" styleClass="form-control" maxlength="20" value="{!slVlan.OF_SA_MODELLO_DI_SERVIZIO_VLAN__c}"/>
+					                    </div>
+					                </div>				                
+					                <div class = "row">
+						                <div class="col-lg-6">
+						                </div>
+					                    <div class="col-lg-6"> 
+					                        <label>Informazioni VLAN :</label> &nbsp; &nbsp;
+					                        <apex:inputText id="informazioniVLAN" styleClass="form-control" value="{!slVlan.OF_SA_INFORMAZIONI_VLAN__c}"/>
+					                    </div>
+				                	</div>
+				                </div>
+				                <!--CHIUSURA DIV CONTAINER --> 		                       
+				            </fieldset>        
+		                 	
+				            <div class="col-sm-6">
+				                <div class="btn-group" role="group" aria-label="Basic example">                                      
+				                    <apex:commandButton styleClass="btn btn-primary"  value="Annulla" action="{!annullaVlan}" html-formnovalidate="formnovalidate" immediate="true"/>        
+				                </div>
+				            </div> 
+				            <apex:outputPanel rendered="{!insertMode}"> 	 
+		                        <div class="col-sm-6" >
+		                            <div class="btn-group" role="group" aria-label="Basic example">                                      
+		                               <apex:commandButton styleClass="btn btn-primary" value="Salva" action="{!InserisciVLAN}" />        
+		                            </div>
+		                        </div>   
+	                        </apex:outputPanel>
+
+	                        <apex:outputPanel rendered="{!modifyMode}">
+	                        <div class="col-lg-6" >
+	                           <div class="btn-group" role="group" aria-label="Basic example">                                      
+	                               <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px;" value="Salva" action="{!updateVLAN}" />       
+	                           </div>
+	                       </div> 
+	               		</apex:outputPanel>
+		            </form>
+		            </apex:form>
+		            
+		            <!-- Start - Add PG - 10-12 -->
+		            <!--
+		            <apex:form > 
+		               <apex:actionFunction action="{!showSVLAN}" name="selectSVLAN" status="checkStatus" rerender="setRequired2,userVLAN,profiloVLAN">
+		            	<apex:param name="firstParam" assignTo="{!slVlan.OF_SA_KIT_CONSEGNA_VLAN__c}" value="" />
+		              </apex:actionFunction> 
+	                </apex:form>
+	                -->
+	                <!-- End - Add PG - 10-12 -->
+	                
+	                <!-- Start - Add PG - 10-12 -->
+		            <!--
+	                <apex:form >
+		            <apex:actionFunction action="{!fillFields}" name="fillFieldsJS2" status="checkStatus" rerender="userVLAN,profiloVLAN">
+		            	<apex:param name="firstParam" assignTo="{!slVlan.OF_SA_SERVICE_VLAN__c}" value="" />
+		            </apex:actionFunction>	
+		    		</apex:form>
+		    		-->
+	                <!-- End - Add PG - 10-12 -->
+	                
+    			<apex:form >
+        			<apex:actionStatus id="checkStatus">
+    	    			<apex:facet name="start">
+    				        <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.25; z-index: 1000; background-color: black;">
+    					        &nbsp;
+    					    </div>
+    					    <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 15% 50%">
+    					        <div style="display: inline-block; padding: 2px; background-color: #fff; width: 125px;">
+    					            <img src="/img/loading.gif" style="float: left; margin: 8px;" />
+    					            <span style="display: inline-block; padding: 10px 0px;">Attendere...</span>
+    					        </div>
+    					    </div>    
+    		            </apex:facet>
+    	            </apex:actionStatus>
+    			</apex:form>
+    		</div>
+	    <br/>
+	</div>
+	<script>
+	
+		function fillFieldsJS1(){
+			console.log($("[id$='setRequired2']").val());
+			fillFieldsJS2($("[id$='setRequired2']").val());
+		}
+		$(document).ready(function(){
+			var elems1 = document.querySelectorAll('[id$="setRequired1"]');
+            for (var i = 0; i < elems1.length; i++){
+                elems1[i].required = true;
+            }
+            
+            var elems2 = document.querySelectorAll('[id$="setRequired2"]');
+            for (var i = 0; i < elems2.length; i++){
+                elems2[i].required = true;
+            }
+		});
+	</script>
+	</div>
+</apex:component>

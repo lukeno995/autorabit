@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>EOF_EAI_Service_Log__c.EOF_Codice_Ordine_OLO__c</field>
+    </columns>
+    <columns>
+        <field>EOF_EAI_Service_Log__c.EOF_Codice_Operatore__c</field>
+    </columns>
+    <columns>
+        <field>EOF_EAI_Service_Log__c.EOF_Tipo_Comunicazione_String__c</field>
+    </columns>
+    <columns>
+        <field>EOF_EAI_Service_Log__c.EOF_Codice_Errore__c</field>
+    </columns>
+    <columns>
+        <field>EOF_EAI_Service_Log__c.EOF_Causale_Errore__c</field>
+    </columns>
+    <columns>
+        <field>CUST_CREATED_DATE</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>EOF_EAI_Service_Log__c.EOF_Causale_Errore__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Valore campo &apos;ORARIO_APPUNTAMENTO&apos; non ammesso</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Tentativi orario appuntamento Tiscali</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$EOF_EAI_Service_Log__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>EOF_EAI_Service_Log__c.EOF_Data_Espletamento_Ordine__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

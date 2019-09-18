@@ -1,0 +1,150 @@
+<apex:component controller="PO_RegistrationController" allowDML="true">
+    <style>
+        #myinfo{
+        font-size: 180px;
+        }
+        span.dateFormat{
+        
+        display:none;
+        
+        }
+        .red{color:red;}
+    </style>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            
+        </div>
+        <div id="page-wrapper">
+            <div class="row">
+                <div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i></i>Richiesta Servizi a Fattibilità
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                
+                                <div style="color:red;" id="showerror">
+                                    <apex:pageMessages id="errors" /> 
+                                </div>
+                                
+                                
+                                <apex:form styleClass="form-horizontal" id="myform">  
+                                    <br/><br/><br/>
+                                    <div class="form-group">
+                                        
+                                        <div class="col-lg-6 col-offset-6">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <!--14/06/2017 Modified by Rajani--<apex:commandButton styleClass="btn btn-primary" value="Fine" action="{!Home}"/> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<apex:commandButton styleClass="btn btn-primary" value="Creare nuova richiesta" action="{!ParentCaseRecord}"/> ---->
+                                        </div>
+                                    </div>
+                                    <!--<table id="theTable" class="table table-striped table-bordered" width="100%">
+<thead>
+<tr>
+<th>Collegamento</th>
+<th>Offerta</th>
+<th>Data di Creazione</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<apex:repeat value="{!sortingCases}" var="case" id="section">
+<tr>
+
+<td>
+<apex:commandlink value="{!case.casenumber}" action="{!displayChildCases}" id="link" >
+<apex:param value="{!case.id}" name="SelParent"  assignTo="{!SelParent}" ></apex:param>
+</apex:commandlink>
+<!--<apex:outputLink value="/apex/Po_FeasibilityServicesRequest2?parentid={!case.id}"  id="link">
+{!case.casenumber}
+</apex:outputLink>-->
+                                    <!--</td>
+<td>
+
+<apex:facet name="header">
+<apex:commandLink value="Offerta" reRender="myTable">
+<apex:param name="sortField" value="Offerta" assignTo="{!sortField}" />
+<apex:param name="myOrder" value="{!IF(myOrder == 'DESC', 'ASC','DESC')}" assignTo="{!myOrder}" />
+Last Name
+</apex:commandLink>
+</apex:facet>
+<apex:outputText value="{!case.PO_Offerta__c}"/>
+</td>
+<td>
+<apex:outputText value="{!case.CreatedDate}"/>
+</td>
+<td>
+<apex:outputText value="{!case.Status}"/>
+</td>
+
+</tr>
+</apex:repeat>
+
+
+</tbody>
+</table>-->
+                                    <apex:pageBlock >
+                                        <apex:pageBlockTable value="{!sortingCases}" var="case" id="myTable" styleClass="table table-striped table-bordered">
+                                            <apex:column >
+                                                <apex:facet name="header">
+                                                    <apex:commandlink value="Richiesta a fattibilità" rerender="myTable" >
+                                                        <apex:param name="sortField" value="casenumber" assignTo="{!sortField}" />
+                                                        <apex:param name="myOrder" value="{!IF(myOrder == 'DESC', 'ASC','DESC')}" assignTo="{!myOrder}" />
+                                                        
+                                                    </apex:commandLink>
+                                                </apex:facet>
+                                                <apex:commandlink value="{!case.casenumber}" action="{!displayChildCases}" id="link" >
+                                                    <apex:param value="{!case.id}" name="SelParent"  assignTo="{!SelParent}" />
+                                                </apex:commandlink>
+                                            </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <apex:column >
+                                                <apex:facet name="header">
+                                                    <apex:commandLink value="Offerta" reRender="myTable">
+                                                        <apex:param name="sortField" value="PO_Offerta__c" assignTo="{!sortField}" />
+                                                        <apex:param name="myOrder" value="{!IF(myOrder == 'DESC', 'ASC','DESC')}" assignTo="{!myOrder}" />
+                                                        
+                                                    </apex:commandLink>
+                                                </apex:facet>
+                                                <apex:outputField value="{!case.PO_Offerta__c}" />
+                                            </apex:column>&nbsp;&nbsp;
+                                            <apex:column >
+                                                <apex:facet name="header">
+                                                    <apex:commandLink value="Data di Creazione" reRender="myTable">
+                                                        <apex:param name="sortField" value="CreatedDate" assignTo="{!sortField}" />
+                                                        <apex:param name="myOrder" value="{!IF(myOrder == 'DESC', 'ASC','DESC')}" assignTo="{!myOrder}" />
+                                                        
+                                                    </apex:commandLink>
+                                                </apex:facet>
+                                                <apex:outputField value="{!case.CreatedDate}" />
+                                            </apex:column>&nbsp;&nbsp;
+                                            <apex:column >
+                                                <apex:facet name="header">
+                                                    <apex:commandLink value="status" reRender="myTable">
+                                                        <apex:param name="sortField" value="status" assignTo="{!sortField}" />
+                                                        <apex:param name="myOrder" value="{!IF(myOrder == 'DESC', 'ASC','DESC')}" assignTo="{!myOrder}" />
+                                                        
+                                                    </apex:commandLink>
+                                                </apex:facet>
+                                                <apex:outputField value="{!case.status}" />
+                                            </apex:column><br/>
+                                        </apex:pageBlockTable>
+                                    </apex:pageBlock>
+                                </apex:form>  
+                                
+                                
+                            </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>       
+                    <!-- /.col-lg-4 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /#page-wrapper -->
+            
+        </div>
+    </div>
+    
+</apex:component>

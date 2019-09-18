@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Servizio sottoscritto</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Servizi sottoscritti</value>
+    </caseValues>
+    <fields>
+        <label><!-- Billing Competence --></label>
+        <name>Billing_Competence__c</name>
+        <picklistValues>
+            <masterLabel>Anticipato</masterLabel>
+            <translation><!-- Anticipato --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Posticipato</masterLabel>
+            <translation><!-- Posticipato --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Contract --></label>
+        <name>OF_Contract__c</name>
+        <relationshipLabel><!-- Servizi sottoscritti --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Servizio --></label>
+        <name>OF_Servizio__c</name>
+        <relationshipLabel><!-- Servizi sottoscritti --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- ServizioName --></label>
+        <name>ServizioName__c</name>
+        <picklistValues>
+            <masterLabel>BTS</masterLabel>
+            <translation><!-- BTS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Backhauling</masterLabel>
+            <translation><!-- Backhauling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Circuiti Diretti</masterLabel>
+            <translation><!-- Circuiti Diretti --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dark Fiber</masterLabel>
+            <translation><!-- Dark Fiber --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fiber Lease</masterLabel>
+            <translation><!-- Fiber Lease --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fiber Link</masterLabel>
+            <translation><!-- Fiber Link --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GPON Passiva</masterLabel>
+            <translation><!-- GPON Passiva --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open Internet</masterLabel>
+            <translation><!-- Open Internet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open Stream</masterLabel>
+            <translation><!-- Open Stream --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>P2P Attiva</masterLabel>
+            <translation><!-- P2P Attiva --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>P2P Base</masterLabel>
+            <translation><!-- P2P Base --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PREPROVISIONING</masterLabel>
+            <translation><!-- PREPROVISIONING --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- isBonifica --></label>
+        <name>isBonifica__c</name>
+    </fields>
+    <layouts>
+        <layout>Contratto Servizio Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- New_Area_Geografica --></label>
+        <name>New_Area_Geografica</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- New_Area_Geografica_CSV --></label>
+        <name>New_Area_Geografica_CSV</name>
+    </webLinks>
+</CustomObjectTranslation>

@@ -1,0 +1,71 @@
+<apex:page id="pageID" controller="CQS_EventiReport" docType="html-5.0" >
+     <apex:form id="formID">
+     
+        <apex:pageBlock id="pblockID">
+        	<apex:outputText > <b>Tipo Report </b></apex:outputText>&nbsp;&nbsp;&nbsp;&nbsp;
+          		<apex:selectList size="1" value="{!comboTypeout}">
+                	<apex:selectOptions value="{!comboType}"/>
+  		  		</apex:selectList> 
+           			<!--</apex:pageBlockSectionItem>
+            		</apex:pageBlockSection>--> 
+         		<apex:pageBlockButtons location="bottom">
+    				<apex:commandButton value="Esegui Report" action="{!DisplayMethod}" reRender="tableID2,tableID3,buttonid" />
+     		<!--		<apex:commandButton value="Esporta Report in csv" action="{!downloadasExcel}" /> -->
+   					 </apex:pageBlockButtons>
+					    <br></br>
+					    <br></br>
+    <!--  <apex:OutputLabel value="No Records Found" rendered="{!vlstWrapper.size<0}"/>  -->
+     <apex:outputpanel id="tableID2">
+      <apex:outputpanel rendered="{!checkEventi}">
+    <apex:pageBlockTable value="{!eventiPagina}" var="ev" >
+    <apex:column headerValue="Evento">
+    	<apex:outputLink value="/{!ev.Id}">{!ev.name}</apex:outputLink>
+   	</apex:column>
+       <apex:column value="{!ev.CQS_Ev_Progetto__c}"/>
+       <apex:column value="{!ev.OF_CQS_Impresa_Mandataria__c}"/>
+       <apex:column value="{!ev.OF_CQS_Impresa_Esecutrice_Eventi__c}"/>
+       <apex:column value="{!ev.OF_CQS_Tipo_di_Evento__c}"/>
+       <apex:column value="{!ev.Sottoservizio__c}"/>
+       <apex:column value="{!ev.OF_CQS_Stato_Pratica__c}"/>
+       <apex:column value="{!ev.OF_CQS_Data_Evento__c}"/>
+        </apex:pageBlockTable>      
+    </apex:outputpanel>
+       </apex:outputpanel>
+    
+   
+       <apex:outputpanel id="tableID3">
+      <apex:outputpanel rendered="{!checkIspezioni}">   
+     <apex:pageBlockTable value="{!ispezioniPagina}" var="isp" >
+    <apex:column headerValue="Ispezione">
+    	<apex:outputLink value="/{!isp.Id}">{!isp.name}</apex:outputLink>
+   	</apex:column>
+       <apex:column value="{!isp.CQS_ISP_Progetto__c}"/>
+       <apex:column value="{!isp.CQS_ISP_LDO__c}"/>
+       <apex:column value="{!isp.OF_CQS_Impresa_Mandataria__c}"/>
+       <apex:column value="{!isp.OF_CQS_Impresa_Ispezionata__c}"/>
+       <apex:column value="{!isp.OF_CQS_Data_Ispezione__c}"/>
+       <apex:column value="{!isp.CQS_ISP_Perc_Tot_Punt__c}"/>
+      
+       
+    </apex:pageBlockTable>      
+    </apex:outputpanel>
+     </apex:outputpanel>
+    
+    
+     
+     <apex:outputpanel id="buttonid" >  
+     <apex:outputpanel rendered="{!checkButton}">
+       <center>  
+       <apex:panelGrid columns="5">  
+         <apex:commandButton style="background:none!important;border:none;padding:0!important;cursor:pointer;" value="◄◄" reRender="tableID2,tableID3,buttonid" action="{!first}"/>  
+         <apex:commandButton style="background:none!important;border:none;padding:0!important;cursor:pointer;" value="◄ indietro" reRender="tableID2,tableID3,buttonid" action="{!previous}" disabled="{!!hasPrevious}"/>  
+         <apex:outputLabel value="{!intPageNumber} of {!intNumberofPages}" /> 
+         <apex:commandButton style="background:none!important;border:none;padding:0!important;cursor:pointer;" value="avanti ►" reRender="tableID2,tableID3,buttonid" action="{!next}" disabled="{!!hasNext}"/>  
+         <apex:commandButton style="background:none!important;border:none;padding:0!important;cursor:pointer;" value="►►" reRender="tableID2,tableID3,buttonid" action="{!last}"/>  
+       </apex:panelGrid>  
+       </center>  
+     </apex:outputpanel>  
+     </apex:outputpanel>
+      </apex:pageBlock>                              
+    </apex:form>
+</apex:page>

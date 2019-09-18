@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Commercial element</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Commercial elements</value>
+    </caseValues>
+    <fields>
+        <label><!-- ID Prod --></label>
+        <name>ID_Prod__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Alias --></label>
+        <name>OF_Alias__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attivo --></label>
+        <name>OF_Attivo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Catalogo commerciale --></label>
+        <name>OF_CatalogoCommerciale__c</name>
+    </fields>
+    <fields>
+        <label><!-- Commercial Element Code --></label>
+        <name>OF_Commercial_Element_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data fine validità --></label>
+        <name>OF_DataFineValidita__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data inizio validità --></label>
+        <name>OF_DataInizioValidita__c</name>
+    </fields>
+    <fields>
+        <label><!-- Servizio --></label>
+        <name>OF_Servizio__c</name>
+        <relationshipLabel><!-- Commercial elements --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Commercial element Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- La data di fine validità non è compresa tra le date di validità del Servizio --></errorMessage>
+        <name>OF_DataFineValidita</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- La data di inizio validità non è compresa tra le date di validità del Servizio --></errorMessage>
+        <name>OF_DataInizioValidita</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- La data di fine validità non può essere minore della data di inizio validità --></errorMessage>
+        <name>OF_ValiditaDataCommercialElement</name>
+    </validationRules>
+</CustomObjectTranslation>

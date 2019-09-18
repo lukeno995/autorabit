@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>OF_Attivo__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Attivo</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>OF_Billing_Element_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Billing Element Code</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CatalogoCommerciale__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot; &amp; OF_CommercialElement__r.OF_Servizio__r.OF_CatalogoCommerciale__c, OF_CommercialElement__r.OF_Servizio__r.OF_CatalogoCommerciale__r.Name)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Catalogo commerciale</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CommercialElement__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Commercial element</label>
+        <referenceTo>OF_CommercialElement__c</referenceTo>
+        <relationshipLabel>Billing elements</relationshipLabel>
+        <relationshipName>BillingElements</relationshipName>
+        <required>true</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OF_DataFineValidita__c</fullName>
+        <externalId>false</externalId>
+        <label>Data fine validità</label>
+        <required>true</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>OF_DataInizioValidita__c</fullName>
+        <externalId>false</externalId>
+        <label>Data inizio validità</label>
+        <required>true</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>OF_Servizio__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot; &amp; OF_CommercialElement__r.OF_Servizio__c, OF_CommercialElement__r.OF_Servizio__r.Name)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Servizio</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Billing element</label>
+    <nameField>
+        <label>Billing element Name</label>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Billing elements</pluralLabel>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>OF_CommercialElement__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>OF_Servizio__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>OF_CatalogoCommerciale__c</lookupDialogsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>OF_DataFineValidita</fullName>
+        <active>true</active>
+        <errorConditionFormula>OR(OF_DataFineValidita__c &lt; OF_CommercialElement__r.OF_DataInizioValidita__c, OF_DataFineValidita__c &gt; OF_CommercialElement__r.OF_DataFineValidita__c )</errorConditionFormula>
+        <errorMessage>La data di fine validità non è compresa tra le date di validità del Commercial Element</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>OF_DataInizioValidita</fullName>
+        <active>true</active>
+        <errorConditionFormula>OR(OF_DataInizioValidita__c &lt; OF_CommercialElement__r.OF_DataInizioValidita__c, OF_DataInizioValidita__c &gt; OF_CommercialElement__r.OF_DataFineValidita__c )</errorConditionFormula>
+        <errorMessage>La data di inizio validità non è compresa tra le date di validità del Commercial Element</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>OF_ValiditaDataBillingElement</fullName>
+        <active>true</active>
+        <errorConditionFormula>OF_DataFineValidita__c &lt; OF_DataInizioValidita__c</errorConditionFormula>
+        <errorMessage>La data di fine validità non può essere minore della data di inizio validità</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

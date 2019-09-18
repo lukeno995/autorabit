@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Verticali</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Verticali</value>
+    </caseValues>
+    <fields>
+        <label><!-- EmailAdmin --></label>
+        <name>EmailAdmin__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email_CC --></label>
+        <name>Email_CC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email --></label>
+        <name>Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email_from --></label>
+        <name>Email_from__c</name>
+    </fields>
+    <fields>
+        <label><!-- RecorTypesList --></label>
+        <name>RecorTypesList__c</name>
+    </fields>
+    <fields>
+        <label><!-- RecordTypesAssets --></label>
+        <name>RecordTypesAssets__c</name>
+    </fields>
+    <fields>
+        <label><!-- ServiceList --></label>
+        <name>ServiceList__c</name>
+    </fields>
+    <fields>
+        <label><!-- TextBody2 --></label>
+        <name>TextBody2__c</name>
+    </fields>
+    <fields>
+        <label><!-- TextBody --></label>
+        <name>TextBody__c</name>
+    </fields>
+    <fields>
+        <label><!-- attachLimit --></label>
+        <name>attachLimit__c</name>
+    </fields>
+    <fields>
+        <help><!-- Definisce quanti batch del billing che inviano le notifiche devono stare in esecuzione contemporaneamente --></help>
+        <label><!-- callWsBillingBatchSize --></label>
+        <name>callWsBillingBatchSize__c</name>
+    </fields>
+    <fields>
+        <help><!-- limit usato nello start del batch di creazione notifiche per il billing --></help>
+        <label><!-- createNotifyBatchLimit --></label>
+        <name>createNotifyBatchLimit__c</name>
+    </fields>
+    <fields>
+        <label><!-- delayAlgoritmo --></label>
+        <name>delayAlgoritmo__c</name>
+    </fields>
+    <fields>
+        <label><!-- delayBonifica --></label>
+        <name>delayBonifica__c</name>
+    </fields>
+    <fields>
+        <label><!-- emailSubject --></label>
+        <name>emailSubject__c</name>
+    </fields>
+    <fields>
+        <label><!-- giorniTolleranza --></label>
+        <name>giorniTolleranza__c</name>
+    </fields>
+    <fields>
+        <label><!-- limitBatch --></label>
+        <name>limitBatch__c</name>
+    </fields>
+    <fields>
+        <label><!-- step1ScopeSize --></label>
+        <name>step1ScopeSize__c</name>
+    </fields>
+    <fields>
+        <label><!-- step3ScopeSize --></label>
+        <name>step3ScopeSize__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

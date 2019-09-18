@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>OF_AreaGeografica__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Area geografica</label>
+        <referenceTo>OF_AreaGeograficaCustom__c</referenceTo>
+        <relationshipLabel>Area Geografica</relationshipLabel>
+        <relationshipName>Area_Geografica</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OF_Comune__c</fullName>
+        <externalId>false</externalId>
+        <label>Comune</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Contratto__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Contract</label>
+        <referenceTo>Contract</referenceTo>
+        <relationshipLabel>Contratto Aree Geografiche</relationshipLabel>
+        <relationshipName>AreaGeograficaJunction</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OF_Provincia__c</fullName>
+        <externalId>false</externalId>
+        <label>Provincia</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_Regione__c</fullName>
+        <externalId>false</externalId>
+        <label>Regione</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Servizio__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Servizio</label>
+        <referenceTo>OF_Servizio__c</referenceTo>
+        <relationshipLabel>Aree Geografiche Junction</relationshipLabel>
+        <relationshipName>Aree_Geografiche_Junction</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Contratto Area Geografica</label>
+    <nameField>
+        <label>ISTAT</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Aree Geografiche Junction</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>OF_Regione__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OF_Provincia__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OF_Comune__c</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Area_geografica</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Nuova Area Geografica CSV</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;soap/ajax/38.0/connection.js&quot;)} 
+
+
+if( &apos;{!Contract.OF_EsistenzaServizio__c}&apos; == false) { 
+alert (&quot;Mancanza Servizi associati al Contratto.\n&quot;); 
+}else{ 
+
+window.location.href = &quot;/apex/OF_CSVImportPage?id={!Contract.Id}&quot;
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Nuova_Area_Geografica</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Nuova Area Geografica</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;soap/ajax/38.0/connection.js&quot;)} 
+
+
+if( &apos;{!Contract.OF_EsistenzaServizio__c}&apos; == false) {
+alert (&quot;Mancanza Servizi associati al Contratto.\n&quot;);
+}else{
+
+window.location.href = &quot;/apex/OF_AreaGeograficaPicklist?id={!Contract.Id}&amp;RetUrl={!Contract.Id}&quot;;
+
+}</url>
+    </webLinks>
+</CustomObject>

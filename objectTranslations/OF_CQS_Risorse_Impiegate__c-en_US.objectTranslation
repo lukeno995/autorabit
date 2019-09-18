@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Risorse Impiegate</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Risorse Impiegate</value>
+    </caseValues>
+    <fields>
+        <label><!-- Lettera D&apos;Ordine --></label>
+        <name>CQS_RI_LDO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data --></label>
+        <name>CQS_RisImp_DataFormula__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data --></label>
+        <name>CQS_RisImp_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE altre attività --></label>
+        <name>CQS_RisImp_FTE_altre_attivita2__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE altre attività --></label>
+        <name>CQS_RisImp_FTE_altre_attivita3__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE altre attività --></label>
+        <name>CQS_RisImp_FTE_altre_attivita4__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE altre attività --></label>
+        <name>CQS_RisImp_FTE_altre_attivita5__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE altre attività --></label>
+        <name>CQS_RisImp_FTE_altre_attivita__c</name>
+    </fields>
+    <fields>
+        <label><!-- Progressivo FTE effettive Mensile --></label>
+        <name>CQS_RisImp_FTE_effettive__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE lavori ottici di posa cavo --></label>
+        <name>CQS_RisImp_FTE_lavoriOttici_posacavo2__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE lavori ottici di posa cavo --></label>
+        <name>CQS_RisImp_FTE_lavoriOttici_posacavo3__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE lavori ottici di posa cavo --></label>
+        <name>CQS_RisImp_FTE_lavoriOttici_posacavo4__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE lavori ottici di posa cavo --></label>
+        <name>CQS_RisImp_FTE_lavoriOttici_posacavo5__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE lavori ottici di posa cavo --></label>
+        <name>CQS_RisImp_FTE_lavoriOttici_posacavo__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE lavori civili --></label>
+        <name>CQS_RisImp_FTE_lavori_civili2__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE lavori civili --></label>
+        <name>CQS_RisImp_FTE_lavori_civili3__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE lavori civili --></label>
+        <name>CQS_RisImp_FTE_lavori_civili4__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE lavori civili --></label>
+        <name>CQS_RisImp_FTE_lavori_civili5__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE lavori civili --></label>
+        <name>CQS_RisImp_FTE_lavori_civili__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE lavori delivery/verticali/adduzioni --></label>
+        <name>CQS_RisImp_FTE_ldelivery_vertadd2__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE lavori delivery/verticali/adduzioni --></label>
+        <name>CQS_RisImp_FTE_ldelivery_vertadd3__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE lavori delivery/verticali/adduzioni --></label>
+        <name>CQS_RisImp_FTE_ldelivery_vertadd4__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE lavori delivery/verticali/adduzioni --></label>
+        <name>CQS_RisImp_FTE_ldelivery_vertadd5__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE lavori delivery/verticali/adduzioni --></label>
+        <name>CQS_RisImp_FTE_ldelivery_vertadd__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE lavori ottici giunzione e collaudo --></label>
+        <name>CQS_RisImp_FTElavori_ottici_giunzcoll2__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE lavori ottici giunzione e collaudo --></label>
+        <name>CQS_RisImp_FTElavori_ottici_giunzcoll3__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE lavori ottici giunzione e collaudo --></label>
+        <name>CQS_RisImp_FTElavori_ottici_giunzcoll4__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE lavori ottici giunzione e collaudo --></label>
+        <name>CQS_RisImp_FTElavori_ottici_giunzcoll5__c</name>
+    </fields>
+    <fields>
+        <label><!-- FTE lavori ottici giunzione e collaudo --></label>
+        <name>CQS_RisImp_FTElavori_ottici_giunzcoll__c</name>
+    </fields>
+    <fields>
+        <label><!-- Impresa Mandataria --></label>
+        <name>CQS_RisImp_Impresa_Mandataria__c</name>
+        <relationshipLabel><!-- Risorse Impiegate (Impresa Mandataria) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Mese Anno Riferimento --></label>
+        <name>CQS_RisImp_MeseAnno_Riferimento_Formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- N° Settimana dell&apos;anno --></label>
+        <name>CQS_RisImp_NsettAnno__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pianificato Settimanale Contrattista 1 --></label>
+        <name>CQS_RisImp_Pian_Sett_Contrattista1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pianificato Settimanale Contrattista 2 --></label>
+        <name>CQS_RisImp_Pian_Sett_Contrattista2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pianificato Settimanale Contrattista 3 --></label>
+        <name>CQS_RisImp_Pian_Sett_Contrattista3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pianificato Settimanale Contrattista 4 --></label>
+        <name>CQS_RisImp_Pian_Sett_Contrattista4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pianificato Settimanale Contrattista 5 --></label>
+        <name>CQS_RisImp_Pian_Sett_Contrattista5__c</name>
+    </fields>
+    <fields>
+        <label><!-- Progetto --></label>
+        <name>CQS_RisImp_Progetto__c</name>
+        <relationshipLabel><!-- Risorse Impiegate --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Progressivo Settimanale Contrattista 1 --></label>
+        <name>CQS_RisImp_ProgrSett_Contrattista1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Progressivo Settimanale Contrattista 2 --></label>
+        <name>CQS_RisImp_ProgrSett_Contrattista2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Progressivo Settimanale Contrattista 3 --></label>
+        <name>CQS_RisImp_ProgrSett_Contrattista3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Progressivo Settimanale Contrattista 4 --></label>
+        <name>CQS_RisImp_ProgrSett_Contrattista4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Progressivo Settimanale Contrattista 5 --></label>
+        <name>CQS_RisImp_ProgrSett_Contrattista5__c</name>
+    </fields>
+    <fields>
+        <label><!-- Settimana di riferimento --></label>
+        <name>CQS_RisImp_Settimana_riferimento__c</name>
+    </fields>
+    <fields>
+        <label><!-- Somma FTE --></label>
+        <name>CQS_RisImp_Somma_FTE2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Somma FTE --></label>
+        <name>CQS_RisImp_Somma_FTE3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Somma FTE --></label>
+        <name>CQS_RisImp_Somma_FTE4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Somma FTE --></label>
+        <name>CQS_RisImp_Somma_FTE5__c</name>
+    </fields>
+    <fields>
+        <label><!-- Somma FTE Settimanale --></label>
+        <name>CQS_RisImp_Somma_FTE_Settimanale__c</name>
+    </fields>
+    <fields>
+        <label><!-- Somma FTE Mensile --></label>
+        <name>CQS_RisImp_Somma_FTE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Somma FTE Contrattista 1 --></label>
+        <name>CQS_RisImp_Somma_FTE_formula1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Somma FTE Contrattista 2 --></label>
+        <name>CQS_RisImp_Somma_FTE_formula2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Somma FTE Contrattista 3 --></label>
+        <name>CQS_RisImp_Somma_FTE_formula3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Somma FTE Contrattista 4 --></label>
+        <name>CQS_RisImp_Somma_FTE_formula4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Somma FTE Contrattista 5 --></label>
+        <name>CQS_RisImp_Somma_FTE_formula5__c</name>
+    </fields>
+    <fields>
+        <label><!-- Somma Mensile --></label>
+        <name>CQS_RisImp_Somma_Mensile__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipo Rapporto --></label>
+        <name>CQS_RisImp_TipoRapporto__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale FTE RTI giornaliero --></label>
+        <name>CQS_RisImp_Tot_FTE_RTI_giornaliero__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comune --></label>
+        <name>OF_CQS_Comune_Ris_Imp__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contrattista 1 --></label>
+        <name>OF_CQS_Contrattista_Lotto1__c</name>
+        <relationshipLabel><!-- Risorse Impiegate --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Contrattista 2 --></label>
+        <name>OF_CQS_Contrattista_Lotto2__c</name>
+        <relationshipLabel><!-- Risorse Impiegate Contrattiste --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Contrattista 3 --></label>
+        <name>OF_CQS_Contrattista_Lotto3__c</name>
+        <relationshipLabel><!-- Risorse Impiegate (Contrattista) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Contrattista 4 --></label>
+        <name>OF_CQS_Contrattista_Lotto4__c</name>
+        <relationshipLabel><!-- Risorse Impiegate (Contrattista Lotto 4) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Contrattista 5 --></label>
+        <name>OF_CQS_Contrattista_Lotto5__c</name>
+        <relationshipLabel><!-- Risorse Impiegate (Contrattista Lotto 5) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Indica l&apos;ultimo giorno del mese del periodo di riferimento --></help>
+        <label><!-- Mese di Riferimento (gg/mm/aaaa) --></label>
+        <name>OF_CQS_Mese_di_Riferimento__c</name>
+    </fields>
+    <fields>
+        <label><!-- N.B. --></label>
+        <name>OF_CQS_N_B_RISIMP__c</name>
+    </fields>
+    <fields>
+        <label><!-- N° Risorse --></label>
+        <name>OF_CQS_N_Risorse_Lotto1__c</name>
+    </fields>
+    <fields>
+        <label><!-- N° Risorse --></label>
+        <name>OF_CQS_N_Risorse_Lotto2__c</name>
+    </fields>
+    <fields>
+        <label><!-- N° Risorse --></label>
+        <name>OF_CQS_N_Risorse_Lotto3__c</name>
+    </fields>
+    <fields>
+        <label><!-- N° Risorse --></label>
+        <name>OF_CQS_N_Risorse_Lotto4__c</name>
+    </fields>
+    <fields>
+        <label><!-- N° Risorse Operative --></label>
+        <name>OF_CQS_N_Risorse_Operative_Lotto1__c</name>
+    </fields>
+    <fields>
+        <label><!-- N° Risorse Operative --></label>
+        <name>OF_CQS_N_Risorse_Operative_Lotto2__c</name>
+    </fields>
+    <fields>
+        <label><!-- N° Risorse Operative --></label>
+        <name>OF_CQS_N_Risorse_Operative_Lotto3__c</name>
+    </fields>
+    <fields>
+        <label><!-- N° Risorse Operative --></label>
+        <name>OF_CQS_N_Risorse_Operative_Lotto4__c</name>
+    </fields>
+    <fields>
+        <label><!-- N° Risorse --></label>
+        <name>OF_CQS_N_Risorse_Tecnici__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ore Mese Operative --></label>
+        <name>OF_CQS_Ore_Mese_Operative_Lotto1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ore Mese Operative --></label>
+        <name>OF_CQS_Ore_Mese_Operative_Lotto2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ore Mese Operative --></label>
+        <name>OF_CQS_Ore_Mese_Operative_Lotto3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ore Mese Operative --></label>
+        <name>OF_CQS_Ore_Mese_Operative_Lotto4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ore Mese Progettazione --></label>
+        <name>OF_CQS_Ore_Mese_Progettazione_Lotto1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ore Mese Progettazione --></label>
+        <name>OF_CQS_Ore_Mese_Progettazione_Lotto2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ore Mese Progettazione --></label>
+        <name>OF_CQS_Ore_Mese_Progettazione_Lotto3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ore Mese Progettazione --></label>
+        <name>OF_CQS_Ore_Mese_Progettazione_Lotto4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ore Mese --></label>
+        <name>OF_CQS_Ore_Mese_Tecnici__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ore Totale Mandataria --></label>
+        <name>OF_CQS_Ore_Totale_Mandataria_Lotto1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ore Totale Mandataria --></label>
+        <name>OF_CQS_Ore_Totale_Mandataria_Lotto3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ore Totale Mandataria --></label>
+        <name>OF_CQS_Ore_Totale_Mandataria_Lotto4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ore Totali Mese --></label>
+        <name>OF_CQS_Ore_Totali_Mese__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale --></label>
+        <name>OF_CQS_Totale_OreMese_x_Risorse_Tecnici__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale --></label>
+        <name>OF_CQS_Totale_Ore_X_Risorse_operative_L1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale --></label>
+        <name>OF_CQS_Totale_Ore_X_Risorse_operative_L2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale --></label>
+        <name>OF_CQS_Totale_Ore_X_Risorse_operative_L3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale --></label>
+        <name>OF_CQS_Totale_Ore_X_Risorse_operative_L4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ore Totale Mandataria --></label>
+        <name>Ore_Totale_Mandataria_Lotto2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale --></label>
+        <name>Totale_Progettazione_X_Risorse_Lotto1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale --></label>
+        <name>Totale_Progettazione_X_Risorse_Lotto2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale --></label>
+        <name>Totale_Progettazione_X_Risorse_Lotto3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale --></label>
+        <name>Totale_Progettazione_X_Risorse_Lotto4__c</name>
+    </fields>
+    <layouts>
+        <layout>Consuntivo Risorse Impiegate</layout>
+        <sections>
+            <label><!-- Affidataria --></label>
+            <section>Affidataria</section>
+        </sections>
+        <sections>
+            <label><!-- Città --></label>
+            <section>Città</section>
+        </sections>
+        <sections>
+            <label><!-- Contrattista 2 --></label>
+            <section>Contrattista 2</section>
+        </sections>
+        <sections>
+            <label><!-- Contrattista 3 --></label>
+            <section>Contrattista 3</section>
+        </sections>
+        <sections>
+            <label><!-- Contrattista 4 --></label>
+            <section>Contrattista 4</section>
+        </sections>
+        <sections>
+            <label><!-- Contrattista 5 --></label>
+            <section>Contrattista 5</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Responsabile Redazione Risorse Impiegate --></label>
+            <section>Responsabile Redazione Risorse Impiegate</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Pianificato Risorse Impiegate Settimanali</layout>
+        <sections>
+            <label><!-- Affidataria --></label>
+            <section>Affidataria</section>
+        </sections>
+        <sections>
+            <label><!-- Città --></label>
+            <section>Città</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Responsabile Redazione Risorse Impiegate --></label>
+            <section>Responsabile Redazione Risorse Impiegate</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Preventivo Risorse Impiegate Mensili</layout>
+        <sections>
+            <label><!-- Affidataria --></label>
+            <section>Affidataria</section>
+        </sections>
+        <sections>
+            <label><!-- Città --></label>
+            <section>Città</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Responsabile Redazione Risorse Impiegate --></label>
+            <section>Responsabile Redazione Risorse Impiegate</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Risorse Impiegate Layout</layout>
+        <sections>
+            <label><!-- Città --></label>
+            <section>Città</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Lotto 1 --></label>
+            <section>Lotto 1</section>
+        </sections>
+        <sections>
+            <label><!-- Lotto 2 --></label>
+            <section>Lotto 2</section>
+        </sections>
+        <sections>
+            <label><!-- Lotto 3 --></label>
+            <section>Lotto 3</section>
+        </sections>
+        <sections>
+            <label><!-- Lotto 4 --></label>
+            <section>Lotto 4</section>
+        </sections>
+        <sections>
+            <label><!-- Personale non dipendente OF (CSE, DL, Servizio PMO) --></label>
+            <section>Personale non dipendente OF (CSE, DL, Servizio PMO)</section>
+        </sections>
+        <sections>
+            <label><!-- Responsabile Redazione Risorse Impiegate --></label>
+            <section>Responsabile Redazione Risorse Impiegate</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Consuntivo Risorse Giornaliero --></label>
+        <name>Consuntivo_Risorse_Giornaliero</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Pianificato Risorse Mensile --></label>
+        <name>Pianificato_Risorse_Mensile</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Pianificato Risorse Settimanale --></label>
+        <name>Pianificato_Risorse_Settimanale</name>
+    </recordTypes>
+    <sharingReasons>
+        <label><!-- Progetto di competenza --></label>
+        <name>Progetto_di_competenza</name>
+    </sharingReasons>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Il Comune specificato risulta non valido. Verificare la correttezza dei caratteri inseriti e la gestione di Open Fiber del Comune indicato. --></errorMessage>
+        <name>CQS_Controllo_Comuni_Risorse_Impiegate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- il valore deve essere un numero --></errorMessage>
+        <name>FTE_NUMBER</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Attenzione! Hai provato ad inserire una pratica per una città che non è di tua competenza! --></errorMessage>
+        <name>No_Comune_Diverso_da_Perugia_su_Ris_Imp</name>
+    </validationRules>
+</CustomObjectTranslation>

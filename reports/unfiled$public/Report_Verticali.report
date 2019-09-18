@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>ReportVerticali__c$IDRisorsa__c</field>
+    </columns>
+    <columns>
+        <field>ReportVerticali__c$IDBuilding__c</field>
+    </columns>
+    <columns>
+        <field>ReportVerticali__c$ParticellaTop__c</field>
+    </columns>
+    <columns>
+        <field>ReportVerticali__c$Indirizzo__c</field>
+    </columns>
+    <columns>
+        <field>ReportVerticali__c$Civico__c</field>
+    </columns>
+    <columns>
+        <field>ReportVerticali__c$Comune__c</field>
+    </columns>
+    <format>Tabular</format>
+    <name>Report_Verticali</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Report_Verticali__c</reportType>
+    <scope>user</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>ReportVerticali__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>

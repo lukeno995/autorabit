@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Notifica Preliminare</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Notifiche Preliminari</value>
+    </caseValues>
+    <fields>
+        <help><!-- Inserisci qui le altre Imprese Esecutrici --></help>
+        <label><!-- Imprese Esecutrici --></label>
+        <name>OF_CQS_Altre_Imprese_Esecutrici__c</name>
+    </fields>
+    <fields>
+        <label><!-- Area di Riferimento --></label>
+        <name>OF_CQS_Area_di_Riferimento_NotiPrel__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comune --></label>
+        <name>OF_CQS_Comune__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Inserimento Notifica Preliminare --></label>
+        <name>OF_CQS_Data_Inserimento_Notifica_Prel__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Scadenza --></label>
+        <name>OF_CQS_Data_Scadenza__c</name>
+    </fields>
+    <fields>
+        <label><!-- Impresa Esecutrice --></label>
+        <name>OF_CQS_Impresa_Esecutrice__c</name>
+        <relationshipLabel><!-- Notifiche Preliminari (Impresa Esecutrice) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Impresa Mandataria --></label>
+        <name>OF_CQS_Impresa_Mandataria__c</name>
+        <relationshipLabel><!-- Notifiche Preliminari --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- N.B. --></label>
+        <name>OF_CQS_N_B_NotPre__c</name>
+    </fields>
+    <fields>
+        <label><!-- Numero Protocollo --></label>
+        <name>OF_CQS_Numero_Protocollo_NotiPre__c</name>
+    </fields>
+    <layouts>
+        <layout>Notifica Preliminare Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notifica Preliminare --></label>
+            <section>Notifica Preliminare</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

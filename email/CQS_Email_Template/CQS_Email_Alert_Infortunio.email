@@ -1,0 +1,17 @@
+Buongiorno, 
+
+è stato inserito il seguente infortunio: 
+
+Tipo di incidente: {!OF_CQS_Evento__c.RecordType} 
+
+Numero Incidente: {!OF_CQS_Evento__c.Name} 
+
+Impresa:  {!OF_CQS_Evento__c.OF_CQS_Impresa_Mandataria__c}
+
+Gravità Incidente: {!OF_CQS_Evento__c.OF_CQS_Indice_Gravita_Infortunio__c} 
+
+
+
+Cliccando sul seguente link si accede direttamente alla pagina dell'incidente inserito: {!OF_CQS_Evento__c.Link} 
+
+Please take charge of the practice

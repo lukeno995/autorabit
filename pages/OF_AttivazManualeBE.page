@@ -1,0 +1,37 @@
+<apex:page Controller="OF_AttivazManualeBEController">
+     <apex:form >
+        <apex:pageBlock mode="edit" title="Istanziazione Billing Element" id="theID">
+	        	
+            <apex:actionRegion >
+				<apex:pageBlockSection id="theSection" columns="1">
+	                 <apex:pageblockSectionItem >
+	                    <apex:outputLabel value="Billing Element"/>
+	                        <apex:selectList size="1" value="{!BEIst}">
+	                              <apex:selectoptions value="{!BE}"/>
+	                              <apex:actionSupport event="onchange" reRender="BE"/>
+	                        </apex:selectList>
+	                 </apex:pageblockSectionItem> 
+				</apex:pageBlockSection>
+            </apex:actionRegion>
+            
+         	<apex:outputpanel id="BE">
+            	<apex:pageBlockSection >
+	            	<apex:inputfield value="{!BEToInsert.isActive}"  label="Attivo" required="true">
+                    </apex:inputfield>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection columns="1">
+                    <apex:inputfield value="{!BEToInsert.OF_DataAttivazione2__c}"  label="Data Attivazione" required="true" />
+	            	<apex:inputfield value="{!BEToInsert.OF_DataCessazione2__c}"  label="Data Cessazione"/>  
+            	</apex:pageBlockSection>
+			</apex:outputpanel>
+			
+			<apex:pageBlockButtons location="bottom">
+                <apex:commandButton action="{!save}" value="Salva" disabled="{!savecheck}"/>
+				<apex:commandButton action="{!toReturn}" value="Ritorna all'asset" immediate="TRUE"/>
+        	</apex:pageBlockButtons>	
+            
+			<apex:pageMessages /> 
+			
+		</apex:pageBlock>
+    </apex:form>
+</apex:page>

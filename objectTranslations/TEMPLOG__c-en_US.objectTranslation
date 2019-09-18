@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>TEMPLOG</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>TEMPLOG</value>
+    </caseValues>
+    <fields>
+        <label><!-- Attraversamento --></label>
+        <name>Attraversamento__c</name>
+    </fields>
+    <fields>
+        <label><!-- Class --></label>
+        <name>Class__c</name>
+    </fields>
+    <fields>
+        <label><!-- DataInserimento --></label>
+        <name>DataInserimento__c</name>
+    </fields>
+    <fields>
+        <label><!-- Desc --></label>
+        <name>Desc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Method --></label>
+        <name>Method__c</name>
+    </fields>
+    <fields>
+        <label><!-- CPU Time Limit --></label>
+        <name>OF_CPU_Time_Limit__c</name>
+    </fields>
+    <fields>
+        <label><!-- CPU Time --></label>
+        <name>OF_CPU_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tentativi --></label>
+        <name>OF_Tentativi__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Ordine OLO --></label>
+        <name>TL_codice_ordine_olo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tempi Parziali --></label>
+        <name>Tempi_Parziali__c</name>
+    </fields>
+    <fields>
+        <label><!-- Timestamp --></label>
+        <name>Timestamp__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipo_Comunicazione_String --></label>
+        <name>Tipo_Comunicazione_String__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipo_Comunicazione --></label>
+        <name>Tipo_Comunicazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- TypeTrigger --></label>
+        <name>TypeTrigger__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+    </fields>
+    <layouts>
+        <layout>TEMPLOG Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- CancellaLog --></label>
+        <name>CancellaLog</name>
+    </webLinks>
+</CustomObjectTranslation>

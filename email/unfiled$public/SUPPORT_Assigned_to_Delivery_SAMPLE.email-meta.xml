@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Auto-response when the case was assigned to Delivery Queue.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>SUPPORT: Assigned to Delivery (SAMPLE)</name>
+    <style>none</style>
+    <subject>Case #{!Case.CaseNumber} Social Delivery</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

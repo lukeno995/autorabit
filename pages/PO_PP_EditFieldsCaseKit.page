@@ -1,0 +1,146 @@
+<apex:page showHeader="true" sidebar="true" standardController="Case" extensions="PO_PP_EditFieldsCaseKit" docType="html-5.0" >
+    <html lang="it">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+	        <apex:slds />
+            <!-- /#wrapper -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+            <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>   
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <style>
+                .red{color:red;}
+                .form-check-input{ 
+                    margin-left: 45px !important;
+                    margin-top: 10px;
+                }
+            </style>
+        </head>
+    <body>
+    <apex:form id="theForm">
+    <apex:pageBlock id="thePageBlock">
+        <div class="slds-section slds-is-open">
+            <h3 class="slds-section__title slds-theme_shade">
+                <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Modifica Dati</span>
+            </h3>
+        <div class="slds-form slds-form_horizontal">
+            <div class="slds-form-element" >
+                <label class="slds-form-element__label" for="nomeKit">Nome KIT :</label>
+                
+                <div class="slds-form-element__control">
+                    <apex:inputText id="nomeKit" styleClass="slds-input" value="{!caseKit.PO_PP_NomeKit__c}" style="width:50%;" />
+                     <div class="red"> Nome kit è lo stesso che risulta su PNI </div>
+                </div>
+               
+            </div>
+            <!-- ODF -->
+            <div class="slds-form-element" >
+                <label class="slds-form-element__label" for="nomeKit">Posizione ODF :</label>
+                <div class="slds-form-element__control">
+                    <apex:inputText id="odf" styleClass="slds-input" value="{!caseKit.PO_PP_Posizione_ODF__c}" style="width:50%;" />
+                </div>
+            </div>
+            <!-- fine odf -->
+            
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="pop">POP di consegna :</label>
+                <div class="slds-form-element__control">
+                    <apex:inputText id="pop" styleClass="slds-input" value="{!caseKit.PO_PP_POP__c}" style="width:50%;" />
+                </div>
+            </div>
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="banda">Banda :</label>
+                <div class="slds-form-element__control">
+                    <apex:inputText id="banda" styleClass="slds-input" value="{!caseKit.PO_PP_Banda__c}" style="width:50%;" />
+                </div>
+            </div>
+            <div class="slds-form-element">                                                        
+                <label class="slds-form-element__label">Interfaccia :</label>                                                    
+                    <apex:selectList id="interfaccia" size="1" value="{!caseKit.PO_PP_Interfaccia_Kit__c}" styleClass="slds-select" 
+                        style="width:10%; margin-right: 605px;">
+                        <apex:selectOptions value="{!elencoInterfacce}" />		
+                    </apex:selectList>
+            </div>
+            <div class="slds-form-element">                                                        
+                <label class="slds-form-element__label">Servizio Commerciale :</label> 
+                    <apex:selectList id="servizio_commerciale" size="1" value="{!caseKit.PO_PP_Traffico__c}" styleClass="slds-select" 
+                        style="width:33%; margin-right: 356px;">
+                        <apex:selectOptions value="{!elencoTraffico}" />		
+                    </apex:selectList>
+            </div>
+            <br/>
+            <div class="slds-form-element" style="margin-right: 565px;">
+                <apex:outputPanel >                                                          
+                    <apex:commandLink id="updateDati" styleClass="slds-button slds-button--brand" style="margin-right:10px;" 
+                        value="Aggiorna dati" onclick="validateform(); return false;" />
+                        <apex:actionFunction action="{!aggiornaDati}" name="updateCase" />
+                    <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:5px;" value="Annulla" action="{!annulla}" /> 
+                </apex:outputPanel>
+            </div>         
+        </div>    
+        </div>
+        <!-- FINE - Sezione Modifica -->
+    	</apex:pageBlock>
+	</apex:form>
+	
+	<script type='text/javascript'>
+	    
+    function validateform()
+    {
+        var nome = $('[id$=nomeKit]').val();
+        var pop = $('[id$=pop]').val();
+        var odf = $('[id$=odf]').val();
+        var banda = $('[id$=banda]').val();
+        var interfaccia = $('[id$=interfaccia]').val();
+        var servizio_commerciale = $('[id$=servizio_commerciale]').val();
+        var check = true;
+    
+        if(nome.length == 0)
+        {
+            $('[id$=nomeKit]').next('div.red').remove();
+            $('[id$=nomeKit]').after('<div class="red">Campo obbligatorio - Nome kit è lo stesso che risulta su PNI</div>');
+            check = false;
+        }
+        else
+            $('[id$=nomeKit]').next('div.red').remove();
+    
+    
+         if(odf.length == 0)
+        {
+            $('[id$=odf]').next('div.red').remove();
+            $('[id$=odf]').after('<div class="red">Campo obbligatorio</div>');
+            check = false;
+        }
+        else
+            $('[id$=odf]').next('div.red').remove();
+            
+    
+        if(pop.length == 0)
+        {
+            $('[id$=pop]').next('div.red').remove();
+            $('[id$=pop]').after('<div class="red">Campo obbligatorio</div>');
+            check = false;
+        }
+        else
+            $('[id$=pop]').next('div.red').remove();
+        
+        if(banda.length == 0)
+        {
+            $('[id$=banda]').next('div.red').remove();
+            $('[id$=banda]').after('<div class="red">Campo obbligatorio</div>');
+            check = false;
+        }
+        else
+            $('[id$=banda]').next('div.red').remove();
+            
+        if(check==true)
+    	    updateCase();
+    }    
+	</script>
+	</body>
+	</html>
+</apex:page>

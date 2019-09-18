@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Amministratore</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Amministratori</value>
+    </caseValues>
+    <fields>
+        <label><!-- Albo Amministratore --></label>
+        <name>CA_Albo_Amministratore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Città --></label>
+        <name>CA_Citt__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Fiscale --></label>
+        <name>CA_Codice_Fiscale__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email Amministratore --></label>
+        <name>CA_Email_Amministratore__c</name>
+    </fields>
+    <fields>
+        <label><!-- CA External ID --></label>
+        <name>CA_External_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID_Building/Scala --></label>
+        <name>CA_ID_Building_Scala__c</name>
+    </fields>
+    <fields>
+        <label><!-- Indirizzo Amministratore --></label>
+        <name>CA_Indirizzo_Amministratore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nome Amministratore --></label>
+        <name>CA_Nome_Amministratore__c</name>
+    </fields>
+    <fields>
+        <label><!-- P.IVA --></label>
+        <name>CA_P_IVA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Telefono Amministratore --></label>
+        <name>CA_Telefono_Amministratore__c</name>
+    </fields>
+    <layouts>
+        <layout>Amministratore Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Amministratore --></label>
+            <section>Informazioni Amministratore</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- Attenzione!
+Non è possibile modificare i dati anagrafici dell&apos;amministratore  &quot;NO_AMMINISTRATORE&quot;.
+E&apos; necessario aggiungere un nuovo amministratore. --></errorMessage>
+        <name>CA_update_no_amministratore</name>
+    </validationRules>
+</CustomObjectTranslation>

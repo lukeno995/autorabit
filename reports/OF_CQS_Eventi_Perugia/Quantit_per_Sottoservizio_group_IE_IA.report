@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>OF_CQS_Evento__c.Sottoservizio__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>OF_CQS_Evento__c.OF_CQS_Comune_Text__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>PERUGIA</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>OF_CQS_Evento__c.OF_CQS_Tipo_di_Evento__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Interferenza a Sotto-servizi</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>OF_CQS_Evento__c.OF_CQS_Impresa_Mandataria__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>OF_CQS_Evento__c.OF_CQS_Impresa_Esecutrice_Eventi__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Quantità per Sottoservizio group IE_IA</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$OF_CQS_Evento__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>OF_CQS_Evento__c.OF_CQS_Data_Apertura_Pratica__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

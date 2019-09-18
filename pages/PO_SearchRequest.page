@@ -1,0 +1,1445 @@
+<apex:page id="pageid" standardController="Case" extensions="PO_RegistrationController" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+    <html lang="en">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <!-- /#wrapper -->
+              
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS --> 
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.SBOT,'SBOT/scrollbootstrap/scrollingnav/css/scrollingnav.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <apex:includeScript value="{!URLFOR($Resource.moment, 'moment-develop/min/moment-with-locales.min.js')}"/>
+            
+             <apex:includeScript value="{!URLFOR($Resource.daterangepicker, '/moment.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.daterangepicker, '/daterangepicker.js')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.daterangepicker, '/daterangepicker.css')}" />
+             <script src='https://www.google.com/recaptcha/api.js'></script>
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                .about-section {
+                background: #fff;
+                position: relative;
+                height: auto;
+                }
+                .services-section{
+                position: relative;
+                height: auto;
+                }
+                .contact-section {
+                background: #fff;
+                position: relative;
+                height: 100%;
+                }
+                
+            </style>
+        </head>
+        <body>
+            <apex:form id="formid">
+                
+                <div id="wrapper">
+                    <apex:pageMessages id="errors" />
+                    <!-- Navigation -->
+                    
+                    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;">
+                        <c:POHeaderComp />
+                        
+                        <div class="navbar-default sidebar" role="navigation">
+                            <div class="sidebar-nav navbar-collapse">
+                                <ul class="nav" id="side-menu" style="padding-left: 10px;">
+                                    
+                                    <apex:outputPanel >
+                                        <table width="100%" border="0">
+                                            <tr>  
+                                                <td width="200" valign="top" style = "Color:#337ab7;">
+                                                    
+                                                    <apex:pageBlock mode="edit" id="criteria">
+                                                        
+                                                        <script type="text/javascript">
+                                                        function doSearch() {
+                                                               searchServer(
+                                                                DataInizioCreazione,
+                                                                DataFineCreazione,
+                                                                document.getElementById("CaseNumber").value,
+                                                                 document.getElementById('{!$Component.pageid:formid:criteria:Status}').options[document.getElementById('{!$Component.pageid:formid:criteria:Status}').selectedIndex].value,
+                                                                 // document.getElementById("Status").value,
+                                                                //document.getElementById("Datefrom").value,
+                                                                //document.getElementById("Dateto").value,
+                                                                document.getElementById("Commune").value,
+                                                                document.getElementById("Indirizzo1").value,
+                                                                document.getElementById("Nome").value,
+                                                                document.getElementById("Tipodicollegamento").value,
+                                                                document.getElementById("PrimeContractor").value,
+                                                                 document.getElementById("Offerta").value,
+                                                                  //  document.getElementById("tipodi").value,
+                                                                document.getElementById('{!$Component.pageid:formid:criteria:tipodi1}').options[document.getElementById('{!$Component.pageid:formid:criteria:tipodi1}').selectedIndex].value
+                                                            );
+                                                        }
+                                                        </script> 
+                                                           <script type="text/javascript">
+                                                        function OffertaSelect() {
+                                                               OffertaSelect(
+                                                                document.getElementById("Offerta").value
+                                                                
+                                                            );
+                                                        }
+                                                        </script> 
+                                                        <script type="text/javascript">
+                                                        function doSearch1() {
+                                                            searchServer1(
+                                                               DataInizioCreazione,
+                                                               DataFineCreazione,
+                                                                document.getElementById("CaseNumber").value,
+                                                                document.getElementById('{!$Component.pageid:formid:criteria:Status}').options[document.getElementById('{!$Component.pageid:formid:criteria:Status}').selectedIndex].value,
+                                                                //document.getElementById("Status").value,
+                                                                //document.getElementById("Datefrom").value,
+                                                                //document.getElementById("Dateto").value,
+                                                                document.getElementById("Commune").value,
+                                                                document.getElementById("Indirizzo1").value,
+                                                                document.getElementById("Nome").value,
+                                                                document.getElementById("Tipodicollegamento").value,
+                                                                document.getElementById("PrimeContractor").value,
+                                                                document.getElementById("Offerta").value,
+                                                                document.getElementById('{!$Component.pageid:formid:criteria:tipodi1}').options[document.getElementById('{!$Component.pageid:formid:criteria:tipodi1}').selectedIndex].value
+                                                            );
+                                                        }
+                                                        </script> 
+                                                        <!-- Open Stream JS Method Call-->
+                                                        <script type="text/javascript">
+                                                        function doSearchOpenStream() {
+                                                            debugger;
+                                                            //PopPic();
+                                                            searchServerOpenStream(
+                                                                DataInizioFilter,
+                                                                DataFineFilter,
+                                                                DataInizioOStream,
+                                                                DataFineOstream,
+                                                                document.getElementById("Codice").value,
+                                                                document.getElementById("TipoRichiesta").value,
+                                                                //document.getElementById('{!$Component.pageid:formid:criteria:StatoRichiesta}').options[document.getElementById('{!$Component.pageid:formid:criteria:StatoRichiesta}').selectedIndex].value,
+                                                                document.getElementById("StatoRichiesta").value,
+                                                                document.getElementById('{!$Component.pageid:formid:criteria:idPop}').options[document.getElementById('{!$Component.pageid:formid:criteria:idPop}').selectedIndex].value,
+                                                               // document.getElementById("idPop").value,
+                                                                document.getElementById("idRisorsa").value
+                                                            );
+                                                        }
+                                                        </script> 
+                                                        
+                                                         <!-- TroubleTicket JS Method Call-->
+                                                         <script type="text/javascript">
+                                                        function doSearchTroubleTicket(){
+                                                            searchServerTroubleTicket(
+                                                                DataInizioTT,
+                                                                DataFineTT,
+                                                                document.getElementById("Comunicazione").value,
+                                                                document.getElementById('{!$Component.pageid:formid:criteria:Causale}').options[document.getElementById('{!$Component.pageid:formid:criteria:Causale}').selectedIndex].value,
+                                                                document.getElementById('{!$Component.pageid:formid:criteria:Stato}').options[document.getElementById('{!$Component.pageid:formid:criteria:Stato}').selectedIndex].value
+                                                            );
+                                                        }
+
+                                                        //PG - START - 9/04 - TICKET PROVISIONING JS Method Call
+                                                        function doSearchTicketProv(){
+                                                            searchServerTicketProv(
+                                                                DataInizioTP,
+                                                                DataFineTP,
+                                                                //document.getElementById("codice_ordine").value,
+
+                                                                document.getElementById('{!$Component.pageid:formid:criteria:causale_apertura}').options[document.getElementById('{!$Component.pageid:formid:criteria:causale_apertura}').selectedIndex].value,
+                                                                document.getElementById('{!$Component.pageid:formid:criteria:descr_causale}').options[document.getElementById('{!$Component.pageid:formid:criteria:descr_causale}').selectedIndex].value,
+                                                                document.getElementById("codice_ordine").value,
+                                                                document.getElementById('{!$Component.pageid:formid:criteria:stato_ordine}').options[document.getElementById('{!$Component.pageid:formid:criteria:stato_ordine}').selectedIndex].value,
+                                                                document.getElementById("escalation").checked     
+                                                            );
+                                                        }
+                                                        //PG - END - 9/04 - TICKET PROVISIONING JS Method Call
+                                                        </script>
+                                                        <!-- PG - START - ACTION FUNCTION - TICKET PROVISIONING -->
+                                                        <apex:actionFunction name="searchServerTicketProv" 
+                                                        action="{!runSearchTicketProv}" oncomplete="init()" 
+                                                        rerender="ResTable,Result1,Result,tableOpen,ResultTroubleTicket,result_TP, result_Inc_Man, tableTP, tableIncMan">
+                                                            <apex:param name="DataInizioTP" value="" />
+                                                            <apex:param name="DataFineTP" value="" />
+                                                            <apex:param name="causale_apertura" value="" />
+                                                            <apex:param name="descr_causale" value="" />
+                                                            <apex:param name="codice_ordine" value="" />
+                                                            <apex:param name="stato_ordine" value="" />
+                                                            <apex:param name="escalation" value="" />
+                                                        </apex:actionFunction>  
+                                                        <!-- PG - END - ACTION FUNCTION - TICKET PROVISIONING -->
+
+                                                         <apex:actionFunction name="searchServerTroubleTicket" action="{!runSearchTroubleTicket}" 
+                                                         rerender="ResTable,Result1,Result,tableOpen,ResultTroubleTicket,result_TP, result_Inc_Man, tableTP, tableIncMan" 
+                                                         oncomplete="init()" >
+                                                             <apex:param name="DataInizioTT" value="" />
+                                                             <apex:param name="DataFineTT" value="" />
+                                                             <apex:param name="Comunicazione" value="" />
+                                                             <apex:param name="Causale" value="" />
+                                                             <apex:param name="Stato" value="" />
+                                                        </apex:actionFunction>   
+                                                        
+                                                          <apex:actionFunction name="searchServerOpenStream" action="{!runSearchOpenStream}" 
+                                                          rerender="ResTable,Result1,Result,tableOpen,ResultTroubleTicket,result_TP, result_Inc_Man, tableTP, tableIncMan"
+                                                          oncomplete="init()" >
+                                                             <apex:param name="DataInizioFilter" value="" />
+                                                             <apex:param name="DataFineFilter" value="" />
+                                                             <apex:param name="DataInizioOStream" value="" />
+                                                             <apex:param name="DataFineOstream" value="" />
+                                                            <apex:param name="Codice" value="" />
+                                                            <apex:param name="TipoRichiesta" value="" />
+                                                            <apex:param name="StatoRichiesta" value="" />
+                                                            <apex:param name="idPop" value="" />
+                                                            <apex:param name="idRisorsa" value="" />
+                                                        </apex:actionFunction>
+                                                        
+                                                        <apex:actionFunction name="searchServer1" action="{!runSearch}" rerender="ResTable,Result,result1,tipodi1,result_TP,result_Inc_Man,tableTP, tableIncMan" oncomplete="init()" >
+                                                            <apex:param name="DataInizioCreazione" value="" />
+                                                            <apex:param name="DataFineCreazione" value="" />
+                                                            <apex:param name="CaseNumber" value="" />
+                                                            <apex:param name="Status" value="" />
+                                                            <!-- <apex:param name="Datefrom" value="" />-->
+                                                            <apex:param name="Dateto" value="" />
+                                                            <apex:param name="Commune" value="" />
+                                                            <apex:param name="Indirizzo1" value="" />
+                                                            <apex:param name="Nome" value="" />
+                                                            <apex:param name="tipodicollegamento" value="" />
+                                                            <apex:param name="PrimeContractor" value="" />
+                                                            <apex:param name="Offerta" value="" />
+                                                            <apex:param name="tipodi1" value="" />
+                                                        </apex:actionFunction>
+                                                        <apex:actionFunction name="searchServer" action="{!runSearch}" rerender="ResTable,Result,result1,tipodi1,Status,servicesID,tble,result_TP,result_Inc_Man,tableTP, tableIncMan" oncomplete="init()" >
+                                                            <apex:param name="DataInizioCreazione" value="" />
+                                                            <apex:param name="DataFineCreazione" value="" />
+                                                            <apex:param name="CaseNumber" value="" />
+                                                            <apex:param name="Status" value="" />
+                                                            <!-- <apex:param name="Datefrom" value="" />
+                                                            <apex:param name="Dateto" value="" />-->
+                                                            <apex:param name="Commune" value="" />
+                                                            <apex:param name="Indirizzo1" value="" />
+                                                            <apex:param name="Nome" value="" />
+                                                            <apex:param name="tipodicollegamento" value="" />
+                                                            <apex:param name="PrimeContractor" value="" />
+                                                            <apex:param name="Offerta" value="" />
+                                                            <!--  <apex:param name="tipodi" value="" /> -->
+                                                            <apex:param name="tipodi1" value="" />
+                                                        </apex:actionFunction>
+                                                        
+                                                        <apex:actionFunction name="OffertaSelect" action="{!OffertaSelect}" rerender="ServFull,ResTable,Status,result_TP,result_Inc_Man,tableTP, tableIncMan" oncomplete="init()" >
+                                                         
+                                                            <apex:param name="Offerta" value="" />
+                                                          
+                                                        </apex:actionFunction>
+                                                        
+                                                        <table  id='tble' cellpadding="2" cellspacing="2">
+                                                            <tr style=" border-bottom: thin solid">
+                                                                <td style = "Color:#337ab7;font-weight:bold"><br/>
+                                                                    
+                                                                    <apex:commandLink Value="Home" action="{!homePageRef}" target="_self" /> 
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style = "Color:#337ab7"><br/>
+                                                                </td>
+                                                            </tr>
+                                                            <apex:panelGrid >
+                                                            <tr>
+                                                               
+                                                                 <td style = "Color:#337ab7;">Servizi<br/>
+                                                                    <select  id="Offerta" name="Offerta" size="1" onChange="OffertaSelect();" rerender="ServicesID,OSServID,TTServID" style = "Color:black;height:26px; width:174px"  >
+                                                                        <option value="">--Select--</option>
+                                                                        <option value="P2P Base" id="P2PBase">P2P Base</option>
+                                                                        <option value="Fiber Link">Fiber Link</option>
+                                                                        <option value="Fiber Lease">Fiber Lease</option>
+                                                                        <option value="IRU">IRU</option>
+                                                                        <option value="Evento Temporaneo">Evento Temporaneo</option>
+                                                                        <option value="OpenStream">OpenStream</option>
+                                                                        <option value="Trouble Ticket">Segnalazione Guasti</option>
+                                                                        <option value="Segnalazione Provisioning">
+                                                                        Segnalazione Provisioning
+                                                                        </option>      
+                                                                        <option value="Problema tecnico/applicativo">
+                                                                        Incident Management
+                                                                        </option>
+                                                                            <apex:actionSupport event="onchange" rerender="servicesID"/>
+                                                                    </select>
+                                                                </td>
+                                                                
+                                                            </tr></apex:panelGrid>
+                                                             <apex:outputPanel id="ServFull" >
+                                                            <apex:outputPanel id="ServicesID" rendered="{!if(OffertaSelected=='P2P Base'||OffertaSelected=='Fiber Link'||OffertaSelected=='Fiber Lease'||OffertaSelected=='IRU'||OffertaSelected=='Evento Temporaneo',true,false)}" >
+                                                             <table  id='tbl1' cellpadding="2" cellspacing="2">
+                                                            <tr>
+                                                                   <td  style = "Color:#337ab7;">Ricerca In:<br/>
+                                                                    <select  id="Tipodicollegamento" name="Tipodicollegamento" size="1" onChange="doSearch();" rerender="Status,out1" style = "Color:black;height:26px; width:174px;" >
+                                                                        <option value="">--Select--</option>
+                                                                        <option value="Richieste">Richieste</option>
+                                                                        <option value="Collegamento">Collegamento</option>
+                                                                        <option value="Ordine">Ordine</option>
+                                                                        
+                                                                    </select>
+                                                                </td>
+                                                           
+                                                               
+                                                            </tr>
+                                                           
+                                                            
+                                                            
+                                                        <!--  <tr  >
+                                                        <td style = "Color:#337ab7;" >Tipo di collegamento<br/>
+                                                        <select  id="tipodi" name="Offerta" size="1" onChange="doSearch();" style = "Color:black;height:26px; width:174px" >
+                                                        <option  value="">--Select--</option>
+                                                        <option rendered = "{!offertaCheck == 'Collegamento'}" value="Backhauling">Backhauling</option>
+                                                        <option value="BTS">BTS</option>
+                                                        <option value="Point-to-Point">Point-to-Point</option>
+                                                        <option value="Housing">Housing</option>
+                                                        <option value="Anello">Anello</option>
+                                                        <option value="BACKBONE">BACKBONE</option>
+                                                        <option value="P2P - Cliente">P2P - Cliente</option>
+                                                        <option value="Dark Fiber">Dark Fiber</option>
+                                                        <option value="SDH">SDH</option>
+                                                        <option value="DWDM">DWDM</option>
+                                                        <option value="IP">IP</option>
+                                                        <option value="Layer 2">Layer 2</option>
+                                                        <option value="NGN">NGN</option>
+                                                        <option value="MSAN">MSAN</option>
+                                                        
+                                                        
+                                                        </select>
+                                                        </td>
+                                                        </tr> -->
+                                                       
+                                                            <tr>
+                                                              
+                                                              <br/>  <td  style = "Color:#337ab7;" >Tipo di collegamento<br/>
+                                                                    <!--  <select  id="tipodi" name="Offerta" size="1" onChange="doSearch();" style = "Color:black;height:26px; width:174px" >
+                                                                    <option  value="">--Select--</option></select>-->
+                                                                 
+                                                                        <apex:selectList id="tipodi1"  size="1" onChange="doSearch1();"  value="{!selectedValueTipo}" style="Color:black;height:26px; width:174px;"  >
+                                                                            <apex:selectOptions value="{!Tipodilist}"></apex:selectOptions>
+                                                                        </apex:selectList>
+                                                                   
+                                                                   
+                                                                </td>
+                                                                 
+                                                            </tr>
+                                                            
+                                                            <tr>
+                                                                <td style = "Color:#337ab7">ID<br/>
+                                                                    <input type="text" id="CaseNumber" onkeyup="doSearch1();" style = "Color:black"/>
+                                                                    
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style = "Color:#337ab7">Prime Contractor<br/>
+                                                                    <input type="text" id="PrimeContractor" onkeyup="doSearch1();" style = "Color:black;"/>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <!--<td style = "Color:#337ab7">Stato<br/>
+                                                                    <input type="text" id="Status" onkeyup="doSearch1();" style = "Color:black"/>
+                                                                </td>-->
+                                                                <td style = "Color:#337ab7;" >Stato<br/>
+                                                                    <apex:outputPanel id="out1">
+                                                                        <apex:selectList id="Status"  size="1" onChange="doSearch1();"  value="{!selectedValueStato}" style="Color:black;height:26px; width:174px;"  >
+                                                                            <apex:selectOptions value="{!Statoilist}"></apex:selectOptions>
+                                                                        </apex:selectList>
+                                                                    </apex:outPutPanel>
+                                                                    
+                                                                </td>
+                                                            </tr>
+                                                           <!-- <tr>
+                                                                <td style = "Color:#337ab7">Data Apertura da<br/>
+                                                                    <input type="Date" id="Datefrom" onChange="doSearch1();"  style = "Color:black;width:174px"/>
+                                                                </td>
+                                                            </tr>
+                                                            
+                                                            <tr>
+                                                                <td style = "Color:#337ab7">Data Apertura a<br/>
+                                                                    <input type="Date" id="Dateto" onChange="doSearch1();" style = "Color:black;width:174px"/>
+                                                                </td>
+                                                            </tr>-->
+                                                            
+                                                            <tr>
+                                                         
+                                                    <td style = "Color:#337ab7">Data Creazione<br/>
+                                                        <input type="text"  id="IDDateFilterCreazione" placeholder=" DA  A "  style = "Color:black;width:174px;"/>
+                                                   </td>
+                                                            </tr>
+                                                            
+                                                            
+                                                            <tr>
+                                                                <td style = "Color:#337ab7">Comune<br/>
+                                                                    <input type="text" id="Commune" onkeyup="doSearch1();" style = "Color:black;"/>
+                                                                </td>
+                                                            </tr>
+                                                            
+                                                            <tr>
+                                                                <td style = "Color:#337ab7">Indirizzo Cliente<br/>
+                                                                    <input type="text" id="Indirizzo1" onkeyup="doSearch1();" style = "Color:black;"/>
+                                                                </td>
+                                                            </tr>
+                                                            
+                                                            <tr>
+                                                                <td style = "Color:#337ab7">Nome Progetto<br/>
+                                                                    <input type="text" id="Nome" onkeyup="doSearch1();" style = "Color:black;"/>
+                                                                </td>
+                                                            </tr>
+                                                            </table>
+                                                       </apex:outputPanel>
+                                                         <!--OpenStream-->
+                                                            
+                                                            <apex:outputPanel id="OSServID" rendered="{!offertaSelected=='OpenStream'}"> 
+                                                            <table  id='tbl2' cellpadding="2" cellspacing="2">
+                                                            <tr>
+                                                                <td style = "Color:#337ab7">Codice Ordine Operatore<br/>
+                                                                    <input type="text" id="Codice" onkeyup="doSearchOpenStream();" style = "Color:black;"/>
+                                                                </td>
+                                                            </tr>
+                                                            
+                                                            <tr>
+                                                                   <td  style = "Color:#337ab7;">Tipo Richiesta<br/>
+
+                                                                    <select required="true" id="TipoRichiesta" onChange="populateStatoRichiesta();doSearchOpenStream();" name="TipoRichiesta" size="1"  style = "Color:black;height:26px; width:174px" >
+                                                                        <option value="">--Select--</option>
+                                                                        <option value="Attivazione">Attivazione</option>
+                                                                        <option value="Cessazione">Cessazione</option>
+                                                                         <option value="Change Order">Ordine di Variazione</option>
+                                                                         
+                                                                    </select>
+                                                                </td>
+                                                           
+                                                            </tr>
+                                                            
+                                                              <tr>
+                                                                   <td  style = "Color:#337ab7;">Stato Richiesta<br/>
+                                                                   <!--  <select required="true" id="StatoRichiesta" onChange="doSearchOpenStream();" name="Stato Richiesta" size="1"  style = "Color:black;height:26px; width:174px" >
+                                                                      <option value="">--Select--</option>
+                                                                      <option value="Inviato">Inviato</option>
+                                                                      <option value="Acquisito KO">Acquisito KO</option>
+                                                                      <option value="Acquisito">Acquisito</option>
+                                                                      <option value="Sospeso">Sospeso</option>
+                                                                      <option value="In annullamento">In annullamento</option>
+                                                                      <option value="Annullato">Annullato</option>
+                                                                      <option value="Accettato KO">Accettato KO</option>
+                                                                      <option value="Accettato">Accettato</option>
+                                                                      <option value="Espletato">Espletato</option>
+                                                                      <option value="Espletato KO">Espletato KO</option>
+                                                                      <option value="Cessazione Inviata">Cessazione Inviata</option>
+                                                                      <option value="Cessato KO">Cessato KO</option>
+                                                                      <option value="Cessato OK">Cessato OK</option>
+                                                                         
+                                                                    </select>-->
+                                                                    <select required="true" id="StatoRichiesta" onChange="doSearchOpenStream();" name="Stato Richiesta" size="1"  style = "Color:black;height:26px; width:174px" >
+                                                                        <option value="">--Select--</option>
+                                                                    </select>
+                                                                   <!--   
+                                                                    <apex:selectList id="StatoRichiesta"  size="1" onChange="doSearchOpenStream();"  value="{!selectedStato}" style="Color:black;height:26px; width:174px;"  >
+                                                                            <apex:selectOptions id="StatoRichiestaOpt" value=>
+                                                                            </apex:selectOptions> 
+                                                                    </apex:selectList> -->
+
+                                                                </td>
+                                                            
+                                                            </tr>
+                                                            
+                                                            <tr>
+                                                                <td style = "Color:#337ab7">Identificativo del POP<br/>
+                                                                  <!--  <input type="text" id="idPop" onkeyup="doSearchOpenStream();" style = "Color:black;"/>-->
+                                                                          <apex:selectList id="idPop"  size="1" onChange="doSearchOpenStream();"  value="{!selectedValueIdPop}" style="Color:black;height:26px; width:174px;"  >
+                                                                            <apex:selectOptions value="{!IdPopList}"></apex:selectOptions>
+                                                                        </apex:selectList>
+                                                                </td>
+                                                            </tr>
+                                                           
+                                                            <tr>
+                                                         
+                                                                <td style = "Color:#337ab7">Data Notifica<br/>
+                                                                <input type="text"  id="IDDateFilterOpen" placeholder=" DA  A " onkeyup="doSearchOpenStream();" style = "Color:black;width:174px;"/>
+                                                               </td>
+                                                            </tr>
+                                                            
+                                                             <tr>
+                                                         
+                                                                <td style = "Color:#337ab7">Data Creazione<br/>
+                                                                <input type="text"  id="IDDateFilterStream" placeholder=" DA  A " onkeyup="doSearchOpenStream();" style = "Color:black;width:174px;"/>
+                                                                </td>
+                                                            </tr>
+                                                            
+                                                             <tr>
+                                                                <td style = "Color:#337ab7">ID Risorsa<br/>
+                                                                 <input type="text" id="idRisorsa" onkeyup="doSearchOpenStream();" style = "Color:black;"/>
+                                                                </td>
+                                                            </tr>
+                                                            </table>
+                                                           </apex:outputPanel>
+                                                      <!-- Trouble Ticket -->
+                                                        <apex:outputPanel ID="TTServID" rendered="{!offertaSelected =='Trouble Ticket'}"> 
+                                                        <table  id='tbl2' cellpadding="2" cellspacing="2">   
+                                                        <tr>
+                                                                <td style = "Color:#337ab7">Codice Comunicazione Operatore<br/>
+                                                                    <input type="text" id="Comunicazione" onkeyup="doSearchTroubleTicket();"  style = "Color:black;"/>
+                                                                </td>
+                                                            </tr>
+                                                        <tr>
+                                                         
+                                                                <td style = "Color:#337ab7">Data Creazione<br/>
+                                                                <input type="text"  id="IDDateFilterTrouble" placeholder=" DA  A "   style = "Color:black;width:174px;"/>
+                                                                </td>
+                                                            </tr>  
+                                                         
+                                                            <tr>
+                                                                   <td  style = "Color:#337ab7;">Causale Apertura<br/>
+                                                                   
+                                                                       <apex:selectList id="Causale"  size="1" onChange="doSearchTroubleTicket();"  value="{!selectedCasuale}" style="Color:black;height:26px; width:174px;"  >
+                                                                            <apex:selectOptions value="{!CasualeList}"></apex:selectOptions>
+                                                                        </apex:selectList>
+                                                                </td>
+                                                           
+                                                            </tr>   
+                                                           <tr>
+                                                               <!-- <td style = "Color:#337ab7">Stato Ordine<br/>
+                                                                    <input type="text" id="Stato" onkeyup="doSearchTroubleTicket();"   style = "Color:black;"/>
+                                                                </td>-->
+                                                                 <td style = "Color:#337ab7">Stato Ordine<br/>
+                                                                
+                                                                          <apex:selectList id="Stato"  size="1" onChange="doSearchTroubleTicket();"  value="{!selectedValueIdStatoOrdine}" style="Color:black;height:26px; width:174px;"  >
+                                                                            <apex:selectOptions value="{!StatoOrdineList}"></apex:selectOptions>
+                                                                        </apex:selectList>
+                                                                </td>
+                                                            </tr>
+                                                            </table >
+                                                            </apex:outputPanel>
+                                                            <!-- FILTRI (COLONNA SX) TICKET PROVISIONING - START-->
+                                                            <apex:outputPanel id="TPServID" 
+                                                            rendered="{!offertaSelected=='Segnalazione Provisioning' || offertaSelected =='Problema tecnico/applicativo'}"> 
+                                                            <table id='tbl2' cellpadding="2" cellspacing="2">
+
+                                                            <tr>
+                                                                <!-- FIX 23-04 - Nascosto filtro causale apertura-->
+                                                                <td style = "Color:#337ab7; display:none;">
+                                                                    Causale Apertura Segnalazione<br/>     
+                                                                    <apex:selectList id="causale_apertura" size="1" onchange="doSearchTicketProv();"
+                                                                    style="Color:grey;height:26px; 
+                                                                    width:174px; display: none;"
+                                                                    >
+                                                                        <apex:selectOptions value="{!CausaleAperturaItems}"/>
+                                                                    </apex:selectList>
+                                                                </td>        
+                                                            </tr>
+                                                            <tr>
+                                                                <td style = "Color:#337ab7;">Descrizione Causale<br/>   
+                                                                   <apex:selectList id="descr_causale" size="1" 
+                                                                    onchange="doSearchTicketProv();"
+                                                                    style="Color:black;height:26px; width:174px;"  >
+                                                                        <apex:selectOptions value="{!DescrCausaleItems}"/>
+                                                                    </apex:selectList>
+                                                                </td>        
+                                                            </tr>
+                                                            <tr>
+                                                                <td id="filtro_cod_ordine_op" style = "Color:#337ab7">Codice Ordine Operatore<br/>
+                                                                    <input type="text" id="codice_ordine" 
+                                                                    onkeyup="doSearchTicketProv();"  
+                                                                    style = "Color:black;"/>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td id="filtro_stato_ordine_op" style = "Color:#337ab7">Stato Ordine Operatore<br/>
+                                                                    <apex:selectList id="stato_ordine" size="1" 
+                                                                    onchange="doSearchTicketProv();"
+                                                                    style="Color:black;height:26px; 
+                                                                    width:174px;" >
+                                                                        <apex:selectOptions value="{!StatoOrdineTP_items}"/>
+                                                                    </apex:selectList>
+                                                                </td>
+                                                            </tr>
+                                                            
+                                                            <tr>   
+                                                                <td style = "Color:#337ab7">Data Creazione<br/>
+                                                                    <input type="text"  id="IDDateFilterTP" 
+                                                                    placeholder=" DA  A " 
+                                                                    style = "Color:black;width:174px;"/>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>   
+                                                                <td style = "Color:#337ab7">Escalation 
+                                                                    <input type="checkbox" id="escalation" 
+                                                                    onclick="doSearchTicketProv();"
+                                                                    style="transform: scale(1.2); 
+                                                                    margin-top: 10px;"
+                                                                    />  
+                                                                </td>
+                                                            </tr>
+                                                            
+                                                            </table>
+                                                            </apex:outputPanel>
+                                                            <!-- FILTRI (COLONNA SX) TICKET PROVISIONING - END-->
+                                                                </apex:outputPanel>
+                                                        </table>
+                                                    </apex:pageBlock>
+                                                    
+                                                </td>
+                                                
+                                            </tr>
+                                            
+                                        </table>
+                                    </apex:outputPanel>
+                                    
+                                </ul>
+                                
+                                
+                            </div>
+                            <!-- /.sidebar-collapse -->
+                        </div>
+                        <!-- /.navbar-static-side -->
+                        
+                    </nav>
+                      
+                </div>                
+                <!-- jQuery -->
+                <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+                
+                <!-- Bootstrap Core JavaScript -->
+                <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+                
+                <!-- Metis Menu Plugin JavaScript -->
+                <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.js')}"/>
+                
+                <!-- Morris Charts JavaScript -->
+                <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/raphael/raphael.min.js')}"/>
+                <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.min.js')}"/>
+                <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/data/morrisdata.js')}"/>
+                <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/js/sbadmin2.js')}"/>
+                <apex:includeScript value="{!URLFOR($Resource.SBOT,'SBOT/scrollbootstrap/scrollingnav/js/jquery.easing.min.js')}"/>
+                <apex:includeScript value="{!URLFOR($Resource.SBOT,'SBOT/scrollbootstrap/scrollingnav/js/scrollingnav.js')}"/>
+                <!-- </apex:form> -->
+                
+                <div id="page-wrapper">
+                    <!--  <apex:form styleClass="form-horizontal" id="myform"> --> 
+                    <br/><br/><br/> 
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i></i>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                
+                                <div class="col-lg-6 col-offset-6">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <!--14/06/2017 Modified by Rajani--<apex:commandButton styleClass="btn btn-primary" value="Fine" action="{!Home}"/> 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <apex:commandButton styleClass="btn btn-primary" value="Creare nuova richiesta" action="{!ParentCaseRecord}"/> ---->
+                                    </div>
+                            </div>
+                            
+                                                        <!--   <apex:pageBlock >
+                            <apex:pageBlockTable value="{!cse}" var="c">
+                            <apex:column value="{!c.PO_Prime_Contractor__c}"/>
+                            
+                            </apex:pageBlockTable>
+                            <apex:pageBlockButtons location="bottom">
+                            <apex:commandButton value="prev" action="{!Prev1}" />
+                            <apex:commandButton value="next" action="{!Next1}"/>
+                            </apex:pageBlockButtons>
+                            </apex:pageBlock>-->
+                            <apex:OutPutPanel id="ResTable" >
+                             <apex:pageBlock id="SelectOffrta" Rendered="{!OffertaSelected == '--Select--' || OffertaSelected == ''}">
+                           <apex:outputText style="Color:Red;" value="Selezionare un Servizio"> </apex:outputText>
+                             </apex:pageBlock>
+                            <apex:pageBlock id="Result" Rendered="{!(OffertaSelected== 'P2P Base' || OffertaSelected=='IRU' || OffertaSelected == 'Fiber Link'||OffertaSelected=='Fiber Lease'||OffertaSelected=='IRU'||OffertaSelected=='Evento Temporaneo')}">
+                                
+                                <apex:pageBlockTable value="{!Cases}" var="case" id="table"  styleClass="table table-striped table-bordered" > <!-- rendered="{!Cases.size>0}"-->
+                                    <apex:column >
+                                        <apex:facet name="header">
+                                            <apex:commandLink value="ID"  action="{!toggleSort}" Rerender="Result">
+                                                <apex:param name="sortField1" value="CaseNumber"  assignTo="{!sortField1}"  />
+                                            </apex:commandLink>
+                                        </apex:facet>
+                                        <apex:commandlink value="{!case.CaseNumber}" action="{!searchCases}">
+                                            <apex:param name="CaseDetail" assignTo="{!CaseDetail}" value="{!case.id}"/>
+                                        </apex:commandlink>
+                                    </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <apex:column >
+                                        <apex:facet name="header">
+                                            <apex:commandLink value="Prime Contractor" action="{!toggleSort}" Rerender="Result" >
+                                                <apex:param name="sortField1" value="PO_Prime_Contractor__c" assignTo="{!sortField1}" />
+                                            </apex:commandLink>
+                                        </apex:facet>
+                                        <apex:outputField value="{!case.PO_Prime_Contractor__c}"/>
+                                    </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <apex:column rendered="{!Offertacheck == 'Richieste' }">
+                                        <apex:facet name="header">
+                                            <apex:commandLink value="Offerta" action="{!toggleSort}" Rerender="Result" >
+                                                <apex:param name="sortField1" value="PO_Offerta__c" assignTo="{!sortField1}" />
+                                            </apex:commandLink>
+                                        </apex:facet>
+                                        <apex:outputField value="{!case.PO_Offerta__c}"/>
+                                    </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <apex:column rendered="{!Offertacheck == 'Collegamento'   }">
+                                        <apex:facet name="header" >
+                                            <apex:commandLink value="Offerta" action="{!toggleSort}" Rerender="Result" >
+                                                <apex:param name="sortField1" value="PO_Tipologia_Offerta__c" assignTo="{!sortField1}" />
+                                            </apex:commandLink>
+                                        </apex:facet>
+                                        <apex:outputField value="{!case.PO_Tipologia_Offerta__c}"/>
+                                    </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <apex:column rendered="{!Offertacheck == 'Ordine' }">
+                                        <apex:facet name="header" >
+                                            <apex:commandLink value="Offerta" action="{!toggleSort}" Rerender="Result" >
+                                                <apex:param name="sortField1" value="PO_Tipologia_Offerta_ordine__c" assignTo="{!sortField1}" />
+                                            </apex:commandLink>
+                                        </apex:facet>
+                                        <apex:outputField value="{!case.PO_Tipologia_Offerta_ordine__c}"/>
+                                    </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <apex:column >
+                                        <apex:facet name="header">
+                                            <apex:commandLink value="Status" action="{!toggleSort}" Rerender="Result" >
+                                                <apex:param name="sortField1" value="Status" assignTo="{!sortField1}" />
+                                            </apex:commandLink>
+                                        </apex:facet>
+                                        <apex:outputField value="{!case.Status}"/>
+                                    </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <apex:column >
+                                        <apex:facet name="header">
+                                            <apex:commandLink value="Data Apertura" action="{!toggleSort}" Rerender="Result" >
+                                                <apex:param name="sortField1" value="PO_CreatedDate__c" assignTo="{!sortField1}" />
+                                            </apex:commandLink>
+                                        </apex:facet>
+                                        <apex:outputField value="{!case.createdDate}"/>
+                                    </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    
+                                    <apex:column >
+                                        <apex:facet name="header">
+                                            <apex:commandLink value="Comune" action="{!toggleSort}" Rerender="Result" >
+                                                <apex:param name="sortField1" value="PO_Nome_Comune__c" assignTo="{!sortField1}" />
+                                            </apex:commandLink>
+                                        </apex:facet>
+                                        <apex:outputField value="{!case.PO_Nome_Comune__c}"/>
+                                    </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    
+                                                <!--<apex:column >
+                                        <apex:facet name="header">
+                                        <apex:commandLink value="Indirizzo Cliente" action="{!toggleSort}" Rerender="Result" >
+                                        <apex:param name="sortField1" value="PO_Indirizzo_collegamento__c" assignTo="{!sortField1}" />
+                                        </apex:commandLink>
+                                        </apex:facet>
+                                        <apex:outputField value="{!case.PO_Indirizzo_collegamento__c}"/>
+                                        </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;-->
+                                                                
+                                    <apex:column >
+                                        <apex:facet name="header">
+                                            <apex:commandLink value="Nome Progetto" action="{!toggleSort}" Rerender="Result" >
+                                                <apex:param name="sortField1" value="PO_Nome_Progetto__c " assignTo="{!sortField1}" />
+                                            </apex:commandLink>
+                                        </apex:facet>
+                                        <apex:outputField value="{!case.PO_Nome_Progetto__c }"/>
+                                    </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <apex:column >
+                                        
+                                        <apex:facet name="header">
+                                            <apex:commandLink value="Tipo Di Collegamento" action="{!toggleSort}" Rerender="Result" >
+                                                <apex:param name="sortField1" value="PO_Tipo_di_collegamento__c" assignTo="{!sortField1}" />
+                                            </apex:commandLink>
+                                        </apex:facet>
+                                        <apex:outputField value="{!case.PO_Tipo_di_collegamento__c}"/>
+                                    </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                   
+                                    
+                                    
+                                    
+                                </apex:pageBlockTable>
+                                
+                                
+                                
+                                
+                            
+                               
+                             
+                                
+                                                                <!---<apex:pageBlockButtons location="bottom">
+                                <apex:commandButton value="prev" action="{!Prev1}" />
+                                <apex:commandButton value="next" action="{!Next1}"/>
+                                </apex:pageBlockButtons>-->
+                                                                
+                                                                <!--  <apex:pageblockButtons location="bottom" >
+                                <apex:commandButton value="start" rerender="Result" action="{!beginning}" />
+                                <apex:commandButton value="Pre" rerender="Result" action="{!previous1}" />
+                                <apex:commandButton value="next" rerender="Result" action="{!next1}"  />
+                                <apex:commandButton value="End" rerender="Result" action="{!end}" />                                    
+                                </apex:pageblockButtons>-->
+                                
+                               <apex:commandButton value="Inizio" action="{!first}" rendered="{!setCon.hasPrevious}"  reRender="Result"/>
+                                <apex:commandButton value="Prec"  action="{!previous}" rendered="{!setCon.hasPrevious}"  reRender="Result"/>
+                                <apex:commandButton value="Suc" action="{!next}" rendered="{!setCon.hasNext}"  reRender="Result"/>
+                                <apex:commandButton value="Fine" action="{!last}" rendered="{!setCon.hasNext}"  reRender="Result"/> 
+                                
+                            </apex:pageBlock>
+                            <!-- OpenStream -->
+                           <apex:pageBlock id="Result1" rendered="{!offertaSelected=='OpenStream'}">
+                              <apex:pageBlockTable value="{!EOFOpenStream}" var="ops" id="tableOpen"  styleClass="table table-striped table-bordered" >
+                                   <apex:column >
+                                        <apex:facet name="header">
+                                            <apex:commandLink value="Codice Ordine Operatore" Rerender="Result1" >
+                                               <apex:param name="sortField2" value="EOF_Codice_Ordine_OLO__c"  assignTo="{!sortField2}"  />
+                                            </apex:commandLink>
+                                        </apex:facet>
+                                       <!--<apex:outputField value="{!ops.EOF_Codice_Ordine_OLO__c}"/>-->
+                                       <apex:commandlink value="{!ops.EOF_Codice_Ordine_OLO__c}" action="{!vediReq}" rerender="null" >
+                                                 <apex:param name="eventSl" value="{!ops.Id}" assignTo="{!IdInserita}"/>
+                                                 <apex:param name="event2Sl" value="{!ops.EOF_Tipo_Comunicazione_String__c}" assignTo="{!tipoRichiestaOP}"/>
+                                             </apex:commandlink>
+                                    </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <apex:column >
+                                        <apex:facet name="header">
+                                            <apex:commandLink value="Tipo Richiesta" action="{!toggleSort}" Rerender="Result1" >
+                                                <apex:param name="sortField2" value="EOF_Tipo_Comunicazione_String__c" assignTo="{!sortField2}" />
+                                            </apex:commandLink>
+                                        </apex:facet>
+                                        <apex:outputField value="{!ops.EOF_Tipo_Comunicazione_String__c}"/>
+                                    </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <apex:column >
+                                        <apex:facet name="header">
+                                            <apex:commandLink value="Stato Richiesta" action="{!toggleSort}" Rerender="Result1" >
+                                                <apex:param name="sortField2" value="EOF_STATO_ORDINE__c" assignTo="{!sortField2}" />
+                                            </apex:commandLink>
+                                        </apex:facet>
+                                        <apex:outputField value="{!ops.EOF_STATO_ORDINE__c}"/>
+                                    </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <apex:column >
+                                        <apex:facet name="header" >
+                                            <apex:commandLink value="Identificativo del POP" action="{!toggleSort}" Rerender="Result1" >
+                                                <apex:param name="sortField2" value="EOF_ID_Pop__c" assignTo="{!sortField2}" />
+                                            </apex:commandLink>
+                                        </apex:facet>
+                                        <apex:outputField value="{!ops.EOF_ID_Pop__c}"/>
+                                    </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <apex:column >
+                                        <apex:facet name="header" >
+                                            <apex:commandLink value="Data Notifica" action="{!toggleSort}" Rerender="Result1" >
+                                                <apex:param name="sortField2" value="EOF_Data_Notifica__c" assignTo="{!sortField2}" />
+                                            </apex:commandLink>
+                                        </apex:facet>
+                                        <apex:outputField value="{!ops.EOF_Data_Notifica__c}"/>
+                                    </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <apex:column >
+                                        <apex:facet name="header">
+                                            <apex:commandLink value="Data Creazione" action="{!toggleSort}" Rerender="Result1" >
+                                                <apex:param name="sortField2" value="PO_SA_Data_Inserimento_Ordine__c" assignTo="{!sortField2}" />
+                                            </apex:commandLink>
+                                        </apex:facet>
+                                        <apex:outputField value="{!ops.PO_SA_Data_Inserimento_Ordine__c}"/>
+                                    </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <apex:column >
+                                        <apex:facet name="header">
+                                            <apex:commandLink value="ID Risorsa" action="{!toggleSort}" Rerender="Result1" >
+                                                <apex:param name="sortField2" value="EOF_ID_Risorsa__c" assignTo="{!sortField2}" />
+                                            </apex:commandLink>
+                                        </apex:facet>
+                                        <apex:outputField value="{!ops.EOF_ID_Risorsa__c}"/>
+                                    </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                   
+                                </apex:pageBlockTable>
+                                </apex:pageBlock>
+                            <!--Trouble Ticket -->
+                            <apex:pageBlock id="ResultTroubleTicket" rendered="{!OffertaSelected=='Trouble Ticket'}">
+                              <apex:pageBlockTable value="{!EOFTroubleTicket}" var="OTT" id="tableTrouble"  styleClass="table table-striped table-bordered"  > <!---->
+                                   <apex:column >
+                                        <apex:facet name="header">
+                                            <apex:commandLink value="Codice Comunicazione Operatore" Rerender="ResultTroubleTicket" >
+                                               <apex:param name="sortField3" value="EOF_Codice_Comunicazione_OLO__c"  assignTo="{!sortField3}"  />
+                                            </apex:commandLink>
+                                        </apex:facet>
+                                      <!-- <apex:outputField value="{!OTT.EOF_Codice_Comunicazione_OLO__c}"/>-->
+                                      <apex:commandlink value="{!OTT.EOF_Codice_Comunicazione_OLO__c}" action="{!ViewCaseDettail}" rerender="null">
+                                                 <apex:param name="eventSl" value="{!OTT.Id}" assignTo="{!IdScelta}"/>
+                                             </apex:commandlink>
+                                    </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <apex:column >
+                                        <apex:facet name="header">
+                                            <apex:commandLink value="Data Creazione" action="{!toggleSort}" Rerender="ResultTroubleTicket" >
+                                                <apex:param name="sortField3" value="CreatedDate" assignTo="{!sortField3}" />
+                                            </apex:commandLink>
+                                        </apex:facet>
+                                        <apex:outputField value="{!OTT.CreatedDate}"/>
+                                    </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <apex:column >
+                                        <apex:facet name="header">
+                                            <apex:commandLink value="Causale Apertura" action="{!toggleSort}" Rerender="ResultTroubleTicket" >
+                                                <apex:param name="sortField3" value="EOF_Causale_Apertura__c" assignTo="{!sortField3}" />
+                                            </apex:commandLink>
+                                        </apex:facet>
+                                        
+                                        <apex:outputtext value="Connettività non disponibile" rendered="{!if(OTT.EOF_Causale_Apertura__c=='1',true,false)}"/>
+                                        <apex:outputtext value="Connessione instabile" rendered="{!if(OTT.EOF_Causale_Apertura__c=='2',true,false)}"/>
+                                        <apex:outputtext value="Lentezza di navigazione" rendered="{!if(OTT.EOF_Causale_Apertura__c=='3',true,false)}"/>
+                                        <apex:outputtext value="Mai Navigato" rendered="{!if(OTT.EOF_Causale_Apertura__c=='4',true,false)}"/>
+                                    </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <apex:column >
+                                        <apex:facet name="header" >
+                                            <apex:commandLink value="Stato Ordine" action="{!toggleSort}" Rerender="ResultTroubleTicket" >
+                                                <apex:param name="sortField3" value="EOF_STATO_ORDINE__c" assignTo="{!sortField3}" />
+                                            </apex:commandLink>
+                                        </apex:facet>
+                                        <apex:outputField value="{!OTT.EOF_STATO_ORDINE__c}"/>
+                                    </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;                                   
+                                </apex:pageBlockTable>
+                                </apex:pageBlock>
+
+                            <!-- TABLE SEGNALAZIONE PROVISIONING - START-->
+                            <apex:pageBlock id="result_TP" rendered="{!OffertaSelected=='Segnalazione Provisioning'}">
+                                <apex:pageBlockTable value="{!Cases}" var="case_TP" id="tableTP"  
+                                styleClass=" table table-striped table-bordered">
+                                <apex:column >
+                                    <apex:facet name="header">
+                                        <apex:commandLink value="ID Segnalazione" rerender="result_TP" >
+                                        </apex:commandLink>
+                                    </apex:facet>
+                                    <apex:commandlink value="{!case_TP.caseNumber}" 
+                                        action="{!viewStatoOrdine}" rerender="null">
+                                        <apex:param name="eventSl" value="{!case_TP.Id}" 
+                                        assignTo="{!IdScelta}"/>
+                                    </apex:commandlink>
+                                <!--<apex:outputField  value="{!case_TP.PO_TP_Codice_Ordine_Ticket_Provisioning__c}"/>-->
+                                </apex:column>
+                                <apex:column >
+                                    <apex:facet name="header">
+                                        <apex:commandLink value="Codice Ordine Operatore" rerender="result_TP" >
+                                            <apex:param name="cod" 
+                                            value="PO_TP_Codice_Ordine_Ticket_Provisioning__c" 
+                                             />
+                                        </apex:commandLink>
+                                    </apex:facet> 
+                                <apex:outputField value="{!case_TP.PO_TP_Codice_Ordine_Ticket_Provisioning__c}"/>                                      
+                                <!--<apex:outputField  value="{!case_TP.PO_TP_Codice_Ordine_Ticket_Provisioning__c}"/>-->
+                                </apex:column>
+                                <apex:column >
+                                    <apex:facet name="header">
+                                        <apex:commandLink value="Stato Ordine Operatore" rerender="result_TP" />
+                                    </apex:facet>
+                                    <apex:outputField value="{!case_TP.PO_TP_Stato_Ordine_Ticket_Provisioning__c}"/>
+                                </apex:column>
+                                <apex:column >
+                                    <apex:facet name="header">
+                                        <apex:commandLink value="Data Creazione" action="{!toggleSort}" 
+                                        rerender="result_TP" />
+                                    </apex:facet>
+                                    <apex:outputField value="{!case_TP.CreatedDate}"/>
+                                </apex:column>
+                                <apex:column >
+                                    <apex:facet name="header">
+                                        <apex:commandLink value="Causale apertura segnalazione" 
+                                        rerender="result_TP" />
+                                    </apex:facet>
+                                    <apex:outputField value="{!case_TP.PO_TP_Causale_Apertura_Segnalazione__c}"/>
+                                </apex:column>
+                                <apex:column >
+                                    <apex:facet name="header">
+                                        <apex:commandLink value="Descrizione causale" rerender="result_TP" />
+                                    </apex:facet>
+                                    <apex:outputField value="{!case_TP.PO_TP_Descrizione_Causale__c}"/>
+                                </apex:column>
+                                <apex:column >
+                                    <apex:facet name="header">
+                                        <apex:commandLink value="Escalation" rerender="result_TP" />
+                                    </apex:facet>
+                                    <apex:outputField value="{!case_TP.PO_TP_Escalation__c}"/>
+                                </apex:column>
+                                </apex:pageBlockTable>
+                                <apex:commandButton value="Inizio" action="{!first}" 
+                                    rendered="{!setCon.hasPrevious}" rerender="result_TP"/>
+                                <apex:commandButton value="Prec" action="{!previous}" 
+                                    rendered="{!setCon.hasPrevious}" rerender="result_TP"/>
+                                <apex:commandButton value="Suc" action="{!next}" 
+                                    rendered="{!setCon.hasNext}" rerender="result_TP"/>
+                                <apex:commandButton value="Fine" action="{!last}" 
+                                    rendered="{!setCon.hasNext}" rerender="result_TP"/>
+                            </apex:pageBlock>
+                            <!-- TABLE SEGNALAZIONE PROVISIONING  - END-->
+
+                            <!-- TABLE INCIDENT MANAGEMENT - START-->
+                            <apex:pageBlock id="result_IncMan" rendered="{!OffertaSelected=='Problema tecnico/applicativo'}">
+                                <apex:pageBlockTable value="{!Cases}" var="case_TP" id="tableIncMan"  
+                                styleClass=" table table-striped table-bordered">
+                                <apex:column >
+                                    <apex:facet name="header">
+                                        <apex:commandLink value="ID Segnalazione" rerender="result_IncMan" >
+                                        </apex:commandLink>
+                                    </apex:facet>
+                                    <apex:commandlink value="{!case_TP.caseNumber}" 
+                                        action="{!viewDettaglioIncident}" rerender="null">
+                                        <apex:param name="eventSl" value="{!case_TP.Id}" 
+                                        assignTo="{!IdScelta}"/>
+                                    </apex:commandlink>                               
+                                </apex:column>
+                                
+                                <apex:column >
+                                    <apex:facet name="header">
+                                        <apex:commandLink value="Data Creazione" action="{!toggleSort}" 
+                                        rerender="result_IncMan" />
+                                    </apex:facet>
+                                    <apex:outputField value="{!case_TP.CreatedDate}"/>
+                                </apex:column>
+
+                                <apex:column >
+                                    <apex:facet name="header">
+                                        <apex:commandLink value="Causale apertura segnalazione" 
+                                        rerender="result_IncMan" />
+                                    </apex:facet>
+                                    <apex:outputField value="{!case_TP.PO_TP_Causale_Apertura_Segnalazione__c}"/>
+                                </apex:column>
+
+                                <apex:column >
+                                    <apex:facet name="header">
+                                        <apex:commandLink value="Descrizione causale" rerender="result_IncMan" />
+                                    </apex:facet>
+                                    <apex:outputField value="{!case_TP.PO_TP_Descrizione_Causale__c}"/>
+                                </apex:column>
+
+                                <apex:column >
+                                    <apex:facet name="header">
+                                        <apex:commandLink value="Escalation" rerender="result_IncMan" />
+                                    </apex:facet>
+                                    <apex:outputField value="{!case_TP.PO_TP_Escalation__c}"/>
+                                </apex:column>                                
+                                </apex:pageBlockTable>
+                                
+                                <apex:commandButton value="Inizio" action="{!first}" 
+                                    rendered="{!setCon.hasPrevious}" rerender="result_IncMan"/>
+                                <apex:commandButton value="Prec" action="{!previous}" 
+                                    rendered="{!setCon.hasPrevious}" rerender="result_IncMan"/>
+                                <apex:commandButton value="Suc" action="{!next}" 
+                                    rendered="{!setCon.hasNext}" rerender="result_IncMan"/>
+                                <apex:commandButton value="Fine" action="{!last}" 
+                                    rendered="{!setCon.hasNext}" rerender="result_IncMan"/>
+                            </apex:pageBlock>                                                                
+                            <!-- TABLE INCIDENT MANAGEMENT - END -->  
+                            </apex:outPutPanel>
+                        </div>
+                    </div>
+                    <!-- </apex:form>  -->                        
+                </div>
+                
+            </apex:form>  
+            
+       <script type="text/javascript">
+         
+            var DataInizioCreazione='';
+            var DataFineCreazione='';
+            var DataInizioFilter='';
+            var DataFineFilter='';
+            var DataInizioOStream='';
+            var DataFineOstream='';
+            var DataInizioTT='';
+            var DataFineTT='';
+            var DataInizioTP = ''; //PG 10-04 - TP
+            var DataFineTP = ''; //PG 10-04 - TP
+            
+
+
+        function populateStatoRichiesta(){
+            $(document).ready(function(){
+                var valueSelected =  document.getElementById("TipoRichiesta").value;    
+                if(valueSelected=='Change Order'){
+                    $("#StatoRichiesta").empty();
+                    $("#StatoRichiesta").append('<option value="">---Select---</option>');
+                    $("#StatoRichiesta").append('<option value="Acquisito">Acquisito</option>');
+                    $("#StatoRichiesta").append('<option value="Modificato OK">Modificato OK</option>');
+                    $("#StatoRichiesta").append('<option value="Modificato KO">Modificato KO</option>');
+                }else if (valueSelected == 'Attivazione'){
+                    $("#StatoRichiesta").empty();
+                    $("#StatoRichiesta").append('<option value="">---Select---</option>');
+                    $("#StatoRichiesta").append('<option value="Acquisito">Acquisito</option>');
+                    $("#StatoRichiesta").append('<option value="Accettato">Accettato</option>');
+                    $("#StatoRichiesta").append('<option value="Acquisito KO">Acquisito KO</option>');
+                    $("#StatoRichiesta").append('<option value="Annullato">Annullato</option>');
+                    $("#StatoRichiesta").append('<option value="Espletato">Espletato</option>');
+                    $("#StatoRichiesta").append('<option value="Espletato KO">Espletato KO</option>');
+                    $("#StatoRichiesta").append('<option value="Sospeso">Sospeso</option>');
+                    $("#StatoRichiesta").append('<option value="In Annullamento">In Annullamento</option>');
+                }else if (valueSelected == 'Cessazione'){
+                    $("#StatoRichiesta").empty();
+                    $("#StatoRichiesta").append('<option value="">---Select---</option>');
+                    $("#StatoRichiesta").append('<option value="Acquisito">Acquisito</option>');
+                    $("#StatoRichiesta").append('<option value="Cessato OK">Cessato OK</option>');
+                    $("#StatoRichiesta").append('<option value="Cessato KO">Cessato KO</option>');
+                    $("#StatoRichiesta").append('<option value="Inviato">Inviato</option>');
+                    $("#StatoRichiesta").append('<option value="Cessato">Cessato</option>');
+                }else{
+                    $("#StatoRichiesta").empty();
+                    $("#StatoRichiesta").append('<option value="">---Select---</option>');
+                }
+            });
+        }
+            
+            function init(){
+
+                var selezione = document.getElementById("Offerta").value;
+                //alert(selezione);
+                if(selezione=='Problema tecnico/applicativo')
+                {
+                    $("#filtro_cod_ordine_op").hide();
+                    $("#filtro_stato_ordine_op").hide();
+                }
+                
+            
+                    //DATA CREAZIONE TICKET PROVISIONING - START
+                    $("[id$='IDDateFilterTP']").daterangepicker({
+                    "autoUpdateInput": false,
+                    "opens": "Right",
+                    "locale": {
+                        "format": "DD/MM/YYYY",
+                        "separator": " / ",
+                        "applyLabel": "Applica",
+                        "cancelLabel": "Pulisci",
+                        "fromLabel": "DA",
+                        "toLabel": "A",
+                        "customRangeLabel": "Custom",
+                        "daysOfWeek": [
+                            "Dom",
+                            "Lun",
+                            "Mar",
+                            "Mer",
+                            "Gio",
+                            "Ven",
+                            "Sab"
+                        ],
+                        "monthNames": [
+                            "Gennaio",
+                            "Febbraio",
+                            "Marzo",
+                            "Aprile",
+                            "Maggio",
+                            "Giugno",
+                            "Luglio",
+                            "Agosto",
+                            "Settembre",
+                            "Ottobre",
+                            "Novembre",
+                            "Dicembre"
+                        ],
+                        "firstDay": 1
+                    }
+                    });
+
+
+                    $("[id$='IDDateFilterTP']").on('apply.daterangepicker', function(ev, picker) {
+                    $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+                        DataInizioTP=picker.startDate.format();
+                        DataFineTP=picker.endDate.format();
+                        doSearchTicketProv();
+
+                    });
+
+                    $("[id$='IDDateFilterTP']").on('cancel.daterangepicker', function(ev, picker) {
+                        $(this).val('');
+                        DataInizioTP='';
+                        DataFineTP='';
+                        doSearchTicketProv();
+                    });
+
+                    if(DataInizioTP!=''&& DataFineTP!=''){
+                        $("[id$='IDDateFilterTP']").val(moment(DataInizioTP).format("DD/MM/YYYY") + ' - ' + moment(DataFineTP).format("DD/MM/YYYY"));
+                    }
+                    //DATA CREAZIONE TICKET PROVISIONING - END
+
+                      $("[id$='IDDateFilterTrouble']").daterangepicker({
+                      "autoUpdateInput": false,
+                      "opens": "Right",
+                      "locale": {
+                            "format": "DD/MM/YYYY",
+                            "separator": " / ",
+                            "applyLabel": "Applica",
+                            "cancelLabel": "Pulisci",
+                            "fromLabel": "DA",
+                            "toLabel": "A",
+                            "customRangeLabel": "Custom",
+                            "daysOfWeek": [
+                                "Dom",
+                                "Lun",
+                                "Mar",
+                                "Mer",
+                                "Gio",
+                                "Ven",
+                                "Sab"
+                            ],
+                            "monthNames": [
+                                "Gennaio",
+                                "Febbraio",
+                                "Marzo",
+                                "Aprile",
+                                "Maggio",
+                                "Giugno",
+                                "Luglio",
+                                "Agosto",
+                                "Settembre",
+                                "Ottobre",
+                                "Novembre",
+                                "Dicembre"
+                            ],
+                            "firstDay": 1
+                        }
+                  }); 
+                  
+
+                  $("[id$='IDDateFilterTrouble']").on('apply.daterangepicker', function(ev, picker) {
+                      $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+                      DataInizioTT=picker.startDate.format();
+                      DataFineTT=picker.endDate.format();
+                      doSearchTroubleTicket();
+                      
+                  });
+                
+                  $("[id$='IDDateFilterTrouble']").on('cancel.daterangepicker', function(ev, picker) {
+                      $(this).val('');
+                      DataInizioTT='';
+                      DataFineTT='';
+                      doSearchTroubleTicket();
+                  });
+                  
+                  if(DataInizioTT!=''&& DataFineTT!=''){
+                    $("[id$='IDDateFilterTrouble']").val(moment(DataInizioTT).format("DD/MM/YYYY") + ' - ' + moment(DataFineTT).format("DD/MM/YYYY"));
+                  }
+         
+           
+           
+           
+           
+           
+                    $("[id$='IDDateFilterStream']").daterangepicker({
+                      "autoUpdateInput": false,
+                      "opens": "Right",
+                      "locale": {
+                            "format": "DD/MM/YYYY",
+                            "separator": " / ",
+                            "applyLabel": "Applica",
+                            "cancelLabel": "Pulisci",
+                            "fromLabel": "DA",
+                            "toLabel": "A",
+                            "customRangeLabel": "Custom",
+                            "daysOfWeek": [
+                                "Dom",
+                                "Lun",
+                                "Mar",
+                                "Mer",
+                                "Gio",
+                                "Ven",
+                                "Sab"
+                            ],
+                            "monthNames": [
+                                "Gennaio",
+                                "Febbraio",
+                                "Marzo",
+                                "Aprile",
+                                "Maggio",
+                                "Giugno",
+                                "Luglio",
+                                "Agosto",
+                                "Settembre",
+                                "Ottobre",
+                                "Novembre",
+                                "Dicembre"
+                            ],
+                            "firstDay": 1
+                        }
+                  });
+                  
+
+                  $("[id$='IDDateFilterStream']").on('apply.daterangepicker', function(ev, picker) {
+                      $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+                      DataInizioOStream=picker.startDate.format();
+                      DataFineOstream=picker.endDate.format();
+                      doSearchOpenStream();
+                      
+                  });
+                
+                  $("[id$='IDDateFilterStream']").on('cancel.daterangepicker', function(ev, picker) {
+                      $(this).val('');
+                      DataInizioOStream='';
+                      DataFineOstream='';
+                      doSearchOpenStream();
+                  });
+                  
+                  if(DataInizioOStream!=''&& DataFineOstream!=''){
+                    $("[id$='IDDateFilterStream']").val(moment(DataInizioOStream).format("DD/MM/YYYY") + ' - ' + moment(DataFineOstream).format("DD/MM/YYYY"));
+                  }
+         
+           
+           
+           
+                   $("[id$='IDDateFilterOpen']").daterangepicker({
+                      "autoUpdateInput": false,
+                      "opens": "Right",
+                      "locale": {
+                            "format": "DD/MM/YYYY",
+                            "separator": " / ",
+                            "applyLabel": "Applica",
+                            "cancelLabel": "Pulisci",
+                            "fromLabel": "DA",
+                            "toLabel": "A",
+                            "customRangeLabel": "Custom",
+                            "daysOfWeek": [
+                                "Dom",
+                                "Lun",
+                                "Mar",
+                                "Mer",
+                                "Gio",
+                                "Ven",
+                                "Sab"
+                            ],
+                            "monthNames": [
+                                "Gennaio",
+                                "Febbraio",
+                                "Marzo",
+                                "Aprile",
+                                "Maggio",
+                                "Giugno",
+                                "Luglio",
+                                "Agosto",
+                                "Settembre",
+                                "Ottobre",
+                                "Novembre",
+                                "Dicembre"
+                            ],
+                            "firstDay": 1
+                        }
+                  });
+                  
+
+                  $("[id$='IDDateFilterOpen']").on('apply.daterangepicker', function(ev, picker) {
+                      $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+                      DataInizioFilter=picker.startDate.format();
+                      DataFineFilter=picker.endDate.format();
+                      doSearchOpenStream();
+                      
+                  });
+                
+                  $("[id$='IDDateFilterOpen']").on('cancel.daterangepicker', function(ev, picker) {
+                      $(this).val('');
+                      DataInizioFilter='';
+                      DataFineFilter='';
+                      doSearchOpenStream();
+                  });
+                  
+                  if(DataInizioFilter!=''&& DataFineFilter!=''){
+                    $("[id$='IDDateFilterOpen']").val(moment(DataInizioFilter).format("DD/MM/YYYY") + ' - ' + moment(DataFineFilter).format("DD/MM/YYYY"));
+                  }
+         
+                 $("[id$='IDDateFilterCreazione']").daterangepicker({
+                      "autoUpdateInput": false,
+                      "opens": "Right",
+                      "locale": {
+                            "format": "DD/MM/YYYY",
+                            "separator": " / ",
+                            "applyLabel": "Applica",
+                            "cancelLabel": "Pulisci",
+                            "fromLabel": "DA",
+                            "toLabel": "A",
+                            "customRangeLabel": "Custom",
+                            "daysOfWeek": [
+                                "Dom",
+                                "Lun",
+                                "Mar",
+                                "Mer",
+                                "Gio",
+                                "Ven",
+                                "Sab"
+                            ],
+                            "monthNames": [
+                                "Gennaio",
+                                "Febbraio",
+                                "Marzo",
+                                "Aprile",
+                                "Maggio",
+                                "Giugno",
+                                "Luglio",
+                                "Agosto",
+                                "Settembre",
+                                "Ottobre",
+                                "Novembre",
+                                "Dicembre"
+                            ],
+                            "firstDay": 1
+                        }
+                  });
+                  
+
+                  $("[id$='IDDateFilterCreazione']").on('apply.daterangepicker', function(ev, picker) {
+                      $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+                      DataInizioCreazione=picker.startDate.format();
+                      DataFineCreazione=picker.endDate.format();
+                      doSearch1();
+                      
+                  });
+                
+                  $("[id$='IDDateFilterCreazione']").on('cancel.daterangepicker', function(ev, picker) {
+                      $(this).val('');
+                      DataInizioCreazione='';
+                      DataFineCreazione='';
+                      doSearch1();
+                  });
+                  
+                  if(DataInizioCreazione!=''&& DataFineCreazione!=''){
+                    $("[id$='IDDateFilterCreazione']").val(moment(DataInizioCreazione).format("DD/MM/YYYY") + ' - ' + moment(DataFineCreazione).format("DD/MM/YYYY"));
+                  }
+            }           
+            
+            $(document).ready(function() {
+            
+            init();
+               
+            });
+        </script>
+        </body>
+    </html>
+      
+</apex:page>

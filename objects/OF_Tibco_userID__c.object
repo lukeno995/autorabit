@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Metodo per recuperare lo UserID di Tibco</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>OF_Tibco_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Tibco ID</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Tibco userID</label>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Ce_CeiRecordType</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Ce_CeiRecordType</value>
+    </caseValues>
+    <fields>
+        <label><!-- ceName --></label>
+        <name>ceName__c</name>
+    </fields>
+    <fields>
+        <label><!-- ceiDevName --></label>
+        <name>ceiDevName__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

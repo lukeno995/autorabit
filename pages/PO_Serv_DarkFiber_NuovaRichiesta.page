@@ -1,0 +1,211 @@
+<apex:page id="pageID" controller="PO_Serv_DarkFiber_InsertNewReq_Ctrl" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+    <html lang="en">
+        <head>  
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <!-- /#wrapper -->
+              
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+            </style>
+        </head>
+        <body>
+            <div id="wrapper">
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <!--<c:POHeaderComp />-->
+                    <c:PO_SideBarComponent /> 
+
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" id="side-menu"></ul>
+                        </div>
+                        <!-- /.sidebar-collapse -->
+                    </div>
+                    <!-- /.navbar-static-side -->
+                </nav>
+                <div id="page-wrapper">
+                    <div class="row">
+                        <div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i></i>Richiesta Fattibilità
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div style="color:red;" id="showerror">
+                                            <apex:pageMessages id="errors" /> 
+                                        </div>
+                                        <apex:form styleClass="form-horizontal" id="formID" >  
+                                        <!--<form>-->
+                                            <div style="color:red;" id="showerror">
+                                                <apex:pageMessages id="errors" />     
+                                            </div>
+                                            <div class="container">
+                                                <div class="form-group">
+                                                    <label class="control-label col-sm-3" for="Azienda">Azienda</label>
+                                                    <div class="col-sm-6">
+                                                        <!--<input class="form-control" id="disabledInput" type="text" value="{!parentCase.accountid}" disabled = "True"/>-->
+                                                        <apex:outputText value="{!accountName}" styleClass="form-control" id="Azienda"  />
+                                                    </div>
+                                                </div>                                               
+                                                <div class="form-group">
+                                                    <label class="control-label col-sm-3" for="Offerta">Offerta*</label>
+                                                    <div class="col-sm-6">
+                                                       <apex:outputText value="{!offertaDarkFiber}" styleClass="form-control" id="Offerta"/>
+                                                        <!--<apex:outputText value="{!testVar}" styleClass="form-control" id="Offerta"/>--> 
+                                                    </div>
+                                                </div>
+                                                <!--14/06/2017 Modified By Rajani -->
+                                                <div class="form-group">
+                                                   <label class="control-label col-sm-3" for="NomeProgetto">Nome Progetto*</label>
+                                                    <div class="col-sm-6">
+                                                       <!-- <apex:inputField value="{!testcase.PO_Nome_Progetto__c}" styleClass="form-control" id="NomeProgetto" /> -->
+                                                        <apex:inputText required="true" value="{!Nome}" styleClass="form-control" onkeypress="return noenter(event);" id="NomeProgetto" />
+                                                    </div>
+                                                </div>
+                                            
+                                                <!-- EC start 2018 - 11 - 10 -->
+                                                 <div style="margin-left:130px;">
+                                                    <apex:outputLabel style="font-size: 14px;">Scarica il template con l'intestazione : </apex:outputLabel>&nbsp;&nbsp;
+                                                    <apex:outputPanel rendered="{!offertaDarkFiber=='Dark Fiber'}">
+                                                        <a href="{!URLFOR($Resource.Template_Caricamento,'Template_DarkFiber.csv')}">DarkFiber</a>
+                                                    </apex:outputPanel>        
+                                                </div>
+                                                <!--  EC end 2018 - 11 - 10 -->                            
+                    
+                                                <!--        
+                                                        
+                                                <apex:actionRegion >
+                                                    <label class="control-label col-sm-3" for="Tipo di Richiesta">Tipo di Richiesta*</label>
+                                                    <div class="col-sm-6">
+                                                        <apex:selectList label="Tipo di Richiesta" value="{!requestSelected}" size="1" required="true" styleClass="form-control">
+                                                            <apex:selectOptions Value="{!requestOptions}" />
+                                                        </apex:selectList>
+                                                    </div>
+                                                </apex:actionRegion>
+                                                        
+                                                -->
+                                                        
+                                                <br/>
+                                                <br/> 
+                                                <br/> 
+                                                <div class="form-group">
+                                                    <div class="col-lg-6 col-offset-6"> 
+                                                    </div>
+                                                    <div class="col-lg-6 col-offset-6">
+                                                        <apex:commandButton styleClass="btn btn-primary" value="Annulla" style="margin-right:10px;" action="{!DeleteParentCase}" immediate="true" html-formnovalidate="formnovalidate"/> 
+                                                        <apex:commandButton id="SaveBttn" styleClass="btn btn-primary" value="Inserisci Collegamento" action="{!toDarkFiber}" reRender="errors"/> <!--  onclick="validateform();"  --> 
+                                                       &nbsp;&nbsp; 
+                                                        <apex:commandButton styleClass="btn btn-primary" value="Importa Collegamenti"    onclick="validateform1();" reRender="errors"/>
+                                                        &nbsp;&nbsp; 
+                                                   
+                                                   <!--  <apex:commandButton id="SaveBttn" styleClass="btn btn-primary" value="Inserisci Collegamento"  onclick="validateform();" reRender="errors"/>&nbsp;&nbsp;
+                                                          <apex:commandButton styleClass="btn btn-primary" value="Importa Collegamenti"    onclick="validateform1();" reRender="errors"/>  -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <apex:actionFunction action="{!uploadCSV}" name="uploadCSV" /> 
+                                        </apex:form>    
+                                        <br/>
+                                    </div>
+                                    <!-- /.row (nested) -->
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>       
+                            <!-- /.col-lg-4 -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /#page-wrapper -->
+                </div>
+            </div>
+            <!-- /#wrapper -->
+            <script type='text/javascript'>
+                function noenter(e){  
+                    //alert('Test ');             
+                    if(window.event){  
+                        key = window.event.keyCode;              
+                    }else{                    
+                        key = e.which;               
+                    }               
+                    if(key == 13) {   
+                        var ele=document.getElementById('{!$Component.pageID:formID:SaveBttn}');                                          
+                        ele.click();                     
+                        return false;               
+                    }else{                    
+                        return true;               
+                    }          
+                }     
+            </script>
+            
+            <script>
+             j$ = jQuery.noConflict();    
+            
+            function validateform1(){
+                    var invalidflg = false;
+                    var NomeProgetto = j$('[id$=NomeProgetto]').val();
+                    if(NomeProgetto.length == 0){
+                    j$('[id$=NomeProgetto]').next('div.red').remove();
+                    j$('[id$=NomeProgetto]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    j$('[id$=NomeProgetto]').next('div.red').remove();
+                }
+                  if(invalidflg){
+                    return false;
+                }
+               uploadCSV();
+                }
+           </script> 
+            
+            
+        </body>
+    </html>
+</apex:page>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>PO OLO Reschedule</name>
+    <style>none</style>
+    <subject>Open Fiber - Aggiornamento richiesta di {!IF(EOF_EAI_Service_Log__c.EOF_Tipo_Comunicazione_String__c=&apos;&apos;,&apos;Risoluzione Guasto&apos;,EOF_EAI_Service_Log__c.EOF_Tipo_Comunicazione_String__c)} {!EOF_EAI_Service_Log__c.EOF_Codice_Ordine_OLO__c}</subject>
+    <textOnly>Gentile Operatore, 
+
+La richiesta di {!IF(EOF_EAI_Service_Log__c.EOF_Tipo_Comunicazione_String__c=&apos;&apos;,&apos;Risoluzione Guasto&apos;,EOF_EAI_Service_Log__c.EOF_Tipo_Comunicazione_String__c)} {!EOF_EAI_Service_Log__c.EOF_Codice_Ordine_OLO__c}, da Lei inoltrata in data {!EOF_EAI_Service_Log__c.PO_SA_Data_Inserimento_Ordine__c}, ha ricevuto un aggiornamento della data prevista attivazione, la nuova data è {!EOF_EAI_Service_Log__c.EOF_DATA_PREVISTA_ATTIVAZIONE__c}{!IF(EOF_EAI_Service_Log__c.EOF_DATA_PREVISTA_ATTIVAZIONE__c!=&apos;&apos;,&apos; &apos;&amp;EOF_EAI_Service_Log__c.EOF_DATA_PREVISTA_ATTIVAZIONE__c,&apos;&apos;)}. 
+
+Per vedere la richiesta clicchi sul seguente link: https://eofdev-open-fiber.cs83.force.com/partnercommunity/PO_OpenStreamService_InsertNewRequestorigID={!EOF_EAI_Service_Log__c.Id}&amp;proc=attivazioneInoltrata 
+
+Grazie</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

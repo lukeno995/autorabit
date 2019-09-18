@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Coda Richieste Registrazione</name>
+    <queueMembers>
+        <roles>
+            <role>Direzione</role>
+            <role>PO_Back_Office</role>
+            <role>PO_Supervisore_Commerciale</role>
+            <role>PO_Supporto_Vendite</role>
+        </roles>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

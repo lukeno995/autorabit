@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Società Services</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Società Services</value>
+    </caseValues>
+    <fields>
+        <label><!-- Ragione Sociale Service --></label>
+        <name>CQS_SS_NomeSoc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note --></label>
+        <name>CQS_SS_Note__c</name>
+    </fields>
+    <fields>
+        <label><!-- Partita IVA --></label>
+        <name>CQS_SS_PartitaIVA__c</name>
+    </fields>
+    <layouts>
+        <layout>Società Services Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

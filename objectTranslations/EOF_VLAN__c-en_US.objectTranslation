@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>VLAN</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>VLANs</value>
+    </caseValues>
+    <fields>
+        <label><!-- Caso --></label>
+        <name>Caso__c</name>
+        <relationshipLabel><!-- VLAN --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- OF_NomeKit_From_Coll --></label>
+        <name>OF_NomeKit_From_Coll__c</name>
+    </fields>
+    <fields>
+        <label><!-- COS1_CIR --></label>
+        <name>PO_COS1_CIR__c</name>
+    </fields>
+    <fields>
+        <label><!-- COS1_PIR --></label>
+        <name>PO_COS1_PIR__c</name>
+    </fields>
+    <fields>
+        <label><!-- COS3_CIR --></label>
+        <name>PO_COS3_CIR__c</name>
+    </fields>
+    <fields>
+        <label><!-- COS3_PIR --></label>
+        <name>PO_COS3_PIR__c</name>
+    </fields>
+    <fields>
+        <label><!-- COS5_CIR --></label>
+        <name>PO_COS5_CIR__c</name>
+    </fields>
+    <fields>
+        <label><!-- COS5_PIR --></label>
+        <name>PO_COS5_PIR__c</name>
+    </fields>
+    <fields>
+        <label><!-- COS-Class --></label>
+        <name>PO_COS_Class__c</name>
+    </fields>
+    <fields>
+        <label><!-- COS Remarking --></label>
+        <name>PO_COS_Remarking__c</name>
+    </fields>
+    <fields>
+        <label><!-- DHCP Option82 --></label>
+        <name>PO_DHCP_Option82__c</name>
+    </fields>
+    <fields>
+        <label><!-- KIT di consegna VLAN --></label>
+        <name>PO_KIT_di_consegna_VLAN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Modello di Servizio --></label>
+        <name>PO_Modello_di_Servizio__c</name>
+    </fields>
+    <fields>
+        <label><!-- Opzione --></label>
+        <name>PO_Opzione__c</name>
+        <picklistValues>
+            <masterLabel>Flexible</masterLabel>
+            <translation><!-- Flexible --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Standard</masterLabel>
+            <translation><!-- Standard --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Profilo --></label>
+        <name>PO_Profilo__c</name>
+        <picklistValues>
+            <masterLabel>3Play</masterLabel>
+            <translation><!-- 3Play --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Solo Dati</masterLabel>
+            <translation><!-- Solo Dati --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Voce e Dati</masterLabel>
+            <translation><!-- Voce e Dati --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- SVLAN Traslation --></label>
+        <name>PO_SVLAN_Traslation__c</name>
+    </fields>
+    <fields>
+        <label><!-- User_VLAN --></label>
+        <name>PO_User_VLAN__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO_Velocita_di_Banda --></label>
+        <name>PO_Velocita_di_Banda__c</name>
+    </fields>
+    <fields>
+        <label><!-- SVLANID --></label>
+        <name>SVLANID__c</name>
+    </fields>
+    <layouts>
+        <layout>VLAN Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dati Profilo --></label>
+            <section>Dati Profilo</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- OF_VLAN_EAccess --></label>
+        <name>OF_VLAN_EAccess</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF_VLAN_ELine --></label>
+        <name>OF_VLAN_ELine</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

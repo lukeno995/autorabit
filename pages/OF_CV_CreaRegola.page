@@ -1,0 +1,100 @@
+<apex:page controller="OF_CV_CreaRegola_Controller" id="thePage" standardstylesheets="false" sidebar="true">
+<apex:slds />
+    <html lang="en">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            
+            <style>
+            
+                .fsWrapper{
+                    width: 960px;
+                    margin: 0 auto;
+                }
+                
+                .fontHeader{
+                    font-size: 13px;
+                }
+                
+                .headerTitle{
+                    font-family: arial, sans-serif;
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: #fff!important;
+                    text-align: left;
+                    text-transform: uppercase;
+                    background: #4e75a3;
+                    display: block;
+                    padding: 10px;
+                    margin:0;
+                }
+                
+                .formatText{
+                    font-family: arial, sans-serif;
+                    font-size: 13px;
+                    font-weight: 600;
+                    text-align: left;
+                    text-transform: uppercase;
+                    display: block;
+                    padding: 10px;
+                    margin:0;
+                }
+                
+                #buttons{
+                    text-transform: uppercase;
+                    padding-top: 10px;
+                    padding-right: 10px;
+                    padding-bottom: 10px;
+                }
+                
+                .slds-scope .slds-button--brand, .slds-scope .slds-button_brand {
+                    background-color: rgb(52, 81, 138);
+                    border-color: rgb(52, 81, 138);
+                }
+                
+            </style>
+        </head>
+        <body>
+            <apex:form id="form" styleClass="fsWrapper">
+                <apex:outputPanel styleClass="dataTable">
+                    <apex:pageBlock id="pageB" >
+                        <h2 class="headerTitle">CREAZIONE NUOVA REGOLA</h2>
+                        <div>                                                        
+                            <label class="formatText">Scegli l'Operatore :</label>  
+                                <apex:selectList styleClass="slds-select" style="width:33%;" size="1" value="{!operatore}">
+                                    <apex:selectOptions value="{!OptOperatori}"></apex:selectOptions>
+                                </apex:selectList>
+                        </div>
+                        <div>
+                            <label class="formatText">Scegli il Servizio :</label>
+                            <apex:selectList styleClass="slds-select" style="width:33%;" size="1" value="{!servizio}">
+                                <apex:selectOptions value="{!OptServizi}"></apex:selectOptions>
+                            </apex:selectList>
+                        </div>
+                        
+                        <div>       
+                            <apex:outputPanel rendered="false">
+                                <label class="formatText">Stato Building :</label>
+                                <apex:selectList styleClass="slds-select" style="width:33%;" size="1"   value="{!stato}">
+                                    <apex:selectOptions value="{!Stati}"></apex:selectOptions>
+                                </apex:selectList>
+                            </apex:outputPanel>
+                        </div>
+                        
+                        <div class="slds-form-element" id="buttons">
+                            <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;" value="Annulla" action="{!annulla}" />
+                            <apex:commandLink styleClass="slds-button slds-button--brand" value="Seleziona POP" action="{!sceltaPop}" />
+                        </div>
+                    </apex:pageBlock>
+                </apex:outputPanel>
+        </apex:form>
+        <!-- Bootstrap Core JavaScript -->
+        <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+        <script type="text/javascript">
+           
+        </script>
+        </body>
+    </html>
+</apex:page>

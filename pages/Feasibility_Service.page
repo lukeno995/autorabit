@@ -1,0 +1,143 @@
+<apex:page standardController="Case" extensions="PO_RegistrationController" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+    <html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>open fiber</title>  
+
+    <!-- Bootstrap Core CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+
+    <!-- MetisMenu CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+
+    <!-- Custom CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+
+    <!-- Morris Charts CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+
+    <!-- Custom Fonts -->
+    <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+
+        <style>
+        .navbar {
+        min-height: 105px;
+        }
+        .navbar-header {
+        float: none;
+        }
+        .navbar-default {
+        background-color: #ffffff;
+        }
+        .panel-default>.panel-heading {
+        color: #ffffff;
+        background-color: #337ab7;
+        }
+        span.dateFormat{
+        
+        display:none;
+        
+        }
+        .red{color:red;}
+        .form-check-input{ 
+        margin-left: 45px !important;
+        margin-top: 10px;
+        }
+
+    </style>
+    </head>
+    <body>
+
+    <div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <c:POHeaderComp />
+
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
+    </nav>
+
+    <div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i></i>Servizio a Fattibilità
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                     
+                            <apex:form >
+                            <div style="color:red;" id="showerror">
+                                <apex:pageMessages id="errors" /> 
+                            </div>
+                            
+                            <form role="form" class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-lg-6">
+                                        <apex:outputLabel value="Centro fatturazione cliente" for="aab"/>
+                                        <apex:inputField value="{!parentCase.PO_Centro_fatturazione_cliente__c}" id="aab"/>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label>Siti da collegare</label>
+                                        <apex:inputField id="Sitidacollegare" styleClass="form-control" value="{!case.PO_Siti_da_collegare__c}"/>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="col-lg-6">
+                                        <apex:outputLabel value="Contratto quadro" for="aac"/>
+                                        <apex:inputField value="{!parentCase.PO_Contratto_quadro_di_riferimento__c}" id="aac"/>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <apex:outputLabel value="Offerta" for="aad"/>
+                                        <apex:inputField value="{!parentCase.PO_Offerta__c}" required="true" id="aad"/>
+                                    </div>                                                                                                                                                    
+                                </div>
+                                
+            
+                                    <div class="col-lg-6 col-offset-6">
+                                          <apex:commandButton action="{childCase}" value="Continue"/> 
+                                    </div>
+                                
+                        
+                            </form>
+                             
+                        </apex:form> 
+                        <br/>
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>       
+            
+            <div class="col-lg-4">
+                
+            </div>
+            <!-- /.col-lg-4 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /#page-wrapper -->
+
+    </div>
+   
+    <!-- /#wrapper -->
+
+    <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+
+    <!-- Bootstrap Core JavaScript -->
+    <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+        </div>
+    </body>
+    </html>
+    </apex:page>

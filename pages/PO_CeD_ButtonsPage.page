@@ -1,0 +1,184 @@
+<apex:page standardController="Case" extensions="PO_CeD_ButtonsController" showHeader="false" sidebar="false">
+<apex:includeScript value="/support/console/36.0/integration.js"/>
+<apex:includeScript value="/soap/ajax/20.0/connection.js"/>
+<apex:stylesheet value="{!URLFOR($Resource.LDS, 'assets/styles/salesforce-lightning-design-system.min.css')}"/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>   
+
+<style>
+    #modalContainer {
+        background-color:rgba(0, 0, 0, 0.3);  
+        position:absolute;
+        width:100%;
+        height:100%;
+        top:0px;
+        left:0px;
+        z-index:10000;
+        background-image:url(tp.png); /* required by MSIE to prevent actions on lower z-index elements */
+    }
+    /* unrelated styles */
+
+    h1,h2 {
+        margin:0;
+        padding:4px;
+        font:bold 1.5em verdana;
+        border-bottom:1px solid #000;
+    }
+    
+    code {
+        font-size:1.8em;
+        color:#069;
+    }
+    
+    #credits {
+        position:relative;
+        margin:25px auto 0px auto;
+        width:350px; 
+        font:0.7em verdana;
+        border-top:1px solid #000;
+        border-bottom:1px solid #000;
+        height:90px;
+        padding-top:4px;
+    }
+    
+    #credits img {
+        float:left;
+        margin:5px 10px 5px 0px;
+        border:1px solid #000000;
+        width:80px;
+        height:79px;
+    }
+    
+    .important {
+        background-color:#F5FCC8;
+        padding:2px;
+    }
+    
+    code span {
+        color:green;
+    }    
+    
+</style>
+
+<script type="text/javascript">
+    
+    function refresh(){
+        if (sforce.console.isInConsole()){
+                 
+            var refresh_subtab = function(result) {
+                var primaryTabId = result.id;
+                // open tabs
+                sforce.console.refreshPrimaryTabById(primaryTabId, true);
+            }﻿  
+            sforce.console.getEnclosingPrimaryTabId(refresh_subtab);
+        }
+        else if ("{!$User.UIThemeDisplayed}" == "Theme4d"){
+            sforce.one.navigateToURL("/{!Case.Id}");
+            sforce.one.back(true);
+        }
+        else{
+             window.top.location.href ="/{!Case.Id}";
+        }           
+    };
+    
+    function chooseOperation(x){
+        
+        var oper = '';
+        
+        if(x=='Accettazione'){
+            oper = 'ACC'; 
+        }
+        if(x=='Sospensione'){
+            oper = 'SOSP'; 
+        }
+        if(x=='Desospensione'){
+            oper = 'DESOSP'; 
+        }
+        if(x=='EspletamentoOK'){
+            oper = 'ESP_OK'; 
+        }
+        if(x=='EspletamentoKO'){
+            oper = 'ESP_KO'; 
+        }
+        /*
+        if(x=='CessatoOK'){
+            oper = 'CESS_OK'; 
+        }
+        if(x=='CessatoKO'){
+            oper = 'CESS_KO'; 
+        }
+        */
+        if(x=='RimodulazioneDAC'){
+            oper = 'R_DAC'; 
+        }
+
+        window.top.location.href ="/apex/PO_CeD_OperationChoicePage?retURL={!Case.Id}&Id={!Case.Id}&Oper="+oper;
+    }
+  
+    function testCloseTab(){
+        //First find the ID of the current tab to close it
+        sforce.console.getEnclosingTabId(closeSubtab);
+    }
+        
+    var closeSubtab = function closeSubtab(result){
+        //Now that we have the tab ID, we can close it
+        var tabId = result.id;
+        sforce.console.closeTab(tabId);
+    };    
+        
+  </script>
+    
+  <body id="buttonBlock"> 
+    <apex:form style="padding-top: 10px" >
+        <apex:pageMessages ></apex:pageMessages>
+    
+    <!--<apex:outputText rendered="{!If(Case.owner.type=='Queue','true','false')}" ><b>In {!Case.Owner.name}, in attesa di presa in carico </b></apex:outputText><br/>-->
+    <p>
+        <apex:outputText rendered="{!If(Case.Status=='Sospeso',true,false)}">
+            <b>Richiesta in attesa di Desospensione</b>
+        </apex:outputText>
+    </p>
+    <br/>
+
+    <apex:commandLink action="{!PrendiInCarico}" value="Prendi In Carico" reRender="buttonBlock" rendered="{!mostraPrendiInCarico}" 
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                      oncomplete="refresh()">
+    </apex:commandLink>
+    
+    <apex:commandLink value="Accettato" reRender="buttonBlock" styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                      onclick="chooseOperation('Accettazione')" rendered="{!mostraAccettazione}" >
+    </apex:commandLink>
+    
+    <apex:commandLink value="Rimodulazione DAC" reRender="buttonBlock" styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                      onclick="chooseOperation('RimodulazioneDAC')" rendered="{!mostraRDAC}" >
+    </apex:commandLink>
+    
+    <apex:commandLink value="Espletato OK" reRender="buttonBlock" styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                      onclick="chooseOperation('EspletamentoOK')" rendered="{!mostraEspletatoOK}" >
+    </apex:commandLink>
+    
+    <apex:commandLink value="Espletato KO" reRender="buttonBlock" styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                      onclick="chooseOperation('EspletamentoKO')" rendered="{!mostraEspletatoKO}" >
+    </apex:commandLink>
+    
+    <apex:commandLink value="Sospeso" reRender="buttonBlock" styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                      onclick="chooseOperation('Sospensione')" rendered="{!mostraSospeso}" >
+    </apex:commandLink>
+    
+    <apex:commandLink value="Desospeso" reRender="buttonBlock" styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                      onclick="chooseOperation('Desospensione')" rendered="{!mostraDesospeso}" >
+    </apex:commandLink>
+    
+    <apex:commandLink value="Cessato OK"  reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;"  
+                      action="{!cessato_OK}" rendered="{!mostraCessato}" oncomplete="refresh()">
+    </apex:commandLink>
+ 
+    <apex:commandLink value="Cessato KO" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                      action="{!cessato_KO}" rendered="{!mostraCessatoKO}" oncomplete="refresh()">
+    </apex:commandLink>
+
+    </apex:form>   
+  </body>    
+</apex:page>

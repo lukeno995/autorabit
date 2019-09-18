@@ -1,0 +1,276 @@
+<apex:page id="pageID" controller="PO_KIT_Controller" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+    <html lang="en">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+            <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>            
+            <link rel = "stylesheet"  type = "text/css"  href = "//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+            
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{                
+                display:none;                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+                .displayNone { 
+                display:none; 
+                }
+                .displayBlock {
+                display:block;
+                }
+                .ui-autocomplete-loading { 
+                background: white url(/img/loading32.gif) right center no-repeat;
+                background-size:15px 15px; 
+                }
+                .placeHolder {
+                font-style: italic;
+                }
+                
+            </style>  
+        </head>
+       <body>
+            <div id="wrapper">
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                   <c:PO_SideBarComponent Rec="{!recordOfferta}" />
+                    
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" id="side-menu">
+                            </ul>
+                        </div>
+                        <!-- /.sidebar-collapse -->
+                    </div>
+                    <!-- /.navbar-static-side -->
+                </nav>
+                <div>                    
+                    <div style="color:red;" id="showerror">
+                        <apex:pageMessages id="errors" /> 
+                    </div>
+                    <apex:outputPanel id="testform">
+                    </apex:outputPanel>
+                </div>
+                <div id="page-wrapper">
+                    <div class="row">
+                        <div class="col-lg-8" style="width:73.666667%;">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i></i>KIT
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <apex:form id="formID">                                            
+                                            <!-- <div style="color:red;" id="showerror">
+                                                	<apex:pageMessages id="errors" /> 
+                                                </div> -->
+                                            
+                                            <form role="form" class="form-horizontal">
+                                                
+                                               <!-- <div class="col-lg-6">
+                                                    <label>Nome del KIT</label>
+                                                    <apex:inputText id="nomeKit" styleClass="form-control" value="{!nomekit}" />
+                                                    
+                                                </div>
+                                                -->
+                                                
+                                                    <div class="form-group">                                                    
+                                                        <div class="col-lg-6"> 
+                                                            <label>POP di consegna*</label>
+    														<apex:inputText id="pop" styleClass="form-control" onkeypress="return noenter(event);" value="{!POP}"/>                                                        
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <label>Banda</label>
+                                                            <apex:inputText id="banda" styleClass="form-control" onkeypress="return noenter(event);" value="{!BandaInterfaccia}"/>
+                                                        </div>
+                                                        <div class="col-lg-6">                                                        
+                                                            <label>Interfaccia</label>                                                    
+                                         	                    <apex:selectList id="interfaccia" size="1" styleClass="form-control" value="{!interfaccia}">
+                                                    			<apex:selectOptions value="{!elencointerfacce}" />		
+                                                    		</apex:selectList>
+                                                        </div> 
+                                                        <!--<div class="col-lg-6">                                                        
+                                                            <label>Servizio Commerciale*</label>
+                                                            <apex:inputText id="traffico" styleClass="form-control" onkeypress="return noenter(event);" value="{!Traffico}"/>
+                                                        </div>   
+                                                        -->
+                                                        <div class="col-lg-6">                                                        
+                                                            <label>Servizio Commerciale*</label>                                                    
+                                         	                    <apex:selectList id="nomeTraffico" size="1" styleClass="form-control" value="{!Traffico}">
+                                                    			<apex:selectOptions value="{!elencoTraffico}" />		
+                                                    		</apex:selectList>
+                                                        </div> 
+                                                                                                      
+                                                        <!--  
+                                                        <div class="col-lg-6">
+                                                            <label>Modello di Servizio</label>
+                                                            <apex:inputText id="modello" styleClass="form-control" onkeypress="return noenter(event);" value="{!ModelloServizio}" />
+                                                        </div>
+                                                      
+                                                        <div class="col-lg-6">
+                                                            <label>Servizi per utenti finali</label>
+                                                            <apex:inputText id="servizi" styleClass="form-control" onkeypress="return noenter(event);" value="{!ServiziUtentiFinali}" />
+                                                        </div> 
+                                                         -->
+                                                    
+                                                      <div class="col-lg-6">
+        	                                             <label>Note</label> &nbsp; &nbsp;
+        	                                            <apex:inputText id="Note" styleClass="form-control" required="false" value="{!Note}"/>
+	                                                </div>
+                                                 </div>  
+                                                    <!--<div class="col-lg-6">
+                                                        <label>Posizione ODF</label>
+                                                        <apex:inputText id="posizione" styleClass="form-control" onkeypress="return noenter(event);" value="{!PosizioneODF}" />
+                                                    </div>--> 
+                                                    
+                                                    
+                                                <div class="form-group">
+                                                      <style>p.indent{ padding-left: 1.8em }</style>
+                                                    <div class="col-lg-8" style='margin-top:20px;'>
+                                                        <apex:outputPanel >                                                          
+                                                            <apex:commandLink id="SaveBttn" styleClass="btn btn-primary" style="margin-right:5px;" value="Salva" onclick="validateform(); return false;" />
+                                                            
+                                                             <apex:actionFunction action="{!savesl}" name="saveKitLog" />
+                                                            
+                                                            <apex:commandButton styleClass="btn btn-primary" style="margin-right:5px;" value="Annulla" action="{!deleteChildAlone}"/> 
+                                                        </apex:outputPanel>
+                                                    </div>         
+                                                </div>                                                
+                                            </form>                                            
+                                        </apex:form> 
+                                        <br/>
+                                    </div>
+                                    <!-- /.row (nested) -->
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>     
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /#page-wrapper -->
+                    
+                </div>
+            </div>
+            <!-- /#wrapper -->            
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'>
+            </script>
+
+            <script type='text/javascript'>            
+                
+                function validateform()
+            	{
+                    var invalidflg = false;       
+                    var pop = $('[id$=pop]').val();
+                    //var traffico = $('[id$=traffico]').val();
+                    var banda = $('[id$=banda]').val();
+                    var interfaccia = $('[id$=interfaccia]').val();
+                    //var modello = $('[id$=modello]').val();
+                    //var servizi = $('[id$=servizi]').val();
+                    //var nomeKit = $('[id$=nomeKit]').val();
+                    //var posizione = $('[id$=posizione]').val();                    
+               
+                    var PO_Offerta = 'KIT';
+                    //alert(PO_Offerta);
+ 
+                    if(pop.length == 0)
+                    {
+                        $('[id$=pop]').next('div.red').remove();
+                        $('[id$=pop]').after('<div class="red">Campo obbligatorio</div>');
+                        invalidflg = true;
+                    }
+                    else
+                    {
+                        $('[id$=pop]').next('div.red').remove();
+                    }
+                    
+                    if(pop.length >= 10)
+                    {
+                        $('[id$=pop]').next('div.red').remove();
+                        $('[id$=pop]').after('<div class="red">La lunghezza massima consentita è 10</div>');
+                        invalidflg = true;
+                    }
+                    
+                    if(banda.length == 0)
+                    {
+                        $('[id$=banda]').next('div.red').remove();
+                        $('[id$=banda]').after('<div class="red">Campo obbligatorio</div>');
+                        invalidflg = true;
+                    }
+                    else
+                    {
+                        $('[id$=banda]').next('div.red').remove();
+                    }
+                    
+                    /*  if(traffico.length == 0)
+                    {
+                        $('[id$=traffico]').next('div.red').remove();
+                        $('[id$=traffico]').after('<div class="red">Campo obbligatorio</div>');
+                        invalidflg = true;
+                    }
+                    else
+                    {
+                        $('[id$=traffico]').next('div.red').remove();
+                    }   */
+                    if (!invalidflg)
+                        saveKitLog();
+            	}    
+
+            function noenter(e){  
+                //alert('Test ');             
+                if(window.event){  
+                    key = window.event.keyCode;              
+                } 
+                else{                    
+                    key = e.which;               
+                }               
+                if(key == 13) {   
+                    var ele=document.getElementById('{!$Component.pageID:formID:SaveBttn}');                                          
+                    ele.click();                     
+                    return false;               
+                } else{                    
+                    return true;               
+                }          
+            }     
+            </script> 
+        </body>
+    </html>
+</apex:page>

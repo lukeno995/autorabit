@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Network Inventory</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Network Inventories</value>
+    </caseValues>
+    <fields>
+        <label><!-- Civico --></label>
+        <name>EOF_Civico__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Via --></label>
+        <name>EOF_Codice_Via__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comune --></label>
+        <name>EOF_Comune__c</name>
+    </fields>
+    <fields>
+        <label><!-- Coordinate Building --></label>
+        <name>EOF_Coordinate_Building__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data RFS Indicativa --></label>
+        <name>EOF_Data_RFS_Indicativa__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data RFS effettiva --></label>
+        <name>EOF_Data_RFS__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Ultima Modifica Record --></label>
+        <name>EOF_Data_Ultima_Modifica_Record__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Ultima Modifica Record --></label>
+        <name>EOF_Data_Ultima_Modifica__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Ultima Variazione Stato Building --></label>
+        <name>EOF_Data_Ultima_Variazione_Stato_Buildin__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Ultima Variazione Stato Scala Palaz --></label>
+        <name>EOF_Data_Ultima_Variazione_Stato_Scala_P__c</name>
+    </fields>
+    <fields>
+        <label><!-- Frazione --></label>
+        <name>EOF_Frazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- GPON ID --></label>
+        <name>EOF_GPON_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Building --></label>
+        <name>EOF_ID_Building__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Scala --></label>
+        <name>EOF_ID_Scala__c</name>
+    </fields>
+    <fields>
+        <label><!-- Idsp1 ID --></label>
+        <name>EOF_Idsp1_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Idsp1 POT --></label>
+        <name>EOF_Idsp1_POT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Idsp2 ID --></label>
+        <name>EOF_Idsp2_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Idsp2 POT --></label>
+        <name>EOF_Idsp2_POT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Indirizzo --></label>
+        <name>EOF_Indirizzo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Particella Top --></label>
+        <name>EOF_Particella_Top__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pop --></label>
+        <name>EOF_Pop__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pos Perm OLO --></label>
+        <name>EOF_Pos_Perm_OLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pos perm EOF --></label>
+        <name>EOF_Pos_perm_EOF__c</name>
+    </fields>
+    <fields>
+        <label><!-- Posizione OTDR EOF --></label>
+        <name>EOF_Posizione_OTDR_EOF__c</name>
+    </fields>
+    <fields>
+        <label><!-- Posizione OTDR OLO --></label>
+        <name>EOF_Posizione_OTDR_OLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Provincia --></label>
+        <name>EOF_Provincia__c</name>
+    </fields>
+    <fields>
+        <label><!-- Regione --></label>
+        <name>EOF_Regione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Scala Palazzina --></label>
+        <name>EOF_Scala_Palazzina__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stato Building --></label>
+        <name>EOF_Stato_Building__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stato Scala Palazzina --></label>
+        <name>EOF_Stato_Scala_Palazzina__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale UI --></label>
+        <name>EOF_Totale_UI__c</name>
+    </fields>
+    <layouts>
+        <layout>Layout Network Inventory</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

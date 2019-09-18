@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>ServFattList</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>ServFattList</value>
+    </caseValues>
+    <fields>
+        <label><!-- assetDevName --></label>
+        <name>assetDevName__c</name>
+    </fields>
+    <fields>
+        <label><!-- attBeList --></label>
+        <name>attBeList__c</name>
+    </fields>
+    <fields>
+        <label><!-- caseCollegamentoDevName --></label>
+        <name>caseCollegamentoDevName__c</name>
+    </fields>
+    <fields>
+        <label><!-- caseDevName --></label>
+        <name>caseDevName__c</name>
+    </fields>
+    <fields>
+        <label><!-- caseRichiestaDevName --></label>
+        <name>caseRichiestaDevName__c</name>
+    </fields>
+    <fields>
+        <label><!-- ceiDevName --></label>
+        <name>ceiDevName__c</name>
+    </fields>
+    <fields>
+        <label><!-- cessazioneBeList --></label>
+        <name>cessazioneBeList__c</name>
+    </fields>
+    <fields>
+        <label><!-- code --></label>
+        <name>code__c</name>
+    </fields>
+    <fields>
+        <label><!-- externalSystem --></label>
+        <name>externalSystem__c</name>
+    </fields>
+    <fields>
+        <label><!-- oppChildDevName --></label>
+        <name>oppChildDevName__c</name>
+    </fields>
+    <fields>
+        <label><!-- oppChildName --></label>
+        <name>oppChildName__c</name>
+    </fields>
+    <fields>
+        <label><!-- oppChildStageName --></label>
+        <name>oppChildStageName__c</name>
+    </fields>
+    <fields>
+        <label><!-- oppParentDevName --></label>
+        <name>oppParentDevName__c</name>
+    </fields>
+    <fields>
+        <label><!-- oppParentName --></label>
+        <name>oppParentName__c</name>
+    </fields>
+    <fields>
+        <label><!-- oppParentStageName --></label>
+        <name>oppParentStageName__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

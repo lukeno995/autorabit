@@ -1,0 +1,463 @@
+<apex:page Controller="PO_PP_SVLAN_AttInserita_Controller" id="pageID" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+       <html lang="it">  
+        <head> 
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <!-- /#wrapper -->
+              
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+            <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>            
+
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                .statoV{
+                    color: #DC143C;
+                }
+
+                
+            </style>
+        </head> 
+         
+        <body>
+            <div id="wrapper">
+            <!-- Navigation -->
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <c:PO_SideBarComponent />
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav" id="side-menu">
+                        </ul>
+                    </div>
+                    <!-- /.sidebar-collapse -->
+                </div>
+                <!-- /.navbar-static-side -->
+            </nav>
+            <div id="page-wrapper">
+            <apex:form >
+                <div class="panel panel-default" style="width:73.666667%;">
+                    <div class="panel-heading">
+		                <apex:outputPanel rendered="{!NOT(modifica_VLAN)}">
+		                     <i></i>Richiesta VLAN
+		                     <font color="black">
+                                    - [Si prega di inserire un numero massimo di 20 VLAN per richiesta] &nbsp;
+                            </font> 
+		                </apex:outputPanel>
+		                <apex:outputPanel rendered="{!modifica_VLAN}">
+		                     <i></i>Modifica VLAN
+		                </apex:outputPanel>
+		                <apex:outputPanel rendered="{!AND(confirmPage,!error,!success)}">
+		                     <i></i>Conferma Richiesta
+		                </apex:outputPanel>
+		                <apex:outputPanel rendered="{!OR(error,success)}">
+		                     <i></i>Risultato Inoltro
+		                </apex:outputPanel>
+                	</div>
+	                <div class="panel-body">
+	                <apex:actionStatus id="actStatusId" >
+                        <apex:facet name="start">
+                            <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.25; z-index: 1000; background-color: black;">
+                                &nbsp;
+                            </div>
+                            <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 15% 50%">
+                                <div style="display: inline-block; padding: 2px; background-color: #fff; width: 125px;">
+                                    <img src="/img/loading.gif" style="float: left; margin: 8px;" />
+                                    <span style="display: inline-block; padding: 10px 0px;">Please Wait...</span>
+                                </div>
+                            </div>
+                        </apex:facet>
+					</apex:actionStatus>       
+	                    <div class="row">
+	                        <div style="color:red;" id="showerror">
+	                            <apex:pageMessages id="errors" /> 
+	                        </div>
+	                    <apex:outputPanel rendered="{!error}" >
+		                    <div class="panel-heading red" >
+		                        <i></i>Richiesta errata: {!motivoErr}
+		                   </div>
+		                </apex:outputPanel>
+		                <apex:outputPanel rendered="{!success}" >
+		                    <div class="panel-heading red" >
+		                        <i></i>Richiesta VLAN Inserita Correttamente
+		                   </div>
+		                </apex:outputPanel>
+		                <!-- INIZIO - Sezione Riepilogo Richiesta VLAN -->
+	                    <apex:outputPanel rendered="{!NOT(modifica_VLAN)}" >        
+	                        <form role="form" class="form-horizontal">
+	                            <fieldset class="form-group">
+	                                 <div class="form-group">
+	                                     <div class="col-lg-6">
+	                                         <label>Codice Richiesta VLAN:</label> &nbsp; &nbsp;
+	                                         <apex:outputField id="Traffico" styleClass="form-control" value="{!richiestaVLAN.name}"/>
+	                                     </div>
+	                                     <div class="col-lg-6"> 
+	                                         <label>Nome KIT :</label> &nbsp; &nbsp;
+	                                         <apex:outputField id="NomedelKit" styleClass="form-control" value="{!richiestaVLAN.Nome_del_KIT__c}" />
+	                                     </div>
+	                                     <apex:outputPanel rendered="{!showFieldsPostInsert}">
+    	                                     <div class="col-lg-6">
+    	                                         <label>Stato Ordine: </label> &nbsp; &nbsp;
+    	                                         <apex:outputField id="stato_ordine" styleClass="form-control"  value="{!richiestaVLAN.EOF_STATO_ORDINE__c}" />
+    	                                     </div>
+    	                                 </apex:outputPanel>
+    	                                 <div class="col-lg-6">
+    	                                     <label>Data creazione : </label> &nbsp; &nbsp;
+    	                                     <apex:outputField id="dataCreazione" styleClass="form-control"  value="{!richiestaVLAN.createdDate}"/>
+    	                                 </div>
+	                                 </div>
+	                             </fieldset>
+	                        </form>
+	                    </apex:outputPanel> 
+	                    <!-- FINE - Sezione Riepilogo Richiesta VLAN -->
+	                    
+	                    <!-- INIZIO - Sezione Modifica VLAN -->
+	                    <apex:outputPanel rendered="{!modifica_VLAN}" >
+                            <apex:outputPanel rendered="{!error}" >
+                                <div class="panel-heading red" >
+                                    <i></i>Richiesta errata: {!motivoErr}
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!success}" >
+                                <div class="panel-heading red" >
+                                    <i></i>Richiesta Inserita Correttamente
+                                </div>
+                            </apex:outputPanel>
+    	                    <div class="form-group">                                                    
+                                <div class="col-lg-6"> 
+                                    <label>POP di raccolta*</label>
+        							<apex:inputText id="edit_pop" styleClass="form-control" onkeypress="return noenter(event);" value="{!sl.PO_PP_POP_raccolta__c}"/>                                                        
+                                </div>     
+                                <!--
+                                <div class="col-lg-6">
+                                    <label>VLAN</label>
+                                    <apex:inputText id="edit_svlan" styleClass="form-control" onkeypress="return noenter(event);" value="{!sl.SVLAN__c}"/>
+                                </div>
+                                -->
+                                <div class="col-lg-6">
+                                    <label>COS Remarking</label>
+                                    <apex:selectList id="edit_cos_remarking" styleClass="form-control" size="1" value="{!sl.PO_PP_cos_remarking__c}">
+                                        <apex:selectOption itemValue="NO" itemLabel="NO"/>
+                                        <apex:selectOption itemValue="SI" itemLabel="SI"/>
+                                    </apex:selectList>
+                                </div>       
+                                <div class="col-lg-6">
+                                    <label>DHCP Option82</label>
+                                    <apex:selectList id="edit_dhcp" styleClass="form-control" size="1" value="{!sl.PO_PP_dhcp_Option82__c}">
+                                        <apex:selectOption itemValue="NO" itemLabel="NO"/>
+                                        <apex:selectOption itemValue="SI" itemLabel="SI"/>
+                                    </apex:selectList>
+                                </div>  
+                                <div class="col-lg-6" style="margin-bottom:20px;">
+                                    <label>Note</label>
+                                    <apex:inputText id="edit_note" styleClass="form-control" onkeypress="return noenter(event);" value="{!sl.EOF_NOTE__c}" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <label>COS-Type</label>
+                                    <apex:selectList id="edit_cos_type" styleClass="form-control" size="1" value="{!sl.PO_PP_cos_type__c}" onclick="checkCos()">
+                                        <apex:selectOption itemValue="None" itemLabel="None"/>
+                                        <apex:selectOption itemValue="MonoCOS" itemLabel="MonoCOS"/>
+                                        <apex:selectOption itemValue="MultiCOS" itemLabel="MultiCOS"/>
+                                    </apex:selectList>
+                                </div>
+                                <!-- MonoCOS -->
+                                <div class="col-lg-6" id="monoCos">
+                                    <label>COS-Class</label>
+                                    <apex:selectList value="{!sl.PO_PP_cos_class__c}" id="mono" styleClass="form-control" size="1" >
+                                        <apex:selectOptions value="{!itemsMonoCos}" />
+                                    </apex:selectList>
+                                </div>
+                                <!-- MultiCOS -->
+                                <div class="col-lg-6" id="multiCos">
+                                    <label>COS-Class</label>
+                                    <apex:selectList value="{!sl.PO_PP_MultiCos_Class__c}" id="multi" styleClass="form-control" size="1" >
+                                        <apex:selectOptions value="{!itemsMultiCos}"/>
+                                    </apex:selectList>
+                                </div>
+                                
+                                <!-- OLD
+                                <div class="col-lg-6" id="edit_cos_class">
+                                    <label>COS-Class</label>
+                                    <apex:selectList id="cos_class" styleClass="form-control" size="1" value="{!sl_edit.PO_PP_cos_class__c}" >
+                                        <apex:selectOption itemValue="0" itemLabel="0"/>
+                                        <apex:selectOption itemValue="1" itemLabel="1"/>
+                                        <apex:selectOption itemValue="5" itemLabel="5"/>
+                                    </apex:selectList>
+                                </div>
+                                -->
+                            </div>
+                            
+                        <div class="form-group">
+                            <style>p.indent{ padding-left: 1.8em }</style>
+                            <div class="col-lg-8">
+                                <apex:outputPanel >                                                          
+                                    <apex:commandLink id="SaveBttn" styleClass="btn btn-primary" style="margin-right:5px;" value="Aggiorna dati" 
+                                        onclick="validateform(); return false;" />
+                                        <apex:actionFunction action="{!aggiorna}" name="updateSVLANLog" />
+                                    <apex:commandButton styleClass="btn btn-primary" style="margin-right:5px;" value="Annulla" action="{!annullaModifiche}" /> 
+                                </apex:outputPanel>
+                            </div>         
+                        </div>        
+                        </apex:outputPanel>
+	                    <!-- FINE - Sezione Modifica VLAN -->
+	                    </div>
+	                
+	                    <!-- Lista VLAN -->                
+	                    <apex:repeat value="{!slList}" var="slV" rendered="{!NOT(modifica_VLAN)}">
+	                        <div class="panel panel-default" style="margin-top:10px;">
+		                        <div class="panel-heading">
+		                            <i></i>VLAN:
+		                        </div>
+		                        <div class="panel-body">
+			                        <fieldset class="form-group">   
+				                        <div class="form-group">
+				                            <div class="col-lg-6">
+    	                                         <label>Codice VLAN : </label> &nbsp; &nbsp;
+    	                                         <apex:outputField id="cod_Vlan" styleClass="form-control"  value="{!slV.name}" />
+    	                                     </div>
+    	                                     <div class="col-lg-6">
+    	                                         <label>POP di raccolta : </label> &nbsp; &nbsp;
+    	                                         <apex:outputField id="POP" styleClass="form-control"  value="{!slV.PO_PP_POP_raccolta__c}" />
+    	                                     </div>
+    	                                     <!--
+    	                                     <div class="col-lg-6">
+    	                                          <label>VLAN : </label> &nbsp; &nbsp;
+    	                                          <apex:outputField id="svlan" styleClass="form-control" value="{!slV.SVLAN__c}"/>
+    	                                     </div>
+    	                                     -->
+    	                                     <div class="col-lg-6">
+    	                                          <label>COS Remarking : </label> &nbsp; &nbsp;
+    	                                          <apex:outputField id="cos_remarking" styleClass="form-control" value="{!slV.PO_PP_cos_remarking__c}"/>
+    	                                     </div>
+    	                                     <div class="col-lg-6">
+    	                                          <label>DHCP Option82 : </label> &nbsp; &nbsp;
+    	                                          <apex:outputField id="dhcp" styleClass="form-control" value="{!slV.PO_PP_dhcp_Option82__c}"/>
+    	                                     </div>
+    	                                     <div class="col-lg-6">
+    	                                          <label>COS Type : </label> &nbsp; &nbsp;
+    	                                          <apex:outputField id="cos_type" styleClass="form-control" value="{!slV.PO_PP_cos_type__c}"/>
+    	                                     </div>
+    	                                     <apex:outputPanel rendered="{!If(slV.PO_PP_cos_type__c=='MonoCOS',true,false)}">
+        	                                     <div class="col-lg-6" id="cos_mono">
+        	                                          <label>COS Class : </label> &nbsp; &nbsp;
+        	                                          <apex:outputField id="cos_class" styleClass="form-control" value="{!slV.PO_PP_cos_class__c}"/>
+        	                                     </div>
+    	                                     </apex:outputPanel>
+    	                                     <apex:outputPanel rendered="{!If(slV.PO_PP_cos_type__c=='MultiCOS',true,false)}">
+        	                                     <div class="col-lg-6" id="cos_multi">
+        	                                          <label>COS Class: </label> &nbsp; &nbsp;
+        	                                          <apex:outputField id="multi_cos_class" styleClass="form-control" value="{!slV.PO_PP_MultiCos_Class__c}" />
+        	                                          <apex:outputField id="cos_class_success" styleClass="form-control" value="{!slV.PO_PP_cos_class__c}" rendered="{!success}"/>
+        	                                     </div>
+    	                                     </apex:outputPanel>
+    	                                     <apex:outputPanel rendered="{!showFieldsPostInsert}">
+        	                                     <div class="col-lg-6">
+        	                                          <label>Stato Ordine: </label> &nbsp; &nbsp;
+        	                                          <span class="statoV">
+        	                                             <apex:outputField id="stato_vlan" styleClass="form-control" value="{!slV.EOF_STATO_ORDINE__c}"/>
+        	                                          </span>     
+        	                                     </div>
+        	                                 </apex:outputPanel>
+    	                                     <div class="col-lg-6">
+    	                                          <label>Note: </label> &nbsp; &nbsp;
+    	                                          <apex:outputField id="note" styleClass="form-control" value="{!slV.EOF_NOTE__c}"/>
+    	                                     </div>
+    	                                </div>    
+			                         </fieldset>
+			                         <apex:outputPanel rendered="{!OR(confirmPage, error, NOT(modifica_VLAN))}">
+			                             <apex:outputPanel rendered="{!no_renderedButtons}">
+    		                                 <div class="col-lg-6">
+    		                                     <div class="btn-group" role="group" aria-label="Basic example">                                      
+    		                                         <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px; margin-top:10px;" value="Elimina VLAN" action="{!deleteVLAN}" rerender="block">  
+    		                                            <apex:param name="eventVLAN" value="{!slV.Id}" assignTo="{!idVLAN}"/>  
+    		                                        </apex:commandButton>       
+    		                                     </div>
+    		                                 </div>
+    		                                 <div class="col-lg-6">
+    		                                     <div class="btn-group" role="group" aria-label="Basic example">                                      
+    		                                         <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px; margin-top:10px;" value="Modifica VLAN" action="{!editVLAN}" rerender="block">
+    		                                            <apex:param name="eventVLAN" value="{!slV.Id}" assignTo="{!idVLAN}"/>
+    		                                        </apex:commandButton>        
+    		                                     </div>
+    		                                 </div>   
+		                                 </apex:outputPanel>
+			                         </apex:outputPanel>
+		                         </div>
+	                        </div>
+	                    </apex:repeat> 
+	                    
+                        <apex:outputPanel rendered="{!OR(sl.EOF_STATO_ORDINE__c=='Accettato', no_renderedButtons)}">
+                            <div class="col-lg-4">
+                                <div class="btn-group" role="group" aria-label="Basic example">                                      
+                                    <apex:commandButton styleClass="btn btn-primary" style="margin-right:15px; margin-top:10px;" value="Aggiungi VLAN" action="{!aggiungiVLAN}" />            
+                                </div>
+                            </div>
+                            <apex:outputPanel rendered="{!OR(no_renderedButtons, NOT(modifica_VLAN))}">
+                                <div class="col-lg-4" >
+                                   <div class="btn-group" role="group" aria-label="Basic example">                                      
+                                        <apex:commandButton styleClass="btn btn-primary" style="margin-right:15px; margin-top:10px;" value="Inoltra Richiesta" action="{!inoltraRequest}" />       
+                                   </div>
+                                </div> 
+                                <!--  
+                                <div class="col-lg-4" >
+                                    <div class="btn-group" role="group" aria-label="Basic example">                                      
+                                        <apex:commandButton styleClass="btn btn-primary" style="margin-right:15px; margin-top:10px;" value="Annulla Inoltro" action="{!annullaInoltro}" />       
+                                    </div> 
+                                </div>
+                                -->
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+	                </div>
+                </div>
+            </apex:form>  
+        </div>
+        </div>
+            <script type='text/javascript'>        
+            
+                window.onload = checkCos;
+            
+                function checkCos()
+                {
+                    var cos_type = $('[id$=edit_cos_type]').val();
+                    
+                    if(cos_type == 'MonoCOS')
+                    {
+                       document.getElementById("monoCos").style.display = "inline";
+                       document.getElementById("multiCos").style.display = "none";
+                    }
+                    else if(cos_type == 'MultiCOS')
+                    {
+                       document.getElementById("monoCos").style.display = "none";
+                       document.getElementById("multiCos").style.display = "inline";
+                    }
+                    else
+                        hideCos();
+                }
+                
+                function hideCos()
+                {
+                    document.getElementById("monoCos").style.display = "none";
+                    document.getElementById("multiCos").style.display = "none";
+                }
+                
+                function validateform()
+            	{
+                    var pop = $('[id$=edit_pop]').val();
+                    //var banda = $('[id$=edit_banda]').val();
+                    var svlan = $('[id$=edit_svlan]').val();
+                    var cos_remarking = $('[id$=edit_cos_remarking]').val();
+                    var dhcp = $('[id$=edit_dhcp]').val();
+                    var cos_type = $('[id$=edit_cos_type]').val();
+                    var mono_class = $('[id$=mono]').val();
+                    var multi_class = $('[id$=multi]').val();
+                    var note = $('[id$=edit_note]').val();
+                    var check = true;
+
+                    if(pop.length == 0)
+                    {
+                        $('[id$=edit_pop]').next('div.red').remove();
+                        $('[id$=edit_pop]').after('<div class="red">Campo obbligatorio</div>');
+                        check = false;
+                    }
+                    else
+                        $('[id$=edit_pop]').next('div.red').remove();
+                    
+                    if(pop.length >= 10)
+                    {
+                        $('[id$=edit_pop]').next('div.red').remove();
+                        $('[id$=edit_pop]').after('<div class="red">La lunghezza massima consentita è 10</div>');
+                        check = false;
+                    }
+                    else
+                        $('[id$=pop]').next('div.red').remove();
+                        
+                    if(cos_type == 'None')
+                    {
+                        $('[id$=edit_cos_type]').next('div.red').remove();
+                        $('[id$=edit_cos_type]').after('<div class="red">Campo obbligatorio</div>');
+                        check = false;
+                    }
+                    else
+                        $('[id$=edit_cos_type]').next('div.red').remove();
+
+                    /*
+                    if(banda.length == 0)
+                    {
+                        $('[id$=edit_banda]').next('div.red').remove();
+                        $('[id$=edit_banda]').after('<div class="red">Campo obbligatorio</div>');
+                        check = false;
+                    }
+                    else
+                        $('[id$=edit_banda]').next('div.red').remove();
+                    */
+                        
+                    if(check==true)
+                	    updateSVLANLog();
+            	}    
+
+
+                function noenter(e){  
+                    //alert('Test ');             
+                    if(window.event){  
+                        key = window.event.keyCode;              
+                    } 
+                    else{                    
+                        key = e.which;               
+                    }               
+                    if(key == 13) 
+                    {   
+                        var ele=document.getElementById('{!$Component.pageID:formID:SaveBttn}');                                          
+                        ele.click();                     
+                        return false;               
+                    }
+                    else
+                    {                    
+                        return true;               
+                    }          
+                }     
+        </script> 
+    </body>
+</html>
+</apex:page>

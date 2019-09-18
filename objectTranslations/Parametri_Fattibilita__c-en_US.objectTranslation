@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Fattibilità - Parametri</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Fattibilità - Parametri</value>
+    </caseValues>
+    <fields>
+        <label><!-- Fascia 1 --></label>
+        <name>Fascia1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fascia 2 --></label>
+        <name>Fascia2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fascia 3 --></label>
+        <name>Fascia3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fascia 4 --></label>
+        <name>Fascia4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fascia 5 --></label>
+        <name>Fascia5__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,3 @@
+<apex:page action="{!updateField}" extensions="SN_VistoController" showheader="false" sidebar="false" standardcontroller="Case">
+	Case Number : {!Case.CaseNumber}
+</apex:page>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Progetto Anagrafica junction</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Progetti Anagrafiche junctions</value>
+    </caseValues>
+    <fields>
+        <label><!-- Area/Lotto --></label>
+        <name>CQS_PAJ_Area_Lotto__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comune --></label>
+        <name>CQS_PAJ_Comune__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Contratto --></label>
+        <name>CQS_PAJ_Data_Contratto__c</name>
+    </fields>
+    <fields>
+        <label><!-- Importo Aggiudicato --></label>
+        <name>CQS_PAJ_Importo_Aggiudicato__c</name>
+    </fields>
+    <fields>
+        <label><!-- LDO Service 2 --></label>
+        <name>CQS_PAJ_LDOService2__c</name>
+    </fields>
+    <fields>
+        <label><!-- LDO Service 3 --></label>
+        <name>CQS_PAJ_LDOService3__c</name>
+    </fields>
+    <fields>
+        <label><!-- LDO Service --></label>
+        <name>CQS_PAJ_LDOService__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mandante 1 --></label>
+        <name>CQS_PAJ_Mandante_1__c</name>
+        <relationshipLabel><!-- Progetti Anagrafiche junctions (Mandante 1) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Mandante 2 --></label>
+        <name>CQS_PAJ_Mandante_2__c</name>
+        <relationshipLabel><!-- Progetti Anagrafiche junctions (Mandante 2) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Mandante 3 --></label>
+        <name>CQS_PAJ_Mandante_3__c</name>
+        <relationshipLabel><!-- Progetti Anagrafiche junctions (Mandante 3) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Mandante 4 --></label>
+        <name>CQS_PAJ_Mandante_4__c</name>
+        <relationshipLabel><!-- Progetti Anagrafiche junctions (Mandante 4) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Mandataria Capogruppo --></label>
+        <name>CQS_PAJ_Mandataria_Capogruppo__c</name>
+        <relationshipLabel><!-- Progetti Anagrafiche junctions (Mandataria Capogruppo) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Società Services 2 --></label>
+        <name>CQS_PAJ_SS2__c</name>
+        <relationshipLabel><!-- Progetti Anagrafiche junctions (Società Services 2) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Società Services 3 --></label>
+        <name>CQS_PAJ_SS3__c</name>
+        <relationshipLabel><!-- Progetti Anagrafiche junctions (Società Services 3) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Società Service --></label>
+        <name>CQS_PAJ_SS__c</name>
+        <relationshipLabel><!-- Progetti Soc Services junctions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Email Affidataria --></label>
+        <name>CQS_Paj_Email_Affidataria__c</name>
+    </fields>
+    <fields>
+        <label><!-- Progetto --></label>
+        <name>CQS_Praj_Progetto__c</name>
+        <relationshipLabel><!-- Progetti Anagrafiche --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Ragione Sociale --></label>
+        <name>CQS_Praj_Ragione_Sociale__c</name>
+        <relationshipLabel><!-- Anagrafiche Progetti --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Lettera D&apos;Ordine --></label>
+        <name>CQS_Praju_LDO__c</name>
+    </fields>
+    <layouts>
+        <layout>Progetto Anagrafica junction Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Società Services --></label>
+            <section>Società Services</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

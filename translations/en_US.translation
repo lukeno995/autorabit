@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customLabels>
+        <label><!-- OF_Limit_PNI --></label>
+        <name>OF_Limit_PNI</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PO_AutoReplay --></label>
+        <name>PO_AutoReplay</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Custom Label for Recordtype in case object to use in web-case --></label>
+        <name>PO_Registrazione</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PinkLogo --></label>
+        <name>PinkLogo</name>
+    </customLabels>
+    <flowDefinitions>
+        <flows>
+            <fullName>PO_Approval_Process_change_layout-1</fullName>
+        </flows>
+        <fullName>PO_Approval_Process_change_layout</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <fullName>CA_Assegnazione_Code_Imprese-8</fullName>
+        </flows>
+        <flows>
+            <fullName>CA_Assegnazione_Code_Imprese-1</fullName>
+        </flows>
+        <flows>
+            <fullName>CA_Assegnazione_Code_Imprese-4</fullName>
+        </flows>
+        <flows>
+            <fullName>CA_Assegnazione_Code_Imprese-9</fullName>
+        </flows>
+        <flows>
+            <fullName>CA_Assegnazione_Code_Imprese-7</fullName>
+        </flows>
+        <flows>
+            <fullName>CA_Assegnazione_Code_Imprese-10</fullName>
+        </flows>
+        <flows>
+            <fullName>CA_Assegnazione_Code_Imprese-3</fullName>
+        </flows>
+        <flows>
+            <fullName>CA_Assegnazione_Code_Imprese-6</fullName>
+        </flows>
+        <flows>
+            <fullName>CA_Assegnazione_Code_Imprese-5</fullName>
+        </flows>
+        <flows>
+            <fullName>CA_Assegnazione_Code_Imprese-2</fullName>
+        </flows>
+        <fullName>CA_Assegnazione_Code_Imprese</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <fullName>SN_approva_case_su_FLAG_new_Process-1</fullName>
+        </flows>
+        <fullName>SN_approva_case_su_FLAG_new_Process</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <fullName>PO_Copia_valori_campi_NC_su_campi_RF-1</fullName>
+        </flows>
+        <fullName>PO_Copia_valori_campi_NC_su_campi_RF</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <fullName>PO_Update_Case_Status_from_Oppty-1</fullName>
+        </flows>
+        <fullName>PO_Update_Case_Status_from_Oppty</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <fullName>OF_DataAttivazioneCessazioneAsset-1</fullName>
+        </flows>
+        <flows>
+            <fullName>OF_DataAttivazioneCessazioneAsset-3</fullName>
+        </flows>
+        <flows>
+            <fullName>OF_DataAttivazioneCessazioneAsset-2</fullName>
+        </flows>
+        <fullName>OF_DataAttivazioneCessazioneAsset</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <fullName>CA_Cambio_Stati_Censimento-3</fullName>
+        </flows>
+        <flows>
+            <fullName>CA_Cambio_Stati_Censimento-2</fullName>
+        </flows>
+        <flows>
+            <fullName>CA_Cambio_Stati_Censimento-1</fullName>
+        </flows>
+        <fullName>CA_Cambio_Stati_Censimento</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <fullName>PO_Copia_Area_Geografica_su_Assegnazione-1</fullName>
+        </flows>
+        <flows>
+            <fullName>PO_Copia_Area_Geografica_su_Assegnazione-2</fullName>
+        </flows>
+        <fullName>PO_Copia_Area_Geografica_su_Assegnazione</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <fullName>SN_approva_case_su_FLAG-7</fullName>
+        </flows>
+        <flows>
+            <fullName>SN_approva_case_su_FLAG-2</fullName>
+        </flows>
+        <flows>
+            <fullName>SN_approva_case_su_FLAG-5</fullName>
+        </flows>
+        <flows>
+            <fullName>SN_approva_case_su_FLAG-3</fullName>
+        </flows>
+        <flows>
+            <fullName>SN_approva_case_su_FLAG-1</fullName>
+        </flows>
+        <flows>
+            <fullName>SN_approva_case_su_FLAG-6</fullName>
+        </flows>
+        <flows>
+            <fullName>SN_approva_case_su_FLAG-4</fullName>
+        </flows>
+        <fullName>SN_approva_case_su_FLAG</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <fullName>CA_Task_updates_Case-3</fullName>
+        </flows>
+        <flows>
+            <fullName>CA_Task_updates_Case-7</fullName>
+        </flows>
+        <flows>
+            <fullName>CA_Task_updates_Case-5</fullName>
+        </flows>
+        <flows>
+            <fullName>CA_Task_updates_Case-1</fullName>
+        </flows>
+        <flows>
+            <fullName>CA_Task_updates_Case-6</fullName>
+        </flows>
+        <flows>
+            <fullName>CA_Task_updates_Case-2</fullName>
+        </flows>
+        <flows>
+            <fullName>CA_Task_updates_Case-4</fullName>
+        </flows>
+        <fullName>CA_Task_updates_Case</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <fullName>PO_Incluso_nell_offerta_SI_NO-1</fullName>
+        </flows>
+        <fullName>PO_Incluso_nell_offerta_SI_NO</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <fullName>PO_Crea_Oppty_da_Collegamento-3</fullName>
+        </flows>
+        <flows>
+            <fullName>PO_Crea_Oppty_da_Collegamento-1</fullName>
+        </flows>
+        <flows>
+            <fullName>PO_Crea_Oppty_da_Collegamento-2</fullName>
+        </flows>
+        <fullName>PO_Crea_Oppty_da_Collegamento</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <fullName>OF_FilterRelatedListCommercialElement-2</fullName>
+        </flows>
+        <flows>
+            <fullName>OF_FilterRelatedListCommercialElement-7</fullName>
+        </flows>
+        <flows>
+            <fullName>OF_FilterRelatedListCommercialElement-1</fullName>
+        </flows>
+        <flows>
+            <fullName>OF_FilterRelatedListCommercialElement-6</fullName>
+        </flows>
+        <flows>
+            <fullName>OF_FilterRelatedListCommercialElement-3</fullName>
+        </flows>
+        <flows>
+            <fullName>OF_FilterRelatedListCommercialElement-5</fullName>
+        </flows>
+        <flows>
+            <fullName>OF_FilterRelatedListCommercialElement-4</fullName>
+        </flows>
+        <fullName>OF_FilterRelatedListCommercialElement</fullName>
+    </flowDefinitions>
+    <quickActions>
+        <label><!-- Espleta richiesta --></label>
+        <name>Espleta_richiesta</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- LogACall --></label>
+        <name>LogACall</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewAccount --></label>
+        <name>NewAccount</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewCase --></label>
+        <name>NewCase</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewContact --></label>
+        <name>NewContact</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewEvent --></label>
+        <name>NewEvent</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewGroup --></label>
+        <name>NewGroup</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewLead --></label>
+        <name>NewLead</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewNote --></label>
+        <name>NewNote</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewOpportunity --></label>
+        <name>NewOpportunity</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewTask --></label>
+        <name>NewTask</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SendEmail --></label>
+        <name>SendEmail</name>
+    </quickActions>
+    <reportTypes>
+        <description><!-- Accounts with Entitlements with Contacts --></description>
+        <label><!-- Accounts with Entitlements with Contacts --></label>
+        <name>Accounts_with_Entitlements_with_Contacts</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Contacts --></label>
+            <name>Contacts</name>
+        </sections>
+        <sections>
+            <label><!-- Entitlements --></label>
+            <name>Entitlements</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Billing Fattibilità --></description>
+        <label><!-- Billing Fattibilità --></label>
+        <name>Billing_Fattibilit</name>
+        <sections>
+            <columns>
+                <label><!-- Asset --></label>
+                <name>Asset</name>
+            </columns>
+            <label><!-- Assets --></label>
+            <name>Assets</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Codice Ordine --></label>
+                <name>Codice Ordine</name>
+            </columns>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Billing element --></label>
+                <name>Billing element</name>
+            </columns>
+            <columns>
+                <label><!-- Listino --></label>
+                <name>Listino</name>
+            </columns>
+            <columns>
+                <label><!-- Prezzo --></label>
+                <name>Prezzo</name>
+            </columns>
+            <label><!-- Price Book Entries --></label>
+            <name>Price Book Entries</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Cases with Assets --></description>
+        <label><!-- Cases with Assets --></label>
+        <name>Cases_with_Assets</name>
+        <sections>
+            <label><!-- Assets --></label>
+            <name>Assets</name>
+        </sections>
+        <sections>
+            <label><!-- Cases --></label>
+            <name>Cases</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Cases with Social Persona --></description>
+        <label><!-- Cases with Social Persona --></label>
+        <name>Cases_with_Social_Persona</name>
+        <sections>
+            <label><!-- Cases --></label>
+            <name>Cases</name>
+        </sections>
+        <sections>
+            <label><!-- Social Personas --></label>
+            <name>Social Personas</name>
+        </sections>
+        <sections>
+            <label><!-- Social Posts --></label>
+            <name>Social Posts</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Collegamenti --></description>
+        <label><!-- Collegamenti --></label>
+        <name>Collegamenti</name>
+        <sections>
+            <columns>
+                <label><!-- Collegamento --></label>
+                <name>Collegamento</name>
+            </columns>
+            <columns>
+                <label><!-- Nome Progetto --></label>
+                <name>Nome Progetto</name>
+            </columns>
+            <columns>
+                <label><!-- Richiesta --></label>
+                <name>Richiesta</name>
+            </columns>
+            <label><!-- Cases --></label>
+            <name>Cases</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Network Inventory Attivi --></description>
+        <label><!-- Network Inventory Attivi --></label>
+        <name>Network_Inventory_Attivi</name>
+        <sections>
+            <label><!-- Network Inventory Attivi --></label>
+            <name>Network Inventory Attivi</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Notifiche senza ACK --></description>
+        <label><!-- Notifiche senza ACK --></label>
+        <name>Notifiche_senza_ACK</name>
+        <sections>
+            <label><!-- EAI Service Logs --></label>
+            <name>EAI Service Logs</name>
+        </sections>
+        <sections>
+            <label><!-- Notifiche --></label>
+            <name>Notifiche</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Billing --></description>
+        <label><!-- Billing --></label>
+        <name>OF_Billing</name>
+        <sections>
+            <columns>
+                <label><!-- Account --></label>
+                <name>Account</name>
+            </columns>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Billing Element --></label>
+                <name>Billing Element</name>
+            </columns>
+            <columns>
+                <label><!-- Codice Progetto --></label>
+                <name>Codice Progetto</name>
+            </columns>
+            <columns>
+                <label><!-- Commercial Element --></label>
+                <name>Commercial Element</name>
+            </columns>
+            <columns>
+                <label><!-- Contratto --></label>
+                <name>Contratto</name>
+            </columns>
+            <columns>
+                <label><!-- Listino --></label>
+                <name>Listino</name>
+            </columns>
+            <columns>
+                <label><!-- Servizio --></label>
+                <name>Servizio</name>
+            </columns>
+            <label><!-- Other --></label>
+            <name>Other</name>
+        </sections>
+        <sections>
+            <label><!-- Price Book Entries --></label>
+            <name>Price Book Entries</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Billing V2 --></description>
+        <label><!-- Billing V2 --></label>
+        <name>OF_BillingV2</name>
+        <sections>
+            <label><!-- Assets --></label>
+            <name>Assets</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Account  --></label>
+                <name>Account </name>
+            </columns>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Billing element --></label>
+                <name>Billing element</name>
+            </columns>
+            <columns>
+                <label><!-- Commercial Element --></label>
+                <name>Commercial Element</name>
+            </columns>
+            <columns>
+                <label><!-- Id Contratto --></label>
+                <name>Id Contratto</name>
+            </columns>
+            <columns>
+                <label><!-- Listino Name --></label>
+                <name>Listino Name</name>
+            </columns>
+            <label><!-- Other --></label>
+            <name>Other</name>
+        </sections>
+        <sections>
+            <label><!-- Price Book Entries --></label>
+            <name>Price Book Entries</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Billing Element --></label>
+                <name>Billing Element</name>
+            </columns>
+            <label><!-- delete --></label>
+            <name>delete</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- OF_Vendibilita_Logger --></description>
+        <label><!-- OF_Vendibilita_Logger --></label>
+        <name>OF_Vendibilita_Logger</name>
+        <sections>
+            <label><!-- OF_Vendibilita_Loggers --></label>
+            <name>OF_Vendibilita_Loggers</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Report_Verticali --></description>
+        <label><!-- Report_Verticali --></label>
+        <name>Report_Verticali</name>
+        <sections>
+            <label><!-- ReportsVErticali --></label>
+            <name>ReportsVErticali</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- ReprtExport --></description>
+        <label><!-- ReprtExport --></label>
+        <name>ReprtExport</name>
+        <sections>
+            <label><!-- ExportsToCSV --></label>
+            <name>ExportsToCSV</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Service Contracts with Contract Line Items --></description>
+        <label><!-- Service Contracts with Contract Line Items --></label>
+        <name>Service_Contracts_with_Contract_Line_Items</name>
+        <sections>
+            <label><!-- Contract Line Items --></label>
+            <name>Contract Line Items</name>
+        </sections>
+        <sections>
+            <label><!-- Service Contracts --></label>
+            <name>Service Contracts</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Service Contracts with Entitlements --></description>
+        <label><!-- Service Contracts with Entitlements --></label>
+        <name>Service_Contracts_with_Entitlements</name>
+        <sections>
+            <label><!-- Entitlements --></label>
+            <name>Entitlements</name>
+        </sections>
+        <sections>
+            <label><!-- Service Contracts --></label>
+            <name>Service Contracts</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SocialPostCase --></description>
+        <label><!-- SocialPostCase --></label>
+        <name>SocialPostCase</name>
+        <sections>
+            <label><!-- Cases --></label>
+            <name>Cases</name>
+        </sections>
+        <sections>
+            <label><!-- Social Posts --></label>
+            <name>Social Posts</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Social Post --></description>
+        <label><!-- Social Post --></label>
+        <name>Social_Post</name>
+        <sections>
+            <label><!-- Social Personas --></label>
+            <name>Social Personas</name>
+        </sections>
+        <sections>
+            <label><!-- Social Posts --></label>
+            <name>Social Posts</name>
+        </sections>
+    </reportTypes>
+</Translations>

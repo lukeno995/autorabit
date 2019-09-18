@@ -1,0 +1,94 @@
+<apex:page standardController="OF_CQS_Ispezione__c" extensions="Cqs_Ispezione_CustomController">
+ <apex:sectionHeader subtitle="Selezione Sezioni da compilare dell'Ispezione"/>
+    
+  <apex:form >
+   <apex:pageMessages id="pm"/>
+    <apex:pageBlock title="Ciao {!$User.FirstName}">
+    <!-- <apex:panelGrid columns="3" style="margin-top:1em;">  --> 
+     
+     <apex:outputpanel id="ispSicurezza" rendered="{!ispezioneSicurezza}">  
+   
+      	<apex:pageBlockSection title="preseleziona le sezioni dell'Ispezione di Sicurezza da compilare" collapsible="true">
+        
+	        <apex:inputCheckbox label="Documentazione minima" value="{!sez1s}"/>
+	        <apex:inputCheckbox label="Organizzazione del cantiere" value="{!sez2s}"/>
+	        <apex:inputCheckbox label="Personale di cantiere" value="{!sez3s}"/>
+	        <apex:inputCheckbox label="Mezzi e attrezzature" value="{!sez4s}"/>
+	        <apex:inputCheckbox label="Presidi" value="{!sez5s}"/>
+	  <!--  <apex:inputCheckbox label="E-Distribuzione" value="{!sez6s}"/>	-->
+	        <apex:pageBlockSectionItem />
+            <apex:commandButton value="Seleziona" action="{!portaVF}" rerender="pagBlock,ispSicurezza"/>
+     	</apex:pageBlockSection>
+     </apex:outputpanel>
+     <apex:outputpanel id="ispQuality" rendered="{!ispezioneQualita}">  
+        <apex:pageBlockSection title="preseleziona le sezioni dell'Ispezione di Qualità da compilare" collapsible="true">
+               <apex:pageBlockSectionItem >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Lavorazioni in corso </b>&nbsp;&nbsp;&nbsp;
+                        </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Lavorazioni concluse</b>&nbsp;&nbsp;&nbsp;</apex:pageBlockSectionItem>
+    		   
+                <apex:inputCheckbox label="Documentazione" value="{!sez1q}"/>
+                  <apex:inputCheckbox label="Ripristino definitivo" value="{!sez8q}"/>
+                  
+                <apex:inputCheckbox label="Organizzazione del cantiere" value="{!sez2q}"/>
+                  <apex:inputCheckbox label="Materiali" value="{!sez9q}"/>
+                  
+                <apex:inputCheckbox label="Scavi" value="{!sez3q}"/>
+                <apex:inputCheckbox label="Muffola PFP" value="{!sez10q}"/>
+                
+                <apex:inputCheckbox label="Infrastrutture" value="{!sez4q}"/>
+                <apex:inputCheckbox label="Armadi" value="{!sez11q}"/>	<!--   <apex:inputCheckbox label="Armadi PFS" value="{!sez11q}"/> -->
+                
+               <apex:inputCheckbox label="Ripristini provvisori" value="{!sez5q}"/>
+               <!--  <apex:inputCheckbox label="Armadi PTE/PTA" value="{!sez12q}"/>	-->
+   <!-- EC start Ispezioni Tema Ambientale 2018 - 12 - 24 
+                <apex:inputCheckbox label="Gestione rifiuti a lavorazioni concluse" value="{!sez13q}"/> 
+                <apex:inputCheckbox label="Gestione rifiuti" value="{!sez6q}"/>
+                EC end Ispezioni Tema Ambientale 2018 - 12 - 24
+                 -->
+               
+                
+          <!--  <apex:inputCheckbox label="Verifiche" value="{!sez7q}"/>	-->
+                
+       <!--     <apex:inputCheckbox label="Materiali" value="{!sez14q}"/> 	-->
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+           	
+          <apex:commandButton value="Seleziona" action="{!portaVF}" rerender="pagBlock,ispQualita"/>      
+        </apex:pageBlockSection>        
+     </apex:outputpanel>
+
+     <!-- EC 2018 - 12 - 24 -->  	
+  	<apex:outputpanel id="ispTam" rendered="{!ispezioneTamb}">  
+   
+      	<apex:pageBlockSection title="preseleziona le sezioni dell'Ispezione a Tema Ambientale da compilare" collapsible="true">
+        	
+        	  <apex:pageBlockSectionItem >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  		
+                        <b>Lavorazioni in corso </b>&nbsp;&nbsp;&nbsp;
+                        </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem />
+              <!--  <apex:pageBlockSectionItem >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Lavorazioni concluse</b>&nbsp;&nbsp;&nbsp;</apex:pageBlockSectionItem>
+    		-->
+	      <!--   <apex:inputCheckbox label="Gestione rifiuti a lavorazioni concluse" value="{!sez13q}"/> -->
+             <apex:inputCheckbox label="Gestione rifiuti" value="{!sez6q}"/>
+	        
+	        <apex:pageBlockSectionItem />
+            
+            <apex:commandButton value="Seleziona" action="{!portaVF}" rerender="pagBlock,ispTam"/>
+     	</apex:pageBlockSection>
+     </apex:outputpanel>
+     
+     <!-- EC 2018 - 12 - 24 -->
+  		        
+  <!-- </apex:panelGrid>  --> 
+      </apex:pageBlock>
+  </apex:form>
+</apex:page>

@@ -1,0 +1,476 @@
+<apex:page Controller="PO_P2PAttiva_InserimentoVLAN_Controller" id="pageID"  docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+    <html lang="en">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                } 
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+            </style>
+        </head>
+        <body> 
+            <div id="wrapper">
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <c:PO_SideBarComponent Rec="{!recordOfferta}" />
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" id="side-menu">
+                            </ul>
+                        </div>
+                        <!-- /.sidebar-collapse -->
+                    </div>
+                    <!-- /.navbar-static-side -->
+                </nav>
+                <div id="page-wrapper">
+                    <div class="row">
+                        <div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i></i>inserisci Profilo
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <!--<div style="color:red;" id="showerror">
+<apex:pageMessages id="errors" /> 
+</div>-->
+                                        <apex:form styleClass="form-horizontal" id="formID" >  
+                                            <!--<form>-->
+                                            <div style="color:red;" id="showerror">
+                                                <apex:pageMessages id="errors" />
+                                            </div>
+                                            
+                                            <br/>
+                                            
+                                            <div class="form-group" id="Profilo">
+                                                <label class="control-label col-sm-3" >Profilo*</label>
+                                                <div class="col-sm-6">
+                                                    <apex:selectList size="1" value="{!sLogVlan.OF_SA_PROFILO_VLAN__c}" styleClass="form-control" id="selezProfilo" onchange="showOption(this);">
+                                                        <apex:selectOptions value="{!optProfiloList}" /> 
+                                                        <apex:inputHidden id="nameProfilo" value="{!hiddenNameProfilo}" />
+                                                        
+                                                    </apex:selectList>              
+                                                </div> 
+                                            </div> 
+                                            <div class="form-group" id="ProfiloFlexible">
+                                                <label class="control-label col-sm-3" >Profilo*</label>
+                                                <div class="col-sm-6">
+                                                    <apex:selectList size="1" value="{!sLogVlan.OF_SA_PROFILO_VLAN__c}" styleClass="form-control" id="selezProfiloFlexible" onchange="showOption(this);">
+                                                        <apex:selectOptions value="{!optProfiloListFlexible}" />    
+                                                        
+                                                    </apex:selectList>              
+                                                </div> 
+                                            </div>
+                                            
+                                            <div class="form-group" id="Opzione">
+                                                <label class="control-label col-sm-3" >Opzione*</label>
+                                                <div class="col-sm-6">
+                                                    <apex:selectList size="1" value="{!sLogVlan.PO_P2PAttiva_Opzione__c}" styleClass="form-control" id="selezOpzione" onchange="showTableProfilo(this);" >
+                                                        <apex:selectOptions value="{!optOpzioneList}" />    
+                                                        <apex:inputHidden id="opzioneProfilo2" value="{!hiddenOpzioneProfilo}" />
+                                                    </apex:selectList> 
+                                                </div> 
+                                            </div>
+                                            
+                                            
+                                            <div class="form-group" id="OpzioneFlexible">
+                                                <label class="control-label col-sm-3" >Opzione*</label>
+                                                <div class="col-sm-6">
+                                                    <apex:selectList size="1" value="{!sLogVlan.PO_P2PAttiva_Opzione__c}" styleClass="form-control" id="selezOpzioneFlexible" onchange="showTableProfilo(this);" >
+                                                        <apex:selectOptions value="{!optOpzioneListFlexible}" />       
+                                                        <apex:inputHidden id="opzioneProfilo" value="{!hiddenOpzioneProfilo}" />
+                                                    </apex:selectList> 
+                                                </div> 
+                                            </div>
+                                            <apex:inputHidden id="velocitaBanda" value="{!childLog.EOF_PROFILO__c  }"  />
+                                            <apex:inputHidden id="sectionProfilo" value="{!showSectionProfili}" />
+                                            <apex:actionFunction name="getRecordP" action="{!getRecordProfili}" rendered="true" /> 
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            
+                                            <div class="col-sm-8" id="tablePr">
+                                                <apex:outputPanel id="tableProfili" >
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <i></i>Profilo
+                                                        </div>
+                                                    </div>                                                
+                                                    <table id="theTable" class="table table-striped table-bordered" width="100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th colspan="2">COS 5</th>
+                                                                <th colspan="2">COS 3</th>
+                                                                <th colspan="2">COS 1</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td> 
+                                                                    <apex:outputText id="opzione" />
+                                                                </td>
+                                                                <th>PIR</th> 
+                                                                <th>CIR</th> 
+                                                                <th>PIR</th>
+                                                                <th>CIR</th>
+                                                                <th>PIR</th>
+                                                                <th>CIR</th>
+                                                            </tr>
+                                                            <apex:outputPanel rendered="{!!isVlanModify}" >
+                                                                <tr >
+                                                                    <td>
+                                                                        <apex:outputText id="profilo" value="{!childLog.EOF_PROFILO__c}"/>
+                                                                    </td>
+                                                                    <td>
+                                                                        <apex:outputText value="{!pirCOS5}"/>
+                                                                    </td>
+                                                                    <td>
+                                                                        <apex:outputText value="{!cirCOS5}"/>
+                                                                    </td>
+                                                                    <td>
+                                                                        <apex:outputText value="{!pirCOS3}"/>
+                                                                    </td>
+                                                                    <td>
+                                                                        <apex:outputText value="{!cirCOS3}"/>
+                                                                    </td>
+                                                                    <td>
+                                                                        <apex:outputText value="{!pirCOS1}"/>
+                                                                    </td>
+                                                                    <td>
+                                                                        <apex:outputText value="{!cirCOS1}"/>
+                                                                    </td>
+                                                                    
+                                                                </tr>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!isVlanModify}" >
+                                                                <tr >
+                                                                    <td>
+                                                                        <apex:outputText value="{!childLog.EOF_PROFILO__c}"/>
+                                                                    </td>
+                                                                    <td>
+                                                                        <apex:outputText value="{!sLogVlan.COS5_PIR__c}"/>
+                                                                    </td>
+                                                                    <td>
+                                                                        <apex:outputText value="{!sLogVlan.COS5_CIR__c}"/>
+                                                                    </td>
+                                                                    <td>
+                                                                        <apex:outputText value="{!sLogVlan.COS3_PIR__c}"/>
+                                                                    </td>
+                                                                    <td>
+                                                                        <apex:outputText value="{!sLogVlan.COS3_CIR__c}"/>
+                                                                    </td>
+                                                                    <td>
+                                                                        <apex:outputText value="{!sLogVlan.COS1_PIR__c}"/>
+                                                                    </td>
+                                                                    <td>
+                                                                        <apex:outputText value="{!sLogVlan.COS1_CIR__c}"/>
+                                                                    </td>
+                                                                    
+                                                                </tr>
+                                                            </apex:outputPanel>                                                                       
+                                                        </tbody>
+                                                    </table>
+                                                    
+                                                </apex:outputPanel>
+                                            </div>
+                                            <div class="col-lg-4" >
+                                            </div>
+                                            
+                                            <div class="col-lg-4" > 
+                                                
+                                                <apex:commandButton styleClass="btn btn-primary" value="Annulla" style="margin-right:10px;"  action="{!annullavlan}"  immediate="true" html-formnovalidate="formnovalidate"/>  
+                                                <apex:commandLink styleClass="btn btn-primary" value="Salva" style="margin-right:10px;" onclick="validateform('salva'); return false;" />
+                                            </div>  
+                                            <div class="col-lg-4" >
+                                            </div>
+                                            <apex:actionFunction name="InsertVlan" action="{!insertVlanLog}"/>
+                                        </apex:form>   
+                                        
+                                        <br/>
+                                    </div>
+                                    <!-- /.row (nested) -->
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>       
+                            <!-- /.col-lg-4 -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /#page-wrapper -->
+                    
+                </div>
+            </div>
+            <!-- /#wrapper -->            
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            
+            
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <script>
+                $(document).ready(function() { 
+                debugger;
+                
+                var isTable = document.getElementById('pageID:formID:sectionProfilo').value;
+                if(isTable == 'true'){
+                    /* var opzioneFlexible =  document.getElementById('pageID:formID:selezOpzioneFlexible').value;  
+                    var opzione=document.getElementById('pageID:formID:selezOpzione').value; 
+                    if(opzione==' - ' || opzioneFlexible==' - ' || opzione==undefined || opzioneFlexible==undefined ){
+                        document.getElementById('tablePr').style.display='none';
+                        
+                    }else{
+                     document.getElementById('tablePr').style.display='block';
+                    }*/
+                    document.getElementById('tablePr').style.display='block';  
+                    document.getElementById('pageID:formID:selezOpzione').disabled =false;
+                    document.getElementById('pageID:formID:selezProfilo').value =   document.getElementById('pageID:formID:nameProfilo').value;
+                    if( document.getElementById('pageID:formID:selezProfilo').value==' - '){
+                        document.getElementById('pageID:formID:selezOpzione').disabled =true;
+                        document.getElementById('tablePr').style.display='none';
+                        document.getElementById('OpzioneFlexible').style.display='block';   
+                        document.getElementById('Opzione').style.display='none';
+                        document.getElementById('pageID:formID:selezOpzione').value =   "";
+                        document.getElementById('pageID:formID:selezOpzioneFlexible').value = "";
+                    }else{
+                        document.getElementById('pageID:formID:selezOpzione').value =   document.getElementById('pageID:formID:opzioneProfilo').value;
+                        document.getElementById('pageID:formID:selezOpzioneFlexible').value = document.getElementById('pageID:formID:opzioneProfilo2').value;
+                    }
+                    /*var opzioneFlexible =  document.getElementById('pageID:formID:selezOpzioneFlexible').value;
+                    document.getElementById('pageID:formID:opzione').innerHTML= opzioneFlexible;
+                    document.getElementById('pageID:formID:profilo').innerHTML=   document.getElementById('pageID:formID:selezProfilo').value ;*/
+                    
+                }else{
+                    var profilo = document.getElementById('pageID:formID:selezProfilo').value
+                    var opzione = document.getElementById('pageID:formID:selezOpzione').value
+                    var opzioneFlexible = document.getElementById('pageID:formID:selezOpzioneFlexible').value 
+                    
+                    if(profilo!=' - ' || /*profilo!=undefined*/ opzione!=' - ' || /*opzione!=undefined*/  opzioneFlexible!=' - ' /*|| opzioneFlexible!=undefined*/){
+                        
+                        document.getElementById('tablePr').style.display='block';
+                    }else{
+                        document.getElementById('pageID:formID:selezOpzione').disabled =true;
+                        document.getElementById('tablePr').style.display='none';
+                    }
+                    /*document.getElementById('pageID:formID:selezOpzione').disabled =true;
+                    document.getElementById('tablePr').style.display='none';*/
+                }
+                if( document.getElementById('pageID:formID:opzioneProfilo').value =='Flexible'){
+                    if(   document.getElementById('pageID:formID:selezProfilo').value =='3Play' || document.getElementById('pageID:formID:selezProfilo').value =='Voce e Dati'){
+                        document.getElementById('ProfiloFlexible').style.display='none';
+                        document.getElementById('Profilo').style.display='block';
+                        document.getElementById('OpzioneFlexible').style.display='block';   
+                        document.getElementById('Opzione').style.display='none';
+                    }else{
+                        if(document.getElementById('pageID:formID:selezProfilo').value =='Solo Dati'){
+                            document.getElementById('pageID:formID:selezOpzione').value='Standard';
+                            document.getElementById('OpzioneFlexible').style.display='none';   
+                            document.getElementById('Opzione').style.display='block';
+                            document.getElementById('ProfiloFlexible').style.display='none';
+                            document.getElementById('Profilo').style.display='block';
+                        }else{
+                            document.getElementById('OpzioneFlexible').style.display='none';   
+                            document.getElementById('Opzione').style.display='block';
+                            document.getElementById('ProfiloFlexible').style.display='none';
+                            document.getElementById('Profilo').style.display='block';
+                        }
+                    }
+                }else{
+                    if(  document.getElementById('pageID:formID:selezProfilo').value  =='Voce e Dati' ||   document.getElementById('pageID:formID:selezProfilo').value =='3Play'){
+                        document.getElementById('ProfiloFlexible').style.display='none';
+                        document.getElementById('Profilo').style.display='block';
+                        document.getElementById('OpzioneFlexible').style.display='block';
+                        document.getElementById('Opzione').style.display='none';
+                        
+                        
+                    }else{
+                        if( document.getElementById('pageID:formID:selezProfilo').value  =='Solo Dati'){
+                            
+                        }
+
+                        document.getElementById('ProfiloFlexible').style.display='none';
+                        document.getElementById('Profilo').style.display='block';
+                        document.getElementById('OpzioneFlexible').style.display='none';
+                        document.getElementById('Opzione').style.display='block';
+                        
+                    }
+                }
+                
+                
+                
+                
+            });
+            function  showOption(data){ 
+                debugger;
+                if(data.value!=' - '){ 
+                    showTableProfilo();
+                    document.getElementById('pageID:formID:selezProfilo').value =data.value;   
+                    document.getElementById('pageID:formID:selezOpzione').disabled =false; 
+                    if(data.value=='3Play' || data.value=='Voce e Dati'){
+                        document.getElementById('OpzioneFlexible').style.display='block';  
+                        document.getElementById('Opzione').style.display='none'; 
+                    }else{
+                        document.getElementById('OpzioneFlexible').style.display='none';  
+                        document.getElementById('Opzione').style.display='block'; 
+                    }
+                }
+                
+                
+            }
+            
+            
+            function showTableProfilo(data){
+                debugger;
+                var opzioneFlexible =  document.getElementById('pageID:formID:selezOpzioneFlexible').value;
+                document.getElementById('pageID:formID:nameProfilo').value= document.getElementById('pageID:formID:selezProfilo').value;
+                if(opzioneFlexible ==' - ' && document.getElementById('pageID:formID:selezProfilo').value=='Solo Dati'){
+                    var opzione=document.getElementById('pageID:formID:selezOpzione').value;
+                    document.getElementById('pageID:formID:opzioneProfilo').value =  opzione; 
+                    document.getElementById('pageID:formID:opzioneProfilo2').value =  opzione;
+                }else{
+                    if(opzioneFlexible !=' - ' && document.getElementById('pageID:formID:selezProfilo').value=='Solo Dati'){
+                        document.getElementById('pageID:formID:opzioneProfilo').value = document.getElementById('pageID:formID:selezOpzione').value;
+                        document.getElementById('pageID:formID:opzioneProfilo2').value =  document.getElementById('pageID:formID:selezOpzione').value; 
+                    } 
+                    else{
+                        document.getElementById('pageID:formID:opzioneProfilo').value =  opzioneFlexible;
+                        document.getElementById('pageID:formID:opzioneProfilo2').value =  opzioneFlexible
+                    }
+                }
+                if ( opzioneFlexible !=' - '){
+                    if(opzioneFlexible=='Flexible'){
+                        if(   document.getElementById('pageID:formID:selezProfilo').value =='3Play' || document.getElementById('pageID:formID:selezProfilo').value =='Voce e Dati'){
+                            document.getElementById('ProfiloFlexible').style.display='block';
+                            document.getElementById('Profilo').style.display='none';
+                            document.getElementById('OpzioneFlexible').style.display='block';  
+                            document.getElementById('Opzione').style.display='none'; 
+                        } 
+                    }else{  
+                        document.getElementById('ProfiloFlexible').style.display='none';
+                        document.getElementById('Profilo').style.display='block';
+                    }
+                    
+                }/*else if( opzioneFlexible !=' - '){ 
+                     if(opzioneFlexible='Flexible'){
+                        document.getElementById('ProfiloFlexible').style.display='block';
+                        document.getElementById('Profilo').style.display='none';
+                    }else{
+                        document.getElementById('ProfiloFlexible').style.display='none';
+                        document.getElementById('Profilo').style.display='block';
+                    }
+                }*/
+                // if(opzione==' - ' || opzioneFlexible==' - ' || opzione==undefined || opzioneFlexible==undefined){
+                if(opzione==' - ' || opzione == undefined && (opzioneFlexible==' - '  || opzioneFlexible==undefined)){
+                    document.getElementById('tablePr').style.display='none';
+                }
+                /*}*/else{
+                    document.getElementById('tablePr').style.display='block';
+                    document.getElementById('pageID:formID:sectionProfilo').value=getRecordP(); 
+                }
+                /* document.getElementById('pageID:formID:opzione').innerHTML= opzioneFlexible; 
+                document.getElementById('pageID:formID:profilo').innerHTML=   document.getElementById('pageID:formID:selezProfilo').value ;*/
+                //document.getElementById('pageID:formID:sectionProfilo').value=getRecordP(); 
+            }
+            
+            function validateform(){
+                debugger;
+                var invalidflag = false;
+                var selezProfilo =  document.getElementById('pageID:formID:selezProfilo').value;
+              
+                if(selezProfilo==" - "){
+                    $('[id$=selezProfilo]').next('div.red').remove();
+                    $('[id$=selezProfilo]').after('<div class="red">Campo Obbligatorio</div>');
+                    invalidflag = true;
+                }
+                else{
+                    $('[id$=selezProfilo]').next('div.red').remove();
+                }
+                
+                var selezOpzione =  document.getElementById('pageID:formID:selezOpzione').value;
+                if(((selezOpzione==" - " || selezOpzione=="") &&  (document.getElementById('pageID:formID:selezOpzioneFlexible').value=="" || document.getElementById('pageID:formID:selezOpzioneFlexible').value==' - '))){
+                    $('[id$=selezOpzione]').next('div.red').remove();
+                    $('[id$=selezOpzione]').after('<div class="red">Campo Obbligatorio</div>');
+                    invalidflag = true;
+                }
+                else{
+                    $('[id$=selezOpzione]').next('div.red').remove();
+                }
+                
+                var selezOpzioneFlexible =  document.getElementById('pageID:formID:selezOpzioneFlexible').value;
+                if(selezOpzioneFlexible==" - " || selezOpzioneFlexible==""){
+                    $('[id$=selezOpzioneFlexible]').next('div.red').remove();
+                    $('[id$=selezOpzioneFlexible]').after('<div class="red">Campo Obbligatorio</div>');
+                    invalidflag = true;
+                }
+                else{
+                    $('[id$=selezOpzioneFlexible]').next('div.red').remove();
+                }
+                
+                if(!invalidflag){
+                    
+                    InsertVlan();
+                }
+            }
+            
+            function noenter(e){            
+                if(window.event){  
+                    key = window.event.keyCode;                
+                } 
+                else{                    
+                    key = e.which;                
+                }               
+                if(key == 13) {   
+                    var ele=document.getElementById('{!$Component.pageID:formID:SaveBttn}');                                          
+                    ele.click();                     
+                    return false;               
+                } else{                     
+                    return true;               
+                }          
+            }
+            
+            </script> 
+            
+        </body>
+        
+    </html>
+</apex:page>

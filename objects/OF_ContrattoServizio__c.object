@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Billing_Competence__c</fullName>
+        <externalId>false</externalId>
+        <label>Billing Competence</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Anticipato</fullName>
+                    <default>false</default>
+                    <label>Anticipato</label>
+                </value>
+                <value>
+                    <fullName>Posticipato</fullName>
+                    <default>false</default>
+                    <label>Posticipato</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>OF_Contract__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Contract</label>
+        <referenceTo>Contract</referenceTo>
+        <relationshipLabel>Servizi sottoscritti</relationshipLabel>
+        <relationshipName>Contratti_Servizi</relationshipName>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OF_Servizio__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Servizio</label>
+        <referenceTo>OF_Servizio__c</referenceTo>
+        <relationshipLabel>Servizi sottoscritti</relationshipLabel>
+        <relationshipName>Contratti_Servizi</relationshipName>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ServizioName__c</fullName>
+        <externalId>false</externalId>
+        <label>ServizioName</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Open Stream</fullName>
+                    <default>false</default>
+                    <label>Open Stream</label>
+                </value>
+                <value>
+                    <fullName>GPON Passiva</fullName>
+                    <default>false</default>
+                    <label>GPON Passiva</label>
+                </value>
+                <value>
+                    <fullName>Open Internet</fullName>
+                    <default>false</default>
+                    <label>Open Internet</label>
+                </value>
+                <value>
+                    <fullName>Fiber Link</fullName>
+                    <default>false</default>
+                    <label>Fiber Link</label>
+                </value>
+                <value>
+                    <fullName>P2P Base</fullName>
+                    <default>false</default>
+                    <label>P2P Base</label>
+                </value>
+                <value>
+                    <fullName>Backhauling</fullName>
+                    <default>false</default>
+                    <label>Backhauling</label>
+                </value>
+                <value>
+                    <fullName>PREPROVISIONING</fullName>
+                    <default>false</default>
+                    <label>PREPROVISIONING</label>
+                </value>
+                <value>
+                    <fullName>P2P Attiva</fullName>
+                    <default>false</default>
+                    <label>P2P Attiva</label>
+                </value>
+                <value>
+                    <fullName>Fiber Lease</fullName>
+                    <default>false</default>
+                    <label>Fiber Lease</label>
+                </value>
+                <value>
+                    <fullName>BTS</fullName>
+                    <default>false</default>
+                    <label>BTS</label>
+                </value>
+                <value>
+                    <fullName>Dark Fiber</fullName>
+                    <default>false</default>
+                    <label>Dark Fiber</label>
+                </value>
+                <value>
+                    <fullName>Circuiti Diretti</fullName>
+                    <default>false</default>
+                    <label>Circuiti Diretti</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>isBonifica__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>isBonifica</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Servizio sottoscritto</label>
+    <nameField>
+        <displayFormat>CS-{0000}</displayFormat>
+        <label>Contratto Servizio Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Servizi sottoscritti</pluralLabel>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>OF_Contract__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>OF_Servizio__c</lookupDialogsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>New_Area_Geografica</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>New Area Geografica</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>window.location.href = &quot;/apex/OF_ElencoComuniItaliani?id={!Contract.Id}&amp;RetUrl={!Contract.Id}&quot;;</url>
+    </webLinks>
+    <webLinks>
+        <fullName>New_Area_Geografica_CSV</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>New Area Geografica CSV</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>window.location.href = &quot;/apex/OF_CSVImportPage?id={!Contract.Id}&quot;</url>
+    </webLinks>
+</CustomObject>

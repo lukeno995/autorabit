@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Codifica Profilo Listini</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Codifica Profilo Listini</value>
+    </caseValues>
+    <fields>
+        <label><!-- CD ListinoCanoneName --></label>
+        <name>CD_ListinoCanoneName__c</name>
+    </fields>
+    <fields>
+        <label><!-- CosType --></label>
+        <name>CosType__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsPortalValid --></label>
+        <name>IsPortalValid__c</name>
+    </fields>
+    <fields>
+        <label><!-- Listino Canone name --></label>
+        <name>OF_ListinoCanoneName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Profilo Commerciale --></label>
+        <name>OF_ProfiloCommerciale__c</name>
+    </fields>
+    <fields>
+        <label><!-- Profilo listino --></label>
+        <name>OF_Profilolistino__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO CD Profilo Commerciale --></label>
+        <name>PO_CD_Profilo_Commerciale__c</name>
+    </fields>
+    <fields>
+        <label><!-- Listino Canone PreProvisioning --></label>
+        <name>PO_PREPROV_ListinoCanoneName__c</name>
+    </fields>
+    <fields>
+        <label><!-- servizio --></label>
+        <name>servizio__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

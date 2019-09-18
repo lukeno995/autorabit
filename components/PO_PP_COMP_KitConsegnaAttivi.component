@@ -1,0 +1,411 @@
+<apex:component controller="PO_PP_COMP_KitConsegnaAttivi_Controller" allowDML="true">
+
+<html lang="it">  
+
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Open Fiber</title>  
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+        <!-- Bootstrap Core CSS -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+        
+        <!-- MetisMenu CSS -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+        
+        <!-- Custom CSS -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+        
+        <!-- Morris Charts CSS -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+        
+        <!-- Custom Fonts -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+        
+        <!-- /#wrapper -->
+            
+        <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+        
+        <apex:includeScript value="{!URLFOR($Resource.multiselect, '/multiselect/js/bootstrap-multiselect.js')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.multiselect, '/multiselect/css/bootstrap-multiselect.css')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.daterangepicker, '/moment.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.daterangepicker, '/daterangepicker.js')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.daterangepicker, '/daterangepicker.css')}" />
+        
+        <!-- Bootstrap Core JavaScript -->
+        <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+        
+        <!-- excelJS -->
+            
+        <apex:includeScript value="{!URLFOR($Resource.excelplus25, '/excelplus25/xlsx.full.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.excelplus25, '/excelplus25/excelplus-2.5.min.js')}"/>
+        
+        <apex:includeScript value="{!URLFOR($Resource.moment, 'moment-develop/min/moment-with-locales.min.js')}"/>
+
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+        <style>
+            .navbar {
+            min-height: 105px;
+            }
+            .navbar-header {
+            float: none;
+            }
+            .leftFloat{
+                float:left;
+                
+            }
+            .navbar-default {
+            background-color: #ffffff;
+            }
+            .panel-default>.panel-heading {
+            color: #ffffff;
+            background-color: #337ab7;
+            }
+            span.dateFormat{
+            
+            display:none;
+            
+            }
+            .red{color:red;}
+            .form-check-input{ 
+            margin-left: 45px !important;
+            margin-top: 10px;
+            }
+            .detailList{
+                width:100%;
+            }
+        </style>
+    </head> 
+    <body>
+        <apex:form id="myFormddd">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <apex:outputPanel >
+                        <i></i> KIT Consegna Attivi
+                    </apex:outputPanel>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div style="color:red;" id="showerror">
+                        <apex:pageMessages id="errors" /> 
+                        <apex:outputText rendered="{!checkMessage}" value="{!message}"/> 
+                    </div>
+                    <apex:outputPanel rendered="{!!richiesteTP}" > 
+                        <div class="panel-heading red" >
+                            <i></i>Non è presente nessuna richiesta
+                        </div>
+                    </apex:outputPanel>   
+                    <form role="form" class="form-horizontal">
+                        
+                        <apex:pageBlock rendered="{!richiesteTP}" id="results">
+                            <table class="table table-striped table-bordered" >
+                                <tr>
+                                    <th>Nome Kit</th>
+                                    <th>ID Risorsa</th>
+                                    <!--<th>Stato</th>--> 
+                                    <th>POP di consegna</th>
+                                    <th>Banda</th>
+                                    <th>Interfaccia</th>
+                                    <th>Servizio Commerciale</th>
+                                    <th>Data Attivazione</th>
+                                    <!--<th>Data Cessazione</th> -->
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <input type="text" class="form-control" id="nomeKitfilter"/>
+                                    </th>
+                                    <th>
+                                        <input type="text" class="form-control" id="idrisorsafilter"/>
+                                    </th>
+                                    <!--
+                                    <th>
+                                        <select id="statoFilter" multiple="multiple">
+                                            <option value="Attivo">Attivo</option>
+                                            <option value="In Modifica">Modifica</option>
+                                        </select>
+                                    </th>
+                                    -->
+                                    <th>
+                                        <input type="text" class="form-control" id="popfilter"/>
+                                    </th>
+                                    <th>
+                                        <input type="text" class="form-control" id="bandafilter" style = "width: 60px;"/>
+                                    </th>
+                                    <th>
+                                        <select id="interfacciafilter" multiple="multiple">
+                                            <option value="1 Giga">1 Giga</option>
+                                            <option value="10 Giga">10 Giga</option>
+                                        </select>
+                                    </th>
+                                    <th>
+                                        <select id="servizioCommercialefilter" multiple="multiple">
+                                            <option value="VULA Openstream Direct">VULA Openstream Direct</option>
+                                            <option value="BITSTREAM - Openstream Regional">BITSTREAM - Openstream Regional</option>
+                                            <option value="VULA Openstream City by Edge">VULA Openstream City by Edge</option>
+                                        </select>
+                                    </th>
+                                    <th>
+                                        <input type="text" class="form-control" id="dateattivazionefilter"  placeholder=" DA gg/mm/aaaa A gg/mm/aaaa"/>
+                                    </th>
+                                    <!--
+                                    <th>
+                                        <input type="text" class="form-control" id="datecessazionefilter"  placeholder=" DA gg/mm/aaaa A gg/mm/aaaa"/>
+                                    </th>  
+                                    -->
+                                    <th>
+                                        <div  style="margin-right:10px;margin-bottom:10px;">
+                                            <apex:commandButton styleClass="btn btn-primary pull-right" onclick="doSearch()" 
+                                                rerender="tableId,paginationPanel" value="Applica filtri" />
+                                        </div>
+                                    </th>
+                                </tr>
+                            </table>
+                        <apex:pageBlockSection >
+                            <apex:pageBlockTable styleClass="table table-striped table-bordered" value="{!ActualPagination}" var="record" id="tableId">
+                                <apex:column >
+                                    <apex:facet name="header">
+                                        <apex:outputText value="Nome Kit"/> 
+                                    </apex:facet>
+                                    <apex:commandlink value="{!record.nomeKit}" action="{!ViewDetail}" >
+                                        <apex:param name="eventSl" value="{!record.nomeKit}" assignTo="{!nameKit}"/>
+                                    </apex:commandlink>
+                                </apex:column>
+                                <!--<apex:column value="{!record.nomeKit}" headerValue="Nome Kit"/>-->
+                                <apex:column value="{!record.idRisorsa}" headerValue="ID Risorsa"/>
+                                <apex:column value="{!record.stato}" headerValue="Stato"/>
+                                <apex:column value="{!record.pop}" headerValue="POP di consegna"/>
+                                <apex:column value="{!record.banda}" headerValue="Banda"/>
+                                <apex:column value="{!record.interfaccia}" headerValue="Interfaccia"/>
+                                <apex:column value="{!record.servizioCommerciale}" headerValue="Servizio Commerciale"/>
+                                <apex:column value="{!record.DataAttivazione}" headerValue="Data Attivazione"/>
+                            </apex:pageBlockTable>
+                        </apex:pageBlockSection> 
+                        <button type="button" Class="btn btn-primary pull-right" style="float:right;margin-right:10px;margin-bottom:10px;" onclick="redirect()">Esporta xlsx</button>
+                        
+                        <!--START - PAGINATION PANEL -->
+                        <apex:outputPanel id="paginationPanel">
+                            <apex:outputText styleClass="hide" value="{!listRichiesteKitString}" id="listRichiesteKitString" />   
+                            <apex:outputPanel rendered="{!showPag}">
+                                <apex:commandlink action="{!PageDown}" reRender="tableId,paginationPanel">
+                                    <apex:image url="{!$Resource.ArrowDestra}" styleClass="leftFloat" width="22" height="22"/>
+                                </apex:commandlink>
+                                <p style='float:left;display:inline;margin-left:10px;margin-right:10px;'>Pagina {!pageActual}  di {!totalpage} (Record : {!totalRecord})</p>
+                                <apex:commandlink action="{!pageUp}" reRender="tableId,paginationPanel">
+                                    <apex:image url="{!$Resource.ArrowSinistra}" styleClass="leftFloat" width="22" height="22"/>
+                                </apex:commandlink>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!!showPag}">                        
+                                <p style='float:left;display:inline;margin-left:10px;margin-right:10px;'>0 Pagine (Record : 0)</p>
+                            </apex:outputPanel> 
+                        </apex:outputPanel>   
+                        <!--END - PAGINATION PANEL -->
+                    </apex:pageBlock>
+                </form> 
+                </div>
+            </div>           
+            <apex:actionFunction name="searchServer" reRender="tableId,paginationPanel" action="{!runSearch}">
+                <apex:param assignTo="{!nomeKit}" name="nomeKit" value="" />
+                <apex:param assignTo="{!idRisorsa}" name="idRisorsa" value="" /> 
+                <!--<apex:param assignTo="{!stato}" name="stato" value="" />-->
+                <apex:param assignTo="{!banda}" name="banda" value="" />
+                <apex:param assignTo="{!interfaccia}" name="interfaccia" value="" />
+                <apex:param assignTo="{!servizioCommerciale}" name="servizioCommerciale" value="" />
+                <apex:param assignTo="{!DataInizio}" name="DataInizio" value="" />
+                <apex:param assignTo="{!pop}" name="pop" value="" />
+            </apex:actionFunction>
+            <apex:actionFunction name="refreshTable" action="{!runSearch}" reRender="tableId,paginationPanel"/>  
+        </apex:form>
+    </body>
+    <script>
+        var selectValueL1=[];
+        var nomeKit = '';
+        var idRisorsa = '';
+        var banda = '';
+        var valL1=[];
+        var valL2=[];
+        var stato='';
+        var pop = '';
+        var DataInizio = '';
+        var DataFine = '';
+
+        $("[id$='dateattivazionefilter']").on('change', function(ev, picker) {
+            if ($('#dateattivazionefilter').val().trim() != ""){
+                DataInizio = $('#dateattivazionefilter').val().split("/")[2] + "-" + $('#dateattivazionefilter').val().split("/")[1] + "-" + $('#dateattivazionefilter').val().split("/")[0]+"T00:00:00+02:00"; 
+            }else{
+                DataInizio='';
+            }
+        });
+
+        $("[id$='datecessazionefilter']").on('change', function(ev, picker) {
+            if ($('#datecessazionefilter').val().trim() != ""){
+                DataFine = $('#datecessazionefilter').val().split("/")[2] + "-" + $('#datecessazionefilter').val().split("/")[1] + "-" + $('#dateattivazionefilter').val().split("/")[0]+"T00:00:00+02:00"; 
+            }else{
+                DataFine='';
+            }
+        });
+
+        function doSearch() {
+            event.preventDefault();
+            nomeKit = $("[id$='nomeKitfilter']").val().trim();
+            idRisorsa = $("[id$='idrisorsafilter']").val().trim();
+            banda = $("[id$='bandafilter']").val().trim();
+            pop = $("[id$='popfilter']").val().trim();
+            searchServer(
+                nomeKit,
+                idRisorsa,   
+                banda,
+                JSON.stringify(valL2), //valL2 è interfaccia
+                JSON.stringify(valL1), //valL1 è servizioCommerciale
+                DataInizio,
+                pop
+            );
+        }
+        function initDates(){
+            $("[id$='dateattivazionefilter']").daterangepicker({
+                autoUpdateInput: false,
+                singleDatePicker: true,
+                "locale": {
+                    "format": "DD/MM/YYYY",
+                    "separator": " / ",
+                    "applyLabel": "Applica",
+                    "cancelLabel": "Pulisci",
+                    "fromLabel": "DA",
+                    "toLabel": "A",
+                    "customRangeLabel": "Custom",
+                        "daysOfWeek": [
+                            "Dom",
+                            "Lun",
+                            "Mar",
+                            "Mer",
+                            "Gio",
+                            "Ven",
+                            "Sab"
+                        ],
+                        "monthNames": [
+                            "Gennaio",
+                            "Febbraio",
+                            "Marzo",
+                            "Aprile",
+                            "Maggio",
+                            "Giugno",
+                            "Luglio",
+                            "Agosto",
+                            "Settembre",
+                            "Ottobre",
+                            "Novembre",
+                            "Dicembre"
+                        ],
+                        "firstDay": 1
+                    }
+            });
+                
+            $("[id$='dateattivazionefilter']").on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('DD/MM/YYYY') );
+                DataInizio=picker.startDate.format();               
+            });
+                
+            $("[id$='dateattivazionefilter']").on('cancel.daterangepicker', function(ev, picker) {
+                $(this).val('');
+                DataInizio='';
+            });
+
+            $("[id$='datecessazionefilter']").daterangepicker({
+                autoUpdateInput: false,
+                singleDatePicker: true,
+                "locale": {
+                    "format": "DD/MM/YYYY",
+                    "separator": " / ",
+                    "applyLabel": "Applica",
+                    "cancelLabel": "Pulisci",
+                    "fromLabel": "DA",
+                    "toLabel": "A",
+                    "customRangeLabel": "Custom",
+                    "daysOfWeek": [
+                        "Dom",
+                        "Lun",
+                        "Mar",
+                        "Mer",
+                        "Gio",
+                        "Ven",
+                        "Sab"
+                    ],
+                    "monthNames": [
+                        "Gennaio",
+                        "Febbraio",
+                        "Marzo",
+                        "Aprile",
+                        "Maggio",
+                        "Giugno",
+                        "Luglio",
+                        "Agosto",
+                        "Settembre",
+                        "Ottobre",
+                        "Novembre",
+                        "Dicembre"
+                    ],
+                    "firstDay": 1
+                }
+            });
+                
+            $("[id$='datecessazionefilter']").on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('DD/MM/YYYY') );
+                DataFine=picker.startDate.format();
+            });
+                    
+            $("[id$='datecessazionefilter']").on('cancel.daterangepicker', function(ev, picker) {
+                $(this).val('');
+                DataFine='';
+            });
+        }
+        
+        //TO DO
+        function redirect()
+        {
+            nomeKit = $("[id$='nomeKitfilter']").val().trim();
+            idRisorsa = $("[id$='idrisorsafilter']").val().trim();
+            banda = $("[id$='bandafilter']").val().trim();
+            pop = $("[id$='popfilter']").val().trim();
+            window.location = '/partnercommunity/PO_PP_ExportKitConsegnaAttivi_Page?nomeKit='+nomeKit+'&idRisorsa='+idRisorsa+'&pop='+pop+'&banda='+banda+'&interfaccia='+JSON.stringify(valL2)+'+&DataInizio='+DataInizio+'&ServizioCommerciale='+JSON.stringify(valL1);
+        }
+       
+        function initServizioCommerciale()
+        {
+            $( "select[id$='servizioCommercialefilter']" ).multiselect({ 
+                buttonWidth: '200px',
+                nSelectedText: 'selezionati',
+                nonSelectedText: 'Nessuno ',
+                selectAllText : 'seleziona tutti',
+                allSelectedText : 'tutti selezionati',
+                onChange: function(option, checked, select) {
+                    valL1=$("select[id$='servizioCommercialefilter']" ).val();
+                    //alert(valL1);
+                }                    
+            });
+        }
+        
+        function initInterfaccia()
+        {
+            $("select[id$='interfacciafilter']" ).multiselect({ 
+                buttonWidth: '100px',
+                nSelectedText: 'selezionati',
+                nonSelectedText: 'Nessuno ',
+                selectAllText : 'seleziona tutti',
+                allSelectedText : 'tutti selezionati',
+                onChange: function(option, checked, select) {
+                    valL2=$("select[id$='interfacciafilter']" ).val();
+                    //alert(valL2);
+                }                    
+            });
+        }
+        
+        $(document).ready(function() {   
+            initDates();
+            initServizioCommerciale();
+            initInterfaccia();
+        });
+        </script>
+    </html>
+</apex:component>

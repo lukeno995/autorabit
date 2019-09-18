@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>OF_CQS_Evento__c.OF_CQS_Tipo_di_Evento__c</field>
+    </columns>
+    <columns>
+        <field>OF_CQS_Evento__c.CQS_Indice_Gravita_Taglio_Danneggiamento__c</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>OF_CQS_Evento__c.OF_CQS_Tipo_di_Evento__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Infortunio,Bad Practice</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>OF_CQS_Evento__c.OF_CQS_Comune_Text__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>PERUGIA</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>OF_CQS_Evento__c.OF_CQS_Impresa_Mandataria__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>OF_CQS_Evento__c.OF_CQS_Impresa_Esecutrice_Eventi__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Gravità Danni e Interferenze per IM e IE</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$OF_CQS_Evento__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <sortColumn>OF_CQS_Evento__c.CQS_Indice_Gravita_Taglio_Danneggiamento__c</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>OF_CQS_Evento__c.OF_CQS_Data_Apertura_Pratica__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

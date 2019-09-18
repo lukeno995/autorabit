@@ -1,0 +1,32 @@
+<apex:page standardController="OF_CQS_Evento__c" extensions="CQS_HomeTipoEvento_cController">
+ <apex:sectionHeader subtitle="Scegli il tipo di Evento"/> 
+  <apex:form >
+    <apex:pageBlock title="Ciao {!$User.FirstName}">
+    <apex:pageBlockSection title="Seleziona il tipo di evento" collapsible="true">
+        <apex:pageBlockSectionItem >
+          <apex:outputPanel dir="{!pageRef}">
+                <apex:selectList label="Tipo di Evento" value="{!optScelta}" size="1" required="true">
+                <!--<apex:selectOptions value="{!opt}"/>-->
+                  <apex:selectOptions Value="{!opt}" />
+                    
+                <!---"{!IF(opt == 'Bad Practice', true, opt == 'Danneggiamento a terzi', true, opt == 'Infortunio',b)}"-->
+                    <!--apex:actionSupport event="onchange" action="{!redirect}" action=""/>-->
+               </apex:selectList>
+            <apex:commandButton value="Seleziona" action="{!portaVF}" rerender="pagBlock"/>
+                       
+ 
+            <!--apex:actionSupport action="{!portaVF}"/>-->
+                </apex:outputPanel>
+            </apex:pageBlockSectionItem>
+          </apex:pageBlockSection>
+          <apex:pageBlockSection title="Dettagli per la scelta corretta" collapsible="true" columns="1"> 
+                    <apex:pageBlockSectionItem >
+                        <p>Scegliere Danneggiamento a terzi in caso di eventi riguardanti danni a privati o proprietà pubbliche</p>
+                    <!--<p>Scegliere Infortunio in caso di infortuni riconducibili alle lavorazioni (no incidenti in itinere o esterni alle aree di cantiere) </p> -->
+                        <p>Scegliere Interferenza a sotto-servizi in caso di Tagli e/o danneggiamenti delle reti di sotto-servizi esistenti</p>
+                        <p>Scegliere Bad Practice in caso di eventi non identificabili con nessune delle altre categorie</p>
+                    </apex:pageBlockSectionItem>
+          </apex:pageBlockSection>     
+      </apex:pageBlock>
+  </apex:form>
+</apex:page>

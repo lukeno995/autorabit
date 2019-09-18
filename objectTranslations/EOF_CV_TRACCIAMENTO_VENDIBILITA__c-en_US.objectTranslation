@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>EOF_CV_TRACCIAMENTO_VENDIBILITA</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>EOF_CV_TRACCIAMENTO_VENDIBILITA</value>
+    </caseValues>
+    <fields>
+        <label><!-- Codice Motivazione --></label>
+        <name>Codice_Motivazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email --></label>
+        <name>Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Esito --></label>
+        <name>Esito__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID_request --></label>
+        <name>ID_request__c</name>
+    </fields>
+    <fields>
+        <label><!-- Link --></label>
+        <name>Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Motivazione --></label>
+        <name>Motivazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- olo --></label>
+        <name>olo__c</name>
+    </fields>
+    <fields>
+        <label><!-- servizio --></label>
+        <name>servizio__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

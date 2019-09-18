@@ -1,0 +1,30 @@
+<apex:page controller="OF_AreaGeograficaCSV">
+    
+    <apex:form >
+       <apex:pageMessages ></apex:pageMessages>
+
+        <apex:pageBlock >
+            <apex:pageBlockSection columns="3"> 
+
+              <apex:inputFile value="{!csvFileBody}" fileName="{!csvAsString}"></apex:inputFile>
+              <!--Blocco Servizi-->
+              <apex:pageBlockSectionItem >
+                   <apex:outputLabel value="Servizio"/>
+                       <apex:selectList size="1"  value="{!Servizio1}" id="ServizioR">
+                             <apex:selectoptions value="{!ServiziContr1}"/>
+                       </apex:selectList>
+              </apex:pageBlockSectionItem>
+              
+              <apex:commandButton value="IMPORTA" action="{!SaveData}" />
+              <apex:commandButton value="TORNA AL CONTRATTO" action="{!BackToContract}"/>
+              
+            </apex:pageBlockSection>
+
+        </apex:pageBlock>
+
+        <apex:pageBlock >
+                       </apex:pageBlock>
+       
+   </apex:form>  
+    
+</apex:page>

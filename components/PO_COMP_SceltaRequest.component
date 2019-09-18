@@ -1,0 +1,124 @@
+<apex:component controller="PO_COMP_SceltaRequest_Controller">
+    <html lang="en">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+            </style> 
+        </head>
+            <div class="panel panel-default">
+                 <div class="panel-heading">
+                     <i></i>Scegli Request
+                 </div>
+                 <div class="panel-body">
+                     <div class="row">
+                         
+                         <div style="color:red;" id="showerror">
+                             <apex:pageMessages id="errors" /> 
+                         </div>
+                         
+                         
+                         <apex:form styleClass="form-horizontal" >  
+                         <!--<form>-->
+                         <div style="color:red;" id="showerror">
+                                 <apex:pageMessages id="errors" /> 
+                                 
+                          </div>
+                             <div class="container">
+                                 <div class="form-group">
+                                     <label class="control-label col-sm-3" for="Azienda">Azienda</label>
+                                     <div class="col-sm-6">
+                                         <!--<input class="form-control" id="disabledInput" type="text" value="{!parentCase.accountid}" disabled = "True"/>-->
+                                         <apex:outputLabel value="{!accountName}" styleClass="form-control" id="Azienda"  />
+                                   
+                                     </div>
+                                 </div>
+                                 
+                                  
+                                 <div class="form-group">
+                                     <label class="control-label col-sm-3" for="Offerta">Request*</label>
+                                     <div class="col-sm-6">
+                                        <apex:selectList value="{!requestSelected}" size="1" styleClass="dropDown form-control" >
+                                            <apex:selectOptions value="{!requestOptions}" />
+                                            </apex:selectList>
+                                      </div>
+                                 </div>
+                                 
+                                 <br/><br/><br/>
+                                 <div class="form-group">
+                                     <div class="col-lg-6 col-offset-6">
+                                     </div>
+                                     
+                                     <div class="col-lg-6 col-offset-6">
+                                         <apex:commandButton styleClass="btn btn-primary" value="Annulla" style="margin-right:10px;" action="{!annullaScelta}" immediate="true"
+                                                          html-formnovalidate="formnovalidate"/> 
+
+                                         <apex:commandButton styleClass="btn btn-primary" value="Inserisci Richiesta"  action="{!inserisciRequest}">
+                                            
+                                         </apex:commandButton>
+                                           
+           
+                                     </div>
+                                     
+                                 </div>
+                                  
+                             </div>
+                            <!--</form>-->
+                            
+                         </apex:form>    
+                         
+                         <br/>
+                     </div>
+                     <!-- /.row (nested) -->
+                 </div>
+                 <!-- /.panel-body -->
+             </div>  
+         </html>     
+</apex:component>

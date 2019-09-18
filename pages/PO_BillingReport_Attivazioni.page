@@ -1,0 +1,5 @@
+<apex:page controller="OF_BillingReport2" cache="true" contentType="text/csv#BillingReport_Attivazioni.csv" language="en-US"> 
+"Action date","Customer ID","Wholesaler","Product Provisioning Code","Package Provisioning Code","Customer Order","Internal Order","Network ID Resource","POP","Promo Code","Price Plan","Vertical Operator" <apex:repeat value="{!vlstWrapper}" var="a">
+ {!a.actiondate},{!a.eoftest.EOF_Customer_ID__c} ,{!a.eoftest.Wholesaler__c }, {!a.prodprovCode},{!a.PackageProvisioningCode }, {!a.order.OF_IDOrdineOLO__c}, {!a.order.OF_IDOrdineEOF__c},{!a.order.OF_IDRisorsa__c}, {!a.order.OF_IdentificativoDelPOP__c},{!a.promoCode},{!a.eoftest.PricePlan_ID__c},OF
+ </apex:repeat>
+ </apex:page>

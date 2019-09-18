@@ -1,0 +1,452 @@
+<apex:component controller="PO_TT_ListaRichieste_Controller">
+	<html lang="it">  
+        <head> 
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <!-- /#wrapper -->
+              
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <apex:includeScript value="{!URLFOR($Resource.multiselect, '/multiselect/js/bootstrap-multiselect.js')}"/>
+			<apex:stylesheet value="{!URLFOR($Resource.multiselect, '/multiselect/css/bootstrap-multiselect.css')}"/>
+			<apex:includeScript value="{!URLFOR($Resource.daterangepicker, '/moment.js')}"/>
+			<apex:includeScript value="{!URLFOR($Resource.daterangepicker, '/daterangepicker.js')}"/>
+			<apex:stylesheet value="{!URLFOR($Resource.daterangepicker, '/daterangepicker.css')}" />
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            
+            <!-- excelJS -->
+             
+            <apex:includeScript value="{!URLFOR($Resource.excelplus25, '/excelplus25/xlsx.full.min.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.excelplus25, '/excelplus25/excelplus-2.5.min.js')}"/>
+            
+            <apex:includeScript value="{!URLFOR($Resource.moment, 'moment-develop/min/moment-with-locales.min.js')}"/>
+
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+            </style>
+        </head> 
+         
+            <body>
+            <!-- 
+            <apex:actionFunction action="{!runSearch}" name="runSearchJavascript" rerender="showstate">
+        		<apex:param name="firstParam" assignTo="{!state}" value="" />
+    		</apex:actionFunction>
+    		 -->
+            <apex:form >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+		                <apex:outputPanel >
+                            <i></i>Richieste Trouble Ticket Inserite 
+		                </apex:outputPanel>
+                	</div>
+	                <div class="panel-body">
+	                    <div class="row">
+	                        <div style="color:red;" id="showerror">
+	                            <apex:pageMessages id="errors" /> 
+	                        </div>
+	                        <apex:outputPanel rendered="{!!richiesteTT}" > 
+			                    <div class="panel-heading red" >
+			                        <i></i>Non è presente nessuna richiesta
+			                   </div>
+			                </apex:outputPanel>    
+	                        <form role="form" class="form-horizontal">
+	                        	<button type="button" Class="btn btn-primary pull-right" style="margin-right:10px;margin-bottom:10px;" onclick="myxls()">Esporta xlsx</button>
+	                        	<button type="button" Class="btn btn-primary pull-right" style="margin-right:10px;margin-bottom:10px;" onclick="doSearch()">Applica filtri</button>
+	                        	<apex:pageBlock rendered="{!richiesteTT}"   id="results">
+	                        	    <!-- 
+									 <apex:pageBlockTable value="{!listRichiesteTT}" var="sl" rendered="{!richiesteTT}" id="myTable" styleClass="table table-striped table-bordered">
+                                         <apex:column >
+                                             <apex:facet name="header">
+
+	                                                	<apex:outputText value="Codice Comunicazione Operatore" />
+                                           	
+                                             </apex:facet>
+                                             <apex:commandlink value="{!sl.EOF_Codice_Comunicazione_OLO__c}" action="{!ViewCaseDettail}" rerender="null">
+                                                 <apex:param name="eventSl" value="{!sl.Id}" assignTo="{!IdScelta}"/>
+                                              </apex:commandlink>
+                                         </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                                 <apex:outputText value="Causale Apertura" />
+                                             </apex:facet>
+
+                                               <apex:outputPanel rendered="{!IF(sl.EOF_Causale_Apertura__c=='1',true,false)}">
+                                               Connettività non disponibile
+                                               </apex:outputPanel>
+                                           
+                                               <apex:outputPanel rendered="{!IF(sl.EOF_Causale_Apertura__c=='2',true,false)}">
+                                               Connessione instabile
+                                               </apex:outputPanel>
+                                               <apex:outputPanel rendered="{!IF(sl.EOF_Causale_Apertura__c=='3',true,false)}">
+                                               Lentezza di navigazione
+                                               </apex:outputPanel>
+                                               <apex:outputPanel rendered="{!IF(sl.EOF_Causale_Apertura__c=='4',true,false)}">
+                                               Mai Navigato
+                                               </apex:outputPanel> 
+                                         </apex:column>&nbsp;&nbsp;
+  
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                                 <apex:outputText value="Stato Ordine"/>
+                                             </apex:facet>
+                                             <apex:outputField value="{!sl.EOF_STATO_ORDINE__c}" />
+                                         </apex:column>&nbsp;&nbsp;
+  
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                                 <apex:outputText value="Data Creazione"/>
+                                             </apex:facet>
+
+                                             <apex:outputText value="{0,date,dd/MM/yyyy HH:mm:ss}">
+   													 <apex:param value="{!sl.CreatedDate+offset}"/>
+											</apex:outputText>
+                                         </apex:column><br/>
+                                     </apex:pageBlockTable>
+                                      -->
+                                      
+                                      
+                                      
+                                   <table class="table table-striped table-bordered">
+								    <thead>
+								      <tr>
+								        <th>Codice Comunicazione Operatore</th>
+								        
+								        <th>Data Creazione</th>
+								        <th>Causale Apertura</th>
+								        <th>Stato Ordine</th>
+								        
+								      </tr>
+								      <tr>
+								        <th>
+								        	
+								        </th>
+								        <th>
+								        	<input type="text" class="form-control" id="datefilter"  placeholder=" DA gg/mm/aaaa A gg/mm/aaaa"/>
+								        </th>
+
+								        <th>
+								        	<select id="IDFilterCausaleApertura" multiple="multiple">
+											    <option value="1">Connettività non disponibile</option>
+											    <option value="2">Connessione instabile</option>
+											    <option value="3">Lentezza di navigazione</option>
+											    <option value="4">Mai Navigato</option>
+											</select>
+								        </th>
+								        <th>
+								        	<select id="IDFilterStatus" multiple="multiple">
+											    <option value="In Verifica">In Verifica</option>
+											    <option value="Scartato">Scartato</option>
+											    <option value="In Lavorazione">In Lavorazione</option>
+											    <option value="In Annullamento">In Annullamento</option>
+											    <option value="Sospeso">Sospeso</option>
+											    <option value="Richiesta Chiusura">Richiesta Chiusura</option>
+											    <option value="Annullato">Annullato</option>
+											    <option value="Chiuso">Chiuso</option>
+											    
+											</select>
+								        </th>
+
+								      </tr>
+								    </thead>
+								     
+								    <tbody>
+								    
+								    <apex:repeat value="{!listRichiesteTT}" var="sl">
+								    
+								      <!-- <tr  style="{!IF(sl.EOF_STATO_ORDINE__c == 'Sospeso' && sl.EOF_Data_Ora_Desospensione__c>=NOW() ,'background-color: yellow;','')}" > -->
+								      <tr>
+								        <td>
+								    
+								        	<apex:commandlink value="{!sl.EOF_Codice_Comunicazione_OLO__c}" action="{!ViewCaseDettail}" rerender="null">
+                                                 <apex:param name="eventSl" value="{!sl.Id}" assignTo="{!IdScelta}"/>
+                                             </apex:commandlink>
+                                        </td>
+                                        <td>
+								            <apex:outputText value="{0,date,dd/MM/yyyy HH:mm:ss}">
+   													 <apex:param value="{!sl.CreatedDate+offset}"/>
+											</apex:outputText>
+								        </td>
+								        <td>
+								        	<apex:outputPanel rendered="{!IF(sl.EOF_Causale_Apertura__c=='1',true,false)}">
+                                               Connettività non disponibile
+                                            </apex:outputPanel>
+                                           
+											<apex:outputPanel rendered="{!IF(sl.EOF_Causale_Apertura__c=='2',true,false)}">
+                                               Connessione instabile
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!IF(sl.EOF_Causale_Apertura__c=='3',true,false)}">
+                                               Lentezza di navigazione
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!IF(sl.EOF_Causale_Apertura__c=='4',true,false)}">
+                                               Mai Navigato
+                                            </apex:outputPanel>
+								        </td>
+								        <td>
+								        	<apex:outputField value="{!sl.EOF_STATO_ORDINE__c}" />
+								        </td>
+
+								      </tr>
+								     </apex:repeat>
+								     
+								    </tbody>
+								    
+								  </table>
+								<apex:outputText styleClass="hide" value="{!listRichiesteTTstring}" id="IDlistRichiesteTTstring" />   
+                                </apex:pageBlock>
+                                  
+                                  
+                                  
+ 
+                                  
+  
+	                        </form>
+	                    </div>  
+	                </div>
+                </div>
+                
+ 
+                     <apex:actionFunction name="searchServer" action="{!runSearch}" rerender="results,debug,errors" oncomplete="init()">
+				          <apex:param name="DataInizio" value="" />
+				          <apex:param name="DataFine" value="" />
+				          <apex:param name="selectValueL1" value="" /> 
+				          <apex:param name="selectValueL2" value="" />
+				      </apex:actionFunction>
+				      
+            </apex:form>
+            <!--     
+              <apex:pageBlock title="Debug - SOQL" id="debug">
+			      <apex:outputText value="{!debugSoql}" />  
+			  </apex:pageBlock>
+			  -->                 
+        </body>
+  
+  		<script>
+  		    var selectValueL1=[];
+  		    var selectValueL2=[];
+  		    var DataInizio='';
+  		    var DataFine='';
+  		    var myContent;
+  		    
+  		    var valL1=[];
+  		    var valL2=[];
+  		    
+  		    var pippo=[];
+  		    
+  		    function doSearch() {
+  		    	    //alert(DataInizio+' e '+DataFine+ ' e ' + JSON.stringify(valL1) + ' e ' + JSON.stringify(valL2) + ' e '+pippo);
+			        searchServer(
+			          DataInizio,
+			          DataFine, 
+			          JSON.stringify(valL1),
+			          JSON.stringify(valL2)
+			          );
+			 }
+  		    
+  		    function nextColonna(c,j) {
+    
+			    // restituisce la colonna successiva  es. nexColonna("A",1) -> "B"
+			    return String.fromCharCode(c.charCodeAt(0) + j);
+			}
+  		    
+  		    function myxls(){
+			  	var dominioCausale = ['','Connettività non disponibile','Connessione instabile','Lentezza di navigazione','Mai Navigato']
+			  		    
+	            var epacc=new ExcelPlus(); //nuovo oggetto epacc
+	            epacc.createFile("Foglio 1");
+                 epacc.write({ "cell":'A1', "content": 'CODICE COMUNICAZIONE OPERATORE'});
+                 epacc.write({ "cell":'B1', "content": 'DATA CREAZIONE'});
+                 epacc.write({ "cell":'C1', "content": 'CAUSALE APERTURA'});
+				 epacc.write({ "cell":'D1', "content": 'STATO'});
+                
+	            // scorro i singoli record degli account
+	            for(var i=1;i<=myContent.length;i++){ 
+	                 var colonna = 'A';
+	                 //alert(records1[i].Id + ' ' + records1[i].Name);
+	                 epacc.write({ "cell":nextColonna(colonna,0) + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_Codice_Comunicazione_OLO__c) });
+	                 epacc.write({ "cell":nextColonna(colonna,1) + (i+1) , "content": '' + dIfIsUndef(myContent[i-1].CreatedDate) });
+	                 epacc.write({ "cell":nextColonna(colonna,2) + (i+1) , "content": '' + dominioCausale[myContent[i-1].EOF_Causale_Apertura__c] });
+					 //epacc.write({ "cell":nextColonna(colonna,3) + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].Case_Portale__r.Status) });
+					 epacc.write({ "cell":nextColonna(colonna,3) + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_Stato_Ordine__c) });     
+	                
+	            }
+	            
+	            var today = new Date();
+				var dd = today.getDate();
+				var mm = today.getMonth()+1; //January is 0!
+				var yyyy = today.getFullYear();
+				if(dd<10) {
+				    dd = '0'+dd
+				} 
+				if(mm<10) {
+				    mm = '0'+mm
+				}  
+				var todaystring = dd + '_' + mm + '_' + yyyy;
+	
+	            epacc.saveAs("export_"+todaystring+".xlsx");
+	  		    
+  		    }
+  		    
+  		    
+  		    function bIfIsUndef(myvar){
+  		    	if (typeof myvar === "undefined") {
+   					 return '';
+				}else{
+					return myvar;
+				}
+  		    }
+  		    
+  		    function dIfIsUndef(myvar){
+  		    	if (typeof myvar === "undefined") {
+   					 return '';
+				}else{
+					return moment(myvar).format("DD/MM/YYYY HH:mm");
+				}
+  		    }
+  		    
+  		    function init(){
+  		    	myContent=JSON.parse($("[id$='IDlistRichiesteTTstring']").text());
+				//alert(JSON.stringify(myContent));
+
+	        	
+	        	$( "select[id$='IDFilterCausaleApertura']" ).multiselect({
+	        	    
+	        		buttonWidth: '200px',
+	        		nSelectedText: 'selezionati',
+    				nonSelectedText: 'Nessuno ',
+    				selectAllText : 'seleziona tutti',
+    				allSelectedText : 'tutti selezionati',
+    				onChange: function(option, checked, select) {
+						valL1=$( "select[id$='IDFilterCausaleApertura']" ).val();
+						//alert(valL1);
+            		}
+
+    				
+	        	});
+	        	$( "select[id$='IDFilterCausaleApertura']" ).multiselect('select', valL1);
+	        	
+	        	$( "select[id$='IDFilterStatus']" ).multiselect({
+	        		
+	        		buttonWidth: '200px',
+	        		nSelectedText: 'selezionati',
+    				nonSelectedText: 'Nessuno ',
+    				selectAllText : 'seleziona tutti',
+    				allSelectedText : 'tutti selezionati',
+    				onChange: function(option, checked, select) {
+                		   valL2=$( "select[id$='IDFilterStatus']" ).val();
+							//alert(valL2);
+            		}
+
+	        	});
+	        	$( "select[id$='IDFilterStatus']" ).multiselect('select', valL2);
+	        	
+	        	
+	        	
+	        	  $("[id$='datefilter']").daterangepicker({
+				      autoUpdateInput: false,
+				      "locale": {
+					        "format": "DD/MM/YYYY",
+					        "separator": " / ",
+					        "applyLabel": "Applica",
+					        "cancelLabel": "Pulisci",
+					        "fromLabel": "DA",
+					        "toLabel": "A",
+					        "customRangeLabel": "Custom",
+					        "daysOfWeek": [
+					            "Dom",
+					            "Lun",
+					            "Mar",
+					            "Mer",
+					            "Gio",
+					            "Ven",
+					            "Sab"
+					        ],
+					        "monthNames": [
+					            "Gennaio",
+					            "Febbraio",
+					            "Marzo",
+					            "Aprile",
+					            "Maggio",
+					            "Giugno",
+					            "Luglio",
+					            "Agosto",
+					            "Settembre",
+					            "Ottobre",
+					            "Novembre",
+					            "Dicembre"
+					        ],
+					        "firstDay": 1
+					    }
+				  });
+				  
+
+				  $("[id$='datefilter']").on('apply.daterangepicker', function(ev, picker) {
+				      $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+				      DataInizio=picker.startDate.format();
+				      DataFine=picker.endDate.format();
+				      //alert('Mie date' + DataInizio + ' ' + DataFine);
+				  });
+				
+				  $("[id$='datefilter']").on('cancel.daterangepicker', function(ev, picker) {
+				      $(this).val('');
+				      DataInizio='';
+				      DataFine='';
+				  });
+				  
+				  if(DataInizio!=''&&DataFine!=''){
+				  	$("[id$='datefilter']").val(moment(DataInizio).format("DD/MM/YYYY") + ' - ' + moment(DataFine).format("DD/MM/YYYY"));
+				  }
+				
+  		    }
+  		    
+	      	$(document).ready(function() {
+	        	init();
+	        	  
+	        	
+	    	});
+    	</script>  
+    </html>
+</apex:component>

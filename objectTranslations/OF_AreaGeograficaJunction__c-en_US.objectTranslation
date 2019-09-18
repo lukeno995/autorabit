@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Contratto Area Geografica</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Aree Geografiche Junction</value>
+    </caseValues>
+    <fields>
+        <label><!-- Area geografica --></label>
+        <name>OF_AreaGeografica__c</name>
+        <relationshipLabel><!-- Area Geografica --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Comune --></label>
+        <name>OF_Comune__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contract --></label>
+        <name>OF_Contratto__c</name>
+        <relationshipLabel><!-- Contratto Aree Geografiche --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Provincia --></label>
+        <name>OF_Provincia__c</name>
+    </fields>
+    <fields>
+        <label><!-- Regione --></label>
+        <name>OF_Regione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Servizio --></label>
+        <name>Servizio__c</name>
+        <relationshipLabel><!-- Aree Geografiche Junction --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Contratto Area Geografica Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Area_geografica --></label>
+        <name>Area_geografica</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Nuova_Area_Geografica --></label>
+        <name>Nuova_Area_Geografica</name>
+    </webLinks>
+</CustomObjectTranslation>

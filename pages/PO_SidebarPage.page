@@ -1,0 +1,261 @@
+<apex:page standardController="Case" extensions="PO_RegistrationController" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+    <html lang="en">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                color:#0000ff; !important;
+                }
+                
+            </style>
+        </head>
+        <body>
+            <apex:form >
+                <div id="wrapper">
+                    <apex:pageMessages id="errors" />
+                    <!-- Navigation -->
+                    
+                    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <div>
+                                 
+                            </div>
+                        </div>
+                    </nav>
+                    <div>
+                         <apex:outputPanel >
+                         <apex:commandLink action="{!enbleB}" reRender="mainblk1,mainblk2,secAId,mainblk3,SecCId" id="sec11" >Gestione Utenze</apex:commandLink>
+                    
+                        <li id="manageuserAccId" style="display:none;">
+                            <apex:commandLink action="{!enbleB}" reRender="mainblk1,mainblk2,secAId,mainblk3,SecCId" id="sec1" >Gestione Utenze</apex:commandLink>
+                        </li><br/>
+                        
+                        <li id="perInfoAccId" style="display:block;">
+                            <apex:commandLink action="{!enbleC}" reRender="mainblk1,mainblk2,secAId,mainblk3,SecCId" rendered="{!not($Profile.Name = 'Open Fiber Profile')}">Informazioni Personali</apex:commandLink>
+                        </li><br/>
+                    </apex:outputPanel>
+                    </div>
+                    <apex:outputPanel id="strP2PA1"  style="display:block;"> 
+                        <li id="Servizi" style="display:block;" >
+                            <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>Servizio a Fattibilità</a>
+                            <ul class="nav">
+                                <li id="perInfoFeservice" style="display:block;">
+                                    
+                                    <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>P2P Base</a>
+                                    
+                                    <ul class="nav">
+                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel rendered="{!show1=true}" ><apex:commandLink action="{!ParentCaseRecord}" target="_blank" >Inserimento nuova richiesta</apex:commandLink></apex:outputPanel></li>
+                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel rendered="{!show1=true}">
+                                            <apex:commandLink action="{!currentUserParentCases}" target="_blank" >
+                                                <apex:param name="p1" assignTo="{!recordOfferta}" value="P2P Base"/>
+                                                Richieste inserite
+                                            </apex:commandLink>
+                                            </apex:outputPanel>
+                                        </li> 
+                                    </ul>
+                                </li>
+                                <!-- EC - Start 2018 - 07 -05  -->
+                                 <li id="perInfoFeservice" style="display:block;">
+                                    
+                                    <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>P2P Attiva</a>
+                                    
+                                    <ul class="nav">
+                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel rendered="{!showP2PAtt=true}" ><apex:commandLink action="{!ParentCaseRecord}" target="_blank" >Inserimento nuova richiesta</apex:commandLink></apex:outputPanel></li>
+                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel rendered="{!showP2PAtt=true}">
+                                            <apex:commandLink action="{!currentUserParentCases}" target="_blank" >
+                                                <apex:param name="p1" assignTo="{!recordOfferta}" value="P2P Attiva"/>
+                                                Richieste inserite
+                                            </apex:commandLink>
+                                            </apex:outputPanel>
+                                        </li>
+                                    </ul>
+                                </li>
+                                
+                                <!-- sopra o sotto? -->
+                                
+                            <!--         <apex:outputPanel id="strP2PA2" rendered="{!showP2PAtt}" style="display:block;">
+                                            <ul class="nav">
+                                                <li id="Servizi2" style="display:block;" >
+                                                    <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>Open Stream</a>
+                                                    <ul class="nav">
+                                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel ><apex:commandLink action="{!ServizioP2PAttiva}" target="_self" >Inserimento nuova richiesta</apex:commandLink></apex:outputPanel></li>
+                                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel >
+                                                            <apex:commandLink action="{!P2PAttivaList}" target="_self" >
+                                                                Richieste inserite
+                                                            </apex:commandLink>
+                                                            
+                                                              
+                                                        <li id="perInfoLineeAttive" style="display:block;"><apex:outputPanel >
+                                                            <apex:commandLink action="{!LineeAttive}" target="_self" >
+                                                                Linee Attive
+                                                            </apex:commandLink>
+                                                            </apex:outputPanel>
+                                                        </li>
+                                                      -->
+                                                   <!--           </apex:outputPanel> 
+                                                            end --
+                                                            
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                            
+                                        </apex:outputPanel>  -->
+                                 
+
+                                <!-- EC - end 2018 - 07 - 05 -->
+                                
+                                <li id="perInfoFeservice" style="display:block;">
+                                    
+                                    <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>Fiber Link</a>
+                                    
+                                    <ul class="nav">
+                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel rendered="{!show3}"> <apex:commandLink action="{!Fiberlink}" target="_blank">Inserimento nuova richiesta</apex:commandLink></apex:outputPanel></li>
+                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel rendered="{!show3}">
+                                            <apex:commandLink action="{!currentUserParentCases}" target="_blank" >
+                                                <apex:param name="p2" assignTo="{!recordOfferta}" value="Fiber Link"/>
+                                                Richieste inserite
+                                            </apex:commandLink>
+                                            </apex:outputPanel>
+                                        </li>
+                                    </ul>
+                                </li>
+                                
+                                <li id="perInfoFeservice" style="display:block;">
+                                    
+                                    <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>Fiber Lease</a>
+                                    
+                                    <ul class="nav">
+                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel rendered="{!show2}"> <apex:commandLink action="{!Fiberlease}" target="_blank">Inserimento nuova richiesta</apex:commandLink></apex:outputPanel></li>
+                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel rendered="{!show2}">
+                                            <apex:commandLink action="{!currentUserParentCases}" target="_blank" >
+                                                <apex:param name="p3" assignTo="{!recordOfferta}" value="Fiber Lease"/>
+                                                Richieste inserite
+                                            </apex:commandLink>
+                                            </apex:outputPanel>
+                                        </li>
+                                    </ul>
+                                </li>
+                                
+                                <li id="perInfoFeservice" style="display:block;">
+                                    
+                                    <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>IRU</a>
+                                    
+                                    <ul class="nav">
+                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel rendered="{!show4=true}"> <apex:commandLink action="{!IRU}" target="_blank">Inserimento nuova richiesta</apex:commandLink></apex:outputPanel></li>
+                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel rendered="{!show4=true}">
+                                            <apex:commandLink action="{!currentUserParentCases}" target="_blank" >
+                                                <apex:param name="p4" assignTo="{!recordOfferta}" value="IRU"/>
+                                                Richieste inserite
+                                            </apex:commandLink></apex:outputPanel></li>
+                                    </ul>
+                                </li>
+                                
+                                <li id="perInfoFeservice" style="display:block;">
+                                    
+                                    <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>Misto Fiber Lease-Link per Fastweb</a>
+                                    
+                                    <ul class="nav">
+                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel rendered="{!show5}"> <apex:commandLink action="{!MistoFiber}" target="_blank">Inserimento nuova richiesta</apex:commandLink></apex:outputPanel></li>
+                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel rendered="{!show5}">
+                                            <apex:commandLink action="{!currentUserParentCases}" target="_blank" >
+                                                <apex:param name="p5" assignTo="{!recordOfferta}" value="Misto Fiber Lease-Link per Fastweb"/>
+                                                Richieste inserite
+                                            </apex:commandLink>
+                                            </apex:outputPanel>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <apex:outputPanel id="str1" rendered="{!showServizia2}" style="display:block;">
+                                    <li id="Servizi2" style="display:block;" >
+                                        <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>Servizio Open Stream</a>
+                                        <ul class="nav">
+                                            <li id="perInfoFeservice" style="display:block;"><apex:outputPanel ><apex:commandLink action="{!ServizioOpenStream}" target="_blank" >Inserimento nuova richiesta</apex:commandLink></apex:outputPanel></li>
+                                            <li id="perInfoFeservice" style="display:block;"><apex:outputPanel >
+                                                <apex:commandLink action="{!currentUserParentCases}" target="_blank" >
+                                                    <apex:param name="p1" assignTo="{!recordOfferta}" value="EOF_Caso_Attivazione_OPENSTREAM"/>
+                                                    Richieste inserite
+                                                </apex:commandLink>
+                                                </apex:outputPanel> 
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    
+                                    
+                                </apex:outputPanel>
+                            </ul>
+                        </li>
+                    </apex:outputPanel>
+                </div>
+            </apex:form>
+        </body>
+    </html>
+     <script>
+    $(document).ready(function(){
+        //   alert('{!usr.Profile.Name}');       
+        if("{!isSuperUser}"=="true" ){
+            $('[id$=manageuserAccId]').show();
+            //$('[id$=perInfoAccId]').show();
+            $('[id$=rightsidebarId]').hide();   
+        }
+        
+        if("{!isSuperUser}"=="false" ){
+              $('[id$=manageuserAccId]').hide();            
+            // $('[id$=rightsidebarId]').hide();   
+        }
+        
+        
+        if('{!$Profile.Name}' =='Open Fibre Profile'){
+             $('[id$=perInfoAccId]').hide();
+            $('[id$=rightsidebarId]').show(); 
+        }
+    });
+    </script>
+
+</apex:page>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Puntamento Callout</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Puntamento Callout</value>
+    </caseValues>
+    <fields>
+        <label><!-- OGW --></label>
+        <name>OF_OGW__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_TTMRequest --></label>
+        <name>OF_TTMRequest__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tibco_Collaudo --></label>
+        <name>Tibco_Collaudo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tibco_Puntamento_SH --></label>
+        <name>Tibco_Puntamento_SH__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tibco_Sviluppo --></label>
+        <name>Tibco_Sviluppo__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

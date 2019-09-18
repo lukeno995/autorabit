@@ -1,0 +1,113 @@
+<apex:page controller="PO_PP_DesospAnnull_controller" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+	
+	<head>  
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            <!-- /#wrapper -->
+              
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js' >
+            </script>
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+            </style>
+        </head>
+        <body>
+        <div class="panel panel-default">
+                 
+               <div class="panel-heading">
+		        
+		                <i></i>{!title}
+		       	
+	       		</div>
+	        <div class="panel-body">
+	            <div class="row">                               
+				    <apex:form >
+				        <div style="color:red;" id="showerror">
+				            <apex:pageMessages id="errors" /> 
+				        </div>
+				        
+				        <form role="form" class="form-horizontal">
+				            <fieldset class="form-group">
+				            	<div class="form-group">
+	                                
+		                               
+		                                    <div class="col-lg-8">
+		                                     <label>Cronologia Note :</label> &nbsp; &nbsp; <br/>
+		                                     <apex:outputField id="cronoNote" styleClass="form-control" value="{!sl.EOF_Comunicazioni_con_OLO__c}"/>
+		                               
+		                                </div> 
+	                           
+	                               
+	                                 <div class="col-lg-4">
+	                                      <label>Note : </label> &nbsp; &nbsp;
+	                                      <apex:inputTextarea id="Note" styleClass="form-control" required="false" value="{!sl.EOF_NOTE__c}"/>
+	                                 </div>
+	                              </div>   
+			                 </fieldset>
+				        
+	                 	
+				            <div class="col-sm-6">
+				                <div class="btn-group" role="group" aria-label="Basic example">                                      
+				                    <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px;" value="Annulla" action="{!annullaFlusso}" html-formnovalidate="formnovalidate" immediate="true"/>        
+				                </div>
+				            </div> 
+				           	 
+	                       <div class="col-lg-6" >
+	                           <div class="btn-group" role="group" aria-label="Basic example">                                      
+	                               <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px;" value="Inoltra" action="{!inoltraFlusso}" />        
+	                           </div>
+	                       </div>
+
+		            	</form>
+		    		</apex:form> 
+	    		</div>
+    		</div>
+	    <br/>
+	</div>
+	</body>
+	
+</apex:page>

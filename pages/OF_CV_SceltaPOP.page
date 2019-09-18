@@ -1,0 +1,319 @@
+<apex:page controller="OF_CV_SceltaPOP_Controller" id="thePage" standardstylesheets="false" sidebar="true">
+<apex:slds />
+    <html lang="en">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <title>Open Fiber</title>  
+            
+            <style>
+            
+                .fsWrapper{
+                    width: 750px;
+                    margin: 0 auto;
+                }
+                
+                .fontHeader{
+                    font-size: 13px;
+                }
+                
+                .headerTitle{
+                    font-family: arial, sans-serif;
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: #fff!important;
+                    text-align: left;
+                    text-transform: uppercase;
+                    background: #4e75a3;
+                    display: block;
+                    padding: 10px;
+                    margin:0;
+                }
+
+                .dataTable table{
+                    width: 100%;
+                    font-family: arial, sans-serif;
+                    border: solid 1px #E0E3E5;
+                    border-collapse: collapse;
+                }
+                
+                .dataTable  th{
+                    background: #999999;
+                    border-top: solid 1px #E0E3E5;
+                    border-right: solid 1px #E0E3E5;
+                    color: #fff;
+                    font-size: 0.8em;
+                    font-weight: normal;
+                    padding: 11px 2px 10px 5px;
+                }
+                
+                .dataTable td {
+                    border-top: solid 1px #E0E3E5;
+                    border-right: solid 1px #E0E3E5;
+                    color: #797979;
+                    font-size: 15px;
+                    padding: 5px 2px 5px 5px;
+                }
+                
+                .formatText{
+                    font-family: arial, sans-serif;
+                    font-size: 13px;
+                    font-weight: 600;
+                    text-align: left;
+                    text-transform: uppercase;
+                    display: block;
+                    margin:0;
+                    padding: 10px 0px 10px 0px;
+                }
+                
+                .formatText2{
+                    font-family: arial, sans-serif;
+                    font-size: 12.5px;
+                    font-weight: 600;
+                    text-align: left;
+                    text-transform: uppercase;
+                    display: block;
+                    padding: 10px;
+                    margin:0;
+                }
+                
+                #buttons{
+                    text-transform: uppercase;
+                    padding-top: 10px;
+                    padding-right: 10px;
+                    padding-bottom: 10px;
+                }
+                
+                #buttonsmod{
+                    text-transform: uppercase;
+                    padding-top: 10px;
+                    padding-right: 10px;
+                    padding-bottom: 10px;
+                }
+                
+                .slds-scope .slds-button--brand, .slds-scope .slds-button_brand {
+                    background-color: rgb(52, 81, 138);
+                    border-color: rgb(52, 81, 138);
+                }
+                
+                .color_span{
+                    color:red;
+                }
+                
+                .slds-scope .slds-form-element__label {
+                    font-size: 14px;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                }
+ 
+            </style>
+        </head>
+        <body>
+        <apex:form styleclass="fsWrapper" >
+            <!-- INIZIO SCELTA POP -->
+            <div style='color:red;'>
+                <apex:messages />
+            </div>
+    		<apex:outputPanel id="multiselectPanel" layout="block" styleClass="dataTable" rendered="{!mostraPop}">
+    		    <apex:pageBlock id="pageB">
+                <h2 class="headerTitle">SCELTA POP</h2>
+    			<table>
+    				<tbody>
+    					<tr>
+    						<td class="selectCell">
+    							<apex:outputPanel layout="block" styleClass="selectTitle" >
+    								<apex:outputLabel value="POP disponibili" for="multiselectPanel:leftList" />
+    							</apex:outputPanel>
+    							<apex:selectList id="popDisponibiliBlock" value="{!selectedPop}" multiselect="true" size="15" style="width: 200px;">
+    								<apex:selectOptions value="{!PopDisponibili}"/>
+    							</apex:selectList>
+    						</td>
+    						<td class="buttonCell">
+    							<apex:outputPanel layout="block" style="margin-top: 100px; margin-bottom:5px;" styleClass="text">Aggiungi</apex:outputPanel>
+    							<apex:outputPanel layout="block" styleClass="text">
+    								<apex:commandLink styleClass="slds-button slds-button--brand" action="{!addPop}" style="font-size: 18px; font-weight:bold; margin-bottom: 10px;" 
+    								    rerender="popDisponibiliBlock, popSelezionatiBlock" id="btnRight" > >>
+    								</apex:commandLink>
+    							</apex:outputPanel>
+    							<apex:outputPanel layout="block" style="margin-top:5px;" styleClass="text">
+    								<apex:commandLink styleClass="slds-button slds-button--brand" action="{!removePop}" rerender="popDisponibiliBlock, popSelezionatiBlock" id="btnLeft"
+    									style="-webkit-transform: rotate(-180deg); -moz-transform: rotate(-180deg); font-size: 18px; font-weight:bold; "> >>
+    								</apex:commandLink>
+    								<apex:outputPanel layout="block" style="margin-bottom: 100px; margin-top:5px;" styleClass="duelingText">Rimuovi</apex:outputPanel>
+    							</apex:outputPanel>
+    						</td>
+    						<td class="selectCell">
+    							<apex:outputPanel layout="block" styleClass="selectTitle">
+    								<apex:outputLabel value="POP selezionati" for="multiselectPanel:rightList" />
+    							</apex:outputPanel>
+    							<apex:selectList id="popSelezionatiBlock" value="{!removedPop}" multiselect="true" size="15" style="width: 200px;">
+    								<apex:selectOptions value="{!PopSelezionati}"/>
+    							</apex:selectList>
+    						</td>
+    					</tr>
+    				</tbody>
+    			</table>
+
+    			<div class="slds-form-element" id="buttons">
+                    <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;" value="Annulla" action="{!annulla}" />
+                    <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;" value="Regola Completata" action="{!regolaCompletata}"/>
+                    <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;" value="Seleziona Comuni" action="{!sceltaComune}" />
+                    <!--<apex:commandButton styleClass="btn" value="Aggiungi POP/Comune"/>-->
+                    <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;" value="Aggiungi Building in Black List" action="{!sceltaBlacklist}" />
+                    <div class="slds-form-element" id="buttonsmod">
+                        <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;" value="Modifica stato Building" action="{!sceltaStatoRegola}" rendered="{!mostrabtnStatoRegola}" />
+                        <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;" value="Salva bozza" action="{!regolaInBozza}"/>
+                    </div>
+                </div>
+    			</apex:pageBlock>
+    		</apex:outputPanel>
+    		<!-- FINE SCELTA POP -->
+    		
+    		<!-- SCELTA COMUNE -->
+    		<apex:outputPanel id="multiselectPanel2" layout="block" styleClass="dataTable" rendered="{!mostraComuni}">
+    		    <apex:pageBlock id="pageB2">
+                <h2 class="headerTitle">SCELTA COMUNE</h2>
+    			<table>
+    				<tbody>
+    					<tr>
+    						<td class="selectCell">
+    							<apex:outputPanel layout="block" styleClass="selectTitle">
+    								<apex:outputLabel value="Comuni disponibili" for="multiselectPanel2:leftList" />
+    							</apex:outputPanel>
+    							<apex:selectList id="availableComuniBlock" value="{!selectedComuni}" multiselect="true" size="15" style="width: 200px;">
+    								<apex:selectOptions value="{!ComuniDisponibili}"/>
+    							</apex:selectList>
+    						</td>
+    						<td class="buttonCell">
+    							<apex:outputPanel layout="block" style="margin-top: 100px; margin-bottom:5px;" styleClass="text">Aggiungi</apex:outputPanel>
+    							<apex:outputPanel layout="block" styleClass="text">
+    							    <apex:commandLink styleClass="slds-button slds-button--brand" action="{!addComuni}" style="font-size: 18px; font-weight:bold; margin-bottom: 10px;" 
+    								    rerender="availableComuniBlock, selectedComuniBlock" id="btnRight" > >>
+    								</apex:commandLink>
+    							</apex:outputPanel>
+    							<apex:outputPanel layout="block" style="margin-bottom: 90px; margin-top:5px;" styleClass="text">
+    							    <apex:commandLink styleClass="slds-button slds-button--brand" action="{!removeComuni}" 
+    							        rerender="availableComuniBlock, selectedComuniBlock" id="btnLeft"
+    							        style="-webkit-transform: rotate(-180deg); -moz-transform: rotate(-180deg); font-size: 18px; font-weight:bold; "> >>
+    								</apex:commandLink>
+    								<apex:outputPanel layout="block" style="margin-bottom: 100px; margin-top:5px;" styleClass="duelingText">Rimuovi</apex:outputPanel>
+    							</apex:outputPanel>
+    						</td> 
+    						<td class="selectCell">
+    							<apex:outputPanel layout="block" styleClass="selectTitle">
+    								<apex:outputLabel value="Comuni selezionati" for="multiselectPanel:rightList" />
+    							</apex:outputPanel>
+    							<apex:selectList id="selectedComuniBlock" value="{!removedComuni}" multiselect="true" size="12" style="width: 200px;">
+    								<apex:selectOptions value="{!ComuniSelezionati}"/>
+    							</apex:selectList>
+    							<apex:outputPanel layout="block">
+                                    <apex:outPutLabel value="Aggiungi manualmente POP/Comune: " />
+                                    <br/>
+                                    <apex:outPutLabel style="color:blue;font-size:12px;" id="com_err_panel" value="(Example -> pop01/comune01)" />
+                                    <br/>
+                                    <apex:inputText id="man_com" value="{!pop_comune_manual}" style="margin-right: 5px;"/>
+                                    <apex:commandButton value="Aggiungi" rerender="selectedComuniBlock, man_com" action="{!addManualPopComune}" />
+                                </apex:outputPanel>
+    						</td>
+    					</tr>
+    				</tbody>
+    			</table>
+    			<div class="slds-form-element" id="buttons">
+                    <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;" value="Vai a Seleziona POP" action="{!tornaIndietro_POP}"/>
+                    <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;" value="Regola Completata" action="{!regolaCompletata}"/>               
+                    <!--<apex:commandButton styleClass="btn" value="Aggiungi Stato" action="{!aggiungiStato}"/>-->
+                    <!--<apex:commandButton styleClass="btn" value="Aggiungi POP/Comune" action="{!aggiungiPopComune}"/>-->
+                    <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;" value="Aggiungi Building in Blacklist" action="{!sceltaBlacklist}"/>
+                    <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;" value="Annulla" action="{!annulla}" />
+                    <div class="slds-form-element" id="buttonsmod">
+                        <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;" value="Salva bozza" action="{!regolaInBozza}"/>
+                        <apex:commandLink styleClass="slds-button slds-button--brand" value="Modifica stato Building" action="{!sceltaStatoRegola}" rendered="{!mostrabtnStatoRegola}" />
+                    </div>
+                </div>
+    			</apex:pageBlock>
+    		</apex:outputPanel>
+        <!-- FINE SCELTA COMUNE -->
+        
+        <!-- INIZIO SCELTA BLACKLIST -->
+            <apex:outputpanel styleclass="dataTable" rendered="{!mostraBlacklist}">
+                <apex:pageblock id="pageB3">
+                    <h2 class="headerTitle">AGGIUNGI BUILDING IN BLACKLIST</h2>
+                    <div class="slds-form-element">
+                        <label class="formatText">
+                            Aggiungere <span class="color_span">ID Building</span> e/o 
+                                       <span class="color_span">Id Scala</span> e/o 
+                                       <span class="color_span">Codice Strada</span> da inserire in blacklist, separati da un ; 
+                        </label>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="text-input-id-1">ID Building in blacklist :</label>
+                        <div class="slds-form-element__control">
+                            <apex:inputText styleclass="slds-input" style="width: 200px;" value="{!id_building}"/>
+                        </div>
+                    </div>
+
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="text-input-id-2">ID Scala in blacklist :</label>
+                        <div class="slds-form-element__control">
+                            <apex:inputText styleclass="slds-input" style="width: 200px;" value="{!id_scala}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="text-input-id-2">Codice Strada in blacklist :</label>
+                        <div class="slds-form-element__control">
+                            <apex:inputText styleclass="slds-input" style="width: 200px;" value="{!codice_strada}"/>
+                        </div>
+                    </div>
+
+                    <div class="slds-form-element" id="buttons">
+                        <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;" value="Vai a Seleziona Comuni" action="{!tornaIndietro_Comune}"/>
+                        <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;" value="Regola Completata" action="{!regolaCompletata}"/>
+                        <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;" value="Modifica stato Building " action="{!sceltaStatoRegola}" rendered="{!mostrabtnStatoRegola}" />
+                        <apex:commandLink styleClass="slds-button slds-button--brand" value="Annulla" action="{!annulla}"/>                
+                        <div class="slds-form-element" id="buttonsmod">
+                            <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;" value="Salva bozza" action="{!regolaInBozza}"/>
+                        </div>
+                    </div>
+                </apex:pageblock>
+            </apex:outputpanel>
+        <!-- FINE SCELTA BLACKLIST -->
+        
+        <!-- INIZIO SCELTA STATO BUILDING -->
+            <apex:outputpanel styleclass="dataTable" rendered="{!mostraStatoRegola}">
+                <apex:pageBlock id="stato_regola" >
+                    <h2 class="headerTitle">SELEZIONA LO STATO BUILDING</h2>
+                    
+                    <div class="slds-form-element" style="margin-top:10px;">
+                        <label class="slds-form-element__label">Stato Building:</label>
+                        <div class="slds-form-element__control">
+                            <apex:selectList styleClass="slds-select" style="width:33%;" size="1"   value="{!stato}">
+                                <apex:selectOptions value="{!Stati}" />
+                            </apex:selectList>
+                        </div>
+                    </div>
+
+                    <div class="slds-form-element" id="buttons">
+                        <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;" value="Regola Completata" action="{!regolaCompletata}"/>
+                        <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;" value="Seleziona Comuni" action="{!sceltaComune}" />
+                        <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;" value="Aggiungi Building in Black List" action="{!sceltaBlacklist}" />
+                        <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;" value="Annulla" action="{!annulla}" />
+                        <div class="slds-form-element" id="buttonsmod">
+                            <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;" value="Salva bozza" action="{!regolaInBozza}"/>
+                        </div>
+                    </div>
+                </apex:pageBlock>
+            </apex:outputPanel>
+        <!-- FINE SCELTA STATO REGOLA -->
+	    </apex:form>
+       
+        <script type="text/javascript">
+           
+        </script>
+        </body>
+    </html>
+</apex:page>

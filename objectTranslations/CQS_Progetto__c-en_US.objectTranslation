@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Progetto</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Progetti</value>
+    </caseValues>
+    <fields>
+        <label><!-- Area/Lotto --></label>
+        <name>CQS_Pro_Area__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comune --></label>
+        <name>CQS_Pro_Comune__c</name>
+    </fields>
+    <fields>
+        <label><!-- Impresa Affidataria --></label>
+        <name>CQS_Pro_Impresa_Affidataria__c</name>
+        <relationshipLabel><!-- Progetti --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- LDO Service 2 --></label>
+        <name>CQS_Pro_LDO_Service2__c</name>
+    </fields>
+    <fields>
+        <label><!-- LDO Service 3 --></label>
+        <name>CQS_Pro_LDO_Service3__c</name>
+    </fields>
+    <fields>
+        <label><!-- LDO Service --></label>
+        <name>CQS_Pro_LDO_Service__c</name>
+    </fields>
+    <fields>
+        <help><!-- Lettera d&apos;Ordine --></help>
+        <label><!-- LDO --></label>
+        <name>CQS_Pro_LDO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Importo Aggiudicato --></label>
+        <name>CQS_Prog_Importo_Aggiudicato__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mandante 1 --></label>
+        <name>CQS_Prog_Mandante_1__c</name>
+        <relationshipLabel><!-- Progetti (Mandante 1) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Mandante 4 --></label>
+        <name>CQS_Prog_Mandante_4__c</name>
+        <relationshipLabel><!-- Progetti (Mandante 4) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Capofila --></label>
+        <name>CQS_Prog_Mandataria__c</name>
+        <relationshipLabel><!-- Progetti (Mandataria) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Mandante 2 --></label>
+        <name>CQS_pro_Mandante_2__c</name>
+        <relationshipLabel><!-- Progetti (Mandante 2) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Mandante 3 --></label>
+        <name>CQS_prog_Mandante_3__c</name>
+        <relationshipLabel><!-- Progetti (Mandante 3) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Data Contratto --></label>
+        <name>Data_Contratto__c</name>
+    </fields>
+    <layouts>
+        <layout>Progetto Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

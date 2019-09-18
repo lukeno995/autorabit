@@ -1,0 +1,237 @@
+<apex:page standardController="OF_CQS_Risorse_Impiegate__c" extensions="CQS_RisorseImpiegateController">
+    
+    <Style>
+        .red{color:red;}
+    </Style>
+    <script>
+    function defprogFunzione(){
+        defProg();
+    }
+    function defProg(){
+        definisciProgettiPl();
+    }
+    function defAti(){
+    var nomeImp = {!rImp.CQS_RisImp_Impresa_Mandataria__c};
+    var AtiBool = (nomeImp.contains('RTI-')?true:false);
+        defineLDO
+    }
+    </script>
+    
+    <script type="text/javascript">
+		alert("Ciao \n" + ${});
+	</script>
+    
+    <apex:sectionHeader title="Risorse Impiegate"/>
+    <apex:pageMessages id="pm"/>
+    
+    <apex:form id="theForm">
+        <apex:pageBlock title="Risorse Impiegate" mode="edit" id="thePageBlock">
+            <apex:outputPanel id="ipsec3"> 
+                
+                <apex:pageBlockSection >  
+                    <apex:pageBlockSectionItem />
+                    <apex:pageBlockSectionItem />
+                    <apex:outputField value="{!rimp.OF_CQS_Comune_Ris_Imp__c}" />
+                    <apex:inputField value="{!rimp.CQS_RisImp_Data__c}" required="true"/>
+                    <apex:pageBlockSectionItem />
+                    <apex:pageBlockSectionItem />
+                    <apex:selectList label="Progetto" value="{!optSceltaProgetto}" size="1"  >
+                        <apex:selectOptions value="{!optListaProgetti}"/>  
+                        <apex:actionSupport event="onchange" action="{!defineLDO}"  reRender="thePageBlock" />
+                    </apex:selectList>
+                    
+                    <apex:outputField value="{!rImp.CQS_RI_LDO__c}" />
+                    
+                    <apex:outputField value="{!rImp.CQS_RisImp_Impresa_Mandataria__c}" />
+                    <apex:pageBlockSectionItem />
+                    <apex:pageBlockSectionItem />
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+            
+            <apex:outputPanel id="NoAti" rendered="{!IF(ati==false,true,false)}" > 
+            <!-- rendered="{!If(ati=="false",true,false)}" -->
+          
+             <!--   <div id="NoAti" rendered="{!!ati}"> -->
+                    <!-- rimp.CQS_RisImp_Impresa_Mandataria__r.RecordType.DeveloperName!='CQS_Imprese_in_raggruppamento'||  -->
+                    
+                    <apex:pageBlockSection title="Consuntivazione Risorse ">
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />
+                        <apex:outputField value="{!rImp.OF_CQS_Contrattista_Lotto1__c}" />  
+                        
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_altre_attivita__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_lavori_civili__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_ldelivery_vertadd__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_lavoriOttici_posacavo__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTElavori_ottici_giunzcoll__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:outputField value="{!rImp.CQS_RisImp_Somma_FTE2__c}"/>
+                        <!--  <apex:outputField value="{!rImp.CQS_RisImp_Somma_FTE_formula__c}"/> -->
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />
+                    </apex:pageBlockSection>
+              <!--  </div> -->
+            </apex:outputPanel>
+              
+            
+            <apex:outputPanel id="Ati" rendered="{!If(ati==true,true,false)}">
+                <!--    <div id="Ati" rendered="{!ati}">  -->
+                          
+                    <apex:pageBlockSection title="Consuntivazione Risorse Capofila 1" rendered="{!rImp.OF_CQS_Contrattista_Lotto1__c!=null}" columns="2" collapsible="true">
+                        <apex:pageBlockSectionItem />
+                         <apex:pageBlockSectionItem />
+                 <!--  <div id='siAti' rendered="{!rimp.CQS_RisImp_Impresa_Mandataria__r.RecordType.DeveloperName=='CQS_Imprese_in_raggruppamento'}">   -->       
+                        <apex:inputField value="{!rImp.OF_CQS_Contrattista_Lotto1__c}"/>
+                <!--  </div>  -->       
+                       
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_altre_attivita__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_lavori_civili__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_ldelivery_vertadd__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_lavoriOttici_posacavo__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTElavori_ottici_giunzcoll__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:outputField value="{!rImp.CQS_RisImp_Somma_FTE2__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />
+                        
+                    </apex:pageBlockSection>
+                
+                <apex:pageBlockSection title="Consuntivazione Mandataria 2" rendered="{!rImp.OF_CQS_Contrattista_Lotto2__c!=null}" columns="2" collapsible="true">
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.OF_CQS_Contrattista_Lotto2__c}"/>
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_altre_attivita2__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_lavori_civili2__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_ldelivery_vertadd2__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_lavoriOttici_posacavo2__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTElavori_ottici_giunzcoll2__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:outputField value="{!rImp.CQS_RisImp_Somma_FTE2__c}"/>
+                        <!--   <apex:outputField value="{!rImp.CQS_RisImp_Somma_FTE_formula2__c}"/> -->
+       <!--EC fase 1 da decommentare e sistemare   -->
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />
+                        
+                    </apex:pageBlockSection>
+                
+                <apex:pageBlockSection title="Consuntivazione Mandataria 3" rendered="{!rImp.OF_CQS_Contrattista_Lotto3__c!=null}" columns="2" collapsible="true">
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />             
+                        <apex:inputField value="{!rImp.OF_CQS_Contrattista_Lotto3__c}"/>
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_altre_attivita3__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_lavori_civili3__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_ldelivery_vertadd3__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_lavoriOttici_posacavo3__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTElavori_ottici_giunzcoll3__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:outputField value="{!rImp.CQS_RisImp_Somma_FTE3__c}"/>
+                        <!--  <apex:outputField value="{!rImp.CQS_RisImp_Somma_FTE_formula3__c}"/> -->
+        <!--EC fase 1 da decommentare e sistemare   -->          
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />
+                    </apex:pageBlockSection>
+                    
+                    <apex:pageBlockSection title="Consuntivazione Mandataria 4" rendered="{!rImp.OF_CQS_Contrattista_Lotto4__c!=null}" columns="2" collapsible="true">
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.OF_CQS_Contrattista_Lotto4__c}"/>
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_altre_attivita4__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_lavori_civili4__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_ldelivery_vertadd4__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_lavoriOttici_posacavo4__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTElavori_ottici_giunzcoll4__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:outputField value="{!rImp.CQS_RisImp_Somma_FTE4__c}"/>
+                  
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />
+                    </apex:pageBlockSection>
+                     
+                    <!-- EC Start contrattista 5 2018 - 10 - 22  -->
+               
+                     <apex:pageBlockSection title="Consuntivazione Mandataria 5" rendered="{!rImp.OF_CQS_Contrattista_Lotto5__c!=null}" columns="2" collapsible="true">
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />             
+                        <apex:inputField value="{!rImp.OF_CQS_Contrattista_Lotto5__c}"/>
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_altre_attivita5__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_lavori_civili5__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_ldelivery_vertadd5__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTE_lavoriOttici_posacavo5__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!rImp.CQS_RisImp_FTElavori_ottici_giunzcoll5__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:outputField value="{!rImp.CQS_RisImp_Somma_FTE5__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />
+                        <apex:pageBlockSectionItem />
+                    </apex:pageBlockSection>
+             
+                    
+                    <!-- EC end Contrattista 5 2018 - 10 - 22   -->
+                
+            </apex:outputPanel>    
+                    
+                 <!--   <apex:repeat value="{!impreseAti}" var="imp">
+                        <tr>
+                            <td>
+                            </td>
+                        </tr>
+                        
+                    </apex:repeat>  -->
+                    <!--EC       </apex:pageBlockSection> -->
+      <!--EC fase 1 da decommentare e sistemare           </div> 
+            -->
+        </apex:pageBlock>
+       <apex:pageBlock >     
+        
+                <apex:commandButton value="Torna a Seleziona Comune" action="{!tornaSelezioneComune}"/>
+                <apex:commandButton value="Salva" action="{!SalvaConsuntivo}"/>
+           
+        </apex:pageBlock>  
+        
+        
+        <html lang="en">
+            
+            
+        </html>
+    </apex:form>    
+    <script>
+    function 1
+    
+    </script>
+    
+</apex:page>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>EOF_Notify__c.Tipo_Comunicazione__c</field>
+    </columns>
+    <columns>
+        <field>EOF_Notify__c.EOF_Inviata__c</field>
+    </columns>
+    <columns>
+        <field>EOF_Notify__c.EOF_Tipo_Comunicazione_ctrl__c</field>
+    </columns>
+    <columns>
+        <field>EOF_Notify__c.EOF_Data_Notifica__c</field>
+    </columns>
+    <columns>
+        <field>EOF_Notify__c.Codice_Rifiuto_Sospensione_Annullamento__c</field>
+    </columns>
+    <columns>
+        <field>EOF_Notify__c.Motivo_Rifiuto_Sospensione_Annullamento__c</field>
+    </columns>
+    <columns>
+        <field>EOF_Notify__c.EOF_Codice_Motivazione_Rimodulazione__c</field>
+    </columns>
+    <columns>
+        <field>EOF_Notify__c.EOF_Reason_Rimodulazione_DAC__c</field>
+    </columns>
+    <columns>
+        <field>EOF_Notify__c.EOF_Nuova_DAC__c</field>
+    </columns>
+    <columns>
+        <field>EOF_Notify__c.EOF_Orario_DAC__c</field>
+    </columns>
+    <description>File Notifiche per Schedulazione SalesForce</description>
+    <format>Tabular</format>
+    <name>Estrazione Notifiche</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$EOF_Notify__c@EOF_Notify__c.Caso__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>FK_NAME</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>EOF_Notify__c.EOF_Data_Notifica__c</dateColumn>
+        <endDate>2017-12-31</endDate>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2016-01-01</startDate>
+    </timeFrameFilter>
+</Report>

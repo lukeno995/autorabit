@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Staging</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Staging</value>
+    </caseValues>
+    <fields>
+        <label><!-- OF_Civico --></label>
+        <name>OF_Civico__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Comune --></label>
+        <name>OF_Comune__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Ordine OLO --></label>
+        <name>OF_GIS_Codice_Ordine_Olo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Espletamento --></label>
+        <name>OF_GIS_Data_Espletamento__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nome Scala --></label>
+        <name>OF_GIS_Nome_Scala__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_GIS_OLO --></label>
+        <name>OF_GIS_OLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pop Tmw --></label>
+        <name>OF_GIS_Pop_Tmw__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_ID_Building --></label>
+        <name>OF_ID_Building__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_ID_GIS_ScalaPalazzina --></label>
+        <name>OF_ID_GIS_ScalaPalazzina__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Id_DB_Scala_palazzina --></label>
+        <name>OF_Id_DB_Scala_palazzina__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Id_Palazzina --></label>
+        <name>OF_Id_Palazzina__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Id_Risorsa --></label>
+        <name>OF_Id_Risorsa__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Indirizzo --></label>
+        <name>OF_Indirizzo__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Palazzina --></label>
+        <name>OF_Palazzina__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Particella_Toponomastica --></label>
+        <name>OF_Particella_Toponomastica__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Scala_Palazzina --></label>
+        <name>OF_Scala_Palazzina__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Scala --></label>
+        <name>OF_Scala__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Source_System --></label>
+        <name>OF_Source_System__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_UI_Scala_Palazzina --></label>
+        <name>OF_UI_Scala_Palazzina__c</name>
+    </fields>
+    <fields>
+        <label><!-- STG_Info_Esecuzione --></label>
+        <name>STG_Info_Esecuzione__c</name>
+    </fields>
+    <fields>
+        <label><!-- indice --></label>
+        <name>indice__c</name>
+    </fields>
+    <fields>
+        <label><!-- isElaborato --></label>
+        <name>isElaborato__c</name>
+    </fields>
+    <fields>
+        <label><!-- isScarto --></label>
+        <name>isScarto__c</name>
+    </fields>
+    <fields>
+        <label><!-- isValid --></label>
+        <name>isValid__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

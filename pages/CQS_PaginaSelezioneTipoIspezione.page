@@ -1,0 +1,29 @@
+<apex:page standardController="OF_CQS_Ispezione__c" extensions="Cqs_Ispezione_CustomController">
+<apex:sectionHeader subtitle="Scegli il tipo di Ispezione"/> 
+  <apex:form >
+    <apex:pageBlock title="Ciao {!$User.FirstName}">
+      <apex:pageBlockSection title="Seleziona il tipo di ispezione" collapsible="true">
+        <apex:pageBlockSectionItem >
+            <apex:outputPanel dir="{!pageRef}">
+                <apex:selectList label="Tipo di Ispezione" value="{!optScelta}" size="1" required="true">
+                <!--<apex:selectOptions value="{!opt}"/>-->
+                    <apex:selectOptions Value="{!opt}" />
+                    
+			        <!--apex:actionSupport event="onchange" action="{!redirect}" action=""/>-->
+            	</apex:selectList>
+         <!--    <apex:commandButton value="Seleziona" action="{!portaVF}" rerender="pagBlock"/> -->
+                 <apex:commandButton value="Seleziona" action="{!pagPresel}" rerender="pagBlock,ispSicurezza,ispQuality"/>
+         
+             
+                </apex:outputPanel>
+            </apex:pageBlockSectionItem>
+       	  </apex:pageBlockSection>
+          <apex:pageBlockSection title="Dettagli per la scelta corretta" collapsible="true" columns="1"> 
+          			<apex:pageBlockSectionItem >
+                        <p>Scegliere 'Ispezione di Sicurezza' nel caso siate un CSE  un CM e vogliate censire l'ispezione effettuata in un cantiere durante le lavorazioni di un'impresa esecutrice</p>
+						<p>Scegliere 'Ispezione di Qualità' nel caso siate un DL o un CM e vogliate censire l'ispezione</p>
+				   </apex:pageBlockSectionItem>
+    	  </apex:pageBlockSection>
+      </apex:pageBlock>
+  </apex:form>
+</apex:page>

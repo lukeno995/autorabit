@@ -1,0 +1,154 @@
+<apex:component controller="PO_COMP_ListaRichiesteInBozza_Controller">
+	<html lang="it">   
+        <head> 
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+             
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+             
+            <!-- /#wrapper -->
+              
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+            </style>
+        </head> 
+         
+            <body>
+            <apex:form >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+		                <apex:outputPanel >
+		                
+		                        <i></i>Richieste In Bozza
+		                   
+		                </apex:outputPanel>
+                	</div>
+	                <div class="panel-body">
+	                    <div class="row">
+	                        <div style="color:red;" id="showerror">
+	                            <apex:pageMessages id="errors" /> 
+	                        </div>
+	                        <apex:outputPanel rendered="{!!richieste}" > 
+			                    <div class="panel-heading red" >
+			                        <i></i>Non è presente nessuna richiesta
+			                   </div>
+			                </apex:outputPanel>
+	                            
+	                        <form role="form" class="form-horizontal">
+	                        
+	                        	<apex:pageBlock rendered="{!richieste}" >
+                                                <apex:pageBlockTable value="{!listBozze}" var="sl" rendered="{!richieste}" id="myTable" styleClass="table table-striped table-bordered">
+                                                    <apex:column >
+                                                        <apex:facet name="header">
+                                                        	<apex:outputText value="Codice Ordine Operatore" />
+                                                       	</apex:facet>
+                                                        <apex:commandlink value="{!sl.EOF_Codice_Ordine_OLO__c}" action="{!vediReq}" id="link" >
+                                                            <apex:param name="eventSl" value="{!sl.Id}" assignTo="{!IdBozza}"/>
+                                                            <apex:param name="event2Sl" value="{!sl.EOF_Tipo_Comunicazione_String__c}" assignTo="{!tipoRIchiesta}"/>
+                                                        </apex:commandlink>
+                                                    </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <apex:column >
+                                                        <apex:facet name="header">
+                                                            <apex:outputText value="Tipo Richiesta" />
+                                                        </apex:facet>
+                                                        <apex:outputField value="{!sl.EOF_Tipo_Comunicazione_String__c}"  />
+                                                    </apex:column>&nbsp;&nbsp;
+                                                    <apex:column >
+                                                        <apex:facet name="header">
+                                                            <apex:outputText value="Stato Richiesta" />
+                                                        </apex:facet>
+                                                        <apex:outputField value="{!sl.EOF_STATO_ORDINE__c}" />
+                                                    </apex:column>&nbsp;&nbsp;
+                                                    <apex:column >
+                                                        <apex:facet name="header">
+                                                            <apex:outputText value="Identificativo del POP" />
+                                                        </apex:facet>
+                                                        <apex:outputField value="{!sl.EOF_ID_Pop__c}" />
+                                                    </apex:column>&nbsp;&nbsp;
+                                                    <apex:column >
+                                                        <apex:facet name="header">
+                                                            <apex:outputText value="DATA NOTIFICA"/>
+                                                        </apex:facet>
+                                                        <apex:outputField value="{!sl.EOF_Data_Notifica__c}" />
+                                                    </apex:column>
+                                                    <apex:column >
+                                                        <apex:facet name="header">
+                                                            <apex:outputText value="DATA CREAZIONE"/>
+                                                        </apex:facet>
+                                                        <apex:outputField value="{!sl.PO_SA_Data_Inserimento_Ordine__c}" />-
+                                                    </apex:column><br/>
+                                                </apex:pageBlockTable>
+                                             </apex:pageBlock> 
+                                             
+            <!--START - PAGINATION PANEL -->
+            <apex:outputPanel id="paginationPanel">
+                <apex:outputPanel rendered="{!showPag}">
+                    <apex:commandlink action="{!PageDown}" reRender="myTable,paginationPanel">
+                        <apex:image style="margin-top: 0px;" url="{!$Resource.ArrowDestra}"
+                        styleClass="leftFloat" width="22" height="22"/>
+                    </apex:commandlink>
+                    <p style='float:left;display:inline;margin-left:10px;margin-right:10px;;margin-top: 0px;'>Pagina {!pageActual}  di {!totalpage} (Record : {!totalRecord})</p> 
+                    <apex:commandlink action="{!pageUp}" reRender="myTable,paginationPanel">
+                    <apex:image style="margin-top: 0px;" url="{!$Resource.ArrowSinistra}" 
+                        styleClass="leftFloat" width="22" height="22"/>
+                    </apex:commandlink>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!!showPag}">                        
+                    <p style='float:left;display:inline;margin-left:10px;margin-right:10px;;margin-top:-8px;'>0 Pagine (Record : 0)</p>
+                </apex:outputPanel>
+            <!-- END - PAGINATION PANEL -->
+            </apex:outputPanel>
+           
+	                        </form>
+	                    </div>
+	               
+	                </div>
+                </div>
+            </apex:form>                     
+        </body>
+    
+    </html>
+</apex:component>

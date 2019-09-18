@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Configurazioni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Configurazioni</value>
+    </caseValues>
+    <fields>
+        <label><!-- Data Switch OM --></label>
+        <name>DataSwitchOM__c</name>
+    </fields>
+    <fields>
+        <help><!-- Identifica se utilizzare o meno il cruscotto per controllare quali devono andare su OM e quali no. Se false vanno tutte su OM --></help>
+        <label><!-- Attiva Check POP/OLO --></label>
+        <name>EOF_Attiva_Check_POP_OLO__c</name>
+    </fields>
+    <fields>
+        <help><!-- Inserire i codici operatori da inviare ad om separati da &quot;;&quot; (punto e virgola),senza spazi: es &quot;WN;VF;TIS&quot; --></help>
+        <label><!-- Codice Operatore OLO --></label>
+        <name>EOF_Codice_Operatore_OLO__c</name>
+    </fields>
+    <fields>
+        <help><!-- Inserire le GPON da inviare ad om separate da &quot;;&quot; (punto e virgola),senza spazi: es &quot;PG_01;RM_01;MI_01&quot; --></help>
+        <label><!-- Pop --></label>
+        <name>EOF_Pop_OM__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_DataSwitchTTM --></label>
+        <name>OF_DataSwitchTTM__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_ServizioExtraName --></label>
+        <name>OF_ServizioExtraName__c</name>
+    </fields>
+    <fields>
+        <label><!-- CodOpOLOSuTTM --></label>
+        <name>OF_TT_CodOpOLOSuTTM__c</name>
+    </fields>
+    <fields>
+        <label><!-- TuttoSuTTM --></label>
+        <name>OF_TT_TuttoSuTTM__c</name>
+    </fields>
+    <fields>
+        <help><!-- se TRUE i POP e gli OLO inseriti nel cruscotto identificano i POP e gli OLO che andranno verso OM (logica includente). Se la checkbox è FALSE i POP e gli OLO inseriti nel cruscotto identificano i POP e gli OLO che NON andranno verso OM (logica escludente) --></help>
+        <label><!-- check True vai su OM --></label>
+        <name>OF_checkTrueVaiSuOM__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

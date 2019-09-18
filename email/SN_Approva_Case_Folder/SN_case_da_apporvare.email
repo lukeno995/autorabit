@@ -1,0 +1,6 @@
+Il case {!Case.CaseNumber}
+creato da {!Case.OwnerFullName}
+è da approvare.
+
+Note:
+{!Case.SN_NoteSocial__c}

@@ -1,0 +1,809 @@
+<apex:component controller="PO_COMP_GPON_Passiva_CeD_ListaRicIns_Con" allowDML="true">
+	<html lang="en">     
+        <head> 
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/> 
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+             
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <!-- /#wrapper -->
+              
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+           
+            <apex:includeScript value="{!URLFOR($Resource.multiselect, '/multiselect/js/bootstrap-multiselect.js')}"/>
+			<apex:stylesheet value="{!URLFOR($Resource.multiselect, '/multiselect/css/bootstrap-multiselect.css')}"/>
+			<apex:includeScript value="{!URLFOR($Resource.daterangepicker, '/moment.js')}"/>
+			<apex:includeScript value="{!URLFOR($Resource.daterangepicker, '/daterangepicker.js')}"/>
+			<apex:stylesheet value="{!URLFOR($Resource.daterangepicker, '/daterangepicker.css')}" />
+            <!-- excelJS -->
+             
+            <apex:includeScript value="{!URLFOR($Resource.excelplus25, '/excelplus25/xlsx.full.min.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.excelplus25, '/excelplus25/excelplus-2.5.min.js')}"/>
+            
+            <apex:includeScript value="{!URLFOR($Resource.moment, 'moment-develop/min/moment-with-locales.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+				.leftFloat{
+					float:left;
+				}
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .table td.text {
+				    max-width: 177px;
+				}
+				.table td.text span {
+				    white-space: nowrap;
+				    overflow: hidden;
+				    text-overflow: ellipsis;
+				    display: inline-block;
+				    max-width: 100%;
+				}
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+            </style>
+        </head> 
+         
+            <body>
+            <apex:form >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+		                <apex:outputPanel >
+	                        <i></i>Richieste Inserite   
+		                </apex:outputPanel>
+                	</div>
+	                <div class="panel-body">
+	                    <div class="row">
+	                        <div style="color:red;" id="showerror">
+	                            <apex:pageMessages id="errors" /> 
+	                        </div>
+	                        <apex:outputPanel rendered="{!!richieste}" > 
+			                    <div class="panel-heading red" >
+			                        <i></i>Non è presente nessuna richiesta
+			                   </div>
+			                </apex:outputPanel>    
+	                        <form role="form" class="form-horizontal">
+	                        	<apex:pageBlock rendered="{!richieste}"  id="results">
+	                        	    <!--<button type="button" Class="btn btn-primary pull-right" style="margin-right:10px;margin-bottom:10px;" onclick="myxls()">Esporta xlsx</button> -->
+								
+                                <button type="button" Class="btn btn-primary pull-right" style="margin-right:10px;margin-bottom:10px;" onclick="redirect()">Esporta xlsx</button> 
+                                  <!--  <apex:param name="DataInizioNotifica" value="" />
+            						<apex:param name="DataFineNotifica" value="{!DataFineNotifica}" />
+            						<apex:param name="DataInizioCreazione" value="{!DataInizioCreazione}" />
+            						<apex:param name="DataFineCreazione" value="{!DataFineCreazione}" />
+            						<apex:param name="ListTipo" value="{!selectValueL1}" />  
+            						<apex:param name="ListStatus" value="{!selectValueL2}" />
+            						<apex:param name="valPOP" value="{!valPOP}" />
+            						<apex:param name="valCodOrdOLO" value="{!valCodOrdOLO}" />
+            						<apex:param name="valIDRisorsa" value="{!valIDRisorsa}" />  -->
+                                 
+	                        		<button type="button" Class="btn btn-primary pull-right" style="margin-right:10px;margin-bottom:10px;" onclick="doSearch()">Applica filtri</button>
+	                        	
+                                     <apex:pageBlockTable value="{!listInserite}" var="sl" rendered="{!richieste}" id="myTable" styleClass="table table-striped table-bordered">
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                               <ul class="list-unstyled">
+											    	<li class="">
+                                                 		Codice Ordine Operatore
+                                                	</li>
+                                                	<li>
+                                                 	 	<input type="text" class="form-control" id="IDFiltroCodOrdOLO"  placeholder="" style=""/>		
+                                                 	</li>
+                                                </ul>
+                                             </apex:facet>
+                                             <apex:commandlink value="{!sl.EOF_Codice_Ordine_OLO__c}" action="{!vediReq}" rerender="null" >
+                                                 <apex:param name="eventSl" value="{!sl.Id}" assignTo="{!IdInserita}"/>
+                                                 <apex:param name="event2Sl" value="{!sl.EOF_Tipo_Comunicazione_String__c}" assignTo="{!tipoRichiesta}"/>
+                                             </apex:commandlink>
+                                         </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                             	<ul class="list-unstyled">
+											    	<li class="">
+                                                 		Tipo Richiesta
+                                                	</li>
+                                                	<li>
+                                                		<select id="IDFiltroTipoRichiesta" multiple="multiple">
+                                                		    <!-- 
+														    <option value="Attivazione">Attivazione</option>
+														    <option value="Cessazione">Cessazione</option>
+														     -->
+											 			</select>
+                                                	</li>
+                                                </ul>
+                                             </apex:facet>
+                                             <apex:outputField value="{!sl.EOF_Tipo_Comunicazione_String__c}"  />
+                                         </apex:column>&nbsp;&nbsp;
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                             	<ul class="list-unstyled">
+											    	<li class="">                                            
+                                                 		Stato Richiesta
+                                                	</li>
+                                                	<li>
+                                                		<select id="IDFiltroStatoRichiesta" multiple="multiple">
+                                                		    <!-- 
+														    <option value="Inviato">Inviato</option>
+														    <option value="Acquisito KO">Acquisito KO</option>
+														    <option value="Acquisito">Acquisito</option>
+														    <option value="Sospeso">Sospeso</option>
+														    <option value="In annullamento">In annullamento</option>
+														    <option value="Annullato">Annullato</option>
+														    <option value="Accettato KO">Accettato KO</option>
+														    <option value="Accettato">Accettato</option>
+														    <option value="Espletato">Espletato</option>
+														    <option value="Espletato KO">Espletato KO</option>
+														    <option value="Cessazione Inviata">Cessazione Inviata</option>
+														    <option value="Cessato KO">Cessato KO</option>
+														    <option value="Cessato OK">Cessato OK</option>
+														     -->
+											 			</select>
+                                                	</li>
+                                                </ul>
+                                             </apex:facet>
+                                             <apex:outputField value="{!sl.EOF_STATO_ORDINE__c}" />
+                                         </apex:column>&nbsp;&nbsp;
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                             	<ul class="list-unstyled">
+											    	<li class="">  
+                                                 		Identificativo del POP
+                                                 	</li>
+                                                 	<li>
+                                                 	 	<input type="text" class="form-control" id="IDFiltroPOP"  placeholder="" style="width: 100px;"/>		
+                                                 	</li>
+                                                </ul> 	
+                                             </apex:facet>
+                                             <apex:outputField value="{!sl.EOF_ID_Pop__c}" />
+                                         </apex:column>&nbsp;&nbsp;
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                             	<ul class="list-unstyled">
+                                             		<li>
+                                                 		Data Notifica
+													</li>
+                                                 	<li>
+                                                 		<input type="text" class="form-control" id="IDDateFilterNotifica"  placeholder=" DA  A "/>
+                                                	</li>
+                                             	</ul>
+                                             </apex:facet>
+                                             <apex:outputField value="{!sl.EOF_Data_Notifica__c}" />
+                                         </apex:column>
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                             	<ul class="list-unstyled">
+                                             		<li>
+                                                 		Data Creazione
+													</li>
+                                                 	<li>
+                                                 		<input type="text" class="form-control" id="IDDateFilterCreazione"  placeholder=" DA  A "/>
+                                                	</li>
+                                             	</ul>
+                                             </apex:facet>
+                                             <apex:outputField value="{!sl.PO_SA_Data_Inserimento_Ordine__c}" />                                             
+                                         </apex:column><br/>
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                                <ul class="list-unstyled">
+											    	<li class="">
+                                                 		ID Risorsa
+                                                	</li>
+                                                	<li>
+                                                 	 	<input type="text" class="form-control" id="IDFiltroIDRisorsa"  placeholder="" style="width: 100px;"/>		
+                                                 	</li>
+                                                </ul>
+                                             </apex:facet>
+  												 <apex:outputField value="{!sl.EOF_ID_Risorsa__c}" />  
+                                         </apex:column><br/>
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                                 <apex:outputText value="CLONA RICHIESTA"/>
+                                             </apex:facet>
+											  <apex:outputPanel rendered="{!IF(sl.EOF_Tipo_Comunicazione_String__c == 'Change Order',false,true)}">
+											 
+                                             <apex:commandLink action="{!clonaRequest}" styleClass="btn" value="Clona" id="clonaRequest" rerender="null">
+                                             	<apex:param name="event3Sl" value="{!sl.Id}" assignTo="{!IdInserita}"/>
+                                             	<apex:param name="event4Sl" value="{!sl.EOF_Tipo_Comunicazione_String__c}" assignTo="{!tipoRichiesta}"/>
+                                             </apex:commandlink>
+											  </apex:outputPanel>
+                                         </apex:column><br/>
+                                     </apex:pageBlockTable>
+                                     <apex:outputText styleClass="hide" value="{!listInseritestring}" id="IDlistInseritestring" />
+                                     <apex:outputText styleClass="hide" value="{!optTipoRichiestaString}" id="IDoptTipoRichiestaString" />
+                                     <apex:outputText styleClass="hide" value="{!optStatoRichiestaString}" id="IDoptStatoRichiestaString" />
+                                  
+                                    <!--START - PAGINATION PANEL -->
+                                    <apex:outputPanel id="paginationPanel">
+                                        <apex:outputText styleClass="hide" id="listRichiesteTPString" />   
+                                        <apex:outputPanel rendered="{!showPag}"> 
+                                            <apex:commandlink action="{!PageDown}" onComplete="init()" styleClass="leftFloat" reRender="myTable,paginationPanel,IDlistInseritestring,IDoptTipoRichiestaString,IDoptStatoRichiestaString">
+                                                <apex:image url="{!$Resource.ArrowDestra}" styleClass="leftFloat" width="22" height="22"/>
+                                            </apex:commandlink>
+                                            
+                                            <p style='float:left;display:inline;margin-left:10px;margin-right:10px;'>Pagina {!pageActual}  di {!totalpage} (Record : {!totalRecord})</p>
+                                            <apex:commandlink action="{!pageUp}" onComplete="init()" styleClass="leftFloat" reRender="myTable,paginationPanel,IDlistInseritestring,IDoptTipoRichiestaString,IDoptStatoRichiestaString">
+                                                <apex:image url="{!$Resource.ArrowSinistra}" styleClass="leftFloat" width="22" height="22"/>
+                                            </apex:commandlink>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!!showPag}">                        
+                                            <p style='float:left;display:inline;margin-left:10px;margin-right:10px;'>0 Pagine (Record : 0)</p>
+                                        </apex:outputPanel> 
+                                    </apex:outputPanel>  
+                                    <!--END - PAGINATION PANEL -->
+                     
+            		    </apex:pageBlock>
+					</form>
+				</div>      
+			</div>
+		</div>
+                         
+			<apex:actionFunction name="searchServer" action="{!runSearch}" rerender="results,debug,errors" oncomplete="init()">
+				<apex:param name="DataInizioNotifica" value="" />
+				<apex:param name="DataFineNotifica" value="" />
+				<apex:param name="DataInizioCreazione" value="" />
+				<apex:param name="DataFineCreazione" value="" />
+				<apex:param name="selectValueL1" value="" /> 
+				<apex:param name="selectValueL2" value="" />
+				<apex:param name="valPOP" value="" />
+				<apex:param name="valCodOrdOLO" value="" />
+				<apex:param name="valIDRisorsa" value="" /> 
+				<apex:param name="isClientCall" value="true" />
+			</apex:actionFunction>
+		</apex:form>  
+            <!-- 
+              <apex:pageBlock title="Debug - SOQL" id="debug">
+			      <apex:outputText value="{!debugSoql}" />  
+			  </apex:pageBlock>
+		     -->  	                   
+        </body>
+    
+    		<script>
+    		
+    		//Global/history var
+    		var valL1=[];
+  		    var valL2=[];
+  		    var DataInizioNotifica='';
+  		    var DataFineNotifica='';
+  		    var DataInizioCreazione='';
+  		    var DataFineCreazione='';
+  		    var valPOP;
+  		    var valCodOrdOLO;
+  		    var valIDRisorsa;
+  		    var myContent;
+  		    
+  		    var optTipoRichiesta=[]; // per popolare la select option Tipo 
+  		    var optStatoRichiesta=[]; // per popolare la select option Stato
+  		    
+  		    function nextColonna(c,j) {
+			    // restituisce la colonna successiva  es. nextColonna("A",1) -> "B"
+			    return String.fromCharCode(c.charCodeAt(0) + j);
+			}
+			
+            function redirect(){
+                debugger;
+                
+                valCodOrdOLO=$("[id$='IDFiltroCodOrdOLO']").val().trim();
+                //valL1=$("[id$='IDFiltroTipoRichiesta']").val().trim();
+                //valL2=$("[id$='IDFiltroStatoRichiesta']").val().trim();
+                valIDRisorsa=$("[id$='IDFiltroIDRisorsa']").val().trim();
+                valPOP =$("[id$='IDFiltroPOP']").val().trim();
+                window.location = '/partnercommunity/PO_GPON_Passiva_CeD_ExportRichIns?ListTipo='+JSON.stringify(valL1)+'&ListStatus='+JSON.stringify(valL2)+'&valIDRisorsa='+valIDRisorsa+'&valPOP='+valPOP+'&valCodOrdOLO='+valCodOrdOLO+'&DataInizioNotifica='+DataInizioNotifica +'&DataFineNotifica='+DataFineNotifica+'&DataInizioCreazione='+DataInizioCreazione+'&DataFineCreazione='+DataFineCreazione;
+            }
+
+  		    //Funzione non più utilizzata
+  		    /*
+  		    function myxlsOLD(){
+				    
+	            var epacc=new ExcelPlus(); //nuovo oggetto epacc
+	            epacc.createFile("Foglio 1");
+                 epacc.write({ "cell":'A1', "content": 'CODICE ORDINE OPERATORE'});
+                 epacc.write({ "cell":'B1', "content": 'TIPO RICHIESTA'});
+                 epacc.write({ "cell":'C1', "content": 'STATO RICHIESTA'});
+				 epacc.write({ "cell":'D1', "content": 'IDENTIFICATIVO DEL POP'});
+				 epacc.write({ "cell":'E1', "content": 'DATA NOTIFICA'});
+                 epacc.write({ "cell":'F1', "content": 'DATA CREAZIONE'});
+	             // scorro i singoli record degli account
+	             for(var i=1;i<=myContent.length;i++){ 
+	                 var colonna = 'A';
+	                 //alert(records1[i].Id + ' ' + records1[i].Name);
+	                 epacc.write({ "cell":nextColonna(colonna,0) + (i+1) , "content": '' + myContent[i-1].EOF_Codice_Ordine_OLO__c });
+	                 epacc.write({ "cell":nextColonna(colonna,1) + (i+1) , "content": '' + myContent[i-1].EOF_Tipo_Comunicazione_String__c });
+	                 //epacc.write({ "cell":nextColonna(colonna,2) + (i+1) , "content": '' + myContent[i-1].Case_Portale__r.Status });
+	                 epacc.write({ "cell":nextColonna(colonna,2) + (i+1) , "content": '' + myContent[i-1].EOF_Stato_Ordine__c }); 
+	                 epacc.write({ "cell":nextColonna(colonna,3) + (i+1) , "content": '' + myContent[i-1].EOF_ID_Pop__c });  
+	                 epacc.write({ "cell":nextColonna(colonna,4) + (i+1) , "content": '' + moment(myContent[i-1].EOF_Data_Notifica__c).format("DD/MM/YYYY HH:mm") });
+					 epacc.write({ "cell":nextColonna(colonna,5) + (i+1) , "content": '' + moment(myContent[i-1].PO_SA_Data_Inserimento_Ordine__c).format("DD/MM/YYYY HH:mm") });
+                }
+	              
+	            var today = new Date();
+				var dd = today.getDate();
+				var mm = today.getMonth()+1; //January is 0!
+				var yyyy = today.getFullYear();
+				if(dd<10) {
+				    dd = '0'+dd
+				} 
+				if(mm<10) {
+				    mm = '0'+mm
+				}  
+				var todaystring = dd + '_' + mm + '_' + yyyy;
+	
+	            epacc.saveAs("export_"+todaystring+".xlsx");
+  		    }
+  		    */
+  		    
+  		    function bIfIsUndef(myvar){
+  		    	if (typeof myvar === "undefined") {
+   					 return '';
+				}else{
+					return myvar;
+				}
+  		    }
+  		    
+  		    function dIfIsUndef(myvar){
+  		    	if (typeof myvar === "undefined") {
+   					 return '';
+				}else{
+					return moment(myvar).format("DD/MM/YYYY HH:mm");
+				}
+  		    }
+  		    
+  		    function myxls(){
+				    
+	            var epacc=new ExcelPlus(); //nuovo oggetto epacc
+	            epacc.createFile("Foglio 1");
+				epacc.write({ "cell":'A1', "content": 'Codice Ordine Operatore'});
+				epacc.write({ "cell":'B1', "content": 'Tipo Richiesta'}); 											 
+				epacc.write({ "cell":'C1', "content": 'Stato Ordine'}); 
+				epacc.write({ "cell":'D1', "content": 'Identificativo del POP'}); 
+				epacc.write({ "cell":'E1', "content": 'Data Notifica'});  
+				epacc.write({ "cell":'F1', "content": 'Data inserimento ordine'});  
+				epacc.write({ "cell":'G1', "content": 'ID Risorsa'});  
+				epacc.write({ "cell":'H1', "content": 'Id Notifica'});
+				epacc.write({ "cell":'I1', "content": 'Nome Referente Tecnico Operatore'}); 
+				epacc.write({ "cell":'J1', "content": 'Cognome Referente Tecnico Operatore'}); 
+				epacc.write({ "cell":'K1', "content": 'Telefono Referente Tecnico Operatore'}); 
+				epacc.write({ "cell":'L1', "content": 'Email Referente Tecnico Operatore'});
+				epacc.write({ "cell":'M1', "content": 'Telefono Referente Operatore Onfield Notech'});
+				epacc.write({ "cell":'N1', "content": 'Nome Cliente'});
+				epacc.write({ "cell":'O1', "content": 'Cognome Cliente'});
+				epacc.write({ "cell":'P1', "content": 'Recapito Telefonico Cliente 1'});
+				epacc.write({ "cell":'Q1', "content": 'Recapito Telefonico Cliente 2'});
+				epacc.write({ "cell":'R1', "content": 'Informazioni Logistica Apparati'});
+				epacc.write({ "cell":'S1', "content": 'Data Prevista Attivazione'});
+				epacc.write({ "cell":'T1', "content": 'Orario Appuntamento'});
+				epacc.write({ "cell":'U1', "content": 'Codice Progetto Speciale'});
+				epacc.write({ "cell":'V1', "content": 'Promozione'});
+				epacc.write({ "cell":'W1', "content": 'Cluster Promozione'});
+				epacc.write({ "cell":'X1', "content": 'Note'});
+				epacc.write({ "cell":'Y1', "content": 'ID Building'});
+				epacc.write({ "cell":'Z1', "content": 'Scala Palazzina'});
+				epacc.write({ "cell":'AA1', "content": 'Numero Telefonico Principale Linea'});
+				epacc.write({ "cell":'AB1', "content": 'Recapito Test Linea'});
+				epacc.write({ "cell":'AC1', "content": 'Identificativo del POP'});
+				epacc.write({ "cell":'AD1', "content": 'GPON Attestazione'});
+				epacc.write({ "cell":'AE1', "content": 'Profilo'});
+				epacc.write({ "cell":'AF1', "content": 'Motivazione'});
+				epacc.write({ "cell":'AG1', "content": 'Data Espletamento Ordine'});
+				epacc.write({ "cell":'AH1', "content": 'Scala Palazzina'});
+				epacc.write({ "cell":'AI1', "content": 'Documento di Trasporto'}); 	
+	            // scorro i singoli record degli account
+	            for(var i=1;i<=myContent.length;i++){ 
+	                 var colonna = 'A';
+	                 //alert(records1[i].Id + ' ' + records1[i].Name);
+	                
+	                epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_Codice_Ordine_OLO__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_Tipo_Comunicazione_String__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_STATO_ORDINE__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_ID_Pop__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + dIfIsUndef(myContent[i-1].EOF_Data_Notifica__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + dIfIsUndef(myContent[i-1].PO_SA_Data_Inserimento_Ordine__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_ID_Risorsa__c) });  
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_ID_Notifica__c) });  
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_NOME_REFERENTE_TECNICO_OLO__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_COGNOME_REFERENTE_TECNICO_OLO__c) });	
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_TELEFONO_REFERENTE_TECNICO_OLO__c)  });													 
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_EMAIL_REFERENTE_TECNICO_OLO__c) });										 
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_Telefono_Referente_OLO_Onfield_Notec__c)  }); 
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_Nome_Cliente__c) }); 
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_COgnome_CLiente__c) }); 
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_RECAPITO_TELEFONICO_CLIENTE_1__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_RECAPITO_TELEFONICO_CLIENTE_2__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_INFORMAZIONI_LOGISTICA_APPARATI__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + dIfIsUndef(myContent[i-1].EOF_DATA_PREVISTA_ATTIVAZIONE__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_ORARIO_APPUNTAMENTO__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_CODICE_PROGETTO_SPECIALE__c) });  
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_PROMOZIONE__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_CLUSTER_PROMOZIONE__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_NOTE__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_ID_BUILDING__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_SCALA_PALAZZINA__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_NUMERO_TELEFONICO_PRINCIPALE_LINEA__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_RECAPITO_TEST_LINEA__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_ID_Pop__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_GPON_Attestazione__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_PROFILO__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_MOTIVAZIONE__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + dIfIsUndef(myContent[i-1].EOF_Data_Espletamento_Ordine__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].EOF_SCALA_PALAZZINA__c) });
+					colonna=nextChar(colonna);
+					epacc.write({ "cell":colonna + (i+1) , "content": '' + bIfIsUndef(myContent[i-1].OF_SA_DDT__c) });
+         
+	            }
+	              
+	            var today = new Date();
+				var dd = today.getDate();
+				var mm = today.getMonth()+1; //January is 0!
+				var yyyy = today.getFullYear();
+				if(dd<10) {
+				    dd = '0'+dd
+				} 
+				if(mm<10) {
+				    mm = '0'+mm
+				}  
+				var todaystring = dd + '_' + mm + '_' + yyyy;
+	
+	            epacc.saveAs("export_"+todaystring+".xlsx");
+	  		    
+  		    }
+ 
+		     function nextChar(c) {
+		        var u = c.toUpperCase();
+		        if (same(u,'Z')){
+		            var txt = '';
+		            var i = u.length;
+		            while (i--) {
+		                txt += 'A';
+		            }
+		            return (txt+'A');
+		        } else {
+		            var p = "";
+		            var q = "";
+		            if(u.length > 1){
+		                p = u.substring(0, u.length - 1);
+		                q = String.fromCharCode(p.slice(-1).charCodeAt(0));
+		            }
+		            var l = u.slice(-1).charCodeAt(0);
+		            var z = nextLetter(l);
+		            if(z==='A'){
+		                return p.slice(0,-1) + nextLetter(q.slice(-1).charCodeAt(0)) + z;
+		            } else {
+		                return p + z;
+		            }
+		        }
+		    }
+		    
+		    function nextLetter(l){
+		        if(l<90){
+		            return String.fromCharCode(l + 1);
+		        }
+		        else{
+		            return 'A';
+		        }
+		    }
+		    
+		    function same(str,char){
+		        var i = str.length;
+		        while (i--) {
+		            if (str[i]!==char){
+		                return false;
+		            }
+		        }
+		        return true;
+		    }  		    
+  		    
+  		    
+  		    
+  		    function doSearch() {
+  		    
+			        searchServer(
+			          DataInizioNotifica,
+			          DataFineNotifica,
+			          DataInizioCreazione,
+			          DataFineCreazione, 
+			          JSON.stringify(valL1),
+			          JSON.stringify(valL2),
+			          valPOP,
+			          valCodOrdOLO,
+			          valIDRisorsa
+			          );
+			 }
+			 
+  		    
+   		    function init(){
+  		    	
+  		    	myContent=JSON.parse($("[id$='IDlistInseritestring']").text());
+				//alert(JSON.stringify(myContent));
+				
+				 $("[id$='IDFiltroPOP']").val(valPOP);
+				 //alert('valPOP '+ valPOP);
+					    
+				 $("[id$='IDFiltroPOP']").change(function() {
+				 	 valPOP=$("[id$='IDFiltroPOP']").val().trim();
+				 	 //alert(valPOP); 
+				 });
+				 
+				 $("[id$='IDFiltroCodOrdOLO']").val(valCodOrdOLO);
+				 //alert('valPOP '+ valPOP);
+					    
+				 $("[id$='IDFiltroCodOrdOLO']").change(function() {
+				 	 valCodOrdOLO=$("[id$='IDFiltroCodOrdOLO']").val().trim();
+				 	 //alert(valPOP); 
+				 });
+				 
+				 $("[id$='IDFiltroIDRisorsa']").val(valIDRisorsa);
+				 //alert('valPOP '+ valPOP);
+					    
+				 $("[id$='IDFiltroIDRisorsa']").change(function() {
+				 	 valIDRisorsa=$("[id$='IDFiltroIDRisorsa']").val().trim();
+				 	 //alert(valPOP); 
+				 });
+				 
+				/* 
+				$("select[id$='IDFiltroTipoRichiesta']" ).append($('<option>', {
+				    value: 'Attivazione',
+				    text: 'Attivazione'
+				}));
+				$("select[id$='IDFiltroTipoRichiesta']" ).append($('<option>', {
+				    value: 'Cessazione',
+				    text: 'Cessazione'
+				}));
+	        	*/
+	        	
+	        	optTipoRichiesta=JSON.parse($("[id$='IDoptTipoRichiestaString']").text());
+	        	
+	        	//alert(JSON.stringify(optTipoRichiesta));
+	        	
+	        	$.each(optTipoRichiesta, function (i, item) {
+				    $("select[id$='IDFiltroTipoRichiesta']" ).append($('<option>', { 
+				        value: item.value,
+				        text : item.text 
+				    }));
+				});
+	        	
+	        	$( "select[id$='IDFiltroTipoRichiesta']" ).multiselect({
+	        	    
+	        		buttonWidth: '100px',
+	        		nSelectedText: 'selezionati',
+    				nonSelectedText: 'Nessuno ',
+    				selectAllText : 'seleziona tutti',
+    				allSelectedText : 'tutti selezionati',
+    				onChange: function(option, checked, select) {
+						valL1=$( "select[id$='IDFiltroTipoRichiesta']" ).val();
+						//alert(valL1);
+            		}
+
+    				
+	        	});
+	        	$( "select[id$='IDFiltroTipoRichiesta']" ).multiselect('select', valL1);
+	        	
+	        	
+	        	
+	        	optStatoRichiesta=JSON.parse($("[id$='IDoptStatoRichiestaString']").text());
+	        	
+	        	//alert(JSON.stringify(optStatoRichiesta));
+	        	$.each(optStatoRichiesta, function (i, item) {
+				    $("select[id$='IDFiltroStatoRichiesta']" ).append($('<option>', { 
+				        value: item.value,
+				        text : item.text 
+				    }));
+				});
+	        	
+	        	
+	        	
+	        	
+	        	
+	        	$( "select[id$='IDFiltroStatoRichiesta']" ).multiselect({
+	        		
+	        		buttonWidth: '100px',
+	        		nSelectedText: 'selezionati',
+    				nonSelectedText: 'Nessuno ',
+    				selectAllText : 'seleziona tutti',
+    				allSelectedText : 'tutti selezionati',
+    				onChange: function(option, checked, select) {
+                		   valL2=$( "select[id$='IDFiltroStatoRichiesta']" ).val();
+							//alert(valL2);
+            		}
+
+	        	});
+	        	$( "select[id$='IDFiltroStatoRichiesta']" ).multiselect('select', valL2);
+	        	
+	        	
+	        	
+	        	  $("[id$='IDDateFilterNotifica']").daterangepicker({
+				      "autoUpdateInput": false,
+				      "opens": "left",
+				      "locale": {
+					        "format": "DD/MM/YYYY",
+					        "separator": " / ",
+					        "applyLabel": "Applica",
+					        "cancelLabel": "Pulisci",
+					        "fromLabel": "DA",
+					        "toLabel": "A",
+					        "customRangeLabel": "Custom",
+					        "daysOfWeek": [
+					            "Dom",
+					            "Lun",
+					            "Mar",
+					            "Mer",
+					            "Gio",
+					            "Ven",
+					            "Sab"
+					        ],
+					        "monthNames": [
+					            "Gennaio",
+					            "Febbraio",
+					            "Marzo",
+					            "Aprile",
+					            "Maggio",
+					            "Giugno",
+					            "Luglio",
+					            "Agosto",
+					            "Settembre",
+					            "Ottobre",
+					            "Novembre",
+					            "Dicembre"
+					        ],
+					        "firstDay": 1
+					    }
+				  });
+				  
+
+				  $("[id$='IDDateFilterNotifica']").on('apply.daterangepicker', function(ev, picker) {
+				      $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+				      DataInizioNotifica=picker.startDate.format();
+				      DataFineNotifica=picker.endDate.format();
+				      //alert('Mie date' + DataInizio + ' ' + DataFine);
+				  });
+				
+				  $("[id$='IDDateFilterNotifica']").on('cancel.daterangepicker', function(ev, picker) {
+				      $(this).val('');
+				      DataInizioNotifica='';
+				      DataFineNotifica='';
+				  });
+				  
+				  if(DataInizioNotifica!=''&&DataFineNotifica!=''){
+				  	$("[id$='IDDateFilterNotifica']").val(moment(DataInizioNotifica).format("DD/MM/YYYY") + ' - ' + moment(DataFineNotifica).format("DD/MM/YYYY"));
+				  }
+				  
+				  	        	
+	        	  $("[id$='IDDateFilterCreazione']").daterangepicker({
+				      "autoUpdateInput": false,
+				      "opens": "left",
+				      "locale": {
+					        "format": "DD/MM/YYYY",
+					        "separator": " / ",
+					        "applyLabel": "Applica",
+					        "cancelLabel": "Pulisci",
+					        "fromLabel": "DA",
+					        "toLabel": "A",
+					        "customRangeLabel": "Custom",
+					        "daysOfWeek": [
+					            "Dom",
+					            "Lun",
+					            "Mar",
+					            "Mer",
+					            "Gio",
+					            "Ven",
+					            "Sab"
+					        ],
+					        "monthNames": [
+					            "Gennaio",
+					            "Febbraio",
+					            "Marzo",
+					            "Aprile",
+					            "Maggio",
+					            "Giugno",
+					            "Luglio",
+					            "Agosto",
+					            "Settembre",
+					            "Ottobre",
+					            "Novembre",
+					            "Dicembre"
+					        ],
+					        "firstDay": 1
+					    }
+				  });
+				  
+
+				  $("[id$='IDDateFilterCreazione']").on('apply.daterangepicker', function(ev, picker) {
+				      $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+				      DataInizioCreazione=picker.startDate.format();
+				      DataFineCreazione=picker.endDate.format();
+				      //alert('Mie date' + DataInizio + ' ' + DataFine);
+				  });
+				
+				  $("[id$='IDDateFilterCreazione']").on('cancel.daterangepicker', function(ev, picker) {
+				      $(this).val('');
+				      DataInizioCreazione='';
+				      DataFineCreazione='';
+				  });
+				  
+				  if(DataInizioCreazione!=''&&DataFineCreazione!=''){
+				  	$("[id$='IDDateFilterCreazione']").val(moment(DataInizioCreazione).format("DD/MM/YYYY") + ' - ' + moment(DataFineCreazione).format("DD/MM/YYYY"));
+				  }
+				
+  		    }   	    
+    	    
+    	    
+    	    
+    	    
+    	    $(document).ready(function() {
+    	        //alert('document ready');
+	        	init();
+	        	//alert(JSON.stringify({!optTipoRichiestaString}));
+	        	//alert(JSON.stringify({!optStatoRichiestaString}));  
+	        	
+	    	});
+	    	</script>
+    </html>
+</apex:component>

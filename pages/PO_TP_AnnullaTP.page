@@ -1,0 +1,155 @@
+<!-- <apex:page controller="PO_TP_DisplayRequest_Controller" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">  -->
+<apex:page Controller="PO_TP_COMP_VisualizzaTP_Controller" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">   
+<!-- PO_TP_AnnullaTP  -->
+    <html lang="it">   
+        <head> 
+              <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <!-- /#wrapper -->
+              
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+ 			<apex:includeScript value="{!URLFOR($Resource.tooltip, 'tooltip/jquery-validate.bootstrap-tooltip.min.js')}"/>     
+ 			
+ 			<apex:includeScript value="{!URLFOR($Resource.sweetalert, '/sweetalert/sweetalert/sweetalert.min.js')}"/>        
+
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+                .tooltip-inner {
+  			    background-color: #337ab7; 
+				}
+                
+            </style>
+        </head>  
+        
+         <body>
+          <apex:form >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <apex:outputPanel >
+                                <i></i> Annullamento Segnalazione Provisioning
+                        </apex:outputPanel>
+                    </div>
+                    
+                    <div class="panel-body">
+                        <div class="row">
+                            <apex:outputPanel rendered="{!fromEscalation}">
+                            	<b>Richiesta Scalata Correttamente</b>
+                            </apex:outputPanel>
+                            	
+                            <form role="form" class="form-horizontal">
+                                <fieldset class="form-group">
+                                     <div class="form-group">
+                                         
+                                       <div class="col-lg-6">
+									 		 <label for="A8">Motivazione Richiesta Annullamento : </label>
+                                             <!--Il valore inserito in Motivazione richiesta annullamento
+                                             va a valorizzare il campo EOF_comunicazioni_con_OLO__c. 
+                                             Vedi param "commento" sotto. -->
+									 		 <input type="text" class="form-control" id="A8" name="commento"/>
+						          <!-- <input type="text" class="form-control" id="A8" name="EOF_Note__c"/>    -->
+											 </div>
+                                       
+                                         <div>
+                                         <apex:commandLink styleClass="btn btn-primary pull-right" style="margin-right:150px;margin-bottom:10px;"  value="Annulla" 
+										    action="{!annullaTicketPro}" rendered="{!IF((TicketProvisioning.Status='In Lavorazione' || TicketProvisioning.Status ='In verifica' || TicketProvisioning.Status ='Acquisito'),'true','false')}">
+						        	    	
+								        		<apex:param name="eventSl" value="{!TicketProvisioning.Id}" assignTo="{!IdScelta}"/>
+								        		<apex:param name="commento" value="{!TicketProvisioning.EOF_Comunicazioni_con_OLO__c}" assignTo="{!commento}"/>
+							<!--	        		<apex:param name="eventSl" value="{!TicketProvisioning.PO_TP_Stato_Ordine_Ticket_Provisioning__c='Annullato'}" assignTo="{!IdScelta}"/>   -->
+								  	<!--      		<apex:param name="EOF_Note__c" value="{!TicketProvisioning.EOF_Note__c}" assignTo="{!commento}"/>     -->
+								        		
+							        		</apex:commandLink>
+                                         </div> 
+                                          
+                                     </div>
+                                     
+                                 </fieldset>
+                                 
+                            </form>
+                        </div>
+                        
+                    </div>
+                            
+                    </div>
+               
+             </apex:form>                        
+         </body> 
+          <style type="text/css">
+        .custPopup{
+            background-color: white;
+            border-width: 2px;
+            border-style: solid;
+            z-index: 9999;
+            left: 50%;
+            padding:10px;
+            position: absolute;
+            /* These are the 3 css properties you will need to change so the popup
+            displays in the center of the screen. First set the width. Then set
+            margin-left to negative half of what the width is. You can add
+            the height property for a fixed size pop up if you want.*/
+            width: 500px;
+            margin-left: -250px;
+            top:100px;
+        }
+        .popupBackground{
+            background-color:black;
+            opacity: 0.20;
+            filter: alpha(opacity = 20);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9998;
+        }
+
+    </style>  
+                                    
+       </html>             
+</apex:page>

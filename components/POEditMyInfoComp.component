@@ -1,0 +1,60 @@
+<apex:component controller="PO_EditContactController" allowDML="true">
+    <style>
+        #myinfo{
+        font-size: 180px;
+        }
+        span.dateFormat{
+        
+        display:none;
+        
+        }
+        .red{color:red;}
+    </style>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title"><apex:outputField value="{!loggedInContact.FirstName}" />&nbsp;
+                <apex:outputField value="{!loggedInContact.LastName}" /></h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">                
+                <div class=" col-md-12 col-lg-12 "> 
+                    <table class="table table-user-information">
+                        <tbody>
+                            <tr>
+                                <td>Nome</td>
+                                <td><apex:inputField styleClass="form-control" value="{!loggedInContact.FirstName}" /></td>
+                            </tr>
+                            <tr>
+                                <td>Cognome</td>
+                                <td><apex:inputField styleClass="form-control" value="{!loggedInContact.LastName}" /></td>
+                            </tr>
+
+                            <tr>
+                                <td>Contatto telefonico</td>
+                                <td><apex:inputField styleClass="form-control" value="{!loggedInContact.PO_Contatto_telefonico__c}"/></td>
+                            </tr>
+                            <tr>
+                                <td>N° Licenza</td>
+                                <td><apex:inputField styleClass="form-control" id="codeFiscal" value="{!loggedInContact.PO_N_Licenza__c}" /></td>
+                            </tr>
+                            <tr>
+                                <td>E-mail</td>
+                                <td><apex:inputField styleClass="form-control" value="{!loggedInContact.Email}"/></td>
+                            </tr>                            
+                            <tr>
+                                <td>Struttura di appartenenza</td>
+                                <td><apex:inputField styleClass="form-control" value="{!loggedInContact.PO_Struttura_di_appartenenza__c}"/></td>
+                            </tr>
+                                                     
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+            
+            <apex:commandButton styleClass="btn btn-default pull-right" value="Cancel" action="{!cancelit}" />
+           	<apex:commandButton styleClass="btn btn-primary pull-right" value="Save" action="{!saveit}" id="btn1"/>
+        </div>
+    </div>
+
+</apex:component>

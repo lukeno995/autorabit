@@ -1,0 +1,226 @@
+<apex:page standardController="OF_CQS_Evento__c" extensions="CQS_HomeTipoEvento_cController">
+
+<Style>
+            .red{color:red;}
+            </Style>
+
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+            <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>            
+            <link rel = "stylesheet"  type = "text/css"  href = "//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+    <!---apex:include pageName="{!pageName}"/--->
+        <apex:sectionHeader title="Evento" subtitle="Interferenza a Sottoservizi"/>
+        <apex:pageMessages id="pm"/>    
+        <apex:form id="theForm">
+            <apex:pageBlock title="Interferenza a Sottoservizi" mode="edit">
+                 <apex:outputPanel id="ipsec"  >
+            <apex:pageBlockSection title="Informazioni generali" columns="2" collapsible="true">
+                
+                
+                <apex:pageBlockSectionItem />
+                
+                <apex:pageBlockSectionItem />
+                              <apex:actionRegion id="ipsec1" >
+                    <apex:pageBlockSectionItem >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Progetto </b>&nbsp;&nbsp;&nbsp;
+                        <apex:selectList label="Progetto" value="{!projectName}" size="1"  >
+                            <apex:selectOptions value="{!optNomeProgetto}"/>  
+                            <apex:actionSupport event="onchange" action="{!defineLDO}"  reRender="ipsec" />
+                            
+                        </apex:selectList>
+                    </apex:pageBlockSectionItem>
+                      </apex:actionRegion>
+                  
+                        
+                     
+                       <apex:outputfield value="{!ev.CQS_Ev_Lettera_D_Ordine__c}" />
+                      <br/>
+                         
+                        <apex:pageBlockSectionItem />
+                            <apex:outputField value="{!ev.OF_CQS_Impresa_Mandataria__c}" />
+                 </apex:pageBlockSection>
+                    </apex:outputPanel>
+                <apex:pageBlockSection columns="2" collapsible="true">
+                   <apex:pageBlockSectionItem />   
+                    <apex:inputField value="{!ev.OF_CQS_Evento_Correlato__c}"/>
+                    <apex:pageBlockSectionItem />
+                    <apex:pageBlockSectionItem />
+                    <apex:inputField value="{!ev.OF_CQS_Impresa_Esecutrice_Eventi__c}" required="true"/>
+                     <apex:outputField value="{!ev.OF_CQS_Stato_Pratica__c}"/>
+                    <apex:pageBlockSectionItem />
+                    <apex:pageBlockSectionItem />
+                    <apex:inputField value="{!ev.OF_CQS_Riparazione_Danno__c}" required="true"/>
+                    <apex:inputField value="{!ev.OF_CQS_Data_Evento__c}" required="true"/>
+                    <apex:pageBlockSectionItem />
+                    <apex:inputField value="{!ev.OF_CQS_Data_Apertura_Pratica__c}" required="true"/>
+                    <apex:pageBlockSectionItem />
+                    <apex:inputField value="{!ev.OF_CQS_Data_Chiusura_Pratica__c}"/>
+                    <apex:pageBlockSectionItem />
+                    <apex:inputField value="{!ev.OF_CQS_Data_Att_Assicurazione_Impresa__c}"/>
+                    <apex:pageBlockSectionItem />
+                    <apex:pageBlockSectionItem />
+                        </apex:pageBlockSection>
+
+                <apex:pageBlockSection title="Luogo Evento" columns="2" collapsible="true">
+                     <apex:pageBlockSectionItem />
+                    <apex:pageBlockSectionItem />
+                    <apex:inputField value="{!ev.VIA__c}" required="true"/>
+                    <apex:inputField value="{!ev.CQS_EV_POP__c}"></apex:inputField>
+                    <apex:inputField value="{!ev.OF_CQS_Numero_Civico__c}" required="true"/>
+                    <apex:inputField value="{!ev.OF_CQS_Area_Cavo__c}"></apex:inputField>
+                    <apex:inputField value="{!ev.OF_CQS_CAP__c}"/>                      
+                    <apex:pageBlockSectionItem />
+                    <!--<apex:inputField value="{!ev.OF_CQS_Comune_Text__c}"/>-->
+                    
+                    <apex:actionRegion >                                                    
+<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <b>Comune</b></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<apex:inputText id="comuneId" value="{!searchTerm}" styleClass="form-control" />
+<apex:inputHidden id="searchcommuneId" value="{!selectedIdComune}" />
+</apex:actionRegion>
+                    <apex:pageBlockSectionItem />
+                    <apex:inputField value="{!ev.OF_CQS_Provincia_Evento__c}"/>
+                    <apex:pageBlockSectionItem />
+                    <apex:pageBlockSectionItem />
+                    </apex:pageBlockSection>
+
+                 <apex:pageBlockSection title="Caratteristiche Evento" collapsible="true">
+                     <apex:pageBlockSectionItem />
+                     <apex:pageBlockSectionItem />
+                     <apex:inputField value="{!ev.Sottoservizio__c}" required="true"></apex:inputField>
+                     <apex:inputField value="{!ev.CQS_Indice_Gravita_Taglio_Danneggiamento__c}" required="true"></apex:inputField>
+                    <apex:inputField value="{!ev.CQS_Ev_Profondita__c}"></apex:inputField>
+                     <apex:pageBlockSectionItem />
+                     <apex:pageBlockSectionItem />
+                     <apex:inputField value="{!ev.OF_CQS_Ente__c}"></apex:inputField>
+                     <apex:inputField value="{!ev.OF_CQS_Note__c}"></apex:inputField>
+                     <apex:pageBlockSectionItem />
+                     <apex:pageBlockSectionItem />
+
+                     <apex:pageBlockSectionItem />
+                 </apex:pageBlockSection>
+                 <apex:pageBlockSection title="Approfondimento Cause" collapsible="true" columns="2">
+                      <apex:pageBlockSectionItem />
+                     <apex:pageBlockSectionItem />
+                     <apex:inputField value="{!ev.Regolare_Segnalazione__c}" required="true"></apex:inputField>
+                     <apex:pageBlockSectionItem />
+                     <apex:inputField value="{!ev.CQS_Ev_Indagini_Preventive_Sottosuolo__c}" required="true"></apex:inputField>
+                     <apex:pageBlockSectionItem />
+                     <apex:inputField value="{!ev.CQS_Ev_Planimetrie_Georadar_Conformi__c}" required="true"></apex:inputField>
+                     <apex:pageBlockSectionItem />
+                     <apex:inputField value="{!ev.CQS_Ev_Planimetrie_Ente_Gestore_Conformi__c}" required="true"></apex:inputField>
+                     <apex:pageBlockSectionItem />
+                     <apex:inputField value="{!ev.Rispetto_Procedure_Operative__c}" required="true"></apex:inputField>
+                     <apex:pageBlockSectionItem />
+                     <apex:pageBlockSectionItem />
+                     <apex:pageBlockSectionItem />
+                     <apex:inputField value="{!ev.OF_CQS_Note__c}"></apex:inputField>
+                     <apex:pageBlockSectionItem />
+                     <apex:pageBlockSectionItem />
+                     <apex:pageBlockSectionItem />
+                     <apex:outputField value="{!ev.OF_CQS_Allegato_Obbligatorio_Interf_SS__c}"></apex:outputField>  
+                     <apex:pageBlockSectionItem />
+                     <apex:pageBlockSectionItem />
+                </apex:pageBlockSection>
+                
+            <!--         <apex:pageBlockSection title="Allegati" collapsible="true" columns="1">
+                     <apex:pageBlockSectionItem />
+                              <apex:pageBlockSectionItem rendered="{!File.Id==null}">
+                              <apex:outputlabel value="Allegato"/>
+                              <apex:inputFile value="{!File.Name}" required="true"/>    
+                            </apex:pageBlockSectionItem>    
+                          <apex:pageBlockSectionItem >
+                             <apex:commandButton value="Allega" action="{!fileUpload}"/>
+                              <apex:outputText value="{!File.Name}"/>
+                              <c: parentId="{!ev.Id}"/>
+                          </apex:pageBlockSectionItem> 
+
+                    </apex:pageBlockSection> -->
+
+                     <!--apex:pageBlockSection title="Allegati"> 
+                         <apex:relatedList title="Allegati">
+                         </apex:relatedList>
+                     </apex:pageBlockSection>  -->
+                     
+                      <apex:pageBlockSection title="Responsabile Redazione Interferenza a Sottoservizi" collapsible="true" columns="2">
+                        <apex:pageBlockSectionItem />
+                        <apex:outputField label="Responsabile Redazione" value="{!ev.Owner.Name}"> {!$User.FirstName} {!$User.LastName}</apex:outputField>
+                    </apex:pageBlockSection>
+                    
+                <apex:pageBlockButtons > 
+                       <apex:commandButton value="Inserisci Interferenza a Sottoservizi"  rendered="{!If(spInserita,'true','false')}" action="{!salvaEvento}" reRender="ipsec,pb,pm,att"/> 
+                </apex:pageBlockButtons>
+                     <!--  <apex:commandButton value="Cancel" action="{!cancel}"/> -->
+                    
+                </apex:pageBlock>  
+                
+                
+                 <html lang="en">
+<head>
+<script type="text/javascript">
+            var PLACEHOLDER = 'Digita almeno 2 caratteri'; 
+            var AccountObjects;
+            var queryTerm;
+            $(document).ready(function() {
+                $('[id$=comuneId]').autocomplete({
+                    minLength: 2,
+                    source: function(request, response) {
+                        queryTerm = request.term;
+                        CQS_HomeTipoEvento_cController.searchComune(request.term, function(result, event){
+                            if(event.type == 'exception') {
+                                alert(event.message);
+                            } else {
+                                AccountObjects = result;                            
+                                console.log('==>'+AccountObjects);
+                                response(AccountObjects);
+                            }
+                        });
+                    },
+                    focus: function( event, ui ) {
+                        //  $('[id$=comuneId]').val( ui.item.Name);
+                        return false;
+                    },
+                    select: function( event, ui ) {
+                        $('[id$=comuneId]').val( ui.item.OF_Comune__c  );
+                        $('[id$=searchcommuneId]').val( ui.item.Id);
+                        return false;
+                    },
+                })
+                .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+                    var entry = "<a>" + item.OF_Comune__c;
+                    
+                    entry = entry + "</a>";
+                    entry = entry.replace(queryTerm, "<b>" + queryTerm + "</b>");
+                    return $( "<li></li>" )
+                    .data( "ui-autocomplete-item", item )
+                    .append( entry )
+                    .appendTo( ul );
+                };
+                
+                // Add or remove placeholder values
+                $('[id$=comuneId]').val(PLACEHOLDER);
+                $('[id$=comuneId]').on("focus",  function(event){
+                    $tgt = $(event.target);
+                    if($tgt.val() === PLACEHOLDER ){
+                        $tgt.val('');
+                        $tgt.removeClass('placeHolder');
+                    }
+                });
+                $('[id$=comuneId]').on( "blur",  function(event){
+                    $tgt = $(event.target);
+                    if($tgt.val() === '' ){
+                        $tgt.val(PLACEHOLDER);
+                        $tgt.addClass('placeHolder');
+                    }
+                });
+                
+            });
+            </script>
+</head>
+
+</html>
+        </apex:form>    
+</apex:page>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Coda Ingegneria</name>
+    <queueMembers>
+        <roles>
+            <role>PO_Tecnico_Fattibilit_Centro</role>
+            <role>PO_Tecnico_Fattibilit_Isole</role>
+            <role>PO_Tecnico_Fattibilit_Nord_Est</role>
+            <role>PO_Tecnico_Fattibilit_Nord_Ovest</role>
+            <role>PO_Tecnico_Fattibilit_Sud</role>
+            <role>PO_Ingegneria_P2P_Attiva</role>
+        </roles>
+        <users>
+            <user>alessandra.caruso@openfiber.it</user>
+            <user>gerardomarco.daurelio@openfiber.it</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

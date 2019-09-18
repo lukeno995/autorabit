@@ -1,0 +1,239 @@
+<apex:component Controller="PO_TP_COMP_Visualizza_TP_Inc_Controller" allowDml="True">
+<html lang="it">   
+        <head> 
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <!-- /#wrapper -->
+              
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <apex:includeScript value="{!URLFOR($Resource.tooltip, 'tooltip/jquery-validate.bootstrap-tooltip.min.js')}"/>     
+            
+            <apex:includeScript value="{!URLFOR($Resource.sweetalert, '/sweetalert/sweetalert/sweetalert.min.js')}"/>        
+
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+                .tooltip-inner {
+                background-color: #337ab7; 
+                }
+
+            </style>
+        </head>  
+         
+            <body>
+            <apex:form >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <apex:outputPanel >
+                                <!--  
+                                <i></i>Attivazione {!EOF_Codice_ordine_olo__c}
+                                -->
+                                <!--FIX - PG - 24-04 -->
+                                <i></i> Incident Management
+                        </apex:outputPanel>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <!--
+                            <apex:outputPanel rendered="{!fromEscalation}">
+                                <b>Richiesta Scalata Correttamente</b>
+                            </apex:outputPanel>
+                            -->
+
+                            <form role="form" class="form-horizontal">
+                                <fieldset class="form-group">
+                                     <div class="form-group">
+                                         
+                                        <!--  FIX IDR011 - 13/04 - PG - START -->
+                                        <div class="col-lg-6">
+                                             <label>ID Segnalazione: </label> &nbsp; &nbsp;
+                                             <apex:outputField id="id_ticket" styleClass="form-control" value="{!TicketProvisioning.caseNumber}" />
+                                        </div>
+                                        <!--  FIX IDR011 - 13/04 - PG - END -->
+                                         
+                                        <div class="col-lg-6">
+                                             <label>Causale Apertura Segnalazione : </label>&nbsp; &nbsp;
+                                             <apex:outputField id="A2" styleClass="form-control" value="{!TicketProvisioning.PO_TP_Causale_Apertura_Segnalazione__c}" />
+                                        </div>
+                                        <div class="col-lg-6">
+                                             <label>Descrizione Causale : </label> &nbsp; &nbsp;
+                                             <apex:outputField id="A3" styleClass="form-control" value="{!TicketProvisioning.PO_TP_Descrizione_Causale__c}" />
+                                        </div>
+                                        <!--PG - 16-04 - IDR015 - START -->
+                                        <!--PG - 10-04 - Inserito Panel per nascondere Stato Ordine - START -->
+                                        <!--
+                                        <apex:outputPanel id="panel"
+                                             rendered="{!if(TicketProvisioning.PO_TP_Causale_Apertura_Segnalazione__c=='Segnalazione Provisioning',true,false)}" >
+                                            <div class="col-lg-6">
+                                                 <label>Stato Ordine Ticket Provisioning : </label> &nbsp; &nbsp;
+                                                 <apex:outputField id="A4" styleClass="form-control" value="{!TicketProvisioning.PO_TP_Stato_Ordine_Ticket_Provisioning__c}"
+                                                  />
+                                            </div>
+                                        </apex:outputPanel>  
+                                        --> 
+                                        <!--PG - 10-04 - Inserito Panel per nascondere Stato Ordine - END -->
+                                        <!--PG - 16-04 - IDR015 - END -->
+                                        <div class="col-lg-6">
+                                             <label>Dettaglio Richiesta : </label> &nbsp; &nbsp;
+                                             <apex:outputField id="A5" styleClass="form-control" value="{!TicketProvisioning.PO_TP_Dettaglio_Richiesta__c}" />
+                                        </div>
+                                        
+                                        <!--PG - 01-10 - CR-13 - START -->
+                                        <apex:outputPanel rendered="{!showAllegati}">
+                                            <div class="col-lg-6">
+                                                <label>Allegati : </label> &nbsp; &nbsp;<br/>
+                                                <apex:repeat value="{!lista_allegati}" var="allegato" id="theRepeat">
+                                                    <apex:outputText value="{!allegato.name}" id="attach"/><br/>
+                                                </apex:repeat> 
+                                            </div>
+                                        </apex:outputPanel> 
+                                        <!--PG - 01-10 - CR-13 - END -->
+                                        
+                                        <!--PG - 16-10 - START -->
+                                         <apex:outputPanel rendered="{!(TicketProvisioning.PO_TP_Severity__c!=null)}">
+                                            <div class="col-lg-6">
+                                                <label>Severity : </label> &nbsp; &nbsp;
+                                                <apex:outputField id="sev" styleClass="form-control" value="{!TicketProvisioning.PO_TP_Severity__c}" />
+                                            </div>
+                                        </apex:outputPanel> 
+                                        <!--PG - 16-10 - END -->
+                                        
+                                        <div class="col-lg-6">
+                                            <label>Comunicazioni : </label> &nbsp; &nbsp;
+                                            <apex:outputField id="A6" styleClass="form-control" value="{!TicketProvisioning.EOF_Comunicazioni_con_OLO__c}" />
+                                        </div>
+                                         
+                                        <apex:outputPanel rendered="{!escalated}">
+                                             <div class="col-lg-6">
+                                                 <label>Escalation : </label> &nbsp; &nbsp;
+                                                 <apex:outputField id="A7" styleClass="form-control" value="{!TicketProvisioning.PO_TP_Escalation__c}" />
+                                             </div> 
+                                        </apex:outputPanel> 
+                                        
+                                         <div>
+                                         <apex:commandLink styleClass="btn btn-primary pull-right" style="margin-right:30px; margin-top: 20px;"  value="Annulla Richiesta" 
+                                            action="{!vsAnnullamento}" rendered="{!IF(((TicketProvisioning.Status='In Lavorazione' || TicketProvisioning.Status ='In verifica' || TicketProvisioning.Status ='Acquisito') && cA.Status!='Chiuso' &&TicketProvisioning.PO_TP_Stato_Ordine_Ticket_Provisioning__c!='Annullato'),'true','false')}">
+                                           <!--per testare da sostituire action con quanto presente in basso -->
+                                          
+                                            <apex:param name="eventSl" value="{!TicketProvisioning.Id}" assignTo="{!IdScelta}"/>
+                                            <!--    <apex:param name="eventSl" value="{!TicketProvisioning.PO_TP_Stato_Ordine_Ticket_Provisioning__c='Annullato'}" assignTo="{!IdScelta}"/> -->
+                                            </apex:commandLink>
+                                         </div> 
+                                          
+                                          <apex:commandLink styleClass="btn btn-primary pull-right" style="margin-right:20px; margin-top: 20px;"  value="Inserisci Nota" 
+										      action="{!vsNote}" rendered="{!IF(cA.Status!='Chiuso','true','false')}">
+
+                 
+                                            <!--per testare da sostituire action con quanto presente in basso --> 								        	
+								        	
+								        		<apex:param name="eventSl" value="{!TicketProvisioning.Id}" assignTo="{!IdScelta}"/>
+								        <!--	<apex:param name="eventSl" value="{!TicketProvisioning.PO_TP_Stato_Ordine_Ticket_Provisioning__c='Annullato'}" assignTo="{!IdScelta}"/> -->
+							        		</apex:commandLink>
+                                          
+                                     </div>
+                                     
+                                 </fieldset>
+                                 
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+            </apex:form>                     
+        </body>
+    
+    <!-- action="{!vsAnnullamento}" rendered="{!IF((TicketProvisioning.Status='In Lavorazione' || TicketProvisioning.Status ='In verifica'),'true','false')}"> -->
+    
+    <script>
+            function confirmAnnullamentoMessage(){
+                alert('La richiesta di annullamento è stata presa in carico correttamente');
+                //refreshTable();
+            }
+            /*
+            function annullaTicket(){
+            var eventSl ;
+            TicketProvisioning.PO_TP_Stato_Ordine_Ticket_Provisioning__c='Annullato';
+            update TicketProvisioning;
+            
+            }
+            */
+            
+    </script>
+    <style type="text/css">
+        .custPopup{
+            background-color: white;
+            border-width: 2px;
+            border-style: solid;
+            z-index: 9999;
+            left: 50%;
+            padding:10px;
+            position: absolute;
+            /* These are the 3 css properties you will need to change so the popup
+            displays in the center of the screen. First set the width. Then set
+            margin-left to negative half of what the width is. You can add
+            the height property for a fixed size pop up if you want.*/
+            width: 500px;
+            margin-left: -250px;
+            top:100px;
+        }
+        .popupBackground{
+            background-color:black;
+            opacity: 0.20;
+            filter: alpha(opacity = 20);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9998;
+        }
+
+    </style>
+    </html>
+
+</apex:component>

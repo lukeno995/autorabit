@@ -1,0 +1,9 @@
+Gentile Operatore,</BR></BR>
+
+La richiesta di {!IF(EOF_EAI_Service_Log__c.EOF_Tipo_Comunicazione_String__c='','Risoluzione Guasto',EOF_EAI_Service_Log__c.EOF_Tipo_Comunicazione_String__c)} {!EOF_EAI_Service_Log__c.EOF_Codice_Ordine_OLO__c}, da Lei inoltrata in data {!EOF_EAI_Service_Log__c.PO_SA_Data_Inserimento_Ordine__c}, ha ricevuto un aggiornamento della data prevista attivazione, la nuova data è {!EOF_EAI_Service_Log__c.EOF_DATA_PREVISTA_ATTIVAZIONE__c}{!IF(EOF_EAI_Service_Log__c.EOF_DATA_PREVISTA_ATTIVAZIONE__c!='',' '&EOF_EAI_Service_Log__c.EOF_DATA_PREVISTA_ATTIVAZIONE__c,'')}.</BR></BR>
+
+Per vedere la richiesta clicchi sul seguente link:</BR></BR>
+
+https://open-fiber.force.com/partnercommunity/PO_OpenStreamService_InsertNewRequest?origID={!EOF_EAI_Service_Log__c.Id}&proc=attivazioneInoltrata</BR></BR>
+
+Grazie

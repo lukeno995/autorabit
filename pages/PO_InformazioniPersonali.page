@@ -1,0 +1,18 @@
+<apex:page standardController="contact">
+ <apex:form >
+    <apex:pageBlock title="Informazioni Personali">
+        <apex:pageBlockSection title="contact Details" columns="2">
+            <apex:inputField value="{!contact.firstname}"/>
+            <apex:inputField value="{!contact.lastname}"/>
+            <apex:inputField value="{!contact.email}"/>
+            <apex:inputField value="{!contact.PO_Contatto_telefonico__c}"/> 
+            <apex:inputField value="{!contact.PO_N_Licenza__c}"/> 
+            <apex:inputField value="{!contact.PO_Struttura_di_appartenenza__c}"/> 
+        </apex:pageBlockSection>
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Save" action="{!save}"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+    </apex:pageBlock>
+</apex:form>
+</apex:page>

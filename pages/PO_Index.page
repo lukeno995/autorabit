@@ -1,0 +1,1105 @@
+<apex:page standardController="Case" extensions="PO_RegistrationController" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+    <html lang="it">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>
+
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.SBOT,'SBOT/scrollbootstrap/scrollingnav/css/scrollingnav.css')}"/>
+
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                .about-section {
+                background: #fff;
+                position: relative;
+                height: auto;
+                }
+                .services-section{
+                position: relative;
+                height: auto;
+                }
+                .contact-section {
+                background: #fff;
+                position: relative;
+                height: 100%;
+                }
+
+
+            </style>
+
+        </head>
+        <body>
+            <apex:form >
+
+                <div id="wrapper">
+                    <apex:pageMessages id="errors" />
+                    <!-- Navigation -->
+
+                    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                        <c:POHeaderComp />
+
+                        <div class="navbar-default sidebar" role="navigation">
+                            <div class="sidebar-nav navbar-collapse">
+                                <ul class="nav" id="side-menu" style="padding-left: 10px;">
+                                    <apex:outputPanel >
+                                        <li id="manageuserAccId" style="display:none;">
+                                            <apex:commandLink action="{!enbleB}"  reRender="mainblk1,mainblk2,secAId,secBId,mainblk3,SecCId" id="sec1" >Gestione Utenze</apex:commandLink>
+                                        </li><br/>
+
+                                        <apex:outputPanel rendered="{!not(CONTAINS($Profile.Name ,'Fiber Profile'))}" >
+                                        <li id="perInfoAccId" style="display:block;">
+                                            <!-- AS fix profile change
+                                             <apex:commandLink action="{!enbleC}" reRender="mainblk1,mainblk2,secAId,mainblk3,SecCId" rendered="{!not($Profile.Name = 'Open Fiber Profile')}">Informazioni Personali</apex:commandLink>
+                                             -->
+                                             <apex:commandLink action="{!enbleC}" reRender="mainblk1,mainblk2,secAId,mainblk3,SecCId" >Informazioni Personali</apex:commandLink>
+
+                                        </li><br/>
+                                           <!-- AS modified label
+                                           <li id="searchCaseId" style="display:block;">
+
+                                            <apex:commandLink action="{!SearchCase}"  >Ricerca</apex:commandLink>
+                                             -->
+
+                                        <li>
+
+                                             <apex:outputText value="Servizi" style="color:#428bca;"/>
+                                        </li><br/>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                    <!---Rajani start 16-11-2018 For - CR34 Product Availability requirement-->
+                                    <apex:outputPanel id="strAddress"  style="display:block;" rendered="{!showProdAvail}"><!---AbhishekAnand 14122018 For - CR34 Improvement Extension II added rendered tag on output panel----------> 
+                                        <apex:outputPanel id="Address">
+                                            <ul class="nav">
+                                                <li id="perInfoFeservice" style="display:block;"  >
+                                                
+                                               <apex:commandLink action="{!AddAddressMethod}" target="_self">
+                                                <i class="fa fa-arrow-circle-down fa-fw"></i>Verifica Copertura rete Open Fiber
+                                              </apex:commandLink>
+                                                
+                                                </li>
+                                            </ul>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                    
+                                    <!---Product Availability
+                                    
+                                    <apex:outputPanel id="Prod"  style="display:block;">
+                                        <apex:outputPanel id="Prodavail">
+                                            <ul class="nav">
+                                                <li id="perInfoFeservice" style="display:block;"  >
+                                                
+                                               <apex:commandLink action="{!ProductAvailabilityMethod}" target="_self">
+                                                <i class="fa fa-arrow-circle-down fa-fw"></i>Product Availability
+                                              </apex:commandLink>
+                                                
+                                                </li>
+                                            </ul>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>----------->
+                                     <!---Rajani End 16-11-2018 For - CR34 Product Availability requirement-->
+                                    
+                                    
+                                    <apex:outputPanel id="str"  style="display:block;">
+                                    <!--
+                                            <apex:outputPanel id="P2P" rendered="{!show1}">
+                                            <ul class="nav">
+                                                <li id="perInfoFeservice" style="display:block;"  >
+
+                                                    <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>P2P Base</a>
+
+                                                    <ul class="nav">
+                                                        <li id="perInfoFeservice" style="display:block;">
+                                                            <apex:outputPanel rendered="{!show1}" >
+                                                                <apex:commandLink action="{!ParentCaseRecord}" target="_self" >
+                                                                    Inserimento nuova richiesta
+                                                                </apex:commandLink>
+                                                            </apex:outputPanel>
+                                                        </li>
+                                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel >                                                                                                                
+                                                            <apex:commandLink action="{!currentUserParentCases}" target="_self" >    
+                                                                <apex:param name="p1" assignTo="{!recordOfferta}" value="P2P Base"/>
+                                                                Richieste inserite
+                                                            </apex:commandLink>
+                                                            </apex:outputPanel>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                </ul>
+                                                  </apex:outputPanel>
+                                        -->
+                                        <apex:outputPanel id="P2P" rendered="{!show1}" style="display:block;">                                      
+                                      		<c:PO_COMP_Serv_P2PBase />
+                                    	</apex:outputPanel> 
+                                        
+                                        <!-- EC 2019 05 23 start -->
+                                        
+                                            <!-- EC - Start P2P Attiva 2018 - 07 - 05 -->
+                                       <apex:outputPanel rendered="{!IF(usr.contact.PO_P2P_Attiva__c==true,true,false)}" >
+                                            <ul class="nav">                                    
+                                                
+                                                <li id="perInfoFeservice" style="display:block;">
+                                                    
+                                                    <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>P2P Attiva</a>
+                                                    
+                                                    <ul class="nav">
+                                                         <ul class="nav">                                    
+                                                
+                                                <li id="perInfoFeservice" style="display:block;">
+                                                   
+                                                    <a href="#" onclick="showSection('eaccess')"> <i class="fa fa-arrow-circle-right" style="margin-left:20px" ></i>  E-Access</a>
+                                                    
+                                                             </li>
+                                                             <li id="eaccess1" style="display:none;">
+                                                                 <apex:outputPanel rendered="{!showP2PAtt}" >
+                                                                     <apex:commandLink action="{!ServizioP2PAttiva}" target="_self"  style="margin-left:30px"  >
+                                                                         Inserimento nuova richiesta
+                                                                     </apex:commandLink>
+                                                                 </apex:outputPanel>
+                                                             </li>  
+                                                             <li id="eaccess2" style="display:none;"><apex:outputPanel >
+                                                                 <apex:commandLink action="{!P2PAttivaList}" target="_self"  style="margin-left:30px" >
+                                                                     Richieste inserite
+                                                                 </apex:commandLink>
+                                                                 </apex:outputPanel>
+                                                             </li>
+															 
+                                                        </ul>
+                                                     
+                                                    </ul>
+								<!-- EC 2019 05 23  -->					
+													  <ul class="nav">
+                                                         <ul class="nav">                                    
+                                                
+                                                <li id="perInfoFeservice" style="display:block;">
+                                                
+                                                    <a href="#" onclick="showSection2('eLines')"><i class="fa fa-arrow-circle-right"  style="margin-left:20px" ></i>  E-Line</a>
+                                                    
+                                                             </li>
+                                                             <li id="eLines1" style="display:none;">
+                                                                 <apex:outputPanel rendered="{!showP2PAtt}" >
+                                                                     <apex:commandLink action="{!ServizioP2PAttivaELine}" target="_self"  style="margin-left:30px" >
+                                                                         Inserimento nuova richiesta
+                                                                     </apex:commandLink>
+                                                                 </apex:outputPanel>
+                                                             </li>  
+                                                             <li id="eLines2" style="display:none;"><apex:outputPanel >
+                                                                 <apex:commandLink action="{!P2PAttivaListELine}" target="_self"  style="margin-left:30px"  >
+                                                                     Richieste inserite
+                                                                 </apex:commandLink>
+                                                                 </apex:outputPanel>
+                                                             </li>
+															 
+                                                        </ul>
+                                                     
+                                                          <!--          
+                                                        <li id="perInfoLineeAttive" style="display:block;"><apex:outputPanel >
+                                                            <apex:commandLink action="{!LineeAttive}" target="_self" >
+                                                                Linee Attive
+                                                            </apex:commandLink>
+                                                            </apex:outputPanel>
+                                                        </li>
+                                                      -->
+                                                    </ul>
+									<!--EC 2019 05 23 -->				
+                                                </li>
+                                                
+                                            </ul>
+                                            
+                                        </apex:outputPanel>
+                                        <!-- EC - End P2P Attiva 2018 - 07 - 05 -->
+                                        
+                                        <!-- EC 2019 05 23 end -->
+                                        
+                                        <!-- SVILUPPO RELATIVO AL PREPROV -->
+                                        
+                                        <apex:outputPanel id="KIT" rendered="{!show7}">
+                                            <ul class="nav">
+                                                <li id="perKITFeservice" style="display:block;"  >
+                                                    <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>Pre-provisioning</a>
+                                                    <ul class="nav">
+                                                        <li id="perKITFeservice" style="display:block;">
+                                                            <apex:outputPanel rendered="{!show7}" >
+                                                                <apex:commandLink action="{!ServizioKit}" target="_self" >
+                                                                    Inserimento nuova richiesta
+                                                                </apex:commandLink>
+                                                            </apex:outputPanel>
+                                                        </li>
+                                                        <li id="perKITFeservice" style="display:block;">
+                                                            <apex:outputPanel >
+                                                                <apex:commandLink action="{!currentUserParentCases_PP}" target="_self" >
+                                                                    <apex:param name="p1" assignTo="{!recordOfferta}" value="KIT"/>
+                                                                    Richieste inserite
+                                                                </apex:commandLink>
+                                                            </apex:outputPanel>
+                                                        </li>
+                                                        <li id="perKitConsegnaAttivi" style="display:block;">
+                                                            <apex:outputPanel >
+                                                                <apex:commandLink target="_self" action="{!kitConsegnaAttivi}">
+                                                                   KIT Consegna Attivi
+                                                                </apex:commandLink>
+                                                            </apex:outputPanel>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </apex:outputPanel>
+                                        <!-- FINE SVILUPPO RELATIVO AL PREPROV -->
+
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        <!-- giovanni 09112018 inizio 
+                                                   <apex:outputPanel id="FiberLink" rendered="{!show3}">
+                                                   <ul class="nav">
+                                                <li id="perInfoFeservice" style="display:block;">
+
+                                                    <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>Fiber Link</a>
+
+                                                    <ul class="nav">
+
+                                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel rendered="{!show3}"> <apex:commandLink action="{!Fiberlink}" target="_self">Inserimento nuova richiesta</apex:commandLink></apex:outputPanel></li>
+                                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel >
+                                                            <apex:commandLink action="{!currentUserParentCases}" target="_self" >
+                                                                <apex:param name="p2" assignTo="{!recordOfferta}" value="Fiber Link"/>
+                                                                Richieste inserite
+                                                            </apex:commandLink>
+                                                            </apex:outputPanel>
+                                                        </li>
+                                                      </ul>
+                                                </li>
+                                                </ul>
+                                                 </apex:outputPanel>
+                                        -->     
+                                        <apex:outputPanel id="FiberLink" rendered="{!show3}" style="display:block;">                                      
+                                           <c:PO_COMP_Serv_FiberLink />
+                                        </apex:outputPanel>   
+                                    
+                                   
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                                <apex:outputPanel id="FiberLease" rendered="{!show2}">
+                                                <ul class="nav">
+                                                 <li id="perInfoFeservice" style="display:block;">
+
+                                                    <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>Fiber Lease</a>
+
+                                                    <ul class="nav">
+                                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel rendered="{!show2}"> <apex:commandLink action="{!Fiberlease}" target="_self">Inserimento nuova richiesta</apex:commandLink></apex:outputPanel></li>
+                                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel >
+                                                            <apex:commandLink action="{!currentUserParentCases}" target="_self" >
+                                                                <apex:param name="p3" assignTo="{!recordOfferta}" value="Fiber Lease"/>
+                                                                Richieste inserite
+                                                            </apex:commandLink>
+                                                            </apex:outputPanel>
+                                                        </li>
+                                                      </ul>
+                                                </li>
+                                                </ul>
+                                                </apex:outputPanel>
+                                                 <apex:outputPanel id="IRU" rendered="{!show4}">
+                                                 <ul class="nav">
+                                                <li id="perInfoFeservice" style="display:block;">
+
+                                                    <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>IRU</a>
+
+                                                    <ul class="nav">
+                                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel rendered="{!show4}"> <apex:commandLink action="{!IRU}" target="_self">Inserimento nuova richiesta</apex:commandLink></apex:outputPanel></li>
+                                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel >
+                                                            <apex:commandLink action="{!currentUserParentCases}" target="_self" >
+                                                                 <apex:param name="p4" assignTo="{!recordOfferta}" value="IRU"/>
+                                                                Richieste inserite
+                                                            </apex:commandLink></apex:outputPanel></li>
+                                                      </ul>
+                                                </li>
+                                                </ul>
+                                                 </apex:outputPanel>
+                                                 <apex:outputPanel id="Misto" rendered="{!show5}">
+                                                 <ul class="nav">
+                                                <li id="perInfoFeservice" style="display:block;">
+
+                                                    <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>Evento Temporaneo</a>
+
+                                                    <ul class="nav">
+                                                        <li id="perInfoFeservice" style="display:block;"> <apex:outputPanel rendered="{!show5}">
+
+                                                        <apex:commandLink action="{!MistoFiber}" target="_self">Inserimento nuova richiesta</apex:commandLink></apex:outputPanel></li>
+                                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel >
+                                                            <apex:commandLink action="{!currentUserParentCases}" target="_self" >
+                                                                <apex:param name="p5" assignTo="{!recordOfferta}" value="Evento Temporaneo"/>
+                                                                Richieste inserite
+                                                            </apex:commandLink>
+                                                            </apex:outputPanel>
+
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                </ul>
+                                              </apex:outputPanel>
+                                             <!--</ul>-->
+                                       <!-- </li>-->
+
+                                    </apex:outputPanel>
+
+                                    <apex:outputPanel id="str1" rendered="{!showServizia2}" style="display:block;">
+                                    <ul class="nav">
+                                        <li id="Servizi2" style="display:block;" >
+                                            <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>Open Stream</a>
+                                                    <ul class="nav">
+                                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel >
+                                                            <apex:commandLink action="{!ServizioOpenStream}" target="_self" >Inserimento nuova richiesta
+                                                            </apex:commandLink>
+                                                        </apex:outputPanel></li>
+                                                        <li id="perInfoFeservice" style="display:block;"><apex:outputPanel >
+                                                            <apex:commandLink action="{!OpenStreamList}" target="_self" >
+                                                                Richieste inserite
+                                                            </apex:commandLink>
+                                                            </apex:outputPanel>
+                                                        </li>
+                                                        <li id="perInfoLineeAttive" style="display:block;"><apex:outputPanel >
+                                                            <apex:commandLink action="{!LineeAttive}" target="_self" >
+                                                                Linee Attive
+                                                            </apex:commandLink>
+                                                            </apex:outputPanel>
+                                                        </li>
+                                                    </ul>
+                                        </li>
+
+                                    </ul>
+                                    </apex:outputPanel>
+                                    <!-- AS START -->
+                                    
+                                    <!-- PG - ADD - C&D - 22-11 - START -->
+                                    <apex:outputPanel id="strCeD" rendered="{!showOpenStreamCeD}" style="display:block;">
+                                    <ul class="nav">
+                                        <li id="ServiziCeD" style="display:block;" >
+                                            <a href="#" >
+                                                <i class="fa fa-arrow-circle-down fa-fw"></i>Open Stream C&amp;D
+                                            </a>
+                                            <ul class="nav">
+                                                <li id="perInfoFeserviceCeD" style="display:block;">
+                                                    <apex:outputPanel >
+                                                        <apex:commandLink action="{!ServizioOpenStreamCeD}" target="_self" >
+                                                            Inserimento nuova richiesta
+                                                        </apex:commandLink>
+                                                    </apex:outputPanel>
+                                                </li>
+                                                <li id="perInfoFeserviceCeD" style="display:block;">
+                                                    <apex:outputPanel >
+                                                        <apex:commandLink action="{!OpenStreamCeDList}" target="_self" >
+                                                            Richieste inserite
+                                                        </apex:commandLink>
+                                                    </apex:outputPanel>
+                                                </li>
+                                                <li id="perInfoLineeAttiveCeD" style="display:block;">
+                                                    <apex:outputPanel >
+                                                        <apex:commandLink action="{!LineeAttiveCeD}" target="_self" >
+                                                            Linee Attive
+                                                        </apex:commandLink>
+                                                    </apex:outputPanel>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel id="gPonCeD" rendered="{!showGPONCeD}" style="display:block;">
+                                    <ul class="nav">
+                                        <li id="ServiziGPCeD" style="display:block;" >
+                                            <a href="#" >
+                                                <i class="fa fa-arrow-circle-down fa-fw"></i>GPON Passiva C&amp;D
+                                            </a>
+                                            <ul class="nav">
+                                                <li id="perInfoFeserviceGPCeD" style="display:block;">
+                                                    <apex:outputPanel >
+                                                        <apex:commandLink action="{!ServizioGPonPassivaCeD}" target="_self" >
+                                                            Inserimento nuova richiesta
+                                                        </apex:commandLink>
+                                                    </apex:outputPanel>
+                                                </li>
+                                                <li id="perInfoFeserviceGPCeD"  style="display:block;">
+                                                    <apex:outputPanel >
+                                                        <apex:commandLink action="{!GponPassivaCeDList}" target="_self" >
+                                                            Richieste inserite
+                                                        </apex:commandLink>
+                                                    </apex:outputPanel>
+                                                </li>
+                                                <li id="perInfoLineeAttiveGPCeD" style="display:block;">
+                                                    <apex:outputPanel >
+                                                        <apex:commandLink action="{!LineeAttiveGPON_PassivaCeD}" target="_self" >
+                                                            Linee Attive
+                                                        </apex:commandLink>
+                                                    </apex:outputPanel>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    </apex:outputPanel>
+                                    
+                                    <!-- PG - END - C&D - 22-11 - START -->
+                                    
+
+                                    
+
+                                    <!-- FIX - MOD MENU' PG 23-04 - START-->
+                                    <apex:outputPanel id="str3" rendered="{!showServizia3}" style="display:block;">
+                                    <ul class="nav">
+                                        <li id="Servizi3" style="display:block;" >
+                                            <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>Segnalazione Guasti</a>
+                                                <ul class="nav">
+                                                    <li id="TTgeneric" style="display:block;"><apex:outputPanel >
+                                                        <apex:commandLink action="{!ServizioTT}" target="_self" >Inserimento nuova richiesta
+                                                        </apex:commandLink>
+                                                    </apex:outputPanel></li>
+                                                    <li id="TTList" style="display:block;"><apex:outputPanel >
+                                                        <apex:commandLink action="{!TTList}" target="_self" >
+                                                            Richieste inserite
+                                                        </apex:commandLink>
+                                                        </apex:outputPanel>
+                                                    </li>
+                                                </ul>
+                                        </li>
+                                    </ul>
+                                    </apex:outputPanel>
+
+                                    <apex:outputPanel id="str4" rendered="{!showServizia4}" style="display:block;">
+                                    <ul class="nav">
+                                        <li id="Servizi4" style="display:block;" >
+                                            <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>Segnalazione Provisioning </a>
+                                                <ul class="nav">
+                                                    <li id="TPIns" style="display:block;"><apex:outputPanel >
+                                                        <apex:commandLink action="{!ServizioTP}" target="_self" >Inserimento nuova richiesta
+                                                        </apex:commandLink>
+                                                    </apex:outputPanel></li>
+                                                    <li id="TPList" style="display:block;"><apex:outputPanel >
+                                                        <apex:commandLink action="{!TPList}" target="_self" >
+                                                            Richieste inserite
+                                                        </apex:commandLink>
+                                                        </apex:outputPanel>
+                                                    </li>
+                                                </ul>
+                                        </li>
+                                    </ul>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel id="str5" rendered="{!showIncidentManagement}" style="display:block;">
+                                    <ul class="nav">
+                                        <li id="Servizi5" style="display:block;" >
+                                            <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>Incident Management </a>
+                                                <ul class="nav">
+                                                    <li id="TPInsInc" style="display:block;"><apex:outputPanel >
+                                                        <apex:commandLink action="{!Incident}"
+                                                        target="_self" >Inserimento nuova richiesta
+                                                        </apex:commandLink>
+                                                    </apex:outputPanel></li>
+                                                    <li id="TPIncList" style="display:block;"><apex:outputPanel >
+                                                        <apex:commandLink action="{!IncidentList}"
+                                                        target="_self" >
+                                                            Richieste inserite
+                                                        </apex:commandLink>
+                                                        </apex:outputPanel>
+                                                    </li>
+                                                </ul>
+                                        </li>
+                                    </ul>
+                                    </apex:outputPanel>
+                                    
+                                       <!--CR 7 27/06/2019 FOR Segnalazione Provisioning SOC -->
+                                        <apex:outputPanel id="str4new" rendered="{!showServizia4new_SOC}"  style="display:block;">
+                                            <ul class="nav">
+                                                <li id="Servizi4new" style="display:block;" >
+                                                    <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>Segnalazione Provisioning SOC</a>
+                                                    <ul class="nav">
+                                                        <li id="TPInsnew" style="display:block;">
+                                                            <apex:outputPanel >
+                                                                <apex:commandLink action="{!ServizioTP_SOC}" target="_self" >Inserimento nuova richiesta
+                                                                </apex:commandLink>
+                                                            </apex:outputPanel>
+                                                        </li>
+                                                        <li id="TPListnew" style="display:block;">
+                                                            <apex:outputPanel >
+                                                                <apex:commandLink action="{!TPList_SOC}" target="_self" >
+                                                                    Richieste inserite
+                                                                </apex:commandLink>
+                                                            </apex:outputPanel> 
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </apex:outputPanel>
+                                                                        
+                                    <!-- giovanni 31102018 inizio -->  
+                                    <apex:outputPanel id="str6" rendered="{!showDarkFiber}" style="display:block;">
+                                      
+                                      <c:PO_COMP_Serv_DarkFiber />
+                                        
+                                    </apex:outputPanel>
+                                    <apex:outputPanel id="strCirc" rendered="{!showCircDir}" style="display:block;">
+                                      
+                                    <c:PO_COMP_SERV_Circ_Dir />
+                                    </apex:outputPanel>
+                                    <!-- giovanni 31102018 fine -->
+                                    
+                                    <!-- giovanni 09112018 inizio -->  
+                              <!--       <apex:outputPanel id="str7" rendered="{!showBackhauling}" style="display:block;">
+                                      
+                                      <c:PO_COMP_Serv_Backhauling />
+                                    </apex:outputPanel>   -->
+                                    
+                                    <!-- giovanni 09112018 fine -->    
+                                    
+                                   <!--  EC 2018 - 11 - 10  Start Backhauling-->
+                                                                    
+                                   <apex:outputPanel id="str7"  style="display:block;">
+                                      <apex:outputPanel id="Backhauling" rendered="{!showBackhauling}">
+                                            <ul class="nav">
+                                                <li id="perInfoFeserviceBH" style="display:block;"  > 
+
+                                                    <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>Backhauling</a>
+
+                                                    <ul class="nav">
+                                                        <li id="perInfoFeservice" style="display:block;">
+                                                            <!-- <apex:outputPanel rendered="{!showBackhauling}" > il rerender già a riga 427 (poco sopra)-->
+                                                                <apex:commandLink action="{!ServizioBackhauling}" target="_self" >
+                                                                    Inserimento nuova richiesta
+                                                                </apex:commandLink> 
+                                                       <!--   </apex:outputPanel> -->
+                                                        </li>  
+                                                          <li id="perInfoFeservice" style="display:block;">
+                                                              <apex:outputPanel >
+                                                                <apex:commandLink action="{!backhaulingList}" target="_self" >
+                                                                    Richieste inserite
+                                                                </apex:commandLink>
+                                                              </apex:outputPanel>
+                                                        </li>
+                                                      </ul>
+                                                </li>
+                                                </ul>
+                                                  </apex:outputPanel>
+                                        </apex:outputPanel>
+                                                                    
+                                    <!-- EC 2018 - 11 - 10 End Backhauling -->    
+                                    
+                                   
+                                   <!--                                 
+                                   <apex:outputPanel id="str8"  style="display:block;">
+                                      <apex:outputPanel id="BTS" rendered="{!showBTS}">
+                                            <ul class="nav">
+                                                <li id="perBTS" style="display:block;"  > 
+                                                    <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>BTS</a>
+                                                    <ul class="nav">
+                                                        <li id="perBTS" style="display:block;">                                                            
+                                                                <apex:commandLink action="{!ServizioBTS}" target="_self" >
+                                                                    Inserimento nuova richiesta
+                                                                </apex:commandLink> 
+                                                        </li>  
+                                                        <li id="perBTS" style="display:block;">
+                                                            <apex:outputPanel >
+                                                                <apex:commandLink action="{!BTSList}" target="_self"> 
+                                                                    Richieste inserite
+                                                                </apex:commandLink>    
+                                                            </apex:outputPanel>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                </ul>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                    -->
+                                    <apex:outputPanel id="str8" rendered="{!showBTS}" style="display:block;">                                     
+                                      <c:PO_COMP_Serv_BTS />
+                                    </apex:outputPanel>
+                                                                    
+                                                                          
+                                   
+                                  <!-- FIX - MOD MENU' PG 23-04 - END-->
+                                    <li id="searchCaseId" style="display:block;">
+                                        <apex:commandLink action="{!SearchCase}">
+                                            Ricerca avanzata
+                                        </apex:commandLink>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- /.sidebar-collapse -->
+                        </div>
+                        <!-- /.navbar-static-side -->
+
+                    </nav>
+
+
+                    <apex:outputPanel id="mainblk1">
+                        <apex:outputlabel id="secAId" rendered="{!secA}" >
+                            <div id="page-wrapper">
+                                <div class="row">
+                                    <div class="col-lg-12" >
+                                        <h1 class="page-header">Portale Operatori</h1>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="col-md-12">
+                                            <apex:image styleClass="img-responsive" url="{!$Resource.openfibreMainSec}" alt="enel logo"/><br/>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="panel panel-default" style="width:92%;">
+                                                <div class="panel-heading">
+                                                    PORTALE OPERATORI
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4" id="rightsidebarId" >
+                                        <form role="form">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    Area Riservata
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-md-offset-3">
+                                                            <!-- <a href="https://pfibradev1-edistribuzione--pfibrasb.cs80.force.com/partnercommunity/communityLogin" class="btn btn-sm btn-success btn-block"><i class="fa fa-key fa-fw"></i> Accedi</a>-->
+                                                            <a href="{!$Site.Prefix}/login" class="btn btn-sm btn-success btn-block" style="background:#398439;color:#fff"><i class="fa fa-key fa-fw"></i> Accedi</a>
+
+                                                        </div>
+                                                    </div>
+                                                    <br/>
+
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-default">
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <i class="fa fa-file-word-o" style="font-size:48px;color:blue;"></i>
+                                                            <a href="{!URLFOR($Resource.Registration)}" target="_self"> Registrazione.docx</a>
+
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p style="font-size:8px"> Scaricare il documento con la guida per la sottomissione di una nuova Richiesta di Registrazione</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </apex:outputlabel>
+                    </apex:outputPanel>
+                    <br/>
+                    <apex:outputPanel id="mainblk2" >
+                        <apex:outputPanel id="secBId" rendered="{!secB}">
+                            <div id="page-wrapper" >
+                                <div class="row">
+                                    <div class="col-lg-12" >
+                                        <h1 class="page-header">Lista Utenti
+                                            <apex:commandLink styleClass="btn btn-sm btn-primary btn-block" style="width: 25%;float: right;background:#337ab7;color:#fff" action="{!redirectToRegPage}" >&nbsp; Aggiungi Nuovo Utente</apex:commandLink>
+                                        </h1>
+                                        <table class="table table-user-information">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Nome</td>
+                                                    <td>E-mail</td>
+                                                    <td></td>
+
+                                                </tr>
+                                                <apex:repeat var="cn" value="{!contactUserList}" rendered="true"  id="Contact_list">
+                                                    <tr>
+                                                        <td>{!cn.Contact.Name}</td>
+                                                        <td>{!cn.Contact.Email}</td>
+                                                        <td>
+                                                            <apex:commandButton value="Modifica" action="{!contactInformation}" rerender="mainblk2,secBId,ConInfoAdId" >
+                                                                <apex:param value="{!cn.Contact.ID}" assignTo="{!conId}" name="paramId"/>
+                                                            </apex:commandButton>
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            <apex:outputPanel rendered="{!if(cn.Isactive==true,true,false)}">
+                                                                <apex:commandButton value="Elimina" action="{!deleteUserContact}" rerender="mainblk2,secBId,ConInfoAdId"  >
+                                                                    <apex:param value="{!cn.Contact.ID}" assignTo="{!conId}" name="paramId"/>
+                                                                </apex:commandButton>
+                                                            </apex:outputPanel>
+                                                        </td>
+
+                                                    </tr>
+                                                </apex:repeat>
+                                            </tbody>
+                                        </table>
+
+                                        <apex:outputPanel id="ConInfoAdId" rendered="{!showcon}">
+                                            <h1 class="page-header">Informazioni Utente</h1>
+                                            <div class="form-group">
+                                                <div class="col-lg-6">
+                                                    <label>Name  </label>
+                                                    <!--<apex:inputField id="bornNation" value="{!cont.Residence_nation__c}" styleclass="form-control"/>-->
+                                                    <apex:inputField id="ProfiloSuperUserName" styleClass="form-check-input" value="{!contactObj.Name}"/>
+                                                </div>
+
+                                                <div class="col-lg-6">
+                                                    <label>Email  </label>
+                                                    <!--<apex:inputField id="bornNation" value="{!cont.Residence_nation__c}" styleclass="form-control"/>-->
+                                                    <apex:outputField id="ProfiloEmail" styleClass="form-check-input" value="{!contactObj.Email}"/>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <!-- <div class="col-lg-6">
+<label class="form-check-label">Profilo: </label> &nbsp;
+<br/>
+<apex:inputField id="ProfiloSuperUser" styleClass="form-check-input" value="{!contactObj.PO_Super_User__c}" style="color:blue;width:20px;height:20px;"/>
+<label>Super-User  </label>
+
+</div> -->
+
+                                                <div class="col-lg-6">
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">Funzionalità: </label> &nbsp;
+                                                        <br/>
+
+                                                        <div class="col-lg-6">    
+                                                            
+                                                            <apex:inputField id="P2P_BaseId" rendered="{!show1}" styleClass="form-check-input" value="{!contactObj.PO_P2P_Base__c}" style="color:blue;width:20px;height:20px;"/>
+                                                            <!-- <label class="form-check-label">P2P Base </label> -->
+															<apex:outputLabel value="P2P Base" for="P2P_BaseId" rendered="{!show1}" />                                                            
+                                                             
+                                                             <!--
+                                                             <apex:inputField rendered="{!show1}" styleClass="form-check-input" value="{!contactObj.PO_P2P_Base__c}" style="color:blue;width:20px;height:20px;"/>
+                                                             <apex:inputField id="P2P_BaseId" rendered="{!NOT(show1)}" html-disabled="true" styleClass="form-check-input" value="{!contactObj.PO_P2P_Base__c}" style="color:blue;width:20px;height:20px;"/>                                                             
+                                                             &nbsp;
+                                                             <apex:outputLabel value="P2P Base" for="P2P_BaseId" />
+                                                             -->
+
+                                                            <br/>   
+                                                            
+                                                            <apex:inputField id="P2P_AttivaId" rendered="{!showP2PAtt}" styleClass="form-check-input" value="{!contactObj.PO_P2P_Attiva__c}" style="color:blue;width:20px;height:20px;"/>
+                                                            <!-- <label class="form-check-label">P2P Attiva </label> -->
+															<apex:outputLabel value="P2P Attiva" for="P2P_AttivaId" rendered="{!showP2PAtt}" />                                                                 
+                                                            
+	                                                         <!--   
+                                                             <apex:inputField rendered="{!showP2PAtt}" styleClass="form-check-input" value="{!contactObj.PO_P2P_Attiva__c}" style="color:blue;width:20px;height:20px;"/>
+                                                             <apex:inputField id="P2P_AttivaId" rendered="{!NOT(showP2PAtt)}" html-disabled="true" styleClass="form-check-input" value="{!contactObj.PO_P2P_Attiva__c}" style="color:blue;width:20px;height:20px;"/>                                                             
+                                                             &nbsp;
+                                                             <apex:outputLabel value="P2P Attiva" for="P2P_AttivaId" />                                                            
+                                                             -->
+                                                            
+
+                                                            <br/>         
+                                                            
+                                                            <apex:inputField id="PO_Fiber_LinkId" rendered="{!show3}" styleClass="form-check-input" value="{!contactObj.PO_Fiber_Link__c}" style="color:blue;width:20px;height:20px;"/>
+                                                            <!-- <label class="form-check-label">Fiber Link </label> -->
+                                                            <apex:outputLabel value="Fiber Link" for="PO_Fiber_LinkId" rendered="{!show3}" />
+                                                            
+                                                            
+                                                            <!--
+                                                             <apex:inputField rendered="{!show3}" styleClass="form-check-input" value="{!contactObj.PO_Fiber_Link__c}" style="color:blue;width:20px;height:20px;"/>
+                                                             <apex:inputField id="PO_Fiber_LinkId" rendered="{!NOT(show3)}" html-disabled="true" styleClass="form-check-input" value="{!contactObj.PO_Fiber_Link__c}" style="color:blue;width:20px;height:20px;"/>                                                             
+                                                             &nbsp;
+                                                             <apex:outputLabel value="Fiber Link" for="PO_Fiber_LinkId" />                                                                   
+                                                            -->
+                                                                                                                                                                                       
+                                                            <br/>
+                                                            
+                                                            <apex:inputField id="PO_IRUId" rendered="{!show4}" html-disabled="{!contactObj.PO_IRU__c}"  styleClass="form-check-input" value="{!contactObj.PO_IRU__c}" style="color:blue;width:20px;height:20px;"/>                                                            
+                                                            <!-- <apex:outputLabel value="IRU" for="PO_IRUId" rendered="{!contactObj.PO_IRU__c}" /> -->
+                                                            <apex:outputLabel value="IRU" for="PO_IRUId" rendered="{!show4}" />
+                                                                 
+                                                            
+                                                            <!--
+                                                             <apex:inputField rendered="{!show4}" styleClass="form-check-input" value="{!contactObj.PO_IRU__c}" style="color:blue;width:20px;height:20px;"/>
+                                                             <apex:inputField id="PO_IRUId" rendered="{!NOT(show4)}" html-disabled="true" styleClass="form-check-input" value="{!contactObj.PO_IRU__c}" style="color:blue;width:20px;height:20px;"/>                                                             
+                                                             &nbsp;
+                                                             <apex:outputLabel value="IRU" for="PO_IRUId" />
+                                                            -->
+                                                            
+                                                            
+                                                            <br/>
+                                                            
+                                                            <apex:inputField id="BTSID" rendered="{!showBTS}" styleClass="form-check-input" value="{!contactObj.PO_Servizio_BTS__c}" style="color:blue;width:20px;height:20px;"/>
+                                                            <!-- <label class="form-check-label">BTS </label>  -->
+                                                            <apex:outputLabel value="BTS" for="BTSID" rendered="{!showBTS}" />
+                                                             
+                                                            
+                                                            <!--
+                                                             <apex:inputField rendered="{!showBTS}" styleClass="form-check-input" value="{!contactObj.PO_Servizio_BTS__c}" style="color:blue;width:20px;height:20px;"/>
+                                                             <apex:inputField id="BTSID" rendered="{!NOT(showBTS)}" html-disabled="true" styleClass="form-check-input" value="{!contactObj.PO_Servizio_BTS__c}" style="color:blue;width:20px;height:20px;"/>                                                             
+                                                             &nbsp;
+                                                             <apex:outputLabel value="BTS" for="BTSID" />   
+                                                            -->                                                            
+                                                            
+                                                            <br/>                                                            
+                                                            
+                                                            
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            
+                                                            <apex:inputField id="PO_Fiber_LeaseId" rendered="{!show2}"  styleClass="form-check-input" value="{!contactObj.PO_Fiber_Lease__c}" style="color:blue;width:20px;height:20px;"/>
+                                                            <!-- <label class="form-check-label">Fiber Lease</label> -->
+                                                            <apex:outputLabel value="Fiber Lease" for="PO_Fiber_LeaseId" rendered="{!show2}" />
+                                                            
+                                                            
+                                                            <!--
+                                                             <apex:inputField rendered="{!show2}" styleClass="form-check-input" value="{!contactObj.PO_Fiber_Lease__c}" style="color:blue;width:20px;height:20px;"/>
+                                                             <apex:inputField id="PO_Fiber_LeaseId" rendered="{!NOT(show2)}" html-disabled="true" styleClass="form-check-input" value="{!contactObj.PO_Fiber_Lease__c}" style="color:blue;width:20px;height:20px;"/>                                                             
+                                                             &nbsp;
+                                                             <apex:outputLabel value="Fiber Lease" for="PO_Fiber_LeaseId" />   
+                                                             -->
+
+                                                            <br/>
+                                                            
+                                                            <apex:inputField id="MistoFiberLeaseId" rendered="{!show5}" styleClass="form-check-input" value="{!contactObj.PO_Misto_Fiber_Lease_Link_per_Fastweb__c}" style="color:blue;width:20px;height:20px;"/>
+                                                            <!-- <label class="form-check-label">Evento Temporaneo</label> -->
+                                                            <apex:outputLabel value="Evento Temporaneo" for="MistoFiberLeaseId" rendered="{!show5}" />
+                                                            
+                                                            <!--
+                                                             <apex:inputField rendered="{!show5}" styleClass="form-check-input" value="{!contactObj.PO_Misto_Fiber_Lease_Link_per_Fastweb__c}" style="color:blue;width:20px;height:20px;"/>
+                                                             <apex:inputField id="MistoFiberLeaseId" rendered="{!NOT(show5)}" html-disabled="true" styleClass="form-check-input" value="{!contactObj.PO_Misto_Fiber_Lease_Link_per_Fastweb__c}" style="color:blue;width:20px;height:20px;"/>                                                             
+                                                             &nbsp;
+                                                             <apex:outputLabel value="Evento Temporaneo" for="MistoFiberLeaseId" />                                                               
+                                                            -->
+
+                                                            <br/>   
+                                                            
+                                                            <apex:inputField id="ChangeOrder_Id" rendered="{!showChangeOrder}" styleClass="form-check-input" value="{!contactObj.PO_Change_Order__c}" style="color:blue;width:20px;height:20px;"/>
+                                                            <!-- <label class="form-check-label">Change Order</label>  -->
+                                                            <apex:outputLabel value="Change Order" for="ChangeOrder_Id" rendered="{!showChangeOrder}" />
+                                                            
+                                                            <!--
+                                                             <apex:inputField rendered="{!showChangeOrder}" styleClass="form-check-input" value="{!contactObj.PO_Change_Order__c}" style="color:blue;width:20px;height:20px;"/>
+                                                             <apex:inputField id="ChangeOrder_Id" rendered="{!NOT(showChangeOrder)}" html-disabled="true" styleClass="form-check-input" value="{!contactObj.PO_Change_Order__c}" style="color:blue;width:20px;height:20px;"/>                                                             
+                                                             &nbsp;
+                                                             <apex:outputLabel value="Change Order" for="ChangeOrder_Id" />
+                                                             -->
+                                                             
+                                                             <br/>                                                            
+                                                            
+                                                            <apex:inputField id="BackhaulingID" rendered="{!showBackhauling}" styleClass="form-check-input" value="{!contactObj.PO_Servizio_Backhauling__c}" style="color:blue;width:20px;height:20px;"/>
+                                                            <!-- <label class="form-check-label">Backhauling</label> -->
+                                                            <apex:outputLabel value="Backhauling" for="BackhaulingID" rendered="{!showBackhauling}" />
+                                                            
+                                                            
+                                                            <!--
+                                                             <apex:inputField rendered="{!showBackhauling}" styleClass="form-check-input" value="{!contactObj.PO_Servizio_Backhauling__c}" style="color:blue;width:20px;height:20px;"/>
+                                                             <apex:inputField id="BackhaulingID" rendered="{!NOT(showBackhauling)}" html-disabled="true" styleClass="form-check-input" value="{!contactObj.PO_Servizio_Backhauling__c}" style="color:blue;width:20px;height:20px;"/>                                                             
+                                                             &nbsp;
+                                                             <apex:outputLabel value="Backhauling" for="BackhaulingID" />                                                            
+                                                            -->
+
+                                                            <br/>
+                                                                                                                          
+                                                            <apex:inputField id="DarkFiberID" rendered="{!showDarkFiber}" styleClass="form-check-input" value="{!contactObj.PO_Servizio_DarkFiber__c}" style="color:blue;width:20px;height:20px;"/>
+                                                            <!-- <label class="form-check-label">Dark Fiber </label> -->
+                                                            <apex:outputLabel value="Dark Fiber" for="DarkFiberID" rendered="{!showDarkFiber}" />
+              
+                                                            <!--
+                                                             <apex:inputField rendered="{!showDarkFiber}" styleClass="form-check-input" value="{!contactObj.PO_Servizio_DarkFiber__c}" style="color:blue;width:20px;height:20px;"/>
+                                                             <apex:inputField id="DarkFiberID" rendered="{!NOT(showDarkFiber)}" html-disabled="true" styleClass="form-check-input" value="{!contactObj.PO_Servizio_DarkFiber__c}" style="color:blue;width:20px;height:20px;"/>                                                             
+                                                             &nbsp;
+                                                             <apex:outputLabel value="Dark Fiber" for="DarkFiberID" />                                                             
+                                                            -->
+                                                            
+                                                              <br/>
+                                                            
+                                                             <apex:inputField id="CircDirID" rendered="{!showCircDir}" styleClass="form-check-input" value="{!contactObj.PO_Servizio_Circuiti_Diretti__c}" style="color:blue;width:20px;height:20px;"/>
+                                                            <!-- <label class="form-check-label">Dark Fiber </label> -->
+                                                            <apex:outputLabel value="Circuiti Diretti" for="CircDirID" rendered="{!showCircDir}" />
+              
+                                                                                                                                                                                                                                                      
+                                                        </div>
+                                                        
+                                                        <!--
+                                                        <div class="col-lg-6">
+                                                            <apex:inputField id="BTSID" styleClass="form-check-input" value="{!contactObj.PO_Servizio_BTS__c}" style="color:blue;width:20px;height:20px;"/>
+                                                            <label class="form-check-label">BTS </label>   
+                                                            <br/>
+                                                            
+                                                          
+                                                        </div>    
+                                                        -->
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <br/>
+                                                <div class="form-group">
+                                                    <div class="col-lg-6 col-offset-6">
+                                                        <apex:commandButton styleClass="btn btn-primary" value="Aggiorna Utente" action="{!saveContactInformation}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </apex:outputPanel>
+                                    </div>
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+
+                    <apex:outputPanel id="mainblk3">
+                        <apex:outputPanel rendered="{!secC}" id="SecCId">
+                            <div id="page-wrapper" >
+                                <div class="row">
+                                    <div class="col-lg-12" >
+                                        <!-- <c:POMyConInfo />-->
+                                        <c:POEditMyInfoComp />
+                                    </div>
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+
+
+                    <apex:outputPanel id="mainblk4">
+                        <apex:outputPanel rendered="{!secD}" id="SecDId">
+
+                            <div id="page-wrapper" >
+                                <div class="row">
+                                    <div class="col-lg-12" >
+                                        <!-- <c:POMyConInfo />-->
+                                        <!--<c:PO_ServiziaFattibilita />-->
+                                    </div>
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+
+                </div>
+                <!-- jQuery -->
+                <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+
+                <!-- Bootstrap Core JavaScript -->
+                <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+
+                <!-- Metis Menu Plugin JavaScript -->
+                <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.js')}"/>
+
+                <!-- Morris Charts JavaScript -->
+                <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/raphael/raphael.min.js')}"/>
+                <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.min.js')}"/>
+                <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/data/morrisdata.js')}"/>
+                <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/js/sbadmin2.js')}"/>
+                <apex:includeScript value="{!URLFOR($Resource.SBOT,'SBOT/scrollbootstrap/scrollingnav/js/jquery.easing.min.js')}"/>
+                <apex:includeScript value="{!URLFOR($Resource.SBOT,'SBOT/scrollbootstrap/scrollingnav/js/scrollingnav.js')}"/>
+            </apex:form>
+        </body>
+    </html>
+
+    <script>
+
+    $(document).ready(function(){
+        //AS enable debug in community
+        var d = new Date();
+        d.setTime(d.getTime() + (365*24*60*60*1000));
+        var expires = "expires="+ d.toUTCString();
+        //alert(expires);
+        document.cookie = "debug_logs=debug_logs;domain=.force.com;" + expires ;
+
+
+        //   alert('{!usr.Profile.Name}');
+        if("{!isSuperUser}"=="true" ){
+            $('[id$=manageuserAccId]').show();
+            //$('[id$=perInfoAccId]').show();
+            $('[id$=rightsidebarId]').hide();
+        }
+
+        if("{!isSuperUser}"=="false" ){
+              $('[id$=manageuserAccId]').hide();
+            // $('[id$=rightsidebarId]').hide();
+        }
+         if('{!$Profile.Name}' =='Partner Community User'){
+             $('[id$=perInfoAccId]').show();
+           $('[id$=rightsidebarId]').hide();
+        }
+
+        if('{!$Profile.Name}' =='Open Fibre Profile'){
+             $('[id$=perInfoAccId]').hide();
+           $('[id$=rightsidebarId]').show();
+        }
+          if('{!$Profile.Name}' =='Partner Community User'){
+             $('[id$=searchCaseId]').show();
+            $('[id$=rightsidebarId]').hide();
+        }
+
+        if('{!$Profile.Name}' =='Open Fibre Profile'){
+             $('[id$=searchCaseId]').hide();
+            $('[id$=rightsidebarId]').show();
+        }
+          if("{!isSuperUser}"=="true" ){
+            $('[id$=searchCaseId]').show();
+            //$('[id$=perInfoAccId]').show();
+            $('[id$=rightsidebarId]').hide();
+        }
+
+        if("{!isSuperUser}"=="false" ){
+              $('[id$=searchCaseId]').show();
+            // $('[id$=rightsidebarId]').hide();
+        }
+    });
+    
+    //EC 2019 05 23 start
+    
+     function showSection(offerta){
+        debugger;
+        if(offerta=='eaccess'){
+            if(document.getElementById('eaccess1').style.display =='none'){
+                document.getElementById('eaccess1').style.display = 'block';
+                document.getElementById('eaccess2').style.display = 'block';
+                return null;
+            }else{
+                document.getElementById('eaccess1').style.display = 'none';
+                document.getElementById('eaccess2').style.display = 'none';
+            }
+            
+        }
+       
+    }
+    
+     function showSection2(offerta){
+        debugger;
+        if(offerta=='eLines'){
+            if(document.getElementById('eLines1').style.display =='none'){
+                document.getElementById('eLines1').style.display = 'block';
+                document.getElementById('eLines2').style.display = 'block';
+                return null;
+            }else{
+                document.getElementById('eLines1').style.display = 'none';
+                document.getElementById('eLines2').style.display = 'none';
+            }
+            
+        }
+       
+    }
+    
+    //EC 2019 05 23 end
+    </script>
+</apex:page>

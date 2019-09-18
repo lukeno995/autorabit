@@ -1,0 +1,868 @@
+<apex:page controller="OF_PDF_OffSediController" standardStylesheets="false" applyBodyTag="false"> 
+    <head>
+        <style type="text/css" media="print">
+            @page
+            {
+            margin-left: 1.2cm;
+            margin-right: 1.2cm;
+            margin-top: 2.5cm;
+            margin-bottom: 2.5cm;
+            @top-center
+            {
+            content: element(header);
+            }
+            @bottom-right
+            {
+            content: element(footer);
+            }
+            }
+            div.header
+            {
+            margin-top: 0.7cm;
+            padding: 5px;
+            position: running(header);
+            }
+            div.footer
+            {
+            display: block;
+            padding: 5px;
+            position: running(footer);
+            }
+            .pagenumber:before
+            {
+            content: counter(page);
+            }
+            .pagecount:before
+            {
+            content: counter(pages);
+            }
+        </style>
+        
+        <script type="text/javascript">__sfdcSessionId = '{!$Api.Session_Id}';</script>
+        <script src="/soap/ajax/41.0/connection.js" type="text/javascript"></script>
+        <script src="/soap/ajax/41.0/apex.js" type="text/javascript"></script>
+        <apex:includeScript value="{!URLFOR($Resource.excel, 'sheetjs.all.min.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.excel1, 'excel1/excelplus-2.5.min.js')}"/>
+                <apex:includeScript value="{!URLFOR($Resource.excel1, 'excel1/excelplus-2.js')}"/>  
+                    
+                    <script type="text/javascript">
+                        
+                        
+                        //EC 2018 - 12 - 05 start metodi per trim e troncamento del codice ordine con caratteri speciali
+                        
+                        function KillSpaces(phrase) {
+                        
+                        var totalPhrase = "";
+                        for (i = 0; i < phrase.length; i++)
+                        {
+                            if (phrase[i] != " ") // if (phrase[i] != "\'")
+                            {
+                                totalPhrase += phrase[i];
+                            }
+                        }
+                        return totalPhrase;
+                    } 
+                    function deleteApostrofo(phrase) {
+                        
+                        var totalPhrase = "";
+                        for (i = 0; i < phrase.length; i++)
+                        {
+                            if (phrase[i] == "'")
+                            {
+                                totalPhrase += "*";
+                            }
+                            else{
+                                totalPhrase += phrase[i];
+                            }
+                        }
+                        return totalPhrase;
+                    } 
+        function restoreApostrofo(phrase) {
+            
+            var totalPhrase = "";
+            for (i = 0; i < phrase.length; i++)
+            {
+                if (phrase[i] == "*")
+                {
+                    totalPhrase += "'";
+                }
+                else{
+                    totalPhrase += phrase[i];
+                }
+            }
+            return totalPhrase;
+        } 
+        
+        //EC 2018 - 12 - 05 
+        
+        function stampXLSX( quoteId , IDRichiestaFatt, NameAttachmentXLSX)
+        {
+            var finalString = "{!finalstr}";
+            console.log('finalString:'+finalString);
+            
+            var ep=new ExcelPlus(); //nuovo oggetto ep
+            ep.createFile("Foglio1");
+            var vectorSplit = finalString.split("<br/>");
+            
+            for( var i = 0 ; i < vectorSplit.length ; i++ )
+            {
+                console.log('vectorSplit['+i+']='+vectorSplit[i]);
+                var rigaVectorSplit = vectorSplit[i].split("\t");
+                var colonna = 'A';   
+                for( var j = 0 ; j < rigaVectorSplit.length ; j++ )
+                {
+                    console.log('rigaVectorSplit['+j+']='+rigaVectorSplit[j]);
+                    ep.write( { "cell":nextColonna(colonna,j) + (i+1), "content": ''+rigaVectorSplit[j] } );
+                    //ep.Cells[1, 1].Style.Font.Bold = true;
+                }
+            }
+            //ep.selectSheet("A1").style.Font.Bold = true;
+            var b2b = ep.saveTo("xlsx","base64");
+            createAttachment( b2b , quoteId , IDRichiestaFatt, NameAttachmentXLSX);
+        }
+        function nextColonna(c,j) 
+        {
+            // restituisce la colonna successiva  es. nexColonna("A",1) -> "B"
+            return String.fromCharCode(c.charCodeAt(0) + j);
+        }
+        function createAttachment( Body , quoteId , IDRichiestaFatt, NameAttachmentXLSX)
+        {
+            try{
+                var Attachment_Quote  = new sforce.SObject("Attachment");
+                var Attachment_Fattibil  = new sforce.SObject("Attachment");
+                
+                /*Attachment_Quote*/
+                //Attachment_Quote.Name = 'Test_09_10_2017_v3.xlsx';
+                Attachment_Quote.Name = NameAttachmentXLSX;
+                Attachment_Quote.ParentId = quoteId;
+                Attachment_Quote.Body = Body;
+                Attachment_Quote.ContentType = 'application/vnd.ms-excel;content-disposition:attachment;base64';
+                /*Attachment_Fattibil*/
+                //Attachment_Fattibil.Name = 'Test_09_10_2017_v3.xlsx';
+                Attachment_Fattibil.Name = NameAttachmentXLSX;
+                Attachment_Fattibil.ParentId = IDRichiestaFatt;
+                Attachment_Fattibil.Body = Body;
+                Attachment_Fattibil.ContentType = 'application/vnd.ms-excel;content-disposition:attachment;base64';
+                
+                var result_Quote = sforce.connection.create([Attachment_Quote]);
+                var result_Fattibil = sforce.connection.create([Attachment_Fattibil]);
+                window.top.location.href = '/'+quoteId;
+                console.log('result_Quote:'+result_Quote);
+                console.log('result_Fattibil:'+result_Fattibil);
+                
+            }catch(e){ 
+                console.log('Orrore nella query. Error:' +e); 
+            }
+        }
+        </script>
+        
+    </head>
+    <div class="header">
+        <left><apex:image url="{!$Resource.OpenFiberLogo}" width="30%" height="30%" style="font-size:12px"/></left><br/><br/><br/>
+    </div>
+    <div class="footer">
+        <!--<p style="font-size:12px" align="left">
+<b>OpEn Fiber SpA</b> – Sede Legale: 20155 Milano, Viale Certosa 2 – Registro Imprese di Milano, Codice Fiscale e Partita IVA 09320630966 R.E.A. MI 2083127 – Capitale sociale Euro 250.000.000 i.v. 
+</p>-->
+        <p style="font-size:12px" align="center">
+            Page <span class="pagenumber"/> of <span class="pagecount"/>
+        </p>       
+    </div>
+    
+    <div style="page-break-after:always;font-size:14px;">
+        <p align="right">
+            <apex:outputtext >
+                Alla C.a.<br/>
+                <b>{!q.Account.Name}</b><br/>
+                {!q.Account.BillingStreet}<br/>
+                {!q.Account.BillingCity}<br/>
+                {!q.Account.BillingState}<br/>
+                {!q.Account.BillingPostalCode}
+            </apex:outputtext>
+        </p>
+        
+        <apex:outputtext >
+            <!--
+Ns. Rif.: <b>{!opp.PO_Richiesta_fattibilit__r.casenumber}</b>
+-->
+            Ns. Rif.: <b>{!nsRifString}</b>            
+        </apex:outputtext><br/><br/>
+        
+        <apex:outputtext >
+            Milano,
+            <apex:outputtext value=" {!date} "/>
+        </apex:outputtext><br/><br/>
+        
+        <apex:outputtext >
+            <b>Oggetto : Quotazione per il collegamento delle sedi {!opp.PO_Richiesta_fattibilit__r.PO_Nome_Progetto__c}:</b>
+        </apex:outputtext><br/><br/>
+        <!-- LM Modificha per servizio e-access e-line 16/7/19-->
+        <apex:outputtext rendered="{!checkP2PAtt || checkP2PAttELine}">
+            Con riferimento alla Vostra richiesta,
+            ci pregiamo di sottoporVi la nostra migliore quotazione per la cessione in affitto 
+            di fibre ottiche spente della rete Open Fiber per realizzare il collegamento in oggetto.<br/>
+            La quotazione viene espressa da un canone mensile e da un contributo di attivazione.<br/><br/>
+            Il contributo di attivazione comprende anche le seguenti attività:
+            <ol>
+                <li>fornitura e posa del drop presso il cliente o di interconnessione delle reti; </li>
+                <li>lavori ottici per stabilire la continuità del collegamento.</li>
+            </ol>
+            Il numero collegamenti, numero delle fibre ottiche e tempi di attivazioni sono indicati nell’Allegato A <br/><br/>
+            La quotazione viene riportata nella tabella seguente:
+        </apex:outputtext>
+        <apex:outputtext rendered="{! (!checkP2PAtt && !checkP2PAttELine)}">
+            Con riferimento alla Vostra richiesta,
+            ci pregiamo di sottoporVi la nostra migliore quotazione per la cessione in affitto 
+            di fibre ottiche spente della rete Open Fiber per realizzare il collegamento in oggetto.<br/>
+            La quotazione viene espressa da un canone annuo e da un contributo di attivazione.<br/><br/>
+            Il contributo di attivazione comprende anche le seguenti attività:
+            <ol>
+                <li>fornitura e posa del drop presso il cliente o di interconnessione delle reti; </li>
+                <li>lavori ottici per stabilire la continuità del collegamento.</li>
+            </ol>
+            Il numero collegamenti, numero delle fibre ottiche e tempi di attivazioni sono indicati nell’Allegato A <br/><br/>
+            La quotazione viene riportata nella tabella seguente:
+        </apex:outputtext><br/><br/>
+        <!-- LM end Modificha per servizio e-access e-line 16/7/19-->
+        <!-- EC 2019 06 10  <apex:outputtext rendered="{!checkP2P || checkIRU || checkEventoTemp || checkP2PAtt || checkBackhauling || checkBTS || checkDarkFiber}"> -->
+        <apex:outputtext rendered="{!checkP2P || checkIRU || checkEventoTemp || checkP2PAtt || checkBackhauling || checkBTS || checkDarkFiber || checkP2PAttELine}">
+            <b><apex:outputtext rendered="{!checkEventoTemp}" value="Affitto {!opp.PO_Richiesta_fattibilit__r.PO_Durata_mesi__c} {!strMese}"/></b>
+            <table width="60%">
+                <apex:outputtext rendered="{!checkP2P || checkEventoTemp}"> <!-- EC 2018 - 12 - 14 ' || checkP2PAtt ' EC 2019 06 10 add || checkP2PAttELine -->
+                    <tr >
+                        <td>Canone Annuo</td>
+                        <td width="40%" align="right">{!opp.PO_Totale_canoni_scontato__c} €/Anno</td>
+                    </tr>
+                </apex:outputtext>
+                <!-- LM Modificha per servizio e-access e-line 16/7/19-->
+                <apex:outputtext rendered="{!checkP2PAtt || checkP2PAttELine}"> <!-- EC 2018 - 12 - 14 ' || checkP2PAtt ' EC 2019 06 10 add || checkP2PAttELine -->
+                    <tr >
+                        <td>Canone Mensile</td>
+                        <td width="40%" align="right">{!opp.PO_Totale_canoni_scontato__c} €/Mese</td>
+                    </tr>
+                </apex:outputtext>
+                <!-- LM end Modificha per servizio e-access e-line 16/7/19-->
+                <apex:outputtext rendered="{!checkIRU || checkBackhauling || checkBTS || checkDarkFiber}">
+                    <tr >
+                        <td>Canone Manutenzione Annuo</td>
+                        <td width="40%" align="right">{!opp.PO_Totale_canoni_manutenzione_scontato__c} €/Anno</td>
+                    </tr>
+                </apex:outputtext>
+                <apex:outputtext rendered="{!checkIRU || checkBackhauling || checkBTS || checkDarkFiber}">
+                    <tr >
+                        <td>Corrispettivi IRU</td>
+                        <td width="40%" align="right">{!opp.PO_Totale_corrispettivi_IRU_scontati__c} €</td>
+                    </tr>
+                </apex:outputtext>
+                <tr>
+                    <td>Contributo di attivazione</td>
+                    <td width="40%" align="right">{!opp.PO_Totale_contributi_attivazione_scontat__c} €</td>
+                </tr>
+                <tr>
+                    <td>Costi Aggiuntivi</td>
+                    <td width="40%" align="right">{!opp.PO_Totale_costi_aggiuntivi_scontati__c} €</td>
+                </tr>
+            </table><br/>
+        </apex:outputtext>
+        
+        
+        <apex:outputtext rendered="{!checkFibLink}">            
+            
+            
+            <b>Affitto 1 Anno</b><br/>
+            <table width="60%">
+                <tr>
+                    <td>Canone Annuo</td>
+                    <td width="40%" align="right">{!opp.PO_Totale_Canone_Anno1_Scontato__c} €/Anno</td>
+                </tr>
+                <tr>
+                    <td>Contributo di attivazione</td>
+                    <td width="40%" align="right">{!opp.PO_TotaleContributiAttivaAnno1Scontati__c} €</td>
+                </tr>
+                <tr>
+                    <td>Costi Aggiuntivi</td>
+                    <td width="40%" align="right">{!opp.PO_TotaleCostiAggiuntiviAnno1Scontat__c} €</td>
+                </tr>
+            </table><br/>
+            
+            
+            
+            <b>Affitto 2 Anni</b><br/>
+            <table width="60%">
+                <tr>
+                    <td>Canone Annuo</td>
+                    <td width="40%" align="right">{!opp.PO_Totale_Canone_Anno2_Scontato__c} €/Anno</td>
+                </tr>
+                <tr>
+                    <td>Contributo di attivazione</td>
+                    <td width="40%" align="right">{!opp.PO_TotaleContributiAttivaAnno2Scontati__c} €</td>
+                </tr>
+                <tr>
+                    <td>Costi Aggiuntivi</td>
+                    <td width="40%" align="right">{!opp.PO_TotaleCostiAggiuntiviAnno1Scontati__c} €</td>
+                </tr>
+            </table><br/>
+            
+            
+            <b>Affitto 3 Anni</b><br/>
+            <table width="60%">
+                <tr>
+                    <td>Canone Annuo</td>
+                    <td width="40%" align="right">{!opp.PO_Totale_Canone_Anno3_Scontato__c} €/Anno</td>
+                </tr>
+                <tr>
+                    <td>Contributo di attivazione</td>
+                    <td width="40%" align="right">{!opp.PO_TotaleContributiAttivaAnno3Scontati__c} €</td>
+                </tr>
+                
+                <tr>
+                    <td>Costi Aggiuntivi</td>
+                    <td width="40%" align="right">{!opp.PO_TotaleCostiAggiuntiviAnno3Scontat__c} €</td>
+                </tr>
+            </table><br/>
+            
+            
+            <apex:outputText rendered="{!CheckNumAnni}">
+                <b>Affitto {!opp.PO_Numero_Anni__c} Anni</b><br/>
+                <table width="60%">
+                    <tr>
+                        <td>Canone Annuo</td>
+                        <td width="40%" align="right">{!opp.PO_Totale_Canone_Altri_Anni_Scontato__c} €/Anno</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Contributo di attivazione</td>
+                        <td width="40%" align="right">{!opp.PO_TotContributiAttivaAltriAnniScontati__c} €</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Costi Aggiuntivi</td>
+                        <td width="40%" align="right">{!opp.PO_TotaleCostiAggiuntiviAltriAnnoScontat__c} €</td>
+                    </tr>
+                </table>
+            </apex:outputText><br/><br/>
+        </apex:outputtext>
+        
+        <apex:outputtext rendered="{!checkFibLease || checkFibLeaseMisto}">    
+            <table width="60%">
+                
+                <!--        <tr >
+<td>Totale costi aggiuntivi</td>
+<td width="40%" align="right">{!opp.PO_Totale_costi_aggiuntivi_scontati__c} €</td>
+</tr> -->
+                
+                <tr >
+                    <td>Totale valori medi altre coppie</td>
+                    <td width="40%" align="right">{!opp.PO_Totale_scontat_valori_medi_altre_cop__c} €</td>
+                </tr>
+                
+                <tr >
+                    <td>Totale valori medi annui</td>
+                    <td width="40%" align="right">{!opp.PO_Totale_valori_medi_annui_scontato__c} €</td>
+                </tr>
+                
+                <tr >
+                    <td>Totale valori fino 2030</td>
+                    <td width="40%" align="right">{!opp.PO_Totale_valori_fino_2030_scontato__c} €</td>
+                </tr>
+                
+                <tr >
+                    <td>Totale contributi attivazione</td>
+                    <td width="40%" align="right">{!opp.PO_Totale_contributi_attivazione_scontat__c} €</td>
+                </tr>
+                
+                <apex:outputtext rendered="{!checkFibLeaseMisto}">
+                    <tr >
+                        <td>Totale canone collegamento</td>
+                        <td width="40%" align="right">{!opp.PO_Totale_canoni_scontato__c} €/Anno</td>
+                    </tr>
+                    <tr >
+                        <td>Totale contributo attivazione</td>
+                        <td width="40%" align="right">{!opp.PO_TotaleContributiAttivaAnno3Scontati__c} €/Anno</td>
+                    </tr>
+                    
+                </apex:outputtext>
+                
+                <!--  <apex:outputtext rendered="{!checkFibLeaseMisto}">
+<tr >
+<td>Totale contributi attivazione</td>
+<td width="40%" align="right">{!opp.PO_Totale_contributi_attivazione_scontat__c} €</td>
+</tr>
+</apex:outputtext>-->
+                
+                
+            </table><br/>
+        </apex:outputtext>
+        
+        
+        <apex:outputtext >
+            <b>Esclusività:</b><br/>
+            Potrete utilizzare le Fibre Ottiche in via esclusiva per la durata del presente Contratto per fornire servizi a terzi, 
+            mediante collegamento delle Fibre Ottiche agli Apparati di Trasmissione. 
+            Non è consentito di sub-concedere a Terzi i collegamenti in Fibra Ottica spenta. 
+        </apex:outputtext><br/><br/>
+        
+        <apex:outputtext >
+            <b>Validità dell'offerta:</b><br/>
+            <apex:outputText value="{!SUBSTITUTE(opp.PO_oppty_validit_offerta__c,'\n','<br/>')}" style="white-space:pre;" escape="false"/>
+        </apex:outputtext><br/><br/>
+        <!-- LM Modificha per servizio e-access e-line 16/7/19-->
+        <apex:outputtext rendered="{! (!checkP2PAtt && !checkP2PAttELine)}">
+            <apex:outputtext >
+                <b>Fatturazione:</b><br/>
+                Contributi di attivazione e aggiuntivi: in una unica soluzione all'accettazione delle fibre ottiche;<br/>
+                Canone di affitto annuo: trimestrale anticipato
+            </apex:outputtext><br/><br/>
+        </apex:outputtext>
+        <apex:outputtext rendered="{!checkP2PAtt || checkP2PAttELine}">
+            <apex:outputtext >
+                <b>Fatturazione:</b><br/>
+                Contributi di attivazione e aggiuntivi: in una unica soluzione all'accettazione delle fibre ottiche;<br/>
+                Canone di affitto mensile
+            </apex:outputtext><br/><br/>
+        </apex:outputtext>
+        <!-- LM end Modificha per servizio e-access e-line 16/7/19-->
+        <apex:outputtext >
+            <b>Pagamento:</b><br/>
+            <apex:outputText value="{!SUBSTITUTE(opp.PO_Special_Terms__c,'\n','<br/>')}" style="white-space:pre;" escape="false"/>
+        </apex:outputtext><br/><br/>
+        
+        <p align="right">
+            <apex:outputtext >
+                Con l'occasione porgo i più cordiali saluti.<br/>
+                Open Fiber S.p.A.
+            </apex:outputtext>
+        </p>
+    </div>
+    
+    <div style="font-size:12px;">
+        <p align="center"> 
+            <apex:outputtext >
+                Ns. Rif.: <b>{!opp.PO_Richiesta_fattibilit__r.casenumber}</b><br/>
+                <b>Allegato A</b> - Dettagli collegamento<br/>
+                Dettaglio Offerta
+            </apex:outputtext><br/><br/><br/>
+        </p>
+        
+        
+        
+        <!-- TABELLA KIT INSERITI -->
+        
+        <apex:outputtext rendered="{!IF(AND(checkP2PAtt,CaseKit.size > 0),'true','false')}">
+            <b>Dettagli KIT Inseriti</b><br/><br/>
+        </apex:outputtext> 
+        
+        <apex:outputtext rendered="{!IF(AND(checkP2PAtt,CaseKit.size > 0),'true','false')}"> Dati KIT<br/> </apex:outputtext>
+        <apex:dataTable var="cKit" value="{!CaseKit}" border="2" width="100%" rendered="{!IF(AND(checkP2PAtt,CaseKit.size > 0),'true','false')}">
+            
+            <apex:column >
+                <apex:facet name="header">KIT Consegna VLAN</apex:facet>
+                {!cKit.PO_PP_NomeKit__c} <!-- PO_P2PAttiva_Nome_del_KIT__c -->
+            </apex:column>
+            
+            <apex:column >
+                <apex:facet name="header">Nome POP</apex:facet>
+                {!cKit.EOF_Identificativo_del_POP__c} <!-- EOF_ID_Pop__c -->
+            </apex:column>
+            
+            <apex:column >
+                <apex:facet name="header">Indirizzo Consegna</apex:facet>
+                {!cKit.PO_P2PAttiva_Kit_Indirizzo_Consegna__c} <!-- PO_P2PAttiva_KIT_Indirizzo_Consegna__c -->
+            </apex:column>
+            
+            <apex:column >
+                <apex:facet name="header">Optical Rate Limiting</apex:facet>
+                {!cKit.PO_P2PAttiva_KIT_OpticalRateLimiting__c} <!-- PO_P2PAttiva_Optical_Rate_Limiting__c -->
+            </apex:column>        
+            
+        </apex:dataTable>
+        
+        
+        <apex:outputtext >
+            <b>Dettagli collegamento</b><br/><br/>
+        </apex:outputtext>
+        
+        <!--alert {!opp.Opportunities__r}    -->
+        
+        <!-- TABELLA DATI TOPONOMASTICI-->
+        <apex:outputtext > Dati toponomastici<br/> </apex:outputtext>
+        <apex:dataTable var="OppCol" value="{!opp.Opportunities__r}" border="2" width="100%">
+            
+            <apex:column >
+                <apex:facet name="header">Collegamento</apex:facet>
+                <!-- EC 2019 06 05.    {!OppCol.PO_Collegamento__r.casenumber} per il collegamento indicare il codice ordine OLO, non il casenumber -->
+                
+                {!OppCol.PO_Collegamento__r.EOF_Codice_Ordine_OLO__c}
+            </apex:column>
+            
+            <apex:column >
+                <apex:facet name="header">Sede Cliente</apex:facet>
+                {!OppCol.PO_Collegamento__r.PO_Sito__c}
+            </apex:column>
+            
+            <apex:column >
+                <apex:facet name="header">Indirizzo Cliente</apex:facet>
+                {!OppCol.PO_Collegamento__r.Particella_Toponomastica_1__c} {!OppCol.PO_Collegamento__r.PO_Indirizzo_collegamento__c} {!OppCol.PO_Collegamento__r.PO_Civico__c}, {!OppCol.PO_Collegamento__r.PO_Nome_Comune__c}
+            </apex:column>
+            
+            <apex:column rendered="{!NOT(CheckP2P) && NOT(checkEventoTemp)}">
+                
+                <apex:facet name="header">Sede 1 di terminazione</apex:facet>
+                {!OppCol.PO_Collegamento__r.PO_Sito_partenza__c}
+            </apex:column>
+            
+            <apex:column rendered="{!NOT(CheckP2P) && NOT(checkEventoTemp)}">
+                
+                <apex:facet name="header">Indirizzo Sede 1 di terminazione</apex:facet>
+                {!OppCol.PO_Collegamento__r.Particella_Toponomastica_2__c} {!OppCol.PO_Collegamento__r.PO_Indirizzo_collegamento_partenza__c} {!OppCol.PO_Collegamento__r.PO_Civico_partenza__c}, {!OppCol.PO_Collegamento__r.PO_Nome_Comune3__c}
+                
+            </apex:column>
+            
+            <apex:column rendered="{!checkFibLink}">
+                <apex:facet name="header">Sede 2 di terminazione</apex:facet>
+                <!--{!OppCol.PO_Collegamento__r.PO_Pop_2_di_riferimento2__r.name}-->
+                {!OppCol.PO_Collegamento__r.PO_Sito_3__c}
+            </apex:column>
+            
+            <apex:column rendered="{!checkFibLink}">
+                <apex:facet name="header">Indirizzo Sede 2 di terminazione</apex:facet>
+                {!OppCol.PO_Collegamento__r.PO_indirizzo_collegamento_3__c} {!OppCol.PO_Collegamento__r.PO_Civico_3__c}, {!OppCol.PO_Collegamento__r.PO_Nome_Comune4__c}
+                <!--{!OppCol.PO_Collegamento__r.PO_Pop_2_di_riferimento2__r.PO_Indirizzo__c}-->
+            </apex:column>
+        </apex:dataTable>
+        
+        
+        <!-- TABELLA DATI METRICI-->
+        
+        <apex:outputtext ><br/>Dati metrici<br/></apex:outputtext>
+        <apex:dataTable var="OppCol" value="{!opp.Opportunities__r}" border="2" width="100%">
+            <apex:column >
+                <apex:facet name="header">Collegamento</apex:facet>
+                {!OppCol.PO_Collegamento__r.EOF_Codice_Ordine_OLO__c}
+                <!-- EC 2019 06 05.    {!OppCol.PO_Collegamento__r.casenumber} per il collegamento indicare il codice ordine OLO, non il casenumber -->
+            </apex:column>
+            
+            <!-- EC 2019 05 22  start due nuove colonne: ID Sede; Tipologia (tipologia sede)-->
+            <apex:column rendered="{!checkP2PAttELine || checkP2PAtt}">
+                <apex:facet name="header">ID Sede</apex:facet>
+                {!OppCol.PO_Collegamento__r.SF_Ccoll_ID_Sede__c}
+            </apex:column>
+            
+            <apex:column rendered="{!checkP2PAttELine}">
+                
+                <apex:facet name="header">ID Sede Master</apex:facet>
+                {!OppCol.PO_Collegamento__r.ID_Sede_Master__r.SF_Ccoll_ID_Sede__c} <!--  EC 2019 06 17  SF_Ccoll_ID_Sede_Master__c sostituito con il campo di lookup Al Case ID_Sede_Master__c-->
+            </apex:column>
+            
+            <apex:column rendered="{!checkP2PAttELine}">
+                <apex:facet name="header">Tipologia</apex:facet>
+                {!OppCol.PO_Collegamento__r.Tipologia_Sede__c} 
+            </apex:column>
+            
+            <!-- EC 2019 05 22  end due nuove colonne: ID Sede; Tipologia -->
+            
+            <apex:column >
+                <apex:facet name="header">Sede Cliente</apex:facet>
+                {!OppCol.PO_Collegamento__r.PO_Sito__c}
+            </apex:column>
+            
+            <apex:column >
+                <apex:facet name="header">Indirizzo Cliente</apex:facet>
+                {!OppCol.PO_Collegamento__r.Particella_Toponomastica_1__c} {!OppCol.PO_Collegamento__r.PO_Indirizzo_collegamento__c} {!OppCol.PO_Collegamento__r.PO_Civico__c}, {!OppCol.PO_Collegamento__r.PO_Nome_Comune__c}
+            </apex:column>
+            
+            <apex:column >
+                <apex:facet name="header">Tipo percorso</apex:facet>
+                {!OppCol.PO_Collegamento__r.PO_Tipo_percorso__c}
+            </apex:column>
+            
+            <apex:column >
+                <apex:facet name="header">n. Fibre Ottiche</apex:facet>
+                {!OppCol.PO_Collegamento__r.PO_Numero_fibre_richieste__c}
+            </apex:column>
+            
+            <apex:column rendered="{!!checkFibLease && !checkFibLeaseMisto}">
+                <apex:facet name="header">Lunghezza 1° via</apex:facet>
+                {!OppCol.PO_Collegamento__r.PO_Lunghezza_tratta_prima_via__c}
+            </apex:column>
+            
+            <!-- EC 2019 06 10 start commento scrivere diversamente
+<apex:column rendered="{!NOT(checkFibLease) && NOT(checkFibLeaseMisto)}">
+<apex:facet name="header">Lunghezza 1° via</apex:facet>
+{!OppCol.PO_Collegamento__r.PO_Lunghezza_tratta_prima_via__c}
+</apex:column> -->
+            
+            <apex:column rendered="{!checkFibLease || checkFibLeaseMisto}">
+                <apex:facet name="header">Lunghezza 1° via</apex:facet>
+                {!OppCol.PO_Collegamento__r.PO_Lunghezza_tratta_prima_via_FiberLink__c}
+            </apex:column>
+            
+            <apex:column rendered="{!checkFibLease || checkFibLeaseMisto}">
+                <apex:facet name="header">Lunghezza 2° via</apex:facet>
+                {!OppCol.PO_Collegamento__r.PO_Lunghezza_tratta_seconda_via_FiberLin__c}
+            </apex:column>
+            
+            <apex:column rendered="{!CheckIRU || checkFibLink}">
+                <apex:facet name="header">Lunghezza 2° via</apex:facet>
+                {!OppCol.PO_Collegamento__r.PO_Lunghezza_tratta_seconda_via__c}
+            </apex:column>
+            
+            <apex:column rendered="{!CheckP2P || checkFibLease || checkFibLeaseMisto || checkP2PAttELine}">
+                <apex:facet name="header">Pop 1 di riferimento</apex:facet>
+                {!OppCol.PO_Collegamento__r.PO_Pop_1_di_riferimento2__r.name}
+            </apex:column>
+            
+            <apex:column rendered="{!checkFibLease || checkFibLeaseMisto}">
+                <apex:facet name="header">Pop 2 di riferimento</apex:facet>
+                {!OppCol.PO_Collegamento__r.PO_Pop_2_di_riferimento2__r.name}
+            </apex:column>
+            
+            <apex:column >
+                <apex:facet name="header">Tempi (mesi da ordine)</apex:facet>
+                {!OppCol.PO_Collegamento__r.PO_Tempi_di_attivazione_mesi__c}
+            </apex:column>
+            
+            <apex:column >
+                <apex:facet name="header">Disponibilità rete dal</apex:facet>
+                <apex:outputText value="{0,date,dd'/'MM'/'yyyy}">
+                    <apex:param value="{!OppCol.PO_Collegamento__r.PO_Disponibilit_della_rete_a_partire_da__c}" />
+                </apex:outputText>
+            </apex:column>
+        </apex:dataTable>
+        
+        <!-- TABELLA DATI VLAN -->
+        <!--alert {!VlanLogs.size}-->
+        <apex:outputtext rendered="{!checkP2PAtt || checkP2PAttELine}"><br/>Dettaglio VLAN<br/>
+            <apex:dataTable var="VLog" value="{!VlanLogs}" border="2" width="100%" rendered="{!checkP2PAtt || checkP2PAttELine}">
+                <apex:column >
+                    <apex:facet name="header">Collegamento</apex:facet>
+                    {!VLog.EOF_SL_Riferimento__r.Caso__r.EOF_Codice_Ordine_OLO__c}
+                </apex:column>
+                
+                <!-- EC 2019 05 22 Start Rinnovo sezione eAccess eLine P2P attiva fase2 -->
+                <apex:column rendered="{!checkP2PAttELine}" > 
+                    <apex:facet name="header">ID Sede</apex:facet>
+                    {!VLog.EOF_SL_Riferimento__r.ID_Sede__c} <!-- ID_Sede__c --> 
+                </apex:column>  
+                
+                <apex:column rendered="{!checkP2PAtt}">
+                    <apex:facet name="header">Kit di Consegna Vlan</apex:facet>
+                    {!VLog.OF_SA_KIT_CONSEGNA_VLAN__c} <!-- ID_Sede__c -->
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header">Profilo</apex:facet>
+                    {!VLog.OF_SA_PROFILO_VLAN__c} <!-- EOF_PROFILO__c -->
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header">Opzione</apex:facet>
+                    {!VLog.PO_P2PAttiva_Opzione__c} <!-- EOF_PROFILO__c -->
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header">COS Class</apex:facet>
+                    {!VLog.PO_PP_cos_class__c} <!-- PO_PP_cos_class__c -->
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header">Modello di Servizio VLAN</apex:facet>
+                    {!VLog.OF_SA_MODELLO_DI_SERVIZIO_VLAN__c} <!-- OF_SA_MODELLO_DI_SERVIZIO_VLAN__c -->
+                </apex:column>		
+                
+                <!-- EC 2019 05 22 end Rinnovo sezione eAccess eLine P2P attiva fase2 -->
+                
+                <!-- EC 2019 05 22 Start commenti vecchia sezione
+<apex:column >
+<apex:facet name="header">KIT Consegna VLAN</apex:facet>
+{!VLog.OF_SA_KIT_CONSEGNA_VLAN__c} <!-- OF_SA_KIT_CONSEGNA_VLAN__c -->
+                <!-- EC 2019 05 22 Start commenti vecchia sezione
+</apex:column>
+
+<apex:column >
+<apex:facet name="header">Customer VLAN</apex:facet>
+{!VLog.OF_SA_CUSTOMER_VLAN__c} 
+<!-- OF_SA_CUSTOMER_VLAN__c -->
+                <!-- EC 2019 05 22 Start commenti vecchia sezione
+</apex:column>            
+
+<apex:column >
+<apex:facet name="header">Profilo VLAN</apex:facet>
+{!VLog.OF_SA_PROFILO_VLAN__c} <!-- OF_SA_PROFILO_VLAN__c -->
+                <!-- EC 2019 05 22 Start commenti vecchia sezione
+</apex:column>
+
+<apex:column >
+<apex:facet name="header">Modello di Servizio VLAN</apex:facet>
+{!VLog.OF_SA_MODELLO_DI_SERVIZIO_VLAN__c} <!-- OF_SA_MODELLO_DI_SERVIZIO_VLAN__c -->
+                <!-- EC 2019 05 22 Start commenti vecchia sezione
+</apex:column>
+
+
+<apex:column >
+<apex:facet name="header">Informazioni VLAN</apex:facet>
+{!VLog.OF_SA_INFORMAZIONI_VLAN__c} <!-- OF_SA_INFORMAZIONI_VLAN__c -->
+                <!-- EC 2019 05 22 Start commenti vecchia sezione
+</apex:column>
+-->
+            </apex:dataTable>    
+        </apex:outputtext>        
+        
+        <!-- TABELLA DETTAGLIO OFFERTA-->
+        
+        <apex:outputtext rendered="{!NOT(checkFibLeaseMisto || checkFibLease)}"><br/>Dettaglio Offerta<br/>
+            <apex:dataTable var="OppCol" value="{!opp.Opportunities__r}" border="2" width="100%">
+                <apex:column >
+                    <apex:facet name="header">Collegamento</apex:facet>
+                    {!OppCol.PO_Collegamento__r.EOF_Codice_Ordine_OLO__c}
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header">Sede Cliente</apex:facet>
+                    {!OppCol.PO_Collegamento__r.PO_Sito__c}
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header">Indirizzo Cliente</apex:facet>
+                    {!OppCol.PO_Collegamento__r.Particella_Toponomastica_1__c} {!OppCol.PO_Collegamento__r.PO_Indirizzo_collegamento__c} {!OppCol.PO_Collegamento__r.PO_Civico__c}, {!OppCol.PO_Collegamento__r.PO_Nome_Comune__c}
+                </apex:column>
+                
+                <apex:column rendered="{!checkIRU || checkBackhauling || checkBTS || checkDarkFiber}">
+                    <apex:facet name="header">Canone Manutenzione (€) Anno</apex:facet>
+                    {!OppCol.PO_CanoneManutenzioneCollegScontato__c}
+                    <!--<apex:facet name="footer"><b>{!i}</b></apex:facet>-->
+                </apex:column>
+                
+                <apex:column rendered="{!checkIRU || checkBackhauling || checkBTS || checkDarkFiber}">
+                    <apex:facet name="header">Corrispettivo IRU (€)</apex:facet>
+                    {!OppCol.PO_CorrispettivoIRUCollegamentoScontato__c}
+                    <!--<apex:facet name="footer"><b>{!l}</b></apex:facet>-->
+                </apex:column>
+                
+                <apex:column rendered="{!checkP2P || checkEventoTemp || checkP2PAtt || checkP2PAttELine}">
+                    <apex:facet name="header">Canone (€) Anno</apex:facet>
+                    {!OppCol.PO_CanoneCollegamentoScontato__c}
+                    <!--<apex:facet name="footer"><b>{!i}</b></apex:facet>-->
+                </apex:column>
+                
+                <apex:column rendered="{!checkIRU || checkP2P || checkEventoTemp || checkP2PAtt || checkBackhauling || checkBTS || checkDarkFiber||checkP2PAttELine}">
+                    <apex:facet name="header">Contributo Attivazione (€)</apex:facet>
+                    {!OppCol.PO_ContributoAttivazCollegamScontato__c}
+                    <!--<apex:facet name="footer"><b>{!k}</b></apex:facet>-->
+                </apex:column>
+                
+                <apex:column rendered="{!checkIRU || checkP2P || checkEventoTemp || checkP2PAtt || checkBackhauling || checkBTS || checkDarkFiber || checkP2PAttELine}">
+                    <apex:facet name="header">Costi Aggiuntivi (€)</apex:facet>
+                    {!OppCol.PO_Costi_aggiuntivi_collegamento_scontat__c}
+                    <!--<apex:facet name="footer"><b>{!j}</b></apex:facet>-->
+                </apex:column>
+                
+                <!-- ANNO 1 -->
+                <apex:column rendered="{!checkFibLink}">
+                    <apex:facet name="header">Canone affitto<br/>1 anno (€/anno)</apex:facet>
+                    {!OppCol.PO_Canone_annuo_Collegamento1anno_Scont2__c}
+                </apex:column>
+                
+                <apex:column rendered="{!checkFibLink}">
+                    <apex:facet name="header">Contributo di attivazione<br/>1 anno (€)</apex:facet>
+                    {!OppCol.PO_Contributo_annuo_Colleg1anno_Scontat2__c}
+                </apex:column>
+                
+                <apex:column rendered="{!checkFibLink}">
+                    <apex:facet name="header">Contributo aggi.<br/>1 anno (€)</apex:facet>
+                    {!OppCol.PO_Costi_Aggiuntivi_Anno1_Scontati__c}
+                </apex:column>
+                
+                <!-- ANNO 2 -->
+                <apex:column rendered="{!checkFibLink}">
+                    <apex:facet name="header">Canone affitto 2 anni<br/>(€/anno)</apex:facet>
+                    {!OppCol.PO_Canone_annuo_Collegamento2anno_Scont2__c}
+                </apex:column>
+                
+                <apex:column rendered="{!checkFibLink}">
+                    <apex:facet name="header">Contributo di attivazione<br/>2 anni (€)</apex:facet>
+                    {!OppCol.PO_Contributo_annuo_Colleg2anni_Scontat2__c}
+                </apex:column>
+                
+                <apex:column rendered="{!checkFibLink}">
+                    <apex:facet name="header">Contributo aggi.<br/>2 anni (€)</apex:facet>
+                    {!OppCol.PO_Costi_Aggiuntivi_Anno2_Scontati__c}
+                </apex:column>
+                
+                <!-- ANNO 3 -->
+                <apex:column rendered="{!checkFibLink}">
+                    <apex:facet name="header">Canone affitto<br/>3 anni (€/anno)</apex:facet>
+                    {!OppCol.PO_Canone_annuo_Collegamento3anno_Scont2__c}
+                </apex:column>
+                
+                <apex:column rendered="{!checkFibLink}">
+                    <apex:facet name="header">Contributo di attivazione<br/>3 anni (€)</apex:facet>
+                    {!OppCol.PO_Contributo_annuo_Colleg3anni_Scontat2__c}
+                </apex:column>
+                
+                <apex:column rendered="{!checkFibLink}">
+                    <apex:facet name="header">Contributo aggi.<br/>3 anni (€)</apex:facet>
+                    {!OppCol.PO_Costi_Aggiuntivi_Anno3_Scontati__c}
+                </apex:column>
+            </apex:dataTable>
+            
+            
+            <!-- ALTRI ANNI -->
+            <apex:outputtext rendered="{!CheckNumAnni && checkFibLink}" ><br/>Dettaglio Offerta altri anni<br/>
+                <apex:dataTable var="OppCol" value="{!opp.Opportunities__r}" border="2" width="100%">
+                    <apex:column >
+                        <apex:facet name="header">Collegamento</apex:facet>
+                        {!OppCol.PO_Collegamento__r.casenumber}
+                    </apex:column>
+                    
+                    <apex:column >
+                        <apex:facet name="header">Sede Cliente</apex:facet>
+                        {!OppCol.PO_Collegamento__r.PO_Sito__c}
+                    </apex:column>
+                    
+                    <apex:column >
+                        <apex:facet name="header">Indirizzo Cliente</apex:facet>
+                        {!OppCol.PO_Collegamento__r.Particella_Toponomastica_1__c} {!OppCol.PO_Collegamento__r.PO_Indirizzo_collegamento__c} {!OppCol.PO_Collegamento__r.PO_Civico__c}, {!OppCol.PO_Collegamento__r.PO_Nome_Comune__c}
+                    </apex:column>
+                    
+                    <apex:column >
+                        <apex:facet name="header">Canone affitto<br/>{!opp.PO_Numero_Anni__c} anni (€/anno)</apex:facet>
+                        {!OppCol.PO_Canone_annuo_altri_anni_Scontato2__c}
+                    </apex:column>
+                    
+                    <apex:column >
+                        <apex:facet name="header">Contributo di attivazione<br/>{!opp.PO_Numero_Anni__c} anni (€)</apex:facet>
+                        {!OppCol.PO_Contributo_Attivaz_altri_anni_Scont2__c}
+                    </apex:column>
+                    
+                    <apex:column >
+                        <apex:facet name="header">Contributo aggi.<br/>{!opp.PO_Numero_Anni__c} anni (€)</apex:facet>
+                        {!OppCol.PO_Costi_Aggiuntivi_Altri_Anni_Scontati__c} 
+                    </apex:column>
+                </apex:dataTable>
+            </apex:outputtext>
+            
+        </apex:outputtext>
+        
+        <!-- NOTE -->
+        <apex:outputtext rendered="{!IF(opp.PO_Note__c!= null, true, false)}"><br/>
+            <apex:dataTable var="Opp1" value="{!opp}" border="2" width="100%">
+                <apex:column >
+                    <apex:outputField value="{!opp.PO_Note__c}"/>
+                </apex:column>
+            </apex:dataTable><p/>        
+        </apex:outputtext>
+        <!-- END TABELLE --> 
+        
+        <br/><br/>  
+    </div>
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                <apex:commandButton value="Salva PDF" action="{!savePDF}" oncomplete="stampXLSX('{!q.Id}','{!RichiestaFattibil}','{!NameAttachmentXLSX}')"/>
+                <apex:commandButton value="Ritorna alla Quote" action="{!ToReturn}" />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+    
+</apex:page>

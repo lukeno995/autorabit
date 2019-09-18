@@ -1,0 +1,97 @@
+<apex:page standardController="case" extensions="EmailMessages" showChat="false" showHeader="false" sidebar="false" applyBodyTag="false" applyHtmlTag="false">
+     <html lang="en">
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+                <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <title>Open Fiber</title>  
+                <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+                <!-- Bootstrap Core CSS -->
+                <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+                
+                <!-- MetisMenu CSS -->
+                <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+                
+                <!-- Custom CSS -->
+                <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+                
+                <!-- Morris Charts CSS -->
+                <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+                
+                <!-- Custom Fonts -->
+                <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+                
+                <style>
+                    .navbar {
+                    min-height: 105px;
+                    }
+                    .navbar-header {
+                    float: none;
+                    }
+                    .navbar-default {
+                    background-color: #ffffff;
+                    }
+                    .panel-default>.panel-heading {
+                    color: #ffffff;
+                    background-color: #337ab7;
+                    }
+                    span.dateFormat{
+                    
+                    display:none;
+                    
+                    }
+                    .red{color:red;}
+                    .form-check-input{ 
+                    margin-left: 45px !important;
+                    margin-top: 10px;
+                    }
+                    
+                </style>
+            </head>
+            <body>
+    <apex:form >
+        <apex:pageBlock title="Reply Email">
+            <apex:pageBlockSection >
+                <!--<apex:pageBlockSectionItem >
+                    
+                    From Address <apex:inputField value="{!replymail.FromAddress}"  />
+                </apex:pageBlockSectionItem><br/>-->
+                <!-- <apex:pageBlockSectionItem >
+To Address <apex:inputField value="{!replymail.ToAddress}" />
+</apex:pageBlockSectionItem><br/>-->
+                <apex:pageBlockSectionItem >
+                    
+                    Body <apex:inputTextarea value="{!replymail.TextBody}" richText="true"/>
+                    
+                </apex:pageBlockSectionItem><br/>
+                <apex:pageBlockSectionItem >
+               File Upload <apex:inputFile style="width:100%" id="fileToUpload" value="{!fileBody}" filename="{!fileName}" />
+                
+                </apex:pageBlockSectionItem>
+                
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockButtons location="Bottom">
+                <apex:commandlink action="{!replyEmailNew}" value="Rispondi" styleClass="btn btn-primary"/>
+                
+                <!--<apex:commandLink value="Rispondi" target="_blank" styleClass="btn" action="{!replyEmail}"/>-->
+                <apex:commandlink action="{!Canceling}" value="Cancel" styleClass="btn btn-primary"  target="_top" />
+                
+                                               
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        
+    </apex:form>
+   <script>
+    var j$ = jQuery.noConflict();
+    j$("iframe").each(function(){
+        if(String(this.title) === "ReplyEmail"){
+            j$(this).load(function() {
+                j$(this).height( j$(this).contents().find("body").height() );
+            });
+        }
+    });
+    </script>
+         </body>
+    </html>
+</apex:page>

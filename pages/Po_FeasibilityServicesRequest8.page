@@ -1,0 +1,326 @@
+<apex:page id="pageID" standardController="Case" extensions="PO_RegistrationController" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>open fiber</title>  
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+        <!-- Bootstrap Core CSS -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+        
+        <!-- MetisMenu CSS -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+        
+        <!-- Custom CSS -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+        
+        <!-- Morris Charts CSS -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+        
+        <!-- Custom Fonts -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+        
+        
+        
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>            
+        <link rel = "stylesheet"  type = "text/css"  href = "//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+        
+        <style>
+            .navbar {
+            min-height: 105px;
+            }
+            .navbar-header {
+            float: none;
+            }
+            .navbar-default {
+            background-color: #ffffff;
+            }
+            .panel-default>.panel-heading {
+            color: #ffffff;
+            background-color: #337ab7;
+            }
+            span.dateFormat{
+            
+            display:none;
+            
+            }
+            .red{color:red;}
+            .form-check-input{ 
+            margin-left: 45px !important;
+            margin-top: 10px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div id="wrapper">
+            <!-- Navigation -->
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <c:PO_SideBarComponent Rec="{!recordOfferta}" />
+                
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav" id="side-menu">
+                        </ul>
+                    </div>
+                    <!-- /.sidebar-collapse -->
+                </div>
+                <!-- /.navbar-static-side -->
+            </nav>
+            <div>
+                
+                <div style="color:red;" id="showerror">
+                    <apex:pageMessages id="errors" /> 
+                </div>
+                <apex:outputPanel id="testform">
+                </apex:outputPanel>
+            </div>
+            
+            
+            <div id="page-wrapper">
+                        
+            
+                <div class="row">
+                    <div class="col-lg-8" style="width:73.666667%;">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <i></i>Dati Generali
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                     <apex:form >
+                                        
+                                        <div class="col-lg-6">
+                                        <div class="form-group">
+                                        <label>ID Ordine Collegamento</label> &nbsp; &nbsp;
+                                        <apex:outputText id="Status" styleClass="form-control"  value="{!childCaseObj.CaseNumber}"/>
+                                        </div>
+                                        <div class="form-group">
+                                        <label> Stato  </label> &nbsp; &nbsp;
+                                        <apex:outputText id="Collegamento" styleClass="form-control" value="{!childCaseObj.status}"/>
+                                        </div>
+                                        </div>
+
+
+                                        <div class="col-lg-6">
+                                        <div class="form-group">
+                                        <label>Prime Contractor</label> &nbsp; &nbsp;
+                                        <apex:outputText id="DatadiCreazione" styleClass="form-control"  value="{!childCaseObj.PO_Prime_Contractor__c}"/>
+                                        </div>
+                                       <div class="form-group">
+                                        <label>Data Attivazione Ordine</label> &nbsp; &nbsp;
+                                        <apex:outputText id="DatadiCreazioneOrdine" styleClass="form-control"  value="{!ordercasedispayordinedate }"/>
+                                        </div>
+                                        </div>
+                                         <div class="col-lg-6">
+                                        <div class="form-group">
+                                        <label>Data Attivazione Richiesta</label> &nbsp; &nbsp;
+                                        <apex:outputText id="DataAttivazione" styleClass="form-control" value="{!childCaseObj.PO_Data_Attivazione_Richiesta__c}" />
+                                        </div>
+                                       
+                                         <div class="form-group">
+                                        <label>Note Sospensione </label> &nbsp; &nbsp;
+                                        <apex:inputTextArea id="NoteSospensione" styleClass="form-control" value="{!childCaseObj.Note_Sospensione_Operatore__c}" readonly="true"/>
+                                        </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                       
+                                                                                    <div class="form-group">
+                                        <label>Note </label> &nbsp; &nbsp;
+                                        <apex:inputTextArea id="Richiestafattibilità1" styleClass="form-control" value="{!childCaseObj.EOF_Comunicazioni_con_OLO__c}" readonly="true"/>
+                                        </div>
+                                        </div>
+                                        
+                                       
+                                       
+                                        <!-- <div class="col-lg-6">
+                                          <div class="form-group">
+                                               
+                                                   
+                                               
+                                                 <apex:commandButton styleClass="btn btn-primary" value="Chiudi" action="{!detailparentcase}" id="button1"/> &nbsp;&nbsp;
+                                                 </div>
+                                            </div>-->
+                                    
+                                    
+                                   
+
+                                    
+                                    <br/>
+                                    </apex:form>
+                                </div>
+                                <!-- /.row (nested) -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>       
+                        
+                        
+                         
+                        
+                        
+                        <!-- /.col-lg-4 -->
+                    </div>
+                    
+                    
+                    <!-- /.row -->
+                </div>
+                
+                
+                <div class="row">
+                <div class="col-lg-8" style="width:73.666667%;">
+                    
+                    <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <i></i>Dati Toponomastici
+                            </div>
+                             <div class="panel-body">
+                                <div class="row">
+                            
+                                  <div class="{!IF(childCaseObj.PO_Tipologia_Offerta_ordine__c  == 'Fiber Link'||childCaseObj.PO_Tipologia_Offerta_ordine__c  == 'Evento Temporaneo',"col-lg-4","col-lg-6")}">
+                                       
+                                        <div class="form-group">
+                                        <label>Sede Cliente </label> &nbsp; &nbsp;
+                                        <apex:outputText id="SedeCliente" styleClass="form-control"  value="{!childCaseObj.PO_Sito__c}"/>
+                                        </div>
+                                         <apex:outputPanel rendered="{!childCaseObj.PO_Tipologia_Offerta_ordine__c != 'P2P Base'}">
+                                        <div class="form-group">
+                                        <label>Indirizzo Cliente</label> &nbsp; &nbsp;
+                                        <apex:outputText id="Sede1diTerminazione" styleClass="form-control"  value="{!cliente}"/>
+                                        </div>
+                                          </apex:outputPanel>
+                                        </div>
+
+                                        <!--Not p2p-->
+                                        <div class="{!IF(childCaseObj.PO_Tipologia_Offerta_ordine__c  == 'Fiber Link'||childCaseObj.PO_Tipologia_Offerta_ordine__c  == 'Evento Temporaneo',"col-lg-4","col-lg-6")}">
+                                        
+                                         <apex:outputPanel rendered="{!childCaseObj.PO_Tipologia_Offerta_ordine__c != 'P2P Base'}">
+                                        
+                                        <div class="form-group" >
+                                        <label>Sede 1 di Terminazione </label> &nbsp; &nbsp;
+                                        <apex:outputText id="IndirizzoCliente" styleClass="form-control" value="{!childCaseObj.PO_Sito_partenza__c}"/>
+                                        </div>
+                                        </apex:outputPanel>
+                                         <apex:outputPanel rendered="{!childCaseObj.PO_Tipologia_Offerta_ordine__c == 'P2P Base'}">
+                                        <div class="form-group">
+                                        <label>Indirizzo Cliente</label> &nbsp; &nbsp;
+                                        <apex:outputText id="Sede1diTerminazione6" styleClass="form-control"  value="{!cliente}"/>
+                                        </div>
+                                          </apex:outputPanel>
+                                         <apex:outputPanel rendered="{!childCaseObj.PO_Tipologia_Offerta_ordine__c  != 'P2P Base'}">
+                                        
+                                        <div class="form-group">
+                                        <label>Indirizzo Sede 1 di Terminazione</label> &nbsp; &nbsp;
+                                        <apex:outputText id="IndirizzoSede1diTerminazione" styleClass="form-control" value="{!cliente1}"  />
+                                        </div>
+                                        </apex:outputPanel>
+                                        </div>
+                                       
+                                        <div class="{!IF(childCaseObj.PO_Tipologia_Offerta_ordine__c == 'Fiber Link'||childCaseObj.PO_Tipologia_Offerta_ordine__c == 'Evento Temporaneo',"col-lg-4","col-lg-6")}">
+                                        
+                                        </div>
+                                        
+                                         
+                                        <!--FiberLink-->
+                                        <div class="{!IF(childCaseObj.PO_Tipologia_Offerta_ordine__c == 'Fiber Link'||childCaseObj.PO_Tipologia_Offerta_ordine__c == 'Evento Temporaneo',"col-lg-4","col-lg-6")}">
+                                            <apex:outputPanel rendered="{!childCaseObj.PO_Tipologia_Offerta_ordine__c == 'Fiber Link'||childCaseObj.PO_Tipologia_Offerta_ordine__c == 'Evento Temporaneo'}">
+                                                <div class="form-group">
+                                                    <label>Sede 2 di Terminazione </label> &nbsp; &nbsp;
+                                                    <apex:outputText value="{!childCaseObj.PO_Sito_3__c}" styleClass="form-control" />
+                                                </div>
+                                            </apex:outputPanel>
+                                           
+                                            <apex:outputPanel rendered="{!childCaseObj.PO_Tipologia_Offerta_ordine__c == 'Fiber Link'||childCaseObj.PO_Tipologia_Offerta_ordine__c == 'Evento Temporaneo'}">
+                                                <div class="form-group">
+                                                    <label>Indirizzo Sede 2 di Terminazione </label> &nbsp; &nbsp;
+                                                    <apex:outputText value="{!cliente2}" styleClass="form-control" />
+                                                </div>
+                                            </apex:outputPanel>
+                                        </div>
+                                        
+                                        <!--End-->
+                            
+                            </div>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                
+                 <div class="row">
+                <div class="col-lg-8" style="width:73.666667%;">
+                    
+                    <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <i></i>Allegato
+                            </div>
+                            
+                            
+                                  <div>
+                                                    
+                                                    
+                                                    <table id="theTable" class="table table-striped table-bordered" width="100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Allegato </th>
+                                                                <th>Data Creazione </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <apex:repeat value="{!orderatt}" var="att">
+                                                                <tr>
+                                                                    <td>
+                                                                        
+                                                                        <apex:outputLink value="{!URLFOR($Action.Attachment.Download, att.Id)}" target="_blank">{!att.Name}</apex:outputLink>                                                                   
+                                                                        
+                                                                        
+                                                                    </td> 
+                                                                    <td>
+                                                                        <apex:outputField value="{!att.createdDate}" />
+                                                                    </td>
+                                                                </tr> 
+                                                            </apex:repeat>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <apex:form >  
+                <apex:commandButton styleClass="btn btn-primary" value="Chiudi" action="{!DetailPage}" id="button1"/> &nbsp;&nbsp;
+               </apex:form>
+                
+        </div>
+        </div>
+        <!-- /#wrapper -->
+        
+        
+        <!-- /#wrapper -->
+        
+        <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+        
+        <!-- Bootstrap Core JavaScript -->
+        <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+        
+        
+        
+        
+    </body>
+</html>
+</apex:page>

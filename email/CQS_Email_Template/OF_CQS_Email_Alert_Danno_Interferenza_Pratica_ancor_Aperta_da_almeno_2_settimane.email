@@ -1,0 +1,20 @@
+Gentile {!User.Name}, 
+
+A sistema risulta sia ancora aperta la seguente pratica: 
+
+Tipo di incidente: {!OF_CQS_Evento__c.RecordType} 
+
+Numero Incidente: {!OF_CQS_Evento__c.Name} 
+
+Impresa: {!OF_CQS_Evento__c.00N7E00000137Zc} 
+
+Gravità Incidente: {!OF_CQS_Evento__c.CQS_Indice_Gravita_Taglio_Danneggiamento__c} 
+
+Data Apertura Pratica: {!OF_CQS_Evento__c.OF_CQS_Data_Apertura_Pratica__c}
+
+
+Cliccando sul seguente link potrà accedere direttamente alla pagina dell'incidente in oggetto: {!OF_CQS_Evento__c.Link} 
+
+La preghiamo di effettuare i dovuti controlli a riguardo
+
+Cordialmente

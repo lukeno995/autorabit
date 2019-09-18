@@ -1,0 +1,148 @@
+<apex:page Controller="PO_EditContactController" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+
+    <style>
+        #myinfo{
+        font-size: 180px;
+        }
+        span.dateFormat{
+        
+        display:none;
+        
+        }
+        .red{color:red;}
+    </style>
+     <html lang="en">
+        <head >
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>open fiber</title>  
+            
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                color:#0000ff; !important;
+                }
+                
+            </style>
+        </head>
+        <body>
+            
+            <div id="wrapper">
+                
+                <!-- Navigation -->
+                
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    
+                    <!--<c:POHeaderComp />-->
+                    <c:PO_SideBarComponent />
+                      
+                    
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                           <ul class="nav" id="side-menu" style="padding-left: 10px;">
+                               
+                                
+                            </ul>
+                        </div>
+                        <!-- /.sidebar-collapse -->
+                    </div>
+                    <!-- /.navbar-static-side -->
+                    
+                </nav>
+
+    <apex:form >
+    <apex:outputPanel id="mainblk2" >
+    <div id="page-wrapper" >
+    <div class="row">
+    <div class="col-lg-12" >
+      <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title"><apex:outputField value="{!loggedInContact.FirstName}" />&nbsp;
+                <apex:outputField value="{!loggedInContact.LastName}" /></h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">                
+                <div class=" col-md-12 col-lg-12 "> 
+                    <table class="table table-user-information">
+                        <tbody>
+                            <tr>
+                                <td>Nome</td>
+                                <td><apex:inputField styleClass="form-control" value="{!loggedInContact.FirstName}" /></td>
+                            </tr>
+                            <tr>
+                                <td>Cognome</td>
+                                <td><apex:inputField styleClass="form-control" value="{!loggedInContact.LastName}" /></td>
+                            </tr>
+
+                            <tr>
+                                <td>Contatto telefonico</td>
+                                <td><apex:inputField styleClass="form-control" value="{!loggedInContact.PO_Contatto_telefonico__c}"/></td>
+                            </tr>
+                            <tr>
+                                <td>N° Licenza</td>
+                                <td><apex:inputField styleClass="form-control" id="codeFiscal" value="{!loggedInContact.PO_N_Licenza__c}" /></td>
+                            </tr>
+                            <tr>
+                                <td>E-mail</td>
+                                <td><apex:inputField styleClass="form-control" value="{!loggedInContact.Email}"/></td>
+                            </tr>                            
+                            <tr>
+                                <td>Struttura di appartenenza</td>
+                                <td><apex:inputField styleClass="form-control" value="{!loggedInContact.PO_Struttura_di_appartenenza__c}"/></td>
+                            </tr>
+                                                     
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+            
+            <apex:commandButton styleClass="btn btn-default pull-right" value="Annulla" action="{!cancelit}" />&nbsp; &nbsp;
+            <apex:commandButton styleClass="btn btn-primary pull-right" value="Salva" action="{!saveit}" id="btn1"/>&nbsp; &nbsp;
+        </div>
+    </div>
+  </div>    
+ </div>    
+</div>
+        </apex:outputPanel>
+        </apex:form>
+        </div>
+        </body>
+        </html>
+</apex:Page>

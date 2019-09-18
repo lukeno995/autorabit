@@ -1,0 +1,306 @@
+<apex:component controller="PO_COMP_TT_Inserimento_Controller" allowDML="true">
+<html lang="it"> 
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/> 
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <!-- /#wrapper -->
+              
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js' ></script>
+            
+            <apex:includeScript value="{!URLFOR($Resource.datepicker, 'datepicker/js/bootstrap-datepicker.js')}"/>
+           
+            <!--<apex:stylesheet value="{!URLFOR($Resource.datepicker, 'datepicker/css/datepicker.css')}"/>-->
+            
+            <apex:includeScript value="{!URLFOR($Resource.moment, 'moment-develop/min/moment-with-locales.min.js')}"/>
+
+            <apex:includeScript value="{!URLFOR($Resource.datetimepicker, 'bootstrap-datetimepicker-master/build/js/bootstrap-datetimepicker.min.js')}"/>
+            
+            <apex:stylesheet value="{!URLFOR($Resource.datetimepicker, 'bootstrap-datetimepicker-master/build/css/bootstrap-datetimepicker.min.css')}"/>
+            
+            <apex:includeScript value="{!URLFOR($Resource.jqvalidation, 'dist/jquery.validate.min.js')}"/>
+            
+            <apex:includeScript value="{!URLFOR($Resource.jqvalidation, 'dist/localization/messages_it.min.js')}"/>
+          
+            <apex:includeScript value="{!URLFOR($Resource.tooltip, 'tooltip/jquery-validate.bootstrap-tooltip.min.js')}"/>
+  <apex:includeScript value="{!URLFOR($Resource.tooltip, 'tooltip/jquery-validate.bootstrap-tooltip.min.js')}"/>           
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+                .tooltip-inner {
+  			    background-color: #337ab7; 
+				}
+                
+            </style>
+        </head>
+            <body>
+            
+            
+
+            
+            <div class="panel panel-default">
+                <div class="panel-heading"> 
+                   <!--
+                    <apex:outputPanel rendered="{!modifyMode}">
+                        <i></i>Modifica richiesta di Attivazione
+                    </apex:outputPanel>
+                     -->
+                    
+                        <i></i>Inserimento nuova richiesta di Trouble Ticket
+                    
+                    
+                </div>
+                <div class="panel-body">
+                    <div class="row">  
+                        
+                        <apex:form id="myform">
+                            <div style="color:red;" id="showerror">
+                                <apex:pageMessages id="errors" /> 
+                                <!--
+                                <apex:outputPanel rendered="{!apparati}">
+                                    Compilare il campo Informazioni Logistica Apparati
+                                </apex:outputPanel>
+                                 -->
+                            </div>
+                            <form role="form" class="form-horizontal">
+                                <!-- Hidden field -->
+                                <apex:outputText styleClass="hide" value="{!slToInsert.EOF_Data_Ora_Inizio_Guasto__c}" id="DataOraInizioGuastoHidden"/>
+                                <apex:inputHidden value="{!inputTimeStr2}" id="RitornoData"/>
+                                <fieldset class="form-group">
+                                     
+                                         <div class="col-lg-6">
+                                            <label>Codice Comunicazione Operatore* : </label> &nbsp; &nbsp;
+                                            <!-- <apex:inputText id="CodiceComunicazioneOLO" styleClass="form-control"  value="{!slToInsert.EOF_Codice_Comunicazione_OLO__c}" required="true" maxlength="18"/>-->
+                                            <apex:inputText id="CodiceComunicazioneOLO" styleClass="form-control"  value="{!slToInsert.EOF_Codice_Comunicazione_OLO__c}" required="true" maxlength="50"/>
+                                         </div>  
+
+                                        <div class="col-lg-6">
+                                            <label>Categoria Guasto* </label> &nbsp; &nbsp;
+                                            <apex:selectList id="CategoriaGuasto" styleClass="form-control" value="{!slToInsert.EOF_Categoria_Guasto__c}" size="1"  required="true">
+                                            	            <apex:selectOption itemValue="" itemLabel=""/>
+                                            	            <apex:selectOption itemValue="0" itemLabel="Disservizio"/>
+															<apex:selectOption itemValue="1" itemLabel="Degrado"/>
+															<apex:selectOption itemValue="2" itemLabel="Post Provisioning"/>
+											</apex:selectList>
+                                          </div>                                       
+
+                                         <div class="col-lg-6 pull-right">
+                                             <label>ID Risorsa*</label> &nbsp;  &nbsp;
+                                              <apex:inputText id="IdRisorsa" styleClass="form-control" value="{!slToInsert.EOF_ID_Risorsa__c}" required="true" maxlength="50"/>
+                                         </div>
+                                         <div class="col-lg-6">
+                                             <label>Causale Apertura*</label> &nbsp;  &nbsp;
+                          	                  <apex:selectList id="CausaleApertura" styleClass="form-control" value="{!slToInsert.EOF_Causale_Apertura__c}" size="1"  required="true">
+                                            	            <apex:selectOption itemValue="" itemLabel=""/>
+                                            	            <apex:selectOption itemValue="1" itemLabel="Connettività non disponibile"/>
+															<apex:selectOption itemValue="2" itemLabel="Connessione instabile"/>
+															<apex:selectOption itemValue="3" itemLabel="Lentezza di navigazione"/>
+															<apex:selectOption itemValue="4" itemLabel="Mai Navigato"/>
+										      </apex:selectList>
+                                         </div>
+  
+                                         <div class="col-lg-6">
+                                              <label>Data/Ora Inizio Guasto*</label> &nbsp;  &nbsp;
+                                              <!--<apex:inputField type="datetime-local" styleClass="form-control" id="DataOraInizioGuasto" value="{!slToInsert.EOF_Data_Ora_Inizio_Guasto__c}" required="false" />-->
+                                              <!-- <apex:inputField type="text" styleClass="form-control" id="DataOraInizioGuasto" value="{!slToInsert.EOF_Data_Ora_Inizio_Guasto__c}" required="false" /> -->
+                                              <apex:inputText styleClass="form-control" id="DataOraInizioGuasto" value="{!inputTimeStr}" required="true"/>
+                                              <!--  <input class="form-control"  id="DataOraInizioGuasto"  required="true" />  -->
+                                         </div>
+                                         <div class="col-lg-6">
+                                              <label>Nome Cliente</label> &nbsp;  &nbsp;
+                                              <apex:inputText id="NomeCliente" styleClass="form-control" value="{!slToInsert.EOF_Nome_Cliente__c}" required="false" maxlength="50"/>
+                                         </div>
+                                         <div class="col-lg-6">
+                                              <label>Cognome Cliente*</label> &nbsp;  &nbsp;
+                                              <apex:inputText id="CognomeCliente" styleClass="form-control" value="{!slToInsert.EOF_COgnome_CLiente__c}" required="true" maxlength="70"/>
+                                         </div>
+                                         <div class="col-lg-6">
+                                              <label>Recapito Telefonico Cliente 1*</label> &nbsp;  &nbsp;
+                                              <apex:inputText id="RecapitoTelefonicoCliente1" styleClass="form-control" value="{!slToInsert.EOF_RECAPITO_TELEFONICO_CLIENTE_1__c}" required="true" maxlength="50" />
+                                         </div>
+                                         <div class="col-lg-6">
+                                              <label>Recapito Telefonico Cliente 2</label> &nbsp;  &nbsp;
+                                              <apex:inputText id="RecapitoTelefonicoCliente2" styleClass="form-control" value="{!slToInsert.EOF_RECAPITO_TELEFONICO_CLIENTE_2__c}" required="false" maxlength="50"  />
+                                         </div>
+                                         <div class="col-lg-6">
+                                              <label>Nome Referente Tecnico Operatore*</label> &nbsp;  &nbsp;
+                                              <apex:inputText id="NomeRefTecnicoOLO" styleClass="form-control" value="{!slToInsert.EOF_NOME_REFERENTE_TECNICO_OLO__c}" required="true" maxlength="255" />
+                                         </div>
+                                         <div class="col-lg-6">
+                                              <label>Email Referente Tecnico Operatore*</label> &nbsp;  &nbsp;
+                                              <apex:inputText id="EmailRefTecnicoOLO" styleClass="form-control" value="{!slToInsert.EOF_EMAIL_REFERENTE_TECNICO_OLO__c}"  required="true"  maxlength="50" />
+                                         </div>
+                                         <div class="col-lg-6">
+                                              <label>Telefono Referente Tecnico Operatore*</label> &nbsp;  &nbsp;
+                                              <apex:inputText id="TelRefTecnicoOLO" styleClass="form-control" value="{!slToInsert.EOF_TELEFONO_REFERENTE_TECNICO_OLO__c}" required="true" maxlength="50"  />
+                                         </div>
+                                         <div class="col-lg-6">
+                                              <label>Verifica apparato cliente</label> &nbsp;  &nbsp;
+                                              <apex:inputField id="VerificaAppCliente" styleClass="form-control" value="{!slToInsert.EOF_Verifica_apparato_cliente__c}" required="false" />
+                                         </div>
+                                         <!-- 
+                                         <div class="col-lg-6">
+                                              <label>Intervento Congiunto*</label> &nbsp;  &nbsp;
+                                              <apex:inputField id="InterventoCongiunto" styleClass="form-control" value="{!slToInsert.EOF_Intervento_Congiunto__c}" required="true" />
+                                         </div> 
+                                          -->
+                                         <div class="col-lg-6">
+                                              <label> Note Cliente</label> &nbsp;  &nbsp;
+                                              <apex:inputText id="NoteCliente" styleClass="form-control" value="{!slToInsert.EOF_NOTE__c}" required="false" maxlength="4000"/>
+                                         </div>
+                                         <div class="col-lg-6">
+                                              <label>Descrizione Problema</label> &nbsp;  &nbsp;
+                                              <apex:inputText id="DescrizioneProblema" styleClass="form-control" value="{!slToInsert.EOF_Descrizione_Problema__c}" required="false" maxlength="4000" />
+                                         </div>
+
+                                       
+                                      
+                                 </fieldset>
+                                 <div class="col-lg-6">
+	                                     <div class="btn-group" role="group" aria-label="Basic example">                                      
+	                                         <apex:commandButton styleClass="btn btn-primary btnDisable" style="margin-right:10px;" value="Annulla" action="{!AnnullaS}" html-formnovalidate="formnovalidate" immediate="true" onclick="disableOnSubmit();"/>          
+	                                     </div>
+	                             </div> 
+	                                 <div class="col-lg-6" >
+	                                     <div class="btn-group" role="group" aria-label="Basic example">                                      
+                                             <apex:commandButton styleClass="btn btn-primary btnDisable" style="margin-right:10px;" value="Salva" action="{!SalvaC}" onclick="disableOnSubmit();" />       
+	                                     </div>
+	                                 </div>
+
+                            </form> 
+                             
+                        </apex:form> 
+                        
+                        <br/>  
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                </div>                
+            </body>
+            
+            <script>
+                function disableOnSubmit() {
+                    if ($('input').valid()) {
+                        setTimeout('disableAfterTimeout();', 50);
+                    }
+                }
+                function disableAfterTimeout(id) {
+                    $('.btnDisable').attr('disabled', 'disabled');
+                } 
+		        // datetimepicker  jquery
+		        $(document).ready(function(){
+		       
+
+		           //inizializza calendario /ora          
+		           $("input[id$='DataOraInizioGuasto']").datetimepicker({ 
+		           	locale: 'it'
+		           });
+		           
+		           var MyDate = $("input[id$='DataOraInizioGuastoHidden']").val();
+		           //alert(MyDate+ ' ' +  moment(MyDate).format("DD/MM/YYYY HH:mm"));
+		          
+		           $("input[id$='DataOraInizioGuasto']").val(moment(MyDate).format("DD/MM/YYYY HH:mm"));
+		           $("input[id$='RitornoData']").val(moment(MyDate).format("YYYY-MM-DD HH:mm:ss"));
+		            
+		            $.validator.addMethod("customemail", 
+					    function(value, element) {
+					        return /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(value);
+					    }, 
+					    "formato email non valido"
+					);
+		            
+		            $.validator.addMethod("customadatetime", 
+					    function(value, element) {
+					        var dateTimeNow = new Date();
+					        var myreturn = moment(value, "DD/MM/YYYY HH:mm").diff(moment(dateTimeNow, "DD/MM/YYYY HH:mm"));
+					        return   myreturn;
+					    }, 
+					    "formato email non valido"
+					);
+		            
+		              
+			        $("form[id$='myform']").validate({
+			        	 lang : 'it'			        
+			        });
+			        
+			        /*
+			        $( "input[id$='CodiceComunicazioneOLO']" ).rules( "add", {
+					  required: true,
+					  maxlength: 50
+					});
+					*/
+				    
+					$( "select[id$='CategoriaGuasto']" ).rules( "add", {
+					  required: true
+					});
+					
+					$( "select[id$='CausaleApertura']" ).rules( "add", {
+					  required: true
+					});
+					
+				    $( "input[id$='EmailRefTecnicoOLO']" ).rules( "add", {
+					  required: true,
+					  customemail: true
+					});
+					
+		      });
+		      //Aggiornamento data
+		      $("input[id$='DataOraInizioGuasto']").focusout(function() {
+  						var MyDateTimeIT = $("input[id$='DataOraInizioGuasto']").val();
+  						//alert('ITA '+MyDateTimeIT);
+  						var MyDateTimeEN = moment(MyDateTimeIT,"DD/MM/YYYY HH:mm").toDate();
+  						//alert('ENA '+MyDateTimeEN + '  ' + moment(MyDateTimeEN).format("YYYY-MM-DD HH:mm:ss") );
+  						$("input[id$='RitornoData']").val(moment(MyDateTimeEN).format("YYYY-MM-DD HH:mm:ss"));
+		      });
+            
+            /*function DisableBTN() {
+                $('.to-disable').prop('disabled', true);
+            }*/
+            
+            </script>  
+    
+    </html>
+</apex:component>

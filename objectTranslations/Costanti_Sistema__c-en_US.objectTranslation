@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Costanti di Sistema</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Costanti di Sistema</value>
+    </caseValues>
+    <fields>
+        <label><!-- Email Supporto --></label>
+        <name>Email_Supporto__c</name>
+    </fields>
+    <fields>
+        <label><!-- RT Account Cliente BSN --></label>
+        <name>RT_Account_Cliente_BSN__c</name>
+    </fields>
+    <fields>
+        <label><!-- RT Account OLO --></label>
+        <name>RT_Account_OLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- RT Asset Risorsa --></label>
+        <name>RT_Asset_Risorsa__c</name>
+    </fields>
+    <fields>
+        <label><!-- RT Caso Attivazione --></label>
+        <name>RT_Caso_Attivazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- RT Caso Cessazione --></label>
+        <name>RT_Caso_Cessazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- RT Caso TT --></label>
+        <name>RT_Caso_TT__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

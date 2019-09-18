@@ -1,0 +1,682 @@
+<apex:component controller="PO_PP_ListaRichiesteInserit_Controller" allowDML="true">
+	<html lang="en">     
+        <head> 
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/> 
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+             
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <!-- /#wrapper -->
+              
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            
+            <apex:includeScript value="{!URLFOR($Resource.multiselect, '/multiselect/js/bootstrap-multiselect.js')}"/>
+			<apex:stylesheet value="{!URLFOR($Resource.multiselect, '/multiselect/css/bootstrap-multiselect.css')}"/>
+			<apex:includeScript value="{!URLFOR($Resource.daterangepicker, '/moment.js')}"/>
+			<apex:includeScript value="{!URLFOR($Resource.daterangepicker, '/daterangepicker.js')}"/>
+			<apex:stylesheet value="{!URLFOR($Resource.daterangepicker, '/daterangepicker.css')}" />
+            
+            <!-- excelJS -->
+             
+            <apex:includeScript value="{!URLFOR($Resource.excelplus25, '/excelplus25/xlsx.full.min.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.excelplus25, '/excelplus25/excelplus-2.5.min.js')}"/>
+            
+            <apex:includeScript value="{!URLFOR($Resource.moment, 'moment-develop/min/moment-with-locales.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+				.leftFloat{
+					float:left;
+				}
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .table td.text {
+				    max-width: 177px;
+				}
+				.table td.text span {
+				    white-space: nowrap;
+				    overflow: hidden;
+				    text-overflow: ellipsis;
+				    display: inline-block;
+				    max-width: 100%;
+				}
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+            </style>
+        </head> 
+         
+            <body>
+            <apex:form >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+		                <apex:outputPanel >
+		                    <i></i>Richieste Inserite   
+		                </apex:outputPanel>
+                	</div>
+	                <div class="panel-body">
+	                    <div class="row">
+	                        <div style="color:red;" id="showerror">
+	                            <apex:pageMessages id="errors" /> 
+	                        </div>
+	                        <apex:outputPanel rendered="{!!richieste}" > 
+			                    <div class="panel-heading red" >
+			                        <i></i>Non è presente nessuna richiesta
+			                   </div>
+			                </apex:outputPanel>    
+	                        <form role="form" class="form-horizontal">
+	                        	<apex:pageBlock rendered="{!richieste}"  id="results">
+							   
+							   <!--ESPORTA XLSX	-->  
+							   <!--
+                               <button type="button" Class="btn btn-primary pull-right" style="margin-right:10px;margin-bottom:10px;" onclick="redirect()">Esporta xlsx</button> 
+                                    
+                                        <apex:param name="DataInizioNotifica" value="" />
+                                        <apex:param name="DataFineNotifica" value="{!DataFineNotifica}" />
+                                        <apex:param name="DataInizioCreazione" value="{!DataInizioCreazione}" />
+                                        <apex:param name="DataFineCreazione" value="{!DataFineCreazione}" />
+                                        <apex:param name="ListTipo" value="{!selectValueL1}" />  
+                                        <apex:param name="ListStatus" value="{!selectValueL2}" />
+                                        <apex:param name="valPOP" value="{!valPOP}" />
+                                        <apex:param name="valCodOrdOLO" value="{!valCodOrdOLO}" />
+                                        <apex:param name="valIDRisorsa" value="{!valIDRisorsa}" />  
+	                        	    
+	                        	        <apex:param name="valCodRichiesta" value="{!valCodRichiesta}" />
+                                        <apex:param name="valTipoRichiesta" value="{!valTipoRichiesta}" />
+                                        <apex:param name="valStatoRichiesta" value="{!valStatoRichiesta}" />  
+                                        <apex:param name="DataInizioCreazione" value="{!DataInizioCreazione}" />
+                                -->        
+	                        	<button type="button" Class="btn btn-primary pull-right" style="margin-right:10px;margin-bottom:10px;" onclick="doSearch()">Applica filtri</button>
+	                        	
+                                     <apex:pageBlockTable value="{!listInserite}" var="sl" rendered="{!richieste}" id="myTable" styleClass="table table-striped table-bordered">
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                               <ul class="list-unstyled">
+											    	<li class="">Codice Richiesta</li>
+                                                	<li>
+                                                 	 	<input type="text" class="form-control" id="IDFiltroCodRichiesta"  placeholder="" style=""/>		
+                                                 	</li>
+                                                </ul>
+                                             </apex:facet>
+                                             <apex:commandlink value="{!sl.OF_PP_NomeRichiesta__c}" action="{!vediReq}" rerender="null" >
+                                                 <apex:param name="eventSl" value="{!sl.Id}" assignTo="{!IdInserita}"/>
+                                                 <apex:param name="event2Sl" value="{!sl.EOF_Tipo_Comunicazione_String__c}" assignTo="{!tipoRichiesta}"/>
+                                             </apex:commandlink>
+                                         </apex:column>
+                                         
+                                        <!-- CR@ -->
+                                        <apex:column >
+                                             <apex:facet name="header">
+                                               <ul class="list-unstyled">
+											    	<li class="">Ordine Kit/VLAN</li>
+                                                	<li>
+                                                 	 	<input type="text" disabled="true" class="form-control" id="IDFiltroCodKitVlan"  placeholder="" style=""/>		
+                                                 	</li>
+                                                </ul>
+                                             </apex:facet>
+                                             <apex:commandlink value="{!sl.OF_PP_NomeRichiesta_Figlio__c}" action="{!vediDettaglioCodiceKitVlan}" rerender="null" >
+                                                 <apex:param name="eventSl" value="{!sl.Id}" assignTo="{!IdInserita}"/>
+                                                 <apex:param name="event2Sl" value="{!sl.EOF_Tipo_Comunicazione_String__c}" assignTo="{!tipoRichiesta}"/>
+                                             </apex:commandlink>
+                                         </apex:column>
+                                         <!-- FINE CR@ --> 
+                                         
+                                         
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                             	<ul class="list-unstyled">
+											    	<li class="">Tipo Richiesta</li>
+                                                	<li style="width:20px;">
+                                                		<select id="IDFiltroTipoRichiesta" multiple="multiple" >
+                                                		    <!-- 
+														    <option value="Attivazione">Attivazione</option>
+														    <option value="Cessazione">Cessazione</option>
+														     -->
+											 			</select>
+                                                	</li>
+                                                </ul>
+                                             </apex:facet>
+                                             <apex:outputField value="{!sl.EOF_Tipo_Comunicazione_String__c}" />
+                                        </apex:column>
+                                        
+                                        
+                                        <apex:column >
+                                             <apex:facet name="header">
+                                             	<ul class="list-unstyled">
+											    	<li class="">Nome KIT</li>
+                                                	<li>
+                                                 	 	<input type="text" disabled="true" class="form-control" id="IDFiltroNomeKit"  placeholder="" style=""/>		
+                                                 	</li>
+                                                </ul>
+                                             </apex:facet>
+                                             <apex:outputField value="{!sl.Nome_del_KIT__c}" />
+                                        </apex:column>
+                                        
+                                        <apex:column >
+                                             <apex:facet name="header">
+                                             	<ul class="list-unstyled">
+											    	<li class="">POP di raccolta</li>
+                                                	<li>
+                                                 	 	<input type="text" disabled="true" class="form-control" id="IDFiltroPOP_raccolta"  placeholder="" style=""/>		
+                                                 	</li>
+                                                </ul>
+                                             </apex:facet>
+                                             <apex:outputField value="{!sl.PO_PP_POP_raccolta__c}" />
+                                        </apex:column>
+                                         
+                                        <apex:column >
+                                             <apex:facet name="header">
+                                             	<ul class="list-unstyled">
+											    	<li class="">POP di consegna</li>
+                                                	<li>
+                                                 	 	<input type="text" disabled="true" class="form-control" id="IDFiltroPOP_consegna"  placeholder="" style=""/>		
+                                                 	</li>
+                                                </ul>
+                                             </apex:facet>
+                                             <apex:outputField value="{!sl.POP__c}" />
+                                         </apex:column>
+                                         
+                                         <!-- CR@ -->
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                             	<ul class="list-unstyled">
+											    	<li class="">Service VLAN</li>
+                                                	<li>
+                                                 	 	<input type="text" disabled="true" class="form-control" id="IDFiltroServVlan"  placeholder="" style=""/>		
+                                                 	</li>
+                                                </ul>
+                                             </apex:facet>
+                                             <apex:outputField value="{!sl.SVLAN__c}" />
+                                         </apex:column>
+                                         
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                             	<ul class="list-unstyled">
+											    	<li class="">User VLAN</li>
+                                                	<li>
+                                                 	 	<input type="text" disabled="true" class="form-control" id="IDFiltroUserVlan"  placeholder="" style=""/>		
+                                                 	</li>
+                                                </ul>
+                                             </apex:facet>
+                                             <apex:outputField value="{!sl.PO_PP_User_VLAN__c}" />
+                                         </apex:column>
+                                         <!-- FINE CR@ -->
+                                        
+                                        <apex:column >
+                                             <apex:facet name="header">
+                                             	<ul class="list-unstyled">
+											    	<li class="">Stato Ordine</li>
+                                                	<li style="width:20px;">
+                                                		<select id="IDFiltroStatoOrdine" multiple="multiple">
+                                                		    <!-- 
+														    <option value="Inviato">Inviato</option>
+														    <option value="Acquisito KO">Acquisito KO</option>
+														    <option value="Acquisito">Acquisito</option>
+														    <option value="Sospeso">Sospeso</option>
+														    <option value="In annullamento">In annullamento</option>
+														    <option value="Annullato">Annullato</option>
+														    <option value="Accettato KO">Accettato KO</option>
+														    <option value="Accettato">Accettato</option>
+														    <option value="Espletato">Espletato</option>
+														    <option value="Espletato KO">Espletato KO</option>
+														    <option value="Cessazione Inviata">Cessazione Inviata</option>
+														    <option value="Cessato KO">Cessato KO</option>
+														    <option value="Cessato OK">Cessato OK</option>
+														    -->
+											 			</select>
+                                                	</li>
+                                                </ul>
+                                             </apex:facet>
+                                             <apex:outputField value="{!sl.EOF_STATO_ORDINE__c}" />
+                                         </apex:column>
+                                         
+                                         <!--
+                                         <apex:column>
+                                             <apex:facet name="header">
+                                             	<ul class="list-unstyled">
+											    	<li class="">  
+                                                 		Identificativo del POP
+                                                 	</li>
+                                                 	<li>
+                                                 	 	<input type="text" class="form-control" id="IDFiltroPOP"  placeholder="" style="width: 100px;"/>		
+                                                 	</li>
+                                                </ul> 	
+                                             </apex:facet>
+                                             <apex:outputField value="{!sl.EOF_ID_Pop__c}" />
+                                         </apex:column>&nbsp;&nbsp;
+                                         -->
+                                         <!--
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                             	<ul class="list-unstyled">
+                                             		<li>Data Notifica</li>
+                                                 	<li>
+                                                 		<input type="text" class="form-control" id="IDDateFilterNotifica"  placeholder=" DA  A "/>
+                                                	</li>
+                                             	</ul>
+                                             </apex:facet>
+                                             <apex:outputField value="{!sl.EOF_Data_Notifica__c}" />
+                                         </apex:column>
+                                          -->
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                             	<ul class="list-unstyled">
+                                             		<li>Data Creazione</li>
+                                                 	<li>
+                                                 		<input type="text" class="form-control" id="IDDateFilterCreazione"  placeholder=" DA  A "/>
+                                                	</li>
+                                             	</ul>
+                                             </apex:facet>
+                                             <apex:outputField value="{!sl.createdDate}" />                                             
+                                         </apex:column>
+                                        
+                                        <apex:column >
+                                            <apex:facet name="header">
+                                             	<ul class="list-unstyled">
+                                             		<li>Data Chiusura</li>
+                                                 	<li>
+                                                 		<input type="text" disabled="true" class="form-control" id="IDDateFilterChiusura" />
+                                                	</li>
+                                             	</ul>
+                                            </apex:facet>
+                                            <apex:outputField value="{!sl.Caso__r.closedDate}" />                                             
+                                        </apex:column>
+                                        <br/>
+                                        
+                                        <!--
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                                <ul class="list-unstyled">
+											    	<li class="">
+                                                 		ID Risorsa
+                                                	</li>
+                                                	<li>
+                                                 	 	<input type="text" class="form-control" id="IDFiltroIDRisorsa"  placeholder="" style="width: 100px;"/>		
+                                                 	</li>
+                                                </ul>
+                                             </apex:facet>
+  												 <apex:outputField value="{!sl.EOF_ID_Risorsa__c}" />  
+                                         </apex:column><br/>
+                                       -->
+                                       <!--  
+                                       <apex:column >
+                                            <apex:facet name="header">
+                                                 <apex:outputText value="CLONA RICHIESTA"/>
+                                             </apex:facet>
+											  <apex:outputPanel rendered="{!IF(sl.EOF_Tipo_Comunicazione_String__c == 'Change Order',false,true)}">
+											 
+                                             <apex:commandLink action="{!clonaRequest}" styleClass="btn" value="Clona" id="clonaRequest" rerender="null">
+                                             	<apex:param name="event3Sl" value="{!sl.Id}" assignTo="{!IdInserita}"/>
+                                             	<apex:param name="event4Sl" value="{!sl.EOF_Tipo_Comunicazione_String__c}" assignTo="{!tipoRichiesta}"/>
+                                             </apex:commandlink>
+											  </apex:outputPanel>
+                                         </apex:column>
+                                         -->
+                                         <br/>
+                                     </apex:pageBlockTable>
+                                     <apex:outputText styleClass="hide" value="{!listInseritestring}" id="IDlistInseritestring" />
+                                     <apex:outputText styleClass="hide" value="{!optTipoRichiestaString}" id="IDoptTipoRichiestaString" />
+                                     <apex:outputText styleClass="hide" value="{!optStatoOrdineString}" id="IDoptStatoOrdineString" />
+                                      
+                            <!--START - PAGINATION PANEL -->
+                            <apex:outputPanel id="paginationPanel">
+                                <apex:outputText styleClass="hide" id="listRichiesteTPString" />   
+                                <apex:outputPanel rendered="{!showPag}"> 
+                                    <apex:commandlink action="{!PageDown}" onComplete="init()" styleClass="leftFloat" reRender="myTable,paginationPanel,IDlistInseritestring,IDoptTipoRichiestaString,IDoptStatoOrdineString">
+                                        <apex:image url="{!$Resource.ArrowDestra}" styleClass="leftFloat" width="22" height="22"/>
+                                    </apex:commandlink>
+                                    <p style='float:left;display:inline;margin-left:10px;margin-right:10px;'>Pagina {!pageActual}  di {!totalpage} (Record : {!totalRecord})</p>
+                                    <apex:commandlink action="{!pageUp}" onComplete="init()" styleClass="leftFloat" reRender="myTable,paginationPanel,IDlistInseritestring,IDoptTipoRichiestaString,IDoptStatoOrdineString">
+                                        <apex:image url="{!$Resource.ArrowSinistra}" styleClass="leftFloat" width="22" height="22"/>
+                                    </apex:commandlink>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!!showPag}">                        
+                                    <p style='float:left;display:inline;margin-left:10px;margin-right:10px;'>0 Pagine (Record : 0)</p>
+                                </apex:outputPanel> 
+                            </apex:outputPanel>       
+                            <!--END - PAGINATION PANEL -->
+                        
+            		</apex:pageBlock>
+					</form>
+				</div>      
+			</div>
+		</div>
+			<apex:actionFunction name="searchServer" action="{!runSearch}" rerender="results,debug,errors" oncomplete="init()">
+				<!--
+				<apex:param name="DataInizioNotifica" value="" />
+				<apex:param name="DataFineNotifica" value="" />
+				<apex:param name="DataInizioCreazione" value="" />
+				<apex:param name="DataFineCreazione" value="" />
+				<apex:param name="valCodOrdOLO" value="" />
+				<apex:param name="valIDRisorsa" value="" /> 
+				<apex:param name="isClientCall" value="true" />
+				-->
+				<apex:param name="valCodRichiesta" value="" />
+				<apex:param name="selectValueL1" value="" /> 
+				<apex:param name="selectValueL2" value="" />
+				<apex:param name="DataInizioCreazione" value="" />
+				<apex:param name="DataFineCreazione" value="" />
+
+			</apex:actionFunction>
+		</apex:form>  
+             <!-- 
+              <apex:pageBlock title="Debug - SOQL" id="debug">
+			      <apex:outputText value="{!debugSoql}" />  
+			  </apex:pageBlock>
+		     -->  	                   
+        </body>
+    
+    		<script>
+    		//Global/history var
+    		var valL1=[];
+  		    var valL2=[];
+  		    var DataInizioNotifica='';
+  		    var DataFineNotifica='';
+  		    var DataInizioCreazione='';
+  		    var DataFineCreazione='';
+  		    var valPOP;
+  		    var valCodOrdOLO;
+  		    var valIDRisorsa;
+  		    var myContent;
+  		    
+  		    var valCodRichiesta;
+  		    
+  		    var optTipoRichiesta=[]; // per popolare la select option TipoRichiesta
+  		    var optStatoOrdine=[]; // per popolare la select option StatoOrdine
+
+			function redirect()
+			{
+                debugger;
+
+                //valCodRichiesta=$("[id$='IDFiltroCodRichiesta']").val().trim();
+                //valL1=$("[id$='IDFiltroTipoRichiesta']").val().trim();
+    	        //valL2=$("[id$='IDFiltroStatoRichiesta']").val().trim();
+                valIDRisorsa=$("[id$='IDFiltroIDRisorsa']").val().trim();
+                valPOP =$("[id$='IDFiltroPOP']").val().trim();
+                window.location = '/partnercommunity/Export_ListaRichiesteInserite?ListTipo='+JSON.stringify(valL1)+'&ListStatus='+JSON.stringify(valL2)+'&valIDRisorsa='+valIDRisorsa+'&valPOP='+valPOP+'&valCodOrdOLO='+valCodOrdOLO+'&DataInizioNotifica='+DataInizioNotifica +'&DataFineNotifica='+DataFineNotifica+'&DataInizioCreazione='+DataInizioCreazione+'&DataFineCreazione='+DataFineCreazione;
+            }
+            
+  		   
+  		    function doSearch() 
+  		    {
+		        searchServer(
+		          /*
+		          DataInizioNotifica,
+		          DataFineNotifica,
+		          DataInizioCreazione,
+		          
+		          */
+		          valCodRichiesta,
+		          JSON.stringify(valL1), //tipo Richiesta
+		          JSON.stringify(valL2), //stato Richiesta
+		          DataInizioCreazione,
+		          DataFineCreazione
+		          /*
+		          valPOP,
+		          valCodOrdOLO,
+		          valIDRisorsa
+		          */
+		          );
+			 }
+			 
+  		    
+   		    function init()
+   		    {
+  		    	 myContent=JSON.parse($("[id$='IDlistInseritestring']").text());
+				 //alert(JSON.stringify(myContent));
+				 
+				 /*
+				 $("[id$='IDFiltroPOP']").val(valPOP);
+				 //alert('valPOP '+ valPOP);
+					    
+				 $("[id$='IDFiltroPOP']").change(function() {
+				 	 valPOP=$("[id$='IDFiltroPOP']").val().trim();
+				 	 //alert(valPOP); 
+				 });
+				 
+				 $("[id$='IDFiltroCodOrdOLO']").val(valCodOrdOLO);
+				 //alert('valPOP '+ valPOP);
+					    
+				 $("[id$='IDFiltroCodOrdOLO']").change(function() {
+				 	 valCodOrdOLO=$("[id$='IDFiltroCodOrdOLO']").val().trim();
+				 	 //alert(valPOP); 
+				 });
+				 
+				 $("[id$='IDFiltroIDRisorsa']").val(valIDRisorsa);
+				 //alert('valPOP '+ valPOP);
+					    
+				 $("[id$='IDFiltroIDRisorsa']").change(function() {
+				 	 valIDRisorsa=$("[id$='IDFiltroIDRisorsa']").val().trim();
+				 	 //alert(valPOP); 
+				 });
+				 
+				 $("[id$='IDFiltroCodOrdOLO']").val(valCodOrdOLO);
+				 //alert('valPOP '+ valPOP);
+					    
+				 $("[id$='IDFiltroCodOrdOLO']").change(function() {
+				 	 valCodOrdOLO=$("[id$='IDFiltroCodOrdOLO']").val().trim();
+				 	 //alert(valPOP); 
+				 });
+				 
+				 */
+				
+                 $("[id$='IDFiltroCodRichiesta']").val(valCodRichiesta);
+				 //alert('valPOP '+ valPOP);
+					    
+				 $("[id$='IDFiltroCodRichiesta']").change(function() {
+				 	 valCodRichiesta=$("[id$='IDFiltroCodRichiesta']").val().trim();
+				 	 //alert(valCodRichiesta); 
+				 });
+	        	
+	        	 optTipoRichiesta = JSON.parse($("[id$='IDoptTipoRichiestaString']").text());
+	        	
+	        	 //alert(JSON.stringify(optTipoRichiesta));
+	        	
+	        	 $.each(optTipoRichiesta, function (i, item) {
+				    $("select[id$='IDFiltroTipoRichiesta']" ).append($('<option>', { 
+				        value: item.value,
+				        text : item.text 
+				    }));
+				 });
+	        	
+	        	 $( "select[id$='IDFiltroTipoRichiesta']" ).multiselect({
+	        	    
+	        		buttonWidth: '65px',
+	        		nSelectedText: 'selezionati',
+    				nonSelectedText: 'Nessuno ',
+    				selectAllText : 'seleziona tutti',
+    				allSelectedText : 'tutti selezionati',
+    				onChange: function(option, checked, select) {
+						valL1=$( "select[id$='IDFiltroTipoRichiesta']" ).val();
+						//alert(valL1);
+            		}
+	        	});
+	        	
+	        	$( "select[id$='IDFiltroTipoRichiesta']" ).multiselect('select', valL1);
+	        	
+	        	optStatoOrdine=JSON.parse($("[id$='IDoptStatoOrdineString']").text());
+	        	
+	        	//alert(JSON.stringify(optStatoOrdine));
+	        	$.each(optStatoOrdine, function (i, item) {
+				    $("select[id$='IDFiltroStatoOrdine']" ).append($('<option>', { 
+				        value: item.value,
+				        text : item.text 
+				    }));
+				});
+	        	
+	        	
+	        	$( "select[id$='IDFiltroStatoOrdine']" ).multiselect({
+	        		
+	        		buttonWidth: '65px',
+	        		nSelectedText: 'selezionati',
+    				nonSelectedText: 'Nessuno ',
+    				selectAllText : 'seleziona tutti',
+    				allSelectedText : 'tutti selezionati',
+    				onChange: function(option, checked, select) {
+                		   valL2=$( "select[id$='IDFiltroStatoOrdine']" ).val();
+							//alert(valL2);
+            		}
+	        	});
+	        	$( "select[id$='IDFiltroStatoOrdine']" ).multiselect('select', valL2);
+	        	
+	        	
+	        	  $("[id$='IDDateFilterNotifica']").daterangepicker({
+				      "autoUpdateInput": false,
+				      "opens": "left",
+				      "locale": {
+					        "format": "DD/MM/YYYY",
+					        "separator": " / ",
+					        "applyLabel": "Applica",
+					        "cancelLabel": "Pulisci",
+					        "fromLabel": "DA",
+					        "toLabel": "A",
+					        "customRangeLabel": "Custom",
+					        "daysOfWeek": [
+					            "Dom",
+					            "Lun",
+					            "Mar",
+					            "Mer",
+					            "Gio",
+					            "Ven",
+					            "Sab"
+					        ],
+					        "monthNames": [
+					            "Gennaio",
+					            "Febbraio",
+					            "Marzo",
+					            "Aprile",
+					            "Maggio",
+					            "Giugno",
+					            "Luglio",
+					            "Agosto",
+					            "Settembre",
+					            "Ottobre",
+					            "Novembre",
+					            "Dicembre"
+					        ],
+					        "firstDay": 1
+					    }
+				  });
+				  
+
+				  $("[id$='IDDateFilterNotifica']").on('apply.daterangepicker', function(ev, picker) {
+				      $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+				      DataInizioNotifica=picker.startDate.format();
+				      DataFineNotifica=picker.endDate.format();
+				      //alert('Mie date' + DataInizio + ' ' + DataFine);
+				  });
+				
+				  $("[id$='IDDateFilterNotifica']").on('cancel.daterangepicker', function(ev, picker) {
+				      $(this).val('');
+				      DataInizioNotifica='';
+				      DataFineNotifica='';
+				  });
+				  
+				  if(DataInizioNotifica!=''&&DataFineNotifica!=''){
+				  	$("[id$='IDDateFilterNotifica']").val(moment(DataInizioNotifica).format("DD/MM/YYYY") + ' - ' + moment(DataFineNotifica).format("DD/MM/YYYY"));
+				  }
+				  
+				  	        	
+	        	  $("[id$='IDDateFilterCreazione']").daterangepicker({
+				      "autoUpdateInput": false,
+				      "opens": "left",
+				      "locale": {
+					        "format": "DD/MM/YYYY",
+					        "separator": " / ",
+					        "applyLabel": "Applica",
+					        "cancelLabel": "Pulisci",
+					        "fromLabel": "DA",
+					        "toLabel": "A",
+					        "customRangeLabel": "Custom",
+					        "daysOfWeek": [
+					            "Dom",
+					            "Lun",
+					            "Mar",
+					            "Mer",
+					            "Gio",
+					            "Ven",
+					            "Sab"
+					        ],
+					        "monthNames": [
+					            "Gennaio",
+					            "Febbraio",
+					            "Marzo",
+					            "Aprile",
+					            "Maggio",
+					            "Giugno",
+					            "Luglio",
+					            "Agosto",
+					            "Settembre",
+					            "Ottobre",
+					            "Novembre",
+					            "Dicembre"
+					        ],
+					        "firstDay": 1
+					    }
+				  });
+				  
+
+				  $("[id$='IDDateFilterCreazione']").on('apply.daterangepicker', function(ev, picker) {
+				      $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+				      DataInizioCreazione=picker.startDate.format();
+				      DataFineCreazione=picker.endDate.format();
+				      //alert('Mie date' + DataInizio + ' ' + DataFine);
+				  });
+				
+				  $("[id$='IDDateFilterCreazione']").on('cancel.daterangepicker', function(ev, picker) {
+				      $(this).val('');
+				      DataInizioCreazione='';
+				      DataFineCreazione='';
+				  });
+				  
+				  if(DataInizioCreazione!=''&&DataFineCreazione!=''){
+				  	$("[id$='IDDateFilterCreazione']").val(moment(DataInizioCreazione).format("DD/MM/YYYY") + ' - ' + moment(DataFineCreazione).format("DD/MM/YYYY"));
+				  }
+  		    }   	  
+    	    
+    	    $(document).ready(function() {
+    	        //alert('document ready');
+	        	init();
+	        	//alert(JSON.stringify({!optTipoRichiestaString}));
+	        	//alert(JSON.stringify({!optStatoOrdineString}));  
+	        	
+	    	});
+	    	</script>
+    </html>
+</apex:component>

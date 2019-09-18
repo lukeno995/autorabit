@@ -1,0 +1,267 @@
+<apex:page controller="PO_P2PAttiva_InserisciVLAN_Controller" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Open Fiber</title>  
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+        <!-- Bootstrap Core CSS -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+        
+        <!-- MetisMenu CSS -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+        
+        <!-- Custom CSS -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+        
+        <!-- Morris Charts CSS -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+        
+        <!-- Custom Fonts -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+        
+        <!-- /#wrapper -->
+            
+        <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+        
+        <!-- Bootstrap Core JavaScript -->
+        <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+        <style>
+			.required:after {
+			color:red; 
+			content:" *"; 
+			}
+            .navbar {
+            min-height: 105px;
+            }
+            .navbar-header {
+            float: none;
+            }
+            .navbar-default {
+            background-color: #ffffff;
+            }
+            .panel-default>.panel-heading {
+            color: #ffffff;
+            background-color: #337ab7;
+            }
+            span.dateFormat{
+            
+            display:none; 
+            
+            }
+            .red{color:red;}
+            .form-check-input{ 
+            margin-left: 45px !important;
+            margin-top: 10px;
+            }
+        </style>
+    </head>
+    <body>
+ 		<div id="wrapper">
+            <!-- Navigation -->
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <!--  <c:POHeaderComp />  -->
+                <c:PO_SideBarComponent />
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav" id="side-menu">
+                        </ul>
+                    </div>
+                    <!-- /.sidebar-collapse -->
+                </div>
+                <!-- /.navbar-static-side -->
+            </nav>    
+            <div id="page-bozze">            
+            </div>
+            <div id="page-wrapper">                                        
+                <div class="panel panel-default" style='padding-bottom:57px'>
+                    <div class="panel-heading">
+		                <apex:outputPanel rendered="{!modifyMode}">
+		                    <i></i>Modifica VLAN
+		       	        </apex:outputPanel>
+		                <apex:outputPanel rendered="{!insertMode}">
+		                    <i></i>Inserisci VLAN
+		       	        </apex:outputPanel>
+	       	        </div>
+	                <div class="panel-body">                        
+                        <apex:form >
+                            <!-- Error message -->
+                            <div style="color:red;" id="showerror">
+                                <apex:pageMessages id="errors" /> 
+                            </div>
+                            
+                            <form role="form" class="form-horizontal">
+                                <fieldset class="form-group">
+                                    <!--APERTURA DIV CONTAINER -->
+                                    <div class = "container-fluid" id="cont">	
+                                        <div class = "row">	
+                                            
+                                            <apex:outputPanel id="primaVlan" rendered="{!primaVlan}">	              
+                                            <div class="col-lg-6">
+                                                <label class="required">Kit Consegna VLAN</label><label>:</label> &nbsp; &nbsp;
+        <apex:selectList id="KitList" size="1" value="{!slVlan.OF_SA_KIT_CONSEGNA_VLAN__c}" styleClass="form-control" >
+                                                            <apex:selectOptions value="{!optKitList}" />
+                                                    </apex:selectList>
+                                         <!--       <apex:inputText id="KITConsegnaVLan" styleClass="form-control" value="{!slVlan.OF_SA_KIT_CONSEGNA_VLAN__c}" maxlength="10" required="true"/> -->
+                                            </div>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel id="NonPrimaVlan" rendered="{!!primaVlan}">
+                                                <div class="col-lg-6">
+                                                <label >Kit Consegna VLAN</label><label>:</label> &nbsp; &nbsp;
+                                                <apex:outputText style="background-color: #F5F5F5;" value="{!slVlan.OF_SA_KIT_CONSEGNA_VLAN__c}" styleClass="form-control" /> 
+                                                    </div>
+                                            </apex:outputPanel>
+                                        
+                                            <div class="col-lg-6">
+                                                <label class="required">Profilo VLAN</label><label>:</label> &nbsp; &nbsp;
+                                                <!-- GB <apex:inputText id="profiloVLAN" styleClass="form-control" value="{!slVlan.OF_SA_PROFILO_VLAN__c}" maxlength="4" required="true" />-->
+                                                <apex:selectList styleClass="form-control" id="profiloVLAN" size="1" required="true" value="{!slVlan.OF_SA_PROFILO_VLAN__c}" multiselect="false" onChange="setServiceVlan(this.value)">
+                                                    <apex:selectOptions value="{!ProfiloVLAN}"/>
+                                                </apex:selectList> 
+                                            </div>
+                                        </div> 
+                                        <div class = "row">    
+                                            <div class="col-lg-6">
+                                                <label class="required">Customer VLAN</label><label>:</label> &nbsp; &nbsp;
+                                                <apex:inputText id="customerVLAN" styleClass="form-control" maxlength="4" value="{!slVlan.OF_SA_CUSTOMER_VLAN__c}" required="true"/>
+                                            </div>                                 
+                                            <div class="col-lg-6">
+                                                <label class="required">Modello Di Servizio VLAN : </label> &nbsp; &nbsp;
+                                               <!--  <apex:inputText id="modelloServizioVLAN" styleClass="form-control" maxlength="4" 
+                                                                value="{!slVlan.OF_SA_MODELLO_DI_SERVIZIO_VLAN__c}"/> -->
+
+                                                <apex:selectList styleClass="form-control" id="modelServizio" size="1" required="true" 
+                                                        value="{!slVlan.OF_SA_MODELLO_DI_SERVIZIO_VLAN__c}" 
+                                                        multiselect="false" onChange="">
+                                                    <apex:selectOptions value="{!modelloServizio}"/>
+                                                </apex:selectList>                           
+                                            </div>
+                                        </div>				                
+                                        <div class = "row">
+                                            <div class="col-lg-6">
+                                            </div>
+                                            <div class="col-lg-6"> 
+                                                <label> Informazioni VLAN :</label> &nbsp; &nbsp;
+                                                <apex:inputText id="informazioniVLAN" styleClass="form-control" value="{!slVlan.OF_SA_INFORMAZIONI_VLAN__c}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--CHIUSURA DIV CONTAINER --> 		                       
+                                </fieldset>        
+                                
+                                <div class="col-sm-3">
+                                    <div class="btn-group" role="group" aria-label="Basic example">                                      
+                                        <apex:commandButton styleClass="btn btn-primary"  value="Annulla" action="{!annullaVlan}" html-formnovalidate="formnovalidate" immediate="true"/>        
+                                    </div>
+                                </div> 
+                                <apex:outputPanel id="primaVlan2" rendered="{!primaVlan}">
+                                    <div class="col-sm-3">
+                                        <div class="btn-group" role="group" aria-label="Basic example">                                      
+                                            <apex:commandLink styleClass="btn btn-primary"  value="Aggiungi KIT" onclick="validateform('aggiungiKIT'); return false;"/>        
+                                        </div>
+                                    </div>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!insertMode}"> 	 
+                                    <div class="col-sm-3" >
+                                        <div class="btn-group" role="group" aria-label="Basic example">                                      
+                                        <apex:commandLink styleClass="btn btn-primary" value="Salva" onclick="validateform('Insert'); return false;" />        
+                                        </div>
+                                    </div>   
+                                </apex:outputPanel>
+
+                                <apex:outputPanel rendered="{!modifyMode}">
+                                    <div class="col-lg-6" >
+                                        <div class="btn-group" role="group" aria-label="Basic example">                                      
+                                            <apex:commandLink styleClass="btn btn-primary"  onclick="validateform('Modify'); return false;"  value="Salva"/>      
+                                        </div>
+                                    </div> 
+                                </apex:outputPanel>
+                                
+                                
+                            </form>
+                        	<apex:actionFunction name="InsertVlan" action="{!InserisciVLAN}" reRender="tabResult"/>
+                            <apex:actionFunction name="UpdatetVlan"  action="{!updateVLAN}" reRender="tabResult"/>  
+                            <apex:actionFunction name="AggiungiKIT" action="{!inserisciNuovoKit}" reRender="tabResult"/>  
+                        </apex:form>
+                        
+                    </div>
+                    <br/>
+		        </div>
+            </div>
+        </div>
+    </body>
+    <script>
+		function setServiceVlan(val){
+			if(val==''){
+				document.getElementById("j_id0:j_id197:userVLAN").innerHTML = '';
+			}
+			if(val=='COS 0'){
+				document.getElementById('j_id0:j_id197:userVLAN').innerHTML = "835";
+			}
+			if(val=='COS 1'){
+				document.getElementById('j_id0:j_id197:userVLAN').innerHTML = "935";
+			}
+			if(val=='COS 5'){
+				document.getElementById('j_id0:j_id197:userVLAN').innerHTML = "837";
+			}
+		}
+		window.onload = function(){
+            var elems = document.querySelectorAll('[id$="profiloVLAN"]');
+            for (var i = 0; i < elems.length; i++){
+                elems[i].required = true;
+            }
+        }
+        function validateform(type){
+        	var invalidflag = false;
+        	var profiloVLAN = $('[id$=profiloVLAN]').val();
+        	if(profiloVLAN==""){
+        		$('[id$=profiloVLAN]').next('div.red').remove();
+                $('[id$=profiloVLAN]').after('<div class="red">Campo Obbligatorio</div>');
+                invalidflag = true;
+        	}
+        	else{
+                $('[id$=profiloVLAN]').next('div.red').remove();
+            }
+            var customerVLAN = $('[id$=customerVLAN]').val();
+            if(customerVLAN==""){
+        		$('[id$=customerVLAN]').next('div.red').remove();
+                $('[id$=customerVLAN]').after('<div class="red">Campo Obbligatorio</div>');
+                invalidflag = true;
+        	}
+        	else{
+                $('[id$=customerVLAN]').next('div.red').remove();
+            }
+            var Kit=$('[id$=KitList]').val();
+            if(type!='aggiungiKIT' && Kit==" - "){
+	            $('[id$=KitList]').next('div.red').remove();
+                $('[id$=KitList]').after('<div class="red">Campo Obbligatorio</div>');
+                invalidflag = true;
+            }
+            else{
+            	$('[id$=KitList]').next('div.red').remove();
+            }
+            if(!invalidflag){
+	           if(type=='aggiungiKIT' && Kit!=" - "){
+	            $('[id$=KitList]').next('div.red').remove();
+	               $('[id$=KitList]').after('<div class="red">Per aggiungere il kit non devi selezionarlo dall\'elenco</div>');
+	               invalidflag = true;
+	           }
+	           else{
+	           	$('[id$=KitList]').next('div.red').remove();
+	           }
+            }
+            if(!invalidflag){
+            	if(type=='Insert'){
+	            	InsertVlan();
+	            }
+	            else if(type=='Modify'){
+	            	UpdatetVlan();
+	            }
+	            else{
+	            	AggiungiKIT();
+	            }
+            }
+        }
+	</script>
+</apex:page>

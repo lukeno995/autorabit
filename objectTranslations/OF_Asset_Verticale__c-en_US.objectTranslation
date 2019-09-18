@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Asset Verticale</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Asset Verticali</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Asset Verticali --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Asset --></label>
+        <name>Asset__c</name>
+        <relationshipLabel><!-- Asset Verticali --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cardinalità Scala --></label>
+        <name>Cardinalita_Scala__c</name>
+    </fields>
+    <fields>
+        <label><!-- Civico --></label>
+        <name>Civico__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comune --></label>
+        <name>Comune__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Attivazione --></label>
+        <name>Data_Attivazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID_DB_Building --></label>
+        <name>ID_DB_Building__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID DB Scala Palazzina --></label>
+        <name>ID_DB_Scala_Palazzina__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID GIS Scala Palazzina --></label>
+        <name>ID_GIS_Scala_Palazzina__c</name>
+    </fields>
+    <fields>
+        <label><!-- Indirizzo --></label>
+        <name>Indirizzo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Inviato_PostGreSQL --></label>
+        <name>Inviato_PostGreSQL__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_isLavorazione --></label>
+        <name>OF_isLavorazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- PNI_OF_Civico --></label>
+        <name>PNI_OF_Civico__c</name>
+    </fields>
+    <fields>
+        <label><!-- PNI_OF_Comune --></label>
+        <name>PNI_OF_Comune__c</name>
+    </fields>
+    <fields>
+        <label><!-- PNI_OF_IDBuilding --></label>
+        <name>PNI_OF_IDBuilding__c</name>
+    </fields>
+    <fields>
+        <label><!-- PNI_OF_IDRisorsa --></label>
+        <name>PNI_OF_IDRisorsa__c</name>
+    </fields>
+    <fields>
+        <label><!-- PNI_OF_Indirizzo --></label>
+        <name>PNI_OF_Indirizzo__c</name>
+    </fields>
+    <fields>
+        <label><!-- PNI_OF_ParticellaToponomastica --></label>
+        <name>PNI_OF_ParticellaToponomastica__c</name>
+    </fields>
+    <fields>
+        <label><!-- Particella Toponomastica --></label>
+        <name>Particella_Toponomastica__c</name>
+    </fields>
+    <fields>
+        <label><!-- Provincia --></label>
+        <name>Provincia__c</name>
+    </fields>
+    <fields>
+        <label><!-- Regione --></label>
+        <name>Regione__c</name>
+    </fields>
+    <fields>
+        <label><!-- UI_Scala_Palazzina --></label>
+        <name>UI_Scala_Palazzina__c</name>
+    </fields>
+    <fields>
+        <label><!-- Update Billing --></label>
+        <name>Update_Billing__c</name>
+    </fields>
+    <layouts>
+        <layout>Asset Verticale Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Asset Verticale --></label>
+        <name>OF_Asset_Verticale</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

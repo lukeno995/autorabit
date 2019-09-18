@@ -1,0 +1,190 @@
+﻿<apex:page standardController="Case" extensions="OF_TT_Case_Buttons_Controller" showHeader="false" sidebar="false" action="{!deleteNotifyNotSent}">
+<apex:includeScript value="/support/console/36.0/integration.js"/>
+<apex:includeScript value="/soap/ajax/20.0/connection.js"/>
+<apex:stylesheet value="{!URLFOR($Resource.LDS, 'assets/styles/salesforce-lightning-design-system.min.css')}"/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>    
+    
+<script type="text/javascript">
+    
+    function redirect(idNotify, recordTypeNotify){        
+        //Original redirect method
+        if(sforce.console.isInConsole()){
+        // global vars
+        var url2open = '';
+        var tabTitle = '';﻿
+         
+        // open URLs in new tabs - CONSOLE TOOLKIT REQUIRED﻿
+        function openUrl(p_url2open, p_tabTitle) {
+               try{
+                     window.parent.openUrl(p_url2open, p_tabTitle);
+               }catch(e){
+                      // load global variables
+                      url2open = p_url2open;
+                      tabTitle = p_tabTitle;
+                      // go
+                      sforce.console.getEnclosingPrimaryTabId(openurl_subtab);
+               }
+        };
+         
+         
+        var openurl_subtab = function(result) {
+               var primaryTabId = result.id;
+               // open tabs
+              sforce.console.openSubtab(primaryTabId, url2open, true, tabTitle, null, null);
+                
+              sforce.console.refreshPrimaryTabById(primaryTabId, true);
+        }﻿
+        var rtn = recordTypeNotify.replace(/Notifica/gi, "Not.");
+        openUrl('/'+idNotify+'/e?retURL={!Case.Id}', rtn);  
+        }
+        else if ('{!$User.UIThemeDisplayed}' == 'Theme4d'){
+            sforce.one.navigateToURL('/'+y+'/e');
+            sforce.one.back(true);
+        }
+        else{
+            window.top.location.href ='/'+y+'/e?retURL={!Case.Id}'; 
+        }         
+    };
+    
+    function refresh(){
+        if (sforce.console.isInConsole()){
+                 
+            var refresh_subtab = function(result) {
+                var primaryTabId = result.id;
+                // open tabs
+                sforce.console.refreshPrimaryTabById(primaryTabId, true);
+            }﻿  
+            sforce.console.getEnclosingPrimaryTabId(refresh_subtab);
+            
+        }
+        else if ('{!$User.UIThemeDisplayed}' == 'Theme4d'){
+            sforce.one.navigateToURL('/{!Case.Id}');
+            sforce.one.back(true);
+        }
+        else{
+             window.top.location.href ='/{!Case.Id}';
+        }           
+};
+    
+    function appuntamentoKoClick(){        
+        var r = confirm('Ci sono stati 12 tentativi di contatto non riusciti?', 'Salesforce'); 
+        if (r == true){ 
+            appuntamentoKOfunction();
+         }  
+}  
+    
+    function refresh2(){
+       // window.top.location.href='/apex/BOOperatorAppuntamentoOKPage';  
+          if (sforce.console.isInConsole()){
+                 
+            var refresh_subtab = function(result) {
+                var primaryTabId = result.id;
+                // open tabs
+            //   sforce.console.refreshPrimaryTabById(primaryTabId, true);
+                alert('primary tab '+primaryTabId );
+            }﻿  
+            var showTabId = function showTabId(result) {
+                // Display the tab ID 
+                alert('Tab ID: ' + result.id);
+            }
+            
+            sforce.console.getEnclosingPrimaryTabId(refresh_subtab);
+            alert('111--'+sforce.console.getEnclosingPrimaryTabId(refresh_subtab));
+            alert('hiiii');
+            //system.debug('focuseed --'+sforce.console.getFocusedPrimaryTabId(showTabId));
+            
+            donotchange();
+            
+        }
+        else if ('{!$User.UIThemeDisplayed}' == 'Theme4d'){
+            sforce.one.navigateToURL('/{!Case.Id}');
+            sforce.one.back(true);
+        }
+        else{
+             window.top.location.href ='/{!Case.Id}';
+        }      
+};
+
+    function openNotifyCloseCase(idNotify, recordTypeNotify){
+      
+        if(sforce.console.isInConsole()){       
+          sforce.console.openPrimaryTab(null,'/' + idNotify + '/e?retURL={!Case.Id}?notifyToDelete='+idNotify,true, recordTypeNotify);
+          testCloseTab(); 
+        }
+        else{
+          window.top.location.href ='/' + idNotify + '/e?retURL={!Case.Id}?notifyToDelete='+idNotify;
+        }
+    }
+
+    function openPhaseTransictionsPage(operatore){
+        if(sforce.console.isInConsole()){       
+          sforce.console.openPrimaryTab(null,'/apex/OF_TT_PhaseTransictions?retURL={!Case.Id}&Id={!Case.Id}&oper='+operatore,true, '{!Case.CaseNumber}');
+          testCloseTab(); 
+        }
+        else{
+          window.top.location.href ='/apex/OF_TT_PhaseTransictions?retURL={!Case.Id}&Id={!Case.Id}&oper='+operatore;
+        }
+    }
+
+
+    function testCloseTab(){
+            //First find the ID of the current tab to close it
+            sforce.console.getEnclosingTabId(closeSubtab);
+        }
+        
+    var closeSubtab = function closeSubtab(result){
+            //Now that we have the tab ID, we can close it
+            var tabId = result.id;
+            sforce.console.closeTab(tabId);
+        };    
+  </script>
+    
+  <body id="buttonBlock"> 
+    
+    <apex:form style="padding-top: 10px">
+        <apex:messages />
+
+    <apex:outputText rendered="{!If(OR(Case.owner.name=='Trouble Ticket - Coda Analisi',Case.owner.name=='Trouble Ticket - Coda on Field',Case.owner.name=='Trouble Ticket - Coda in Collaudo') && Case.Status!='Richiesta Chiusura' && Case.status!='Chiuso','true','false')}" ><b>In {!Case.Owner.name}, in attesa di presa in carico                    </b></apex:outputText>
+    <apex:outputText rendered="{!If(Case.Status=='Richiesta Chiusura',true,false)}" ><b>Ticket in {!Case.Status}</b></apex:outputText>
+    <apex:outputText rendered="{!If(Case.Status=='Chiuso',true,false)}" ><b>Ticket Chiuso</b></apex:outputText>
+    
+    <apex:commandLink value="Invia on Field" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF((Case.status='In Lavorazione' && Case.EOF_Fase__c='In Analisi' && Case.recordType.name='Trouble Ticket' && Case.owner.name!='Trouble Ticket - Coda Analisi'&& Case.owner.name!='Trouble Ticket - Coda on Field' && Case.owner.name!='Trouble Ticket - Coda in Collaudo' && Case.OF_TroubleTicketManager__c=false),'true','false')}"
+                      onclick="openPhaseTransictionsPage('Field')">
+    </apex:commandLink>
+    <apex:commandLink value="Invia in Collaudo" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF(((Case.status='In Lavorazione' && Case.EOF_Fase__c='On Field' || Case.status='In Lavorazione' && Case.EOF_Fase__c='In Analisi') && Case.recordType.name='Trouble Ticket' && Case.owner.name!='Trouble Ticket - Coda Analisi' && Case.owner.name!='Trouble Ticket - Coda on Field' && Case.owner.name!='Trouble Ticket - Coda in Collaudo' && Case.OF_TroubleTicketManager__c=false),'true','false')}"
+                      onclick="openPhaseTransictionsPage('Collaudo')">
+    </apex:commandLink>
+    <apex:commandLink value="Invia in Analisi" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF((Case.status='In Lavorazione' && Case.EOF_Fase__c='In Collaudo' && Case.recordType.name='Trouble Ticket' && Case.owner.name!='Trouble Ticket - Coda Analisi' && Case.owner.name!='Trouble Ticket - Coda on Field' && Case.owner.name!='Trouble Ticket - Coda in Collaudo' && Case.OF_TroubleTicketManager__c=false),'true','false')}"
+                      onclick="openPhaseTransictionsPage('Analisi')">
+    </apex:commandLink>
+    <apex:commandLink action="{!RichiestaChiusura}" value="Richiesta Chiusura" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF((Case.status='In Lavorazione' && Case.EOF_Fase__c='In Collaudo' && Case.recordType.name='Trouble Ticket' && Case.owner.name!='Trouble Ticket - Coda Analisi' && Case.owner.name!='Trouble Ticket - Coda on Field' && Case.owner.name!='Trouble Ticket - Coda in Collaudo' && Case.OF_TroubleTicketManager__c=false),'true','false')}"
+                      oncomplete="openNotifyCloseCase('{!idNotify}', 'Trouble Ticket - Notifica di Richiesta Chiusura')">
+    </apex:commandLink>
+
+    <apex:commandLink action="{!Sospendi}" value="Sospendi" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF((Case.status='In Lavorazione' && (Case.EOF_Fase__c='In Collaudo' || Case.EOF_Fase__c='On Field' || Case.EOF_Fase__c='In Analisi') && Case.recordType.name='Trouble Ticket' && Case.owner.name!='Trouble Ticket - Coda Analisi' && Case.owner.name!='Trouble Ticket - Coda on Field' && Case.owner.name!='Trouble Ticket - Coda in Collaudo' && Case.OF_TroubleTicketManager__c=false),'true','false')}"
+                      oncomplete="openNotifyCloseCase('{!idNotify}', 'Trouble Ticket - Notifica di Sospensione')">
+    </apex:commandLink>
+    <apex:commandLink action="{!Desospendi}" value="Desospendi" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF((Case.status='Sospeso' && (Case.EOF_Fase__c='Sospeso Collaudo' || Case.EOF_Fase__c='Sospeso on Field' || Case.EOF_Fase__c='Sospeso On Field' || Case.EOF_Fase__c='Sospeso Analisi') && Case.recordType.name='Trouble Ticket' && Case.owner.name!='Trouble Ticket - Coda Analisi' && Case.owner.name!='Trouble Ticket - Coda on Field' && Case.owner.name!='Trouble Ticket - Coda in Collaudo' && Case.OF_TroubleTicketManager__c=false),'true','false')}"
+                      oncomplete="openNotifyCloseCase('{!idNotify}', 'Trouble Ticket - Notifica di Desospensione')">
+    </apex:commandLink>
+    <apex:commandLink action="{!Annulla}" value="Annulla" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF(Case.status='In Annullamento' && Case.recordType.name='Trouble Ticket' && Case.owner.name!='Trouble Ticket - Coda Analisi' && Case.OF_TroubleTicketManager__c=false,'true','false')}"
+                      oncomplete="refresh()">
+    </apex:commandLink>
+    
+    <apex:commandLink action="{!PrendiInCarico}" value="Prendi In Carico" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" rendered="{!IF(Case.recordType.name='Trouble Ticket' && (Case.owner.name='Trouble Ticket - Coda Analisi' || Case.owner.name='Trouble Ticket - Coda on Field' || Case.owner.name='Trouble Ticket - Coda in Collaudo' && Case.OF_TroubleTicketManager__c=false),'true','false')}"
+                      oncomplete="refresh()">
+    </apex:commandLink>
+    
+    </apex:form>    
+    
+  </body>    
+</apex:page>

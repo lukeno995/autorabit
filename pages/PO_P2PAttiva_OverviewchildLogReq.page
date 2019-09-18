@@ -1,0 +1,1091 @@
+<!--As p0 feasibiolity 7-->
+
+
+<apex:page id="pageID" controller="PO_P2PAttiva_ChildReqDetails_Ctrl" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+    <!-- standardController="Case" extensions="PO_RegistrationController"  -->
+    <html lang="en">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+            <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>            
+            <link rel = "stylesheet"  type = "text/css"  href = "//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+            
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{                
+                display:none;                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+                .displayNone { 
+                display:none; 
+                }
+                .displayBlock {
+                display:block;
+                }
+                .ui-autocomplete-loading { 
+                background: white url(/img/loading32.gif) right center no-repeat;
+                background-size:15px 15px; 
+                }
+                .placeHolder {
+                font-style: italic;
+                }
+                
+            </style>
+        </head>
+        <body>
+            
+            <div id="wrapper">
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    
+                    <c:PO_SideBarComponent Rec="{!recordOfferta}"  />
+                    
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" id="side-menu">
+                            </ul>
+                        </div>
+                        <!-- /.sidebar-collapse -->
+                    </div>
+                    <!-- /.navbar-static-side -->
+                </nav>
+                
+                
+                <div>
+                    
+                    <div style="color:red;" id="showerror">
+                        <apex:pageMessages id="errors" /> 
+                    </div>
+                    <apex:outputPanel id="testform">
+                    </apex:outputPanel>
+                </div>
+                
+                <div id="page-wrapper">
+                    <apex:outputPanel rendered="{!tipoP2PAttiva=='eAccess'}">
+                        <div class="row">
+                            <div class="col-lg-8" style="width:73.666667%;">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <i></i>Dati Generali
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <apex:form >
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>ID Richiesta Collegamento</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.EOF_Codice_Ordine_OLO__c}" styleClass="form-control" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label> Stato  </label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.EOF_STATO_ORDINE__c}" styleClass="form-control" />
+                                                    </div>
+                                                    
+                                                    
+                                                </div>
+                                                
+                                                
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Prime Contractor</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!accountN.Name}" styleClass="form-control" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Velocità di Banda</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.EOF_PROFILO__c}" styleClass="form-control" />
+                                                    </div>
+                                                    
+                                                    
+                                                </div>
+                                                
+                                                <!-- giovanni 21-12-2018 inizio -->
+                                                <div class="col-lg-6">
+                                                    
+                                                    <div class="form-group">
+                                                        <label>Disponibilità della rete da</label> &nbsp; &nbsp;                                                    
+                                                        <apex:outputText value="{0, date, dd/MM/yyyy}" styleClass="form-control"> <apex:param value="{!childLog.PO_Disponibilit_della_rete_a_partire_da__c}" /> </apex:outputText>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Tempi mese (da Ordine)</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.PO_Tempi_di_attivazione_mesi__c}" styleClass="form-control" />
+                                                    </div> 
+                                                </div>
+                                                <!-- giovanni 21-12-2018 fine -->
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Note Sospensione </label> &nbsp; &nbsp;
+                                                        <apex:inputTextArea value="{!childLog.Note_Sospensione_Operatore__c}" styleClass="form-control" readonly="true" />
+                                                    </div>
+                                                </div>
+                                                
+                                                <br/>
+                                            </apex:form>
+                                        </div>
+                                        <!-- /.row (nested) -->
+                                    </div>
+                                    <!-- /.panel-body -->
+                                </div>       
+                                <!-- /.col-lg-4 -->
+                            </div>
+                            <!-- /.row -->
+                            
+                        </div>
+                    </apex:outputPanel>                    
+                    
+                    
+                    
+                    
+                    <apex:outputPanel rendered="{!tipoP2PAttiva=='eLine'}">
+                        <div class="row">
+                            <div class="col-lg-8" style="width:73.666667%;">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <i></i>Dati Generali
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <apex:form >
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>ID Richiesta Collegamento</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.EOF_Codice_Ordine_OLO__c}" styleClass="form-control" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label> Stato  </label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.EOF_STATO_ORDINE__c}" styleClass="form-control" />
+                                                    </div>
+                                                    
+                                                    
+                                                </div>
+                                                
+                                                
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Prime Contractor</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.PO_Prime_Contractor__c}" styleClass="form-control" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Velocità di Banda</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.EOF_PROFILO__c}" styleClass="form-control" />
+                                                    </div>
+                                                    
+                                                    
+                                                </div>
+                                                
+                                                <!-- giovanni 21-12-2018 inizio -->
+                                                <div class="col-lg-6">
+                                                    
+                                                    <div class="form-group">
+                                                        <label>Disponibilità della rete da</label> &nbsp; &nbsp;                                                    
+                                                        <apex:outputText value="{0, date, dd/MM/yyyy}" styleClass="form-control"> <apex:param value="{!childLog.PO_Disponibilit_della_rete_a_partire_da__c}" /> </apex:outputText>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Tempi mese (da Ordine)</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.PO_Tempi_di_attivazione_mesi__c}" styleClass="form-control" />
+                                                    </div> 
+                                                </div>
+                                                <!-- giovanni 21-12-2018 fine -->
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Note Sospensione </label> &nbsp; &nbsp;
+                                                        <apex:inputTextArea value="{!childLog.Note_Sospensione_Operatore__c}" styleClass="form-control" readonly="true" />
+                                                    </div>
+                                                </div>
+                                                
+                                                <br/>
+                                            </apex:form>
+                                        </div>
+                                        <!-- /.row (nested) -->
+                                    </div>
+                                    <!-- /.panel-body -->
+                                </div>       
+                                <!-- /.col-lg-4 -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!tipoP2PAttiva=='eAccess'}">
+                        <div class="row">
+                            <div class="col-lg-8" style="width:73.666667%;">
+                                <!--LM-->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <i></i>Dati Toponomastici
+                                    </div>
+                                    
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <apex:form >
+                                                    
+                                                    <div class="col-lg-6">
+                                                        
+                                                      <!--  <div class="form-group">
+                                                            <label>Sito</label> &nbsp; &nbsp;
+                                                            <apex:outputText value="{!childLog.PO_Sito__c}" styleClass="form-control" />
+                                                        </div>
+                                                       -->
+                                                        <div class="form-group">
+                                                            <label> Sede  </label> &nbsp; &nbsp;
+                                                            <apex:outputText value="{!childLog.PO_Sito__c}" styleClass="form-control" />
+                                                        </div>
+                                                        
+                                                        
+                                                    </div>
+                                                    
+                                                    
+                                                    
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label>Indirizzo</label> &nbsp; &nbsp;
+                                                            <apex:outputText value="{!childLog.Particella_Toponomastica_1__c}   {!childLog.PO_Indirizzo_collegamento__c}   {!childLog.PO_Civico__c },   {!childLog.EOF_Comune__c}" styleClass="form-control" /> 
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>ID Sede</label> &nbsp; &nbsp;
+                                                            <apex:outputText value="{!childLog.ID_Sede__c}" styleClass="form-control" />
+                                                        </div>
+                                                        
+                                                        
+                                                    </div>
+                                                    
+                                                    <!-- giovanni 21-12-2018 inizio -->
+                                                    <div class="col-lg-6">
+                                                        
+                                                        <div class="form-group">
+                                                        </div>
+                                                        <div class="form-group">
+                                                        </div> 
+                                                    </div>
+                                                    <!-- giovanni 21-12-2018 fine -->
+                                                    
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label>Note Sede </label> &nbsp; &nbsp;
+                                                            <apex:outputText value="{!childLog.PO_Nota_sito__c}" styleClass="form-control"  />
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <br/>
+                                                </apex:form>
+                                                
+                                                
+                                                
+                                                
+                                            </div>
+                                            
+                                            
+                                        </div>
+                                    
+                                    
+                                    <!--ELINE DETTAGLIO-->
+                                    
+                                    <!--<div class="panel-body">
+                                        <div class="row">
+                                            <apex:form >
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label> Sede  </label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.PO_Sito__c}" styleClass="form-control" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Indirizzo</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.Particella_Toponomastica_1__c}   {!childLog.PO_Indirizzo_collegamento__c}   {!childLog.PO_Civico__c },   {!childLog.EOF_Comune__c}" styleClass="form-control" /> 
+                                                    </div>
+                                                    
+                                                </div>
+                                                
+                                                
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>ID Sede</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.ID_Sede__c}" styleClass="form-control" />
+                                                    </div>
+                                                    
+                                                    
+                                                    <div class="form-group">
+                                                        <label>Tipologia Sede</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.Tipologia_Sede__c}" styleClass="form-control" />
+                                                    </div>
+                                                    
+                                                </div>
+                                                
+                                                
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Note</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.PO_Nota_sito__c}" styleClass="form-control"  />
+                                                    </div>
+                                                    
+                                                    
+                                                </div>
+                                                
+                                                <div class="col-lg-6">
+                                                    <apex:outputPanel rendered="{!childLog.Tipologia_Sede__c =='Satellite'}">
+                                                        <div class="form-group">
+                                                            <label>ID Sede Master</label> &nbsp; &nbsp;
+                                                            <apex:outputText value="{!childLog.ID_Sede_Master__r.ID_Sede__c}" styleClass="form-control" />
+                                                        </div>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!childLog.Tipologia_Sede__c =='Master'}">
+                                                        <div class="form-group">
+                                                            <label>ID Sede Master</label> &nbsp; &nbsp;
+                                                            <apex:outputText value="{!childLog.ID_Sede__c}" styleClass="form-control" />
+                                                        </div>
+                                                    </apex:outputPanel>
+                                                </div>
+                                                <br/>
+                                            </apex:form>
+                                            
+                                            
+                                            
+                                            
+                                        </div>
+                                        
+                                        
+                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+                    
+                    
+                    <apex:outputPanel rendered="{!tipoP2PAttiva=='eLine'}">
+                        <div class="row">
+                            <div class="col-lg-8" style="width:73.666667%;">
+                                
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <i></i>Dati Toponomastici
+                                    </div>
+                                    
+                                        <!--<div class="panel-body">
+                                            <div class="row">
+                                                <apex:form >
+                                                    
+                                                    <div class="col-lg-6">
+                                                        
+                                                        <div class="form-group">
+                                                            <label>Sito</label> &nbsp; &nbsp;
+                                                            <apex:outputText value="{!childLog.PO_Sito__c}" styleClass="form-control" />
+                                                        </div>
+                                                        
+                                                        <div class="form-group">
+                                                            <label> Sede  </label> &nbsp; &nbsp;
+                                                            <apex:outputText value="{!childLog.PO_Sito__c}" styleClass="form-control" />
+                                                        </div>
+                                                        
+                                                        
+                                                    </div>
+                                                    
+                                                    
+                                                    
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label>Indirizzo</label> &nbsp; &nbsp;
+                                                            <apex:outputText value="{!childLog.Particella_Toponomastica_1__c}   {!childLog.PO_Indirizzo_collegamento__c}   {!childLog.PO_Civico__c },   {!childLog.EOF_Comune__c}" styleClass="form-control" /> 
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>ID Sede</label> &nbsp; &nbsp;
+                                                            <apex:outputText value="{!childLog.ID_Sede__c}" styleClass="form-control" />
+                                                        </div>
+                                                        
+                                                        
+                                                    </div>
+                                                    
+                                                    <!-- giovanni 21-12-2018 inizio -->
+                                                    <!--<div class="col-lg-6">
+                                                        
+                                                        <div class="form-group">
+                                                        </div>
+                                                        <div class="form-group">
+                                                        </div> 
+                                                    </div>
+                                                    <!-- giovanni 21-12-2018 fine -->
+                                                    
+                                                    <!--<div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label>Note Sede </label> &nbsp; &nbsp;
+                                                            <apex:outputText value="{!childLog.PO_Nota_sito__c}" styleClass="form-control"  />
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <br/>
+                                                </apex:form>
+                                                
+                                                
+                                                
+                                                
+                                            </div>
+                                            
+                                            
+                                        </div>-->
+                                    
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <apex:form >
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label> Sede  </label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.PO_Sito__c}" styleClass="form-control" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Indirizzo</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.Particella_Toponomastica_1__c}   {!childLog.PO_Indirizzo_collegamento__c}   {!childLog.PO_Civico__c },   {!childLog.EOF_Comune__c}" styleClass="form-control" /> 
+                                                    </div>
+                                                    
+                                                </div>
+                                                
+                                                
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>ID Sede</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.ID_Sede__c}" styleClass="form-control" />
+                                                    </div>
+                                                    
+                                                    
+                                                    <div class="form-group">
+                                                        <label>Tipologia Sede</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.Tipologia_Sede__c}" styleClass="form-control" />
+                                                    </div>
+                                                    
+                                                </div>
+                                                
+                                                
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Note</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.PO_Nota_sito__c}" styleClass="form-control"  />
+                                                    </div>
+                                                    
+                                                    
+                                                </div>
+                                                
+                                                <div class="col-lg-6">
+                                                    <apex:outputPanel rendered="{!childLog.Tipologia_Sede__c =='Satellite'}">
+                                                        <div class="form-group">
+                                                            <label>ID Sede Master</label> &nbsp; &nbsp;
+                                                            <apex:outputText value="{!childLog.ID_Sede_Master__r.ID_Sede__c}" styleClass="form-control" />
+                                                        </div>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!childLog.Tipologia_Sede__c =='Master'}">
+                                                        <div class="form-group">
+                                                            <label>ID Sede Master</label> &nbsp; &nbsp;
+                                                            <apex:outputText value="{!childLog.ID_Sede__c}" styleClass="form-control" />
+                                                        </div>
+                                                    </apex:outputPanel>
+                                                </div>
+                                                <br/>
+                                            </apex:form>
+                                            
+                                            
+                                            
+                                            
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                        
+                                </div>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!tipoP2PAttiva=='eAccess'}">
+                        <div class="row" >
+                            <div class="col-lg-8" style="width:73.666667%;">
+                                
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <i></i> Dati Metrici 
+                                    </div>
+                                    
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <apex:form >
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Tipo di Percorso</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.caso__r.PO_Tipo_percorso__c}" styleClass="form-control" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Traffic Load Balancing </label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.TrafficLoadBalancing__c}" styleClass="form-control" />
+                                                    </div>
+                                                    
+                                                    
+                                                </div>
+                                                
+                                                
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Tipo di Collegamento </label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.PO_Tipo_di_collegamento__c}"  styleClass="form-control" /> 
+                                                    </div>
+                                                    <!-- <div class="form-group">
+<label>Lunghezza prima via</label> &nbsp; &nbsp;
+<apex:outputText value="{!LunghezzaTrattaPrimaViaCalculated}" styleClass="form-control" />
+</div>-->
+                                                    
+                                                    
+                                                </div>
+                                                
+                                                 <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Lunghezza prima via </label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.PO_Lunghezza_tratta_prima_via__c}"  styleClass="form-control" /> 
+                                                    </div>
+                                                </div>    
+                                               
+                                                        
+                                                
+                                                <br/>
+                                            </apex:form>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            <!--not p2p-->
+                                            <div class="col-lg-6">
+                                                
+                                                <apex:outputPanel rendered="{!parentLog.PO_Offerta__c == 'P2P Attiva'}">
+                                                    <div class="form-group">
+                                                        <label>POP </label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.EOF_ID_Pop__c }" styleClass="form-control" />
+                                                    </div>
+                                                </apex:outputPanel>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+</div>
+                    </apex:outputPanel> 
+                    
+                    
+                    
+                    <apex:outputPanel rendered="{!tipoP2PAttiva=='eLine'}">
+                        <div class="row" >
+                            <div class="col-lg-8" style="width:73.666667%;">
+                                
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <i></i> Dati Metrici 
+                                    </div>
+                                    
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <apex:form >
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Tipo di Percorso</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.caso__r.PO_Tipo_percorso__c}" styleClass="form-control" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Traffic Load Balancing </label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.TrafficLoadBalancing__c}" styleClass="form-control" />
+                                                    </div>
+                                                    
+                                                    
+                                                </div>
+                                                
+                                                
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Tipo di Collegamento </label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.PO_Tipo_di_collegamento__c}"  styleClass="form-control" /> 
+                                                    </div>
+                                                    <!-- <div class="form-group">
+<label>Lunghezza prima via</label> &nbsp; &nbsp;
+<apex:outputText value="{!LunghezzaTrattaPrimaViaCalculated}" styleClass="form-control" />
+</div>-->
+                                                    
+                                                    
+                                                </div>
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Service Attribute </label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.Service_Attribute__c}"  styleClass="form-control" /> 
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Lunghezza Tratta Prima Via </label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.PO_Lunghezza_tratta_prima_via__c}"  styleClass="form-control" /> 
+                                                    </div>
+                                                </div>    
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Optical Rate Limiting </label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.PO_P2PAttiva_Optical_Rate_Limiting__c}"  styleClass="form-control" /> 
+                                                    </div>
+                                                </div>          
+                                                
+                                                <br/>
+                                            </apex:form>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            <!--not p2p-->
+                                            <div class="col-lg-6">
+                                                
+                                                <apex:outputPanel rendered="{!parentLog.PO_Offerta__c == 'P2P Attiva'}">
+                                                    <div class="form-group">
+                                                        <label>POP </label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.EOF_ID_Pop__c }" styleClass="form-control" />
+                                                    </div>
+                                                </apex:outputPanel>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </apex:outputPanel> 
+                    
+                    <apex:outputPanel rendered="{!tipoP2PAttiva=='eAccess'}">
+                        <div class="row" >
+                            <div class="col-lg-8" style="width:73.666667%;">
+                                
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <i></i> CPE
+                                    </div>
+                                    
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <apex:form >
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Tipologia CPE</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.Tipologia_CPE__c}" styleClass="form-control" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Interfaccia CPE</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.Interfaccia_CPE__c}" styleClass="form-control" />
+                                                    </div>
+                                                    
+                                                    
+                                                </div>
+                                                
+                                                
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Tipologia Alimentazione</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.Tipologia_Alimentazione__c}"  styleClass="form-control" /> 
+                                                    </div>
+                                                    <!--<div class="form-group">
+<label>Lunghezza prima via</label> &nbsp; &nbsp;
+<apex:outputText value="{!LunghezzaTrattaPrimaViaCalculated}" styleClass="form-control" />
+</div>-->
+                                                    
+                                                    
+                                                </div>
+                                                
+                                                <!-- giovanni 21-12-2018 inizio -->
+                                                <div class="col-lg-6">
+                                                    
+                                                    <div class="form-group">
+                                                    </div>
+                                                    <div class="form-group">
+                                                    </div> 
+                                                </div>
+                                                <!-- giovanni 21-12-2018 fine -->
+                                                
+                                                
+                                                
+                                                <br/>
+                                            </apex:form>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            <!--not p2p-->
+                                            <div class="col-lg-6">
+                                                
+                                                <apex:outputPanel rendered="{!parentLog.PO_Offerta__c == 'P2P Attiva'}">
+                                                    <div class="form-group">
+                                                        <label>POP </label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.EOF_ID_Pop__c }" styleClass="form-control" />
+                                                    </div>
+                                                </apex:outputPanel>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+</div>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel rendered="{!tipoP2PAttiva=='eLine'}">
+                        <div class="row" >
+                            <div class="col-lg-8" style="width:73.666667%;">
+                                
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <i></i> CPE
+                                    </div>
+                                    
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <apex:form >
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Tipologia CPE</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.Tipologia_CPE__c}" styleClass="form-control" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Interfaccia CPE</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.Interfaccia_CPE__c}" styleClass="form-control" />
+                                                    </div>
+                                                    
+                                                    
+                                                </div>
+                                                
+                                                
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Tipologia Alimentazione</label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.Tipologia_Alimentazione__c}"  styleClass="form-control" /> 
+                                                    </div>
+                                                    <!--<div class="form-group">
+<label>Lunghezza prima via</label> &nbsp; &nbsp;
+<apex:outputText value="{!LunghezzaTrattaPrimaViaCalculated}" styleClass="form-control" />
+</div>-->
+                                                    
+                                                    
+                                                </div>
+                                                
+                                                <!-- giovanni 21-12-2018 inizio -->
+                                                <div class="col-lg-6">
+                                                    
+                                                    <div class="form-group">
+                                                    </div>
+                                                    <div class="form-group">
+                                                    </div> 
+                                                </div>
+                                                <!-- giovanni 21-12-2018 fine -->
+                                                
+                                                
+                                                
+                                                <br/>
+                                            </apex:form>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            <!--not p2p-->
+                                            <div class="col-lg-6">
+                                                
+                                                <apex:outputPanel rendered="{!parentLog.PO_Offerta__c == 'P2P Attiva'}">
+                                                    <div class="form-group">
+                                                        <label>POP </label> &nbsp; &nbsp;
+                                                        <apex:outputText value="{!childLog.EOF_ID_Pop__c }" styleClass="form-control" />
+                                                    </div>
+                                                </apex:outputPanel>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+                    
+                    
+                    <apex:outputpanel rendered="{!parentLog.EOF_Stato_Richiesta__c='In approvazione Cliente' || parentLog.EOF_Stato_Richiesta__c='Accettato' }">
+                        <div class="row">
+                            <div class="col-lg-8" style="width:73.666667%;">
+                                
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <i></i>Valori Economici
+                                    </div>
+                                    
+                                    <apex:outputPanel rendered="{!parentLog.PO_Offerta__c='P2P Attiva'}">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>Canone Annuo </label> &nbsp; &nbsp;  
+                                                <apex:outputText value="{!childoppobj.PO_CanoneCollegamentoScontato__c}" styleClass="form-control" rendered="{!childoppobj.PO_CanoneCollegamentoScontato__c!=null}"/>
+                                                <apex:outputText value="0.00" styleClass="form-control" rendered="{!childoppobj.PO_CanoneCollegamentoScontato__c==null}"/>
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>Costi Attivazione  </label> &nbsp; &nbsp;
+                                                <apex:outputText value="{!(childoppobj.PO_ContributoAttivazCollegamScontato__c+childoppobj.PO_Costi_aggiuntivi_collegamento_scontat__c)}" styleClass="form-control" rendered="{!if(childoppobj.PO_ContributoAttivazCollegamScontato__c+childoppobj.PO_Costi_aggiuntivi_collegamento_scontat__c!=null,true,false) }"  />
+                                                <apex:outputText value="0.00" styleClass="form-control" rendered="{!if(childoppobj.PO_ContributoAttivazCollegamScontato__c+childoppobj.PO_Costi_aggiuntivi_collegamento_scontat__c==null,true,false) }"/>    
+                                            </div>
+                                        </div>
+                                    </apex:outputPanel>     
+                                    
+                                    <apex:outputPanel rendered="{!parentLog.PO_Offerta__c='IRU'}">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>Canone Manutenzione Annuo  </label> &nbsp; &nbsp;
+                                                <apex:outputText value="{!childoppobj.PO_CanoneManutenzioneCollegScontato__c}" styleClass="form-control" rendered="{!childoppobj.PO_CanoneManutenzioneCollegScontato__c!=null}"/>
+                                                <apex:outputText value="0.00" styleClass="form-control" rendered="{!childoppobj.PO_CanoneManutenzioneCollegScontato__c==null}"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>Corrispettivo IRU  </label> &nbsp; &nbsp;
+                                                <apex:outputText value="{!childoppobj.PO_CorrispettivoIRUCollegamentoScontato__c}" styleClass="form-control" rendered="{!childoppobj.PO_CorrispettivoIRUCollegamentoScontato__c!=null}" />
+                                                <apex:outputText value="0.00" styleClass="form-control" rendered="{!childoppobj.PO_CorrispettivoIRUCollegamentoScontato__c==null}"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>Costi Attivazione </label> &nbsp; &nbsp;
+                                                <apex:outputText value="{!(childoppobj.PO_ContributoAttivazCollegamScontato__c+childoppobj.PO_Costi_aggiuntivi_collegamento_scontat__c)}" styleClass="form-control" rendered="{!if(childoppobj.PO_ContributoAttivazCollegamScontato__c+childoppobj.PO_Costi_aggiuntivi_collegamento_scontat__c!=null,true,false) }" />
+                                                <apex:outputText value="0.00" styleClass="form-control" rendered="{!if(childoppobj.PO_ContributoAttivazCollegamScontato__c+childoppobj.PO_Costi_aggiuntivi_collegamento_scontat__c==null,true,false) }"/>
+                                            </div>
+                                        </div>
+                                        
+                                    </apex:outputPanel> 
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </apex:outputpanel>
+                 
+                  
+                    <div class="row" > <!-- EC 2019 06 18 aggiungo rendered in caso di lista allegati > 0 -->
+                     <apex:outputPanel id="AllegatiPanel" rendered="{!childcasedisplayattlist.size>0}">
+                        <div class="col-lg-8" style="width:73.666667%;" >
+                            <div class="panel panel-default" >
+                                <div class="panel-heading" >
+                                    <i></i>Allegati
+                                </div>
+                                <div>
+                                    <table id="theTable" class="table table-striped table-bordered" width="100%"  rendered="{!childcasedisplayattlist.size>0}"> 
+                                        <thead>
+                                            <tr>
+                                                <th>Allegato </th>
+                                                <th>Data Creazione </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <apex:repeat value="{!childcasedisplayattlist}" var="att">
+                                                <tr>
+                                                    <td>
+                                                        <apex:outputLink value="{!URLFOR($Action.Attachment.Download, att.Id)}" target="_blank">{!att.Name}</apex:outputLink>    
+                                                    </td> 
+                                                    <td>
+                                                        <apex:outputField value="{!att.createdDate}" />
+                                                    </td>
+                                                </tr> 
+                                            </apex:repeat>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                       </apex:outputPanel>
+                        
+                        <div class="col-sm-8" id="tablePr"  > <!-- EC 2019 06 18 aggiunto rendered per collegamenti satellite. il profilo infatti per le sedi master  non verrebbero mostrati. -->
+                            <apex:outputPanel id="tableProfili"  rendered="{!childLog.Tipologia_Sede__c!='Master'}">
+                                <div class="panel panel-default"  >
+                                    <div class="panel-heading" >
+                                        <i></i>Profilo
+                                    </div>
+                                </div>                                                
+                                <table id="theTable" class="table table-striped table-bordered" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th colspan="2">COS 5</th>
+                                            <th colspan="2">COS 3</th>
+                                            <th colspan="2">COS 1</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td> 
+                                                <apex:outputText id="opzione" />
+                                            </td>
+                                            <th>PIR</th> 
+                                            <th>CIR</th> 
+                                            <th>PIR</th>
+                                            <th>CIR</th>
+                                            <th>PIR</th>
+                                            <th>CIR</th>
+                                        </tr>
+                                        
+                                        
+                                        <tr >
+                                            <td>
+                                                <apex:outputText value="{!childLog.EOF_PROFILO__c}"/>
+                                            </td>
+                                            <td>
+                                                <apex:outputText value="{!profileObj.COS5_PIR__c}"/>
+                                            </td>
+                                            <td>
+                                                <apex:outputText value="{!profileObj.COS5_CIR__c}"/>
+                                            </td>
+                                            <td>
+                                                <apex:outputText value="{!profileObj.COS3_PIR__c}"/>
+                                            </td>
+                                            <td>
+                                                <apex:outputText value="{!profileObj.COS3_CIR__c}"/>
+                                            </td>
+                                            <td>
+                                                <apex:outputText value="{!profileObj.COS1_PIR__c}"/>
+                                            </td>
+                                            <td>
+                                                <apex:outputText value="{!profileObj.COS1_CIR__c}"/>
+                                            </td>
+                                            
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                                
+                            </apex:outputPanel>
+                        </div>
+                    </div>
+                    <!-- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaa -->
+                    <!-- Iterazione Lista VLAN -->  
+                    <!-- <apex:form id="Vlan">
+<apex:outputPanel id="vlanPanel">           
+<apex:repeat value="{!listNephewVLAN}" var="slV" rendered="{!showVLAN}">
+<div class="panel panel-default" style="margin-top:5px;width:73.306667%;" >
+<div class="panel-heading">
+<i></i>VLAN:
+</div>
+<div class="panel-body" >
+<fieldset class="form-group">   
+<div class="form-group">
+<div class="col-lg-6">
+<label>Kit Consegna VLAN :   </label> &nbsp; &nbsp;
+<apex:outputText id="kitCons" >{!slV.OF_SA_KIT_CONSEGNA_VLAN__c}</apex:outputText>															            
+</div>
+<div class="col-lg-6">
+<label>User VLAN :  </label> &nbsp; &nbsp;
+<apex:outputText id="userVLAN" >{!slV.OF_SA_USER_VLAN__c}</apex:outputText>									
+</div>
+<div class="col-lg-6">
+<label>Service VLAN : </label> &nbsp; &nbsp;
+<apex:outputText id="serviceVLAN" >{!slV.OF_SA_SERVICE_VLAN__c}</apex:outputText>				                             	
+</div>
+<div class="col-lg-6">
+<label>Profilo VLAN : </label> &nbsp; &nbsp;
+<apex:outputText id="serVLAN" >{!slV.OF_SA_PROFILO_VLAN__c}</apex:outputText>				                                 
+</div>
+<div class="col-lg-6">
+<label>Customer VLAN :</label> &nbsp; &nbsp;
+<apex:outputText id="custVLAN" >{!slV.OF_SA_CUSTOMER_VLAN__c} </apex:outputText>								
+</div>                                                                                                                                                                                                   
+<div class="col-lg-6">
+<label>Modello Di Servizio VLAN : </label> &nbsp; &nbsp;
+<apex:outputText id="modelloVLAN" >{!slV.OF_SA_MODELLO_DI_SERVIZIO_VLAN__c} </apex:outputText>												 
+</div>
+<div class="col-lg-6"> 
+<label> Informazioni VLAN :</label> &nbsp; &nbsp;
+<apex:outputText id="infoVLAN" >{!slV.OF_SA_INFORMAZIONI_VLAN__c} </apex:outputText>												
+</div>
+</div>
+</fieldset>                        
+</div>
+</div>							
+</apex:repeat> 
+</apex:outputPanel>
+
+</apex:form>   -->
+                    
+                    
+                    <!-- FINE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaa -->
+                    <!--Adding new section for opportuntiy -->
+                    <apex:form >
+                        <apex:outputPanel id="BtnPanel">
+                            <div class ="form-group">
+                                <div class ="col-lg-6">  
+                                    <apex:commandButton styleClass="btn btn-primary" value="Chiudi" action="{!detailparentlog}" id="button1"/> &nbsp;&nbsp;
+                                    
+                                    <apex:commandButton styleClass="btn btn-primary" style="margin-right:5px;" rendered="{!IF(childLog.EOF_STATO_ORDINE__c = 'Sospeso','true','false')}" value="Desospendi" action="{!DesospendiClg}" id="button2"/> &nbsp;&nbsp;
+                                </div>    
+                            </div>
+                        </apex:outputPanel>
+                    </apex:form>                      
+                    <!-- /#page-wrapper -->
+                </div>
+            </div>
+            <!-- /#wrapper -->
+            
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            </body>
+            </html>
+            </apex:page>

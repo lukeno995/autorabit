@@ -1,0 +1,5 @@
+<apex:page controller="OF_BillingReport2" cache="true" contentType="text/csv#BillingReportCPE.csv" language="en-US"> 
+"Action date","Customer ID","Product Provisioning Code","Network ID Resource" <apex:repeat value="{!vlstWrapper}" var="a">
+ {!a.actiondate},{!a.eoftest.EOF_Customer_ID__c} , {!a.prodprovCode},{!a.order.OF_IDRisorsa__c}
+ </apex:repeat>
+ </apex:page>

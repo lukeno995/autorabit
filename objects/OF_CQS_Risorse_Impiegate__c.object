@@ -1,0 +1,1465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>CQS_RisImp_SelComune</content>
+        <skipRecordTypeSelect>true</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Questo oggetto serve ad immagazzinare moduli di risorse impiegate nei lotti. Questo oggetto può essere visto solo dal City Manager che deve provvedere all&apos;inserimento di questi dati. Da utilizzare nell&apos;ambito del Cruscotto Qualità e Sicurezza.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>CQS_RI_LDO__c</fullName>
+        <externalId>false</externalId>
+        <label>Lettera D&apos;Ordine</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_DataFormula__c</fullName>
+        <externalId>false</externalId>
+        <formula>CreatedDate</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Data</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_Data__c</fullName>
+        <externalId>false</externalId>
+        <label>Data</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTE_altre_attivita2__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE altre attività</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTE_altre_attivita3__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE altre attività</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTE_altre_attivita4__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE altre attività</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTE_altre_attivita5__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE altre attività</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTE_altre_attivita__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE altre attività</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTE_effettive__c</fullName>
+        <externalId>false</externalId>
+        <label>Progressivo FTE effettive Mensile</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTE_lavoriOttici_posacavo2__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE lavori ottici di posa cavo</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTE_lavoriOttici_posacavo3__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE lavori ottici di posa cavo</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTE_lavoriOttici_posacavo4__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE lavori ottici di posa cavo</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTE_lavoriOttici_posacavo5__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE lavori ottici di posa cavo</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTE_lavoriOttici_posacavo__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE lavori ottici di posa cavo</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTE_lavori_civili2__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE lavori civili</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTE_lavori_civili3__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE lavori civili</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTE_lavori_civili4__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE lavori civili</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTE_lavori_civili5__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE lavori civili</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTE_lavori_civili__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE lavori civili</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTE_ldelivery_vertadd2__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE lavori delivery/verticali/adduzioni</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTE_ldelivery_vertadd3__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE lavori delivery/verticali/adduzioni</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTE_ldelivery_vertadd4__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE lavori delivery/verticali/adduzioni</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTE_ldelivery_vertadd5__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE lavori delivery/verticali/adduzioni</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTE_ldelivery_vertadd__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE lavori delivery/verticali/adduzioni</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTElavori_ottici_giunzcoll2__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE lavori ottici giunzione e collaudo</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTElavori_ottici_giunzcoll3__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE lavori ottici giunzione e collaudo</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTElavori_ottici_giunzcoll4__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE lavori ottici giunzione e collaudo</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTElavori_ottici_giunzcoll5__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE lavori ottici giunzione e collaudo</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_FTElavori_ottici_giunzcoll__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>FTE lavori ottici giunzione e collaudo</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_Impresa_Mandataria__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Impresa Mandataria</label>
+        <referenceTo>OF_CQS_Anagrafica__c</referenceTo>
+        <relationshipLabel>Risorse Impiegate (Impresa Mandataria)</relationshipLabel>
+        <relationshipName>Risorse_Impiegate1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_MeseAnno_Riferimento_Formula__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF ( DATEVALUE(CQS_RisImp_Data__c) &gt;= 
+DATE ( YEAR (DATEVALUE(CQS_RisImp_Data__c)),3,1) 
++ 
+( 
+14- 
+CASE( MOD(DATE ( YEAR (DATEVALUE(CQS_RisImp_Data__c)),3,1) - DATE (1900,1,7),7) , 
+0,7,MOD(DATE ( YEAR (DATEVALUE(CQS_RisImp_Data__c)),3,1) - DATE (1900,1,7),7)) 
+) 
+&amp;&amp; 
+DATEVALUE(CQS_RisImp_Data__c) &lt; 
+DATE ( YEAR (DATEVALUE(CQS_RisImp_Data__c)),11,1) 
++ 
+( 
+7- 
+CASE( MOD(DATE ( YEAR (DATEVALUE(CQS_RisImp_Data__c)),11,1) - DATE (1900,1,7),7) , 
+0,7,MOD(DATE ( YEAR (DATEVALUE(CQS_RisImp_Data__c)),11,1) - DATE (1900,1,7),7)) 
+), 
+LEFT ( TEXT (CQS_RisImp_Data__c+ 2/24 ), 7), 
+LEFT ( TEXT (CQS_RisImp_Data__c+ 1/24), 7) 
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Mese Anno Riferimento</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_NsettAnno__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(MOD(FLOOR( (  DATEVALUE(CQS_RisImp_Data__c) - DATE(2016,01,01))/7),52)+1)</formula>
+        <label>N° Settimana dell&apos;anno</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_Pian_Sett_Contrattista1__c</fullName>
+        <externalId>false</externalId>
+        <label>Pianificato Settimanale Contrattista 1</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_Pian_Sett_Contrattista2__c</fullName>
+        <externalId>false</externalId>
+        <label>Pianificato Settimanale Contrattista 2</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_Pian_Sett_Contrattista3__c</fullName>
+        <externalId>false</externalId>
+        <label>Pianificato Settimanale Contrattista 3</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_Pian_Sett_Contrattista4__c</fullName>
+        <externalId>false</externalId>
+        <label>Pianificato Settimanale Contrattista 4</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_Pian_Sett_Contrattista5__c</fullName>
+        <externalId>false</externalId>
+        <label>Pianificato Settimanale Contrattista 5</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_Progetto__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Progetto</label>
+        <referenceTo>CQS_Progetto__c</referenceTo>
+        <relationshipLabel>Risorse Impiegate</relationshipLabel>
+        <relationshipName>Risorse_Impiegate</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_ProgrSett_Contrattista1__c</fullName>
+        <externalId>false</externalId>
+        <label>Progressivo Settimanale Contrattista 1</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_ProgrSett_Contrattista2__c</fullName>
+        <externalId>false</externalId>
+        <label>Progressivo Settimanale Contrattista 2</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_ProgrSett_Contrattista3__c</fullName>
+        <externalId>false</externalId>
+        <label>Progressivo Settimanale Contrattista 3</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_ProgrSett_Contrattista4__c</fullName>
+        <externalId>false</externalId>
+        <label>Progressivo Settimanale Contrattista 4</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_ProgrSett_Contrattista5__c</fullName>
+        <externalId>false</externalId>
+        <label>Progressivo Settimanale Contrattista 5</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_Settimana_riferimento__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(IF( DAY(TODAY())  / 7&lt;1, 1 , IF(  DAY(TODAY())  /  7 &lt; 2 , 2, IF(  DAY(TODAY())  /  7 &lt; 3 , 3, IF(  DAY(TODAY())  /  7 &lt; 4 , 4, IF( DAY(TODAY())  /  7 &lt; 5 , 5, 0) ))))/ MONTH(TODAY()) / YEAR(TODAY()) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Settimana di riferimento</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_Somma_FTE2__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>Somma FTE</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_Somma_FTE3__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>Somma FTE</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_Somma_FTE4__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>Somma FTE</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_Somma_FTE5__c</fullName>
+        <externalId>false</externalId>
+        <label>Somma FTE</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_Somma_FTE_Settimanale__c</fullName>
+        <externalId>false</externalId>
+        <label>Somma FTE Settimanale</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_Somma_FTE__c</fullName>
+        <defaultValue>TEXT(0)</defaultValue>
+        <externalId>false</externalId>
+        <label>Somma FTE Mensile</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_Somma_FTE_formula1__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(VALUE(CQS_RisImp_FTE_altre_attivita__c) + VALUE(CQS_RisImp_FTE_lavori_civili__c) + VALUE(CQS_RisImp_FTE_ldelivery_vertadd__c)+ VALUE(CQS_RisImp_FTE_lavoriOttici_posacavo__c) + VALUE(CQS_RisImp_FTElavori_ottici_giunzcoll__c) + VALUE(CQS_RisImp_Somma_FTE__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Somma FTE Contrattista 1</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_Somma_FTE_formula2__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(VALUE(CQS_RisImp_FTE_altre_attivita2__c) + VALUE(CQS_RisImp_FTE_lavori_civili2__c) + VALUE(CQS_RisImp_FTE_ldelivery_vertadd2__c)+ VALUE(CQS_RisImp_FTE_lavoriOttici_posacavo2__c) + VALUE(CQS_RisImp_FTElavori_ottici_giunzcoll2__c) + VALUE(CQS_RisImp_Somma_FTE2__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Somma FTE Contrattista 2</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_Somma_FTE_formula3__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(VALUE(CQS_RisImp_FTE_altre_attivita3__c) + VALUE(CQS_RisImp_FTE_lavori_civili3__c) + VALUE(CQS_RisImp_FTE_ldelivery_vertadd3__c)+ VALUE(CQS_RisImp_FTE_lavoriOttici_posacavo3__c) + VALUE(CQS_RisImp_FTElavori_ottici_giunzcoll3__c) + VALUE(CQS_RisImp_Somma_FTE3__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Somma FTE Contrattista 3</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_Somma_FTE_formula4__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(VALUE(CQS_RisImp_FTE_altre_attivita4__c) + VALUE(CQS_RisImp_FTE_lavori_civili4__c) + VALUE(CQS_RisImp_FTE_ldelivery_vertadd4__c)+ VALUE(CQS_RisImp_FTE_lavoriOttici_posacavo4__c) + VALUE(CQS_RisImp_FTElavori_ottici_giunzcoll4__c) + VALUE(CQS_RisImp_Somma_FTE4__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Somma FTE Contrattista 4</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_Somma_FTE_formula5__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(VALUE(CQS_RisImp_FTE_altre_attivita5__c)  +  VALUE(CQS_RisImp_FTE_lavori_civili5__c)  +  VALUE(CQS_RisImp_FTE_ldelivery_vertadd5__c ) +  VALUE(CQS_RisImp_FTE_lavoriOttici_posacavo5__c) + VALUE(CQS_RisImp_FTElavori_ottici_giunzcoll5__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Somma FTE Contrattista 5</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_Somma_Mensile__c</fullName>
+        <externalId>false</externalId>
+        <label>Somma Mensile</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_TipoRapporto__c</fullName>
+        <externalId>false</externalId>
+        <label>Tipo Rapporto</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CQS_RisImp_Tot_FTE_RTI_giornaliero__c</fullName>
+        <description>Campo formula per calcolare il totale delle FTE nel caso delle RTI</description>
+        <externalId>false</externalId>
+        <formula>TEXT(VALUE(CQS_RisImp_Somma_FTE_formula1__c) + VALUE(CQS_RisImp_Somma_FTE_formula2__c) + VALUE(CQS_RisImp_Somma_FTE_formula3__c ) + VALUE(CQS_RisImp_Somma_FTE_formula4__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Totale FTE RTI giornaliero</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Comune_Ris_Imp__c</fullName>
+        <description>Questo campo serve ad indicare il Comune di cui si intendono censire le risorse impiegate.</description>
+        <externalId>false</externalId>
+        <label>Comune</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Contrattista_Lotto1__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Contrattista 1</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>OF_CQS_Anagrafica__c.CQS_Check_Affidataria__c</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>OF_CQS_Anagrafica__c</referenceTo>
+        <relationshipLabel>Risorse Impiegate</relationshipLabel>
+        <relationshipName>Contrattista_Risorse_Impiegate</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Contrattista_Lotto2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Contrattista 2</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>OF_CQS_Anagrafica__c.CQS_Check_Affidataria__c</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>OF_CQS_Anagrafica__c</referenceTo>
+        <relationshipLabel>Risorse Impiegate Contrattiste</relationshipLabel>
+        <relationshipName>Contrattista_Risorse_Impiegate2</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Contrattista_Lotto3__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Contrattista 3</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>OF_CQS_Anagrafica__c.CQS_Check_Affidataria__c</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>OF_CQS_Anagrafica__c</referenceTo>
+        <relationshipLabel>Risorse Impiegate (Contrattista)</relationshipLabel>
+        <relationshipName>Contrattista_Risorse_Impiegate3</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Contrattista_Lotto4__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Contrattista 4</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>OF_CQS_Anagrafica__c.CQS_Check_Affidataria__c</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>OF_CQS_Anagrafica__c</referenceTo>
+        <relationshipLabel>Risorse Impiegate (Contrattista Lotto 4)</relationshipLabel>
+        <relationshipName>Risorse_Impiegate4</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Contrattista_Lotto5__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Contrattista 5</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>OF_CQS_Anagrafica__c.CQS_Check_Affidataria__c</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>OF_CQS_Anagrafica__c</referenceTo>
+        <relationshipLabel>Risorse Impiegate (Contrattista Lotto 5)</relationshipLabel>
+        <relationshipName>Risorse_Impiegate5</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Mese_di_Riferimento__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Indica l&apos;ultimo giorno del mese del periodo di riferimento</inlineHelpText>
+        <label>Mese di Riferimento (gg/mm/aaaa)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_N_B_RISIMP__c</fullName>
+        <defaultValue>&apos;Prima di caricare gli allegati è necessario procedere al salvataggio.&apos;</defaultValue>
+        <externalId>false</externalId>
+        <label>N.B.</label>
+        <length>110</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_N_Risorse_Lotto1__c</fullName>
+        <externalId>false</externalId>
+        <label>N° Risorse</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_N_Risorse_Lotto2__c</fullName>
+        <externalId>false</externalId>
+        <label>N° Risorse</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_N_Risorse_Lotto3__c</fullName>
+        <externalId>false</externalId>
+        <label>N° Risorse</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_N_Risorse_Lotto4__c</fullName>
+        <externalId>false</externalId>
+        <label>N° Risorse</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_N_Risorse_Operative_Lotto1__c</fullName>
+        <externalId>false</externalId>
+        <label>N° Risorse Operative</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_N_Risorse_Operative_Lotto2__c</fullName>
+        <externalId>false</externalId>
+        <label>N° Risorse Operative</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_N_Risorse_Operative_Lotto3__c</fullName>
+        <externalId>false</externalId>
+        <label>N° Risorse Operative</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_N_Risorse_Operative_Lotto4__c</fullName>
+        <externalId>false</externalId>
+        <label>N° Risorse Operative</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_N_Risorse_Tecnici__c</fullName>
+        <externalId>false</externalId>
+        <label>N° Risorse</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Ore_Mese_Operative_Lotto1__c</fullName>
+        <externalId>false</externalId>
+        <label>Ore Mese Operative</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Ore_Mese_Operative_Lotto2__c</fullName>
+        <externalId>false</externalId>
+        <label>Ore Mese Operative</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Ore_Mese_Operative_Lotto3__c</fullName>
+        <externalId>false</externalId>
+        <label>Ore Mese Operative</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Ore_Mese_Operative_Lotto4__c</fullName>
+        <externalId>false</externalId>
+        <label>Ore Mese Operative</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Ore_Mese_Progettazione_Lotto1__c</fullName>
+        <externalId>false</externalId>
+        <label>Ore Mese Progettazione</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Ore_Mese_Progettazione_Lotto2__c</fullName>
+        <externalId>false</externalId>
+        <label>Ore Mese Progettazione</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Ore_Mese_Progettazione_Lotto3__c</fullName>
+        <externalId>false</externalId>
+        <label>Ore Mese Progettazione</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Ore_Mese_Progettazione_Lotto4__c</fullName>
+        <externalId>false</externalId>
+        <label>Ore Mese Progettazione</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Ore_Mese_Tecnici__c</fullName>
+        <externalId>false</externalId>
+        <label>Ore Mese</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Ore_Totale_Mandataria_Lotto1__c</fullName>
+        <externalId>false</externalId>
+        <formula>Totale_Progettazione_X_Risorse_Lotto1__c + OF_CQS_Totale_Ore_X_Risorse_operative_L1__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Ore Totale Mandataria</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Ore_Totale_Mandataria_Lotto3__c</fullName>
+        <externalId>false</externalId>
+        <formula>Totale_Progettazione_X_Risorse_Lotto3__c + OF_CQS_Totale_Ore_X_Risorse_operative_L3__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Ore Totale Mandataria</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Ore_Totale_Mandataria_Lotto4__c</fullName>
+        <externalId>false</externalId>
+        <formula>Totale_Progettazione_X_Risorse_Lotto4__c + OF_CQS_Totale_Ore_X_Risorse_operative_L4__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Ore Totale Mandataria</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Ore_Totali_Mese__c</fullName>
+        <externalId>false</externalId>
+        <formula>OF_CQS_Ore_Totale_Mandataria_Lotto1__c + Ore_Totale_Mandataria_Lotto2__c + OF_CQS_Ore_Totale_Mandataria_Lotto3__c + OF_CQS_Ore_Totale_Mandataria_Lotto4__c + OF_CQS_Totale_OreMese_x_Risorse_Tecnici__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Ore Totali Mese</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Totale_OreMese_x_Risorse_Tecnici__c</fullName>
+        <externalId>false</externalId>
+        <formula>OF_CQS_N_Risorse_Tecnici__c  *  OF_CQS_Ore_Mese_Tecnici__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Totale</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Totale_Ore_X_Risorse_operative_L1__c</fullName>
+        <externalId>false</externalId>
+        <formula>OF_CQS_Ore_Mese_Operative_Lotto1__c  *  OF_CQS_N_Risorse_Operative_Lotto1__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Totale</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Totale_Ore_X_Risorse_operative_L2__c</fullName>
+        <externalId>false</externalId>
+        <formula>OF_CQS_N_Risorse_Operative_Lotto2__c  *  OF_CQS_Ore_Mese_Operative_Lotto2__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Totale</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Totale_Ore_X_Risorse_operative_L3__c</fullName>
+        <externalId>false</externalId>
+        <formula>OF_CQS_N_Risorse_Operative_Lotto3__c  *  OF_CQS_Ore_Mese_Operative_Lotto3__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Totale</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Totale_Ore_X_Risorse_operative_L4__c</fullName>
+        <externalId>false</externalId>
+        <formula>OF_CQS_Ore_Mese_Operative_Lotto4__c*OF_CQS_N_Risorse_Operative_Lotto4__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Totale</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Ore_Totale_Mandataria_Lotto2__c</fullName>
+        <externalId>false</externalId>
+        <formula>Totale_Progettazione_X_Risorse_Lotto2__c + OF_CQS_Totale_Ore_X_Risorse_operative_L2__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Ore Totale Mandataria</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Totale_Progettazione_X_Risorse_Lotto1__c</fullName>
+        <externalId>false</externalId>
+        <formula>OF_CQS_Ore_Mese_Progettazione_Lotto1__c  *  OF_CQS_N_Risorse_Lotto1__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Totale</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Totale_Progettazione_X_Risorse_Lotto2__c</fullName>
+        <externalId>false</externalId>
+        <formula>OF_CQS_Ore_Mese_Progettazione_Lotto2__c  *  OF_CQS_N_Risorse_Lotto2__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Totale</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Totale_Progettazione_X_Risorse_Lotto3__c</fullName>
+        <externalId>false</externalId>
+        <formula>OF_CQS_Ore_Mese_Progettazione_Lotto3__c  *  OF_CQS_N_Risorse_Lotto3__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Totale</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Totale_Progettazione_X_Risorse_Lotto4__c</fullName>
+        <externalId>false</externalId>
+        <formula>OF_CQS_Ore_Mese_Progettazione_Lotto4__c*OF_CQS_N_Risorse_Lotto4__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Totale</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Risorse Impiegate</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>OF_CQS_Comune_Ris_Imp__c</columns>
+        <columns>CQS_RisImp_Impresa_Mandataria__c</columns>
+        <columns>CQS_RisImp_DataFormula__c</columns>
+        <columns>CQS_RI_LDO__c</columns>
+        <columns>CQS_RisImp_Somma_FTE_formula1__c</columns>
+        <columns>CQS_RisImp_TipoRapporto__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>OF_CQS_Risorse_Impiegate__c.Consuntivo_Risorse_Giornaliero</value>
+        </filters>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>RI - {0000}</displayFormat>
+        <label>ID - Moduli Risorse Impiegate Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Risorse Impiegate</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Consuntivo_Risorse_Giornaliero</fullName>
+        <active>true</active>
+        <label>Consuntivo Risorse Giornaliero</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Pianificato_Risorse_Mensile</fullName>
+        <active>true</active>
+        <label>Pianificato Risorse Mensile</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Pianificato_Risorse_Settimanale</fullName>
+        <active>true</active>
+        <label>Pianificato Risorse Settimanale</label>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>OF_CQS_Comune_Ris_Imp__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CQS_RI_LDO__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CQS_RisImp_Impresa_Mandataria__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CQS_RisImp_Somma_FTE_formula1__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATEDBY_USER</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <sharingReasons>
+        <fullName>Progetto_di_competenza__c</fullName>
+        <label>Progetto di competenza</label>
+    </sharingReasons>
+    <validationRules>
+        <fullName>CQS_Controllo_Comuni_Risorse_Impiegate</fullName>
+        <active>false</active>
+        <errorConditionFormula>NOT( 
+OR(OF_CQS_Comune_Ris_Imp__c = &apos;ALESSANDRIA&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Alessandria&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;ANCONA&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Ancona&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;AREZZO&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Arezzo&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;BARI&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Bari&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;BERGAMO&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Bergamo&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;BUSTO ARSIZIO&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Busto Arsizio&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;CAGLIARI&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Cagliari&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;CATANIA&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Catania&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;CESENA&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Cesena&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;FERRARA&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Ferrara&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;FIRENZE&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Firenze&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;FORLì&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;FORLI&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Forlì&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Forli&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;GROSSETO&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Grosseto&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;LATINA&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Latina&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;LIVORNO&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Livorno&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;MATERA&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Matera&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;MONZA&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Monza&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;MVM&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;mvm&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;NAPOLI&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Napoli&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;NOVARA&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Novara&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;PADOVA&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Padova&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;PALERMO&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Palermo&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;PAVIA&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Pavia&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;PERUGIA&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Perugia&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;PESCARA&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Pescara&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;PIACENZA&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Piacenza&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;PISA&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Pisa&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;PRATO&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Prato&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;REGGIO EMILIA&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Reggio Emilia&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;RIMINI&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Rimini&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;SALERNO&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Salerno&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;SASSARI&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Sassari&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;SIRACUSA&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Siracusa&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;TERNI&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Terni&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;TREVISO&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Treviso&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;UDINE&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Udine&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;VARESE&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Varese&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;VENEZIA&apos;, 
+OF_CQS_Comune_Ris_Imp__c = &apos;Venezia&apos;))</errorConditionFormula>
+        <errorDisplayField>OF_CQS_Comune_Ris_Imp__c</errorDisplayField>
+        <errorMessage>Il Comune specificato risulta non valido. Verificare la correttezza dei caratteri inseriti e la gestione di Open Fiber del Comune indicato.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FTE_NUMBER</fullName>
+        <active>true</active>
+        <errorConditionFormula>OR(!ISNUMBER(CQS_RisImp_FTE_altre_attivita__c),!ISNUMBER(CQS_RisImp_FTE_lavori_civili__c),!ISNUMBER(CQS_RisImp_FTE_ldelivery_vertadd__c),!ISNUMBER(CQS_RisImp_FTE_lavoriOttici_posacavo__c),!ISNUMBER(CQS_RisImp_FTElavori_ottici_giunzcoll__c),!ISNUMBER(CQS_RisImp_Somma_FTE__c))</errorConditionFormula>
+        <errorMessage>il valore deve essere un numero</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>No_Comune_Diverso_da_Perugia_su_Ris_Imp</fullName>
+        <active>false</active>
+        <errorConditionFormula>OR(AND($Profile.Name =&apos;OF_CQS_BO_CSE&apos;,OR(OF_CQS_Comune_Ris_Imp__c &lt;&gt; &apos;perugia&apos;, OF_CQS_Comune_Ris_Imp__c &lt;&gt; &apos;PERUGIA&apos;) ), AND(ISCHANGED(OF_CQS_Comune_Ris_Imp__c), OR(LOWER(OF_CQS_Comune_Ris_Imp__c) &lt;&gt; &apos;perugia&apos;, UPPER(OF_CQS_Comune_Ris_Imp__c)&lt;&gt; &apos;PERUGIA&apos;)))</errorConditionFormula>
+        <errorMessage>Attenzione! Hai provato ad inserire una pratica per una città che non è di tua competenza!</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

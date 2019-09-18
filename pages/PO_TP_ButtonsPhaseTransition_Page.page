@@ -1,0 +1,189 @@
+<apex:page showHeader="true" sidebar="true" standardController="Case" extensions="PO_TP_Buttons_Controller"> 
+	<apex:includeScript value="/support/console/36.0/integration.js"/>
+	<apex:includeScript value="/soap/ajax/20.0/connection.js"/>
+	<apex:stylesheet value="{!URLFOR($Resource.LDS, 'assets/styles/salesforce-lightning-design-system.min.css')}"/>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>    
+	    
+	<script type="text/javascript">
+
+	function checkFields(){
+
+		//alert('checkFields');
+		//alert("Passaggio: {!passaggio}");		
+
+		if ("{!originalCase.EOF_Fase__c}"=='In Lavorazione SOC' && "{!passaggio}" && document.getElementById("{!$Component.theForm.thePageBlock1.CodaTerritoriale}").value=='') {
+			alert('Scegliere la coda a cui inviare la richiesta');
+			return;
+		}
+		else if(document.getElementById("{!$Component.theForm.thePageBlock2.checkNote}").value=='') {
+			alert('Compilare il campo Note');
+			return;
+		}		
+		else{
+			if ("{!passaggio}" && "{!originalCase.EOF_Fase__c}"=='In Lavorazione SOC'){
+				commitAndRedirectCodaTerr();
+			}
+			if ("{!originalCase.EOF_Fase__c}"=='In Lavorazione Coda Territoriale'){
+				commitAndRedirectSOC();
+			}
+			/*FIX PG 5-04 - commento inserito
+			if("{!chiusura}"){				
+				chiudiCase();
+			}
+			*/
+		}
+    }
+
+    //FIX PG 05-04 - START
+    function closeC()
+    {
+    	//alert('Sono nella funzione closeC');
+    	if(document.getElementById("{!$Component.theForm.thePageBlock2.checkNote}").value=='') {
+			alert('Compilare il campo Note');
+			return;
+		}
+		else
+		{
+			//alert('sto chiudendo il case');
+			chiudiCase();
+		}	
+    }
+
+
+        //FIX PP CR07 add nota 
+    function SendNota()
+    {
+    	//alert('Sono nella funzione closeC');
+    	if(document.getElementById("{!$Component.theForm.thePageBlock2.checkNote}").value=='') {
+			alert('Compilare il campo Note');
+			return;
+		}
+		else
+		{
+			//alert('sto inviando la nota');
+			inviaNotaOlo();
+		}	
+    }
+
+    //Add function by PG -  FIX Redirect page - 08-05
+    function goToClose()
+    {    	
+        window.top.location.href ='/{!originalCase.Id}';
+    }
+
+    function goTo(){
+
+    	//alert('Ticket correttamente inviato alla coda territoriale');
+    	//FIX PG 29-03 - START
+    	//alert("Destinatario: {!destinatario}");
+    	if ("{!destinatario}" == 'SOC')
+			alert('Segnalazione correttamente inviata alla Coda SOC');	
+		if("{!destinatario}" == 'Coda Territoriale')
+			alert('Segnalazione correttamente inviata alla Coda Territoriale');
+		//FIX PG 29-03 - END
+
+        if(sforce.console.isInConsole()){  
+        	testCloseTab(); 
+        }
+        else{
+        	//alert('redirect');
+        	window.top.location.href ='/500';
+          	//window.top.location.href ='/{!originalCase.Id}';
+        }
+    }
+
+    function testCloseTab(){
+        //First find the ID of the current tab to close it
+        sforce.console.getEnclosingTabId(closeSubtab);
+    }
+        
+    var closeSubtab = function closeSubtab(result){
+        //Now that we have the tab ID, we can close it
+        var tabId = result.id;
+        sforce.console.closeTab(tabId);
+    };
+       
+
+    </script>
+    <apex:sectionHeader title="Segnalazione Provisioning" subtitle="Note operatore" rendered="{!showNoteProv}" />
+    <!--Add by PG - 16-05 per gestire la differenza tra Segnalazione Prov e Incident Management -->
+	<apex:sectionHeader title="Incident Management" subtitle="Note operatore" rendered="{!showNoteIncident}"/>	
+	<apex:form id="theForm">	
+		<apex:pageBlock title="Segnalazione Provisioning" id="thePageBlock" rendered="{!showNoteProv}">		
+		<apex:messages ></apex:messages>
+			<apex:pageBlockButtons location="top">				
+    			<apex:commandLink value="Invia alla coda Territoriale" rendered="{!If(destinatario='Coda Territoriale','true','false')}"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                      onclick="checkFields();return false" >
+    			</apex:commandLink>
+    			<apex:commandLink value="Invia al SOC" rendered="{!If(destinatario='SOC','true','false')}"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                      onclick="checkFields();return false" >
+    			</apex:commandLink>
+    			<apex:commandLink value="Chiudi Segnalazione" rendered="{!chiusura}"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                      onclick="closeC();return false" > 
+    			</apex:commandLink>
+    			
+    			 <!--Add by PP CR07 Add note -->
+    			<apex:commandLink value="Invia Nota" rendered="{!noteOLO}"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                      onclick="SendNota();return false" > 
+    			</apex:commandLink>
+    		<!-- END Add by PP CR07 Add note -->
+    			
+    			<apex:commandLink action="{!Cancel}" value="Cancella" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;">
+    			</apex:commandLink>				
+			</apex:pageBlockButtons>
+		</apex:pageBlock>
+
+		<!-- START - Add by PG - 16-05 per gestire la differenza tra Segnalazione Prov e Incident Management -->
+		<apex:pageBlock title="Incident Management" id="thePageBlockIncident" rendered="{!showNoteIncident}">		
+		<apex:messages ></apex:messages>
+			<apex:pageBlockButtons location="top">				
+    			<apex:commandLink value="Chiudi Segnalazione" rendered="{!chiusura}"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                      onclick="closeC();return false" > 
+    			</apex:commandLink>
+    			
+    			<apex:commandLink value="Invia Nota" rendered="{!noteOLO}"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                      onclick="SendNota();return false" > 
+    			</apex:commandLink>
+    			
+    			<apex:commandLink action="{!Cancel}" value="Cancella" reRender="buttonBlock"
+                      styleClass="slds-button slds-button--brand" style="margin-right:5px;">
+    			</apex:commandLink>				
+			</apex:pageBlockButtons>
+		</apex:pageBlock>
+		<!-- END - Add by PG - 16-05 per gestire la differenza tra Segnalazione Prov e Incident Management -->
+
+		<apex:outputPanel rendered="{!passaggio}">
+			<apex:outputPanel rendered="{!IF(originalCase.EOF_Fase__c='In Lavorazione SOC','true','false')}">
+				<apex:pageBlock title="Scelta Coda Territoriale" id="thePageBlock1">	
+			        <apex:selectList id="CodaTerritoriale" styleClass="form-control" value="{!codaTerr}" size="1" required="true">
+			           <apex:selectOptions Value="{!codeTerr}" />
+					</apex:selectList>
+				</apex:pageBlock>
+			</apex:outputPanel>
+		</apex:outputPanel>
+		<apex:pageBlock title="Note per {!destinatario}" id="thePageBlock2" rendered="true">
+			<apex:outputField value="{!originalCase.EOF_Comunicazioni_con_OLO__c}" rendered="{!noteOLO}" />
+			<apex:outputField value="{!originalCase.EOF_Note_Interne__c}" rendered="{!noteInterne}" />
+			<apex:inputField style="width: 500px; height: 20px" value="{!originalCase.EOF_Note__c}" id="checkNote" 
+			required="true" />
+		</apex:pageBlock>
+		<apex:actionFunction action="{!InviaAllaCodaTerr}" name="commitAndRedirectCodaTerr" oncomplete="goTo()" 
+							reRender="buttonBlock"/>
+		<apex:actionFunction action="{!InviaAlSOC}" name="commitAndRedirectSOC" oncomplete="goTo()" 
+							reRender="buttonBlock"/>
+		<apex:actionFunction action="{!chiudiTicket}" name="chiudiCase" oncomplete="goToClose()" 
+							reRender="buttonBlock"/>
+
+		<apex:actionFunction action="{!InviaNotaOLO}" name="inviaNotaOlo" oncomplete="goToClose()" 
+					reRender="buttonBlock"/>
+		
+	</apex:form>
+</apex:page>

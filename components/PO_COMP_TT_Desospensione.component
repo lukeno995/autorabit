@@ -1,0 +1,326 @@
+<apex:component controller="PO_COMP_TT_Visualizza_Controller" AllowDML="true"> 
+<html lang="en">   
+        <head> 
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+           <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+           
+           <!-- MetisMenu CSS -->
+           <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+           
+           <!-- Custom CSS -->
+           <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+           
+           <!-- Morris Charts CSS -->
+           <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+           
+           <!-- Custom Fonts -->
+           <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+           
+           <!-- /#wrapper -->
+             
+           <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+           
+           <!-- Bootstrap Core JavaScript -->
+           <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+           <script src='https://www.google.com/recaptcha/api.js'></script>
+           
+                                   <!-- datetimepiker -->
+           <apex:includeScript value="{!URLFOR($Resource.datepicker, 'datepicker/js/bootstrap-datepicker.js')}"/>
+          
+           <!-- <apex:stylesheet value="{!URLFOR($Resource.datepicker, 'datepicker/css/datepicker.css')}"/> -->
+           
+           <apex:includeScript value="{!URLFOR($Resource.moment, 'moment-develop/min/moment-with-locales.min.js')}"/>
+
+           <apex:includeScript value="{!URLFOR($Resource.datetimepicker, 'bootstrap-datetimepicker-master/build/js/bootstrap-datetimepicker.min.js')}"/>
+           
+           <apex:stylesheet value="{!URLFOR($Resource.datetimepicker, 'bootstrap-datetimepicker-master/build/css/bootstrap-datetimepicker.min.css')}"/>
+           
+           <apex:includeScript value="{!URLFOR($Resource.jqvalidation, 'dist/jquery.validate.min.js')}"/>
+           
+           <apex:includeScript value="{!URLFOR($Resource.jqvalidation, 'dist/localization/messages_it.min.js')}"/>
+ 		   <apex:includeScript value="{!URLFOR($Resource.tooltip, 'tooltip/jquery-validate.bootstrap-tooltip.min.js')}"/>    
+ 		         
+           
+           <style>
+               .navbar {
+               min-height: 105px;
+               }
+               .navbar-header {
+               float: none;
+               }
+               .navbar-default {
+               background-color: #ffffff;
+               }
+               .panel-default>.panel-heading {
+               color: #ffffff;
+               background-color: #337ab7;
+               }
+               span.dateFormat{
+               
+               display:none;
+               
+               }
+               .red{color:red;}
+               .form-check-input{ 
+               margin-left: 45px !important;
+               margin-top: 10px;
+               }
+               
+               form .error {
+ 			    color: #ff0000;
+				}
+				
+				.tooltip-inner {
+  			    background-color: #337ab7; 
+				}
+               
+           </style>
+       </head>  
+        
+           <body>
+
+           
+           <apex:form id="myform" >
+               <div class="panel panel-default">
+                   <div class="panel-heading">
+                       <apex:outputPanel >
+                               <!--  
+                               <i></i>Attivazione {!sl.EOF_Codice_ordine_olo__c}
+                               -->
+                               <i></i>Trouble Ticket
+                       </apex:outputPanel>
+                   </div>
+                   <div class="panel-body">
+                       <div class="row">
+                           <apex:outputPanel >
+                               <div class="panel-heading red" >
+                                   <i></i>RICHIESTA DESOSPENSIONE
+                              </div>
+                           </apex:outputPanel>
+                           <apex:outputPanel rendered="{!IF(SLogToView.EOF_STATO_ORDINE__c  == 'Sospeso' && SLogToView.EOF_Data_Ora_Desospensione__c!=null && SLogToView.EOF_Data_Ora_Desospensione__c>=NOW() ,'true','false')}" > 
+                           		<div class="panel-body">
+                                	<label class="red" >Attenzione: </label> &nbsp; &nbsp;
+                                    <apex:outputText id="A2b" style="red" value="E' già presente nel sistema una richiesta di desospensione : {!SLogToView.EOF_Data_Ora_Desospensione__c}" />
+                           		</div>
+                           </apex:outputPanel>
+                               
+                           
+                               <fieldset class="form-group">
+                                    <div class="form-group">
+                                		<!--       
+                                        <div class="col-lg-6">
+                                            <label>Codice Comunicazione Operatore : </label> &nbsp; &nbsp;
+                                            <apex:outputField id="A1" styleClass="form-control" value="{!SLogToView.EOF_Codice_Comunicazione_OLO__c}" />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>Stato Trouble Ticket : </label> &nbsp; &nbsp;
+                                            <apex:outputField id="A2" styleClass="form-control" value="{!SLogToView.Status}" />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>Codice Operatore: </label> &nbsp; &nbsp;
+                                            <apex:outputField id="A3" styleClass="form-control" value="{!SLogToView.EOF_Codice_Operatore_WS__c}" />
+                                        </div>                                  
+                                        <div class="col-lg-6">
+                                            <label>Categoria Guasto </label> &nbsp; &nbsp;
+                                            <apex:outputField id="A4" styleClass="form-control" value="{!SLogToView.EOF_Categoria_Guasto__c}" />
+                                        </div> 
+                                        <div class="col-lg-6">                                      
+                                            <label>ID Notifica </label> &nbsp; &nbsp;
+                                            <apex:outputField id="A5" styleClass="form-control" value="{!SLogToView.EOF_Id_Notifica__c}" />
+                                        </div> 
+                                        <div class="col-lg-6">                                                                               
+                                            <label>ID Risorsa </label> &nbsp; &nbsp;
+                                            <apex:outputField id="A6" styleClass="form-control" value="{!SLogToView.EOF_Id_Risorsa__c}" />
+                                        </div>
+                                        <div class="col-lg-6">                                                                              
+                                            <label>Causale Apertura </label> &nbsp; &nbsp;
+                                            <apex:outputField id="A7" styleClass="form-control" value="{!SLogToView.EOF_Causale_Apertura__c}" />
+                                        </div>
+                                       <div class="col-lg-6">                                                                               
+                                            <label>Tipo Comunicazione </label> &nbsp; &nbsp;
+                                            <apex:outputField id="A8" styleClass="form-control" value="{!SLogToView.Type}" />
+                                        </div>
+
+                                        <div class="col-lg-6">                                                                              
+                                            <label>Data/Ora Inizio Guasto </label> &nbsp; &nbsp;
+                                            <apex:outputField id="A10" styleClass="form-control" value="{!SLogToView.EOF_Data_Ora_Inizio_Guasto__c}" />
+                                        </div> 
+                                        <div class="col-lg-6">                                                                              
+                                            <label>Nome Cliente </label> &nbsp; &nbsp;
+                                            <apex:outputField id="A11" styleClass="form-control" value="{!SLogToView.PO_Nome_Cliente_Temp__c}" />
+                                        </div>     
+                                        <div class="col-lg-6">                                                                              
+                                            <label>Cognome Cliente </label> &nbsp; &nbsp;
+                                            <apex:outputField id="A12" styleClass="form-control" value="{!SLogToView.PO_Cognome_Cliente_Temp__c}" />
+                                        </div> 
+                                        <div class="col-lg-6">                                                                              
+                                            <label>Recapito Telefonico Cliente 1 </label> &nbsp; &nbsp;
+                                            <apex:outputField id="A13" styleClass="form-control" value="{!SLogToView.PO_RecapitoTelefonico_Cliente_1_Temp__c}" />
+                                        </div>
+                                        <div class="col-lg-6">                                                                              
+                                            <label>Recapito Telefonico Cliente 2 </label> &nbsp; &nbsp;
+                                            <apex:outputField id="A14" styleClass="form-control" value="{!SLogToView.PO_RecapitoTelefonico_Cliente_2_Temp__c}" />
+                                        </div>
+                                       <div class="col-lg-6">                                                                               
+                                            <label>Nome Referente Tecnico OLO</label> &nbsp; &nbsp;
+                                            <apex:outputField id="A15" styleClass="form-control" value="{!SLogToView.PO_Nome_ReferenteTecnico_OLO_Temp__c}" />
+                                        </div>
+                                        <div class="col-lg-6">                                                                              
+                                            <label>Telefono Referente Tecnico OLO </label> &nbsp; &nbsp;
+                                            <apex:outputField id="A16" styleClass="form-control" value="{!SLogToView.PO_Telefono_ReferenteTecnico_OLO_Temp__c}" />
+                                        </div>     
+                                        <div class="col-lg-6">                                                                              
+                                            <label>Email Referente Tecnico OLO </label> &nbsp; &nbsp;
+                                            <apex:outputField id="A17" styleClass="form-control" value="{!SLogToView.PO_Email_Referente_Tecnico_OLO_Temp__c}" />
+                                        </div>     
+                                        <div class="col-lg-6">                                                                              
+                                            <label>Verifica Apparato Cliente</label> &nbsp; &nbsp;
+                                            <apex:outputField id="A18" styleClass="form-control" value="{!SLogToView.EOF_Verifica_apparato_cliente__c}" />
+                                        </div>     
+                                        <div class="col-lg-6">                                                                              
+                                            <label>Descrizione Problema </label> &nbsp; &nbsp;
+                                            <apex:outputField id="A19" styleClass="form-control" value="{!SLogToView.EOF_Descrizione_Problema__c}" />
+                                        </div>
+                                        <div class="col-lg-12">                                                                              
+                                            <label>Note </label> &nbsp; &nbsp;
+                                            <apex:outputField id="A9" styleClass="form-control" value="{!SLogToView.Description}" />
+                                        </div>     
+                                        <div class="col-lg-12">                                                                              
+                                            <label>Note Cliente </label> &nbsp; &nbsp;
+                                            <apex:outputField id="A20" styleClass="form-control" value="{!SLogToView.Note_Cliente__c}" />
+                                        </div>
+                                         --> 
+                                        <hr/>
+                                        
+                                        <div class="col-lg-6 pull-left">
+                                             <label>Data/Ora Desospensione*</label> &nbsp;  &nbsp;
+                                             <apex:inputText id="IDDataOraDesospensione"  styleClass="form-control"  value="{!inputTimeStr}"  required="true" />
+                                        </div>
+                                        <div class="col-lg-6 pull-right">
+                    						  <label>Referente Desospensione*</label> &nbsp;  &nbsp;
+                                             <apex:inputField id="IDReferenteDesospensione" styleClass="form-control"  value="{!SLogToView.EOF_Referente_desospensione__c}" required="true" />
+                                        </div>
+									 <div class="col-lg-6 pull-left">
+                                             <label>Causale Desospensione*</label> &nbsp;  &nbsp;
+                                        	  <apex:selectList id="IDCausaleDesospensione" styleClass="form-control" value="{!SLogToView.EOF_Causale_Desospensione__c}" size="1"  required="true">
+													    <apex:selectOption itemValue=""  itemLabel=""/>
+                                           	            <apex:selectOption itemValue="2" itemLabel="CLIENTE IRREPERIBILE"/>
+														<apex:selectOption itemValue="3" itemLabel="CLIENTE INDISPONIBILE"/>
+														
+										</apex:selectList>
+                                        </div>
+
+                                        <!-- 
+                                        <div class="col-lg-6">
+                                             <label>Causale Desospensione*</label> &nbsp;  &nbsp;
+                                             <apex:inputField id="IDCausaleDesospensione" styleClass="form-control" showDatePicker="true" value="{!SLogToView.EOF_Causale_Desospensione__c}" required="true" />
+                                        </div>
+                                         -->
+
+                                        <apex:inputHidden value="{!inputTimeStr2}" id="RitornoData"/>                   
+                                    </div>
+                                </fieldset>
+                                
+                          
+                       </div>
+
+                      	<div class="col-lg-4" >
+                          <div class="btn-group" role="group" aria-label="">                                      
+                              <!-- <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px;" value="Annulla Operazione" action="{!ToAnnullaOperazione}" />--> 
+                               <input type="button" class="btn btn-primary btnDisable"  onclick="disableOnSubmit();window.history.go(-1); return false;"  value="Annulla Operazione"/>          
+                          </div>
+                   	</div> 
+                   	<div class="col-lg-4" >
+                          <div class="btn-group" role="group" aria-label="">                                      
+                          		<apex:commandButton styleClass="btn btn-primary btnDisable" style="margin-right:10px;" value="Invia Richiesta" action="{!ToInoltraNotificaDesospensione}" onclick="disableOnSubmit();"/>       
+                       	</div>
+                       </div> 
+   
+                       
+                       <!--  Azioni comuni
+                      	<div class="col-lg-6">
+                           <div class="btn-group" role="group" aria-label="">                                      
+                               <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px; margin-top:10px;" value="Richieste Inserite" action="{!ListaRichiesteInserite}"/>        
+                           </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="btn-group" role="group" aria-label="">                                      
+                                <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px; margin-top:10px;" value="Inserisci Nuova Richiesta" action="{!ReferenceNewInsertPage}"/>           
+                            </div>
+                        </div>
+     					 -->
+                   </div>
+               </div>
+           </apex:form>                     
+       </body>
+   	<script>
+        function disableOnSubmit() {
+            if ($('input').valid()) {
+                setTimeout('disableAfterTimeout();', 50);
+            }
+        }
+        function disableAfterTimeout(id) {
+            $('.btnDisable').attr('disabled', 'disabled');
+        }
+
+	       $(document).ready(function(){   
+	       	
+	           $( "select[id$='IDCausaleDesospensione']" ).val('');
+	                  
+	           $("input[id$='IDDataOraDesospensione']").datetimepicker({ 
+	           	locale: 'it'
+	           }); 
+	           
+	           /*
+	           var MyDate ="{!SLogToView.EOF_Data_Ora_Desospensione__c}";
+	           
+	           if(typeof MyDate !== "undefined" && MyDate !=''){
+	           		$("input[id$='IDDataOraDesospensione']").val(moment(MyDate).format("DD/MM/YYYY HH:mm"));
+	           		$("input[id$='RitornoData']").val(moment(MyDate).format("YYYY-MM-DD HH:mm:ss"));
+	           }
+	           */
+	       	   $("form[id$='myform']").validate({
+		        	 lang : 'it'			        
+		       });
+		       
+		       $( "select[id$='IDCausaleDesospensione']" ).rules( "add", {
+				  required: true
+			   });
+			   
+			   
+			   	$.validator.addMethod("customadatetime", 
+					    function(value, element) {
+					        var dateTimeNow = new Date();
+					        //alert(dateTimeNow);
+					        var myreturn = (moment(value, "DD/MM/YYYY HH:mm").diff(moment(dateTimeNow, "DD/MM/YYYY HH:mm"),'minutes')>2)?true:false;
+					        //alert(myreturn);
+					        return   myreturn;
+					    }, 
+					    "La data di desospensione non può essere retroattiva"
+					);
+			   
+			   
+				
+				$( "input[id$='IDDataOraDesospensione']" ).rules( "add", {
+					  required: true,
+					  customadatetime: true
+				});
+				
+	      });
+	      
+      			 //Aggiornamento data
+	      $("input[id$='IDDataOraDesospensione']").focusout(function() {
+ 						var MyDateTimeIT = $("input[id$='IDDataOraDesospensione']").val();
+ 						//alert('ITA '+MyDateTimeIT);
+ 						var MyDateTimeEN = moment(MyDateTimeIT,"DD/MM/YYYY HH:mm").toDate();
+ 						//alert('ENA '+MyDateTimeEN + '  ' + moment(MyDateTimeEN).format("YYYY-MM-DD HH:mm:ss") );
+ 						$("input[id$='RitornoData']").val(moment(MyDateTimeEN).format("YYYY-MM-DD HH:mm:ss"));
+	      });
+	</script>
+    </html>
+</apex:component>

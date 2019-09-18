@@ -1,0 +1,72 @@
+<apex:page standardController="Ispezione_II_Livello__c" extensions="CQS_Isp2L_SelezioneTipoIspController">
+<!-- <apex:page controller="CQS_Isp2L_SelezioneTipoIspController"> -->
+<apex:pageMessages id="pm"/>
+<apex:sectionHeader subtitle="Scegli il tipo di Ispezione"/> 
+  <apex:form >
+    <apex:pageBlock id="pb" title="Ciao {!$User.FirstName}" >
+      <apex:pageBlockSection title="Seleziona il tipo di ispezione" collapsible="true" columns="2">
+     <!--   <apex:pageBlockSectionItem > --> 
+            <apex:outputPanel id="sezsel" >
+                <b>Modulo</b>&nbsp;&nbsp;&nbsp;
+                <apex:selectList label="Tipo di Ispezione" value="{!optScelta}" size="1" required="true">
+                    <apex:selectOptions Value="{!optList}" />
+               </apex:selectList>
+            </apex:outputPanel>
+  <!--    </apex:pageBlockSectionItem> -->
+      </apex:pageBlockSection>
+       	  
+      <apex:pageBlockSection id="pbSecNoCM" title="Seleziona la Regione ed il Comune" collapsible="true" rendered="{!!isCM}" columns="2">
+   <!--     <apex:pageBlockSectionItem > -->
+            <apex:outputPanel id="sezselReg">
+              <apex:actionRegion id="sezselReg1" >
+                <b>Regione</b>&nbsp;&nbsp;&nbsp;
+              	<apex:selectList label="Regione" value="{!optSceltaRegione}" size="1" required="true">
+                    <apex:selectOptions Value="{!optListaRegioni}" />
+                     <apex:actionSupport event="onchange" action="{!defineComuni}"  reRender="pm,sezselReg,sezselComu" />
+                </apex:selectList>
+ 	    	  </apex:actionRegion>
+                <apex:pageBlockSectionItem />
+ 			</apex:outputPanel>
+            <apex:outputPanel id="sezselComu">
+              <apex:actionRegion id="sezselCom1" >
+                <b>Provincia </b>&nbsp;&nbsp;&nbsp;
+              	<apex:selectList label="Comune" value="{!optSceltaComune}" size="1" required="true">
+                    <apex:selectOptions Value="{!optListaComuni}" />
+                </apex:selectList>
+ 	    	  </apex:actionRegion>
+ 			</apex:outputPanel>
+   <!--     </apex:pageBlockSectionItem> -->
+      </apex:pageBlockSection>
+        
+      <apex:pageBlockSection id="pbSecCM" title="Seleziona la Regione ed il Comune" collapsible="true" rendered="{!isCM}">
+ <!--       <apex:pageBlockSectionItem > -->
+            <apex:outputPanel id="sezselComuCM">
+              <apex:actionRegion id="sezselComCM1" >
+                <b>Provincia </b>&nbsp;&nbsp;&nbsp;
+              	<apex:selectList label="Comune" value="{!optSceltaComune}" size="1" required="true">
+                    <apex:selectOptions Value="{!optListaComuni}" />
+                </apex:selectList>
+ 	    	  </apex:actionRegion>
+ 
+                </apex:outputPanel>
+  <!--    </apex:pageBlockSectionItem> -->
+       	  </apex:pageBlockSection>
+        	
+        	<apex:pageBlock id="pbButt">
+        		<apex:commandButton value="Seleziona" action="{!pagPresel}"/>  <!--  rerender="sezsel,sezselReg" -->
+        	</apex:pageBlock>
+         
+     	<apex:pageBlockSection title="Dettagli per la scelta corretta" collapsible="true" columns="1"> 
+        	<apex:pageBlockSectionItem >
+            	<p>Scegliere 'Verifica Rispetto Adempimenti Contrattuali Società di Servizio' per censire le ispezioni alle Società di Servizio </p>
+            	<p>Scegliere 'Verifica Rispetto Adempimenti Contrattuali RL' per censire le ispezione ai Responsabili Lavori</p>
+            	<p>Scegliere 'Verifica Rispetto Adempimenti Contrattuali DL' per censire le ispezione ai Direttori Lavori</p>
+            	<p>Scegliere 'Verifica Rispetto Adempimenti Contrattuali CSE' per censire le ispezione ai CSE</p>
+            </apex:pageBlockSectionItem>
+    	</apex:pageBlockSection>
+      
+    </apex:pageBlock>
+  </apex:form>
+
+
+</apex:page>

@@ -1,0 +1,145 @@
+<apex:component controller="PO_COMP_CeD_DesospAnnullRimod_controller" AllowDML="true">
+	
+	<head>  
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            <!-- /#wrapper -->
+              
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js' >
+            </script>
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+            </style>
+        </head>
+        <body>
+        <div class="panel panel-default">
+               <div class="panel-heading">
+		        
+		                <i></i>{!title}
+		       	
+	       		</div>
+	        <div class="panel-body">
+	            <div class="row">                               
+				    <apex:form >
+				        <div style="color:red;" id="showerror">
+				            <apex:pageMessages id="errors" /> 
+				        </div>
+				        
+				        <form role="form" class="form-horizontal">
+				            <fieldset class="form-group">
+				            	<div class="form-group">
+	                                <apex:outputPanel rendered="{!rimodula}">
+		                                <div class="col-lg-6">
+		                                     <label>Motivazione* :</label> &nbsp; &nbsp;
+		                                     <apex:selectList value="{!sl.EOF_MOTIVAZIONE__c}" size="1" styleClass="dropDown form-control" required="true">
+				                           		<apex:selectOptions value="{!MotivazioniOptions}" />
+				                       		</apex:selectList>
+		                                </div> 
+	                                </apex:outputPanel>
+	                                <apex:outputPanel rendered="{!annulla}">
+		                                <div class="col-lg-6">
+		                                     <label>Motivazione :</label> &nbsp; &nbsp;
+		                                     <apex:outputField id="MotivazioneAnnull" styleClass="form-control" value="{!sl.EOF_MOTIVAZIONE__c}"/>
+		                                </div> 
+	                                </apex:outputPanel>
+					              	<apex:outputPanel rendered="{!!annulla}">
+						              	<div class="col-lg-6"> 
+	                                     <label>Data Prevista Attivazione{!IF(rimodula,'*','')} :  </label> &nbsp; &nbsp;                     
+	                                     	<apex:inputField type="date" styleClass="form-control" id="EOFDataPrevistaAttivazione" value="{!sl.EOF_DATA_PREVISTA_ATTIVAZIONE__c}" onclick="openDatePicker()" required="{!rimodula}" />          
+	                                     </div>
+	                                     <div class="col-lg-6">
+	                                          <label>Orario Appuntamento :</label> &nbsp; &nbsp;
+	                                          <apex:inputText id="OrarioAppuntamento" styleClass="form-control" required="false" value="{!sl.EOF_ORARIO_APPUNTAMENTO__c}" html-placeholder="hh:mm:ss" maxlength="8"/>
+	                                     </div> 
+	                                  <div class="col-lg-6">
+	                                       <label>Nome Cliente : </label> &nbsp; &nbsp;
+	                                       <apex:inputField id="NomeCliente" styleClass="form-control"  value="{!sl.EOF_Nome_Cliente__c}"/>
+	                                  </div> 
+	                                  <div class="col-lg-6">
+	                                      <label>Cognome Cliente : </label> &nbsp; &nbsp;
+	                                      <apex:inputField id="CognomeCliente" styleClass="form-control" value="{!sl.EOF_COgnome_CLiente__c}"  />
+	                                  </div>
+	                              
+	                                  
+	                                  <div class="col-lg-6">
+	                                       <label>Recapito Telefonico Cliente 1 : </label> &nbsp; &nbsp;
+	                                       <apex:inputField id="RecapitoTelefonicoCliente1" styleClass="form-control" value="{!sl.EOF_RECAPITO_TELEFONICO_CLIENTE_1__c}"  />
+	                                  </div> 
+	                                  <div class="col-lg-6">
+	                                      <label>Recapito Telefonico Cliente 2 : </label> &nbsp; &nbsp;
+	                                      <apex:inputField id="RecapitoTelefonicoCliente2" styleClass="form-control" required="false" value="{!sl.EOF_RECAPITO_TELEFONICO_CLIENTE_2__c}"/>
+	                                  </div>
+	                                 </apex:outputPanel>
+	                                 <div class="col-lg-6">
+	                                      <label>Note : </label> &nbsp; &nbsp;
+	                                      <apex:inputField id="Note" styleClass="form-control" required="false" value="{!sl.EOF_NOTE__c}"/>
+	                                 </div>
+	                              </div>   
+			                 </fieldset>
+				        
+	                 	
+				            <div class="col-sm-6">
+				                <div class="btn-group" role="group" aria-label="Basic example">                                      
+				                    <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px;" value="Annulla" action="{!annullaFlusso}" html-formnovalidate="formnovalidate" immediate="true"/>        
+				                </div>
+				            </div> 
+				           	 
+	                       <div class="col-lg-6" >
+	                           <div class="btn-group" role="group" aria-label="Basic example">                                      
+	                               <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px;" value="Inoltra" action="{!inoltraFlusso}" />        
+	                           </div>
+	                       </div>
+
+		            	</form>
+		    		</apex:form> 
+	    		</div>
+    		</div>
+	    <br/>
+	</div>
+	</body>
+	
+</apex:component>

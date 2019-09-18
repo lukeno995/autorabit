@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Collaborazione</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Collaborazioni</value>
+    </caseValues>
+    <fields>
+        <label><!-- Comune --></label>
+        <name>CQS_Comune_Collaborazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Impresa Esecutrice --></label>
+        <name>CQS_Impresa_Esecutrice_Collaborazioni__c</name>
+    </fields>
+    <fields>
+        <label><!-- Impresa Mandataria --></label>
+        <name>CQS_Impresa_Mandataria_Collaborazioni__c</name>
+    </fields>
+    <fields>
+        <label><!-- Provincia --></label>
+        <name>CQS_Provincia_Collaborazioni__c</name>
+    </fields>
+    <fields>
+        <label><!-- Area Cavo --></label>
+        <name>OF_CQS_Area_Cavo_Collaborazioni__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Scadenza Collaborazione --></label>
+        <name>OF_CQS_DB_Data_Scadenza_Collaborazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Contratto Collaborazione --></label>
+        <name>OF_CQS_Data_Contratto_Collaborazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Informazioni di Test --></label>
+        <name>OF_CQS_Informazioni_di_Test__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lotto --></label>
+        <name>OF_CQS_Lotto_Collaborazioni__c</name>
+    </fields>
+    <fields>
+        <label><!-- Validità Contratto Collaborazione --></label>
+        <name>Validit_Contratto_Collaborazione2__c</name>
+    </fields>
+    <layouts>
+        <layout>DB CQS Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettagli collaborazione --></label>
+            <section>Dettagli collaborazione</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni --></label>
+            <section>Informazioni</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

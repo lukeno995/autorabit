@@ -1,0 +1,62 @@
+<apex:page Controller="OF_AttivazManualeCEController">
+     <apex:form >
+        <apex:pageBlock mode="edit" title="Istanziazione Commercial Element" id="theID">	
+            
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton action="{!save}" value="Salva" disabled="{!savecheck}"/>
+                <apex:commandButton immediate="TRUE" action="{!toReturn}" value="Ritorna all'asset" /> 
+        	</apex:pageBlockButtons>
+        	        	        	        	
+            <apex:actionRegion >
+				<apex:pageBlockSection id="theSection" columns="1">
+	                 <apex:pageblockSectionItem id="theSectionItem1" >
+	                    <apex:outputLabel value="Commercial Element"/>
+	                        <apex:selectList size="1" value="{!CEIst}">
+	                              <apex:selectoptions value="{!CE}"/>
+	                              <apex:actionSupport event="onchange" reRender="VLAN1, CPE1"/>
+	                        </apex:selectList>
+	                 </apex:pageblockSectionItem>
+				</apex:pageBlockSection>
+            </apex:actionRegion>
+            
+            <apex:pageBlockSection >
+	            <apex:inputfield value="{!CEToInsert.OF_Stato__c}"  label="Stato" required="true"/> 
+            	<apex:inputfield value="{!CEToInsert.OF_DataAttivazione__c}"  label="Data Attivazione" required="true"/> 
+            	<apex:inputfield value="{!CEToInsert.OF_DataSospensione__c}"  label="Data Sospensione"/>
+            	<apex:inputfield value="{!CEToInsert.OF_DataCessazione__c}"  label="Data Cessazione"/> 
+            	<apex:inputfield value="{!CEToInsert.OF_DataRiattivazione__c}"  label="Data Riattivazione"/> 
+	        </apex:pageBlockSection>
+            
+         	<apex:outputpanel id="VLAN1">
+            	<apex:pageBlockSection title="VLAN" rendered="{!renderizzVLAN}">
+            		<apex:inputfield value="{!CEToInsert.OF_KitConsegnaVLAN__c}"  label="Kit Consegna VLAN" required="true"/>
+            		<apex:inputfield value="{!CEToInsert.OF_ProfiloVLAN__c}"  label="Profilo VLAN" required="true"/>
+            		<apex:inputfield value="{!CEToInsert.OF_UserVLAN__c}"  label="User VLAN" required="true"/>
+            		<apex:inputfield value="{!CEToInsert.OF_ServiceVLAN__c}"  label="Service VLAN" required="true"/>
+            		<apex:inputfield value="{!CEToInsert.OF_CustomerVLAN__c}"  label="Customer VLAN" />
+            		<apex:inputfield value="{!CEToInsert.OF_ModelloDiServizioVLAN__c}"  label="Modello Di Servizio VLAN" />
+            		<apex:inputfield value="{!CEToInsert.OF_InformazioniVLAN__c}"  label="Informazioni VLAN" />
+            	</apex:pageBlockSection>
+			</apex:outputpanel>
+			
+			<apex:outputpanel id="CPE1" >
+            	<apex:pageBlockSection title="CPE" rendered="{!renderizzCPE}">
+            		<apex:inputfield value="{!CEToInsert.OF_IDOrdine__c}"  label="ID Ordine" />
+            		<apex:inputfield value="{!CEToInsert.OF_TipologiaApparato__c}"  label="Tipologia Apparato" required="true"/>
+            		<apex:inputfield value="{!CEToInsert.OF_AzioneApparato__c}"  label="Azione Apparato" />
+            		<apex:inputfield value="{!CEToInsert.OF_EsitoConsegnaApparato__c}"  label="Esito Consegna Apparato" />
+            		<apex:inputfield value="{!CEToInsert.OF_CodiceMotivazioneConsegna__c}"  label="Codice Motivazione Consegna" />
+            		<apex:inputfield value="{!CEToInsert.OF_MotivazioneConsegna__c}"  label="Motivazione Consegna"/>
+            		<apex:inputfield value="{!CEToInsert.OF_DDT__c}"  label="DDT"/>
+            		<apex:inputfield value="{!CEToInsert.OF_EsitoRitiroApparato__c}"  label="Esito Ritiro"/>
+            		<apex:inputfield value="{!CEToInsert.OF_CodiceMotivazioneRitiro__c}"  label="Codice Motivazione Ritiro"/>
+            		<apex:inputfield value="{!CEToInsert.OF_MotivazioneRitiro__c}"  label="Motivazione Ritiro"/>
+            	</apex:pageBlockSection>
+			</apex:outputpanel>        	
+			
+			<apex:pageMessages />
+			
+        </apex:pageBlock>
+        
+    </apex:form>
+</apex:page>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Case$CaseNumber</field>
+    </columns>
+    <columns>
+        <field>Case$Parent.CaseNumber</field>
+    </columns>
+    <columns>
+        <field>Case$Parent.PO_Nome_Progetto__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Case$RecordType</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Case.PO_Collegamento_Fiber_Lease,Case.PO_Collegamento_Fiber_link,Case.PO_Collegamento_IRU,Case.PO_Collegamento_Misto_Fiber_Lease_Link_per_Fastweb,Case.PO_Collegamento_P2P</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Collegamenti</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Collegamenti__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Case$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>

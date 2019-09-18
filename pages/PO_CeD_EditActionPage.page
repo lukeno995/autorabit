@@ -1,0 +1,192 @@
+<apex:page showHeader="true" sidebar="true" standardController="Case" extensions="PO_CeD_EditActionController"
+    docType="html-5.0">
+    <html lang="it">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <apex:slds />
+        <!-- /#wrapper -->
+        <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"
+        />
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"
+        />
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+        <style>
+            .red {
+                color: red;
+            }
+            
+            .form-check-input {
+                margin-left: 45px !important;
+                margin-top: 10px;
+            }
+            
+            .acquisito {
+                display: none;
+            }
+            
+            .accettato {
+                display: none;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <apex:form id="theForm">
+            <apex:pageBlock id="thePageBlock">
+
+                <!-- INIZIO - Sezione Modifica -->
+                <div class="slds-section slds-is-open" id="modulo">
+                    <h3 class="slds-section__title slds-theme_shade">
+                        <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Modifica Dati</span>
+                    </h3>
+                    
+                    <div class="slds-form slds-form_horizontal">
+                        <!-- INIZIO - Sezione Modifica se il case è in stato ACQUISITO-->
+                        <div class="acquisito">
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="dataPrev">Data Prevista Attivazione :</label>
+                                <div class="slds-form-element__control">
+                                    <apex:inputField id="dataPrev" styleClass="slds-input" value="{!c.EOF_Data_Prevista_Attivazione__c}"
+                                        style="width:50%;" />
+                                </div>
+                            </div>
+    
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="orario">Orario Appuntamento :</label>
+                                <div class="slds-form-element__control">
+                                    <apex:inputField id="orario" html-placeholder="HH:MM:SS" styleClass="slds-input"
+                                        value="{!c.EOF_Orario_Appuntamento__c}" style="width:50%;"
+                                    />
+                                </div>
+                            </div>
+                            
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="note">Note :</label>
+                                <div class="slds-form-element__control">
+                                    <apex:inputText id="note" styleClass="slds-input" value="{!c.EOF_Note__c}" style="width:50%; margin-bottom:8px;"/>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- FINE - Sezione Modifica se il case è in stato ACQUISITO-->
+                        
+                        <div class="accettato">
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="id_risorsa">ID Risorsa :</label>
+                                <div class="slds-form-element__control">
+                                    <apex:inputText id="id_risorsa" styleClass="slds-input" value="{!c.EOF_Id_Risorsa__c}"
+                                        style="width:50%;" />
+                                </div>
+                            </div>
+    
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="cod_motivazione">Codice Motivazione :</label>
+                                <div class="slds-form-element__control">
+                                    <apex:inputText id="cod_motivazione" styleClass="slds-input" value="{!c.OF_SA_Codice_Motivazione__c}"
+                                        style="width:50%;" />
+                                </div>
+                            </div>
+    
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="motivazione">Motivazione :</label>
+                                <div class="slds-form-element__control">
+                                    <apex:inputText id="motivazione" styleClass="slds-input" value="{!c.OF_SA_Motivazione__c}"
+                                        style="width:50%;" />
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <br/>
+                        <div class="slds-form-element" style="margin-right: 565px;">
+                            <apex:outputPanel >
+                                <apex:commandLink id="updateDati" styleClass="slds-button slds-button--brand" style="margin-right:10px;"
+                                    value="Aggiorna dati" onclick="validateform(); return false;" />
+                                <apex:actionFunction action="{!aggiornaDati}" name="updateCase" />
+                                <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:5px;"
+                                    value="Annulla" action="{!annulla}" />
+                            </apex:outputPanel>
+                        </div>
+                    </div>
+                </div>
+                <!-- FINE - Sezione Modifica -->
+            </apex:pageBlock>
+        </apex:form>
+
+        <script type='text/javascript'>
+  
+            $( document ).ready(function() {
+                showFieldStatus();
+            });
+
+            function showFieldStatus()
+            {
+                var status = '{!c.status}';
+                //alert('Status Case : '+status);
+
+                if(status=='Acquisito')
+                {
+                    $(".accettato").css("display", "none");
+                    $(".acquisito").css("display", "block");
+                }
+                if(status=='Accettato')
+                {
+                    $(".accettato").css("display", "block");
+                    $(".acquisito").css("display", "block");
+                }
+            }
+        
+            function validateform() 
+            {
+                /*
+                var id_risorsa = $('[id$=id_risorsa]').val();
+                var cod_motivazione = $('[id$=cod_motivazione]').val();
+                var motivazione = $('[id$=motivazione]').val();
+                //var note = $('[id$=note]').val();
+                var check = true;
+
+                if (id_risorsa.length == 0) {
+                    $('[id$=id_risorsa]').next('div.red').remove();
+                    $('[id$=id_risorsa]').after(
+                        '<div class="red">Campo obbligatorio</div>');
+                    check = false;
+                }
+                else
+                    $('[id$=motivazione]').next('div.red').remove();
+
+
+                if (cod_motivazione.length == 0) {
+                    $('[id$=cod_motivazione]').next('div.red').remove();
+                    $('[id$=cod_motivazione]').after(
+                        '<div class="red">Campo obbligatorio</div>');
+                    check = false;
+                } 
+                else
+                    $('[id$=cod_motivazione]').next('div.red').remove();
+
+                if (motivazione.length == 0) {
+                    $('[id$=motivazione]').next('div.red').remove();
+                    $('[id$=motivazione]').after(
+                        '<div class="red">Campo obbligatorio</div>');
+                    check = false;
+                }
+                else
+                    $('[id$=motivazione]').next('div.red').remove();
+
+                if (check == true)
+                */
+                updateCase();
+            }
+
+        </script>
+    </body>
+
+    </html>
+
+</apex:page>

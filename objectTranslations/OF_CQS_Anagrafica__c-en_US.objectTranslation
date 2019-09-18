@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Anagrafica</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Anagrafiche</value>
+    </caseValues>
+    <fields>
+        <label><!-- Consorziata Capogruppo --></label>
+        <name>CQS_An_ConsorziataCapogruppo__c</name>
+        <relationshipLabel><!-- Consorziata Capogruppo --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Consorziata --></label>
+        <name>CQS_An_Consorziata_2__c</name>
+        <relationshipLabel><!-- Consorziata 2 --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Consorziata --></label>
+        <name>CQS_An_Consorziata_3__c</name>
+        <relationshipLabel><!-- Consorziata 3 --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Consorziata --></label>
+        <name>CQS_An_Consorziata_4__c</name>
+        <relationshipLabel><!-- Consorziata 4 --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Consorziata --></label>
+        <name>CQS_An_Consorziata_5__c</name>
+        <relationshipLabel><!-- Consorziata 4 --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Attributo che caratterizza un&apos; impresa titolare di contratto d’appalto con OF --></help>
+        <label><!-- Affidataria --></label>
+        <name>CQS_Check_Affidataria__c</name>
+    </fields>
+    <fields>
+        <label><!-- Autorizzazione --></label>
+        <name>OF_CQS_Autorizzazione_CustObj__c</name>
+        <picklistValues>
+            <masterLabel>Idoneo</masterLabel>
+            <translation><!-- Idoneo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Idoneo con Riserva</masterLabel>
+            <translation><!-- Idoneo con Riserva --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non Idoneo</masterLabel>
+            <translation><!-- Non Idoneo --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Cap --></label>
+        <name>OF_CQS_Cap__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comune --></label>
+        <name>OF_CQS_Comune__c</name>
+    </fields>
+    <fields>
+        <label><!-- Esecutrice 2 --></label>
+        <name>OF_CQS_Esecutrice_2__c</name>
+        <relationshipLabel><!-- Esecutrici 2 --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Esecutrice 3 --></label>
+        <name>OF_CQS_Esecutrice_3__c</name>
+        <relationshipLabel><!-- Esecutrice 3 --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Esecutrice 4 --></label>
+        <name>OF_CQS_Esecutrice_4__c</name>
+        <relationshipLabel><!-- Anagrafiche (Esecutrice 4) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Impresa Esecutrice Capofila --></label>
+        <name>OF_CQS_Esecutrice_Capofila__c</name>
+        <relationshipLabel><!-- Imprese Esecutrici Capofila --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Fax --></label>
+        <name>OF_CQS_Fax__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Anagrafica --></label>
+        <name>OF_CQS_ID_Anagrafica__c</name>
+    </fields>
+    <fields>
+        <label><!-- Impresa Esecutrice --></label>
+        <name>OF_CQS_Impresa_Esecutrice__c</name>
+        <relationshipLabel><!-- Imprese Esecutrici --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Impresa Affidataria --></label>
+        <name>OF_CQS_Impresa_Mandataria_Anagrafica__c</name>
+        <relationshipLabel><!-- Anagrafiche --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Email --></label>
+        <name>OF_CQS_Indirizzo_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Indirizzo --></label>
+        <name>OF_CQS_Indirizzo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lettera d&apos;ordine --></label>
+        <name>OF_CQS_Istanza_di_Autorizzazione_CustObj__c</name>
+    </fields>
+    <fields>
+        <label><!-- Numero Civico --></label>
+        <name>OF_CQS_Numero_Civico__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parere --></label>
+        <name>OF_CQS_Parere_CustObj__c</name>
+    </fields>
+    <fields>
+        <label><!-- Particella Toponomastica --></label>
+        <name>OF_CQS_Particella_Toponomastica__c</name>
+    </fields>
+    <fields>
+        <label><!-- Provincia --></label>
+        <name>OF_CQS_Provincia__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipo di Impresa --></label>
+        <name>OF_CQS_Tipo_di_Impresa__c</name>
+    </fields>
+    <fields>
+        <label><!-- Website --></label>
+        <name>OF_CQS_Website__c</name>
+    </fields>
+    <fields>
+        <label><!-- Partita IVA --></label>
+        <name>Partita_IVA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Telefono --></label>
+        <name>Telefono__c</name>
+    </fields>
+    <layouts>
+        <layout>Anagrafica Consorzi Esecutrici</layout>
+        <sections>
+            <label><!-- Consorzi Imprese Esecutrici --></label>
+            <section>Consorzi Imprese Esecutrici</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Anagrafica Impresa</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Impresa --></label>
+            <section>Impresa</section>
+        </sections>
+        <sections>
+            <label><!-- Sede Legale --></label>
+            <section>Sede Legale</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Anagrafica Impresa Esecutrice</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dati di Contatto --></label>
+            <section>Dati di Contatto</section>
+        </sections>
+        <sections>
+            <label><!-- Impresa Esecutrice --></label>
+            <section>Impresa Esecutrice</section>
+        </sections>
+        <sections>
+            <label><!-- Indirizzo --></label>
+            <section>Indirizzo</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Anagrafica Impresa Mandataria</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dati di Contatto --></label>
+            <section>Dati di Contatto</section>
+        </sections>
+        <sections>
+            <label><!-- Impresa Mandataria --></label>
+            <section>Impresa Mandataria</section>
+        </sections>
+        <sections>
+            <label><!-- Indirizzo --></label>
+            <section>Indirizzo</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Anagrafica Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Ati Imprese</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Raggruppamento di Imprese --></label>
+            <section>Raggruppamento di Imprese</section>
+        </sections>
+        <sections>
+            <label><!-- Sede Legale --></label>
+            <section>Sede Legale</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Ati Imprese Mandatarie</layout>
+        <sections>
+            <label><!-- ATI Imprese Mandatarie --></label>
+            <section>ATI Imprese Mandatarie</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description><!-- Raggruppamenti di imprese (ATI, RTI, consorzi) titolari di contratto d’appalto con OF --></description>
+        <label><!-- Imprese in raggruppamento --></label>
+        <name>CQS_Imprese_in_raggruppamento</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- impresa che esegue l’opera o parte di essa --></description>
+        <label><!-- Impresa Esecutrice --></label>
+        <name>Impresa_Esecutrice</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Raggruppamenti di imprese (ATI, RTI, consorzi) che eseguono l’opera o parte di essa --></description>
+        <label><!-- Imprese esecutrici in raggruppamento --></label>
+        <name>OF_CQS_Consorzi_Esecutrici</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Impresa singola --></description>
+        <label><!-- Impresa --></label>
+        <name>OF_CQS_Impresa_Mandataria</name>
+    </recordTypes>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- Nel campo Cap è possibile inserire solo caratteri numerici. --></errorMessage>
+        <name>Controlla_Cap_Numerico</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Nel campo Cap è possibile inserire solo caratteri numerici. --></errorMessage>
+        <name>Controlla_Numero_Civico_solo_numeri</name>
+    </validationRules>
+</CustomObjectTranslation>

@@ -1,0 +1,686 @@
+<apex:page standardController="OF_CQS_Ispezione__c" extensions="Cqs_Ispezione_CustomController">
+    <Style>
+        .red{color:red;}
+    </Style>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>            
+    <link rel = "stylesheet"  type = "text/css"  href = "//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+    <!---apex:include pageName="{!pageName}"/--->
+    <apex:pageMessages id="pm"/>
+    <apex:sectionHeader title="Ispezione" subtitle="Ispezione di Sicurezza"/>
+    <apex:form id="theForm">
+        <script>
+        function showRow(){             {
+            document.getElement("{!isp.CQS_Isp_Nome_Cognome2__c}").style.dispaly = "none";
+            return false;
+        }
+        </script> 
+        <apex:pageBlock title="Ispezione di Sicurezza" mode="edit">
+          <apex:outputPanel id="ipsec">
+          
+            <apex:pageBlockSection title="Ispezione di Sicurezza" columns="2" collapsible="true">
+          
+                <apex:pageBlockSectionItem />
+                <apex:outputField value="{!isp.OF_CQS_Committente_Opera__c}"/>
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                
+             <apex:actionRegion id="ipsec1" >
+                    <apex:pageBlockSectionItem >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Progetto </b>&nbsp;&nbsp;&nbsp;
+                        <apex:selectList label="Progetto" value="{!projectName}" size="1"  >
+                            <apex:selectOptions value="{!optNomeProgetto}"/>  
+                            <apex:actionSupport event="onchange" action="{!defineLDO}"  reRender="ipsec" />
+                        </apex:selectList>
+                    </apex:pageBlockSectionItem>
+                      </apex:actionRegion>
+                   <apex:outputfield value="{!isp.CQS_ISP_LDO__c}"   />
+                      <br/>
+                         <apex:pageBlockSectionItem />
+                            <apex:outputField value="{!isp.OF_CQS_Impresa_Mandataria__c}" />
+              </apex:pageBlockSection>
+        </apex:outputPanel>   
+            <apex:pageBlockSection columns="2" collapsible="true">       
+                <apex:inputField value="{!isp.OF_CQS_Impresa_Ispezionata__c}" required="true"/>
+                <apex:inputField value="{!isp.OF_CQS_ISP_Verbale_N__c}"/> />
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                <apex:inputField value="{!isp.OF_CQS_Data_Ispezione__c}" required="true"/>
+                <apex:inputField value="{!isp.Ora_Inizio_Sopralluogo__c}"/>
+                <apex:pageBlockSectionItem />
+                <apex:inputField value="{!isp.CQS_ISP_ora_fine_sop__c}" />
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                
+                <apex:outputField value="{!isp.CQS_ISP_Punteggio_Totale__c}"/>
+                <apex:outputField value="{!isp.CQS_ISP_Perc_Tot_Punt__c}"/>
+                <apex:outputField value="{!isp.CQS_Punteggio_Tot_Max_Isp__c}"/>
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection title="Luogo Ispezione" columns="2" collapsible="true">
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                <apex:inputField value="{!isp.OF_CQS_ISP_VIA__c}" required="true"></apex:inputField>
+                <apex:inputField value="{!isp.OF_CQS_ISP_Lotto__c}"/>
+                <apex:inputField value="{!isp.OF_CQS_ISP_Numero_Civico__c}" required="true"/>
+                <apex:inputField value="{!isp.OF_CQS_ISP_Area_Cavo__c}"/>
+                <apex:inputField value="{!isp.OF_CQS_ISP_CAP__c}"/>
+                <apex:pageBlockSectionItem />
+                <!--<apex:inputField value="{!isp.OF_CQS_ISP_Comune__c}" required="true"/>-->
+                 <apex:actionRegion >                                                    
+                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <b>Comune</b></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <apex:inputText id="comuneId" value="{!searchTerm}" styleClass="form-control" />
+                <apex:inputHidden id="searchcommuneId" value="{!selectedIdComune}" />
+            </apex:actionRegion>
+                <apex:pageBlockSectionItem />
+                
+               
+                <apex:inputField value="{!isp.OF_CQS_ISP_Provincia__c}"/>                   
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+            </apex:pageBlockSection>
+            
+            <!--<apex:actionRegion >                                                    
+                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;
+                    <b>Comune</b></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <apex:inputText id="comuneId" value="{!searchTerm}" styleClass="form-control" />
+                <apex:inputHidden id="searchcommuneId" value="{!selectedIdComune}" />
+            </apex:actionRegion>-->
+            
+            
+            <apex:pageBlockSection title="Dettaglio Lavorazioni" collapsible="true">
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                <apex:outputField value="{!isp.CQS_ISP_Lavorazioni_Autorizzate__c}"/>
+                <apex:outputField value="{!isp.CQS_ISP_Lavorazioni_in_esecuzione__c}"/>
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                <apex:inputCheckbox value="{!isp.CQS_ISP_Autorizzazione_Scavo__c}"></apex:inputCheckbox>
+                <apex:inputCheckbox value="{!isp.CQS_ISP_Scavo_inEsecuzione__c}"></apex:inputCheckbox>      
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                <apex:inputCheckbox value="{!isp.CQS_ISP_Autorizzazione_Infrastrutture__c}"></apex:inputCheckbox>
+                <apex:inputCheckbox value="{!isp.CQS_ISP_Infrastrutture_inEsecuzione__c}"></apex:inputCheckbox>
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                <apex:inputCheckbox value="{!isp.CQS_ISP_Autorizzazione_Posa_cavi__c}"></apex:inputCheckbox>
+                <apex:inputCheckbox value="{!isp.CQS_ISP_Posa_Cavi_inEsecuzione__c}"></apex:inputCheckbox>  
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                <apex:inputCheckbox value="{!isp.CQS_ISP_Autorizzazione_Ripristini__c}"></apex:inputCheckbox>
+                <apex:inputCheckbox value="{!isp.CQS_ISP_Ripristini_inEsecuzione__c}"></apex:inputCheckbox>
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />   
+                <apex:inputCheckbox value="{!isp.CQS_ISP_Autorizzazione_Verticale__c}"></apex:inputCheckbox>
+                <apex:inputCheckbox value="{!isp.CQS_ISP_Verticale_inEsecuzione__c}"></apex:inputCheckbox>  
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                <apex:inputCheckbox value="{!isp.CQS_ISP_Autorizzazione_Giunzione__c}"></apex:inputCheckbox>
+                <apex:inputCheckbox value="{!isp.CQS_ISP_Giunzione_inEsecuzione__c}"></apex:inputCheckbox>  
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+             </apex:pageBlockSection>
+            <apex:outputpanel id="sezLavoratori">
+            <apex:pageBlockSection title="Lavoratori Presenti in Cantiere" columns="2" collapsible="true">  <!-- columns="3"  -->
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+       <!--         <apex:pageBlockSectionItem />	-->
+                <apex:inputField value="{!isp.CQS_ISP_Nome_Cognome__c}" /> 
+                <apex:inputField value="{!isp.Cqs_Isp_Autorizzato__c}"/>
+              <!--    <apex:commandButton value="+" onClick="{!showRow}"  rerender="theForm,sezLavoratori">
+                   <apex:param value="true" assignTo="{!showRow2}"/>
+            	 </apex:commandButton>
+                <apex:pageBlockSectionItem /> -->
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+             <!--   <apex:outputpanel id="row2" rendered="{!showRow2}"> -->
+                <apex:inputField label="Nome Cognome" value="{!isp.CQS_Isp_Nome_Cognome2__c}"/> <!-- rendered="{!showRow}" --> 
+                <apex:inputField label="Autorizzato" value="{!isp.CQS_Isp_Autorizzato2__c}"/>   
+          <!--      <apex:commandButton value="+" onClick="{!showRow}" rerender="theForm,sezLavoratori">
+                 <apex:param value="true" assignTo="{!showRow3}"/>
+               </apex:commandButton>
+                </apex:outputpanel> 
+                <apex:pageBlockSectionItem /> -->
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />   
+             <!--    <apex:outputpanel id="row3" rendered="{!showRow3}">   --> 
+                <apex:inputField value="{!isp.CQS_ISP_Nome_Cognome3__c}"/> 
+                <apex:inputField value="{!isp.CQS_ISP_Autorizzato3__c}"/>
+             <!--   <apex:commandButton value="+" onClick="{!showRow}"/>
+                </apex:outputpanel>
+                <apex:pageBlockSectionItem /> -->
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+            <!--    <apex:outputpanel id="row4" rendered="{!showRow4}"> -->
+                <apex:inputField value="{!isp.CQS_ISP_Nome_Cognome4__c}"/> 
+                <apex:inputField value="{!isp.CQS_ISP_Autorizzato4__c}"/>
+            <!--    <apex:commandButton value="+" onClick="{!showRow}"/>
+                </apex:outputpanel>
+                <apex:pageBlockSectionItem /> -->
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+            <!--     <apex:outputpanel id="row5" rendered="{!showRow5}"> -->
+                <apex:inputField value="{!isp.CQS_ISP_Nome_Cognome5__c}"/> 
+                <apex:inputField value="{!isp.CQS_ISP_Autorizzato5__c}"/>   
+           <!-- <apex:commandButton value="+" onClick="{!showRow}"/>
+                </apex:outputpanel>
+                <apex:pageBlockSectionItem /> -->
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />   
+   <!--              <apex:outputpanel id="row6" rendered="{!showRow6}">     	-->         
+                <apex:inputField value="{!isp.CQS_ISP_Nome_Cognome6__c}"/> 
+                <apex:inputField value="{!isp.CQS_ISP_Autorizzato6__c}"/>
+             <!--   </apex:outputpanel>
+                <apex:pageBlockSectionItem /> -->
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+          <!--      <apex:outputpanel id="row7" rendered="{!showRow7}">    -->       
+                <apex:inputField value="{!isp.CQS_ISP_Nome_Cognome7__c}"/> 
+                <apex:inputField value="{!isp.CQS_ISP_Autorizzato7__c}"/>
+                  <!--   </apex:outputpanel>
+                <apex:pageBlockSectionItem /> -->
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+          <!--      <apex:outputpanel id="row8" rendered="{!showRow8}">    	-->       
+                <apex:inputField value="{!isp.CQS_ISP_Nome_Cognome8__c}"/> 
+                <apex:inputField value="{!isp.CQS_ISP_Autorizzato8__c}"/>
+                  <!--   </apex:outputpanel>
+                <apex:pageBlockSectionItem /> -->
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+            <!--    <apex:outputpanel id="row9" rendered="{!showRow9}">      -->     
+                <apex:inputField value="{!isp.CQS_ISP_Nome_Cognome9__c}"/> 
+                <apex:inputField value="{!isp.CQS_ISP_Autorizzato9__c}"/>
+                 <!--   </apex:outputpanel>
+                <apex:pageBlockSectionItem /> -->
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+          <!--      <apex:outputpanel id="row10" rendered="{!showRow10}">        -->     
+                <apex:inputField value="{!isp.CQS_ISP_Nome_Cognome10__c}"/> 
+                <apex:inputField value="{!isp.CQS_ISP_Autorizzato10__c}"/>
+                 <!--   </apex:outputpanel>
+                <apex:pageBlockSectionItem /> -->
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+           <!-- <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />    -->         
+            </apex:pageBlockSection>
+            </apex:outputpanel>
+            
+            <apex:outputpanel id="sez1" rendered="{!ss1}">
+            <apex:pageBlockSection title="Documentazione minima" collapsible="true">
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                <apex:selectRadio value="{!isp.CQS_ISP_PSC__c}" required="true">
+                    <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_ISP_PSC__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Sì" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio>
+                 <apex:outputField value="{!isp.CQS_ISP_Totale_Documentazione_Minima__c}"/>
+                <apex:selectRadio value="{!isp.CQS_ISP_POS__c}">
+                    <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_ISP_POS__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Sì" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio>
+                <apex:outputField value="{!isp.CQS_ISP_Tot_Max_Doc_min__c}"/>
+                <apex:selectRadio value="{!isp.CQS_ISP_Notifica_prel_corretta_valida__c}" required="true">
+                     <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_ISP_Notifica_prel_corretta_valida__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Sì" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio>
+                 <apex:pageBlockSectionItem />  
+    <!-- campo DURC sostituito con CQS_IspS_Presenza_riferimenti_emergenza__c per il nuovo PL  -->
+                 <apex:selectRadio value="{!isp.CQS_IspS_Presenza_riferimenti_emergenza__c}" required="true">
+                     <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_IspS_Presenza_riferimenti_emergenza__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Si" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>    
+                </apex:selectRadio>
+                <apex:pageBlockSectionItem />
+    <!-- campo sostituito con CQS_IspS_Subappalto_autorizzato_OF__c per il nuovo PL -->            
+                <apex:selectRadio value="{!isp.CQS_IspS_Subappalto_autorizzato_OF__c}" required="true">
+                    <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_IspS_Subappalto_autorizzato_OF__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Si" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio>
+              <apex:pageBlockSectionItem />
+                 <apex:selectRadio value="{!isp.CQS_ISP_Autorizzazione_amm_competente__c}" required="true">
+                     <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_ISP_Autorizzazione_amm_competente__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Sì" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                 <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio>
+                <apex:pageBlockSectionItem />
+                <!-- campo CQS_ISP_Presenza_prog_cartografie_enti__c sostituito con CQS_IspS_Presenza_cartografie_enti__c  -->
+                    <apex:selectRadio value="{!isp.CQS_IspS_Presenza_cartografie_enti__c}" required="true">
+                        <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_IspS_Presenza_cartografie_enti__c.inlineHelpText}"/>
+                 </span>
+                      <apex:selectOption itemValue="Si" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                      <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                    </apex:selectRadio>
+                <apex:pageBlockSectionItem />
+                    <apex:selectRadio value="{!isp.CQS_ISP_indagini_preventive_scavo__c}" required="true">
+                        <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_ISP_indagini_preventive_scavo__c.inlineHelpText}"/>
+                 </span>
+                     <apex:selectOption itemValue="Sì" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                      <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                    </apex:selectRadio>
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                <apex:inputField value="{!isp.CQS_ISPS_NoteDocMin__c}"/>
+                <apex:pageBlockSectionItem />
+                 <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+            </apex:pageBlockSection>
+             </apex:outputpanel>
+             <!-- Sostituzione di CQS_ISP_Accantieramento_conforme__c con CQS_IspS_Accantieramento_conforme_a_PSC__c -->
+            <apex:outputpanel id="sez2" rendered="{!ss2}">                   
+            <apex:pageBlockSection title="Organizzazione del cantiere" collapsible="true">
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                <apex:selectRadio value="{!isp.CQS_IspS_Accantieramento_conforme_a_PSC__c}" required="true">
+                    <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_IspS_Accantieramento_conforme_a_PSC__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Si" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio>
+                <apex:outputField value="{!isp.CQS_ISP_Totale_Organizzazione_Cantiere__c}"/>
+                <apex:selectRadio value="{!isp.CQS_ISP_Esposizione_Cartello__c}" required="true">
+                    <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_ISP_Esposizione_Cartello__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Sì" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio>
+                <apex:outputField value="{!isp.CQS_ISP_Tot_Max_Org_Cantiere__c}"/>
+                <!--sostituzione CQS_ISP_RispettoCodice_SegnaleticaStrada__c con CQS_IspS_Segnaletica_stradale_suff__c -->
+                <apex:selectRadio value="{!isp.CQS_IspS_Segnaletica_stradale_suff__c}"  required="true">
+                    <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_IspS_Segnaletica_stradale_suff__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Si" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio>
+                <apex:pageBlockSectionItem />
+                <apex:selectRadio value="{!isp.CQS_ISP_Idoneit_delimit_Cantiere_AD__c}" required="true">
+                    <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_ISP_Idoneit_delimit_Cantiere_AD__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Sì" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio>
+                <apex:pageBlockSectionItem />   
+                <apex:selectRadio value="{!isp.CQS_ISP_Buono_stato_cartellonistica__c}" required="true">
+                    <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_ISP_Buono_stato_cartellonistica__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Sì" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio>
+                <apex:pageBlockSectionItem />
+                <!-- modifica campo CQS_ISP_assicurata_viabilita__c con CQS_IspS_Viabilit_come_ordinanza__c -->
+                <apex:selectRadio value="{!isp.CQS_IspS_Viabilit_come_ordinanza__c}"  required="true">
+                    <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_IspS_Viabilit_come_ordinanza__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Si" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio> 
+                <apex:pageBlockSectionItem />
+                <!-- EC Sostituzione campo CQS_ISP_Passaggi_su_scavi_idonei__c con CQS_IspS_Protezione_scavi_in_minitrincea__c valore invariato (2) -->
+                <apex:selectRadio value="{!isp.CQS_IspS_Protezione_scavi_in_minitrincea__c}" required="true">
+                    <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_IspS_Protezione_scavi_in_minitrincea__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Si" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio> 
+                <apex:pageBlockSectionItem />
+                <!-- EC Sostituzione CQS_ISP_Pozzetti_non_pericolosi__c con CQS_IspS_Protezione_scavi_trad_pozzetti__c -->
+                <apex:selectRadio value="{!isp.CQS_IspS_Protezione_scavi_trad_pozzetti__c}" required="true">
+                    <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_IspS_Protezione_scavi_trad_pozzetti__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Si" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio>     
+                <apex:pageBlockSectionItem />
+                <!-- EC Sostituzione campo CQS_ISP_Presenza_WC__c con CQS_IspS_Utilizzo_DPC_rischi_particolari__c -->
+                  <apex:selectRadio value="{!isp.CQS_IspS_Utilizzo_DPC_rischi_particolari__c}" required="true">
+                      <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_IspS_Utilizzo_DPC_rischi_particolari__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Si" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio>     
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                 <apex:inputField value="{!isp.CQS_ISPQ_NoteOrgCant__c}"/>
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+            </apex:pageBlockSection> 
+            </apex:outputpanel>
+            
+            <apex:outputpanel id="sez3" rendered="{!ss3}">                   
+            <apex:pageBlockSection title="Personale di cantiere" collapsible="true">
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                 <apex:selectRadio value="{!isp.CQS_ISP_Presenti_autorizzati__c}"  required="true">
+                     <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_ISP_Presenti_autorizzati__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Sì" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio> 
+                <apex:outputField value="{!isp.CQS_ISP_Totale_Personale_Cantiere__c}" />                 
+                <apex:selectRadio value="{!isp.CQS_ISP_Tesserino_Check__c}"  required="true">
+                     <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_ISP_Tesserino_Check__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Sì" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio> 
+                <apex:outputField value="{!isp.CQS_ISP_Tot_Max_Pers_Cantiere__c}" />
+                <apex:selectRadio value="{!isp.CQS_ISP_Preposto_Cantiere_Presente__c}" required="true">
+                     <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_ISP_Preposto_Cantiere_Presente__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Sì" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio>                     
+                <apex:pageBlockSectionItem />
+                <apex:selectRadio value="{!isp.CQS_IspS_Addetto_primo_soccorso_presente__c}" required="true">
+                    <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_IspS_Addetto_primo_soccorso_presente__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Si" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio>     
+                <apex:pageBlockSectionItem />
+                <apex:selectRadio value="{!isp.CQS_ISP_Addetto_Antincendio_presente__c}" required="true">
+                    <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_ISP_Addetto_Antincendio_presente__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Sì" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio> 
+                <apex:pageBlockSectionItem />
+                 <apex:selectRadio value="{!isp.CQS_ISP_DPI_idonei_in_dotazione__c}" required="true">
+                     <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_ISP_DPI_idonei_in_dotazione__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Sì" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio>     
+                <apex:pageBlockSectionItem />
+                <!-- EC Sostituzione campo CQS_ISP_DPI_lavorazioni_in_quota__c con CQS_IspS_DPI_3_categoria_utilizzati_OK__c  -->
+                <apex:selectRadio value="{!isp.CQS_IspS_DPI_3_categoria_utilizzati_OK__c}"  required="true">
+                     <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_IspS_DPI_3_categoria_utilizzati_OK__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Si" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio>     
+                <apex:pageBlockSectionItem />
+                 <apex:selectRadio value="{!isp.CQS_ISP_Presenza_Profili_E_Distrib__c}" required="true">
+                     <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_ISP_Presenza_Profili_E_Distrib__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Sì" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio>
+                <apex:pageBlockSectionItem />
+               <apex:selectRadio value="{!isp.Presenza_Moviere_qualora_necessario__c}" required="true">
+                   <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.Presenza_Moviere_qualora_necessario__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Sì" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio>     
+                <apex:pageBlockSectionItem />
+                <apex:selectRadio value="{!isp.CQS_IspS_Formazione_HS_conforme_mansione__c}" required="true">
+                    <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_IspS_Formazione_HS_conforme_mansione__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Si" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio> 
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+               
+                 <apex:inputField value="{!isp.CQS_ISPS_NotePersDiCant__c}"/>
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+            </apex:pageBlockSection>
+            </apex:outputpanel>
+             <apex:outputpanel id="sez4" rendered="{!ss4}">                  
+            <apex:pageBlockSection title="Mezzi e attrezzature" collapsible="true">
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                 <apex:selectRadio value="{!isp.CQS_IspS_Autorizzati_e_presenti_nel_POS__c}" required="true">
+                      <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_IspS_Autorizzati_e_presenti_nel_POS__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Si" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio> 
+                 <apex:outputField value="{!isp.CQS_ISP_Totale_Mezzi_Attrezzature_del__c}"/>
+                 <apex:selectRadio value="{!isp.CQS_IspS_Sono_in_buono_stato__c}" required="true">
+                     <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_IspS_Sono_in_buono_stato__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Si" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio>                      
+                <apex:outputField value="{!isp.CQS_ISP_Tot_Max_Mezzi_Attrezz__c}"/>
+                <apex:selectRadio value="{!isp.CQS_IspS_Libretti_rev_mezzi_presenti__c}" required="true">
+                    <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_IspS_Libretti_rev_mezzi_presenti__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Si" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio> 
+                <apex:pageBlockSectionItem />
+                <apex:selectRadio value="{!isp.CQS_ISP_Marcatura_CE__c}" required="true">
+                    <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_ISP_Marcatura_CE__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Sì" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio> 
+                <apex:pageBlockSectionItem />
+                <apex:selectRadio value="{!isp.CQS_ISP_Documentazione_noli_a_freddo__c}" required="true">
+                    <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_ISP_Documentazione_noli_a_freddo__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Sì" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio> 
+                <apex:pageBlockSectionItem />
+                <apex:selectRadio value="{!isp.CQS_ISP_attrezzature_sollevamento__c}" required="true">
+                    <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_ISP_attrezzature_sollevamento__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Sì" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio> 
+                <apex:pageBlockSectionItem />           
+                <apex:pageBlockSectionItem />
+                 <apex:inputField value="{!isp.CQS_ISPS_noteMezStrutt__c}"/>
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+            </apex:pageBlockSection>
+             </apex:outputpanel>
+            <apex:outputpanel id="sez5" rendered="{!ss5}">
+            <apex:pageBlockSection title="Presidi" collapsible="true">
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                <apex:selectRadio value="{!isp.Cassetta_primo_soccorso_conforme__c}" required="true">
+                    <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.Cassetta_primo_soccorso_conforme__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Sì" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio> 
+                <apex:outputField value="{!isp.CQS_ISP_Totale_Presidi__c}"/>
+                <apex:selectRadio value="{!isp.CQS_Estintore_con_cartellino_e_revisione__c}" required="true">
+                     <span   class="helpButton"><img src="/s.gif" alt="" class="helpOrb"
+          		 title="{!$ObjectType.OF_CQS_Ispezione__c.Fields.CQS_Estintore_con_cartellino_e_revisione__c.inlineHelpText}"/>
+                 </span>
+                    <apex:selectOption itemValue="Sì" itemlabel="Sì"/>
+                    <apex:selectOption itemValue="No" itemlabel="No"/>
+                    <apex:selectOption itemValue="N/A" itemlabel="N/A"/>
+                </apex:selectRadio>                  
+                <apex:outputField value="{!isp.CQS_ISP_Tot_Max_Pres__c}"/>
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem /> 
+                <apex:inputField value="{!isp.CQS_ISPS_NotePresidi__c}"/>
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+            </apex:pageBlockSection>
+             </apex:outputpanel>
+            
+             <apex:pageBlockSection title="Relazione Tecnica" collapsible="true">
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />
+                <apex:inputField value="{!isp.CQS_RELAZIONE_TECNICA_DEL_COORDINATORE__c}"/>
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem />             
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Responsabile Redazione Ispezione di Sicurezza" collapsible="true" columns="2">
+                <apex:pageBlockSectionItem />
+                <apex:outputField label="Responsabile Redazione" value="{!isp.Owner.Name}"/>
+                <apex:pageBlockSectionItem />
+                <p style="margin-left:30px;">            {!$User.FirstName}  {!$User.LastName}</p>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons > 
+                <apex:commandButton value="Salva ispezione" action="{!salvaIspezione}"  rerender="ipsec,pb,pm" />
+                <!--  <apex:commandButton value="Cancel" action="{!cancel}"/> -->
+            </apex:pageBlockButtons>            
+        </apex:pageBlock> 
+        
+        <html lang="en">
+            <head>
+                <script type="text/javascript">
+                var PLACEHOLDER = 'Digita almeno 2 caratteri'; 
+                var AccountObjects;
+                var queryTerm;                
+                $(document).ready(function() {
+                    $('[id$=comuneId]').autocomplete({minLength: 2,
+                                                      source: function(request, response) {                            
+                                                          queryTerm = request.term;
+                                                          Cqs_Ispezione_CustomController.searchComune(request.term, function(result, event){
+                                                              if(event.type == 'exception') {
+                                                                  alert(event.message);
+                                                              } else {
+                                                                  AccountObjects = result;                            
+                                                                  console.log('==>'+AccountObjects);
+                                                                  response(AccountObjects);
+                                                              }
+                                                          });
+                                                      },
+                                                      focus: function( event, ui ) {
+                                                          //  $('[id$=comuneId]').val( ui.item.Name);
+                                                          return false;
+                                                      },
+                                                      select: function( event, ui ) {
+                                                          $('[id$=comuneId]').val( ui.item.OF_Comune__c  );
+                                                          $('[id$=searchcommuneId]').val( ui.item.Id);
+                                                          return false;
+                                                      },
+                                                     })
+                    .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+                        var entry = "<a>" + item.OF_Comune__c;
+                        
+                        entry = entry + "</a>";
+                        entry = entry.replace(queryTerm, "<b>" + queryTerm + "</b>");
+                        return $( "<li></li>" )
+                        .data( "ui-autocomplete-item", item )
+                        .append( entry )
+                        .appendTo( ul );
+                    };
+                    
+                    // Add or remove placeholder values
+                    $('[id$=comuneId]').val(PLACEHOLDER);
+                    $('[id$=comuneId]').on("focus",  function(event){
+                        $tgt = $(event.target);
+                        if($tgt.val() === PLACEHOLDER ){
+                            $tgt.val('');
+                            $tgt.removeClass('placeHolder');
+                        }
+                    });
+                    $('[id$=comuneId]').on( "blur",  function(event){
+                        $tgt = $(event.target);
+                        if($tgt.val() === '' ){
+                            $tgt.val(PLACEHOLDER);
+                            $tgt.addClass('placeHolder');
+                        }
+                    });
+                    
+                });
+                </script>
+            </head>            
+        </html>
+        
+    </apex:form>    
+</apex:page>

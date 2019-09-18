@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CaseOrderStateModelCS</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>CaseOrderStateModelCS</value>
+    </caseValues>
+    <fields>
+        <label><!-- Esito order --></label>
+        <name>OF_EsitoOrder__c</name>
+    </fields>
+    <fields>
+        <label><!-- FaseDiCreazione --></label>
+        <name>OF_FaseDiCreazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Type Case Attivo --></label>
+        <name>OF_RecordTypeCaseAttivo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Type Case Passivo --></label>
+        <name>OF_RecordTypeCasePassivo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Type Order --></label>
+        <name>OF_RecordTypeOrder__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stato Case --></label>
+        <name>OF_StatoCase__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stato Order --></label>
+        <name>OF_StatoOrder__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipologia Flusso --></label>
+        <name>OF_TipologiaFlusso__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Type Case Ordine Evento Temporane --></label>
+        <name>PO_RecordTypeCaseOrdineEventoTemporaneo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Type Case Ordine Fiber Lease --></label>
+        <name>PO_RecordTypeCaseOrdineFiberLease__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Type Case Ordine Fiber Link --></label>
+        <name>PO_RecordTypeCaseOrdineFiberLink__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Type Case Ordine IRU --></label>
+        <name>PO_RecordTypeCaseOrdineIRU__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Type Case Ordine P2P Attiva --></label>
+        <name>PO_RecordTypeCaseOrdineP2PAttiva__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Type Case Ordine P2P ELine --></label>
+        <name>PO_RecordTypeCaseOrdineP2PELine__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Type Case Ordine P2P --></label>
+        <name>PO_RecordTypeCaseOrdineP2P__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

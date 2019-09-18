@@ -1,0 +1,229 @@
+<apex:component controller="PO_RegistrationController" allowDML="true">
+
+<div class="panel panel-default">
+                <div class="panel-heading">
+                    <i></i>Servizio a Fattibilità
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                     
+                            
+                            <form role="form" class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-lg-6">
+                                        <label>Azienda</label>
+                                        <apex:inputField id="Azienda" styleClass="form-control"  value="{!parentCase.accountid}"/>
+                                    </div>
+                                    
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="col-lg-6">
+                                        <label>Centro fatturazione cliente</label>
+                                        <apex:inputField id="Centrofatturazionecliente" styleClass="form-control" value="{!parentCase.PO_Centro_fatturazione_cliente__c}"/>
+                                    </div>
+                                                                                                                                                                                     
+                                </div>
+                                
+                                <div class="form-group">                                                    
+                                    <div class="col-lg-6">
+                                        <label>Contratto quadro</label>
+                                        <apex:inputField id="Contrattoquadro" styleClass="form-control" value="{!parentCase.PO_Contratto_quadro_di_riferimento__c}"/>
+                                    </div>
+                                   
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="col-lg-6">
+                                        <label>Offerta*</label>
+                                        <apex:inputField id="Offerta" styleClass="form-control" value="{!parentCase.PO_Offerta__c}" />
+                                    </div>
+                                   
+                                </div>
+                                
+                                <br/><br/><br/>
+                                <div class="form-group">
+                                    <div class="col-lg-6 col-offset-6">
+                                    </div>
+                                    
+                                    <div class="col-lg-6 col-offset-6">
+                                        <apex:commandButton styleClass="btn btn-primary" value="CONTINUE" action="{!childcase}"/> 
+                                    </div>
+                                </div>
+                            </form>
+                       
+                        <br/>
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>       
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i></i>Collegamento
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                     
+                            
+                            <form role="form" class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-lg-6">
+                                        <label>Area Geografica</label>
+                                        <apex:inputField id="AreaGeografica" styleClass="form-control"  value="{!caseObj.PO_Area_Geografica__c}"/>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label>Siti da collegare</label>
+                                        <apex:inputField id="Sitidacollegare" styleClass="form-control" value="{!caseObj.PO_Siti_da_collegare__c}"/>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="col-lg-6">
+                                        <label>Prime Contractor</label>
+                                        <apex:inputField id="PrimeContractor" styleClass="form-control" value="{!caseObj.PO_Prime_Contractor__c}"/>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label>Nome sito</label>
+                                        <apex:inputField id="Nomesito" styleClass="form-control" value="{!caseObj.PO_Nome_sito__c}"/>
+                                    </div>                                                                                                                                                    
+                                </div>
+                                
+                                <div class="form-group">                                                    
+                                    <div class="col-lg-6">
+                                        <label>Numero fibre richieste</label>
+                                        <apex:inputField id="Numerofibrerichieste" styleClass="form-control" value="{!caseObj.PO_Numero_fibre_richieste__c}"/>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label>Indirizzo sitoa</label>
+                                        <apex:inputField id="Indirizzosito" styleClass="form-control" value="{!caseObj.PO_Indirizzo_sito__c}"/>
+                                    </div> 
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="col-lg-6">
+                                        <label>Tipo percorso</label>
+                                        <apex:inputField id="Tipopercorso" styleClass="form-control" value="{!caseObj.PO_Tipo_percorso__c}"/>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label>Note collegamento</label>
+                                        <apex:inputField id="Notecollegamento" styleClass="form-control" value="{!caseObj.PO_Note_collegamento__c}"/>
+                                    </div> 
+                                </div>
+                                
+                                <br/><br/><br/>
+                                <div class="form-group">
+                                    <div class="col-lg-6 col-offset-6">
+                                    </div>
+                                    
+                                    <div class="col-lg-6 col-offset-6">
+                                        <apex:commandButton styleClass="btn btn-primary" value="CONTINUE" action="{!ParentCaseRecord}"/> 
+                                    </div>
+                                </div>
+                            </form>
+                       
+                        <br/>
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>       
+            
+            <div class="col-lg-4">
+                
+            </div>
+            <!-- /.col-lg-4 -->
+        	<div class="col-lg-8">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<i></i>Collegamento
+				</div>
+				<div class="panel-body">
+					<div class="row">
+					 
+							<apex:form >
+							<div style="color:red;" id="showerror">
+								<apex:pageMessages id="errors" /> 
+							</div>
+							
+							<form role="form" class="form-horizontal">
+                                <div class="form-group">
+									<div class="col-lg-6">
+										<label>Azienda</label>
+										<apex:outputField id="Azienda" styleClass="form-control"  value="{!ChildCase.accountid}"/>
+									</div>
+									<div class="col-lg-6">
+										<label>contact</label>
+										<apex:outputField id="contact" styleClass="form-control" value="{!ChildCase.PO_Siti_da_collegare__c}"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-lg-6">
+										<label>Area Geografica</label>
+										<apex:outputField id="AreaGeografica" styleClass="form-control"  value="{!ChildCase.PO_Area_Geografica__c}"/>
+									</div>
+									<div class="col-lg-6">
+										<label>Siti da collegare</label>
+										<apex:outputField id="Sitidacollegare" styleClass="form-control" value="{!ChildCase.PO_Siti_da_collegare__c}"/>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<div class="col-lg-6">
+										<label>Prime Contractor</label>
+										<apex:outputField id="PrimeContractor" styleClass="form-control" value="{!ChildCase.PO_Prime_Contractor__c}"/>
+									</div>
+									<div class="col-lg-6">
+										<label>Nome sito</label>
+										<apex:outputField id="Nomesito" styleClass="form-control" value="{!ChildCase.PO_Nome_sito__c}"/>
+									</div>                                                                                                                                                    
+								</div>
+								
+								<div class="form-group">                                                    
+									<div class="col-lg-6">
+										<label>Numero fibre richieste</label>
+										<apex:outputField id="Numerofibrerichieste" styleClass="form-control" value="{!ChildCase.PO_Numero_fibre_richieste__c}"/>
+									</div>
+									<div class="col-lg-6">
+										<label>Indirizzo sitoa</label>
+										<apex:outputField id="Indirizzosito" styleClass="form-control" value="{!ChildCase.PO_Indirizzo_sito__c}"/>
+									</div> 
+								</div>
+								
+								<div class="form-group">
+									<div class="col-lg-6">
+										<label>Tipo percorso</label>
+										<apex:outputField id="Tipopercorso" styleClass="form-control" value="{!ChildCase.PO_Tipo_percorso__c}"/>
+									</div>
+									<div class="col-lg-6">
+										<label>Note collegamento</label>
+										<apex:outputField id="Notecollegamento" styleClass="form-control" value="{!ChildCase.PO_Note_collegamento__c}"/>
+									</div> 
+								</div>
+								
+								<br/><br/><br/>
+								<div class="form-group">
+									<div class="col-lg-6 col-offset-6">
+									</div>
+									
+									<div class="col-lg-6 col-offset-6">
+										<apex:commandButton styleClass="btn btn-primary" value="Home" action="{!redirectToRegPage}"/> 
+									</div>
+								</div>
+							</form>
+							 
+						</apex:form> 
+						<br/>
+					</div>
+					<!-- /.row (nested) -->
+				</div>
+				<!-- /.panel-body -->
+			</div>       
+			
+			<div class="col-lg-4">
+				
+			</div>
+			<!-- /.col-lg-4 -->
+		</div>
+
+</apex:component>

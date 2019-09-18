@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>OF_Limit_PNI</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OF_Limit_PNI</shortDescription>
+        <value>1</value>
+    </labels>
+    <labels>
+        <fullName>PO_AutoReplay</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PO_AutoReplay</shortDescription>
+        <value>Gentile utente,
+
+grazie per averci scritto. Ti informiamo che per la gestione delle segnalazioni utilizziamo piattaforme informatiche di gestione dei dati certificate che mantengono in memoria i dati da te forniti per il tempo necessario alla sua risoluzione.
+Per informazioni inerenti il nostro piano di copertura, i servizi e i  vantaggi derivanti dall’utilizzo della fibra potrai consultare il nostro sito https://openfiber.it/it.
+Nel caso di richieste relative alla tua fibra ottica rivolgiti direttamente all’operatore con il quale hai sottoscritto il contratto.
+Nel caso la tua richiesta implichi segnalazioni di altra natura e la comunicazione di dati personali (es. nome e cognome, indirizzo di casa, indirizzo email, numero di telefono, documenti, ecc.) ti invitiamo a utilizzare il canale ufficiale “Contattaci” sul nostro sito web: https://openfiber.it/it/fibra-ottica/contatti
+
+Grazie
+Il team di Open Fiber</value>
+    </labels>
+    <labels>
+        <fullName>PO_Registrazione</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Custom Label for Recordtype in case object to use in web-case</shortDescription>
+        <value>PO_Registrazione</value>
+    </labels>
+    <labels>
+        <fullName>PinkLogo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PinkLogo</shortDescription>
+        <value>&quot;https://openfiber-it--c.um3.content.force.com/servlet/servlet.ImageServer?id=01558000003aqIl&amp;oid=00D250000008pZq&amp;lastMod=1524120291000&quot;</value>
+    </labels>
+</CustomLabels>

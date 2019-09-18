@@ -1,0 +1,2 @@
+<apex:page controller="PO_Servizi_Fattibilita_Routing_Ctrl" action="{!routeRequest}" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+</apex:page>

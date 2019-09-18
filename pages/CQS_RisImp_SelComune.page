@@ -1,0 +1,64 @@
+<apex:page standardController="OF_CQS_Risorse_Impiegate__c" extensions="CQS_RisImp_SelComuneController">
+    
+    <Style>
+        .red{color:red;}
+    </Style>
+    <script>
+    function defprogFunzione(){
+        defProg();
+    }
+    function defProg(){
+        definisciProgettiPl();
+    }
+    </script>
+    
+    <apex:sectionHeader title="Risorse Impiegate" subtitle="Selezione Comune"/>
+    <apex:pageMessages id="pm"/>
+    
+    <apex:form id="theForm">
+        <apex:pageBlock title="Risorse Impiegate" mode="edit">
+            <apex:outputPanel id="ipsec"> 
+      <!--   EC 2018 - 09 - 17  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 <label class="control-label col-sm-3" for="TipoForm"> <b> Tipo Form: </b></label>
+                <apex:selectList label="Tipo di Form" value="{!optScelta}" size="1" required="true">
+                <!--<apex:selectOptions value="{!opt}"/>-->
+        <!--   EC 2018 - 09 - 17             <apex:selectOptions Value="{!optTipoForm}" />
+                    -->
+                    <!--apex:actionSupport event="onchange" action="{!redirect}" action=""/>
+                </apex:selectList> -->
+                <apex:actionRegion >
+                    <div class="col-sm-6">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label class="control-label col-sm-3" for="Comune"> <b> Comune: </b></label>
+                        <apex:selectList label="Comune" value="{!optSceltaComune}" size="1" required="true" styleClass="form-control" onChange="defprogFunzione()">
+                            <apex:selectOptions Value="{!optListaComune}" />
+                            <apex:param name="optSceltaComune" assignTo="{!optSceltaComune}" value="optSceltaComune" />
+                        </apex:selectList>
+                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                    <apex:commandButton value="Seleziona Comune" action="{!goToRealForm}"  rerender="ipsec,pb,pm" />
+                         </div>
+                </apex:actionRegion>
+                
+            </apex:outputPanel>
+            
+        </apex:pageBlock>  
+        
+        
+        <html lang="en">
+            
+            
+        </html>
+    </apex:form>    
+    <script>
+    function 1
+    
+    </script>
+    
+</apex:page>

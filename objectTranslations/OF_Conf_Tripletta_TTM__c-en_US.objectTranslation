@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>OF_Conf_Tripletta_TTM</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>OF_Conf_Tripletta_TTM</value>
+    </caseValues>
+    <fields>
+        <label><!-- POP_Abilitati --></label>
+        <name>POP_Abilitati__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

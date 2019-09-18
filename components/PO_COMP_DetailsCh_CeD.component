@@ -1,0 +1,276 @@
+<apex:component controller="PO_COMP_DetailsCh_CeD_Controller" AllowDML="true"> 
+<html lang="it">   
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Open Fiber</title>  
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+    <!-- Bootstrap Core CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+    
+    <!-- MetisMenu CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+    
+    <!-- Custom CSS -->   
+    <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+    
+    <!-- Morris Charts CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+    
+    <!-- Custom Fonts -->
+    <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+    
+    <!-- /#wrapper -->
+    <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+    
+    <!-- JQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+
+    <!-- Bootstrap Core JavaScript --> 
+    <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <style>
+        .navbar {
+        min-height: 105px;
+        }
+        .navbar-header {
+        float: none;
+        }
+        .navbar-default {
+        background-color: #ffffff;
+        }
+        .panel-default>.panel-heading {
+        color: #ffffff;
+        background-color: #337ab7;
+        }
+        span.dateFormat{
+        display:none;
+        }
+        .red{
+        color:red;
+        }
+        .form-check-input{ 
+        margin-left: 45px !important;
+        margin-top: 10px;
+        }
+        .buttonC{
+        margin-top:10px !important;
+        margin-left:800px !important;
+        }
+    </style>
+                                                
+<script type="text/javascript">
+    $(document).ready(function() {
+        
+        hideButton();  
+        
+        $( "#buttonChange" ).click(function( event ) {
+            event.preventDefault();
+            var dialog = $( '<p>Già esiste una bozza per questo elemento. Vuoi crearne una nuova o ricominciare dalla precedente?</p>').dialog({
+                width: 500,
+                height: 200,
+                modal: true,
+                title:"Sei sicuro?",
+                buttons: {
+                    "Chiudi":  function() {
+                        $(this).dialog("close");
+                    },
+                    "Nuova Bozza": function() {
+                        newB();
+                    },
+                    "Apri Bozza":  function() {
+                        openB();}
+                }
+            }).prev(".ui-dialog-titlebar").css("background","#337ab7").css('color','white');
+        });   
+    });
+    function hideButton(){
+        var stato=$('#stato').val();
+        if(stato== 'Attivo'){
+            var buttonCh=$('.Bchange').hide();
+        }
+    }                                           
+</script>
+</head>
+    <body>
+        <apex:form >
+            <apex:actionFunction name="openB" action="{!openBozza}">  
+            </apex:actionFunction>
+            <apex:actionFunction name="newB" action="{!newBozza}">  
+            </apex:actionFunction>  
+			<div class="row">
+            <apex:outputPanel rendered="{!showB}">
+                <div class="col-lg-8">
+                <apex:outputPanel rendered="{!!hideMod}">    
+                        <apex:commandButton styleClass="btn btn-primary Bchange"  action="{!newBozza}"  value="Ordine di Variazione" immediate="true" Id="btnChange"/>
+                    </apex:outputPanel>
+                 </div>
+                 <div class="col-lg-2">
+                    <apex:outputPanel rendered="{!hideMod}">    
+                        <button class="btn btn-primary Bchange" Id="buttonChange">Ordine di Variazione</button>
+                    </apex:outputPanel>
+                    
+                </div>
+                                                    
+                <div class="col-lg-2"> 
+                    <apex:commandButton Id="Cessazione" styleClass="btn btn-primary Bchange" action="{!Cessazione}" value="Ordine di Cessazione"   />
+                </div>
+            </apex:outputPanel>
+            </div>
+        </apex:form>
+             
+        <apex:form >
+        &nbsp;
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <apex:outputPanel >
+                        <i></i>Dettagli {!asset.EOF_ID_Risorsa__c}<!--{!cas.EOF_Id_Risorsa__c}-->
+                </apex:outputPanel>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <apex:outputPanel rendered="{!OR(error,success)}" >
+                        <div class="panel-heading red" >
+                            <i></i>{!title} 
+                        </div>
+                    </apex:outputPanel>
+                    
+                    <form role="form" class="form-horizontal">
+                        <fieldset class="form-group">
+                            <div class="form-group">
+
+                                <div class="col-lg-6">
+                                    <label>ID Risorsa :  </label> &nbsp; &nbsp;
+                                    <apex:outputField id="IdRisorsa" style="border:0px;background-color:#F3F3EC;" value="{!asset.name}" /><!--{!cas.EOF_Id_Risorsa__c}-->
+                                </div>
+                                
+                                <div class="col-lg-6">
+                                    <label>Stato :  </label> &nbsp; &nbsp;
+                                    <apex:outputField id="Stato" style="border:0px;background-color:#F3F3EC;" value="{!asset.Status}" /><!--{!cas.EOF_Id_Risorsa__c}-->
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <label>Profilo Tecnico :  </label> &nbsp; &nbsp;
+                                    <apex:outputField id="Profilo_Tecnico" style="border:0px;background-color:#F3F3EC;" value="{!asset.OF_ProfiloOpenStream__c}" /><!--{!cas.EOF_Id_Risorsa__c}-->
+                                </div>
+                                
+                                <div class="col-lg-6">
+                                    <label>Profilo Commerciale : </label> &nbsp; &nbsp;
+                                    <apex:outputText id="Profilo" style="border:0px;" value="{!profiloCommerciale}"/><!--cas.OF_SA_Profilo__c-->
+                                </div>
+                                <div class="col-lg-6">
+                                    <label>ID Building : </label> &nbsp; &nbsp;
+                                    <apex:outputField id="EOFIDBuilding" styleClass="form-control" value="{!asset.OF_ID_Building__c}"/>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label>Identificativo Del POP : </label> &nbsp; &nbsp;
+                                    <apex:outputField id="OF_Identificativo_del_POP__c" styleClass="form-control" value="{!asset.OF_Identificativo_del_POP__c}"/>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label>Cluster Promozione :</label> &nbsp; &nbsp;
+                                    <apex:outputField style="border:0px;background-color:#F3F3EC;" value="{!asset.OF_ClusterPromozione__c}" />
+                                </div>
+                                
+                                <div class="col-lg-6">
+                                    <label>Promozione :</label> &nbsp; &nbsp;
+                                    <apex:outputField style="border:0px;background-color:#F3F3EC;" value="{!asset.OF_Promozione__c}" />
+                                </div>
+                                
+                                <div class="col-lg-6">
+                                    <label>Provincia : </label> &nbsp; &nbsp;
+                                    <apex:outputField id="Provincia" styleClass="form-control" value="{!asset.OF_Provincia__c}"/>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label>Comune : </label> &nbsp; &nbsp;
+                                    <apex:outputField id="Comune" styleClass="form-control" value="{!asset.OF_Comune__c}"/>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label>Indirizzo : </label> &nbsp; &nbsp;
+                                    <apex:outputField id="Indirizzo" styleClass="form-control" value="{!asset.OF_Indirizzo__c}"/>
+                                </div>
+                                
+                                <apex:outputPanel rendered="{!IF(asset.OF_Scala_Palazzina__c!=null,true,false)}">
+                                    <div class="col-lg-6">
+                                        <label>Scala Palazzina : </label> &nbsp; &nbsp; 
+                                        <apex:outputField id="ScalaPalazzina" styleClass="form-control" value="{!asset.OF_Scala_Palazzina__c}"/>
+                                    </div>
+                                </apex:outputPanel>
+                                <div class="col-lg-6">
+                                    <label>Data Attivazione : </label> &nbsp; &nbsp;
+                                    <apex:outputText id="Data_Attivazione" style="border:0px;" value="{!dataAttivazione}"/>
+                                </div>
+                                <apex:outputPanel rendered="{!IF(asset.status=='Cessato',true,false)}">
+                                <div class="col-lg-6">
+                                    <label>Data Cessazione : </label> &nbsp; &nbsp;
+                                    <apex:outputText id="Data_Cessazione" style="border:0px;" value="{!dataCessazione}"/>
+                                </div>
+                                </apex:outputPanel>
+                                
+                            
+                                
+                                
+                                
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            
+                
+
+                <!--Iterazione Lista VLAN-->                
+                <apex:repeat value="{!CEI}" var="vl" rendered="{!VLAN}" >
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i></i>VLAN:
+                        </div>
+                        <div class="panel-body">
+                            
+                            <fieldset class="form-group">   
+                                <div class="form-group">
+                                    <div class="col-lg-6">
+                                        <label>Kit Consegna VLAN : </label> &nbsp; &nbsp;
+                                        <apex:outputText >{!vl.OF_KitConsegnaVLAN__c}</apex:outputText>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label>User VLAN : </label> &nbsp; &nbsp;
+                                        <apex:outputText >{!vl.OF_UserVLAN__c}</apex:outputText>           
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label>Service VLAN : </label> &nbsp; &nbsp;
+                                        <apex:outputText >{!vl.OF_ServiceVLAN__c}</apex:outputText>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label>VLAN : </label> &nbsp; &nbsp;
+                                        <apex:outputText >{!vl.OF_ProfiloVLAN__c}</apex:outputText>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label>Customer VLAN :</label> &nbsp; &nbsp;
+                                        <apex:outputText >{!vl.OF_CustomerVLAN__c}</apex:outputText> 
+                                    </div>    
+
+                                    <div class="col-lg-6">
+                                        <label>Modello Di Servizio VLAN : </label> &nbsp; &nbsp;
+                                        <apex:outputText >{!vl.OF_ModelloDiServizioVLAN__c}</apex:outputText>
+                                    </div>
+
+                                    <div class="col-lg-6"> 
+                                        <label> Informazioni VLAN :</label> &nbsp; &nbsp;
+                                        <apex:outputText >{!vl.OF_InformazioniVLAN__c}</apex:outputText>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </apex:repeat>
+            </div>
+        </div>
+    </apex:form>                     
+</body>                 
+</html>
+</apex:component>

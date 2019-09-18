@@ -1,0 +1,457 @@
+<apex:page controller="PO_OF_DetailBozze_Controller" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false" id="pg">
+    <html lang="en">   
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Open Fiber</title>  
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+        <!-- Bootstrap Core CSS -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+        
+        <!-- MetisMenu CSS -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+        
+        <!-- Custom CSS -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+        
+        <!-- Morris Charts CSS -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+        
+        <!-- Custom Fonts -->
+        <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+        
+        <!-- /#wrapper -->
+            
+        <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+        
+        <!-- Bootstrap Core JavaScript -->
+        <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+        <style>
+            .navbar {
+            min-height: 105px;
+            }
+            .navbar-header {
+            float: none;
+            }
+            .navbar-default {
+            background-color: #ffffff;
+            }
+            .panel-default>.panel-heading {
+            color: #ffffff;
+            background-color: #337ab7;
+            }
+            span.dateFormat{
+            
+            display:none; 
+            
+            }
+            .red{color:red;}
+            .form-check-input{ 
+            margin-left: 45px !important;
+            margin-top: 10px;
+            }
+
+
+            
+</style>
+</head>
+    <body>
+            <div id="wrapper">
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <!--  <c:POHeaderComp />  -->
+                    <c:PO_SideBarComponent />
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" id="side-menu">
+                            </ul>
+                        </div>
+                        <!-- /.sidebar-collapse -->
+                    </div>
+                    <!-- /.navbar-static-side -->
+                </nav>
+                   
+                
+                <div id="page-bozze">
+                
+                </div>
+                <div id="page-wrapper">
+                <div class="panel panel-default" style='padding-bottom:57px'>
+                    <div class="panel-heading">
+		                <apex:outputPanel >
+		                        <i></i>Bozza Richiesta
+		                </apex:outputPanel>
+                        </div>
+                        
+                	 <!-- START -->
+                     <div class="row" style="margin-left: 35px">
+					<form role="form" class="form-horizontal">
+	                            <fieldset class="form-group">
+	                                 <div class="form-group">
+	                                   <br/> 
+	                                     <div class="col-lg-6">
+	                                         <label>Id Risorsa : </label> &nbsp; &nbsp; 
+											 <apex:outputText id="risorsa" >{!slOrig.EOF_ID_Risorsa__c}</apex:outputText>
+	                                     </div>
+
+										 <div class="col-lg-6">
+	                                         <label>Codice Operatore : </label> &nbsp; &nbsp;
+											 <apex:outputText id="codiceOperatore"> {!slOrig.EOF_Codice_Operatore__c}</apex:outputText>
+	                                     </div>
+
+										 <div class="col-lg-6">
+	                                         <label>Codice Ordine : </label> &nbsp; &nbsp;
+											 <apex:outputText id="codiceOrdine"> {!slOrig.EOF_Codice_Ordine_OLO__c}</apex:outputText>
+	                                     </div>
+
+										 <!--<div class="col-lg-6">
+	                                         <label>Data Notifica : </label> &nbsp; &nbsp;
+											 <apex:outputText id="dataNotifica">{!slOrig.EOF_Data_Notifica__c}</apex:outputText>
+	                                     </div>
+
+										 <div class="col-lg-6">
+	                                         <label>Id Notifica : </label> &nbsp; &nbsp;
+											 <apex:outputText id="idNotifica">{!slOrig.EOF_ID_Notifica__c}</apex:outputText>
+	                                     </div>-->
+	                                    <!-- <div class="col-lg-6">
+	                                         <label>Nome Referente Tecnico Operatore : </label> &nbsp; &nbsp;
+											 <apex:outputText id="nomeTecnico" >{!slOrig.EOF_NOME_REFERENTE_TECNICO_OLO__c}</apex:outputText>
+	                                     </div>
+	                                     <div class="col-lg-6">
+	                                        <label>Cognome Referente Tecnico Operatore :</label> &nbsp; &nbsp;
+											 <apex:outputText id="cognomeTecnico" >{!slOrig.EOF_COGNOME_REFERENTE_TECNICO_OLO__c}</apex:outputText>
+	                                      </div>                                                                                                                                                    
+	                                                                                    
+	                                     <div class="col-lg-6">
+	                                        <label> Telefono Referente Tecnico Operatore :</label> &nbsp; &nbsp;
+											<apex:outputText id="telefonoTecnico" >{!slOrig.EOF_TELEFONO_REFERENTE_TECNICO_OLO__c}</apex:outputText>
+	                                     </div>
+	                                     <div class="col-lg-6">
+	                                         <label>Email Referente Tecnico Operatore : </label> &nbsp; &nbsp;
+	                                     	<apex:outputText id="emailTecnico" >{!slOrig.EOF_EMAIL_REFERENTE_TECNICO_OLO__c}</apex:outputText>
+										 </div> 
+	                                 
+	                                 <div class="col-lg-6">
+	                                     <label>Telefono Referente Operatore Onfield Notech : </label> &nbsp; &nbsp;
+										 <apex:outputText id="telefonoRefTecnico" >{!slOrig.EOF_TELEFONO_REFERENTE_OLO_ONFIELD_NOTEC__c}</apex:outputText>
+	                                 </div>
+	                                 
+	                                     <div class="col-lg-6">
+	                                          <label>Nome Cliente : </label> &nbsp; &nbsp;
+											  <apex:outputText id="nomeCliente" >{!slOrig.EOF_Nome_Cliente__c}</apex:outputText>
+	                                     </div> 
+	                                     <div class="col-lg-6">
+	                                         <label>Cognome Cliente : </label> &nbsp; &nbsp;
+											 <apex:outputText id="cognomeCliente" >{!slOrig.EOF_COgnome_CLiente__c}</apex:outputText>
+	                                     </div>
+	                                     <div class="col-lg-6">
+	                                          <label>Recapito Telefonico Cliente 1 : </label> &nbsp; &nbsp;
+	                                    	  <apex:outputText id="telCliente1" >{!slOrig.EOF_RECAPITO_TELEFONICO_CLIENTE_1__c}</apex:outputText>
+										 </div> 
+	                                     <div class="col-lg-6">
+	                                         <label>Recapito Telefonico Cliente 2 : </label> &nbsp; &nbsp;
+											 <apex:outputText id="telCliente2" >{!slOrig.EOF_RECAPITO_TELEFONICO_CLIENTE_2__c}</apex:outputText>
+	                                     </div>
+	                                
+	                                     <div class="col-lg-6">
+	                                          <label>Informazioni Logistica Apparati : </label> &nbsp; &nbsp;
+											  <apex:outputText id="logistica" >{!slOrig.EOF_INFORMAZIONI_LOGISTICA_APPARATI__c}</apex:outputText>
+	                                     </div> 
+	                                     <div class="col-lg-6"> 
+	                                         <label>Data Prevista Attivazione :  </label> &nbsp; &nbsp;
+											 <apex:outputText id="dataAttivazione" >{!slOrig.EOF_DATA_PREVISTA_ATTIVAZIONE__c}</apex:outputText>	                                            
+	                                     </div>
+	                                     <div class="col-lg-6">
+	                                          <label>Orario Appuntamento :</label> &nbsp; &nbsp;
+											  <apex:outputText id="orario" >{!slOrig.EOF_ORARIO_APPUNTAMENTO__c}</apex:outputText> 
+	                                     </div> -->
+	                                     <div class="col-lg-6">
+	                                         <label>Codice Progetto Speciale : </label> &nbsp; &nbsp;
+											 <apex:outputText id="codiceProgetto" >{!slOrig.EOF_CODICE_PROGETTO_SPECIALE__c}</apex:outputText>
+	                                     </div>
+	                                     <div class="col-lg-6">
+	                                          <label>Promozione : </label> &nbsp; &nbsp;
+											  <apex:outputText id="promozione" >{!slOrig.EOF_PROMOZIONE__c}</apex:outputText>
+	                                     </div> 
+	                                     <div class="col-lg-6">
+	                                         <label>Cluster Promozione : </label> &nbsp; &nbsp;
+											 <apex:outputText id="promozioneCluster" >{!slOrig.EOF_CLUSTER_PROMOZIONE__c}</apex:outputText>
+	                                     </div>
+	                                     <div class="col-lg-6">
+	                                          <label>Note : </label> &nbsp; &nbsp;
+											  <apex:outputText id="note" >{!slOrig.EOF_NOTE__c}</apex:outputText>
+	                                     </div>
+	                                   <!--  <div class="col-lg-6">
+	                                         <label>ID Building : </label> &nbsp; &nbsp;
+											 <apex:outputText id="building" >{!slOrig.EOF_ID_BUILDING__c}</apex:outputText>
+	                                     </div>
+	                                     <div class="col-lg-6">
+	                                          <label>Scala Palazzina : </label> &nbsp; &nbsp;
+											  <apex:outputText id="scala" >{!slOrig.EOF_SCALA_PALAZZINA__c}</apex:outputText>
+	                                     </div>
+	                                     <div class="col-lg-6">
+	                                         <label>Numero Telefonico Principale Linea : </label> &nbsp; &nbsp;
+											 <apex:outputText id="numeroTel" >{!slOrig.EOF_NUMERO_TELEFONICO_PRINCIPALE_LINEA__c}</apex:outputText>
+	                                     </div>
+	                                     <div class="col-lg-6">
+	                                          <label>Recapito Test Linea :  </label> &nbsp; &nbsp;
+											  <apex:outputText id="numeroTelTest" >{!slOrig.EOF_RECAPITO_TEST_LINEA__c}</apex:outputText>
+	                                     </div> 
+	                                     <div class="col-lg-6">
+	                                         <label>Identificativo del POP :</label> &nbsp; &nbsp;
+											 <apex:outputText id="idPOP" >{!slOrig.EOF_ID_Pop__c}</apex:outputText> 
+	                                     </div>-->
+	                                     <div class="col-lg-6">
+	                                          <label>Profilo :  </label> &nbsp; &nbsp;
+											  <apex:outputText id="profilo" >{!slOrig.EOF_PROFILO__c}</apex:outputText>
+	                                     </div>
+	                                   <!--  <div class="col-lg-6">
+	                                          <label>Profilo Commerciale :  </label> &nbsp; &nbsp;
+											  <apex:outputText id="profiloCommerciale" ></apex:outputText> 
+	                                     </div>
+										 <div class="col-lg-6">
+	                                          <label>Codice Operatore :  </label> &nbsp; &nbsp;
+											  <apex:outputText id="codiceOperatore" >{!slOrig.EOF_Codice_Operatore__c}</apex:outputText>
+	                                     </div> -->
+	                                 </div>
+	                             </fieldset>
+								<!-- MOD AA 21/06-->
+								<div class="col-lg-3">
+									<div class="btn-group" role="group" aria-label="Basic example">                                      
+										<button style="margin-left:-30px;margin-top:-15px;margin-bottom:10px;" class="btn btn-primary to-disable" onClick="click_co_btn()" > Modifica </button>             
+									</div>
+								</div>
+	                        </form>
+							</div>
+
+							<!-- Iterazione Lista VLAN       -->  
+							<apex:form id="Vlan">
+							<apex:outputPanel id="vlanPanel">           
+	                    <apex:repeat value="{!listaWrapper}" var="slV" rendered="{!VLAN}">
+	                        <div class="panel panel-default" style="margin-top:5px;">
+		                        <div class="panel-heading">
+		                            <i></i>VLAN:
+		                        </div>
+		                        <div class="panel-body">
+	                    		   
+			                        <fieldset class="form-group">   
+				                        <div class="form-group">
+				                            <div class="col-lg-6">
+				                                <label>Kit Consegna VLAN :   </label> &nbsp; &nbsp;
+												<apex:outputText id="kitCons" >{!slV.kitConsegna}</apex:outputText>															            
+				                            </div>
+				                            <div class="col-lg-6">
+				                                <label>User VLAN :  </label> &nbsp; &nbsp;
+												<apex:outputText id="userVLAN" >{!slV.user}</apex:outputText>									
+				                            </div>
+				                            <div class="col-lg-6">
+				                                <label>Service VLAN : </label> &nbsp; &nbsp;
+												<apex:outputText id="serviceVLAN" >{!slV.service}</apex:outputText>				                             	
+											 </div>
+				                             <div class="col-lg-6">
+				                                 <label>Profilo VLAN : </label> &nbsp; &nbsp;
+												 <apex:outputText id="serVLAN" >{!slV.profilo}</apex:outputText>				                                 
+				                             </div>
+				                             <div class="col-lg-6">
+				                                <label>Customer VLAN :</label> &nbsp; &nbsp;
+												<apex:outputText id="custVLAN" >{!slV.customer} </apex:outputText>								
+				                              </div>                                                                                                                                                                                                   
+				                             <div class="col-lg-6">
+				                                 <label>Modello Di Servizio VLAN : </label> &nbsp; &nbsp;
+												 <apex:outputText id="modelloVLAN" >{!slV.modelloServizio} </apex:outputText>												 
+				                             </div>
+				                             <div class="col-lg-6"> 
+				                                <label> Informazioni VLAN :</label> &nbsp; &nbsp;
+												<apex:outputText id="infoVLAN" >{!slV.informazioni} </apex:outputText>												
+ 				                             </div>
+				                              
+				                         </div>
+			                         </fieldset>
+			                        <!--<apex:outputPanel rendered="{!OR(!confirmPage,error)}"> -->
+			                             
+		                                 <div class="col-lg-6">
+		                                     <div class="btn-group" role="group" aria-label="Basic example">
+											 <button id="cessazioneVlan" class='btn btn-primary to-disable btn-cess' style="margin-right:10px; margin-top:10px;"  name='{!slV.id}' >Cessa VLAN</button> 
+		                                        <!-- <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px; margin-top:10px;" value="Cessa VLAN" action="{!cessaVLAN}">  
+		                                            <apex:param name="eventVLAN" value="{!slV.Id}" assignTo="{!idVLAN}"/ > 
+		                                        </apex:commandButton>   -->     
+		                                     </div>
+		                                 </div>
+		                                 <div class="col-lg-6"> 
+		                                     <div class="btn-group" role="group" aria-label="Basic example">                                       
+		                                         <button class='btn btn-primary to-disable' style="margin-right:10px; margin-top:10px;"  id='{!slV.id}' onclick="modVLAN(this.id)">Modifica VLAN</button>
+												  <!--<apex:commandButton styleClass="btn btn-primary" style="margin-right:10px; margin-top:10px;" value="Modifica VLAN" onclick="modVLAN({!slV.id})">
+		                                        <apex:param name="idVLAN" value="{!slV.Id}" assignTo="{!idVLAN}"/> 
+		                                        </apex:commandButton>        --> 
+		                                     </div>
+		                                 </div>     
+			                             
+			                         <!--</apex:outputPanel>-->	                         
+		                         </div>
+	                        </div>							
+					</apex:repeat> 
+					</apex:outputPanel>
+</apex:form>
+
+
+						<!-- <apex:outputPanel rendered="{!OR(!confirmPage,error)}"> -->
+									 <apex:form >
+									<div class="col-lg-12">
+
+										<apex:outputpanel id="errRisorsa">
+										<apex:outputText id="errRisorsa2" value="{!syncErrorMsg}" rendered="{!errorID}" style="color:red;" />
+										</apex:outputpanel>
+
+										 <apex:outputpanel id="errCodOper">
+                                         <apex:outputText id="errCodOper2" value="Attenzione! Campo Codice Operatore obbligatorio non valorizzato." rendered="{!errorCodOp}" style="color:red;" />
+                                         </apex:outputpanel>
+
+										 <apex:outputpanel id="errCodOrd">
+                                         <apex:outputText id="errCodOrd2" value="Attenzione! Campo Codice Ordine obbligatorio non valorizzato." rendered="{!errorCodO}" style="color:red;" />
+                                         </apex:outputpanel>
+
+										 <apex:outputpanel id="errData">
+                                         <apex:outputText id="errData2" value="Attenzione! Campo Data obbligatorio non valorizzato." rendered="{!errorData}" style="color:red;" />
+                                         </apex:outputpanel>
+
+										 <apex:outputpanel id="errNoti">
+                                         <apex:outputText id="errNoti2" value="Attenzione! Campo Id Notifica obbligatorio non valorizzato." rendered="{!errorNot}" style="color:red;" />
+                                         </apex:outputpanel>
+
+										 <apex:outputpanel id="errProfilo">
+                                         <apex:outputText id="errNotifica2" value="Attenzione! Campo Id Notifica obbligatorio non valorizzato." rendered="{!errorNot}" style="color:red;" />
+                                         </apex:outputpanel>
+
+										 <apex:outputpanel id="errProf">
+                                         <apex:outputText id="errProf2" value="Attenzione! Campo Profilo obbligatorio non valorizzato." rendered="{!viewError}" style="color:red;" />
+                                         </apex:outputpanel>
+
+										 
+										 <apex:outputpanel id="errorKIT">
+                                         <apex:outputText id="errorKIT1" value="Attenzione! Campo Kit di consegna obbligatorio non valorizzato." rendered="{!errorKIT}" style="color:red;" />
+                                         </apex:outputpanel>
+
+										  <apex:outputpanel id="errorUSER">
+                                         <apex:outputText id="errorUSER1" value="Attenzione! Campo User VLAN obbligatorio non valorizzato." rendered="{!errorUSER}" style="color:red;" />
+                                         </apex:outputpanel>
+
+										 <apex:outputpanel id="errorSERVICE">
+                                         <apex:outputText id="errorSERVICE1" value="Attenzione! Campo Servizio VLAN obbligatorio non valorizzato." rendered="{!errorSERVICE}" style="color:red;" />
+                                         </apex:outputpanel>
+
+										  <apex:outputpanel id="errorPROFILO">
+                                         <apex:outputText id="errorPROFILO1" value="Attenzione! Campo Profilo VLAN obbligatorio non valorizzato." rendered="{!errorPROFILO}" style="color:red;" />
+                                         </apex:outputpanel>
+
+										 <apex:outputpanel id="errorCUSTOMER">
+                                         <apex:outputText id="errorCUSTOMER1" value="Attenzione! Valore campo Customer VLAN non ammesso." rendered="{!errorCUSTOMER}" style="color:red;" />
+                                         </apex:outputpanel>
+
+										  <apex:outputpanel id="errorMODELLODS">
+                                         <apex:outputText id="errorMODELLODS1" value="Attenzione! Valore campo Modello Di Servizio VLAN non ammesso." rendered="{!errorMODELLODS}" style="color:red;" />
+                                         </apex:outputpanel>
+
+										 <apex:outputpanel id="errorINFO">
+                                         <apex:outputText id="errorINFO1" value="Attenzione! Valore campo Informazione VLAN non ammessa." rendered="{!errorINFO}" style="color:red;" />
+                                         </apex:outputpanel>
+
+									 </div>       
+									<div class="panel panel-default" style="margin-top:5px;">	
+									<div class="panel-body">
+	                                 <div class="col-lg-3">
+	                                     <div class="btn-group" role="group" aria-label="Basic example">                                      
+	                                         <apex:commandButton styleClass="btn btn-primary to-disable" style="margin-right:10px; margin-top:10px;" value="Aggiungi VLAN" action="{!aggiungiVLAN}" />            
+	                                     </div>
+	                                 </div>
+									 <!-- MOD AA 21/06-->
+	                                 <div class="col-lg-9">
+	                                     <div class="btn-group" role="group" aria-label="Basic example">                                      
+	                                         <apex:commandButton id="btn-click-co" styleClass="btn btn-primary to-disable" style="display:none;margin-right:10px; margin-top:10px;" value="Ordine di variazione" action="{!changeOrder}" />             
+	                                     </div>
+	                                 </div>
+									</div>
+									</div>
+									 <!-- MOD AA 21/06-->
+									 <!--<apex:actionFunction name="modCO" action="{!changeOrder}" />-->
+									 <!-- FINE MOD AA 21/06-->
+									 <div class="panel panel-default" style="margin-top:5px;">	
+									<div class="panel-body">
+									<div class="col-lg-3">
+										<div class="btn-group" role="group" aria-label="Basic example">     
+											<button class='btn btn-primary' style="margin-right:10px; margin-top:10px;"  id="inChOr" onclick="inoltra()">Inoltra Ordine</button>
+										</div>
+									</div>
+									</div>
+									</div>
+									</apex:form>
+									<apex:form > 
+									 <apex:actionFunction name="modifyVLAN" reRender="tabResult" action="{!modificaVLAN}" >
+                           			 <apex:param assignTo="{!idVLAN}" name="idVLAN" value="" /> 
+                            		 </apex:actionFunction> 
+									 </apex:form> 
+
+									 <apex:form > 
+									 <apex:actionFunction name="inoltraOrder" onComplete="showAlert('{!errorID}')" reRender="errProf,errorKIT,errorUSER,errorSERVICE,errorPROFILO,errorCUSTOMER,errRisorsa,errorMODELLODS,errorINFO,errCodOper,errData,errNoti,errCodOrd"  action="{!inoltraChangeOrder}" >                           			 
+                            		 </apex:actionFunction> 
+									 </apex:form> 
+
+									 <apex:form > 
+									 <apex:actionFunction name="deleteVLAN" reRender="tabResult" action="{!cessaVLAN}" >
+                           			 <apex:param assignTo="{!idVLAN}" name="idVLAN" value="" /> 
+                            		 </apex:actionFunction> 
+									  </apex:form>
+	                             <!--</apex:outputPanel> -->
+								<apex:form > 
+									<apex:actionFunction name="redirectRichiesteInserite" action="{!redirectRichiesteInserite}" />
+								</apex:form>
+
+		        	 </div>
+             	</div> 
+			 </div>
+		     
+    </body>
+
+<script>
+	//MOD AA 21/06
+	function click_co_btn() {
+		event.preventDefault();
+		$("input[id*='btn-click-co']").click();
+	}
+	function showAlert(hasError){
+		debugger;
+		if (hasError == "false"){
+			alert('Richiesta di Ordine di Variazione inoltrata con successo');
+			redirectRichiesteInserite();
+		}else{
+			$('.to-disable').prop('disabled', false);
+		}
+	}
+	
+	function modVLAN(idVLAN) {
+	debugger;
+	modifyVLAN(idVLAN);
+	}
+
+	function inoltra() {
+		$('#inChOr').prop('disabled', true);
+		$('.to-disable').prop('disabled', true);
+		debugger;
+		event.preventDefault();
+		inoltraOrder();
+	}
+
+
+	$(document).ready(function() {
+		$( ".btn-cess" ).click(function( event ) {
+			event.preventDefault();
+			debugger;
+			var name = this.getAttribute('name');
+			deleteVLAN(name);  
+		});   
+	});
+</script>
+
+</html>
+</apex:page>

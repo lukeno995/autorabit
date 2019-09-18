@@ -1,0 +1,289 @@
+<apex:page id="pageID" controller="PO_PP_SVLan_Controller" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+    <html lang="en">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+            <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>            
+            <link rel = "stylesheet"  type = "text/css"  href = "//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+            
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{                
+                display:none;                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+                .displayNone { 
+                display:none; 
+                }
+                .displayBlock {
+                display:block;
+                }
+                .ui-autocomplete-loading { 
+                background: white url(/img/loading32.gif) right center no-repeat;
+                background-size:15px 15px; 
+                }
+                .placeHolder {
+                font-style: italic;
+                }
+                
+            </style>  
+        </head>
+       <body>
+            <div id="wrapper">
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                   <c:PO_SideBarComponent Rec="{!recordOfferta}" />
+                    
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" id="side-menu">
+                            </ul>
+                        </div>
+                        <!-- /.sidebar-collapse -->
+                    </div>
+                    <!-- /.navbar-static-side -->
+                </nav>
+                <div>                    
+                    <div style="color:red;" id="showerror">
+                        <apex:pageMessages id="errors" /> 
+                    </div>
+                    <apex:outputPanel id="testform">
+                    </apex:outputPanel>
+                </div>
+                <div id="page-wrapper">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i></i>VLAN
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <apex:form id="formID">                                            
+                                            <!-- <div style="color:red;" id="showerror">
+                                                	<apex:pageMessages id="errors" /> 
+                                                </div> -->
+                                            
+                                            <form role="form" class="form-horizontal">
+                                                <div class="form-group">                                                    
+                                                    <div class="col-lg-6"> 
+                                                        <label>POP di raccolta*</label>
+														<apex:inputText id="pop" styleClass="form-control" onkeypress="return noenter(event);" value="{!POP}"/>                                                        
+                                                    </div>     
+                                                    <!--
+                                                    <div class="col-lg-6">
+                                                        <label>Banda Interfaccia*</label>
+                                                        <apex:inputText id="banda" styleClass="form-control" onkeypress="return noenter(event);" value="{!BandaInterfaccia}" />
+                                                    </div>
+                                                    -->
+                                                    <!--
+                                                    <div class="col-lg-6">
+                                                        <label>VLAN</label>
+                                                        <apex:inputText id="svlan" styleClass="form-control" onkeypress="return noenter(event);" value="{!svlan}"/>
+                                                    </div>
+                                                    -->
+
+                                                    <div class="col-lg-6">
+                                                        <label>COS Remarking</label>
+                                                        <apex:selectList id="cos_remarking" styleClass="form-control" size="1" value="{!cos_remarking}">
+                                                            <apex:selectOption itemValue="NO" itemLabel="NO"/>
+                                                            <apex:selectOption itemValue="SI" itemLabel="SI"/>
+                                                        </apex:selectList>
+                                                    </div>    
+                                                    <div class="col-lg-6">
+                                                        <label>DHCP Option82</label>
+                                                        <apex:selectList id="dhcp" styleClass="form-control" size="1" value="{!dhcp_Option82}">
+                                                            <apex:selectOption itemValue="NO" itemLabel="NO"/>
+                                                            <apex:selectOption itemValue="SI" itemLabel="SI"/>
+                                                        </apex:selectList>
+                                                    </div>  
+                                                    <div class="col-lg-6" style="margin-bottom:20px;">
+                                                        <label>Note</label>
+                                                        <apex:inputText id="note" styleClass="form-control" onkeypress="return noenter(event);" value="{!note}"/>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label>COS-Type</label>
+                                                        <apex:selectList id="cos_type" styleClass="form-control" size="1" value="{!cos_type}" onclick="checkCos()" >
+                                                            <apex:selectOption itemValue="None" itemLabel="None"/>
+                                                            <apex:selectOption itemValue="MonoCOS" itemLabel="MonoCOS"/>
+                                                            <apex:selectOption itemValue="MultiCOS" itemLabel="MultiCOS"/>
+                                                        </apex:selectList>
+                                                    </div>
+                                                    <!-- MonoCOS -->
+                                                    <div class="col-lg-6" id="monoCos">
+                                                        <label>COS-Class</label>
+                                                        <apex:selectList value="{!sceltaMono}" id="mono" styleClass="form-control" size="1" >
+                                                            <apex:selectOptions value="{!itemsMonoCos}" />
+                                                        </apex:selectList>
+                                                    </div>
+                                                    <!-- MultiCOS -->
+                                                    <div class="col-lg-6" id="multiCos">
+                                                        <label>COS-Class</label>
+                                                        <apex:selectList value="{!sceltaMulti}" id="multi" styleClass="form-control" size="1" >
+                                                            <apex:selectOptions value="{!itemsMultiCos}"/>
+                                                        </apex:selectList>
+                                                    </div>
+                                                </div>
+                                               
+                                                <div class="form-group">
+                                                    <style>p.indent{ padding-left: 1.8em }</style>
+                                                    <div class="col-lg-8">
+                                                        <apex:outputPanel >                                                          
+                                                            <apex:commandLink id="SaveBttn" styleClass="btn btn-primary" style="margin-right:5px;" value="Salva" 
+                                                                onclick="validateform(); return false;" />
+                                                                <apex:actionFunction action="{!savesl}" name="saveSVLANLog" />
+                                                            <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px;" value="Annulla" action="{!annulla}" /> 
+                                                        </apex:outputPanel>
+                                                    </div>         
+                                                </div>                                                
+                                            </form>                                            
+                                        </apex:form> 
+                                        <br/>
+                                    </div>
+                                    <!-- /.row (nested) -->
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>     
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /#page-wrapper -->
+                    
+                </div>
+            </div>
+            <!-- /#wrapper -->            
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'>
+            </script>
+
+            <script type='text/javascript'>        
+            
+                window.onload = hideCos;
+            
+                function checkCos()
+                {
+                    var cos_type = $('[id$=cos_type]').val();
+                    
+                    if(cos_type == 'MonoCOS')
+                    {
+                       document.getElementById("monoCos").style.display = "inline";
+                       document.getElementById("multiCos").style.display = "none";
+                    }
+                    else if(cos_type == 'MultiCOS')
+                    {
+                       document.getElementById("monoCos").style.display = "none";
+                       document.getElementById("multiCos").style.display = "inline";
+                    }
+                    else
+                        hideCos();
+                }
+                
+                function hideCos()
+                {
+                    document.getElementById("monoCos").style.display = "none";
+                    document.getElementById("multiCos").style.display = "none";
+                }
+                
+                function validateform()
+            	{
+                    var pop = $('[id$=pop]').val();
+                    var svlan = $('[id$=svlan]').val();
+                    var cos_remarking = $('[id$=cos_remarking]').val();
+                    var dhcp = $('[id$=dhcp]').val();
+                    var cos_type = $('[id$=cos_type]').val();
+                    var note = $('[id$=note]').val();
+                    var check = true;
+
+                    if(pop.length == 0)
+                    {
+                        $('[id$=pop]').next('div.red').remove();
+                        $('[id$=pop]').after('<div class="red">Campo obbligatorio</div>');
+                        check = false;
+                    }
+                    else
+                        $('[id$=pop]').next('div.red').remove();
+                    
+                    if(pop.length >= 10)
+                    {
+                        $('[id$=pop]').next('div.red').remove();
+                        $('[id$=pop]').after('<div class="red">La lunghezza massima consentita è 10</div>');
+                        check = false;
+                    }
+                    else
+                        $('[id$=pop]').next('div.red').remove();
+                    
+                    if(cos_type == 'None')
+                    {
+                        $('[id$=cos_type]').next('div.red').remove();
+                        $('[id$=cos_type]').after('<div class="red">Campo obbligatorio</div>');
+                        check = false;
+                    }
+                    else
+                        $('[id$=cos_type]').next('div.red').remove();
+
+                    if(check==true)
+                	    saveSVLANLog();
+            	}    
+
+
+              function noenter(e){  
+                //alert('Test ');             
+                if(window.event){  
+                    key = window.event.keyCode;              
+                } 
+                else{                    
+                    key = e.which;               
+                }               
+                if(key == 13) 
+                {   
+                    var ele=document.getElementById('{!$Component.pageID:formID:SaveBttn}');                                          
+                    ele.click();                     
+                    return false;               
+                }
+                else{                    
+                    return true;               
+                }          
+            }     
+            </script> 
+        </body>
+    </html>
+</apex:page>

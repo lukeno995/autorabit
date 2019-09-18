@@ -1,0 +1,233 @@
+<apex:component controller="PO_COMP_GPON_Passiva_CeD_Cessaz_Ins_Con" AllowDML="true">
+<html lang="en">  
+        <head> 
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <!-- /#wrapper -->
+              
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+            </style>
+        </head> 
+         
+            <body>
+            <apex:form >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+		                <apex:outputPanel rendered="{!!confirmPage}">
+		                
+		                        <i></i>Bozza Richiesta
+		                   
+		                </apex:outputPanel>
+		                <apex:outputPanel rendered="{!AND(confirmPage,!error,!success)}">
+		                    
+		                        <i></i>Conferma Richiesta
+		                   
+		                </apex:outputPanel>
+		                <apex:outputPanel rendered="{!OR(error,success)}">
+		                    
+		                        <i></i>Risultato Inoltro
+		                   
+		                </apex:outputPanel>
+                	</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div  >
+                            <apex:pageMessages /> 
+                        </div>
+                         <apex:outputPanel rendered="{!error}" >
+		                    <div class="panel-heading red" >
+		                        <i></i>Richiesta errata: {!motivoErr}
+		                   </div>
+		                </apex:outputPanel>
+		                <apex:outputPanel rendered="{!success}" >
+		                    <div class="panel-heading red" >
+		                        <i></i>Richiesta Inserita Correttamente
+		                   </div>
+		                </apex:outputPanel>
+                            
+                        <form role="form" class="form-horizontal">
+                            <fieldset class="form-group">
+                                 <div class="form-group">
+                                     <div class="col-lg-6">
+                                         <label>Codice Ordine Operatore : </label> &nbsp; &nbsp;
+                                         <apex:outputField id="CodiceOrdineOLO" styleClass="form-control" value="{!sl.EOF_Codice_Ordine_OLO__c}" />
+                                     </div>
+                                     <div class="col-lg-6">
+                                         <label>Id Notifica : </label> &nbsp; &nbsp;
+                                         <apex:outputField id="IDNotifica" styleClass="form-control" value="{!sl.EOF_ID_Notifica__c}"/>
+                                     </div>
+                                     <div class="col-lg-6">
+                                          <label>Nome Cliente : </label> &nbsp; &nbsp;
+                                          <apex:outputField id="NomeCliente" styleClass="form-control"  value="{!sl.EOF_Nome_Cliente__c}"/>
+                                     </div> 
+                                     <div class="col-lg-6">
+                                         <label>Cognome Cliente : </label> &nbsp; &nbsp;
+                                         <apex:outputField id="CognomeCliente" styleClass="form-control" value="{!sl.EOF_COgnome_CLiente__c}"/>
+                                     </div>
+                                     <div class="col-lg-6">
+                                          <label>Recapito Telefonico Cliente 1 : </label> &nbsp; &nbsp;
+                                          <apex:outputField id="RecapitoTelefonicoCliente1" styleClass="form-control" value="{!sl.EOF_RECAPITO_TELEFONICO_CLIENTE_1__c}"/>
+                                     </div> 
+                                     <div class="col-lg-6">
+                                         <label>Recapito Telefonico Cliente 2 : </label> &nbsp; &nbsp;
+                                         <apex:outputField id="RecapitoTelefonicoCliente2" styleClass="form-control"  value="{!sl.EOF_RECAPITO_TELEFONICO_CLIENTE_2__c}"/>
+                                     </div>
+	                                <div class="col-lg-6">
+	                                      <label>ID Risorsa : </label> &nbsp; &nbsp;
+	                                      <apex:outputField id="IDRisorsa" styleClass="form-control" value="{!sl.EOF_ID_Risorsa__c}" />
+	                                 </div> 
+	                                <div class="col-lg-6">
+	                                     <label>Note : </label> &nbsp; &nbsp;
+	                                     <apex:outputField id="Note" styleClass="form-control"  value="{!sl.EOF_NOTE__c}"/>
+	                                </div>
+                                </div>
+                             </fieldset>
+                             <apex:outputPanel rendered="{!OR(!confirmPage,error)}">
+                                 <div class="col-lg-6">
+                                     <div class="btn-group" role="group" aria-label="Basic example">                                      
+                                         <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px; margin-top:10px;" value="Modifica" action="{!editslCESS}"/>        
+                                     </div>
+                                 </div> 
+                                 <!-- 
+                                 <div class="col-lg-6">
+                                     <div class="btn-group" role="group" aria-label="Basic example">                                      
+                                         <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px; margin-top:10px;" value="Elimina" action="{!deleteslCESS}"/>           
+                                     </div>
+                                 </div>
+                                 <div class="col-lg-4">
+                                     <div class="btn-group" role="group" aria-label="Basic example">                                      
+                                         <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px; margin-top:10px;" value="Inserisci Apparato" action="{!inserisciApparatoCESS}" />             
+                                     </div>
+                                 </div> 
+                                  -->
+                             </apex:outputPanel>
+                        </form>
+                    </div>
+
+                    <!-- Iterazione Lista Apparati -->
+                    <apex:repeat value="{!slApparati}" var="slApp" rendered="{!Apparati}">
+                        <div class="panel panel-default" style="margin-top:10px;">
+	                        <div class="panel-heading">
+	                            <i></i>Apparato:
+	                        </div>     
+	                        <div class="panel-body"> 
+		                        <fieldset class="form-group"> 
+			                        <div class="form-group row">
+			                            <div class="col-lg-6">
+			                                <label>Tipologia Apparato : </label> &nbsp; &nbsp;
+			                                <apex:outputField id="TipologiaApparato" styleClass="form-control" value="{!slApp.EOF_TIPOLOGIA_APPARATO__c}"  />
+			                            </div>
+			                            
+			                            <div class="col-lg-6">
+			                                <label>ID Apparato : </label> &nbsp; &nbsp;
+			                                <apex:outputField id="IDApparato" styleClass="form-control" value="{!slApp.OF_SA_ID_APPARATO__c}"  />
+			                             </div> 
+			                         </div>
+		                         </fieldset>
+		                         <apex:outputPanel rendered="{!OR(!confirmPage,error)}">
+		                             <div class="form-group row"> 
+		                                 <div class="col-lg-6">
+		                                     <div class="btn-group" role="group" aria-label="Basic example">                                      
+		                                         <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px; margin-top:10px;" value="Elimina Apparato" action="{!deleteApparatoCESS}" rerender="block">  
+		                                            <apex:param name="eventApparato" value="{!slApp.Id}" assignTo="{!idApparato}"/>  
+		                                        </apex:commandButton>       
+		                                     </div>
+		                                 </div>
+		                                 <div class="col-lg-6">
+		                                     <div class="btn-group" role="group" aria-label="Basic example">                                      
+		                                         <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px; margin-top:10px;" value="Modifica Apparato" action="{!editApparatoCESS}" rerender="block"> 
+		                                            <apex:param name="eventApparato" value="{!slApp.Id}" assignTo="{!idApparato}"/>  
+		                                        </apex:commandButton>       
+		                                     </div>
+		                                 </div>     
+		                             </div>
+		                         </apex:outputPanel>
+	                         </div>
+                       </div>
+                    </apex:repeat>
+                    <apex:outputPanel rendered="{!OR(!confirmPage,error)}">
+                    	<div class="col-lg-6">
+                            <div class="btn-group" role="group" aria-label="Basic example">                                      
+                                <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px; margin-top:10px;" value="Elimina Richiesta" action="{!deleteslCESS}"/>           
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="btn-group" role="group" aria-label="Basic example">                                      
+                                <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px; margin-top:10px;" value="Inserisci Apparato" action="{!inserisciApparatoCESS}" />             
+                            </div>
+                        </div> 
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!IF(NOT(confirmPage),true,false)}">
+                       <div class="col-lg-6" >
+                           <div class="btn-group" role="group" aria-label="Basic example">                                      
+                               <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px;  margin-top:20px;" value="Inoltra Richiesta di Cessazione" action="{!confermaRequestCESS}"  />       
+                           </div>
+                       </div> 
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!AND(confirmPage,!success,!error)}">
+                        <div class="col-lg-6" >
+                           <div class="btn-group" role="group" aria-label="Basic example">                                      
+                               <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px;" value="Annulla Inoltro" action="{!annullaInoltroCESS}"  />       
+                           </div>
+                       </div>
+                       <div class="col-lg-6" >
+                           <div class="btn-group" role="group" aria-label="Basic example">                                      
+                               <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px;" value="Conferma Inoltro" action="{!inoltraRequestCESS}" />       
+                           </div>
+                       </div> 
+                    </apex:outputPanel>
+                    
+                </div>
+                </div>
+            </apex:form>                     
+        </body>
+    
+    </html>
+</apex:component>

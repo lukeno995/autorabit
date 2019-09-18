@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>Acquisito</fullName>
+        <default>false</default>
+        <label>Acquisito</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Accettato</fullName>
+        <default>false</default>
+        <label>Accettato</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Acquisito KO</fullName>
+        <default>false</default>
+        <label>Acquisito KO</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Accettato KO</fullName>
+        <default>false</default>
+        <label>Accettato KO</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Annullato</fullName>
+        <default>false</default>
+        <label>Annullato</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Espletato</fullName>
+        <default>false</default>
+        <label>Espletato</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Espletato KO</fullName>
+        <default>false</default>
+        <label>Espletato KO</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Sospeso</fullName>
+        <default>false</default>
+        <label>Sospeso</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Ricevuto</fullName>
+        <default>false</default>
+        <label>Ricevuto</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Cessato OK</fullName>
+        <default>false</default>
+        <label>Cessato OK</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Cessato KO</fullName>
+        <default>false</default>
+        <label>Cessato KO</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Inviato</fullName>
+        <default>true</default>
+        <label>Inviato</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>In Lavorazione</fullName>
+        <default>false</default>
+        <label>In Lavorazione</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Scartato</fullName>
+        <default>false</default>
+        <label>Scartato</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Richiesta Chiusura</fullName>
+        <default>false</default>
+        <label>Richiesta Chiusura</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Chiuso</fullName>
+        <default>false</default>
+        <label>Chiuso</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>In Annullamento</fullName>
+        <default>false</default>
+        <label>In Annullamento</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Cessato</fullName>
+        <default>false</default>
+        <label>Cessato</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Censimento Esterno in Acquisizione</fullName>
+        <color>#33FF33</color>
+        <default>false</default>
+        <label>Censimento Esterno in Acquisizione</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Censimento Esterno OK</fullName>
+        <color>#33CC00</color>
+        <default>false</default>
+        <label>Censimento Esterno OK</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Negoziazione Impresa Accesso Censimento Interno</fullName>
+        <color>#FF9900</color>
+        <default>false</default>
+        <label>Negoziazione Impresa Accesso Censimento Interno</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Negoziazione Accesso Censimento Interno KO</fullName>
+        <color>#FF0000</color>
+        <default>false</default>
+        <label>Negoziazione Accesso Censimento Interno KO</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Censimento Interno in Acquisizione</fullName>
+        <color>#33FF33</color>
+        <default>false</default>
+        <label>Censimento Interno in Acquisizione</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Censimento Interno OK</fullName>
+        <color>#33CC00</color>
+        <default>false</default>
+        <label>Censimento Interno OK</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Negoziazione Richiesta Permesso Lavori</fullName>
+        <color>#FF9966</color>
+        <default>false</default>
+        <label>Negoziazione Richiesta Permesso Lavori</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Permesso Lavori KO</fullName>
+        <color>#FF0000</color>
+        <default>false</default>
+        <label>Permesso Lavori KO</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Negoziazione OF Accesso Censimento Interno KO</fullName>
+        <color>#FF0000</color>
+        <default>false</default>
+        <label>Negoziazione OF Accesso Censimento Interno KO</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Realizzazione Impianto in Corso</fullName>
+        <color>#33FF33</color>
+        <default>false</default>
+        <label>Realizzazione Impianto in Corso</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Negoziazione OF Accesso Censimento Interno</fullName>
+        <color>#FF99FF</color>
+        <default>false</default>
+        <label>Negoziazione OF Accesso Censimento Interno</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Richiesta permesso lavori</fullName>
+        <color>#FF9966</color>
+        <default>false</default>
+        <label>Richiesta permesso lavori</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Negoziazione Impresa Richiesta Permesso Lavori</fullName>
+        <color>#FF9900</color>
+        <default>false</default>
+        <label>Negoziazione Impresa Richiesta Permesso Lavori</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Negoziazione OF Richiesta Permesso Lavori</fullName>
+        <color>#F96FB7</color>
+        <default>false</default>
+        <label>Negoziazione OF Richiesta Permesso Lavori</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Negoziazione OF Richiesta Permesso Lavori KO</fullName>
+        <color>#CC0000</color>
+        <default>false</default>
+        <label>Negoziazione OF Richiesta Permesso Lavori KO</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Realizzazione Impianto Completata</fullName>
+        <color>#009900</color>
+        <default>false</default>
+        <label>Realizzazione Impianto Completata</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>In approvazione Cliente</fullName>
+        <default>false</default>
+        <label>In approvazione Cliente</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Chiuso OK</fullName>
+        <default>false</default>
+        <label>Chiuso OK</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Nuovo</fullName>
+        <default>false</default>
+        <label>Nuovo</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Bozza</fullName>
+        <default>false</default>
+        <label>Bozza</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Presa in Carico</fullName>
+        <default>false</default>
+        <label>Presa in Carico</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Completato</fullName>
+        <default>false</default>
+        <label>Completato</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Rifiutato</fullName>
+        <default>false</default>
+        <label>Rifiutato</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Chiuso KO</fullName>
+        <default>false</default>
+        <label>Chiuso KO</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Modificato OK</fullName>
+        <default>false</default>
+        <label>Modificato OK</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Modificato KO</fullName>
+        <default>false</default>
+        <label>Modificato KO</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Sospeso OK</fullName>
+        <default>false</default>
+        <label>Sospeso OK</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Desospeso OK</fullName>
+        <default>false</default>
+        <label>Desospeso OK</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Sospeso KO</fullName>
+        <default>false</default>
+        <label>Sospeso KO</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Desospeso KO</fullName>
+        <default>false</default>
+        <label>Desospeso KO</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>ESPLETATO OK</fullName>
+        <default>false</default>
+        <label>Espletato OK</label>
+        <closed>true</closed>
+    </standardValue>
+</StandardValueSet>

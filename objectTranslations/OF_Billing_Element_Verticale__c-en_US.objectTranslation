@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Billing Element Verticale</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Billing Elements Verticale</value>
+    </caseValues>
+    <fields>
+        <label><!-- Asset Verticale --></label>
+        <name>Asset_Verticale__c</name>
+        <relationshipLabel><!-- Billing Elements Verticale --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Asset --></label>
+        <name>Asset__c</name>
+        <relationshipLabel><!-- Billing Elements Verticale --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Civico --></label>
+        <name>Civico__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Ordine OLO --></label>
+        <name>Codice_Ordine_OLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comune --></label>
+        <name>Comune__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Attivazione --></label>
+        <name>Data_Attivazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Building --></label>
+        <name>ID_Building__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID_DB_Scala_palazzina --></label>
+        <name>ID_DB_Scala_palazzina__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Risorsa --></label>
+        <name>ID_Risorsa__c</name>
+    </fields>
+    <fields>
+        <label><!-- Indirizzo --></label>
+        <name>Indirizzo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Inviato_PostGreSQL --></label>
+        <name>Inviato_PostGreSQL__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Status --></label>
+        <name>OF_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_isLavorazione --></label>
+        <name>OF_isLavorazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- OLO --></label>
+        <name>OLO__c</name>
+        <relationshipLabel><!-- Billing Elements Verticale --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Palazzina --></label>
+        <name>Palazzina__c</name>
+    </fields>
+    <fields>
+        <label><!-- Provincia --></label>
+        <name>Provincia__c</name>
+    </fields>
+    <fields>
+        <label><!-- Regione --></label>
+        <name>Regione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Scala --></label>
+        <name>Scala__c</name>
+    </fields>
+    <fields>
+        <label><!-- Update_Billing --></label>
+        <name>Update_Billing__c</name>
+    </fields>
+    <fields>
+        <label><!-- isDaBonificare --></label>
+        <name>isDaBonificare__c</name>
+    </fields>
+    <layouts>
+        <layout>Billing Element Verticale Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

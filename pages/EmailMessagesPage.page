@@ -1,0 +1,39 @@
+<apex:page standardController="case" extensions="EmailMessages" showheader="false" sidebar="false" showChat="false" applyBodyTag="false" applyHtmlTag="false" >
+        <apex:form >
+         <apex:pageBlock >
+             <apex:pageBlockTable value="{!DisplayEmails}" var="email">
+                 
+                 <apex:column headerValue="Action" >
+                 <apex:commandLink value="Rispondi" action="{!redirectReplymail}" style="color:blue" />
+                     
+                 </apex:column>
+                 
+                 <apex:column value="{!email.status}" headerValue="Status" />
+                 <apex:column headerValue="">
+                 <apex:image url="{!$Resource.EmailIcon}" width="15" height="15"/>
+
+                 </apex:column>
+                 <apex:column headerValue="Subject" >
+                
+                     <apex:commandLink action="{!redirectReplymail}"  value="Subject:">{!email.subject}</apex:commandLink><br/>
+                  <apex:outputField value="{!email.EmailBody__c}"/>
+                 </apex:column>
+                 <!-- <apex:column value="{!email.EmailBody__c}" headerValue="Body"/>-->
+                <apex:column value="{!email.ToAddress}" headerValue="Email Address" />
+                 <apex:column value="{!email.MessageDate}" headerValue="Message Date" />
+             </apex:pageBlockTable>
+        
+        </apex:pageBlock>
+    
+    </apex:form>
+    <script>
+    var j$ = jQuery.noConflict();
+    j$("iframe").each(function(){
+        if(String(this.title) === "EmailMessagePage"){
+            j$(this).load(function() {
+                j$(this).height( j$(this).contents().find("body").height() );
+            });
+        }
+    });
+    </script>
+</apex:page>

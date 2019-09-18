@@ -1,0 +1,951 @@
+<apex:page id="pageID" Controller="PO_Serv_BTS_EditLogInfoCntrl" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+    <html lang="en">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>         
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/> 
+            <title>Open Fiber</title>  
+            
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+            <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>            
+            <link rel = "stylesheet"  type = "text/css"  href = "//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+            
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{                
+                display:none;                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+                .displayNone { 
+                display:none; 
+                }
+                .displayBlock {
+                display:block;
+                }
+                .ui-autocomplete-loading { 
+                background: white url(/img/loading32.gif) right center no-repeat;
+                background-size:15px 15px; 
+                }
+                .placeHolder {
+                font-style: italic;
+                }
+                
+            </style>
+            
+            
+            <script type="text/javascript">
+            debugger;
+            var PLACEHOLDER = 'Digitare il comune poi selezionarlo dall\'elenco'; 
+            var comuneObjects;
+            var queryTerm;
+            
+            var comuneCheckList; //EC 2018 - 11 - 15 manca nella P2PAttiva
+            var editModeCheck;
+            $(document).ready(function() {
+                editModeCheck='{!checkModeEdit}';
+                if(editModeCheck == 'true'){ 
+                    
+                    comuneCheckList=[];
+                    comuneCheckList.push($('[id$=comuneId]').val());
+                }
+                $('[id$=comuneId]').autocomplete({
+                    minLength: 2,
+                    source: function(request, response) {
+                        queryTerm = request.term;
+                        PO_Serv_BTS_EditLogInfoCntrl.searchComune(request.term, function(result, event){
+                            if(event.type == 'exception') {
+                                alert(event.message);
+                            } else {
+                                comuneObjects = result;                            
+                                response(comuneObjects);
+                                comuneCheckList= [];
+                                comuneObjects.forEach(function(element) {
+                                    comuneCheckList.push(element.OF_Comune__c+' '+element.OF_Regione__c);
+                                });
+                            }
+                        });
+                    },
+                    focus: function( event, ui ) {
+                        //  $('[id$=comuneId]').val( ui.item.OF_Comune__c+' '+ui.item.OF_Regione__c );
+                        return false;
+                    },
+                    select: function( event, ui ) {
+                        $('[id$=comuneId]').val( ui.item.OF_Comune__c+' '+ui.item.OF_Regione__c );
+                        $('[id$=searchcommuneId]').val( ui.item.Id );
+                        return false;
+                    },
+                })
+                .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+                    var entry = "<a>" + item.OF_Comune__c+' '+item.OF_Regione__c;
+                    
+                    entry = entry + "</a>";
+                    entry = entry.replace(queryTerm, "<b>" + queryTerm + "</b>");
+                    return $( "<li></li>" )
+                    .data( "ui-autocomplete-item", item )
+                    .append( entry )
+                    .appendTo( ul );
+                };
+                
+                // Add or remove placeholder values
+                //EC start 2018 - 11 - 15
+                if('{!searchTerm}'!=''){
+                    PLACEHOLDER ='{!searchTerm}';
+                }
+                //EC end 2018 - 11 - 15
+                
+                $('[id$=comuneId]').val(PLACEHOLDER);
+                $('[id$=comuneId]').on("focus",  function(event){
+                    $tgt = $(event.target);
+                    if($tgt.val() === PLACEHOLDER ){
+                        $tgt.val('');
+                        $tgt.removeClass('placeHolder');
+                    }
+                });
+                $('[id$=comuneId]').on( "blur",  function(event){
+                    $tgt = $(event.target);
+                    if($tgt.val() === '' ){
+                        $tgt.val(PLACEHOLDER);
+                        $tgt.addClass('placeHolder');
+                    }
+                });
+                
+            });
+            </script>
+            
+            <script type="text/javascript">
+            var PLACEHOLDER1 = 'Digitare il comune poi selezionarlo dall\'elenco'; 
+            debugger;
+            var comuneObjects1;
+            var queryTerm1;
+            
+            var comuneCheckList1; 
+            var editModeCheck2;
+            $(document).ready(function() {
+                
+                editModeCheck2='{!checkModeEdit2}';
+                if(editModeCheck2 == 'true'){ 
+                    comuneCheckList1=[];
+                    comuneCheckList1.push($('[id$=comuneId1]').val());
+                }
+                
+                $('[id$=comuneId1]').autocomplete({
+                    minLength: 2,
+                    source: function(request, response) {
+                        queryTerm1 = request.term;
+                        PO_Serv_BTS_EditLogInfoCntrl.searchComune(request.term, function(result, event){
+                            if(event.type == 'exception') {
+                                alert(event.message);
+                            } else {
+                                comuneObjects1 = result;                            
+                                response(comuneObjects1);
+                                comuneCheckList1= [];
+                                comuneObjects1.forEach(function(element) {
+                                    comuneCheckList1.push(element.OF_Comune__c+' '+element.OF_Regione__c);
+                                });
+                            }
+                        });
+                    },
+                    focus: function( event, ui ) {
+                        //  $('[id$=comuneId1]').val( ui.item.OF_Comune__c+' '+ui.item.OF_Regione__c );
+                        return false;
+                    },
+                    select: function( event, ui ) {
+                        $('[id$=comuneId1]').val( ui.item.OF_Comune__c+' '+ui.item.OF_Regione__c );
+                        $('[id$=searchcommuneId1]').val( ui.item.Id );
+                        return false;
+                    },
+                })
+                .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+                    var entry1 = "<a>" + item.OF_Comune__c+' '+item.OF_Regione__c;
+                    
+                    entry1 = entry1 + "</a>";
+                    entry1 = entry1.replace(queryTerm1, "<b>" + queryTerm1 + "</b>");
+                    
+                    return $( "<li></li>" )
+                    .data( "ui-autocomplete-item", item )
+                    .append( entry1 )
+                    .appendTo( ul );
+                };
+                
+                // Add or remove placeholder values
+                //EC start 2018 - 11 - 15
+                
+                if('{!searchTerm1}'!=''){
+                    PLACEHOLDER1 ='{!searchTerm1}';
+                }
+                
+                //EC end 2018 - 11 - 15
+                
+                $('[id$=comuneId1]').val(PLACEHOLDER1);
+                $('[id$=comuneId1]').on("focus",  function(event){
+                    $tgt = $(event.target);
+                    if($tgt.val() === PLACEHOLDER1 ){
+                        $tgt.val('');
+                        $tgt.removeClass('placeHolder1');
+                    }
+                });
+                $('[id$=comuneId1]').on( "blur",  function(event){
+                    $tgt = $(event.target);
+                    if($tgt.val() === '' ){
+                        $tgt.val(PLACEHOLDER1);
+                        $tgt.addClass('placeHolder1');
+                    }
+                });
+                
+            });
+            </script>
+            
+            
+            
+            
+            <script type="text/javascript">
+            /* EC 2018 - 11 - 16 BTS Darkfiber e BTS hanno solo 2comuni. 
+             var PLACEHOLDER2 = 'Digitare il comune poi selezionarlo dall\'elenco'; 
+            var comuneObjects2;
+            var queryTerm2;
+            $(document).ready(function() {
+                $('[id$=comuneId2]').autocomplete({
+                    minLength: 2,
+                    source: function(request, response) {
+                        queryTerm2 = request.term;
+                        PO_Serv_BTS_EditLogInfoCntrl.searchComune(request.term, function(result, event){
+                            if(event.type == 'exception') {
+                                alert(event.message);
+                            } else {
+                                comuneObjects2 = result;                            
+                               // console.log('==>'+comuneObjects2); //EC su P2Pattiva non c'è
+                                response(comuneObjects2);
+                                comuneCheckList= [];
+                                comuneObjects2.forEach(function(element) {
+                                comuneCheckList.push(element.OF_Comune__c+' '+element.OF_Regione__c);
+                          
+                                
+                            }
+                        });
+                    },
+                    focus: function( event, ui ) {
+                        //  $('[id$=comuneId2]').val( ui.item.OF_Comune__c+' '+ui.item.OF_Regione__c );
+                        return false;
+                    },
+                    select: function( event, ui ) {
+                        $('[id$=comuneId2]').val( ui.item.OF_Comune__c+' '+ui.item.OF_Regione__c );
+                        $('[id$=searchcommuneId2]').val( ui.item.Id );
+                        return false;
+                    },
+                })
+                .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+                    var entry2 = "<a>" + item.OF_Comune__c+' '+item.OF_Regione__c;
+                    
+                    entry2 = entry2 + "</a>";
+                     entry2 = entry2.replace(queryTerm2, "<b>" + queryTerm2 + "</b>");
+                  
+                    return $( "<li></li>" )
+                    .data( "ui-autocomplete-item", item )
+                    .append( entry2 )
+                    .appendTo( ul );
+                };
+                
+                // Add or remove placeholder values
+                $('[id$=comuneId2]').val(PLACEHOLDER2);
+                $('[id$=comuneId2]').on("focus",  function(event){
+                    $tgt = $(event.target);
+                    if($tgt.val() === PLACEHOLDER2 ){
+                        $tgt.val('');
+                        $tgt.removeClass('placeHolder2');
+                    }
+                });
+                $('[id$=comuneId2]').on( "blur",  function(event){
+                    $tgt = $(event.target);
+                    if($tgt.val() === '' ){
+                        $tgt.val(PLACEHOLDER2);
+                        $tgt.addClass('placeHolder2');
+                    }
+                });
+                
+            });*/
+            </script>
+            
+            
+        </head>
+        <body>
+            
+            <div id="wrapper"> 
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0"> 
+                    <c:PO_SideBarComponent Rec="{!recordOfferta}" />
+                    
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" id="side-menu">
+                            </ul>
+                        </div>
+                        <!-- /.sidebar-collapse -->
+                    </div>
+                    <!-- /.navbar-static-side -->
+                </nav>
+                <div>
+                    
+                    <div style="color:red;" id="showerror">
+                        <apex:pageMessages id="errors" /> 
+                    </div>
+                    <apex:outputPanel id="testform">
+                    </apex:outputPanel>
+                </div>
+                
+                <div id="page-wrapper">
+                    <div class="row">
+                        <div class="col-lg-8" style="width:73.666667%;">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i></i>Collegamento
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        
+                                        
+                                        <apex:form id="formID"> 
+                                            
+                                            <!-- <div style="color:red;" id="showerror">
+<apex:pageMessages id="errors" /> 
+</div> -->
+                                            
+                                            <form role="form" class="form-horizontal">
+                                                
+                                                
+                                                <!--giovanni 26012018 inizio -->
+                                                <!--<apex:inputHidden id="codiceoperatore" value="{!childLog.EOF_Codice_Operatore__c}"/>-->
+                                                <!--giovanni 26012018 fine -->
+                                                
+                                                <div class="form-group">
+                                                    <div class="col-lg-6">
+                                                        <!-- <label>Area Geografica</label>
+<apex:inputField id="AreaGeografica" styleClass="form-control"  value="{!ChildCase.PO_Area_Geografica__c}"/>-->
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <!--<label>Siti da collegare</label>
+<apex:inputField id="Sitidacollegare" styleClass="form-control" value="{!ChildCase.PO_Siti_da_collegare__c}"/>-->
+                                                        
+                                                        <label>Tipo di collegamento*</label>
+                                                        <apex:inputField id="tipodicolle"    styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.PO_Tipo_di_collegamento__c}"/>
+                                                        
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <div class="col-lg-6">
+                                                        <label>Prime Contractor*</label>
+                                                        <apex:inputField id="PrimeContractor"   styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.PO_Prime_Contractor__c}" html-maxlength="25" />
+                                                    </div>
+                                                    
+                                                    <div class="col-lg-6">
+                                                        <label >Tipo percorso*</label>
+                                                        <apex:inputField id="Tipopercorso"   styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.PO_Tipo_percorso__c}" />
+                                                    </div>
+                                                    
+                                                </div>
+                                                
+                                                <!-- EC start 2018 - 11 - 10 aggiungiamo solo uno spazio per renderlo come nel documento delle specifiche.-->  
+                                                <div class="col-lg-6">
+                                                </div>
+                                                <!-- EC end 2018 - 11 - 10 -->  
+                                                
+                                                <div class="form-group">
+                                                    
+                                                    <!--
+<apex:outputPanel rendered="{!offertEvento == 'Evento Temporaneo'}"> 
+<div class="col-lg-6">
+<label>Durata Evento (mesi)* </label>
+<apex:inputField id="Durataevento"   styleClass="form-control" onkeypress="return noenter(event);"  value="{!childLog.PO_Durata_mesi__c}" rendered="{!offertEvento == 'IRU'}"/>
+
+</div> 
+</apex:outputPanel>
+<apex:outputPanel rendered="{!offertEvento != 'Evento Temporaneo'}">                                                     
+<div class="col-lg-6">                                                                                                          
+</div> 
+</apex:outputPanel>
+--> 
+                                                    
+                                                    
+                                                    <apex:outputPanel >
+                                                        <div class="col-lg-6">
+                                                            <label>Numero fibre richieste*</label>
+                                                            <apex:inputField id="Numerofibrerichieste"   styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.PO_Numero_fibre_richieste__c}"/>
+                                                        </div>
+                                                    </apex:outputPanel>
+                                                </div>
+                                                <div class="form-group">
+                                                    
+                                                    
+                                                    <apex:outputPanel rendered="true">   
+                                                        <div class="col-lg-6">
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            
+                                                        </div> 
+                                                        
+                                                    </apex:outputPanel>
+                                                    
+                                                    
+                                                </div>
+                                                
+                                                
+                                                <!----Added "Informazioni sito" Section by Rajani---->                                                                                                                                              
+                                                
+                                                <div class="form-group" style="display: inline-block;">
+                                                    
+                                                    <div class="col-lg-6">
+                                                        
+                                                        <h5 style="font-size:16px"></h5>
+                                                        <apex:outputPanel rendered="true">
+                                                            <label><b><u>Sede Cliente  </u></b></label>
+                                                            
+                                                            <!-- EC 2018 - 11 - 16     <div class="form-group">                                                                                                             
+<label>Comune*</label>
+<span class="glyphicon glyphicon-search"></span>                                                             
+<apex:inputText id="comuneId"   value="{!searchTerm}" styleClass="form-control" onkeypress="return noenter(event);" rendered="{!selectedIdComune == null || selectedIdComune == ''}" />
+
+<apex:inputHidden id="searchcommuneId" value="{!selectedIdComune}" />
+<apex:outputField value="{!OF_ElencoComuniItalianiobj.OF_Provincia__c}" rendered="{!selectedIdComune != null || selectedIdComune != ''}" />                                                                                                                                                                                                                                            
+</div>  -->
+                                                            
+                                                            <div class="form-group">
+                                                                <!-- <div class="col-lg-6"> -->
+                                                                <label>Comune*</label>
+                                                                <span class="glyphicon glyphicon-search"></span>   
+                                                                <span class="glyphicon glyphicon-search"></span> 
+                                                                <apex:inputText id="comuneId" value="{!searchTerm}" styleClass="form-control" onkeypress="return noenter(event);" maxlength="60" />
+                                                                <apex:inputHidden id="searchcommuneId" value="{!selectedIdComune}" />
+                                                                <!--  </div>   -->                                                    
+                                                            </div> 
+                                                            
+                                                        </apex:outputPanel> 
+                                                        
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-1" styleClass="form-control" for="Sito" style="width:150px;">Sito*</label>
+                                                            <apex:inputField id="Sito"   styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.PO_Sito__c}" html-maxlength="50"/>
+                                                        </div>
+                                                        
+                                                        <!-- Modifica Toponomastica -->      
+                                                        <!-- 
+<div class="form-group" >
+<label class="control-label col-sm-1" styleClass="form-control" for="Indirizzo collegamento" style="width:150px;">Indirizzo*</label>
+<apex:inputField id="Indirizzocollegamento"   styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.PO_Indirizzo_collegamento__c}"  />
+</div>
+--> 
+                                                        <div class="form-group" style="height: 59px;">
+                                                            <label class="control-label col-sm-1" styleClass="form-control" for="Indirizzo collegamento" style="width:150px;  padding-left: inherit;">Indirizzo*</label>                                                                                                                                                                                                                                                                                                     
+                                                            <div style="display: inline-block; width: 100%;">                                                                                                                            
+                                                                <div style="float: left; width: 30%;">                                                                                                                                    
+                                                                    <apex:inputField id="ParticellaToponomastica1"  styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.Particella_Toponomastica_1__c}"  />
+                                                                </div>
+                                                                <div style="float: right; width: 68%;">                                                                                                                                                                                 
+                                                                    <apex:inputField id="Indirizzocollegamento"   styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.PO_Indirizzo_collegamento__c}" html-maxlength="50"/>
+                                                                </div>
+                                                            </div>                                                                    
+                                                        </div>
+                                                        
+                                                        
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-1" styleClass="form-control" for="Civico" style="width:150px;">Civico*</label>
+                                                            <apex:inputField id="Civico"  styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.PO_Civico__c}" html-maxlength="10" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-1" styleClass="form-control" for="Nota sito" style="width:150px;">Nota sito</label>
+                                                            <apex:inputField id="Notasito"   styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.PO_Nota_sito__c}"  html-maxlength="255" />
+                                                        </div>
+                                                        <!--</apex:outputPanel>-->
+                                                    </div>
+                                                    
+                                                    <!--------------------- END --------------------->
+                                                    
+                                                    <!----Added "Informazioni sito partenza" Section by Shreyashi & Pradeep Kumar Yadav ----> 
+                                                    <div class="col-lg-6">
+                                                        <!--   <apex:outputPanel rendered="{!IF(parentcase.PO_Offerta__c !='P2P Base',true,false)}" id="AddSection"> -->
+                                                        
+                                                        <h5 style="font-size:16px"> </h5>
+                                                        <apex:outputPanel rendered="true">
+                                                            <label><b><u>Sede 1 di Terminazione  </u></b></label>
+                                                            
+                                                            
+                                                            <div class="form-group">
+                                                                <!--           <div class="col-lg-6"> -->
+                                                                <label>Comune*</label>
+                                                                <span class="glyphicon glyphicon-search"></span>
+                                                                <span class="glyphicon glyphicon-search"></span>   
+                                                                <apex:inputText id="comuneId1" value="{!searchTerm1}" styleClass="form-control" onkeypress="return noenter(event);"  maxlength="60" />
+                                                                <apex:inputHidden id="searchcommuneId1" value="{!selectedIdComune1}" />
+                                                                <!--    </div>    -->                                                   
+                                                            </div> 
+                                                            
+                                                            
+                                                            <!--  EC 2018 - 11 - 16
+<div class="form-group">                                                            
+<label>Comune</label>
+<span class="glyphicon glyphicon-search"></span> 
+
+<apex:inputText id="comuneId1"   value="{!searchTerm1}" styleClass="form-control" onkeypress="return noenter(event);" rendered="{!selectedIdComune1 == null || selectedIdComune1 == ''}" />
+
+<apex:inputHidden id="searchcommuneId1" value="{!selectedIdComune1}" />
+<apex:outputField value="{!OF_ElencoComuniItalianiobj1.OF_Provincia__c }" rendered="{!selectedIdComune1 != null || selectedIdComune1 != ''}" />                                                            
+</div>  -->
+                                                            
+                                                        </apex:outputPanel>
+                                                        
+                                                        <div class="form-group"> 
+                                                            <label class="control-label col-sm-1" for="Sito" style="width:150px;">Sito*</label>
+                                                            <apex:inputField id="Sito1"   styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.EOF_SITO__c}" html-maxlength="50"/>
+                                                        </div>
+                                                        
+                                                        <!-- Modifica Toponomastica --> 
+                                                        <!-- 
+<div class="form-group" >
+<label class="control-label col-sm-1" for="Indirizzo partenza" style="width:150px;">Indirizzo*</label>
+<apex:inputField id="Indirizzopartenza"   styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.EOF_INDIRIZZO__c}"  />
+</div>
+-->
+                                                        <div class="form-group" style="height: 59px;">
+                                                            <label class="control-label col-sm-1" for="Indirizzopartenza" style="width:150px;  padding-left: inherit;">Indirizzo*</label>                                                                                                                                                                                                                                                                                                                                                                             
+                                                            <div style="display: inline-block; width: 100%;">                                                                                                                            
+                                                                <div style="float: left; width: 30%;">                                                                                                                                    
+                                                                    <apex:inputField id="ParticellaToponomastica2"  styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.Particella_Toponomastica_2__c}"  />
+                                                                </div>
+                                                                <div style="float: right; width: 68%;">                                                                                                                                                                                 
+                                                                    <apex:inputField id="Indirizzopartenza"   styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.EOF_INDIRIZZO__c}" html-maxlength="50" />
+                                                                </div>
+                                                            </div>                                                                                                                                                                                                                                                                                                                            
+                                                        </div>
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-1" for="Civico" style="width:150px;">Civico*</label>
+                                                            <apex:inputField id="Civico1" styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.EOF_NUMERO_CIVICO__c}" html-maxlength="10"/>
+                                                        </div>
+                                                        
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-1" for="Nota sito" style="width:150px;">Nota sito</label>
+                                                            <apex:inputField id="Notasito1" styleClass="form-control" onkeypress="return noenter(event);"   value="{!childLog.EOF_NOTA_SITO__c}" html-maxlength="255" />
+                                                        </div>
+                                                        
+                                                    </div> 
+                                                    
+                                                    
+                                                    <!----------------------END -------------------->
+                                                    
+                                                    
+                                                </div>
+                                                
+                                                <!-------END------>
+                                                
+                                                <br/><br/><br/>
+                                                
+                                                <div class="form-group">
+                                                    <div class="col-lg-8">
+                                                        <apex:outputPanel >
+                                                            <!-- Ramkrishna --->
+                                                            <!-- <apex:commandButton styleClass="btn btn-primary" style="margin-right:5px;" value="Fine" action="{!currentUserParentCases}" immediate="true"
+html-formnovalidate="formnovalidate"/>  --->
+                                                            
+                                                            <apex:commandLink id="SaveBttn" styleClass="btn btn-primary" style="margin-right:5px;" value="Salva" onclick="validateform(); return false;" />
+                                                            <apex:actionFunction action="{!SaveParentChildLogInfo}" name="SaveParentChildLogInfomethod" />
+                                                            
+                                                            <apex:commandButton styleClass="btn btn-primary" style="margin-right:5px;" value="Annulla" action="{!Annulla}"/>
+                                                            
+                                                            <!-- EC start 2018 - 11 - 16 bottone elimina collegamento -->
+                                                            <apex:commandButton styleClass="btn btn-primary"  action="{!deletechildLog}" value="Elimina Collegamento" rendered="{!childLogEsistente}"/>  
+                                                            <!-- EC end 2018 - 11 - 16 bottone elimina collegamento -->                                                                                                                                                                                       
+                                                            
+                                                            <!-- <apex:commandButton styleClass="btn btn-primary" value="New Address" action="{!addTextBox}" /> -->
+                                                        </apex:outputPanel>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <!--<label>File allegati</label>-->
+                                                        
+                                                        <!--<apex:inputFile id="fileToUpload" value="{!fileBody}" filename="{!fileName}" styleClass="form-control" /> -->
+                                                        <!---<apex:commandButton action="{!AddAttachment}" value="File allegati" styleClass="btn btn-primary" />--->
+                                                        <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#myModal">File allegati</button>
+                                                        
+                                                    </div>
+                                                    <div class="modal fade" id="myModal" role="dialog">
+                                                        <div class="modal-dialog">
+                                                            
+                                                            <!-- Modal content-->
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                    <h4 class="modal-title">Upload Allegato</h4>
+                                                                </div>
+                                                                <div class="modal-body" >
+                                                                    <apex:inputFile style="width:100%" id="fileToUpload" value="{!fileBody}" filename="{!fileName}"/>
+                                                                    
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    
+                                                                    <apex:commandButton value="Upload Allegato" action="{!Upload}" styleClass="btn btn-primary"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </form>
+                                            
+                                        </apex:form> 
+                                        <br/>
+                                    </div>
+                                    <!-- /.row (nested) -->
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>       
+                            
+                            <div class="col-lg-4">
+                                
+                            </div>
+                            <!-- /.col-lg-4 -->
+                            <apex:outputPanel id="allToShow" rendered="{!showAllegati}"> <!-- EC 2018 - 11 - 17 inseriamo il tutto in un outputpanel per il rendered. START -->
+                                <div class="row">
+                                    <div class="col-lg-6" style="width:100%;">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <i></i>Allegati
+                                            </div>
+                                            <div>
+                                                <table id="theTable" class="table table-striped table-bordered" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Allegato </th>
+                                                            <th>Data Creazione </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <apex:repeat value="{!childcasedisplayattlist }" var="att">
+                                                            <tr>
+                                                                <td>
+                                                                    <apex:outputLink value="{!URLFOR($Action.Attachment.Download, att.Id)}" target="_blank">{!att.Name}</apex:outputLink>    
+                                                                </td> 
+                                                                <td>
+                                                                    <apex:outputField value="{!att.createdDate}" />
+                                                                </td>
+                                                            </tr> 
+                                                        </apex:repeat>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                
+                            </apex:outputPanel> <!-- EC 2018 - 11 - 17 inseriamo il tutto in un outputpanel per il rendered. END -->
+                            
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /#page-wrapper -->
+                    
+                </div>
+            </div>
+            <!-- /#wrapper -->
+            
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            
+            
+            
+            //Adding Validate function here
+            <script>
+                
+                function validateform(){
+                debugger;
+                var invalidflg = false;
+                
+                
+                var searchcommuneId=$('[id$=searchcommuneId]').val();
+                var comuneId = $('[id$=comuneId]').val();
+                var searchcommuneId1=$('[id$=searchcommuneId1]').val();
+                var comuneId1 = $('[id$=comuneId1]').val();
+                var Tipopercorso = $('[id$=Tipopercorso]').val();
+                var tipodicolle = $('[id$=tipodicolle]').val();
+                var Numerofibrerichieste = $('[id$=Numerofibrerichieste]').val();
+                var PrimeContractor = $('[id$=PrimeContractor]').val();
+                
+                var Sito = $('[id$=Sito]').val();
+                var Indirizzocollegamento = $('[id$=Indirizzocollegamento]').val();
+                var Civico = $('[id$=Civico]').val();
+                
+                var Sito1 = $('[id$=Sito1]').val();
+                var Indirizzopartenza = $('[id$=Indirizzopartenza]').val();
+                var Civico1 = $('[id$=Civico1]').val();
+                var Notasito1 = $('[id$=Notasito1]').val();
+                var Durataevento = $('[id$=Durataevento]').val();
+                
+                // Modifica Toponomastica
+                var ParticellaToponomastica1 = $('[id$=ParticellaToponomastica1]').find(":selected").text();
+                var ParticellaToponomastica2 = $('[id$=ParticellaToponomastica2]').find(":selected").text();     
+                
+                // alert(Durataevento);
+                
+                
+                //var PO_Offerta = '{parentLog.PO_Offerta__c}'; aggiungere ! nella server variable -> Viene passata nella url off=BTS
+                
+                
+                
+                
+                
+                //if(PO_Offerta !='P2P Base'){
+                
+                //sezione comune
+                
+                if(comuneId == "Digitare il comune poi selezionarlo dall\'elenco")
+                {
+                    $('[id$=comuneId]').next('div.red').remove();
+                    $('[id$=comuneId]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else
+                {
+                    $('[id$=comuneId]').next('div.red').remove();
+                }
+                
+                // giovanni 19112018 inizio
+                if(comuneId1 == "Digitare il comune poi selezionarlo dall\'elenco")
+                {
+                    $('[id$=comuneId1]').next('div.red').remove();
+                    $('[id$=comuneId1]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else
+                {
+                    $('[id$=comuneId1]').next('div.red').remove();
+                }
+                // giovanni 19112018 inizio
+                
+                if(!invalidflg)
+                {
+                    if(typeof comuneCheckList == 'undefined' || !comuneCheckList.includes(comuneId))
+                    {
+                        $('[id$=comuneId]').next('div.red').remove();
+                        $('[id$=comuneId]').after('<div class="red">Il comune va selezionato dall\'elenco</div>');
+                        invalidflg = true;
+                    }
+                    else
+                    {
+                        $('[id$=comuneId]').next('div.red').remove();
+                    }
+                    
+                    // giovanni 19112018 inizio
+                    if(typeof comuneCheckList1 == 'undefined' || !comuneCheckList1.includes(comuneId1))
+                    {
+                        $('[id$=comuneId1]').next('div.red').remove();
+                        $('[id$=comuneId1]').after('<div class="red">Il comune va selezionato dall\'elenco</div>');
+                        invalidflg = true;
+                    }
+                    else
+                    {
+                        $('[id$=comuneId1]').next('div.red').remove();
+                    }
+                    // giovanni 19112018 fine
+                }
+                // giovanni 19112018 inizio
+                /*
+                    if(comuneId1 != "Digitare il comune poi selezionarlo dall\'elenco" && 
+                        (typeof comuneCheckList1 == 'undefined' || !comuneCheckList1.includes(comuneId1)))
+                    {
+                            $('[id$=comuneId1]').next('div.red').remove();
+                            $('[id$=comuneId1]').after('<div class="red">Il comune va selezionato dall\'elenco</div>');
+                            invalidflg = true;
+                    }
+                    else
+                    {
+                        $('[id$=comuneId1]').next('div.red').remove();
+                    }
+                    */
+                // giovanni 19112018 fine
+                
+                
+                if(Sito1.length == 0)
+                {
+                    $('[id$=Sito1]').next('div.red').remove();
+                    $('[id$=Sito1]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else
+                {
+                    $('[id$=Sito1]').next('div.red').remove();
+                }
+                
+                
+                if(Indirizzopartenza.length == 0)
+                {
+                    $('[id$=Indirizzopartenza]').next('div.red').remove();
+                    $('[id$=Indirizzopartenza]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else
+                {
+                    $('[id$=Indirizzopartenza]').next('div.red').remove();
+                }
+                
+                if(Civico1.length == 0)
+                {
+                    $('[id$=Civico1]').next('div.red').remove();
+                    $('[id$=Civico1]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=Civico1]').next('div.red').remove();
+                }
+                
+                //} 
+                
+                
+                
+                
+                
+                
+                
+                
+                if(Tipopercorso.length == 0){
+                    $('[id$=Tipopercorso]').next('div.red').remove();
+                    $('[id$=Tipopercorso]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=Tipopercorso]').next('div.red').remove();
+                }
+                
+                if(PrimeContractor.length == 0){
+                    $('[id$=PrimeContractor]').next('div.red').remove();
+                    $('[id$=PrimeContractor]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=PrimeContractor]').next('div.red').remove();
+                }
+                
+                
+                if(tipodicolle.length == 0){
+                    $('[id$=tipodicolle]').next('div.red').remove();
+                    $('[id$=tipodicolle]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=tipodicolle]').next('div.red').remove();
+                }
+                
+                if(Numerofibrerichieste.length == 0){
+                    $('[id$=Numerofibrerichieste]').next('div.red').remove();
+                    $('[id$=Numerofibrerichieste]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=Numerofibrerichieste]').next('div.red').remove();
+                }
+                
+                
+                
+                if(Sito.length == 0){
+                    $('[id$=Sito]').next('div.red').remove();
+                    $('[id$=Sito]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=Sito]').next('div.red').remove();
+                }
+                
+                
+                if(Indirizzocollegamento.length == 0){
+                    $('[id$=Indirizzocollegamento]').next('div.red').remove();
+                    $('[id$=Indirizzocollegamento]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=Indirizzocollegamento]').next('div.red').remove();
+                }
+                
+                
+                if(Civico.length == 0){
+                    $('[id$=Civico]').next('div.red').remove();
+                    $('[id$=Civico]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=Civico]').next('div.red').remove();
+                }
+                
+                
+                // Modifica Toponomastica    
+                if(ParticellaToponomastica1.includes("Nessuno")){
+                    $('[id$=ParticellaToponomastica1]').next('div.red').remove();
+                    $('[id$=ParticellaToponomastica1]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=ParticellaToponomastica1]').next('div.red').remove();
+                }                                            
+                
+                if(ParticellaToponomastica2.includes("Nessuno")){
+                    $('[id$=ParticellaToponomastica2]').next('div.red').remove();
+                    $('[id$=ParticellaToponomastica2]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=ParticellaToponomastica2]').next('div.red').remove();
+                }         
+                
+                
+                if(invalidflg){
+                    return false;
+                }
+                
+                SaveParentChildLogInfomethod();
+            }       
+            </script>
+            <script type='text/javascript'>
+            function noenter(e){  
+                //alert('Test ');             
+                if(window.event){  
+                    
+                    key = window.event.keyCode;     //IE               
+                } 
+                else{                    
+                    key = e.which;     //firefox               
+                }               
+                if(key == 13) { 
+                    //alert('Test ');
+                    //alert(document.getElementById('{!$Component.j_id0:j_id173:SaveBttn}') ;    
+                    // var searchButtonID = document.getElementById("{!$Component.SaveBttn}");              
+                    var ele=document.getElementById('{!$Component.pageID:formID:SaveBttn}'); 
+                    
+                    ele.click();                     
+                    return false;               
+                } else{                    
+                    return true;               
+                }          
+            }     
+            </script>
+            
+        </body>
+    </html>
+</apex:page>

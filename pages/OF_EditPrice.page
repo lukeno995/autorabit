@@ -1,0 +1,21 @@
+<apex:page Controller="OF_EditPriceController" tabstyle="Account">
+     <apex:form >
+        <apex:pageBlock mode="edit">
+        <apex:pageMessages />
+            <apex:pageBlockSection title="Price Tracking">
+            	<apex:outputField value="{!pbEntry.Name}"/>
+                <apex:outputField value="{!pbEntry.OF_Asset__c}"/>
+                <apex:outputField value="{!pbEntry.OF_DataAttivazione2__c}"/>
+	          	<apex:outputField value="{!pbEntry.UnitPrice}" label="Prezzo Attuale"/>
+                <apex:outputField value="{!pbEntry.OF_DataCessazione2__c}" /> 
+	          	<apex:inputText value="{!newPrice}"  label="Nuovo Prezzo" required="TRUE"/>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Save" action="{!save}"/>
+                <apex:commandButton value="Ritorna all'asset" action="{!toReturn}" immediate="TRUE"/>
+            </apex:pageBlockButtons>
+            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,74 @@
+<apex:page standardController="Task" extensions="EditActivityPageExtension" id="pg" showHeader="{!IF(isNew,false,true)}" sidebar="{!IF(isNew,false,true)}">
+    <apex:includeScript value="/support/console/36.0/integration.js"/>
+	<apex:includeScript value="/soap/ajax/20.0/connection.js"/>
+    <script>
+        function disableDateval(){
+            if(document.getElementById('pg:fm:pgblk:pbsec3:remiderset').checked == true){
+                document.getElementById('pg:fm:pgblk:pbsec3:dateId').disabled = false;
+                document.getElementById('pg:fm:pgblk:pbsec3:btime').disabled = false;
+            }
+            else{
+                document.getElementById('pg:fm:pgblk:pbsec3:dateId').disabled = true;
+                document.getElementById('pg:fm:pgblk:pbsec3:btime').disabled = true;
+            }
+        }
+    	
+    	function testOpentab(){
+            //First find the ID of the primary tab to put the new subtab in
+            sforce.console.getEnclosingPrimaryTabId(opentab);
+        }
+    
+    	var opentab = function opentab(result){
+            //Now that we have the primary tab ID, we can open a new subtab in it
+            var primaryTabId = result.id;
+            sforce.console.openPrimaryTab(primaryTabId , '/{!caseId}', true, '{!caseNumber}', null);       
+            };    	
+    
+        function testCloseTab() {
+            //First find the ID of the current tab to close it
+            sforce.console.getEnclosingTabId(closeSubtab);
+        }
+        
+        var closeSubtab = function closeSubtab(result) {
+            //Now that we have the tab ID, we can close it
+            var tabId = result.id;
+            sforce.console.closeTab(tabId);
+        };
+      
+    	function testRefreshPrimaryTabById(result) {
+       //Set the name of the tab by using the openSubtab method
+            //This value is for example purposes only
+            var subtabId = result.id;
+            sforce.console.refreshPrimaryTabById(subtabId, true);
+        };
+
+    	function testGetFocusedPrimaryTabId() {
+            sforce.console.getFocusedPrimaryTabId(testRefreshSubtabById);
+        }
+
+    
+    </script>
+    <apex:form id="fm">
+        <apex:sectionHeader title="Task" subtitle="{!taskObject.Subject}" rendered="{!IF(isNew,false,true)}"/>
+        <apex:pagemessages id="msgId" showDetail="false"/>
+        <apex:pageBlock mode="edit" id="pgblk">
+            <apex:pageBlockButtons >                
+                <apex:commandButton action="{!saveMethod}" oncomplete="if({!success}){testOpentab();testCloseTab();}" reRender="msgId" value="Salva"/> 
+                <apex:commandButton action="{!cancel_with_redirect}" oncomplete="testOpentab();testCloseTab();" value="Annulla"/>
+            </apex:pageBlockButtons> 
+            <apex:pageblockSection title="Informazioni Attività" columns="2" id="pbsec1">  
+                <apex:outputField value="{!taskObject.OwnerID}" label="Assegnato a" />
+                <apex:outputField value="{!taskObject.WhatID}" label="Relativo a"/>
+                <apex:outputField value="{!taskObject.Subject}" label="Oggetto"/>               
+                <apex:inputField value="{!taskObject.ActivityDate}" label="Data"/>
+                <apex:inputField value="{!taskObject.EOF_Esito_della_chiamata__c}" label="Esito Della Chiamata" required="true"/>
+                <apex:inputField value="{!taskObject.EOF_Data_Ora_Chiamata__c}" label="Data/Ora Chiamata" required="true"/>
+                <apex:outputField value="{!c.EOF_Data_Prevista_Attivazione__c}" label="Data Prevista Attivazione"/>
+                <apex:inputField value="{!taskObject.Data_Appuntamento__c}" label="Data Appuntamento"/>
+                <apex:outputField value="{!c.EOF_Orario_Appuntamento__c}" label="Orario Appuntamento"/>
+                <apex:inputField value="{!taskObject.Fascia_Oraria_Appuntamento__c}" label="Fascia Oraria Appuntamento"/> 
+                <apex:inputField value="{!taskObject.Description}" label="Commenti"/>                       
+            </apex:pageblockSection>            
+        </apex:pageBlock>        
+    </apex:form>
+</apex:page>

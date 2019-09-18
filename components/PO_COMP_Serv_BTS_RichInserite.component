@@ -1,0 +1,387 @@
+<apex:component controller="PO_Serv_BTS_Controller" allowDML="true">
+    <html lang="en">     
+        <head> 
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/> 
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+             
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <!-- /#wrapper -->
+              
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>                        
+            <apex:includeScript value="{!URLFOR($Resource.multiselect, '/multiselect/js/bootstrap-multiselect.js')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.multiselect, '/multiselect/css/bootstrap-multiselect.css')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.daterangepicker, '/moment.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.daterangepicker, '/daterangepicker.js')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.daterangepicker, '/daterangepicker.css')}" />            
+            
+            <!-- excelJS -->
+             
+            <apex:includeScript value="{!URLFOR($Resource.excelplus25, '/excelplus25/xlsx.full.min.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.excelplus25, '/excelplus25/excelplus-2.5.min.js')}"/>
+            
+            <apex:includeScript value="{!URLFOR($Resource.moment, 'moment-develop/min/moment-with-locales.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .leftFloat{
+                    float:left;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .table td.text {
+                    max-width: 177px;
+                }
+                .table td.text span {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: inline-block;
+                    max-width: 100%;
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+            </style>
+        </head> 
+         
+            <body>
+            <apex:form >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <apex:outputPanel >
+                                <i></i>Richieste Inserite   
+                        </apex:outputPanel>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div style="color:red;" id="showerror">
+                                <apex:pageMessages id="errors" /> 
+                            </div>
+                            <apex:outputPanel rendered="{!!showRichiesteInserite}" > 
+                                <div class="panel-heading red" >
+                                    <i></i>Non è presente nessuna richiesta
+                               </div>
+                            </apex:outputPanel>    
+                            <form role="form" class="form-horizontal">
+                                <apex:pageBlock rendered="{!showRichiesteInserite}"  id="results"> 
+                                
+                                <!--
+                                <button type="button" Class="btn btn-primary pull-right" style="margin-right:10px;margin-bottom:10px;" onclick="esportaRichieste()">Esporta xlsx</button> 
+                                -->
+                                    
+                                <apex:outputlink value="/Export_RichiesteBTS">
+                                    <button type="button" Class="btn btn-primary pull-right" style="margin-right:10px;margin-bottom:10px;">Esporta xlsx</button>                                                    
+                                        <apex:param name="DataInizioCreazione" value="{!DataInizioCreazione}" />
+                                        <apex:param name="DataFineCreazione" value="{!DataFineCreazione}" />                                                                                                                                 
+                                        <apex:param name="selectValueL2" value="{!selectValueL2}" />                                                        
+                                        <apex:param name="valRich" value="{!valRich}" /> 
+                                        <apex:param name="valOff" value="{!valOff}" /> 
+                                        <apex:param name="valNomP" value="{!valNomP}" />  
+                                 </apex:outputlink>    
+                                    
+                                    
+                                    <button type="button" Class="btn btn-primary pull-right" style="margin-right:10px;margin-bottom:10px;" onclick="doSearch()">Applica filtri</button>
+                                
+                                     <apex:pageBlockTable value="{!listInserite}" var="sl" rendered="{!showRichiesteInserite}" id="myTable" styleClass="table table-striped table-bordered">                                         
+                                         
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        Richiesta
+                                                    </li>
+                                                    <li>
+                                                        <input type="text" class="form-control" id="IDFiltroCaseNumber"  placeholder="" style=""/>
+                                                    </li>
+                                                </ul>
+                                             </apex:facet>
+                                                        
+                                             <apex:commandlink value="{!sl.EOF_Codice_Ordine_OLO__c}" action="{!vediReqInserita}" id="link" >
+                                                <apex:param name="eventSl" value="{!sl.Id}" assignTo="{!IdInserita}"/>
+                                                <apex:param name="event2Sl" value="{!sl.EOF_Tipo_Comunicazione_String__c}" assignTo="{!tipoRIchiesta}"/>
+                                             </apex:commandlink> 
+                                                        
+                                         </apex:column>
+                                             
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        Offerta
+                                                    </li>
+                                                    <li>
+                                                        <input type="text" class="form-control" id="IDFiltroOfferta"  placeholder="" style=""/>
+                                                    </li>
+                                                </ul>
+                                             </apex:facet>
+                                             <apex:outputField value="{!sl.PO_Offerta__c}" />
+                                         </apex:column>    
+                                             
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        Nome Progetto
+                                                    </li>
+                                                    <li>
+                                                        <input type="text" class="form-control" id="IDFiltroNomeProgetto"  placeholder="" style=""/>
+                                                    </li>
+                                                </ul>
+                                             </apex:facet>
+                                             <apex:outputField value="{!sl.PO_Nome_Progetto__c}" />
+                                         </apex:column>        
+                                             
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        Data di Creazione
+                                                    </li>
+                                                    <li>
+                                                        <input type="text" class="form-control" id="IDDateFilterCreazione"  placeholder=" DA  A "/>
+                                                    </li>
+                                                </ul>
+                                             </apex:facet>
+                                             <apex:outputField value="{!sl.CreatedDate}" />
+                                         </apex:column>   
+                                             
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        Stato
+                                                    </li>
+                                                    <li>
+                                                        <select id="IDFiltroStatoRichiesta" multiple="multiple">
+                                                        </select>
+                                                    </li>
+                                                </ul>
+                                             </apex:facet>
+                                             <apex:outputField value="{!sl.EOF_STATO_ORDINE__c}" />
+                                         </apex:column>                                                                                                                                       
+                                     </apex:pageBlockTable>
+                                     
+                                          
+                                     <apex:outputText styleClass="hide" value="{!listInseritestring}" id="IDlistInseritestring" />
+                                     <apex:outputText styleClass="hide" value="{!optTipoRichiestaString}" id="IDoptTipoRichiestaString" />
+                                     <apex:outputText styleClass="hide" value="{!optStatoRichiestaString}" id="IDoptStatoRichiestaString" />
+                                     
+                                         
+                 <!--START - PAGINATION PANEL -->
+                    <apex:outputPanel id="paginationPanel">
+                     <apex:outputText styleClass="hide" 
+                                                id="listRichiesteTPString" />   
+                    <apex:outputPanel rendered="{!showPag}">   
+                    <apex:commandlink action="{!PageDown}" onComplete="init()" styleClass="leftFloat" reRender="myTable,paginationPanel,IDlistInseritestring,IDoptTipoRichiestaString,IDoptStatoRichiestaString">
+                        <apex:image url="{!$Resource.ArrowDestra}" styleClass="leftFloat" width="22" height="22"/>
+                         </apex:commandlink>
+                        <p style='float:left;display:inline;margin-left:10px;margin-right:10px;'>Pagina {!pageActual}  di {!totalpage} (Record : {!totalRecord})</p>
+                         <apex:commandlink action="{!pageUp}" onComplete="init()" styleClass="leftFloat" reRender="myTable,paginationPanel,IDlistInseritestring,IDoptTipoRichiestaString,IDoptStatoRichiestaString">
+                        <apex:image url="{!$Resource.ArrowSinistra}" styleClass="leftFloat" width="22" height="22"/>
+                   </apex:commandlink>
+                     </apex:outputPanel>
+                     <apex:outputPanel rendered="{!!showPag}">                        
+                        <p style='float:left;display:inline;margin-left:10px;margin-right:10px;'>0 Pagine (Record : 0)</p>
+                     </apex:outputPanel> 
+                     </apex:outputPanel>        
+                    </apex:pageBlock>
+                    </form>
+                </div>      
+            </div>
+        </div>
+                         
+                    <apex:actionFunction name="searchServer" action="{!runSearch}" rerender="results,debug,errors" oncomplete="init()">                          
+                        <apex:param name="DataInizioCreazione" value="" />
+                        <apex:param name="DataFineCreazione" value="" />                                                                                                                                 
+                        <apex:param name="selectValueL2" value="" />                                                        
+                        <apex:param name="valRich" value="" /> 
+                        <apex:param name="valOff" value="" /> 
+                        <apex:param name="valNomP" value="" />                                                                                                                               
+                    </apex:actionFunction>
+        </apex:form>                   
+        </body>
+    
+    
+    
+            <script>
+            //Global/history var
+            var valL1=[];
+            var valL2=[];
+
+            var DataInizioCreazione='';
+            var DataFineCreazione='';
+
+            var myContent;
+            
+            var valRich;
+            var valOff;
+            var valNomP;
+            
+            var optStatoRichiesta=[]; // per popolare la select option Stato                                    
+            
+            function esportaRichieste()
+            {
+                debugger;   
+                window.location = '/partnercommunity/Export_RichiesteBTS';
+            }                     
+
+            function doSearch() 
+            {             
+                    searchServer(
+                      DataInizioCreazione,
+                      DataFineCreazione,                       
+                      JSON.stringify(valL2),                        
+                      valRich,
+                      valOff,
+                      valNomP
+                      );
+             }
+                                    
+            function init()
+            {                                
+                optStatoRichiesta=JSON.parse($("[id$='IDoptStatoRichiestaString']").text());                                
+                
+                $.each(optStatoRichiesta, function (i, item) {
+                    $("select[id$='IDFiltroStatoRichiesta']" ).append($('<option>', { 
+                        value: item.value,
+                        text : item.text 
+                    }));
+                });
+                                                                                
+                $( "select[id$='IDFiltroStatoRichiesta']" ).multiselect({
+                    
+                    buttonWidth: '100px',
+                    nSelectedText: 'selezionati',
+                    nonSelectedText: 'Nessuno ',
+                    selectAllText : 'seleziona tutti',
+                    allSelectedText : 'tutti selezionati',
+                    onChange: function(option, checked, select) {
+                           valL2=$( "select[id$='IDFiltroStatoRichiesta']" ).val();
+                    }
+
+                });
+                $( "select[id$='IDFiltroStatoRichiesta']" ).multiselect('select', valL2);
+                
+                
+                $("[id$='IDFiltroCaseNumber']").val(valRich);                 
+                        
+                 $("[id$='IDFiltroCaseNumber']").change(function() {
+                     valRich=$("[id$='IDFiltroCaseNumber']").val().trim();                      
+                 });
+                
+
+                $("[id$='IDFiltroOfferta']").val(valOff);                 
+                        
+                 $("[id$='IDFiltroOfferta']").change(function() {
+                     valOff=$("[id$='IDFiltroOfferta']").val().trim();                      
+                 });        
+                                
+                $("[id$='IDFiltroNomeProgetto']").val(valNomP);                 
+                        
+                 $("[id$='IDFiltroNomeProgetto']").change(function() {
+                     valNomP=$("[id$='IDFiltroNomeProgetto']").val().trim();                      
+                 });                                 
+                    
+                  $("[id$='IDDateFilterCreazione']").daterangepicker({
+                      "autoUpdateInput": false,
+                      "opens": "left",
+                      "locale": {
+                            "format": "DD/MM/YYYY",
+                            "separator": " / ",
+                            "applyLabel": "Applica",
+                            "cancelLabel": "Pulisci",
+                            "fromLabel": "DA",
+                            "toLabel": "A",
+                            "customRangeLabel": "Custom",
+                            "daysOfWeek": [
+                                "Dom",
+                                "Lun",
+                                "Mar",
+                                "Mer",
+                                "Gio",
+                                "Ven",
+                                "Sab"
+                            ],
+                            "monthNames": [
+                                "Gennaio",
+                                "Febbraio",
+                                "Marzo",
+                                "Aprile",
+                                "Maggio",
+                                "Giugno",
+                                "Luglio",
+                                "Agosto",
+                                "Settembre",
+                                "Ottobre",
+                                "Novembre",
+                                "Dicembre"
+                            ],
+                            "firstDay": 1
+                        }
+                  });
+                  
+
+                  $("[id$='IDDateFilterCreazione']").on('apply.daterangepicker', function(ev, picker) 
+                  {
+                      $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+                      DataInizioCreazione=picker.startDate.format();
+                      DataFineCreazione=picker.endDate.format();
+                  });
+                
+                  $("[id$='IDDateFilterCreazione']").on('cancel.daterangepicker', function(ev, picker) 
+                  {
+                      $(this).val('');
+                      DataInizioCreazione='';
+                      DataFineCreazione='';
+                  });
+                  
+                  if(DataInizioCreazione!=''&&DataFineCreazione!='')
+                  {
+                    $("[id$='IDDateFilterCreazione']").val(moment(DataInizioCreazione).format("DD/MM/YYYY") + ' - ' + moment(DataFineCreazione).format("DD/MM/YYYY"));
+                  }                
+            }           
+            
+            $(document).ready(function() 
+            {
+                init();                
+            });
+            </script>
+    </html>
+</apex:component>

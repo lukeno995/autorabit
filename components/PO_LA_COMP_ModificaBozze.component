@@ -1,0 +1,457 @@
+<apex:component controller="PO_LA_ModificaBozze_controller" allowDML="true">
+
+<!--<apex:attribute name="tr" type="EOF_EAI_Service_Log__c"  assignTo="{!sl}" description="description" /> -->
+
+ <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+                <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/> 
+                <title>Open Fiber</title>  
+                <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+                <!-- Bootstrap Core CSS -->
+                <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+                
+                <!-- MetisMenu CSS -->
+                <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+                
+                <!-- Custom CSS -->
+                <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+                
+                <!-- Morris Charts CSS -->
+                <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+                
+                <!-- Custom Fonts -->
+                <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+                
+        <!-- /#wrapper -->
+            
+        <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+        
+        <!-- Bootstrap Core JavaScript -->
+        <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+         <!-- datetimepiker -->
+        <apex:includeScript value="{!URLFOR($Resource.moment, 'moment-develop/min/moment-with-locales.min.js')}"/>
+
+        <apex:includeScript value="{!URLFOR($Resource.datetimepicker, 'bootstrap-datetimepicker-master/build/js/bootstrap-datetimepicker.min.js')}"/>
+        
+        <apex:stylesheet value="{!URLFOR($Resource.datetimepicker, 'bootstrap-datetimepicker-master/build/css/bootstrap-datetimepicker.min.css')}"/>
+        
+        <script src='https://www.google.com/recaptcha/api.js' >
+        </script>
+
+        
+         
+        <style>
+            .required:after {
+            color:red; 
+            content:" *"; 
+            }
+            .navbar {
+            min-height: 105px;
+            }
+            .navbar-header {
+            float: none;
+            }
+            .navbar-default {
+            background-color: #ffffff;
+            }
+            .panel-default>.panel-heading {
+            color: #ffffff;
+            background-color: #337ab7;
+            }
+            span.dateFormat{
+            
+            display:none; 
+            
+            }
+            .red{color:red;}
+            .form-check-input{ 
+            margin-left: 45px !important;
+            margin-top: 10px;
+            }
+</style>
+
+        </head>
+                <div class="panel panel-default">
+                &nbsp; 
+                    <div class="panel-heading">
+                        <apex:outputPanel >
+                                <i></i>Modifica Bozza Richiesta
+                        </apex:outputPanel>
+                        </div>
+                         <!-- START -->
+                         &nbsp; 
+                     <div class="row" style="margin-left: 35px; margin-top: 15px">
+                    <form role="form" style="margin-right: 10px; margin-left: -15px">
+                    &nbsp; 
+                    <apex:form >
+                                <fieldset class="form-group">
+                                     <div class="form-group">                                      
+                                         <div class="col-lg-6" style="margin-bottom:25px">
+                                         <label >ID Risorsa</label><label>:</label> &nbsp; &nbsp; 
+                                         <apex:outputText iD="IDRisorsa" styleClass="form-control" style="background-color: #F0F0F0;" value="{!sl.EOF_ID_Risorsa__c}" />
+                                        
+                                         
+                                         </div> 
+                                       
+                                         
+
+                                         <div class="col-lg-6" style="margin-bottom:25px" >
+                                             <label class="required">Codice Ordine</label><label>:</label> &nbsp; &nbsp;
+                                             <apex:inputText id="codiceOrdine" styleClass="form-control"  value="{!sl.EOF_Codice_Ordine_OLO__c}" maxlength="18" required="true"/>
+                                             <apex:outputpanel id="errCodOrd">
+                                             <apex:outputText id="errCodOrd2" value="ATTENZIONE!! Non è stato inserito il Codice Ordine." rendered="{!errorCodO}" style="color:red;" />
+                                             </apex:outputpanel>
+                                         </div>
+                                        <apex:inputField styleClass="hidden" id="myIDdatehidden"  value="{!sl.EOF_Data_Notifica__c}" />
+                                         <apex:inputField styleClass="hidden" id="idNotifica"  value="{!sl.EOF_ID_Notifica__c}" />
+                                        <!--AA mod <div class="col-lg-6" style="margin-bottom:25px">
+                                             <label class="required">Data Notifica</label><label>:</label> &nbsp; &nbsp; AA-->
+                                            <!-- <apex:inputField id="dataNotifica" styleClass="hidden"   value="{!sl.EOF_Data_Notifica__c}"/>
+                                             <input type="text" id="myIDdatehidden" Class="form-control"   required="true" /> -->
+                                            <!--AA mod <apex:inputField styleClass="hidden" id="myIDdatehidden"  value="{!sl.EOF_Data_Notifica__c}" required="true"/>                                            
+                                             <input type="text" id="myIDdate" Class="form-control"   required="true" />
+                                             <apex:outputpanel id="errData">
+                                             <apex:outputText id="errData2" value="ATTENZIONE!! Non è stata inserita la Data." rendered="{!errorData}" style="color:red;" />
+                                             </apex:outputpanel>
+                                         </div>
+
+                                         
+
+                                         <div class="col-lg-6" style="margin-bottom:25px">
+                                             <label class="required">Id Notifica</label><label>:</label> &nbsp; &nbsp;
+                                             <apex:inputText id="idNotifica" styleClass="form-control"  value="{!sl.EOF_ID_Notifica__c}" maxlength="100" required="true"/>
+                                             <apex:outputpanel id="errNotifica">
+                                             <apex:outputText id="errNotifica2" value="ATTENZIONE!! Non è stato inserito l' Id Notifica." rendered="{!errorNot}" style="color:red;" />
+                                             </apex:outputpanel>
+                                         </div> AA -->
+                                         
+                                        <!--
+                                         <div class="col-lg-6">
+                                            <label>Cognome Referente Tecnico Operatore :</label> &nbsp; &nbsp;
+                                            <apex:inputField id="CognomeReferente" styleClass="form-control" value="{!sl.EOF_COGNOME_REFERENTE_TECNICO_OLO__c}"/>
+                                          </div>                                                                                                                                                                                   
+                                         <div class="col-lg-6">
+                                            <label> Telefono Referente Tecnico Operatore :</label> &nbsp; &nbsp;
+                                            <apex:inputField id="TelefonoReferente" styleClass="form-control" value="{!sl.EOF_TELEFONO_REFERENTE_TECNICO_OLO__c}"/>
+                                         </div>
+                                         <div class="col-lg-6">
+                                             <label>Email Referente Tecnico Operatore : </label> &nbsp; &nbsp;
+                                             <apex:inputField id="EmailReferente" styleClass="form-control" value="{!sl.EOF_EMAIL_REFERENTE_TECNICO_OLO__c}"/>
+                                         </div> 
+                                     <div class="col-lg-6">
+                                         <label>Telefono Referente Operatore Onfield Notech : </label> &nbsp; &nbsp;
+                                         <apex:inputField id="TelefonoReferenteOperatore" styleClass="form-control" value="{!sl.EOF_TELEFONO_REFERENTE_OLO_ONFIELD_NOTEC__c}"/>
+                                     </div> 
+                                         <div class="col-lg-6">
+                                              <label>Nome Cliente : </label> &nbsp; &nbsp;
+                                              <apex:inputField id="NomeCliente" styleClass="form-control" value="{!sl.EOF_Nome_Cliente__c}"/>
+                                         </div> 
+                                         <div class="col-lg-6">
+                                             <label>Cognome Cliente : </label> &nbsp; &nbsp;
+                                             <apex:inputField id="CognomeCliente" styleClass="form-control" value="{!sl.EOF_COgnome_CLiente__c}"/>
+                                         </div>
+                                         <div class="col-lg-6">
+                                              <label>Recapito Telefonico Cliente 1 : </label> &nbsp; &nbsp;
+                                              <apex:inputField id="RecapitoTelefonicoCliente1" styleClass="form-control" value="{!sl.EOF_RECAPITO_TELEFONICO_CLIENTE_1__c}"/>
+                                         </div> 
+                                         <div class="col-lg-6">
+                                             <label>Recapito Telefonico Cliente 2 : </label> &nbsp; &nbsp;
+                                             <apex:inputField id="RecapitoTelefonicoCliente2" styleClass="form-control" value="{!sl.EOF_RECAPITO_TELEFONICO_CLIENTE_2__c}"/>
+                                         </div>
+                                         <div class="col-lg-6">
+                                              <label>Informazioni Logistica Apparati : </label> &nbsp; &nbsp;
+                                              <apex:inputField id="InformazioniLogisticaApparati" styleClass="form-control" value="{!sl.EOF_INFORMAZIONI_LOGISTICA_APPARATI__c}"/>
+                                         </div> 
+                                         <div class="col-lg-6"> 
+                                             <label>Data Prevista Attivazione :  </label> &nbsp; &nbsp;  
+                                             <apex:inputField id="DataPrevistaAttivazione" styleClass="form-control" value="{!sl.EOF_DATA_PREVISTA_ATTIVAZIONE__c}"/>                                           
+                                         </div>
+                                         <div class="col-lg-6">
+                                              <label>Orario Appuntamento :</label> &nbsp; &nbsp;
+                                              <apex:inputField id="OrarioAppuntamento" styleClass="form-control" value="{!sl.EOF_ORARIO_APPUNTAMENTO__c}"/>
+                                         </div> -->
+                                         <div class="col-lg-6" style="margin-bottom:25px">
+                                             <label>Codice Progetto Speciale : </label> &nbsp; &nbsp;
+                                             <apex:inputText id="CodiceProgettoSpeciale" styleClass="form-control" value="{!sl.EOF_CODICE_PROGETTO_SPECIALE__c}" maxlength="50"/>
+                                         </div>
+
+                                          
+
+                                         <div class="col-lg-6" style="margin-bottom:25px">
+                                              <label>Promozione : </label> &nbsp; &nbsp;
+                                              <apex:inputText id="Promozione" styleClass="form-control" value="{!sl.EOF_PROMOZIONE__c}" maxlength="50"/>
+                                         </div> 
+                                         <div class="col-lg-6" style="margin-bottom:25px">
+                                             <label>Cluster Promozione : </label> &nbsp; &nbsp;
+                                             <apex:inputText id="ClusterPromozione" styleClass="form-control" value="{!sl.EOF_CLUSTER_PROMOZIONE__c}" maxlength="50"/>
+                                         </div>
+
+                                           
+
+                                         
+                                        
+                                    <!--     <div class="col-lg-6">
+                                             <label>ID Building : </label> &nbsp; &nbsp;
+                                             <apex:inputField id="IDBuilding" styleClass="form-control" value="{!sl.EOF_ID_BUILDING__c}"/>
+                                         </div> 
+                                         <div class="col-lg-6">
+                                              <label>Scala Palazzina : </label> &nbsp; &nbsp;
+                                             <apex:inputField id="ScalaPalazzina" styleClass="form-control" value="{!sl.EOF_SCALA_PALAZZINA__c}"/>
+                                         </div>
+                                         <div class="col-lg-6">
+                                             <label>Numero Telefonico Principale Linea : </label> &nbsp; &nbsp;
+                                             <apex:inputField id="NumeroTelefonicoPrincipaleLinea" styleClass="form-control" value="{!sl.EOF_NUMERO_TELEFONICO_PRINCIPALE_LINEA__c}"/>
+                                         </div>
+                                         <div class="col-lg-6">
+                                              <label>Recapito Test Linea :  </label> &nbsp; &nbsp;
+                                              <apex:inputField id="RecapitoTestLinea" styleClass="form-control" value="{!sl.EOF_RECAPITO_TEST_LINEA__c}"/>
+                                         </div> 
+                                         <div class="col-lg-6">
+                                             <label>Identificativo del POP :</label> &nbsp; &nbsp;
+                                             <apex:inputField id="IdentificativoDelPop" styleClass="form-control" value="{!sl.EOF_ID_Pop__c}" />
+                                         </div> -->
+                                         <div class="col-lg-4" style="margin-bottom:25px"> 
+                                              <label class="required">Profilo</label><label>:</label> &nbsp; &nbsp;
+                                              <apex:inputText id="Profilo" styleClass="form-control" value="{!sl.EOF_PROFILO__c}" required="true" maxlength="20"/>
+                                             <apex:outputpanel id="hiddenPanel">
+                                                <apex:inputhidden id="check" value="{!verifyProfilo}" />
+                                             </apex:outputpanel>
+                                             <apex:outputpanel id="errProfilo">
+                                                 <apex:outputText id="errProfilo2" value="ATTENZIONE!! Il profilo inserito non è ammesso." rendered="{!viewError}" style="color:red;" />
+                                             </apex:outputpanel>                                              
+                                             </div>
+                                            <div class="col-lg-2 text-center" style="margin-bottom:25px">                                        
+                                            <button type="button" Class="btn btn-primary" style=" margin-top: 24px;" onclick="doSearchProfilo()">Verifica profilo</button>
+                                         </div>
+                                         
+                                            <div class="col-lg-6" style="margin-bottom:25px">
+                                              <label>Note : </label> &nbsp; &nbsp;
+                                              <apex:inputText id="Note" styleClass="form-control" value="{!sl.EOF_NOTE__c}" maxlength="255"/>
+                                         </div>
+                                         <apex:outputPanel id="results">
+                                          <div class="col-lg-6" style="margin-top: 24px;">
+                                                 <!-- <label>Profilo commerciale : </label> &nbsp; &nbsp; -->
+                                                 <apex:outputText rendered="{!viewProfilo}" value="Profilo commerciale: " style="font-weight: bold"/>
+                                                 <apex:outputText rendered="{!viewProfilo}" id="ProfiloCommerciale" styleClass="" value="{!profiloCommerciale}"  style="" />
+                                          </div>
+                                          </apex:outputPanel>
+                                          <div class="col-lg-12"> </div> 
+
+                                         
+                                        <div class="col-lg-12">
+                                          <div style="float:right;" class="col-lg-6" >
+                                             <br/>
+                                          <div style="margin-bottom:20px" class="btn-group" role="group" aria-label="Basic example">
+                                                <button class='btn btn-primary' onclick="goBack()">Annulla</button> 
+                                                  
+                                               <!-- <apex:commandButton styleClass="btn btn-primary" style="margin-right:25px;" value="Annulla" action="{!goBackward}"/> -->
+                                         </div> 
+                                         </div>  
+
+                                        <div style="float:left;" class="col-lg-6" >
+                                            <div style="margin-top:20px; margin-bottom:20px" class="btn-group" role="group" aria-label="Basic example">
+                                            <apex:commandButton styleClass="btn btn-primary pull-right" onclick="doSearch()" value="Salva" />
+                                            </div>
+                                        </div>
+                                        
+                                     </div> 
+                                      </div>
+                                 </fieldset>
+                                    <apex:actionRegion >
+                                        <apex:actionFunction name="searchProfilo" action="{!runSearchProfilo}" rerender="errProfilo,hiddenPanel,results" oncomplete="refreshRerender()">
+                                        <apex:param name="TextProfilo" value="" />
+                                        </apex:actionFunction>              
+                                        <!-- <apex:actionFunction name="rerenderResults" rerender="results" /> -->
+                                    </apex:actionRegion> 
+                                  </apex:form>
+                                  <apex:form >
+                                    <apex:actionFunction name="gBack" action="{!goBackward}" >
+                                      <apex:param name="TextProfilo" value="" />
+                                    </apex:actionFunction> 
+                                  </apex:form>
+                                  
+                                  <apex:form >
+                                                <apex:actionFunction name="searchServer" reRender="tableRow,tableId,paginationPanel,errProfilo,errData,errNotifica,errCodOrd"  action="{!AggiornaCO}">
+                                                
+                                                
+                                                <apex:param assignTo="{!codiceOrdine}" name="codiceOrdine" value="" />
+                                                <apex:param assignTo="{!dataNotifica}" name="dataNotifica" value="" />
+                                                <apex:param assignTo="{!idNotifica}" name="idNotifica" value="" />
+                                                <!--<apex:param assignTo="{!NomeReferente}" name="NomeReferente" value="" /> 
+                                                <apex:param assignTo="{!CognomeReferente}" name="CognomeReferente" value="" />
+                                                <apex:param assignTo="{!TelefonoReferente}" name="TelefonoReferente" value="" />
+                                                <apex:param assignTo="{!TelefonoReferenteOperatore}" name="TelefonoReferenteOperatore" value="" />
+                                                <apex:param assignTo="{!EmailReferente}" name="EmailReferente" value="" />
+                                                <apex:param assignTo="{!NomeCliente}" name="NomeCliente" value="" />
+                                                <apex:param assignTo="{!CognomeCliente}" name="CognomeCliente" value="" />
+                                                <apex:param assignTo="{!RecapitoTelefonicoCliente1}" name="RecapitoTelefonicoCliente1" value="" />
+                                                <apex:param assignTo="{!RecapitoTelefonicoCliente2}" name="RecapitoTelefonicoCliente2" value="" />
+                                                <apex:param assignTo="{!InformazioniLogisticaApparati}" name="InformazioniLogisticaApparati" value="" />
+                                                <apex:param assignTo="{!DataPrevistaAttivazione}" name="DataPrevistaAttivazione" value="" />
+                                                <apex:param assignTo="{!OrarioAppuntamento}" name="OrarioAppuntamento" value="" /> -->
+                                                <apex:param assignTo="{!CodiceProgettoSpeciale}" name="CodiceProgettoSpeciale" value="" />
+                                                <apex:param assignTo="{!Promozione}" name="Promozione" value="" />
+                                                <apex:param assignTo="{!ClusterPromozione}" name="ClusterPromozione" value="" />
+                                                <apex:param assignTo="{!Note}" name="Note" value="" />
+                                            <!--    <apex:param assignTo="{!IDBuilding}" name="IDBuilding" value="" />
+                                                <apex:param assignTo="{!ScalaPalazzina}" name="ScalaPalazzina" value="" />
+                                                <apex:param assignTo="{!NumeroTelefonicoPrincipaleLinea}" name="NumeroTelefonicoPrincipaleLinea" value="" />
+                                                <apex:param assignTo="{!RecapitoTestLinea}" name="RecapitoTestLinea" value="" />
+                                                <apex:param assignTo="{!IdentificativoDelPop}" name="TelefonoReferenteOperatore" value="" /> -->
+                                                <apex:param assignTo="{!Profilo}" name="Profilo" value="" />
+                                                </apex:actionFunction>
+                                  </apex:form> 
+                            </form>
+                            </div>
+                    </div>     
+            <script>
+              
+              var IDRis='';           
+              var codiceOperatore='';
+              var codiceOrdine='';
+              var dataNotifica='';
+              var idNotifica='';
+            /*var NomeReferente=''; 
+              var CognomeReferente='';
+              var TelefonoReferente='';
+              var EmailReferente='';
+              var TelefonoReferenteOperatore= '';
+              var NomeCliente= '';
+              var CognomeCliente= '';
+              var RecapitoTelefonicoCliente1= '';
+              var RecapitoTelefonicoCliente2= '';
+              var InformazioniLogisticaApparati= '';
+              var DataPrevistaAttivazione= '';
+              var OrarioAppuntamento= '';*/
+              var CodiceProgettoSpeciale= '';
+              var Promozione= '';
+              var ClusterPromozione= '';
+              var Note= '';
+             /* var IDBuilding= '';
+              var ScalaPalazzina= '';
+              var NumeroTelefonicoPrincipaleLinea= '';
+              var RecapitoTestLinea= '';
+              var IdentificativoDelPop= '';*/
+              var Profilo= '';
+              function doSearch() {
+                
+                 debugger; 
+
+                
+                
+                codiceOrdine=$("input[id$='codiceOrdine']").val();
+                dataNotifica=$("input[id$='myIDdatehidden']").val();
+                idNotifica=$("input[id$='idNotifica']").val();
+                /*NomeReferente=$("input[id$='NomeReferente']").val();
+                CognomeReferente=$("input[id$='CognomeReferente']").val();
+                TelefonoReferente=$("input[id$='TelefonoReferente']").val();
+                EmailReferente=$("input[id$='EmailReferente']").val();
+                TelefonoReferenteOperatore=$("input[id$='TelefonoReferenteOperatore']").val();
+                NomeCliente=$("input[id$='NomeCliente']").val();
+                CognomeCliente=$("input[id$='CognomeCliente']").val();
+                RecapitoTelefonicoCliente1=$("input[id$='RecapitoTelefonicoCliente1']").val();
+                RecapitoTelefonicoCliente2=$("input[id$='RecapitoTelefonicoCliente2']").val();
+                InformazioniLogisticaApparati=$("input[id$='InformazioniLogisticaApparati']").val();
+                DataPrevistaAttivazione=$("input[id$='DataPrevistaAttivazione']").val();
+                OrarioAppuntamento=$("input[id$='OrarioAppuntamento']").val();*/
+                CodiceProgettoSpeciale=$("input[id$='CodiceProgettoSpeciale']").val();
+                Promozione=$("input[id$='Promozione']").val();
+                ClusterPromozione=$("input[id$='ClusterPromozione']").val();
+                Note=$("input[id$='Note']").val();
+                /*IDBuilding=$("input[id$='IDBuilding']").val();
+                ScalaPalazzina=$("input[id$='ScalaPalazzina']").val();
+                NumeroTelefonicoPrincipaleLinea=$("input[id$='NumeroTelefonicoPrincipaleLinea']").val();
+                RecapitoTestLinea=$("input[id$='RecapitoTestLinea']").val();
+                IdentificativoDelPop=$("input[id$='IdentificativoDelPop']").val();*/
+                Profilo=$("input[id$='Profilo']").val();
+                  /*var dateDis=$("[id$='myIDdatehidden']").val();
+                       var resSub= dateDis.substring(0, 10);
+                       var resSubstr= dateDis.substring(11, 16);
+                       var newdate = resSub.split("/").reverse().join("-");
+                       var newdateSub = resSubstr.split(".").join(":");
+                       var ris= newdate +' '+ newdateSub + ':00';
+                        dataNotifica=ris;*/
+                        
+            
+                /*var date = dataNotifica;
+                var arr1 = date.split(' ');
+                date = arr1*/
+                /*var dataSplit=dataNotifica.split(' ');
+                var dataPass;
+                if(dataSplit.length ==2 && dataSplit[1].length==4){
+                    var split=dataSplit[0].split('/');
+                    dataPass=split[0]+'-'+split[1]+'-'split[2]+' 00:00:00';
+                }
+                else{
+                    dataPass=dataSplit[0]+' 00:00:00';
+                }*/
+
+                event.preventDefault();
+              searchServer(
+              codiceOrdine,dataNotifica,idNotifica,CodiceProgettoSpeciale,Promozione,
+              ClusterPromozione,Note,Profilo);  
+
+              /*NomeReferente,CognomeReferente,TelefonoReferente,
+              EmailReferente,TelefonoReferenteOperatore,NomeCliente,CognomeCliente,
+              RecapitoTelefonicoCliente1, RecapitoTelefonicoCliente2,InformazioniLogisticaApparati,
+              DataPrevistaAttivazione, OrarioAppuntamento,IDBuilding,ScalaPalazzina,NumeroTelefonicoPrincipaleLinea,
+              RecapitoTestLinea,IdentificativoDelPop*/
+         }
+            
+        </script>
+           <script>
+            function goBack() {
+                event.preventDefault();
+                gBack();
+            }
+
+            function doSearchProfilo() {
+            debugger;
+                var TextProfilo = $("input[id$='Profilo']").val();   
+                searchProfilo(TextProfilo);            
+            }
+
+            /*function refreshRerender() {
+                rerenderResults();
+            } */
+
+
+    /*$(document).ready(function(){   
+                   //alert('ready');
+                   debugger;        
+                   $("[id$='myIDdate']").datetimepicker({ 
+                    locale: 'it',
+                    format: 'DD-MM-YYYY HH:mm:ss'
+                   }); 
+                   
+                   
+                   
+                   //Aggiornamento data in init page hidden->onform
+                   if($("[id$='myIDdatehidden']").val()!='' ){
+                    //alert($("[id$='myIDdatehidden']").val()); 
+                    $("[id$='myIDdate']").val($("[id$='myIDdatehidden']").val());
+                      
+                   }
+
+                   $("[id$='myIDdate']").focusout(function() {
+                        //alert($("[id$='myIDdate']").val())
+                        var MyDateTimeIT = $("input[id$='myIDdate']").val();
+                        //alert('ITA '+MyDateTimeIT);
+                        var MyDateTimeEN = moment(MyDateTimeIT,"DD-MM-YYYY HH:mm:ss").toDate();
+                        //alert('ENA '+MyDateTimeEN + '  ' + moment(MyDateTimeEN).format("YYYY-MM-DD HH:mm:ss") );
+                        $("[id$='myIDdatehidden']").val(moment(MyDateTimeEN).format("YYYY-MM-DD HH:mm:ss"));
+                    });
+ 
+                    /*              
+                    $("[id$='OrarioAppuntamento']").datetimepicker({ 
+                    locale: 'it',
+                    format: 'LTS'
+                   }); 
+        
+    });*/
+           </script> 
+     
+
+</apex:component>

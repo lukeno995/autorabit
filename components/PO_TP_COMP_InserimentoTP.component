@@ -1,0 +1,440 @@
+<apex:component controller="PO_TP_COMP_InserimentoTP_Controller" allowDML="true"> 
+<apex:attribute name="azione" description="This is the value for the component." 
+assignTo="{!slToInsert.PO_TP_Causale_Apertura_Segnalazione__c}" 
+type="String" required="true"/>
+<html lang="it"> 
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/> 
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <!--            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+             -->
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <!-- /#wrapper -->
+              
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js' ></script>
+            
+            <apex:includeScript value="{!URLFOR($Resource.datepicker, 'datepicker/js/bootstrap-datepicker.js')}"/>
+           
+            <!--<apex:stylesheet value="{!URLFOR($Resource.datepicker, 'datepicker/css/datepicker.css')}"/>-->
+            
+            <apex:includeScript value="{!URLFOR($Resource.moment, 'moment-develop/min/moment-with-locales.min.js')}"/>
+
+            <apex:includeScript value="{!URLFOR($Resource.datetimepicker, 'bootstrap-datetimepicker-master/build/js/bootstrap-datetimepicker.min.js')}"/>
+            
+            <apex:stylesheet value="{!URLFOR($Resource.datetimepicker, 'bootstrap-datetimepicker-master/build/css/bootstrap-datetimepicker.min.css')}"/>
+            
+            <apex:includeScript value="{!URLFOR($Resource.jqvalidation, 'dist/jquery.validate.min.js')}"/>
+            
+            <apex:includeScript value="{!URLFOR($Resource.jqvalidation, 'dist/localization/messages_it.min.js')}"/>
+          
+            <apex:includeScript value="{!URLFOR($Resource.tooltip, 'tooltip/jquery-validate.bootstrap-tooltip.min.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.tooltip, 'tooltip/jquery-validate.bootstrap-tooltip.min.js')}"/>           
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+                .tooltip-inner {
+                background-color: #337ab7; 
+                }
+                
+            </style>
+        </head>
+            <body>
+            
+            
+
+            
+            <div class="panel panel-default" id="panelDefault">
+                <div class="panel-heading"> 
+                   <!--
+                    <apex:outputPanel rendered="{!modifyMode}">
+                        <i></i>Modifica richiesta di Attivazione
+                    </apex:outputPanel>
+                     -->                    
+                        <i></i>Inserimento {!slToInsert.PO_TP_Causale_Apertura_Segnalazione__c}
+                </div>
+                <div class="panel-body" id="panelBody">
+                    <div class="row" id="row1">  
+                        
+                        <apex:form id="myform">
+                            <div style="color:red;" id="showerror">
+                                <apex:pageMessages id="errors" /> 
+                                <!--
+                                <apex:outputPanel rendered="{!apparati}">
+                                    Compilare il campo Informazioni Logistica Apparati
+                                </apex:outputPanel>
+                                 -->
+                            </div>
+                            <!--<form role="form" class="form-horizontal" id="form2">-->
+                                <!-- Hidden field -->
+                                <apex:outputText styleClass="hide" value="{!slToInsert.EOF_Data_Ora_Inizio_Guasto__c}" id="DataOraInizioGuastoHidden"/>
+                                <fieldset class="form-group" id="fieldset">
+                                     
+                                         <div class="col-lg-6" id="div1">
+                                            <label id="label_cod_ord">Codice Ordine Operatore* : </label> &nbsp; &nbsp;
+                                            <!-- <apex:inputText id="CodiceComunicazioneOLO" styleClass="form-control"  value="{!slToInsert.EOF_Codice_Comunicazione_OLO__c}" required="true" maxlength="18"/>-->
+                                            <apex:inputText id="CodiceOrdine" styleClass="form-control"  value="{!slToInsert.PO_TP_Codice_Ordine_Ticket_Provisioning__c}" required="true" maxlength="50" onKeyUp="troncaCodiceOrdine()" onChange="troncaCodiceOrdine()"/>
+                                         </div>  
+                                        <div class="col-lg-6"> 
+                                            <label>Causale Apertura Segnalazione*</label> &nbsp; &nbsp;
+                                            <apex:inputField id="idCausale" styleClass="form-control" 
+                                            value="{!slToInsert.PO_TP_Causale_Apertura_Segnalazione__c}" 
+                                            html-disabled="true" >
+                                              <apex:actionSupport event="onchange" 
+                                              onsubmit="javascriptOnSub('{!$Component.idCausale}')"
+                                              action="{!calcDescCaus}" rerender="" />                                           
+                                            </apex:inputField>
+                                             
+                                          </div>   
+                                        <script>
+                                        
+                                        function javascriptOnSub(owner){
+                                             var letterowner =document.getElementById(owner).options[document.getElementById(owner).selectedIndex].text;
+                                             
+                                             var x = document.getElementById("div4");
+                                             if(letterowner=='Segnalazione Provisioning'){
+                                               x.style.display = "block";                                               
+                                             }else{
+                                               x.style.display = "none";                                               
+                                             }
+                                         }
+                                        </script>
+                                  <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->                                            
+                                  <apex:outputPanel id="div3">  
+                                       
+                                       <script>
+                                       /*
+  
+                                      
+                                      var x = document.getElementById("div4");
+                                       if(document.getElementById("{!$Component.myform.idCausale}").value=='Segnalazione Provisioning'){
+                                               x.style.display = "block";
+                                               document.getElementById("StatoOrdine").required = true; 
+                                        }else{
+                                               x.style.display = "none";
+                                               document.getElementById("StatoOrdine").required = false; 
+                                        }
+                                        
+                                        */     
+                                      </script> 
+                                      <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+                                       
+                                      <!-- <div class="col-lg-6" id="div4" style="display:none;">-->
+                                      <apex:outputPanel rendered="{!if(slToInsert.PO_TP_Causale_Apertura_Segnalazione__c=='Segnalazione Provisioning',true,false)}">
+                                        <div class="col-lg-6" id="div4">
+                                            <label>Stato Ordine Operatore*</label> &nbsp;  &nbsp;   
+                                                <apex:selectList id="StatoOrdine" styleClass="form-control" value="{!slToInsert.EOF_STATO_ORDINE__c}" size="1" >
+                                                    <apex:selectOption itemValue="" itemLabel=""/>
+                                                    <!--<apex:selectOption itemValue="Inviato" itemLabel="Inviato"/>-->
+                                                    <apex:selectOption itemValue="Accettato" 
+                                                    itemLabel="Accettato"/>
+                                                    <apex:selectOption itemValue="Acquisito" 
+                                                    itemLabel="Acquisito"/>
+                                                    <apex:selectOption itemValue="Sospeso" 
+                                                    itemLabel="Sospeso"/>
+                                              </apex:selectList> 
+                                        </div>
+                                       </apex:outputPanel>  
+                                      
+                                </apex:outputPanel>
+                                    <div class="col-lg-6">
+                                         <label>Descrizione Causale*</label> &nbsp;  &nbsp;
+                                         <apex:inputField id="DescrizioneCausale" 
+                                         styleClass="form-control" 
+                                         value="{!slToInsert.PO_TP_Descrizione_Causale__c}" 
+                                         required="true"/>
+                                     </div>
+                                     <apex:outputPanel id="idDettaglioRichiesta">
+                                     <div class="col-lg-6" >
+                                          <label>Dettaglio Richiesta*</label> &nbsp;  &nbsp;
+                                          <apex:inputText styleClass="form-control" required="true"
+                                          value="{!slToInsert.PO_TP_Dettaglio_Richiesta__c}" 
+                                          id="dettaglioRichiesta2" maxlength="4000"/>
+                                     </div>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel id="idSottoCausale">
+                                    <div class="col-lg-6" >
+                                          <label>Sottocausale*</label> &nbsp;  &nbsp;
+                                           <apex:selectList id="sottocausale" styleClass="form-control" value="{!slToInsert.PO_TP_Sottocausale__c}" size="1" >
+                                                    <apex:selectOption itemValue="" itemLabel=""/>
+                                                    <!--<apex:selectOption itemValue="Inviato" itemLabel="Inviato"/>-->
+                                                    <apex:selectOption itemValue="Sollecito attivazione" itemLabel="Sollecito attivazione"/>
+ <apex:selectOption itemValue="Permessi Amministratore" itemLabel="Permessi Amministratore"/>
+ <apex:selectOption itemValue="Cliente irreperibile" itemLabel="Cliente irreperibile"/>
+ <apex:selectOption itemValue="Indirizzo errato" itemLabel="Indirizzo errato"/>
+ <apex:selectOption itemValue="Appuntamento bucato" itemLabel="Appuntamento bucato"/>
+  <apex:selectOption itemValue="Mancata consegna materiali" itemLabel="Mancata consegna materiali"/>
+                                              </apex:selectList> 
+                                        
+                                         
+                                     </div>
+                                    </apex:outputPanel>
+                                      
+                                </fieldset>
+                                <div class="col-lg-6">
+                                        <div class="btn-group" role="group" aria-label="Basic example">                                      
+                                             <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px;" value="Annulla" action="{!AnnullaS}" html-formnovalidate="formnovalidate" immediate="true" />          
+                                        </div>
+                                </div> 
+                                <div class="col-lg-6" >
+                                    <!--
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <apex:commandLink styleClass="btn btn-primary" style="margin-right:10px;" id="btn_inoltra" 
+                                            value="Inoltra" 
+                                            onclick="checkFields();return false"/>
+                                    </div>
+                                    -->
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <apex:commandLink styleClass="btn btn-primary" style="margin-right:10px;" 
+                                        id="btn_inoltra" value="Inoltra"                                        
+                                        onclick="checkFields();return false" />
+                                        <apex:actionStatus id="statusId" styleclass="loading"/>
+                                    </div>
+                                </div>                                    
+                                 
+                            <!--</form>--> 
+                            <apex:actionFunction name="Escalate" action="{!vaiInEscalation}" onComplete="confirmEscalate()" rerender="null" /> 
+                            <apex:actionFunction name="salvaB" action="{!SalvaC}" status="statusId"
+                            onComplete="confirmMessage('{!statusTP}','{!caseId}')" />
+                        </apex:form> 
+                        
+                        <br/>  
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                </div>                
+            </body>
+            
+            <script>
+           
+            function confirmEscalate(){
+                alert('Segnalazione scalata correttamente');
+            }  
+              
+            function confirmMessage(status,caseId)
+            {
+                buttonEnabled(true);
+
+                if(status!= null && status=='Escalation'){
+                    var msg = "{!msg_escalation}"; //FIX PG - IDR006 - 16-04
+                    var r = confirm(msg);
+                    if (r == true) {
+                        Escalate();
+                    } else {
+                        return;
+                    }
+                }
+                else
+                {
+                    alert(status); //statusTP
+                    if(status=='Segnalazione inserita correttamente')
+                    {
+                      buttonEnabled(false);
+                       //Href Collaudo
+                    //  window.top.location.href ='/PO_TP_InsertNewRequest?origId='+caseId+'&proc=TPVisualizza';
+                      //Href Prod
+                      window.top.location.href ='/partnercommunity/PO_TP_InsertNewRequest?origId='+caseId+'&proc=TPVisualizza';
+                    
+                    }
+                }
+            }
+
+
+
+        function KillSpaces(phrase) {
+
+            var totalPhrase = "";
+            for (i = 0; i < phrase.length; i++)
+            {
+                if (phrase[i] != " ")
+                {
+                    totalPhrase += phrase[i];
+                }
+            }
+            return totalPhrase;
+        } 
+
+            
+            function troncaCodiceOrdine(){
+                
+                var regExpValoriAccettati = new RegExp("[0-9, a-z, A-Z, -_#]");    
+                //valPOP =$("[id$='IDFiltroPOP']").val().trim();
+               
+                var codOrd = $('[id$=CodiceOrdine]').val();
+                var originalCodOrd = codOrd;
+                codOrd = KillSpaces(codOrd);
+                // codOrd = codOrd.trim();
+                // codOrd=codOrd.trim(codOrd.replace(/\s\s+/g, ' ')); 
+                //  codOrd=codOrd.trim(codOrd.split(" ").join(""));
+                // codOrd = codOrd.val().split(" ").join("");
+                /* input = 'ele%onora%'
+                    -> output = 'ele';*/
+                var posizioneCarattereErrato;
+            
+                for (var i = 0; i < codOrd.length; i++) {
+                    if(!regExpValoriAccettati.test(codOrd.charAt(i)) || codOrd.charAt(i) == ','){
+                        posizioneCarattereErrato = i;
+                        break;
+                    }
+                }
+                if(posizioneCarattereErrato != undefined){
+                    var codOrdBonificato = codOrd.substring(0, posizioneCarattereErrato);
+                    $('[id$=CodiceOrdine]').val(codOrdBonificato);
+                    alert('Stai cercando di inserire un carattere non valido');
+                    //   $('[id$=CodiceOrdine]').trim();
+                }else{
+                    if(originalCodOrd != codOrd){
+                        $('[id$=CodiceOrdine]').val(codOrd);
+                        alert('Stai cercando di inserire un carattere non valido');
+                    }
+                }
+                
+                /* Input = 'e%l%e&' 
+                    -> output = 'ele'
+                var hasBadValues = false;
+                do{
+                    for (var i = 0; i < codOrd.length; i++) {
+                        if(!regExpValoriAccettati.test(codOrd.charAt(i)) ){
+                            var codOrd = codOrd.slice(0, i) + codOrd.slice(i+1);
+                            hasBadValues = true;
+                            break;
+                        }
+                        hasBadValues = false;
+                    }
+                }while(hasBadValues);     
+                $('[id$=CodiceOrdine]').val(codOrd);
+                */           
+            }
+            
+            
+            
+            
+
+            function checkFields(){
+             //var valoriAccettati = [a-z](_)[0-9];
+
+                if ($('[id$=CodiceOrdine]').val()=='')  
+                {
+                    alert('Compilare il campo \'Codice Ordine Operatore\'');
+                    return;
+                }
+                if($('[id$=idCausale]').val()=='Segnalazione Provisioning') 
+                {
+                    if($('[id$=StatoOrdine]').val()=='') 
+                    {
+                         alert('Compilare il campo \'Stato Ordine Operatore\'');
+                         return;
+                    }
+                }
+                if( ($('[id$=DescrizioneCausale]').val()=='') || ($('[id$=DescrizioneCausale]').val()==null) )
+                {
+                    alert('Compilare il campo \'Descrizione Causale\'');
+                    return;
+                }
+                if($('[id$=dettaglioRichiesta2]').val()=='')
+                {
+                    alert('Compilare il campo \'Dettaglio Richiesta\'');
+                    return;
+                }
+                if($('[id$=sottocausale]').val()=='')
+                {
+                    alert('Compilare il campo \'Sottocausale\'');
+                    return;
+                }
+                else{
+                    checkDoubleSubmit(this);
+                    //salvaB();
+                }
+            }
+
+            //Add by PG - 08-05 - Questa funzione consente di abilitare o disabilitare il button Inoltra
+            function buttonEnabled(enabled) {
+
+                var $button = $('[id$=btn_inoltra]');
+                if (enabled === false) 
+                {
+                    $button.toggleClass('btnDisabled', true).attr('disabled', 'disabled');
+                    console.log('Button non attivo');
+                } 
+                else 
+                {
+                    $button.toggleClass('btnDisabled', false).attr('disabled', null);
+                    console.log('Button attivo');
+                } 
+            }
+
+            //Add by PG - 09-05
+            var isClicked = false;
+            function checkDoubleSubmit(obj)
+            {
+                isClicked = true;
+                buttonEnabled(false); //disabilito il button Inoltra
+                salvaB();
+                return false;
+            }
+
+            function goTo(){
+                alert('Segnalazione correttamente inviata alla Coda Territoriale');
+                if(sforce.console.isInConsole()){       
+                  testCloseTab(); 
+                }
+                else{
+                    window.top.location.href ='/{!caseId}';
+                }
+            }
+
+            function testCloseTab(){
+                //First find the ID of the current tab to close it
+                sforce.console.getEnclosingTabId(closeSubtab);
+            }
+                
+            var closeSubtab = function closeSubtab(result){
+                //Now that we have the tab ID, we can close it
+                var tabId = result.id;
+                sforce.console.closeTab(tabId);
+            };
+            </script>  
+    
+    </html>
+</apex:component>

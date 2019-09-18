@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Allegato</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Allegati</value>
+    </caseValues>
+    <fields>
+        <label><!-- Case --></label>
+        <name>Case__c</name>
+        <relationshipLabel><!-- Allegati --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- EAI Service Log --></label>
+        <name>EAI_Service_Log__c</name>
+        <relationshipLabel><!-- Allegati --></relationshipLabel>
+    </fields>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

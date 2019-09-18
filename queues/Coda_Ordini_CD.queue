@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Coda Ordini CD</name>
+    <queueMembers>
+        <users>
+            <user>andrea.principato@openfiber.it</user>
+            <user>daniele.fioramanti@eof.com</user>
+            <user>eleonora.baldassarri@soc.openfiber.it</user>
+            <user>tommaso.altomare@soc.openfiber.it</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

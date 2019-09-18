@@ -1,0 +1,283 @@
+<apex:page id="pageID" controller="PO_P2PAttiva_OrderDetails_Ctrl"
+	docType="html-5.0" applyhtmltag="false" showheader="false"
+	sidebar="false" standardstylesheets="false">
+	<html lang="en">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Open Fiber</title>
+
+	<!-- Bootstrap Core CSS -->
+	<apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}" />
+
+	<!-- MetisMenu CSS -->
+	<apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}" />
+
+	<!-- Custom CSS -->
+	<apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}" />
+	
+	<!-- Morris Charts CSS -->
+	<apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}" />
+	
+	<!-- Custom Fonts -->
+	<apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}" />
+
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<link rel="stylesheet" type="text/css"
+		href="//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+	
+	<style>
+	.navbar {
+		min-height: 105px;
+	}
+	
+	.navbar-header {
+		float: none;
+	}
+	
+	.navbar-default {
+		background-color: #ffffff;
+	}
+	
+	.panel-default>.panel-heading {
+		color: #ffffff;
+		background-color: #337ab7;
+	}
+	
+	span.dateFormat {
+		display: none;
+	}
+	
+	.red {
+		color: red;
+	}
+	
+	.form-check-input {
+		margin-left: 45px !important;
+		margin-top: 10px;
+	}
+	
+	.displayNone {
+		display: none;
+	}
+	
+	.displayBlock {
+		display: block;
+	}
+	
+	.ui-autocomplete-loading {
+		background: white url(/img/loading32.gif) right center no-repeat;
+		background-size: 15px 15px;
+	}
+	
+	.placeHolder {
+		font-style: italic;
+	}
+	</style>
+
+
+
+
+	</head>
+	<body>
+
+				<div id="wrapper">
+					<!-- Navigation -->
+			<nav class="navbar navbar-default navbar-static-top" role="navigation"
+				style="margin-bottom: 0">
+			<c:PO_SideBarComponent Rec="{!recordOfferta}" />
+			
+			<div class="navbar-default sidebar" role="navigation">
+				<div class="sidebar-nav navbar-collapse">
+					<ul class="nav" id="side-menu">
+					</ul>
+				</div>
+				<!-- /.sidebar-collapse -->
+			</div>
+			<!-- /.navbar-static-side -->
+			</nav>
+
+           <div id="page-wrapper">
+                       
+           
+               <div class="row">
+                   <div class="col-lg-8" style="width:73.666667%;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i></i>Dati Generali
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                         <apex:form >
+                            
+                            <div class="col-lg-6">
+                            <div class="form-group">
+                            <label>ID Ordine Collegamento</label> &nbsp; &nbsp;
+                            <apex:outputText id="Status" styleClass="form-control"  value="{!ordLog.EOF_SL_Riferimento__r.EOF_Codice_Ordine_OLO__c}"/>
+                            </div>
+                            <div class="form-group">
+                            <label> Stato  </label> &nbsp; &nbsp;
+                            <apex:outputText id="Collegamento" styleClass="form-control" value="{!ordLog.EOF_STATO_ORDINE__c}"/>
+                            </div>
+                            </div>
+
+
+                            <div class="col-lg-6">
+                            <div class="form-group">
+                            <label>Prime Contractor</label> &nbsp; &nbsp;
+                            <apex:outputText id="DatadiCreazione" styleClass="form-control"  value="{!ordLog.PO_Prime_Contractor__c}"/>
+                            </div>
+                            
+                           	<div class="form-group">
+                            <label>Data Attivazione Ordine</label> &nbsp; &nbsp;
+                            <apex:outputText id="DatadiCreazioneOrdine" styleClass="form-control"  value="{!ordLog.CreatedDate}"/>
+                            </div>
+                            </div>
+                            
+                            <div class="col-lg-6">
+                            <div class="form-group">
+                            <label>Data Attivazione Richiesta</label> &nbsp; &nbsp;
+                            <apex:outputText id="DataAttivazione" styleClass="form-control" value="{!ordLog.EOF_SL_Riferimento__r.EOF_SL_Riferimento__r.CreatedDate}" />
+                            </div>                           
+                            <div class="form-group">
+                            <label>Note Sospensione </label> &nbsp; &nbsp;
+                            <apex:inputTextArea id="NoteSospensione" styleClass="form-control" value="{!ordLog.Note_Sospensione_Operatore__c}" readonly="true"/>
+                            </div>
+                            </div>
+                            
+                            <div class="col-lg-6">
+                            <div class="form-group">
+                            <label>Note </label> &nbsp; &nbsp;
+                            <apex:inputTextArea id="Richiestafattibilità1" styleClass="form-control" value="{!ordLog.EOF_NOTE__c}" readonly="true"/>
+                            </div>
+                            </div>
+                            
+                        
+                        <br/>
+                        </apex:form>
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>       
+            
+            
+             
+            
+            
+            <!-- /.col-lg-4 -->
+        </div>
+        
+        
+        <!-- /.row -->
+    </div>
+    
+    
+    <div class="row">
+    <div class="col-lg-8" style="width:73.666667%;">
+        
+        <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i></i>Dati Toponomastici
+                </div>
+                 <div class="panel-body">
+                    <div class="row">
+                
+                      <div class="{!IF(c.PO_Tipologia_Offerta_ordine__c  == 'Fiber Link'||c.PO_Tipologia_Offerta_ordine__c  == 'Evento Temporaneo',"col-lg-4","col-lg-6")}">
+                           
+                            <div class="form-group">
+                            <label>Sede Cliente </label> &nbsp; &nbsp;
+                            <apex:outputText id="SedeCliente" styleClass="form-control"  value="{!ordLog.PO_Sito__c}"/>
+                            </div>
+                  <!--           <apex:outputPanel rendered="{!c.PO_Tipologia_Offerta_ordine__c != 'P2P Base'}">	-->
+                            
+                        </div>
+                        <!--27-12-2018 V1 BUGFIX P2PATTIVA - start -->
+                        <div class="{!IF(c.PO_Tipologia_Offerta_ordine__c  == 'Fiber Link'||c.PO_Tipologia_Offerta_ordine__c  == 'Evento Temporaneo',"col-lg-4","col-lg-6")}">
+                            <div class="form-group">
+                            <label>Indirizzo Cliente</label> &nbsp; &nbsp;
+                            <apex:outputText id="Sede1diTerminazione" styleClass="form-control"  value="{!ordLog.Particella_Toponomastica_1__c}   {!ordLog.PO_Indirizzo_collegamento__c},  {!ordLog.PO_Civico__c}   {!ordLog.EOF_Comune__c}"/>  
+                          </div>
+                           <!--<div class="form-group">
+                            <label>Comune Cliente </label> &nbsp; &nbsp;
+                            <apex:outputText id="ComuneCliente" styleClass="form-control"  value="{!ordLog.EOF_Comune__c}"/>
+                            </div>
+                           <div class="form-group">
+                            <label>Civico Cliente </label> &nbsp; &nbsp;
+                            <apex:outputText id="CivicoCliente" styleClass="form-control"  value="{!ordLog.PO_Civico__c}"/>
+                            </div>
+                              </apex:outputPanel>-->
+                            </div>
+                        <!--27-12-2018 V1 BUGFIX P2PATTIVA - end -->
+                </div>
+                     
+                </div>
+                
+            
+            </div>
+        </div>
+    </div>
+    
+    
+     <div class="row">
+    <div class="col-lg-8" style="width:73.666667%;">
+            
+            <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i></i>Allegato
+                 	</div>
+                 
+                 
+                       <div>
+                                                                  
+                       <table id="theTable" class="table table-striped table-bordered" width="100%">
+                           <thead>
+                               <tr>
+                                   <th>Allegato </th>
+                                   <th>Data Creazione </th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               <apex:repeat value="{!orderatt}" var="att">
+                                   <tr>
+                                       <td>
+                                           
+                                           <apex:outputLink value="{!URLFOR($Action.Attachment.Download, att.Id)}" target="_blank">{!att.Name}</apex:outputLink>                                                                   
+                                           
+                                           
+                                       </td> 
+                                       <td>
+                                           <apex:outputField value="{!att.createdDate}" />
+                                       </td>
+                                   </tr> 
+                               </apex:repeat>
+                           </tbody>
+                       </table>
+                   </div>
+  
+                </div>
+            </div>
+        </div>
+        
+        
+	        <apex:form >  
+			<apex:outputPanel >
+				 <apex:commandButton styleClass="btn btn-primary" style="margin-right:5px;" value="Chiudi" action="{!GoBack}" immediate="true"/>
+			</apex:outputPanel>	       
+			</apex:form>
+        
+			</div>
+		</div>
+		<!-- /#wrapper -->
+		
+		<apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}" />
+		
+		<!-- Bootstrap Core JavaScript -->
+			<apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}" />
+			<script src='https://www.google.com/recaptcha/api.js'></script>
+
+		</body>
+	</html>
+</apex:page>

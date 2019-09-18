@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Questo oggetto serve ad immagazzinare esclusivamente delle pratiche del Responsabile Lavori nell&apos;ambito del Cruscotto Qualità e Sicurezza.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>OF_CQS_Altre_Imprese_Esecutrici__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Inserisci qui le altre Imprese Esecutrici</inlineHelpText>
+        <label>Imprese Esecutrici</label>
+        <length>5000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Area_di_Riferimento_NotiPrel__c</fullName>
+        <externalId>false</externalId>
+        <label>Area di Riferimento</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Comune__c</fullName>
+        <defaultValue>&apos;PERUGIA&apos;</defaultValue>
+        <externalId>false</externalId>
+        <label>Comune</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Data_Inserimento_Notifica_Prel__c</fullName>
+        <externalId>false</externalId>
+        <label>Data Inserimento Notifica Preliminare</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Data_Scadenza__c</fullName>
+        <externalId>false</externalId>
+        <label>Data Scadenza</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Impresa_Esecutrice__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Impresa Esecutrice</label>
+        <lookupFilter>
+            <active>true</active>
+            <booleanFilter>1 OR 2</booleanFilter>
+            <filterItems>
+                <field>OF_CQS_Anagrafica__c.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Impresa Esecutrice</value>
+            </filterItems>
+            <filterItems>
+                <field>OF_CQS_Anagrafica__c.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Impresa Mandataria</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>OF_CQS_Anagrafica__c</referenceTo>
+        <relationshipLabel>Notifiche Preliminari (Impresa Esecutrice)</relationshipLabel>
+        <relationshipName>Notifiche_Preliminari_IE</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Impresa_Mandataria__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Impresa Mandataria</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>OF_CQS_Anagrafica__c.RecordTypeId</field>
+                <operation>notEqual</operation>
+                <value>Impresa Esecutrice</value>
+            </filterItems>
+            <filterItems>
+                <field>OF_CQS_Anagrafica__c.RecordTypeId</field>
+                <operation>notEqual</operation>
+                <value>Consorzi Imprese Esecutrici</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>OF_CQS_Anagrafica__c</referenceTo>
+        <relationshipLabel>Notifiche Preliminari</relationshipLabel>
+        <relationshipName>Notifiche_Preliminari_IM</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_N_B_NotPre__c</fullName>
+        <defaultValue>&apos;Per procedere al caricamento degli allegati è necessario effettuare prima le operazioni di salvataggio.&apos;</defaultValue>
+        <externalId>false</externalId>
+        <label>N.B.</label>
+        <length>110</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OF_CQS_Numero_Protocollo_NotiPre__c</fullName>
+        <externalId>false</externalId>
+        <label>Numero Protocollo</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Notifica Preliminare</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>NP-{00000}</displayFormat>
+        <label>Notifica Preliminare N°</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Notifiche Preliminari</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>OF_CQS_Comune__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OF_CQS_Area_di_Riferimento_NotiPrel__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OF_CQS_Impresa_Mandataria__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OF_CQS_Data_Inserimento_Notifica_Prel__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OF_CQS_Data_Scadenza__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATEDBY_USER</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

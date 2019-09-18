@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>ReportVerticali</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>ReportsVErticali</value>
+    </caseValues>
+    <fields>
+        <label><!-- Civico --></label>
+        <name>Civico__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comune --></label>
+        <name>Comune__c</name>
+    </fields>
+    <fields>
+        <label><!-- IDBuilding --></label>
+        <name>IDBuilding__c</name>
+    </fields>
+    <fields>
+        <label><!-- IDRisorsa --></label>
+        <name>IDRisorsa__c</name>
+    </fields>
+    <fields>
+        <label><!-- Indirizzo --></label>
+        <name>Indirizzo__c</name>
+    </fields>
+    <fields>
+        <label><!-- ParticellaTop --></label>
+        <name>ParticellaTop__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

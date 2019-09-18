@@ -1,0 +1,419 @@
+<apex:component controller="PO_COMP_CeD_AttivazioneInoltrata_Contr" AllowDML="true"> 
+<html lang="it">   
+        <head> 
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <!-- /#wrapper -->
+              
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+            </style>
+        </head>  
+         
+            <body>
+            <apex:form >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+		                <apex:outputPanel >
+		                
+		                        <i></i>Attivazione {!sl.EOF_Codice_ordine_olo__c}
+		                   
+		                </apex:outputPanel>
+                	</div>
+	                <div class="panel-body">
+	                    <div class="row">
+	                        <apex:outputPanel rendered="{!OR(error,success)}" >
+			                    <div class="panel-heading red" >
+			                        <i></i>{!title} 
+			                   </div>
+			                </apex:outputPanel>
+			                    
+	                        <form role="form" class="form-horizontal">
+	                            <fieldset class="form-group">
+	                                 <div class="form-group">
+	                                   
+	                                     <div class="col-lg-6">
+	                                         <label>Codice Ordine Operatore : </label> &nbsp; &nbsp;
+	                                         <apex:outputField id="CodiceOrdineOLO" styleClass="form-control" value="{!sl.EOF_Codice_Ordine_OLO__c}" />
+	                                     </div>
+	                                     <div class="col-lg-6">
+	                                         <label>Stato Request : </label> &nbsp; &nbsp;
+	                                         <apex:outputField id="statoOrdine" styleClass="form-control" value="{!sl.EOF_STATO_ORDINE__c}" />
+	                                     </div>
+	                                 
+	                                     <div class="col-lg-6">
+	                                         <label>Data Notifica : </label> &nbsp; &nbsp;
+	                                         <apex:outputField styleClass="form-control" id="DataNotifica" value="{!sl.EOF_Data_Notifica__c}"   />
+	                                         
+	                                     </div>
+	                                     <div class="col-lg-6">
+	                                         <label>Id Notifica : </label> &nbsp; &nbsp;
+	                                         <apex:outputField id="IDNotifica" styleClass="form-control" value="{!sl.EOF_ID_Notifica__c}"/>
+	                                      </div>
+	                                 
+	                                     <div class="col-lg-6">
+	                                         <label>Nome Referente Tecnico Operatore : </label> &nbsp; &nbsp;
+	                                         <apex:outputField id="NomeReferenteTecnicoOLO" styleClass="form-control" value="{!sl.EOF_NOME_REFERENTE_TECNICO_OLO__c}"/>
+	                                     </div>
+	                                     <div class="col-lg-6">
+	                                        <label>Cognome Referente Tecnico Operatore :</label> &nbsp; &nbsp;
+	                                        <apex:outputField id="CognomeReferenteTecnicoOLO" styleClass="form-control" value="{!sl.EOF_COGNOME_REFERENTE_TECNICO_OLO__c}"/>
+	                                      </div>                                                                                                                                                    
+	                                                                                    
+	                                     <div class="col-lg-6">
+	                                        <label> Telefono Referente Tecnico Operatore :</label> &nbsp; &nbsp;
+	                                        <apex:outputField id="TelefonoReferenteTecnicoOLO" styleClass="form-control" value="{!sl.EOF_TELEFONO_REFERENTE_TECNICO_OLO__c }"/>
+	                                     </div>
+	                                     <div class="col-lg-6">
+	                                         <label>Email Referente Tecnico Operatore : </label> &nbsp; &nbsp;
+	                                         <apex:outputField id="EmailReferenteTecnicoOLO" styleClass="form-control"  value="{!sl.EOF_EMAIL_REFERENTE_TECNICO_OLO__c}" />
+	                                     </div> 
+	                                 
+	                                 <div class="col-lg-6">
+	                                     <label>Telefono Referente Operatore Onfield Notech : </label> &nbsp; &nbsp;
+	                                     <apex:outputField id="TelefonoReferenteOLOOnfieldNotech" styleClass="form-control"  value="{!sl.EOF_Telefono_Referente_OLO_Onfield_Notec__c }"/>
+	                                 </div>
+	                                 
+	                                     <div class="col-lg-6">
+	                                          <label>Nome Cliente : </label> &nbsp; &nbsp;
+	                                          <apex:outputField id="NomeCliente" styleClass="form-control"  value="{!sl.EOF_Nome_Cliente__c}"/>
+	                                     </div> 
+	                                     <div class="col-lg-6">
+	                                         <label>Cognome Cliente : </label> &nbsp; &nbsp;
+	                                         <apex:outputField id="CognomeCliente" styleClass="form-control" value="{!sl.EOF_COgnome_CLiente__c}"/>
+	                                     </div>
+	                                 
+	                                 
+	                                 
+	                                     
+	                                     <div class="col-lg-6">
+	                                          <label>Recapito Telefonico Cliente 1 : </label> &nbsp; &nbsp;
+	                                          <apex:outputField id="RecapitoTelefonicoCliente1" styleClass="form-control" value="{!sl.EOF_RECAPITO_TELEFONICO_CLIENTE_1__c}"/>
+	                                     </div> 
+	                                     <div class="col-lg-6">
+	                                         <label>Recapito Telefonico Cliente 2 : </label> &nbsp; &nbsp;
+	                                         <apex:outputField id="RecapitoTelefonicoCliente2" styleClass="form-control"  value="{!sl.EOF_RECAPITO_TELEFONICO_CLIENTE_2__c}"/>
+	                                     </div>
+	                                
+	                                     <div class="col-lg-6">
+	                                          <label>Informazioni Logistica Apparati : </label> &nbsp; &nbsp;
+	                                          <apex:outputField id="InformazioniLogisticaApparati" styleClass="form-control"  value="{!sl.EOF_INFORMAZIONI_LOGISTICA_APPARATI__c}"/>
+	                                     </div> 
+	                                     <div class="col-lg-6"> 
+	                                         <label>Data Prevista Attivazione :  </label> &nbsp; &nbsp;
+	                                
+	                                         <apex:outputField styleClass="form-control" id="EOFDataPrevistaAttivazione" value="{!sl.EOF_DATA_PREVISTA_ATTIVAZIONE__c}"   />
+	                                            
+	                                     </div>
+	                                 
+	                                     
+	                                     <div class="col-lg-6">
+	                                          <label>Orario Appuntamento :</label> &nbsp; &nbsp;
+	                                          <apex:outputField id="OrarioAppuntamento" styleClass="form-control"  value="{!sl.EOF_ORARIO_APPUNTAMENTO__c}"/>
+	                                     </div> 
+	                                     <div class="col-lg-6">
+	                                         <label>Codice Progetto Speciale : </label> &nbsp; &nbsp;
+	                                         <apex:outputField id="CodiceProgettoSpeciale" styleClass="form-control"  value="{!sl.EOF_CODICE_PROGETTO_SPECIALE__c}"/>
+	                                     </div>
+	                                 
+	                                     
+	                                     <div class="col-lg-6">
+	                                          <label>Promozione : </label> &nbsp; &nbsp;
+	                                          <apex:outputField id="Promozione" styleClass="form-control"  value="{!sl.EOF_PROMOZIONE__c}"/>
+	                                     </div> 
+	                                     <div class="col-lg-6">
+	                                         <label>Cluster Promozione : </label> &nbsp; &nbsp;
+	                                         <apex:outputField id="ClusterPromozione" styleClass="form-control"  value="{!sl.EOF_CLUSTER_PROMOZIONE__c}"/>
+	                                     </div>
+	                                 
+	                                     
+	                                     <div class="col-lg-6">
+	                                          <label>Note : </label> &nbsp; &nbsp;
+	                                          <apex:outputField id="Note" styleClass="form-control"  value="{!sl.EOF_NOTE__c}"/>
+	                                     </div>
+	                                     <div class="col-lg-6">
+	                                         <label>ID Building : </label> &nbsp; &nbsp;
+	                                         <apex:outputField id="EOFIDBuilding" styleClass="form-control" value="{!sl.EOF_ID_BUILDING__c}"/>
+	                                     </div>
+	                                 
+	                                     
+	                                     <div class="col-lg-6">
+	                                          <label>Scala Palazzina : </label> &nbsp; &nbsp;
+	                                          <apex:outputField id="ScalaPalazzina" styleClass="form-control" value="{!sl.EOF_SCALA_PALAZZINA__c}"/>
+	                                     </div>
+	                                     <div class="col-lg-6">
+	                                         <label>Numero Telefonico Principale Linea : </label> &nbsp; &nbsp;
+	                                         <apex:outputField id="NumeroTelefonicoPrincipaleLinea" styleClass="form-control" value="{!sl.EOF_NUMERO_TELEFONICO_PRINCIPALE_LINEA__c}"/>
+	                                     </div>
+	                                 
+	                                     
+	                                     <div class="col-lg-6">
+	                                          <label>Recapito Test Linea :  </label> &nbsp; &nbsp;
+	                                          <apex:outputField id="RecapitoTestLinea" styleClass="form-control"  value="{!sl.EOF_RECAPITO_TEST_LINEA__c}"/>
+	                                     </div> 
+	                                     <div class="col-lg-6">
+	                                         <label>Identificativo del POP :</label> &nbsp; &nbsp;
+	                                         <apex:outputField id="IdentificativodelPOP" styleClass="form-control" value="{!sl.EOF_ID_Pop__c}"/>
+	                                     </div>
+	                                     
+	                                     
+	                                     <div class="col-lg-6">
+	                                         <label>GPON Attestazione:</label> &nbsp; &nbsp;
+	                                         <apex:outputField id="GPONAttestazione" styleClass="form-control" value="{!sl.EOF_GPON_Attestazione__c}"/>
+	                                     </div>
+	                                    
+	                                     
+	                                     <div class="col-lg-6">
+	                                          <label>Profilo :  </label> &nbsp; &nbsp;
+	                                          <apex:outputField id="Profilo" styleClass="form-control" value="{!sl.EOF_PROFILO__c}"/>
+	                                     </div>
+	                                     
+	                                     <div class="col-lg-6">
+	                                          <label>Motivazione :  </label> &nbsp; &nbsp;
+	                                          <apex:outputField id="motivazione" styleClass="form-control" value="{!sl.EOF_MOTIVAZIONE__c}"/>
+	                                     </div>
+	                                     <div class="col-lg-6">
+	                                          <label>Profilo Commerciale :  </label> &nbsp; &nbsp;
+	                                          <apex:outputText id="ProfiloCommerciale" styleClass="" value="{!profiloCommerciale}"/>
+	                                     </div> 
+	                                     <apex:outputpanel rendered="{!if(OR(sl.EOF_STATO_ORDINE__c='Espletato',sl.EOF_STATO_ORDINE__c='Espletato KO'),true,false)}">
+		                                     <div class="col-lg-6">
+		                                          <label>ID Risorsa :  </label> &nbsp; &nbsp;
+		                                          <apex:outputField id="IdRisorsa" styleClass="form-control" value="{!sl.EOF_ID_Risorsa__c}"/>
+		                                     </div>
+		                                     <div class="col-lg-6">
+		                                          <label>Data Espletamento Ordine :  </label> &nbsp; &nbsp;
+		                                          <apex:outputField id="EOF_Data_Espletamento_Ordine__c" styleClass="form-control" value="{!sl.EOF_Data_Espletamento_Ordine__c}"/>
+		                                     </div>
+		                                     <div class="col-lg-6">
+		                                          <label>Scala Palazzina :  </label> &nbsp; &nbsp;
+		                                          <apex:outputField id="EOF_SCALA_PALAZZINA__c" styleClass="form-control" value="{!sl.EOF_SCALA_PALAZZINA__c}"/>
+		                                     </div>
+		                                     <div class="col-lg-6">
+		                                          <label>Documento di Trasporto :  </label> &nbsp; &nbsp;
+		                                          <apex:outputField id="OF_SA_DDT__c" styleClass="form-control" value="{!sl.OF_SA_DDT__c}"/>
+		                                     </div>
+		                                     
+	                                     </apex:outputpanel>
+	                                 </div>
+	                             </fieldset>
+	                        </form>
+	                    </div>
+	                
+	                                
+	                                
+	                    <!-- Iterazione Lista VLAN       -->                
+	                    <apex:repeat value="{!slVLAN}" var="slV" rendered="{!VLAN}">
+	                        <div class="panel panel-default">
+		                        <div class="panel-heading">
+		                            <i></i>VLAN:
+		                        </div>
+		                        <div class="panel-body">
+	                    		   
+			                        <fieldset class="form-group">   
+				                        <div class="form-group">
+				                            <div class="col-lg-6">
+				                                <label>Kit Consegna VLAN : </label> &nbsp; &nbsp;
+				                                <apex:outputField id="CodiceOrdineOLO" styleClass="form-control" value="{!slV.OF_SA_KIT_CONSEGNA_VLAN__c}"  />
+				                            </div>
+				                            <div class="col-lg-6">
+				                                <label>User VLAN : </label> &nbsp; &nbsp;
+				                                    <apex:outputField styleClass="form-control" id="userVLAN" value="{!slV.OF_SA_USER_VLAN__c}"    />                
+				                            </div>
+				                            <div class="col-lg-6">
+				                                <label>Service VLAN : </label> &nbsp; &nbsp;
+				                                <apex:outputField id="serviceVLAN" styleClass="form-control" value="{!slV.OF_SA_SERVICE_VLAN__c}"  />
+				                             </div>
+				                             <div class="col-lg-6">
+				                                 <label>VLAN : </label> &nbsp; &nbsp;
+				                                 <apex:outputField id="profiloVLAN" styleClass="form-control" value="{!slV.OF_SA_PROFILO_VLAN__c}"   />
+				                             </div>
+				                             <div class="col-lg-6">
+				                                <label>Customer VLAN :</label> &nbsp; &nbsp;
+				                                 <apex:outputField id="customerVLAN" styleClass="form-control" value="{!slV.OF_SA_CUSTOMER_VLAN__c}"/>
+				                              </div>                                                                                                                                                                                                   
+				                             <div class="col-lg-6">
+				                                 <label>Modello Di Servizio VLAN : </label> &nbsp; &nbsp;
+				                                 <apex:outputField id="modelloServizioVLAN" styleClass="form-control"  value="{!slV.OF_SA_MODELLO_DI_SERVIZIO_VLAN__c}"/>
+				                             </div>
+				                             <div class="col-lg-6"> 
+				                                <label> Informazioni VLAN :</label> &nbsp; &nbsp;
+				                                <apex:outputField id="informazioniVLAN" styleClass="form-control" value="{!slV.OF_SA_INFORMAZIONI_VLAN__c}"/>
+				                             </div>
+				                              
+				                         </div>
+			                         </fieldset>
+			                     </div>
+	                        </div>
+	                    </apex:repeat> 
+	                     
+	                    <!-- Iterazione Lista Apparati      -->
+	                    <apex:repeat value="{!slApparati}" var="slApp" rendered="{!Apparati}">
+	                        <div class="panel panel-default">
+		                        <div class="panel-heading">
+		                            <i></i>Apparato:
+		                        </div>  
+		                        <div class="panel-body"> 
+			                        <fieldset class="form-group">   
+				                        <div class="form-group">
+				                            <div class="col-lg-6">
+				                                <label>Tipologia Apparato : </label> &nbsp; &nbsp;
+				                                <apex:outputField id="TipologiaApparato" styleClass="form-control" value="{!slApp.EOF_TIPOLOGIA_APPARATO__c}"  />
+				                            </div>
+				                            <div class="col-lg-6">
+				                                <label>Password Apparato : </label> &nbsp; &nbsp;
+				                                    <apex:outputField styleClass="form-control" id="passwordApparato" value="{!slApp.OF_SA_PASSWORD_APPARATO__c}"    />                
+				                            </div>
+				                            <div class="col-lg-6">
+				                                <label>Azione Apparato : </label> &nbsp; &nbsp;
+				                                <apex:outputField id="AzioneApparato" styleClass="form-control" value="{!slApp.OF_SA_AZIONE_APPARATO__c}"  />
+				                             </div>
+				                         	<div class="col-lg-6">
+				                                <label>Esito Ritiro Apparato : </label> &nbsp; &nbsp;
+				                                <apex:outputField id="EsitoRitiroApparato" styleClass="form-control" value="{!slApp.OF_SA_ESITO_RITIRO_APPARATO__c}"  />
+				                            </div> 
+				                        	<div class="col-lg-6">
+				                                <label>Codice Motivazione Ritiro : </label> &nbsp; &nbsp;
+				                                <apex:outputField id="CodiceMotivazioneRitiro" styleClass="form-control" value="{!slApp.OF_SA_CODICE_MOTIVAZIONE_RITIRO__c}"  />
+				                            </div>
+				                            <div class="col-lg-6">
+				                                <label>Motivazione Ritiro : </label> &nbsp; &nbsp;
+				                                <apex:outputField id="MotivazioneRitiro" styleClass="form-control" value="{!slApp.OF_SA_MOTIVAZIONE_RITIRO__c}"  />
+				                            </div>
+				                            
+				                            <div class="col-lg-6">
+				                                <label>Esito Consegna Apparato : </label> &nbsp; &nbsp;
+				                                <apex:outputField id="ESITO_CONSEGNA_APPARATO" styleClass="form-control" value="{!slApp.EOF_Esito_Consegna_Apparato__c}"  />
+				                             </div>
+				                         	<div class="col-lg-6">
+				                                <label>Id Apparato Consegnato : </label> &nbsp; &nbsp;
+				                                <apex:outputField id="ID_APPARATO_CONSEGNATO" styleClass="form-control" value="{!slApp.OF_SA_ID_APPARATO_CONSEGNATO__c}"  />
+				                            </div> 
+				                        	<div class="col-lg-6">
+				                                <label>Codice Motivazione Consegna : </label> &nbsp; &nbsp;
+				                                <apex:outputField id="CODICE_MOTIVAZIONE_CONSEGNA" styleClass="form-control" value="{!slApp.OF_SA_CODICE_MOTIVAZIONE_CONSEGNA__c}"  />
+				                            </div>
+				                            <div class="col-lg-6">
+				                                <label>Motivazione Consegna : </label> &nbsp; &nbsp;
+				                                <apex:outputField id="MOTIVAZIONE_CONSEGNA" styleClass="form-control" value="{!slApp.OF_SA_MOTIVAZIONE_CONSEGNA__c}"  />
+				                            </div> 
+				                         </div>
+			                         </fieldset>
+		                         </div>
+	                       </div>
+	                    </apex:repeat>
+	                    
+	                    <!-- Iterazione Lista Servizi Aggiuntivi       -->
+	                    <apex:repeat value="{!SlServiziAggiuntivi}" var="slSA" rendered="{!ServiziAggiuntivi}">
+	                        <div class="panel panel-default">
+		                        <div class="panel-heading">
+		                            <i></i>Servizio Aggiuntivo:
+		                        </div>  
+		                        <div class="panel-body"> 
+			                        <fieldset class="form-group">     
+				                        <div class="form-group">
+				                            <div class="col-lg-6">
+				                                <label>Nome Servizio : </label> &nbsp; &nbsp;
+				                                <apex:outputField id="NomeServizio" styleClass="form-control" value="{!slSA.OF_SA_NOME_SERVIZIO__c}"  />
+				                            </div>
+				                            <div class="col-lg-6">
+				                                <label>Informazioni Servizio : </label> &nbsp; &nbsp;
+				                                    <apex:outputField styleClass="form-control" id="InformazioniServizio" value="{!slSA.OF_SA_INFORMAZIONI_SERVIZIO__c}"    />                
+				                            </div>
+				                            <div class="col-lg-6">
+				                                <label>Esito Servizio : </label> &nbsp; &nbsp;
+				                                    <apex:outputField styleClass="form-control" id="EsitoServizio" value="{!slSA.OF_SA_ESITO_SERVIZIO__c}"    />                
+				                            </div>
+				                            <div class="col-lg-6">
+				                                <label>Codice Motivazione Servizio : </label> &nbsp; &nbsp;
+				                                    <apex:outputField styleClass="form-control" id="CodiceMotivazioneServizio" value="{!slSA.OF_SA_CODICE_MOTIVAZIONE_SERVIZIO__c}"    />                
+				                            </div>
+				                            <div class="col-lg-6">
+				                                <label>Motivazione Servizio : </label> &nbsp; &nbsp;
+				                                    <apex:outputField styleClass="form-control" id="MotivazioneServizio" value="{!slSA.OF_SA_MOTIVAZIONE_SERVIZIO__c}"    />                
+				                            </div>
+		                             
+				                         </div>
+			                         </fieldset>
+		                         </div>
+	                        </div>
+	                    </apex:repeat>
+	                    <apex:outputPanel rendered="{!aperto}">
+		                    <apex:outputPanel rendered="{!desospendi}">
+		                       <div class="col-lg-4" >
+		                           <div class="btn-group" role="group" aria-label="Basic example">                                      
+		                               <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px;" value="Desospensione" action="{!desospensione}" />       
+		                           </div>
+		                       </div> 
+		                    </apex:outputPanel>
+		                    <apex:outputPanel rendered="{!rimodula}">
+		                    	
+		                        <div class="col-lg-4" >
+		                           <div class="btn-group" role="group" aria-label="Basic example">                                      
+		                               <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px;" value="Rimodulazione DAC" action="{!rimodulazioneDAC}" />       
+		                           </div> 
+		                       </div>
+	                       </apex:outputPanel>
+	                        <apex:outputPanel rendered="{!annulla}">  
+			                       <div class="col-lg-4" >
+			                           <div class="btn-group" role="group" aria-label="Basic example">                                      
+			                               <apex:commandButton styleClass="btn btn-primary" value="Annullamento" action="{!annullamento}" />        
+			                           </div>
+			                       </div> 
+		                       
+		                    </apex:outputPanel>
+	                    </apex:outputPanel>
+	                    
+	                </div>
+                </div>
+            </apex:form>                     
+        </body>
+    
+    </html>
+</apex:component>

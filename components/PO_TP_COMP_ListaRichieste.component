@@ -1,0 +1,604 @@
+<apex:component controller="PO_TP_COMP_ListaRichieste_Controller" allowDML="true">
+<apex:attribute name="azione" assignTo="{!causApertuAtt}" description="This is the value for the component." 
+type="String" required="true" />
+    <html lang="it">  
+        <head> 
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <!-- /#wrapper -->
+              
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <apex:includeScript value="{!URLFOR($Resource.multiselect, '/multiselect/js/bootstrap-multiselect.js')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.multiselect, '/multiselect/css/bootstrap-multiselect.css')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.daterangepicker, '/moment.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.daterangepicker, '/daterangepicker.js')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.daterangepicker, '/daterangepicker.css')}" />
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            
+            <!-- excelJS -->
+             
+            <apex:includeScript value="{!URLFOR($Resource.excelplus25, '/excelplus25/xlsx.full.min.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.excelplus25, '/excelplus25/excelplus-2.5.min.js')}"/>
+            
+            <apex:includeScript value="{!URLFOR($Resource.moment, 'moment-develop/min/moment-with-locales.min.js')}"/>
+
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+            </style>
+        </head> 
+         
+            <body>
+            <!-- 
+            <apex:actionFunction action="{!runSearch}" name="runSearchJavascript" rerender="showstate">
+                <apex:param name="firstParam" assignTo="{!state}" value="" />
+            </apex:actionFunction>
+             -->
+            <apex:form >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <apex:outputPanel >
+                            <i></i> {!titolare}  
+                        </apex:outputPanel>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div style="color:red;" id="showerror">
+                                <apex:pageMessages id="errors" /> 
+                                <apex:outputText rendered="{!checkMessage}" value="{!message}"/> 
+                            </div>
+                            <apex:outputPanel rendered="{!!richiesteTP}" > 
+                                <div class="panel-heading red" >
+                                    <i></i>Non è presente nessuna richiesta
+                               </div>
+                            </apex:outputPanel>    
+                            <form role="form" class="form-horizontal">
+                                
+                                
+                                <apex:pageBlock rendered="{!richiesteTP}" id="results">
+                                
+                                    <!-- 
+                                     <apex:pageBlockTable value="{!listRichiesteTT}" var="sl" rendered="{!richiesteTT}" id="myTable" styleClass="table table-striped table-bordered">
+                                         <apex:column >
+                                             <apex:facet name="header">
+
+                                                        <apex:outputText value="Codice Comunicazione Operatore" />
+                                            
+                                             </apex:facet>
+                                             <apex:commandlink value="{!c.EOF_Codice_Comunicazione_OLO__c}" action="{!ViewCaseDettail}" rerender="null">
+                                                 <apex:param name="eventSl" value="{!c.Id}" assignTo="{!IdScelta}"/>
+                                              </apex:commandlink>
+                                         </apex:column>&nbsp;&nbsp;&nbsp;&nbsp;
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                                 <apex:outputText value="Causale Apertura" />
+                                             </apex:facet>
+
+                                               <apex:outputPanel rendered="{!IF(c.EOF_Causale_Apertura__c=='1',true,false)}">
+                                               Connettività non disponibile
+                                               </apex:outputPanel>
+                                           
+                                               <apex:outputPanel rendered="{!IF(c.EOF_Causale_Apertura__c=='2',true,false)}">
+                                               Connessione instabile
+                                               </apex:outputPanel>
+                                               <apex:outputPanel rendered="{!IF(c.EOF_Causale_Apertura__c=='3',true,false)}">
+                                               Lentezza di navigazione
+                                               </apex:outputPanel>
+                                               <apex:outputPanel rendered="{!IF(c.EOF_Causale_Apertura__c=='4',true,false)}">
+                                               Mai Navigato
+                                               </apex:outputPanel> 
+                                         </apex:column>&nbsp;&nbsp;
+  
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                                 <apex:outputText value="Stato Ordine"/>
+                                             </apex:facet>
+                                             <apex:outputField value="{!c.EOF_STATO_ORDINE__c}" />
+                                         </apex:column>&nbsp;&nbsp;
+  
+                                         <apex:column >
+                                             <apex:facet name="header">
+                                                 <apex:outputText value="Data Creazione"/>
+                                             </apex:facet>
+
+                                             <apex:outputText value="{0,date,dd/MM/yyyy HH:mm:ss}">
+                                                     <apex:param value="{!c.CreatedDate+offset}"/>
+                                            </apex:outputText>
+                                         </apex:column><br/>
+                                     </apex:pageBlockTable>
+                                      -->
+                                      
+                                      
+                                      
+                                   <table class="table table-striped table-bordered" >
+                                      <tr>                                        
+                                        <th>Data Creazione</th>
+                                        <!--<th>Causale Apertura Segnalazione</th>-->
+                                        <th>Descrizione Causale</th>
+                                        <th>Stato Segnalazione</th> <!--  FIX IDR009 -13/04 - PG -->
+                                        <th>Escalation</th>
+                                        <th>Applica Filtri</th>                                        
+                                      </tr>
+
+                                      <tr>                                        
+                                        <th>
+                                            <input type="text" class="form-control" id="datefilter"  placeholder=" DA gg/mm/aaaa A gg/mm/aaaa"/>
+                                        </th>
+                                        <!--<th>
+                                            <select id="IDFilterCausaleApertura" multiple="multiple">
+                                                <option value="Segnalazione Provisioning">Segnalazione Provisioning</option>
+                                                <option value="Problema tecnico/applicativo">Problema tecnico/applicativo</option>
+                                            </select>
+                                        </th>-->
+                                        <th>
+                                            <select id="IDFilterDescrizioneCausale" multiple="multiple">
+                                                <option value="Richiesta Informazioni">Richiesta Informazioni</option>
+                                                <option value="Sollecito">Sollecito</option>
+                                                <option value="Nuova Segnalazione">Nuova Segnalazione</option>
+                                            </select>
+                                        </th>
+                                        <th>
+                                            <select id="IDFilterStatus" multiple="multiple">
+                                                <option value="Acquisito">Acquisito</option>
+                                                <option value="In Lavorazione">In Lavorazione</option>
+                                                <option value="Annullato">Annullato</option>
+                                                <option value="Chiuso">Chiuso</option>
+                                            </select>
+                                        </th>
+                                        <!-- 07-05 - ADD PG - Filter Escalation -->
+                                        <th>
+                                            <select id="IDFilterEscalation" multiple="multiple">
+                                                <option value="true">SI</option>
+                                                <option value="false">NO</option>
+                                            </select>
+                                        </th>
+                                        <!-- 07-05 - ADD PG - Filter Stato Segnalazione -->
+                                        <th>
+                                            <button type="button" Class="btn btn-primary pull-right" style="margin-right:10px;margin-bottom:10px;" 
+                                            reRender = "paginationPanel" 
+                                            onclick="doSearch()" >Applica filtri</button>
+                                        </th>
+
+                                      </tr>
+                                    </table>
+                                    <apex:outputPanel id="tableResult">
+                                    <table class="table table-striped table-bordered">
+                                    <tr>
+                                        <th>ID Segnalazione</th> <!--  FIX - RENAME LABEL - 04/05 - PG -->
+                                        <th>Codice Ordine Operatore</th>
+                                        <th>Data Creazione</th>
+                                        <!--<th>Causale Apertura Segnalazione</th>-->
+                                        <th>Descrizione Causale</th>
+                                        <th>Stato Segnalazione</th> <!--  FIX IDR009 -13/04 - PG -->
+                                        <th>Escalation</th>
+                                  <!--  <th>Annullamento Ticket</th> -->
+                                        
+                                      </tr>
+                                    <apex:repeat value="{!listRichiesteTP}" var="c">
+                                    
+                                      <!-- <tr  style="{!IF(c.EOF_STATO_ORDINE__c == 'Sospeso' && c.EOF_Data_Ora_Desospensione__c>=NOW() ,'background-color: yellow;','')}" > -->
+                                      <tr>
+                                        <td>
+                                    
+                                            <apex:commandlink value="{!c.casenumber}" action="{!ViewCaseDettail}" >
+                                                 <apex:param name="eventSl" value="{!c.Id}" assignTo="{!IdScelta}"/>
+                                             </apex:commandlink>
+                                        </td>
+                                        <td>
+                                    
+                                            <apex:outputText value="{!c.PO_TP_Codice_Ordine_Ticket_Provisioning__c }"  >                                             
+                                            </apex:outputText>
+                                        </td>
+                                        <td>
+                                            <apex:outputText value="{0,date,dd/MM/yyyy HH:mm:ss}">
+                                                     <apex:param value="{!c.CreatedDate+offset}"/>
+                                            </apex:outputText>
+                                        </td>
+                                          <!-- FIX PG 29-03 - START --> 
+                                       <!-- <td>
+                                            <apex:outputPanel rendered="{!IF(c.PO_TP_Causale_Apertura_Segnalazione__c=='Segnalazione Provisioning',true,false)}"> Segnalazione Provisioning </apex:outputPanel>
+                          
+                                                         
+                          <apex:outputPanel rendered="{!IF(c.PO_TP_Causale_Apertura_Segnalazione__c=='Problema Tecnico/Applicativo',true,false)}"> Problema Tecnico/Applicativo </apex:outputPanel>
+                       
+                                        </td>-->
+                                           <!-- FIX PG 29-03 - END --> 
+                                        <td>
+                                            <apex:outputPanel rendered="{!IF(c.PO_TP_Descrizione_Causale__c=='Richiesta Informazioni',true,false)}">
+                                               Richiesta Informazioni
+                                            </apex:outputPanel>
+                                           
+                                            <apex:outputPanel rendered="{!IF(c.PO_TP_Descrizione_Causale__c=='Sollecito',true,false)}">
+                                               Sollecito
+                                            </apex:outputPanel>
+                                            
+                                            <apex:outputPanel rendered="{!IF(c.PO_TP_Descrizione_Causale__c=='Nuova Segnalazione',true,false)}">
+                                               Nuova Segnalazione
+                                            </apex:outputPanel>
+                                            
+                                        </td>
+                                        <td>
+                                            <apex:outputField value="{!c.status}" />
+                                        </td>
+                                        <td style="text-align: center;">        
+                                            <apex:outputField value="{!c.PO_TP_Escalation__c}" 
+                                                rendered="{!c.PO_TP_Escalation__c}">
+                                            </apex:outputField>
+
+                                            <apex:commandLink styleClass="btn btn-primary" 
+                                            value="Escalation" action="{!vaiInEscalation}" 
+                                            rendered="{!IF((c.Status!='Chiuso' && c.Status!='Annullato') && c.PO_TP_Descrizione_Causale__c!= 'Richiesta Informazioni' && EscalationMap[c.Id],'true','false')}"
+                                            onComplete="confirmMessage()">
+                                                <apex:param name="eventSl" value="{!c.Id}" assignTo="{!IdScelta}"/>
+                                            </apex:commandLink>
+                                        </td>  
+                                        <!--<td >
+                                            <apex:commandLink styleClass="btn btn-primary pull-right"  value="Annulla Richiesta" 
+                                                action="{!annullaTicketPro}" rendered="{!IF((c.Status='In Lavorazione' || c.Status ='In verifica') && EscalationMap[c.Id],'false','true')}" onComplete="confirmAnnullamentoMessage()">
+                                                <apex:param name="eventSl" value="{!c.Id}" assignTo="{!IdScelta}"/>
+                                            </apex:commandLink>
+                                        </td> -->
+                                      </tr>
+                                     </apex:repeat>
+                                  </table> 
+                                 <!-- <button type="button" Class="btn btn-primary pull-right" style="margin-right:10px;margin-bottom:10px;" onclick="myxls()">Esporta xlsx</button> -->
+                                 <apex:outputlink value="/PO_TP_ExportRichiesteProvisioning">
+                                    <button type="button" Class="btn btn-primary pull-right" style="margin-right:10px;margin-bottom:10px;">Esporta xlsx</button> 
+                                    <apex:param name="DataInizio" value="{!DataInizio}"/> 
+                                    <apex:param name="DataFine" value="{!DataFine}"/> 
+                                    <apex:param name="descrizioneCasualeJSON" value="{!descrizioneCasualeJSON}"/>
+                                    <apex:param name="statusJSON" value="{!statusJSON}"/> 
+                                    <apex:param name="escalationJSON" value="{!escalationJSON}"/>
+                                 </apex:outputlink>
+                                  <!--START - PAGINATION PANEL -->
+                                  <apex:outputPanel id="paginationPanel">
+                                        <apex:outputText styleClass="hide" value="{!listRichiesteTPString}"
+                                                    id="listRichiesteTPString" />   
+                                        <apex:outputPanel rendered="{!showPag}">
+                                            <apex:commandlink action="{!PageDown}" 
+                                                reRender="tableResult,paginationPanel">
+                                                <apex:image url="{!$Resource.ArrowDestra}" 
+                                                styleClass="leftFloat" width="22" height="22"/>
+                                            </apex:commandlink>
+                                            <p style='float:left;display:inline;margin-left:10px;margin-right:10px;'>Pagina {!pageActual}  di {!totalpage} (Record : {!totalRecord})</p>
+                                            <apex:commandlink action="{!pageUp}" 
+                                                reRender="tableResult,paginationPanel">
+                                            <apex:image url="{!$Resource.ArrowSinistra}" 
+                                                styleClass="leftFloat" width="22" height="22"/>
+                                            </apex:commandlink>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!!showPag}">                        
+                                        <p style='float:left;display:inline;margin-left:10px;margin-right:10px;'>0 Pagine (Record : 0)</p>
+                                        </apex:outputPanel>
+                                  <!-- END - PAGINATION PANEL -->
+                                  </apex:outputPanel>
+                                <apex:outputText styleClass="hide" value="{!listRichiesteTPstring}" id="IDlistRichiesteTPstring" />
+                                <!--START - Add by PG - 16-05 -->                
+                                <apex:outputText styleClass="hide" 
+                                    value="{!listRichiesteSelezionateTPstring}" 
+                                    id="IDlistRichiesteSelezionateTPstring" />
+                                <!--END - Add by PG - 16-05 -->
+                                </apex:outputPanel>
+                                </apex:pageBlock>
+                            </form>
+                        </div>  
+                    </div>
+                </div>
+                <!-- Add by PG - 16-05 - Aggiunto il rerender dell'outputText IDlistRichiesteSelezionateTPstring-->
+                  <apex:actionFunction name="searchServer" action="{!runSearch}"
+                   rerender="tableResult,IDlistRichiesteTPstring,IDlistRichiesteSelezionateTPstring,paginationPanel" >
+                      <apex:param assignTo="{!DataInizio}" name="DataInizio" value="" />
+                      <apex:param assignTo="{!DataFine}" name="DataFine" value="" />
+                      <!--<apex:param assignTo="{!casualeAperturaJSON}" name="selectValueL1" value="" /> -->
+                      <apex:param assignTo="{!descrizioneCasualeJSON}" name="selectValueL2" value="" />
+                      <apex:param assignTo="{!statusJSON}" name="selectValueL3" value="" />
+                      <apex:param assignTo="{!escalationJSON}" name="selectValueL4" value="" />
+                  </apex:actionFunction>
+                  <apex:actionFunction name="refreshTable" action="{!runSearch}" 
+                rerender="tableResult,paginationPanel" />                
+            </apex:form>
+            <!--     
+              <apex:pageBlock title="Debug - SOQL" id="debug">
+                  <apex:outputText value="{!debugSoql}" />  
+              </apex:pageBlock>
+              -->                 
+        </body>
+  
+        <script>
+            var selectValueL1=[];
+            var selectValueL2=[];
+            var selectValueL3=[];
+            var selectValueL4=[];
+            var DataInizio='';
+            var DataFine='';
+            var myContent;
+            var myContentSelected; //Add by PG - 16-05
+            
+            var valL1=[];
+            var valL2=[];
+            var valL3=[];
+            var valL4=[];            
+            
+            function confirmMessage(){
+                alert('La richiesta è stata scalata correttamente');
+                refreshTable();
+            }
+            
+            function confirmAnnullamentoMessage(){
+                alert('La richiesta di annullamento è stata presa in carico correttamente');
+                refreshTable();
+            }
+            
+            function doSearch() {
+                //alert(DataInizio+' e '+DataFine+ ' e ' + JSON.stringify(valL1) + ' e ' + JSON.stringify(valL2) + ' e '+ JSON.stringify(valL3));
+                /*searchServer(
+                  DataInizio,
+                  DataFine, 
+                  JSON.stringify(valL1),
+                  JSON.stringify(valL2),
+                  JSON.stringify(valL3)
+                  );*/
+                  searchServer(
+                  DataInizio,
+                  DataFine, 
+                  JSON.stringify(valL2),
+                  JSON.stringify(valL3),
+                  JSON.stringify(valL4)
+                  );
+             }
+            
+            /*
+            function nextColonna(c,j) {
+    
+                // restituisce la colonna successiva  es. nexColonna("A",1) -> "B"
+                return String.fromCharCode(c.charCodeAt(0) + j);
+            }
+            */
+            /*Function non più utilizzata - Logica gestita diversamente 08-06
+            function myxls(){
+
+                // FIX PG - 16-05 - Viene parsato il contenuto della selezione dopo aver applicato i filtri
+                myContentSelected = JSON.parse($("[id$='IDlistRichiesteSelezionateTPstring']").text());
+                
+                var dominioCausale = ['','Connettività non disponibile','Connessione instabile','Lentezza di navigazione','Mai Navigato']
+                        
+                var epacc=new ExcelPlus(); //nuovo oggetto epacc
+                epacc.createFile("Foglio 1");
+                epacc.write({ "cell":'A1', "content": 'ID SEGNALAZIONE'});
+                epacc.write({ "cell":'B1', "content": 'CODICE ORDINE OPERATORE'});
+                epacc.write({ "cell":'C1', "content": 'DATA_CREAZIONE'});
+                epacc.write({ "cell":'D1', "content": 'DESCRIZIONE_CAUSALE'});
+                epacc.write({ "cell":'E1', "content": 'STATO SEGNALAZIONE'});
+                epacc.write({ "cell":'F1', "content": 'ESCALATION'});
+                
+                // scorro i singoli record degli account
+                for(var i=1;i<=myContentSelected.length;i++){ 
+                     var colonna = 'A';
+                     //alert(myContent[i-1].Id + ' ' + myContent[i-1].PO_TP_Dettaglio_Richiesta__c);
+                    epacc.write({ "cell":nextColonna(colonna,0) + (i+1) , "content": '' + bIfIsUndef(myContentSelected[i-1].PO_TP_TicketNumber__c) });
+                    epacc.write({ "cell":nextColonna(colonna,1) + (i+1) , "content": '' + bIfIsUndef(myContentSelected[i-1].PO_TP_Codice_Ordine_Ticket_Provisioning__c) });
+                    epacc.write({ "cell":nextColonna(colonna,2) + (i+1) , "content": '' + dIfIsUndef(myContentSelected[i-1].CreatedDate) });
+                    epacc.write({ "cell":nextColonna(colonna,3) + (i+1) , "content": '' + bIfIsUndef(myContentSelected[i-1].PO_TP_Descrizione_Causale__c) }); 
+                    epacc.write({ "cell":nextColonna(colonna,4) + (i+1) , "content": '' + bIfIsUndef(myContentSelected[i-1].PO_TP_Stato_Ticket__c) });   
+                    epacc.write({ "cell":nextColonna(colonna,5) + (i+1) , "content": '' + bIfIsUndef(myContentSelected[i-1].PO_TP_Escalation__c) });  
+                }
+                
+                var today = new Date();
+                var dd = today.getDate();
+                var mm = today.getMonth()+1; //January is 0!
+                var yyyy = today.getFullYear();
+                if(dd<10) {
+                    dd = '0'+dd
+                } 
+                if(mm<10) {
+                    mm = '0'+mm
+                }  
+                var todaystring = yyyy + '_' + mm + '_' + dd;
+    
+                epacc.saveAs(todaystring+"_export_SegnalazioneProvisioning");                
+            }
+            */            
+            
+            function bIfIsUndef(myvar){
+                if (typeof myvar === "undefined") {
+                     return '';
+                }else{
+                    return myvar;
+                }
+            }
+            
+            function dIfIsUndef(myvar){
+                if (typeof myvar === "undefined") {
+                     return '';
+                }else{
+                    return moment(myvar).format("DD/MM/YYYY HH:mm");
+                }
+            }
+            
+            function init(){
+                myContent=JSON.parse($("[id$='IDlistRichiesteTPstring']").text());
+                //alert(JSON.stringify(myContent));
+
+                /*
+                $( "select[id$='IDFilterCausaleApertura']" ).multiselect({
+                    
+                    buttonWidth: '200px',
+                    nSelectedText: 'selezionati',
+                    nonSelectedText: 'Nessuno ',
+                    selectAllText : 'seleziona tutti',
+                    allSelectedText : 'tutti selezionati',
+                    onChange: function(option, checked, select) {
+                        valL1=$( "select[id$='IDFilterCausaleApertura']" ).val();
+                        valL1='{!causApertuAtt}';
+                        //alert(valL1);
+                    }
+
+                    
+                });
+                $( "select[id$='IDFilterCausaleApertura']" ).multiselect('select', valL1);
+                */                
+                valL1='{!causApertuAtt}';
+                //FIX PG - 23-04 - Hide Option - START
+                if(valL1=='Segnalazione Provisioning')
+                {
+                     $("#IDFilterDescrizioneCausale option[value='Richiesta Informazioni']").remove(); 
+                     $("#IDFilterDescrizioneCausale option[value='Nuova Segnalazione']").remove();
+                }
+                else if(valL1=='Problema tecnico/applicativo')
+                { 
+                    $("#IDFilterDescrizioneCausale option[value='Sollecito']").remove();
+                }
+                //FIX PG - 23-04 - Hide Option - END
+
+                $( "select[id$='IDFilterDescrizioneCausale']" ).multiselect({
+                    
+                    buttonWidth: '200px',
+                    nSelectedText: 'selezionati',
+                    nonSelectedText: 'Nessuno ',
+                    selectAllText : 'seleziona tutti',
+                    allSelectedText : 'tutti selezionati',
+                    onChange: function(option, checked, select) {
+                        valL2=$( "select[id$='IDFilterDescrizioneCausale']" ).val();
+                        //alert(valL1);
+                    }
+
+                    
+                });
+                $( "select[id$='IDFilterDescrizioneCausale']" ).multiselect('select', valL2);
+                
+                $( "select[id$='IDFilterStatus']" ).multiselect({
+                    
+                    buttonWidth: '200px',
+                    nSelectedText: 'selezionati',
+                    nonSelectedText: 'Nessuno ',
+                    selectAllText : 'seleziona tutti',
+                    allSelectedText : 'tutti selezionati',
+                    onChange: function(option, checked, select) {
+                           valL3=$( "select[id$='IDFilterStatus']" ).val();
+                            //alert(valL2);
+                    }
+
+                });
+                $( "select[id$='IDFilterStatus']" ).multiselect('select', valL3);
+                
+                $( "select[id$='IDFilterEscalation']" ).multiselect({
+                
+                buttonWidth: '200px',
+                nSelectedText: 'selezionati',
+                nonSelectedText: 'Nessuno ',
+                selectAllText : 'seleziona tutti',
+                allSelectedText : 'tutti selezionati',
+                onChange: function(option, checked, select) {
+                    valL4=$( "select[id$='IDFilterEscalation']" ).val();
+                    //alert(valL4);
+                    }                    
+                });
+                $( "select[id$='IDFilterEscalation']" ).multiselect('select', valL4);
+                
+                  $("[id$='datefilter']").daterangepicker({
+                      autoUpdateInput: false,
+                      "locale": {
+                            "format": "DD/MM/YYYY",
+                            "separator": " / ",
+                            "applyLabel": "Applica",
+                            "cancelLabel": "Pulisci",
+                            "fromLabel": "DA",
+                            "toLabel": "A",
+                            "customRangeLabel": "Custom",
+                            "daysOfWeek": [
+                                "Dom",
+                                "Lun",
+                                "Mar",
+                                "Mer",
+                                "Gio",
+                                "Ven",
+                                "Sab"
+                            ],
+                            "monthNames": [
+                                "Gennaio",
+                                "Febbraio",
+                                "Marzo",
+                                "Aprile",
+                                "Maggio",
+                                "Giugno",
+                                "Luglio",
+                                "Agosto",
+                                "Settembre",
+                                "Ottobre",
+                                "Novembre",
+                                "Dicembre"
+                            ],
+                            "firstDay": 1
+                        }
+                  });
+                  
+
+                  $("[id$='datefilter']").on('apply.daterangepicker', function(ev, picker) {
+                      $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+                      DataInizio=picker.startDate.format();
+                      DataFine=picker.endDate.format();
+                  });
+                
+                  $("[id$='datefilter']").on('cancel.daterangepicker', function(ev, picker) {
+                      $(this).val('');
+                      DataInizio='';
+                      DataFine='';
+                  });
+                  
+                  if(DataInizio!=''&&DataFine!=''){
+                    $("[id$='datefilter']").val(moment(DataInizio).format("DD/MM/YYYY") + ' - ' + moment(DataFine).format("DD/MM/YYYY"));
+                  }
+                
+            }
+            
+            $(document).ready(function() {
+                init();
+            });
+            
+        </script>  
+    </html>
+</apex:component>

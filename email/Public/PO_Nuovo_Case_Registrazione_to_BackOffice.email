@@ -1,0 +1,11 @@
+Notifica automatica:
+
+E' stata creata una nuova Richiesta di Registrazione numero {!Case.CaseNumber},  in attesa di essere lavorata all'interno della Coda di Registrazione.
+
+Per accedere alla richiesta utilizzare il link https://eu6.salesforce.com/500/o accedendo con le proprie credenziali e recarsi sulla Tab "Casi" per visualizzare e prendere in carico la richiesta.
+
+Questa è un email generata automaticamente, si prega di non rispondere. 
+
+Grazie 
+
+{!Organization.Name}

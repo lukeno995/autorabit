@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>Not Started</fullName>
+        <default>true</default>
+        <label>Not Started</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Completata</fullName>
+        <default>false</default>
+        <label>Completata</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Appuntamento Censimento Interno OK</fullName>
+        <default>false</default>
+        <label>Appuntamento Censimento Interno OK</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Appuntamento Censimento Interno KO</fullName>
+        <default>false</default>
+        <label>Appuntamento Censimento Interno KO</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Appuntamento Censimento Interno in attesa risposta Amministratore</fullName>
+        <default>false</default>
+        <label>Appuntamento Censimento Interno in attesa risposta Amministratore</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Negoziazione OF Accesso Censimento Interno OK</fullName>
+        <default>false</default>
+        <label>Negoziazione OF Accesso Censimento Interno OK</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Negoziazione OF Accesso Censimento Interno KO</fullName>
+        <default>false</default>
+        <label>Negoziazione OF Accesso Censimento Interno KO</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Negoziazione OF Accesso Censimento interno in attesa risposta Amministratore</fullName>
+        <default>false</default>
+        <label>Negoziazione OF Accesso Censimento interno in attesa risposta Amministratore</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Censimento in Acquisizione</fullName>
+        <default>false</default>
+        <label>Censimento in Acquisizione</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Censimento Interno OK</fullName>
+        <default>false</default>
+        <label>Censimento Interno OK</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Richiesta Permesso Lavori KO</fullName>
+        <default>false</default>
+        <label>Richiesta Permesso Lavori KO</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Richiesta Permesso Lavori OK</fullName>
+        <default>false</default>
+        <label>Richiesta Permesso Lavori OK</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Richiesta Permesso Lavori in attesa risposta Amministratore</fullName>
+        <default>false</default>
+        <label>Richiesta Permesso Lavori in attesa risposta Amministratore</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Negoziazione Impresa Accesso Censimento Interno OK</fullName>
+        <default>false</default>
+        <label>Negoziazione Impresa Accesso Censimento Interno OK</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Negoziazione Impresa Accesso Censimento Interno KO</fullName>
+        <default>false</default>
+        <label>Negoziazione Impresa Accesso Censimento Interno KO</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Negoziazione Impresa Accesso Censimento Interno in attesa risposta Amministratore</fullName>
+        <default>false</default>
+        <label>Negoziazione Impresa Accesso Censimento Interno in attesa risposta Amministratore</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Negoziazione Impresa Richiesta Permesso Lavori OK</fullName>
+        <default>false</default>
+        <label>Negoziazione Impresa Richiesta Permesso Lavori OK</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Negoziazione Impresa Richiesta Permesso Lavori KO</fullName>
+        <default>false</default>
+        <label>Negoziazione Impresa Richiesta Permesso Lavori KO</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Negoziazione Impresa Richiesta Permesso Lavori in attesa risposta amministratore</fullName>
+        <default>false</default>
+        <label>Negoziazione Impresa Richiesta Permesso Lavori in attesa risposta amministratore</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Negoziazione OF Richiesta Permesso Lavori OK</fullName>
+        <default>false</default>
+        <label>Negoziazione OF Richiesta Permesso Lavori OK</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Negoziazione OF Richiesta Permesso Lavori KO</fullName>
+        <default>false</default>
+        <label>Negoziazione OF Richiesta Permesso Lavori KO</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Negoziazione OF Richiesta Permesso Lavori in attesa risposta Amministratore</fullName>
+        <default>false</default>
+        <label>Negoziazione OF Richiesta Permesso Lavori in attesa risposta Amministratore</label>
+        <closed>false</closed>
+    </standardValue>
+</StandardValueSet>

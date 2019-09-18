@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Request Remedy</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Requests Remedy</value>
+    </caseValues>
+    <fields>
+        <label><!-- EOF_Account_OLO --></label>
+        <name>EOF_Account_OLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- EOF_Codice_Operatore_WS --></label>
+        <name>EOF_Codice_Operatore_WS__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Comune --></label>
+        <name>OF_Comune__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Contract --></label>
+        <name>OF_Contract__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF ID Servizio --></label>
+        <name>OF_ID_Servizio__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy Processato Errore --></label>
+        <name>OF_Remedy_Processato_Errore__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy Processato --></label>
+        <name>OF_Remedy_Processato__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy actionDate --></label>
+        <name>OF_Remedy_actionDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy buildingNumber --></label>
+        <name>OF_Remedy_buildingNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Remedy createdBy --></label>
+        <name>OF_Remedy_createdBy__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy customerDivision --></label>
+        <name>OF_Remedy_customerDivision__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy customerId --></label>
+        <name>OF_Remedy_customerId__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy customerOrder --></label>
+        <name>OF_Remedy_customerOrder__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy elementaryArea --></label>
+        <name>OF_Remedy_elementaryArea__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy faultCause --></label>
+        <name>OF_Remedy_faultCause__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy faultResolution --></label>
+        <name>OF_Remedy_faultResolution__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy idBuilding --></label>
+        <name>OF_Remedy_idBuilding__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy internalOrder --></label>
+        <name>OF_Remedy_internalOrder__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy macroArea --></label>
+        <name>OF_Remedy_macroArea__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy networkIdResource --></label>
+        <name>OF_Remedy_networkIdResource__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy oloCommCode --></label>
+        <name>OF_Remedy_oloCommCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy oloMessageCode --></label>
+        <name>OF_Remedy_oloMessageCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy oloMessage --></label>
+        <name>OF_Remedy_oloMessage__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy packageProvisioningCode --></label>
+        <name>OF_Remedy_packageProvisioningCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy pop --></label>
+        <name>OF_Remedy_pop__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy pricePlanProvisioningCode --></label>
+        <name>OF_Remedy_pricePlanProvisioningCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy productProvisioningCode --></label>
+        <name>OF_Remedy_productProvisioningCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy promoCode --></label>
+        <name>OF_Remedy_promoCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy quantity --></label>
+        <name>OF_Remedy_quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy serialNumber --></label>
+        <name>OF_Remedy_serialNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy streetName --></label>
+        <name>OF_Remedy_streetName__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy toponymyUnit --></label>
+        <name>OF_Remedy_toponymyUnit__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy town --></label>
+        <name>OF_Remedy_town__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy ttNumber --></label>
+        <name>OF_Remedy_ttNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Remedy verticalOperator --></label>
+        <name>OF_Remedy_verticalOperator__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF Service Code --></label>
+        <name>OF_Service_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Number --></label>
+        <name>Request_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Valida --></label>
+        <name>Request_Valida__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- EOF Request Assurance Remedy --></label>
+        <name>EOF_Request_Assurance_Remedy</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- EOF Request Attivazione Remedy --></label>
+        <name>EOF_Request_Attivazione_Remedy</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- EOF Request CPE Remedy --></label>
+        <name>EOF_Request_CPE_Remedy</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- EOF Request Cessazione Remedy --></label>
+        <name>EOF_Request_Cessazione_Remedy</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- EOF Request Provisioning Remedy --></label>
+        <name>EOF_Request_Provisioning_Remedy</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

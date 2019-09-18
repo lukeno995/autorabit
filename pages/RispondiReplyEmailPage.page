@@ -1,0 +1,37 @@
+<apex:page standardStylesheets="true" doctype="html-5.0" showHeader="true" standardController="case" extensions="EmailMessages">
+     
+    <apex:form >
+        <apex:pageBlock title="Reply Email">
+            <apex:pageBlockSection >
+                <!--<apex:pageBlockSectionItem >
+                    
+                    From Address <apex:inputField value="{!replymail.FromAddress}"  />
+                </apex:pageBlockSectionItem><br/>-->
+                <!-- <apex:pageBlockSectionItem >
+To Address <apex:inputField value="{!replymail.ToAddress}" />
+</apex:pageBlockSectionItem><br/>-->
+                <apex:pageBlockSectionItem >
+                    
+                    Body <apex:inputTextarea value="{!replymail.TextBody}" richText="true"/>
+                    
+                </apex:pageBlockSectionItem><br/>
+                <apex:pageBlockSectionItem >
+               File Upload <apex:inputFile style="width:100%" id="fileToUpload" value="{!fileBody}" filename="{!fileName}" />
+                
+                </apex:pageBlockSectionItem>
+                
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockButtons location="Bottom">
+                <apex:commandlink action="{!replyEmail}" value="Rispondi" styleClass="btn btn-primary" />
+                
+                <!--<apex:commandLink value="Rispondi" target="_blank" styleClass="btn" action="{!action="{!Canceling}"}"/>-->
+                <apex:commandlink value="Cancel" styleClass="btn btn-primary" onclick="window.top.location='/console?id+{!replymail.parentid}'; return false" />
+                
+                                               
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        
+    </apex:form>
+ 
+</apex:page>

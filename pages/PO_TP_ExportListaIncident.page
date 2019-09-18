@@ -1,0 +1,33 @@
+<apex:page controller="PO_TP_ExportListaIncident_Ctrl"  contentType="application/vnd.ms-excel#Export_IncidentManagement.xls" action="{!fetchList}" showHeader="false" sidebar="false" standardStylesheets="false" cache="true" >
+<html> PO_TP_ExportListaIncident.page 
+<head></head>
+<body>
+	<apex:pageBlock id="ExportRichiesteInc">
+	<apex:pageBlockTable value="{!listRichiesteTP}" var="r">
+		<apex:column >
+			<apex:facet name="header">ID SEGNALAZIONE</apex:facet>
+				{!r.PO_TP_TicketNumber__c}
+		</apex:column>
+		<apex:column >
+			<apex:facet name="header">DATA_CREAZIONE</apex:facet>
+			<apex:outputText value="{0,date,dd/MM/yyyy}">
+				<apex:param value="{!r.createdDate}" />
+			</apex:outputText>
+		</apex:column>
+		<apex:column >
+			<apex:facet name="header">DESCRIZIONE CAUSALE</apex:facet>
+				{!r.PO_TP_Descrizione_Causale__c}
+		</apex:column>
+		<apex:column >
+			<apex:facet name="header">STATO SEGNALAZIONE</apex:facet>
+				{!r.PO_TP_Stato_Ticket__c}
+		</apex:column>
+		<apex:column >
+			<apex:facet name="header">ESCALATION</apex:facet>
+				{!r.PO_TP_Escalation__c}
+		</apex:column>
+	</apex:pageBlockTable>
+	</apex:pageBlock>
+</body>
+</html>
+</apex:page>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Coda Imprese</name>
+    <queueMembers>
+        <users>
+            <user>davide.marcuglia@ceitimpianti.it</user>
+            <user>leonardo.pugi@ceitimpianti.it</user>
+            <user>stefano.detullio@ceitimpianti.it</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

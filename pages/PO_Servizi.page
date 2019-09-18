@@ -1,0 +1,23 @@
+<apex:page standardController="Case">
+<apex:form >
+<apex:pageBlock title="Servizio">
+<apex:pageBlockSection title="case Details" columns="2">
+<apex:outputField value="{!case.Status}"/>
+<apex:outputField value="{!case.CaseNumber}"/>
+<apex:outputField value="{!case.CreatedDate}"/>
+<apex:outputField value="{!case.PO_Richiesta_a_fattibilit__c}"/>
+<apex:outputField value="{!case.PO_Area_Geografica__c}"/>
+<apex:outputField value="{!case.PO_Prime_Contractor__c}"/>
+<apex:outputField value="{!case.PO_Numero_fibre_richieste__c}"/>
+<apex:outputField value="{!case.PO_Tipo_percorso__c}"/>
+<apex:outputField value="{!case.PO_Siti_da_collegare__c}"/>
+<apex:outputField value="{!case.PO_Nome_sito__c}"/>
+<apex:outputField value="{!case.PO_Indirizzo_sito__c}"/>
+<apex:outputField value="{!case.PO_Note_collegamento__c}"/>
+</apex:pageBlockSection>
+<apex:pageBlockButtons location="top">
+<apex:commandButton value="Back"/>
+</apex:pageBlockButtons>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

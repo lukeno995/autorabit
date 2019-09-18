@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Coda Ref. Fattibilità Nord Ovest</name>
+    <queueMembers>
+        <roles>
+            <role>Direzione</role>
+            <role>PO_Referente_Fattibilit_Nord_Ovest</role>
+        </roles>
+        <users>
+            <user>alessandra.caruso@openfiber.it</user>
+            <user>angelo.busnelli@openfiber.it</user>
+            <user>bonifichepsm@openfiber.it</user>
+            <user>giovanni.giola@openfiber.it</user>
+            <user>mariangela.palazzo@openfiber.it</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

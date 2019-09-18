@@ -1,0 +1,1518 @@
+<apex:page Controller="PO_P2PAttiva_EditLogInfoCntrlELine" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false"
+           action="{!insertChildLog}" >
+    <!--  standardController="Case" id="pageID" extensions="PO_RegistrationController"  sostituisci controller con PO_P2PAttiva_EditLogInfoCntrl -->
+    
+    <html lang="en">
+        <head>
+            <apex:slds /> 
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>         
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            
+            
+            <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+            <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>            
+            <link rel = "stylesheet"  type = "text/css"  href = "//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+            
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+                .custPopup{ background-color: white; 
+                border-width: 1px;
+                border-color: #ddd;
+                border-style: solid;
+                z-index: 9999; 
+                left: 50%; 
+                padding:11px;
+                position: fixed;
+                width: 600px;
+                margin-left: -240px;
+                top:20%; } 
+                .popupBackground{ 
+                opacity: 0.20;
+                filter: alpha(opacity = 20);
+                position: absolute;
+                width: 100%; height: 100%;
+                top: 50%; 
+                left: 0; 
+                z-index: 9998; }                 
+            </style>
+        </head>
+        <body>
+            <div id="wrapper" >
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <c:PO_SideBarComponent Rec="{!recordOfferta}" />                   
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" id="side-menu"></ul>
+                        </div>
+                        <!-- /.sidebar-collapse -->
+                    </div>
+                    <!-- /.navbar-static-side -->
+                </nav>
+                <div >
+                    <div style="color:red;" id="showerror">
+                        <apex:pageMessages id="errors" /> 
+                    </div>
+                    <apex:outputPanel id="testform">
+                    </apex:outputPanel>
+                </div>
+                
+                <div id="page-wrapper">
+                    
+                    <!-- <apex:form title="Child Page">
+
+<apex:pageBlock >
+<apex:pageBlockSection >
+<apex:pageBlockSectionItem >
+<apex:outputPanel>
+<apex:inputText value="{!searchvalue}"/>
+<!--<apex:actionSupport event="onkeyup" action="{!onkeyupAction}" reRender="one"/>-->
+                    <!-- <apex:actionSupport event="onchange" action="{!onkeyupAction}" reRender="one"/></apex:inputText>
+<apex:commandButton value="Search" action="{!searchAction}"  style="background-image:url({!URLFOR($Resource.SiteSamples,'img/search.png')});"/>-->
+                    <!-- <span class="slds-icon_container slds-icon-utility-search" >
+<svg aria-hidden="true" class="slds-icon slds-icon--small" style="width:2%;">
+<use xmlns:xlink="http://www.w3.org/2000/xlink"
+xlink:href="/apexpages/slds/latest/assets/icons/utility-sprite/svg/symbols.svg#search">
+</use> 
+</svg>
+
+</span>
+</apex:outputPanel>
+</apex:pageBlockSectionItem> 
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:form>-->
+                    <apex:form id="formID2"> 
+                        
+                        <div id="tstpopup" style="display:none;">
+                            <apex:outputPanel >
+                                <apex:outputPanel styleClass="popupBackground" /> 
+                                <apex:outputPanel styleClass="custPopup"  >
+                                    <div class="row"   >
+                                        <div class="col-lg-8" style="width: 100.666667%;height: 250px;">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <i></i>Sedi Master
+                                                    
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>Sede Master*</label>
+                                                                <span class="glyphicon glyphicon-search"></span> 
+                                                                <apex:inputText id="sediId" value="{!searchTerm2}" styleClass="form-control" onkeypress="return noenter(event);"  />
+                                                                <!--<apex:inputHidden id="searchcommuneId" value="{!selectedIdComune}" />-->
+                                                                <apex:inputHidden id="namelog" value="{!nameSede}" />
+                                                                <apex:commandButton style="float: right;margin-top: -13%;margin-right: -35%;" styleClass="btn btn-primary"  value="Cerca" onclick="searchMaster()"  reRender="none" id="cercaBtn"/>
+                                                                
+                                                            </div>  
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <apex:pageBlock id="block">        
+                                                <apex:pageBlockSection id="blockSection" columns="1">
+                                                    <apex:outputPanel layout="block">
+                                                        <div style="overflow: auto; height: 100px;width: 150px!important;">
+                                                            <span id="remoteContactName" style="text-decoration: underline;color: blue;cursor:pointer;" onclick="updateSedeM(this)" ></span>
+                                                            <!--<span id="infoName"></span>-->
+                                                        </div>
+                                                    </apex:outputPanel>
+                                                      <!-- <apex:outputPanel layout="block" style="overflow: auto; height: 100px;width: 150px!important;">
+                                                        
+                                                    </apex:outputPanel>-->
+                                                </apex:pageBlockSection>
+                                            </apex:pageBlock>
+                                        </div>
+                                    </div>
+                                    
+                                    <apex:commandButton styleClass="btn btn-primary"  style="float: right;" value="Chiudi" onclick="closeModal()" reRender="none" /> 
+                                </apex:outputPanel> 
+                            </apex:outputPanel> 
+                        </div>
+                    </apex:form> 
+                    <apex:form id="one">
+                        <apex:pageBlock rendered="{!render1}"> 
+                            <apex:pageMessages ></apex:pageMessages>
+                            <apex:pageBlockTable value="{!cnt}" var="record">
+                                <apex:column >
+                                    <apex:outputLink value="#" onclick="fillIn('{!record.Name}','{!record.id}')">{!record.Name}</apex:outputLink> </apex:column>
+                            </apex:pageBlockTable>
+                        </apex:pageBlock>
+                    </apex:form>
+                    <div class="row"   >
+                        <div class="col-lg-8" style="width:73.666667%;">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i></i>Sede
+                                    
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <apex:form id="formID">
+                                            
+                                            
+                                            
+                                            <form role="form" class="form-horizontal">
+                                                
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">    
+                                                        <label>Status : </label> &nbsp; &nbsp;
+                                                        <apex:outputField id="Status" styleClass="form-control"  value="{!childLog.EOF_Stato_Richiesta__c}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Data di Creazione : </label> &nbsp; &nbsp;
+                                                        <apex:outputField id="DatadiCreazione" styleClass="form-control"  value="{!childLog.CreatedDate}"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">  
+                                                        <label>Collegamento : </label> &nbsp; &nbsp;
+                                                        <apex:outputField id="Collegamento" styleClass="form-control" value="{!childLog.EOF_Codice_Ordine_OLO__c}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Richiesta fattibilità : </label> &nbsp; &nbsp;
+                                                        <apex:outputfield id="Richiestafattibilità" styleClass="form-control" value="{!childLog.EOF_SL_Riferimento__r.EOF_Codice_Ordine_OLO__c}"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Comune*</label>
+                                                        <span class="glyphicon glyphicon-search"></span> 
+                                                        <apex:inputText id="comuneId" value="{!searchTerm}" styleClass="form-control" onkeypress="return noenter(event);"  />
+                                                        <apex:inputHidden id="searchcommuneId" value="{!selectedIdComune}" />
+                                                    </div>  
+                                                    <div class="form-group">
+                                                        <label>Tipo percorso*</label>
+                                                        <apex:inputField id="Tipopercorso" styleClass="form-control" onkeypress="return noenter(event);" onchange="showTrafficBalance(this);" value="{!childLog.PO_Tipo_percorso__c}"/>
+                                                    </div>
+                                                </div> 
+                                                
+                                                
+                                                <div class="col-lg-6" >
+                                                    <div class="form-group">
+                                                        <label>Tipo di collegamento*</label>
+                                                        <apex:selectList id="tipodicolle" label="Tipo di collegamento*"  required="true" disabled="true" styleClass="form-control" onkeypress="return noenter(event);">
+                                                            <apex:selectOptions Value="{!opt}" />
+                                                        </apex:selectList>   
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Prime Contractor*</label>
+                                                        <apex:inputText id="PrimeContracto" styleClass="form-control"    value="{!accountN.Name}"/> <!-- modify 09/05/2019 P2P attiva-->
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                                <div class="form-group">
+                                                    <div class="col-lg-8">
+                                                        <apex:outputPanel > 
+                                                        </apex:outputPanel>
+                                                        
+                                                    </div>
+                                                    <div class="form-group"  id="trafficfield">
+                                                        <div class="col-lg-6" >
+                                                            <label>Traffic Load Balancing*</label>
+                                                            <apex:selectList id="TrafficLoadBalancing" label="Traffic Load Balancing*" size="1" required="true"  styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.TrafficLoadBalancing__c}" disabled="true">
+                                                                <apex:selectOptions Value="{!optTraffic}" />
+                                                                <apex:inputHidden id="trafficValue" value="{!trafficLoadBalancing}" />
+                                                            </apex:selectList>                                                                </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label>Velocità di Banda*</label> &nbsp; &nbsp;
+                                                            <apex:selectList id="velocitabanda" label="Velocità di Banda*" size="1" required="true"  styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.EOF_PROFILO__c}" onchange="changeTableProfilo(this);" >
+                                                                <apex:selectOptions Value="{!optVelocitaBanda}" />
+                                                            </apex:selectList>                                                       
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <div class="form-group"  >
+                                                        <div class="col-lg-6" >
+                                                            <h5 style="font-size:16px"><B> <u>Informazioni Sede da collegare </u> </B></h5>                                                           
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                
+                                                
+                                                <div class="form-group">
+                                                    <div class="col-lg-8">
+                                                        <apex:outputPanel > 
+                                                        </apex:outputPanel>
+                                                        
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>Sede*</label>
+                                                                <apex:inputField id="Sito" styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.PO_Sito__c}" />
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label>ID Sede*</label>
+                                                            <apex:outputText id="IdSede" styleClass="form-control"  value="{!strSedeCalc}"/>
+                                                        </div>
+                                                    </div>  
+                                                    
+                                                    <!--<div class="col-lg-6">
+<div class="form-group">
+<label>Sede*</label>
+<apex:inputField id="Sito" styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.PO_Sito__c}" />
+</div>
+</div>-->
+                                                </div>
+                                                <div class="form-group"  >
+                                                    <div class="col-lg-6">
+                                                        <label>Particella Toponomastica*</label>
+                                                        <apex:inputField id="Particellatoponomastica" styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.Particella_Toponomastica_1__c}"/>                                                            
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group"> 
+                                                            <label>Tipologia Sede*</label> &nbsp; &nbsp;
+                                                            <apex:inputField id="tipSede" styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.Tipologia_Sede__c}" onchange="changeSede(this)" />
+                                                        </div>
+                                                    </div> 
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <div class="col-lg-8">
+                                                        <apex:outputPanel > 
+                                                        </apex:outputPanel>
+                                                        
+                                                    </div>
+                                                    <div class="form-group"> 
+                                                        <div class="col-lg-6">
+                                                            <label>Indirizzo*</label>
+                                                            <apex:inputField id="Indirizzocollegamento" styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.PO_Indirizzo_collegamento__c}"  />
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <div class="form-group"> 
+                                                                <label>ID Sede Master*</label> &nbsp; &nbsp;
+                                                                <apex:outputPanel rendered="{!!isMaster}"> 
+                                                                    <apex:inputText id="sedeMaster" styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.ID_Sede_Master__r.ID_Sede__c}"  />
+                                                                </apex:outputPanel>
+                                                                <apex:outputPanel rendered="{!isMaster}"> 
+                                                                    <apex:inputText id="sedeMaster2" styleClass="form-control" onkeypress="return noenter(event);" value="{!masterList[0].ID_Sede_Master__r.ID_Sede__c}"  />
+                                                                </apex:outputPanel>
+                                                                <span class="glyphicon glyphicon-search" style="border: 2px solid black;margin: -9%;float: right;" onclick="openSearchSede()"></span> 
+                                                                <apex:inputHidden id="sedeMastSpan" value="{!sedeValue}" />
+                                                                
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                                <div class="form-group">
+                                                    <div class="col-lg-8">
+                                                        <apex:outputPanel > 
+                                                        </apex:outputPanel>
+                                                        
+                                                    </div>
+                                                    
+                                                    <div class="form-group">
+                                                        <div class="col-lg-6">
+                                                            <label>Civico*</label>
+                                                            <apex:inputField id="Civico" styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.PO_Civico__c}"  />
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-3" >Service Attribute*</label>
+                                                        <div class="col-sm-6">
+                                                            <apex:inputField id="selezKIT" styleClass="form-control"  value="{!childLog.Service_Attribute__c}" onchange="showlistKIT(this);"/> 
+                                                            <!--<apex:inputHidden id="serviceAttr" value="{!serviceAttribute}" />-->
+                                                        </div> 
+                                                    </div>
+                                                    
+                                                </div>
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                <div class="form-group"> 
+                                                    <div class="col-lg-8">
+                                                        <apex:outputPanel > 
+                                                        </apex:outputPanel>
+                                                        
+                                                    </div>
+                                                    
+                                                    <div class="form-group">
+                                                        <div class="col-lg-6">
+                                                            <label class="control-label col-sm-1" for="Note"> Note</label>
+                                                            <apex:inputField id="Notasede" styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.PO_Nota_sito__c}"   />
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-3" >Optical Rate Limiting*</label>
+                                                        <div class="col-sm-6">
+                                                            <apex:inputField id="OptRateLim" value="{!childLog.PO_P2PAttiva_Optical_Rate_Limiting__c}" styleClass="form-control" onchange="changeIntCPE(this);"/> 
+                                                        </div> 
+                                                    </div>
+                                                    
+                                                </div>
+                                                <!-- CPE SECTION -->
+                                                <div class="form-group">
+                                                    <div class="col-lg-8">
+                                                        <apex:outputPanel >
+                                                            <label>CPE  </label>
+                                                        </apex:outputPanel>
+                                                    </div>
+                                                    <div class="col-lg-6" >
+                                                        <label>Tipologia CPE*</label>
+                                                        <apex:inputField id="tipologiaCPE" styleClass="form-control" value="{!childLog.Tipologia_CPE__c }"/> <!-- onkeypress="return noenter(event);" -->                                                    </div>
+                                                    
+                                                    <div class="col-lg-6">
+                                                        <label>Tipologia Alimentazione*</label>
+                                                        <apex:inputField id="tipologiaAlimentazione" styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.Tipologia_Alimentazione__c }"/>
+                                                    </div>   
+                                                </div> 
+                                                <div class="form-group">
+                                                    <div class="col-lg-8">
+                                                        <apex:outputPanel >  
+                                                        </apex:outputPanel>    
+                                                    </div>
+                                                    <div class="col-lg-6" >
+                                                        <label>Interfaccia CPE*</label>
+                                                        <apex:inputField id="interfacciaCPE" styleClass="form-control" onkeypress="return noenter(event);" onchange="showMessageforKIT(this);" value="{!childLog.Interfaccia_CPE__c }"/>
+                                                    </div>
+                                                </div> 
+                                                
+                                                
+                                                <div class="form-group">
+                                                    
+                                                    <div class="col-lg-8">
+                                                        <apex:outputPanel id="pgblckID">
+                                                            
+                                                            
+                                                            <apex:commandLink styleClass="btn btn-primary"  onclick="validateform('salva'); return false;"  value="Salva"/> &nbsp;&nbsp;
+                                                            <apex:actionFunction action="{!SaveParentChildLogInfo}" name="SaveParentChildCaseInfomethod" >
+                                                            </apex:actionFunction>
+                                                            <apex:commandButton styleClass="btn btn-primary"  action="{!Annulla}" value="Annulla" immediate="true" html-formnovalidate="formnovalidate"/> &nbsp;&nbsp;
+                                                            <apex:commandButton styleClass="btn btn-primary"  action="{!deleteChildAlone}" value="Elimina" rendered="{!AND(childLog.EOF_Stato_Richiesta__c=='Bozza Portale')}" immediate="true" html-formnovalidate="formnovalidate"/>&nbsp;&nbsp;
+                                                            <!--<apex:commandLink styleClass="btn btn-primary"    value="AggiungiKit" onclick="validateform('aggiungiKIT'); return false;"  rendered="{!isKit}" />
+<apex:actionFunction action="{!inserisciNuovoKit}" name="insertKit" >
+</apex:actionFunction>-->
+                                                            <!-- <apex:actionFunction action="{!updateSedeMaster}" name="updSedeMast" >
+</apex:actionFunction>-->
+                                                            <apex:commandButton styleClass="btn btn-primary" id="scegliprof" style="margin:2%;"  value="Scegli Profilo" onclick="validateform('scegliProfilo'); return false;"    rendered="{!isProfilo}"/>
+                                                            <apex:actionFunction action="{!insertVlan}" name="insertVLAN" >
+                                                            </apex:actionFunction>
+                                                            <apex:actionFunction action="{!insertNewVLAN}" name="insertVlan" />
+                                                            <apex:actionFunction action="{!getRecordProfili}" name="calcProfili" />
+                                                        </apex:outputPanel>
+                                                    </div>
+                                                    
+                                                    <div class="col-lg-4">
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">File allegati</button>
+                                                    </div>
+                                                    
+                                                    <div class="modal fade" id="myModal" role="dialog">
+                                                        <div class="modal-dialog">
+                                                            <apex:actionRegion > 
+                                                                <!-- Modal content-->
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                        <h4 class="modal-title">Upload Allegato</h4>
+                                                                    </div>
+                                                                    <div class="modal-body" >
+                                                                        <!--<input type="file" style="width:100%" id="fileToUpload" value="{!fileBody}" name="{!fileName}"  />-->
+                                                                        <apex:inputFile style="width:100%" id="fileToUpload" value="{!fileBody}" filename="{!fileName}"  />
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <apex:commandButton value="Upload Allegato" action="{!upload}" styleClass="btn btn-primary"  />
+                                                                    </div>
+                                                                </div>
+                                                            </apex:actionRegion>    
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <apex:outputPanel rendered="{!vlanList.size>0}">                   
+                                                    <div class="col-lg-8" style="width:100%;margin-top: 5%;">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                <i></i>Profili
+                                                            </div>
+                                                            <div class="panel-body">
+                                                                <div class="row">
+                                                                    <apex:outputPanel >
+                                                                        
+                                                                        <div class="form-group">    
+                                                                            <!--<div class="col-lg-10">
+<label>KIT Consegna VLAN : </label> &nbsp; &nbsp;
+<apex:outputField id="Status" styleClass="form-control"  value="{!vlanList[0].OF_SA_KIT_CONSEGNA_VLAN__c}"/>
+</div>-->
+                                                                            <div class="col-lg-6">
+                                                                            </div>
+                                                                        </div> 
+                                                                        
+                                                                        <div class="form-group">
+                                                                            <div class="col-lg-6" style="float: initial;">
+                                                                                <!--<label>Service VLAN : </label> &nbsp; &nbsp;
+<apex:outputField id="Collegamento" styleClass="form-control" value="{!vlanList[0].OF_SA_SERVICE_VLAN__c}"/>-->
+                                                                            </div>                                        
+                                                                            <apex:commandLink styleClass="btn btn-primary"  onclick="validateform('modProf'); return false;"  value="Modifica Profilo" rendered="{!childLog.EOF_Stato_Richiesta__c=='Bozza Portale'}" style="margin-bottom: -20%;margin-left: 5%;"/> &nbsp;&nbsp;
+                                                                            <apex:actionFunction action="{!modifyProf}" name="SaveParentChildCaseInfomethodP" >
+                                                                            </apex:actionFunction>
+                                                                            <!--<apex:commandButton styleClass="btn btn-primary"  action="{!modifyProf}" value="Modifica Profilo" rendered="{!childLog.EOF_Stato_Richiesta__c=='Bozza Portale'}" immediate="true" html-formnovalidate="formnovalidate"/>&nbsp;&nbsp;-->
+                                                                            
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        <div class="col-sm-8" id="tablePr"  style="float: right;margin-top: -4%;">
+                                                                            <apex:outputPanel id="tableProfili" >
+                                                                                
+                                                                                <table id="theTable"  class="table table-striped table-bordered" width="100%">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th></th>
+                                                                                            <th colspan="2">COS 5</th>
+                                                                                            <th colspan="2">COS 3</th>
+                                                                                            <th colspan="2">COS 1</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td> 
+                                                                                                <apex:outputText value="{!vlanList[0].PO_P2PAttiva_Opzione__c}"/>
+                                                                                                
+                                                                                                
+                                                                                            </td>
+                                                                                            <th>PIR</th> 
+                                                                                            <th>CIR</th> 
+                                                                                            <th>PIR</th>
+                                                                                            <th>CIR</th>
+                                                                                            <th>PIR</th>
+                                                                                            <th>CIR</th>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            
+                                                                                            <td>
+                                                                                                <apex:outputText id="profilo" value="{!vlanList[0].OF_SA_PROFILO_VLAN__c}"/>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <apex:outputText value="{!vlanList[0].COS5_PIR__c}"/>
+                                                                                                
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <apex:outputText value="{!vlanList[0].COS5_CIR__c}"/>
+                                                                                                
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <apex:outputText value="{!vlanList[0].COS3_PIR__c}"/>
+                                                                                                
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <apex:outputText value="{!vlanList[0].COS3_CIR__c}"/>
+                                                                                                
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <apex:outputText value="{!vlanList[0].COS1_PIR__c}"/>
+                                                                                                
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <apex:outputText value="{!vlanList[0].COS1_CIR__c}"/>
+                                                                                                
+                                                                                            </td>
+                                                                                            
+                                                                                        </tr>
+                                                                                        
+                                                                                    </tbody>
+                                                                                </table>
+                                                                                
+                                                                                
+                                                                            </apex:outputPanel>
+                                                                        </div>      
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                    </apex:outputPanel>
+                                                                    <br/><br/><br/> 
+                                                                    <br/>
+                                                                </div>
+                                                                <!-- /.row (nested) -->
+                                                            </div>
+                                                            <!-- /.panel-body -->
+                                                        </div>    
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                    </div>
+                                                    <!-- /.row -->
+                                                </apex:outputPanel>
+                                                
+                                            </form> 
+                                        </apex:form> 
+                                        <br/>
+                                    </div>
+                                    <!-- /.row (nested) -->
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>    
+                            
+                            <apex:outputPanel id="allToShow" rendered="{!showAllegati}"> <!-- giovanni 2018 - 12 - 21 inizio -->
+                                <div class="row">
+                                    <div class="col-lg-6" style="width:100%;">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <i></i>Allegati
+                                            </div>
+                                            <div>
+                                                <table id="theTable" class="table table-striped table-bordered" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Allegato </th>
+                                                            <th>Data Creazione </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <apex:repeat value="{!childcasedisplayattlist }" var="att">
+                                                            <tr>
+                                                                <td>
+                                                                    <apex:outputLink value="{!URLFOR($Action.Attachment.Download, att.Id)}" target="_blank">{!att.Name}</apex:outputLink>    
+                                                                </td> 
+                                                                <td>
+                                                                    <apex:outputField value="{!att.createdDate}" />
+                                                                </td>
+                                                            </tr> 
+                                                        </apex:repeat>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                
+                            </apex:outputPanel> <!-- giovanni 2018 - 12 - 21 fine -->                           
+                            
+                            
+                            <div class="col-lg-4">        
+                            </div>
+                            <!-- /.col-lg-4 -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /#page-wrapper -->        
+                </div>
+                
+                
+                <!--<apex:outputPanel rendered="{!vlanList.size>0}">
+
+
+</apex:outputPanel>-->
+                
+            </div>
+            
+            
+            
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <!-- Cessa e modifica VLAN -->
+                <script>
+                //Modifica VLAN
+                function modVLAN(idVLAN) {
+                modifyVLAN(idVLAN);
+            }
+            
+            
+            function showKitandProfile(){
+                alert('onchange');
+            }
+            
+            function updateSedeM(data){
+                 debugger;
+                document.getElementById('j_id0:formID2:namelog').value = window.getSelection().baseNode.data;
+                var nameSedeMaster = document.getElementById('j_id0:formID2:namelog').value.split('<br>')[0];
+                if(nameSedeMaster!=undefined){
+                    nameSedeMaster = document.getElementById('j_id0:formID2:namelog').value.replace(new RegExp(String.fromCharCode(160), "g")," ").split(' ' )[0];
+                }
+                if(document.getElementById('j_id0:formID:sedeMaster') ==null){
+                $('[id$=sedeMaster2]').val(document.getElementById('j_id0:formID2:namelog').value.split('<br>')[0]);
+                }
+                else{
+                    $('[id$=sedeMaster]').val(nameSedeMaster);
+                }
+                document.getElementById('tstpopup').style.display='none';
+                document.getElementById('j_id0:formID:sedeMastSpan').value =  window.getSelection().baseNode.data;
+                
+                //updSedeMast();
+            }
+            
+            function changeIntCPE (data){
+
+                if(data.value == '10 GB'){
+                    document.getElementById('j_id0:formID:interfacciaCPE').disabled =true;
+                    document.querySelector('[id$=interfacciaCPE]').value = 'Ottica';
+                }else{
+                    document.getElementById('j_id0:formID:interfacciaCPE').disabled =false;
+                }            
+            }
+            
+            
+            function  changeTableProfilo (data){
+                debugger;
+                var vlanList='{!vlanList.size}';
+                /*if(data.value == '10G'){
+                    document.getElementById('j_id0:formID:interfacciaCPE').disabled =true;
+                    document.querySelector('[id$=interfacciaCPE]').value = 'Ottica';
+                }else{
+                    document.getElementById('j_id0:formID:interfacciaCPE').disabled =false;
+                }*/
+                if(data.value == '2G' ||  data.value == '3G' || data.value == '5G' || data.value == '10G'){
+                    document.getElementById('j_id0:formID:tipologiaCPE').disabled =true;
+                    document.querySelector('[id$=tipologiaCPE]').value = 'High-End';
+                }else{
+                    document.getElementById('j_id0:formID:tipologiaCPE').disabled =false;
+                    document.querySelector('[id$=tipologiaCPE]').value = 'Low-End';
+                }
+                //alert(vlanList);
+                if(vlanList>0 && data.value!='-- None --'){
+                    calcProfili();
+                }
+            }
+            
+            function openSearchSede (){
+                debugger;
+                //alert('onclickspan');
+                if(document.getElementById('j_id0:formID:sedeMaster') ==null){
+                    if(document.getElementById('j_id0:formID:sedeMaster2').disabled==false){
+                        document.getElementById('tstpopup').style.display='block';
+                    }
+                }else{
+                    if(document.getElementById('j_id0:formID:sedeMaster').disabled==false){
+                        document.getElementById('tstpopup').style.display='block';
+                    }
+                }
+            }
+            
+            function changeSede(data){
+                debugger;
+                var urlParams = new URLSearchParams(window.location.search);
+                var parentLogId = urlParams.get('parentId');
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.PO_P2PAttiva_EditLogInfoCntrlELine.isDisabled}',
+                    parentLogId, 
+                    function(result, event){
+                        if (event.status) {
+                            var tipoSede=document.getElementById('j_id0:formID:tipSede').value;
+                            var isEditable = result;
+                            if(isEditable!=undefined){
+                                if(isEditable && tipoSede=='Satellite'){
+                                    if(document.getElementById('j_id0:formID:sedeMaster') ==null){
+                                        document.getElementById('j_id0:formID:sedeMaster2').disabled =isEditable;
+                                    }else{
+                                        document.getElementById('j_id0:formID:sedeMaster').disabled = isEditable;
+                                    }
+                                }
+                                var tipoKit= document.getElementById('j_id0:formID:selezKIT').disabled;
+                                if(data.value=='Master'){
+                                    if(document.getElementById('j_id0:formID:sedeMaster') ==null){
+                                        document.getElementById('j_id0:formID:sedeMaster2').value =null;
+                                         document.getElementById('j_id0:formID:sedeMaster2').disabled = true;
+                                        $('[id$=sedeMaster2]').next('div.red').remove();
+                                    }else{
+                                        document.getElementById('j_id0:formID:sedeMaster').value =null;
+                                         document.getElementById('j_id0:formID:sedeMaster').disabled = true;
+                                        $('[id$=sedeMaster]').next('div.red').remove();
+                                    }
+                                    
+                                    if( document.getElementById('j_id0:formID:scegliprof')!=null){
+                                        document.getElementById('j_id0:formID:scegliprof').disabled = true;
+                                        if(document.getElementById('j_id0:formID:sedeMaster') == null){
+                                            document.getElementById('j_id0:formID:sedeMaster2').disabled =true;
+                                        }else{
+                                            document.getElementById('j_id0:formID:sedeMaster').disabled = true;
+                                        }
+                                    }
+                                    document.getElementById('j_id0:formID:OptRateLim').disabled = false;
+                                    //document.getElementById('j_id0:formID:sedeMaster').disabled = true
+                                    document.getElementById('j_id0:formID:selezKIT').disabled= false;
+                                }
+                                else{
+                                    document.querySelector('[id$=OptRateLim]').value = '';
+                                    document.querySelector('[id$=selezKIT]').value = '';
+                                    $('[id$=OptRateLim]').next('div.red').remove();
+                                    $('[id$=selezKIT]').next('div.red').remove();
+                                    if( document.getElementById('j_id0:formID:scegliprof')!=null){
+                                        document.getElementById('j_id0:formID:scegliprof').disabled = false;
+                                    }
+                                    document.getElementById('j_id0:formID:OptRateLim').disabled = true;
+                                    if(document.getElementById('j_id0:formID:sedeMaster') ==null){
+                                        document.getElementById('j_id0:formID:sedeMaster2').disabled =false;
+                                    }else{
+                                        document.getElementById('j_id0:formID:sedeMaster').disabled = false;
+                                    }
+                                    document.getElementById('j_id0:formID:selezKIT').disabled= true;
+                                }
+                            }
+                        } else if (event.type === 'exception') {
+                            document.getElementById("responseErrors").innerHTML = 
+                                event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                        } else {
+                            document.getElementById("responseErrors").innerHTML = event.message;
+                        }
+                    }, 
+                    {escape: true}
+                );
+                
+            }
+            
+            function searchMaster(){
+                debugger;
+                document.getElementById('remoteContactName').innerHTML = "";
+                //document.getElementById('infoName').innerHTML = "";
+                var searchTerm2 = document.getElementById('j_id0:formID2:sediId').value;
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.PO_P2PAttiva_EditLogInfoCntrlELine.searchAction}',
+                    searchTerm2.trim(), 
+                    function(result, event){
+                        if (event.status) {
+                            // Get DOM IDs for HTML and Visualforce elements like this
+                            for(a=0;a<result.length;a++){       
+                                /*if( result[a].Caso__r.PO_Pop_1_di_riferimento2__r != undefined){
+                                    document.getElementById('infoName').innerHTML +=  result[a].Caso__r.PO_Pop_1_di_riferimento2__r.Name +'<br/>';
+                                }*/
+                                //document.getElementById('infoName').innerHTML +=  '<br/>';
+                                document.getElementById('remoteContactName').innerHTML +=  result[a].ID_Sede__c + '&nbsp' + '&nbsp' +result[a].Caso__r.PO_Pop_1_di_riferimento2__r.Name +'<br/>';
+                            } 
+                            
+                            /*document.getElementById(
+                                "{!$Component.block.blockSection.secondItem.acctNumEmployees}"
+                            ).innerHTML = result.NumberOfEmployees;*/
+                        } else if (event.type === 'exception') {
+                            document.getElementById("responseErrors").innerHTML = 
+                                event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                        } else {
+                            document.getElementById("responseErrors").innerHTML = event.message;
+                        }
+                    }, 
+                    {escape: true}
+                );
+                
+                /*
+                var comuneObjects;
+                var queryTerm;
+                  $('[id$=cercaBtn]').onclick({
+                    minLength: 2,
+                    source: function(request, response) {
+                        queryTerm = request.term;
+                        PO_P2PAttiva_EditLogInfoCntrlELine.searchAction(request.term, function(result, event){
+                            if(event.type == 'exception') {
+                                alert(event.message);
+                            } else {
+                                comuneObjects = result;                            
+                                response(comuneObjects);
+                                comuneCheckList= [];
+                                comuneObjects.forEach(function(element) {
+                                    comuneCheckList.push(element.OF_Comune__c+' '+element.OF_Regione__c);
+                                });
+                            }
+                        });
+                    },
+                    focus: function( event, ui ) {
+                        //  $('[id$=comuneId]').val( ui.item.OF_Comune__c+' '+ui.item.OF_Regione__c );
+                        return false;
+                    },
+                    select: function( event, ui ) {
+                        $('[id$=comuneId]').val( ui.item.OF_Comune__c+' '+ui.item.OF_Regione__c );
+                        $('[id$=searchcommuneId]').val( ui.item.Id );
+                        return false;
+                    },
+                })*/
+                
+            }
+            
+            function closeModal(){
+                document.getElementById('tstpopup').style.display='none';
+            }
+            //Cessa VLAN
+            $(document).ready(function() {
+                debugger;
+                var urlParams = new URLSearchParams(window.location.search);
+                var parentLogId = urlParams.get('parentId');
+               
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.PO_P2PAttiva_EditLogInfoCntrlELine.isDisabled}',
+                    parentLogId, 
+                    function(result, event){
+                        if (event.status) {
+                            var isEditable = result;
+                            if(isEditable!=undefined && isEditable){
+                                if(document.getElementById('j_id0:formID:sedeMaster')==null){
+                                    document.getElementById('j_id0:formID:sedeMaster2').disabled =isEditable;
+                                }else{
+                                    document.getElementById('j_id0:formID:sedeMaster').disabled = isEditable;
+                                }
+                                //document.getElementById('j_id0:formID:tipSede').disabled = isEditable;
+                            }
+                        } else if (event.type === 'exception') {
+                            document.getElementById("responseErrors").innerHTML = 
+                                event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                        } else {
+                            document.getElementById("responseErrors").innerHTML = event.message;
+                        }
+                    }, 
+                    {escape: true}
+                );
+                
+                if( document.getElementById('j_id0:formID:OptRateLim').value == '10 GB'){
+                    document.getElementById('j_id0:formID:interfacciaCPE').disabled =true;
+                    document.querySelector('[id$=interfacciaCPE]').value = 'Ottica';
+                }else{
+                    document.getElementById('j_id0:formID:interfacciaCPE').disabled =false;
+                }
+                if(document.getElementById('j_id0:formID:velocitabanda').value == '2G' ||  
+                   document.getElementById('j_id0:formID:velocitabanda').value == '3G' || 
+                   document.getElementById('j_id0:formID:velocitabanda').value == '5G' || 
+                   document.getElementById('j_id0:formID:velocitabanda').value == '10G'){
+                    document.getElementById('j_id0:formID:tipologiaCPE').disabled =true;
+                    document.querySelector('[id$=tipologiaCPE]').value = 'High-End';
+                }else{
+                    document.getElementById('j_id0:formID:tipologiaCPE').disabled =false;
+                    document.querySelector('[id$=tipologiaCPE]').value = 'Low-End';
+                }
+                
+                
+                var tipoSede=document.getElementById('j_id0:formID:tipSede').value;
+                if(tipoSede!='Master'){
+                    document.getElementById('j_id0:formID:OptRateLim').disabled = true;
+                    document.getElementById('j_id0:formID:selezKIT').disabled=true;
+                    document.querySelector('[id$=OptRateLim]').value = '';
+                    document.querySelector('[id$=selezKIT]').value = '';
+                    if(document.getElementById('j_id0:formID:sedeMaster')==null){
+                        document.getElementById('j_id0:formID:sedeMaster2').disabled = false;
+                    }else{
+                        document.getElementById('j_id0:formID:sedeMaster').disabled = false;
+                    }
+                }else{
+                    if(document.getElementById('j_id0:formID:sedeMaster')==null){
+                        document.getElementById('j_id0:formID:sedeMaster2').value =null;
+                    }else{
+                        document.getElementById('j_id0:formID:sedeMaster').value =null;
+                    }
+                    document.getElementById('j_id0:formID:scegliprof').disabled = true;
+                    document.getElementById('j_id0:formID:OptRateLim').disabled = false;
+                    document.getElementById('j_id0:formID:selezKIT').disabled= false;
+                    if(document.getElementById('j_id0:formID:sedeMaster')==null){
+                        document.getElementById('j_id0:formID:sedeMaster2').disabled = true;
+                    }else{
+                        document.getElementById('j_id0:formID:sedeMaster').disabled = true;
+                    }
+                }
+                document.getElementById('tstpopup').style.display='none';
+                //checkFieldsToShowButtons();
+                var Tipopercorso = $('[id$=Tipopercorso]').val();
+                if(Tipopercorso =='Doppia Via'){
+                    var isDisabledTraffic=document.getElementById('j_id0:formID:TrafficLoadBalancing');
+                    document.querySelector('[id$=TrafficLoadBalancing]').value = 'ACTIVE/STANDBY';
+                    isDisabledTraffic.disabled=false;
+                    //document.getElementById('trafficfield').style.display='block';
+                }else{
+                    var isDisabledTraffic=document.getElementById('j_id0:formID:TrafficLoadBalancing');
+                    document.querySelector('[id$=TrafficLoadBalancing]').value = '--None--';
+                    isDisabledTraffic.disabled=true;
+                    //document.getElementById('trafficfield').style.display='none';
+                }
+                $( ".btn-cess" ).click(function( event ) {
+                    event.preventDefault();
+                    debugger;
+                    var name = this.getAttribute('name');
+                    deleteVLAN(name);  
+                });   
+            });
+            </script>
+            <!-- EC start profilo as OS 2018 - 08 - 08  -->
+            <script>
+            
+            
+            // luca modify visibility field trafficBalance onchange TipoPercorso
+            function showTrafficBalance(data){
+                debugger
+                var Tipopercorso = $('[id$=Tipopercorso]').val();
+                if(Tipopercorso =='Doppia Via'){
+                    var isDisabledTraffic=document.getElementById('j_id0:formID:TrafficLoadBalancing');
+                    isDisabledTraffic.disabled=false;
+                    document.querySelector('[id$=TrafficLoadBalancing]').value = 'ACTIVE/STANDBY';
+                    //document.getElementById('trafficfield').style.display='block';
+                }else{
+                    var isDisabledTraffic=document.getElementById('j_id0:formID:TrafficLoadBalancing');
+                    isDisabledTraffic.disabled=true;
+                    document.querySelector('[id$=TrafficLoadBalancing]').value = '--None--';
+                    //document.getElementById('trafficfield').style.display='none';
+                }
+            }
+            function showMessageforKIT(data){
+                debugger;
+                if(data.value =='Ottica'){
+                    alert('Optical Rate Limiting della Sede Master dovrà avere valore 10GB');
+                }else if(data.value =='Elettrica'){
+                    alert('Optical Rate Limiting della Sede Master dovrà avere valore 1GB');
+                }
+            }
+            //luca fine
+            
+            /*  function doSearchProfilo() {
+                var TextProfilo = $("input[id$='Profilo']").val();
+                searchProfilo(TextProfilo);             
+            }*/
+            
+            function refreshRerender() {
+                rerenderResults();
+            }
+            
+            </script>
+            <!-- EC end profilo as OS 2018 - 08 - 08 -->
+            <script>
+            function mySC()
+            {
+                var str1 = document.getElementById('j_id0:myform:section:0:link').value;
+                document.getElementById('copage:changeorderform:SelParent').value=str1;
+            }
+            </script>
+            
+            
+            
+            <script type="text/javascript">
+            debugger;
+            var PLACEHOLDER = 'Inserisci qui il nome comune'; 
+            //var PLACEHOLDER2 = 'Inserisci qui la sede';
+            var comuneObjects;
+            var queryTerm;
+            $(document).ready(function() {
+                debugger;
+                var urlParams = new URLSearchParams(window.location.search);
+                var cLogId = urlParams.get('cLogId');
+                if(cLogId==null){
+                    document.querySelector('[id$=Particellatoponomastica]').value = 'Via';
+                    document.querySelector('[id$=tipologiaCPE]').value = 'Low-End';
+                    document.querySelector('[id$=tipologiaAlimentazione]').value = 'AC';
+                }
+                $('[id$=comuneId]').autocomplete({
+                    minLength: 2,
+                    source: function(request, response) {
+                        queryTerm = request.term;
+                        PO_P2PAttiva_EditLogInfoCntrlELine.searchComune(request.term, function(result, event){
+                            if(event.type == 'exception') {
+                                alert(event.message);
+                            } else {
+                                comuneObjects = result; 
+                                for(var i = 0 ; i <= comuneObjects.length-1 ; i++){
+                                    if(comuneObjects[i].OF_Comune__c!=undefined){
+                                        if(comuneObjects[i].OF_Comune__c.includes('&#39;')){ 
+                                            comuneObjects[i].OF_Comune__c=comuneObjects[i].OF_Comune__c.replace('&#39;','\'');
+                                        }
+                                    }
+                                }
+                                response(comuneObjects);
+                                comuneCheckList= [];
+                                comuneObjects.forEach(function(element) {
+                                    comuneCheckList.push(element.OF_Comune__c+' '+element.OF_Regione__c);
+                                });
+                            }
+                        });
+                    },
+                    focus: function( event, ui ) {
+                        //  $('[id$=comuneId]').val( ui.item.OF_Comune__c+' '+ui.item.OF_Regione__c );
+                        return false;
+                    },
+                    select: function( event, ui ) {
+                        debugger;
+                        $('[id$=comuneId]').val( ui.item.OF_Comune__c+' '+ui.item.OF_Regione__c );
+                        $('[id$=searchcommuneId]').val( ui.item.Id );
+                        return false;
+                    },
+                })
+                .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+                    debugger;
+                    var entry = "<a>" + item.OF_Comune__c+' '+item.OF_Regione__c;
+                    
+                    entry = entry + "</a>";
+                    entry = entry.replace(queryTerm, "<b>" + queryTerm + "</b>");
+                    return $( "<li></li>" )
+                    .data( "ui-autocomplete-item", item )
+                    .append( entry )
+                    .appendTo( ul );
+                };
+                // Add or remove placeholder values
+                 if(document.getElementById('j_id0:formID:comuneId').value!=''){
+                    PLACEHOLDER =document.getElementById('j_id0:formID:comuneId').value;  
+                }
+                
+                
+                /*if('{!searchTerm2}'!=''){
+                    PLACEHOLDER2 ='{!searchTerm2}';
+                }
+                 $('[id$=sediId]').val(PLACEHOLDER2);
+                 $('[id$=sediId]').on("focus",  function(event){
+                    $tgt = $(event.target);
+                    if($tgt.val() === PLACEHOLDER2 ){
+                        $tgt.val('');
+                        $tgt.removeClass('placeHolder');
+                    }
+                });
+                $('[id$=sediId]').on( "blur",  function(event){
+                    $tgt = $(event.target);
+                    if($tgt.val() === '' ){ 
+                        $tgt.val(PLACEHOLDER2);
+                        $tgt.addClass('placeHolder');
+                    }
+                });*/
+                
+                
+                $('[id$=comuneId]').val(PLACEHOLDER);
+                $('[id$=comuneId]').on("focus",  function(event){
+                    $tgt = $(event.target);
+                    if($tgt.val() === PLACEHOLDER ){
+                        $tgt.val('');
+                        $tgt.removeClass('placeHolder');
+                    }
+                });
+                $('[id$=comuneId]').on( "blur",  function(event){
+                    $tgt = $(event.target);
+                    if($tgt.val() === '' ){ 
+                        $tgt.val(PLACEHOLDER);
+                        $tgt.addClass('placeHolder');
+                    }
+                });
+                
+            });
+            </script>
+            
+            
+            <script type='text/javascript'>
+            function validateform(tipoSave){
+                debugger;
+                var invalidflg = false;
+                var serviceAttr = $('[id$=selezKIT]').val();
+                var optRate = $('[id$=OptRateLim]').val(); 
+                var tipoSede = $('[id$=tipSede]').val();
+                if(document.getElementById('j_id0:formID:sedeMaster') ==null){
+                    var sedeMasterText= $('[id$=sedeMaster2]').val(); 
+                }else{
+                    var sedeMasterText= $('[id$=sedeMaster]').val(); 
+                }
+                var velocitaBanda = $('[id$=velocitabanda]').val();
+                var tipAlimentazione = $('[id$=tipologiaAlimentazione]').val();
+                var partToponomastica =    $('[id$=Particellatoponomastica]').val(); 
+                var tipCPE = $('[id$=tipologiaCPE]').val(); 
+                var comuneId = $('[id$=comuneId]').val();
+                var Tipopercorso = $('[id$=Tipopercorso]').val();
+                var tipodicolle = $('[id$=tipodicolle]').val();
+                //var Numerofibrerichieste = $('[id$=Numerofibrerichieste]').val();
+                var PrimeContractor =$('[id$=PrimeContracto]').val(); 
+                
+                var Sito = $('[id$=Sito]').val();
+                var Indirizzocollegamento = $('[id$=Indirizzocollegamento]').val();
+                var Civico = $('[id$=Civico]').val();
+                
+                var Sito1 = $('[id$=Sito1]').val();
+                var Indirizzopartenza = $('[id$=Indirizzopartenza]').val();
+                var Civico1 = $('[id$=Civico1]').val();
+                var Notasito1 = $('[id$=Notasito1]').val();
+                var interfCPE = $('[id$=interfacciaCPE]').val();         
+                
+                
+                var TrafficLoadBalancing = $('[id$=TrafficLoadBalancing]').val();
+                document.getElementById('j_id0:formID:trafficValue').value = TrafficLoadBalancing;
+                
+                
+                var TrafficLoadBalancing = $('[id$=TrafficLoadBalancing]').val();
+                document.getElementById('j_id0:formID:trafficValue').value = TrafficLoadBalancing;
+                var PO_Offerta = '{!parentLog.PO_Offerta__c}';
+                
+                if(tipoSede ==''){
+                    $('[id$=tipSede]').next('div.red').remove();
+                    $('[id$=tipSede]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=tipSede]').next('div.red').remove();
+                }
+                
+                
+                if(tipoSede =='Master'){
+                    $('[id$=sedeMaster]').next('div.red').remove();
+                    if(optRate ==''){
+                        $('[id$=OptRateLim]').next('div.red').remove();
+                        $('[id$=OptRateLim]').after('<div class="red">Campo obbligatorio</div>');
+                        invalidflg = true;
+                    }else{
+                        $('[id$=OptRateLim]').next('div.red').remove();
+                    }
+                    
+                    if(serviceAttr ==''){
+                        $('[id$=selezKIT]').next('div.red').remove();
+                        $('[id$=selezKIT]').after('<div class="red">Campo obbligatorio</div>');
+                        invalidflg = true;
+                    }else{
+                        $('[id$=selezKIT]').next('div.red').remove();
+                    }
+                }
+                
+                else{
+                    if(tipoSede =='Satellite' || tipoSede==""){
+                        if(document.getElementById('j_id0:formID:sedeMaster') ==null){
+                            if(!document.getElementById('j_id0:formID:sedeMaster2').disabled){
+                                if(sedeMasterText ==''){
+                                    $('[id$=sedeMaster2]').next('div.red').remove();
+                                    $('[id$=sedeMaster2]').after('<div class="red">Campo obbligatorio</div>');
+                                    invalidflg = true;
+                                }else{
+                                    document.getElementById('j_id0:formID:sedeMastSpan').value = sedeMasterText;
+                                    document.getElementById('j_id0:formID:sedeMastSpan').value.trim();
+                                    $('[id$=sedeMaster2]').next('div.red').remove();
+                                }
+                                
+                            }
+                        }
+                        else{
+                            if(!document.getElementById('j_id0:formID:sedeMaster').disabled){
+                                if(sedeMasterText ==''){
+                                    $('[id$=sedeMaster]').next('div.red').remove();
+                                    $('[id$=sedeMaster]').after('<div class="red">Campo obbligatorio</div>');
+                                    invalidflg = true;
+                                }else{
+                                    document.getElementById('j_id0:formID:sedeMastSpan').value = sedeMasterText;
+                                    document.getElementById('j_id0:formID:sedeMastSpan').value.trim();
+                                    $('[id$=sedeMaster]').next('div.red').remove();
+                                }
+                            }
+                            
+                        }
+                    }
+                }
+                
+                
+                
+                if(comuneId!='Inserisci qui il nome comune'){  
+                    if(comuneId!=PLACEHOLDER){
+                        if(typeof comuneCheckList == 'undefined' || !comuneCheckList.includes(comuneId)){
+                            $('[id$=comuneId]').next('div.red').remove();
+                            $('[id$=comuneId]').after('<div class="red">Il comune va selezionato dall\'elenco</div>');
+                            invalidflg = true;
+                        }
+                        else{
+                            $('[id$=comuneId]').next('div.red').remove();
+                        }
+                    }
+                    else{
+                        $('[id$=comuneId]').next('div.red').remove();
+                    }
+                } 
+                else{ 
+                    $('[id$=comuneId]').next('div.red').remove();
+                    $('[id$=comuneId]').after('<div class="red">Campo Obbligatorio</div>');
+                    invalidflg = true;
+                }
+                // luca modifiche
+                if(velocitaBanda=='-- None --'){
+                    $('[id$=velocitabanda]').next('div.red').remove();
+                    $('[id$=velocitabanda]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    var velocitaBandaValue = velocitaBanda; 
+                    $('[id$=velocitabanda]').next('div.red').remove();
+                }
+                
+                
+                if(interfCPE==''){
+                    $('[id$=interfacciaCPE]').next('div.red').remove();
+                    $('[id$=interfacciaCPE]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=interfacciaCPE]').next('div.red').remove();
+                }
+                
+                
+                
+                
+                
+                if(partToponomastica.length==0){
+                    $('[id$=Particellatoponomastica]').next('div.red').remove();
+                    $('[id$=Particellatoponomastica]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    
+                    $('[id$=Particellatoponomastica]').next('div.red').remove();
+                }
+                if(tipCPE.length==0){
+                    $('[id$=tipologiaCPE]').next('div.red').remove();
+                    $('[id$=tipologiaCPE]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    
+                    $('[id$=tipologiaCPE]').next('div.red').remove();
+                }
+                
+                //fine luca
+                debugger;
+                //    window.alert('@@@EC tipologiaCPE: ' + tipCPE);
+                console.log('[id$=tipologiaCPE]' + tipCPE);
+                debugger;
+                
+                if(Tipopercorso.length == 0){
+                    $('[id$=Tipopercorso]').next('div.red').remove();
+                    $('[id$=Tipopercorso]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=Tipopercorso]').next('div.red').remove();
+                }
+                
+                if(PrimeContractor==""){
+                    $('[id$=PrimeContracto]').next('div.red').remove();
+                    $('[id$=PrimeContracto]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=PrimeContracto]').next('div.red').remove();
+                }
+                
+                
+                if(tipodicolle.length == 0){
+                    $('[id$=tipodicolle]').next('div.red').remove();
+                    $('[id$=tipodicolle]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=tipodicolle]').next('div.red').remove();
+                }
+                if(tipAlimentazione.length==0){
+                    $('[id$=tipologiaAlimentazione]').next('div.red').remove();
+                    $('[id$=tipologiaAlimentazione]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    
+                    $('[id$=tipologiaAlimentazione]').next('div.red').remove();
+                }
+                debugger;
+                //  window.alert('@@@EC tipologiaAlimentazione: ' + tipAlimentazione);
+                console.log('[id$=tipologiaAlimentazione]' + tipAlimentazione);
+                debugger;
+                
+                /*if(Numerofibrerichieste.length == 0){
+                    $('[id$=Numerofibrerichieste]').next('div.red').remove();
+                    $('[id$=Numerofibrerichieste]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=Numerofibrerichieste]').next('div.red').remove();
+                }*/
+                
+                
+                
+                if(Sito.length == 0){
+                    $('[id$=Sito]').next('div.red').remove();
+                    $('[id$=Sito]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=Sito]').next('div.red').remove();
+                }
+                
+                
+                if(Indirizzocollegamento.length == 0){
+                    $('[id$=Indirizzocollegamento]').next('div.red').remove();
+                    $('[id$=Indirizzocollegamento]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=Indirizzocollegamento]').next('div.red').remove();
+                }
+                
+                
+                if(Civico.length == 0){
+                    $('[id$=Civico]').next('div.red').remove();
+                    $('[id$=Civico]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=Civico]').next('div.red').remove();
+                }
+                
+                if(invalidflg){
+                    return false;
+                }
+                if(tipoSave=='aggiungiVlan'){
+                    insertVlan();
+                }
+                else if(tipoSave=='scegliProfilo'){
+                    insertVLAN();
+                }
+                //EC 2019 06 14 aggiunto tipoSave modProf poiché cliccando su salva dirottava sulla pagina di modifica del profilo.
+                    else if(tipoSave=='modProf'){
+                        debugger;
+                        //	window.alert('@@@@EC tipoSave== modProf. stiamo per chiamare SaveParentChildCaseInfomethodP.');
+                        SaveParentChildCaseInfomethodP();                    
+                        debugger;
+                    }
+                        else if(tipoSave=='aggiungiKIT'){
+                            insertKit();
+                        }
+                            else{
+                                var urlParams = new URLSearchParams(window.location.search);
+                                var parentId = urlParams.get('parentId');
+                                var cLogId = urlParams.get('cLogId');
+                                Visualforce.remoting.Manager.invokeAction(
+                                    '{!$RemoteAction.PO_P2PAttiva_EditLogInfoCntrlELine.searchSediMaster}',
+                                    parentId,cLogId, 
+                                    function(result, event){
+                                        if (event.status) {
+                                            // Get DOM IDs for HTML and Visualforce elements like this
+                                            var isMaster = result;
+                                            if(!isMaster || tipoSede=='Satellite' ){
+                                                document.getElementById('remoteContactName').innerHTML = "";
+                                                if(document.getElementById('j_id0:formID:sedeMaster') ==null){
+                                                    var searchTerm2 = document.getElementById('j_id0:formID:sedeMaster2').value;
+                                                }else{
+                                                    var searchTerm2 = document.getElementById('j_id0:formID:sedeMaster').value;
+                                                }
+                                                if(searchTerm2!=undefined){
+                                                    searchTerm2.trim();
+                                                }
+                                                Visualforce.remoting.Manager.invokeAction(
+                                                    '{!$RemoteAction.PO_P2PAttiva_EditLogInfoCntrlELine.searchActionNoModal}',
+                                                    searchTerm2.trim(), 
+                                                    function(result, event){
+                                                        if (event.status) {
+                                                            // Get DOM IDs for HTML and Visualforce elements like this
+                                                            if(document.getElementById('j_id0:formID:sedeMaster') ==null){
+                                                                if(result || document.getElementById('j_id0:formID:sedeMaster2').disabled ){ 
+                                                                    debugger;
+                                                                    document.getElementById('remoteContactName').innerHTML +=  result.ID_Sede__c +'<br/>';
+                                                                    //  window.alert('@@@EC stiamo per chiamare SaveParentChildCaseInfomethod()');
+                                                                    debugger;
+                                                                    SaveParentChildCaseInfomethod();
+                                                                } else{
+                                                                    alert('Nessun record trovato');
+                                                                } 
+                                                            }else{
+                                                                if(result || document.getElementById('j_id0:formID:sedeMaster').disabled ){ 
+                                                                    debugger;
+                                                                    document.getElementById('remoteContactName').innerHTML +=  result.ID_Sede__c +'<br/>';
+                                                                    //  window.alert('@@@EC stiamo per chiamare SaveParentChildCaseInfomethod()');
+                                                                    debugger;
+                                                                    SaveParentChildCaseInfomethod();
+                                                                } else{
+                                                                    alert('Nessun record trovato');
+                                                                } 
+                                                            }
+                                                            
+                                                            
+                                                        } else if (event.type === 'exception') {
+                                                            document.getElementById("responseErrors").innerHTML = 
+                                                                event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                                                        } else {
+                                                            document.getElementById("responseErrors").innerHTML = event.message;
+                                                        }
+                                                    }, 
+                                                    {escape: true}
+                                                );
+                                                
+                                                
+                                            }else{
+                                                alert('Non puoi aggiungere Sedi Master differenti su una stessa Richiesta di fattibilità');
+                                            }
+                                            /*document.getElementById(
+                                "{!$Component.block.blockSection.secondItem.acctNumEmployees}"
+                            ).innerHTML = result.NumberOfEmployees;*/
+                                        } else if (event.type === 'exception') {
+                                            document.getElementById("responseErrors").innerHTML = 
+                                                event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                                        } else {
+                                            document.getElementById("responseErrors").innerHTML = event.message;
+                                        }
+                                    }, 
+                                    {escape: true}
+                                );
+                                
+                            }
+            }       
+            
+            
+            
+            </script>
+            
+            <script type='text/javascript'>
+            function noenter(e){  
+                
+                if(window.event){  
+                    key = window.event.keyCode;              
+                } 
+                else{                    
+                    key = e.which;               
+                }               
+                if(key == 13) {   
+                    var ele=document.getElementById('{!$Component.pageID:formID:SaveBttn}');                                          
+                    ele.click();                     
+                    return false;               
+                } else{                    
+                    return true;               
+                }           
+            }     
+            
+            
+            
+            </script> 
+        </body>
+    </html>
+</apex:page>

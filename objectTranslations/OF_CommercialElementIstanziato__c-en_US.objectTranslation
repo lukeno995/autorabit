@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Commercial element istanziato</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Commercial element istanziati</value>
+    </caseValues>
+    <fields>
+        <label><!-- Asset Verticale --></label>
+        <name>Asset_Verticale__c</name>
+        <relationshipLabel><!-- Commercial element istanziati --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- CAUSALE_APPARATO --></label>
+        <name>CAUSALE_APPARATO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cardinalita Scala --></label>
+        <name>Cardinalita_Scala__c</name>
+    </fields>
+    <fields>
+        <label><!-- Civico --></label>
+        <name>Civico__c</name>
+    </fields>
+    <fields>
+        <label><!-- Code_IAV --></label>
+        <name>Code_IAV__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comune --></label>
+        <name>Comune__c</name>
+    </fields>
+    <fields>
+        <label><!-- Descrizione IAV --></label>
+        <name>Descrizione_IAV__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fibra 1 --></label>
+        <name>Fibra_1_Destinazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fibra 1 --></label>
+        <name>Fibra_1_Partenza__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fibra 2 --></label>
+        <name>Fibra_2_Destinazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fibra 2 --></label>
+        <name>Fibra_2_Partenza__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID DB Building --></label>
+        <name>ID_DB_Building__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID DB Scala Palazzina --></label>
+        <name>ID_DB_Scala_Palazzina__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID GIS Scala Palazzina --></label>
+        <name>ID_GIS_Scala_Palazzina__c</name>
+    </fields>
+    <fields>
+        <label><!-- Indirizzo --></label>
+        <name>Indirizzo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset --></label>
+        <name>OF_AssetTratta__c</name>
+        <relationshipLabel><!-- Tratte --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Asset --></label>
+        <name>OF_Asset__c</name>
+        <relationshipLabel><!-- Commercial element istanziati --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Attenuazione --></label>
+        <name>OF_Attenuazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Azione apparato --></label>
+        <name>OF_AzioneApparato__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_BillingSyncronized --></label>
+        <name>OF_BillingSyncronized__c</name>
+    </fields>
+    <fields>
+        <label><!-- CE Standard --></label>
+        <name>OF_CEStandard__c</name>
+        <relationshipLabel><!-- Commercial elements --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Codice Motivazione Servizio --></label>
+        <name>OF_CODICEMOTIVAZIONE_SERVIZIO__c</name>
+    </fields>
+    <fields>
+        <label><!-- CPEp --></label>
+        <name>OF_CPEPassivi__c</name>
+        <relationshipLabel><!-- CPE --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- OF CPE Quantity --></label>
+        <name>OF_CPE_Quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- CPE --></label>
+        <name>OF_CPE__c</name>
+        <relationshipLabel><!-- CPE --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Case --></label>
+        <name>OF_CaseTratta__c</name>
+        <relationshipLabel><!-- Tratte --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Case --></label>
+        <name>OF_Case__c</name>
+        <relationshipLabel><!-- Commercial element istanziati --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cluster Promozione --></label>
+        <name>OF_ClusterPromozione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice motivazione consegna --></label>
+        <name>OF_CodiceMotivazioneConsegna__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice motivazione ritiro --></label>
+        <name>OF_CodiceMotivazioneRitiro__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Progetto Speciale --></label>
+        <name>OF_CodiceProgettoSpeciale__c</name>
+    </fields>
+    <fields>
+        <label><!-- Commercial element name --></label>
+        <name>OF_CommercialElementName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Commercial element --></label>
+        <name>OF_CommercialElement__c</name>
+        <relationshipLabel><!-- Commercial element istanziati --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Customer-VLAN --></label>
+        <name>OF_CustomerVLAN__c</name>
+    </fields>
+    <fields>
+        <label><!-- DDT --></label>
+        <name>OF_DDT__c</name>
+    </fields>
+    <fields>
+        <label><!-- DataAttivazione_Calc --></label>
+        <name>OF_DataAttivazione_Calc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data attivazione --></label>
+        <name>OF_DataAttivazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data cessazione --></label>
+        <name>OF_DataCessazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data riattivazione --></label>
+        <name>OF_DataRiattivazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data sospensione --></label>
+        <name>OF_DataSospensione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Desospensione --></label>
+        <name>OF_Data_Desospensione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Esito Servizio --></label>
+        <name>OF_ESITOSERVIZIO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Esito consegna apparato --></label>
+        <name>OF_EsitoConsegnaApparato1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Esito consegna apparato --></label>
+        <name>OF_EsitoConsegnaApparato__c</name>
+    </fields>
+    <fields>
+        <label><!-- Esito ritiro apparato --></label>
+        <name>OF_EsitoRitiroApparato__c</name>
+    </fields>
+    <fields>
+        <label><!-- Esito ritiro --></label>
+        <name>OF_EsitoRitiro__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Apparato Consegnato --></label>
+        <name>OF_IDAPPARATOCONSEGNATO__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Apparato Consegnato --></label>
+        <name>OF_IDApparatoConsegnato1__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Ordine --></label>
+        <name>OF_IDOrdine__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Risorsa --></label>
+        <name>OF_IDRisorsa__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Apparato --></label>
+        <name>OF_ID_Apparato__c</name>
+    </fields>
+    <fields>
+        <label><!-- Indirizzo Cliente --></label>
+        <name>OF_Indirizzo_Destinazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Informazioni VLAN --></label>
+        <name>OF_InformazioniVLAN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Informazioni Servizio --></label>
+        <name>OF_Informazioni_Servizio__c</name>
+    </fields>
+    <fields>
+        <label><!-- Kit consegna VLAN --></label>
+        <name>OF_KitConsegnaVLAN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lunghezza Ottica (m) --></label>
+        <name>OF_LunghezzaOttica__c</name>
+    </fields>
+    <fields>
+        <label><!-- Motivazione Servizio --></label>
+        <name>OF_MOTIVAZIONESERVIZIO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Modello di servizio VLAN --></label>
+        <name>OF_ModelloDiServizioVLAN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Motivazione consegna --></label>
+        <name>OF_MotivazioneConsegna__c</name>
+    </fields>
+    <fields>
+        <label><!-- Motivazione ritiro --></label>
+        <name>OF_MotivazioneRitiro__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nome Servizio --></label>
+        <name>OF_Nome_Servizio__c</name>
+    </fields>
+    <fields>
+        <label><!-- Password apparato --></label>
+        <name>OF_PasswordApparato1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Password Apparato --></label>
+        <name>OF_Password_Apparato__c</name>
+    </fields>
+    <fields>
+        <label><!-- Posizione Rilascio Circuito OSU --></label>
+        <name>OF_PosizioneRIlascioCircuitoOSU__c</name>
+    </fields>
+    <fields>
+        <label><!-- Profilo VLAN --></label>
+        <name>OF_ProfiloVLAN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Profilo --></label>
+        <name>OF_Profilo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Promozione --></label>
+        <name>OF_Promozione__c</name>
+    </fields>
+    <fields>
+        <label><!-- CPE --></label>
+        <name>OF_SA_CPE__c</name>
+        <relationshipLabel><!-- CPE --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Servizio Aggiuntivo --></label>
+        <name>OF_SA_Servizio_Aggiuntivo__c</name>
+        <relationshipLabel><!-- Servizio Aggiuntivo --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- VLan --></label>
+        <name>OF_SA_VLAN__c</name>
+        <relationshipLabel><!-- VLan --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Service-VLAN --></label>
+        <name>OF_ServiceVLAN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Servizi aggiuntivi --></label>
+        <name>OF_ServiziAggiuntivi__c</name>
+        <relationshipLabel><!-- Servizi aggiuntivi --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Stato --></label>
+        <name>OF_Stato__c</name>
+        <picklistValues>
+            <masterLabel>Attivo</masterLabel>
+            <translation><!-- Attivo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cessato</masterLabel>
+            <translation><!-- Cessato --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sospeso</masterLabel>
+            <translation><!-- Sospeso --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- OF_TT_Number --></label>
+        <name>OF_TT_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipologia apparato --></label>
+        <name>OF_TipologiaApparato1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipologia apparato --></label>
+        <name>OF_TipologiaApparato__c</name>
+    </fields>
+    <fields>
+        <label><!-- User-VLAN --></label>
+        <name>OF_UserVLAN__c</name>
+    </fields>
+    <fields>
+        <label><!-- VLAN --></label>
+        <name>OF_VLAN__c</name>
+        <relationshipLabel><!-- VLAN --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- OLO_Comm_Code --></label>
+        <name>OLO_Comm_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Case ordine --></label>
+        <name>PO_Case_ordine__c</name>
+        <relationshipLabel><!-- Vlan Ordine --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Indirizzo Sede 1 di Terminazione --></label>
+        <name>PO_Indirizzo_Partenza__c</name>
+    </fields>
+    <fields>
+        <label><!-- Log Ordine --></label>
+        <name>PO_Log_Ordine__c</name>
+        <relationshipLabel><!-- Commercial element istanziati --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Banda --></label>
+        <name>PO_PP_Banda_Interfaccia__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cos Class --></label>
+        <name>PO_PP_Cos_Class__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cos Type --></label>
+        <name>PO_PP_Cos_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cos_Remarking --></label>
+        <name>PO_PP_Cos_remarking__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dhcp Option 82 --></label>
+        <name>PO_PP_DHCP_Option82__c</name>
+    </fields>
+    <fields>
+        <label><!-- Interfaccia --></label>
+        <name>PO_PP_InterfacciaKit__c</name>
+        <picklistValues>
+            <masterLabel>1 Giga</masterLabel>
+            <translation><!-- 1 Giga --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10 Giga</masterLabel>
+            <translation><!-- 10 Giga --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Modello di servizio --></label>
+        <name>PO_PP_Modello_Servizio__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nome KIT --></label>
+        <name>PO_PP_Nome_KIT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note --></label>
+        <name>PO_PP_Note__c</name>
+    </fields>
+    <fields>
+        <label><!-- POP di raccolta --></label>
+        <name>PO_PP_POP_SVLAN__c</name>
+    </fields>
+    <fields>
+        <label><!-- POP di consegna --></label>
+        <name>PO_PP_Pop__c</name>
+    </fields>
+    <fields>
+        <label><!-- Posizione ODF --></label>
+        <name>PO_PP_Posizione_ODF__c</name>
+    </fields>
+    <fields>
+        <label><!-- Servizi per utenti finali --></label>
+        <name>PO_PP_Servizi_Utenti_Finali__c</name>
+    </fields>
+    <fields>
+        <label><!-- Servizio Commerciale --></label>
+        <name>PO_PP_Servizio_Commerciale__c</name>
+        <picklistValues>
+            <masterLabel>BITSTREAM</masterLabel>
+            <translation><!-- BITSTREAM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BITSTREAM - Openstream Regional</masterLabel>
+            <translation><!-- BITSTREAM - Openstream Regional --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VULA</masterLabel>
+            <translation><!-- VULA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VULA Direct</masterLabel>
+            <translation><!-- VULA Direct --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VULA Openstream City Edge</masterLabel>
+            <translation><!-- VULA Openstream City Edge --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VULA Openstream Direct</masterLabel>
+            <translation><!-- VULA Openstream Direct --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Particella Toponomastica --></label>
+        <name>Particella_Toponomastica__c</name>
+    </fields>
+    <fields>
+        <label><!-- Provincia --></label>
+        <name>Provincia__c</name>
+    </fields>
+    <fields>
+        <label><!-- UI Scala Palazzina --></label>
+        <name>UI_Scala_Palazzina__c</name>
+    </fields>
+    <fields>
+        <label><!-- UpdateBilling --></label>
+        <name>UpdateBilling__c</name>
+    </fields>
+    <fields>
+        <label><!-- isLaborato --></label>
+        <name>isLaborato__c</name>
+    </fields>
+    <fields>
+        <label><!-- metriTot --></label>
+        <name>metriTot__c</name>
+    </fields>
+    <fields>
+        <label><!-- metriTot --></label>
+        <name>metriTot_c__c</name>
+    </fields>
+    <layouts>
+        <layout>Commercial Element Cpe</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Commercial Element Cpe Passivi</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Commercial Element Istanziato Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Commercial Element KIT</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Commercial Element SVLan</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Commercial Element Servizi Aggiuntivi</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Commercial Element Tratte</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dati Attenuazione --></label>
+            <section>Dati Attenuazione</section>
+        </sections>
+        <sections>
+            <label><!-- Dettagli Tecnici --></label>
+            <section>Dettagli Tecnici</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Commercial Element Tratte P2P</layout>
+        <sections>
+            <label><!-- Commercial Element istanziato Detail --></label>
+            <section>Commercial Element istanziato Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dati Attenuazione --></label>
+            <section>Dati Attenuazione</section>
+        </sections>
+        <sections>
+            <label><!-- Dettagli Tecnici --></label>
+            <section>Dettagli Tecnici</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Commercial Element VLan</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Commercial Element Verticale</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- CPE Passivi --></label>
+        <name>CPE_Passivi</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Intervento a vuoto --></label>
+        <name>Intervento_a_vuoto</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- KIT --></label>
+        <name>KIT</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CPE --></label>
+        <name>OF_CPE</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- OF INTERVENTO DI MANUTENZIONE --></label>
+        <name>OF_INTERVENTO_DI_MANUTENZIONE</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Servizi Aggiuntivi --></label>
+        <name>OF_ServiziAggiuntivi</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Standard --></label>
+        <name>OF_Standard</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- VLAN --></label>
+        <name>OF_VLAN</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Portalino --></label>
+        <name>PO_Portalino</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SVLAN --></label>
+        <name>SVLAN</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Tratte --></label>
+        <name>Tratte</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Tratte P2P --></label>
+        <name>Tratte_P2P</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Verticale --></label>
+        <name>Verticale</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Solo un processo verticale può modificare questo record --></errorMessage>
+        <name>isVerticaleUPD</name>
+    </validationRules>
+</CustomObjectTranslation>

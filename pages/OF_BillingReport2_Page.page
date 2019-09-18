@@ -1,0 +1,118 @@
+<apex:page id="pageID" controller="OF_BillingReport2" docType="html-5.0" >
+     <apex:form id="formID">
+        <apex:pageBlock id="pblockID">
+            <!--<apex:pageBlockSection columns="2" >
+                <apex:pageBlockSectionItem >-->
+               <B> Data Attivazione Billing Element</B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Da :<apex:input type="date" value="{!dat}"/>
+             <!--   </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >-->
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  A  : <apex:input type="date" value="{!dat1}"/>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  
+          <!-- </apex:pageBlockSectionItem>
+             <apex:pageBlockSectionItem >--> 
+             <br></br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <apex:outputText > <b>Tipo Report </b></apex:outputText>&nbsp;&nbsp;&nbsp;&nbsp;
+          <apex:selectList size="1" value="{!comboTypeout}"> 
+                <apex:selectOptions value="{!comboType}"/>
+                
+            </apex:selectList></br>
+           <!--</apex:pageBlockSectionItem>
+            </apex:pageBlockSection>-->
+         <apex:pageBlockButtons location="bottom">
+    <apex:commandButton value="Esegui Report" action="{!DisplayMethod}"  />
+     <apex:commandButton value="Esporta Report in csv" action="{!downloadasExcel}" />
+    </apex:pageBlockButtons>
+    <br></br>
+    <br></br>
+    <apex:OutputLabel value="No Records Found" rendered="{!vlstwrap.size<0}"/>
+     <apex:pageBlockTable id="tableID" value="{!LstwrapRecords}" var="eof" rendered="{!vlstwrap.Size>0}">
+   <!--    <apex:column >
+                <apex:facet name="header">Order Number</apex:facet>
+                        {!eof.order.OrderNumber}
+       </apex:column>-->
+        <apex:column >
+                <apex:facet name="header">Action Date</apex:facet>
+                        {!eof.actiondate}
+       </apex:column> 
+      <!--  <apex:column >
+                <apex:facet name="header">Account Name</apex:facet>
+                        {!eof.order.Account.Name}
+       </apex:column>  
+        <apex:column >
+                <apex:facet name="header">Comune</apex:facet>
+                        {!eof.order.OF_Comune__c}
+       </apex:column> -->
+       <apex:column >
+                <apex:facet name="header">Customer ID</apex:facet>
+                        {!eof.eoftest.EOF_Customer_ID__c }
+       </apex:column> 
+        <apex:column rendered="{!comboTypeout=='Attivazioni'}">
+                <apex:facet name="header">Wholesaler</apex:facet>
+                        {!eof.eoftest.Wholesaler__c  }
+       </apex:column> 
+       <!-- <apex:column >
+                <apex:facet name="header">Servizio</apex:facet>
+                        {!eof.pbentry.product2.OF_Servizio__c}
+       </apex:column>  
+        <apex:column >
+                <apex:facet name="header">Billing Element</apex:facet>
+                        {!eof.pbentry.product2.OF_BillingElement__r.Name}
+       </apex:column>  -->
+          
+        <apex:column >
+                <apex:facet name="header">Product Provisioning Code</apex:facet>
+                        {!eof.prodprovCode}
+       </apex:column> 
+       <apex:column rendered="{!comboTypeout=='Attivazioni'}">
+                <apex:facet name="header" >Package Provisioning Code</apex:facet>
+                        {!eof.PackageProvisioningCode }
+       </apex:column> 
+       <apex:column rendered="{!comboTypeout!='CPE'}">
+                <apex:facet name="header">Customer Order</apex:facet>
+                        {!eof.order.OF_IDOrdineOLO__c}
+       </apex:column> 
+        <apex:column rendered="{!comboTypeout!='CPE'}">
+                <apex:facet name="header">Internal Order</apex:facet>
+                        {!eof.order.OF_IDOrdineEOF__c}
+       </apex:column>  
+        <apex:column >
+                <apex:facet name="header">Network ID Resource</apex:facet>
+                        {!eof.order.OF_IDRisorsa__c}
+       </apex:column>  
+       <apex:column rendered="{!comboTypeout=='Attivazioni'}">
+                <apex:facet name="header">POP</apex:facet>
+                        {!eof.order.OF_IdentificativoDelPOP__c}
+       </apex:column>
+       <apex:column rendered="{!comboTypeout=='Attivazioni'}">
+                <apex:facet name="header">Promo Code</apex:facet>
+                        {!eof.promoCode}
+       </apex:column>
+         <apex:column rendered="{!comboTypeout=='Attivazioni'}">
+                <apex:facet name="header">Price Plan</apex:facet>
+                        {!eof.eoftest.PricePlan_ID__c}
+       </apex:column>
+        <apex:column rendered="{!comboTypeout=='Attivazioni'}">
+                <apex:facet name="header">Vertical Operator</apex:facet>
+                       OF
+       </apex:column>             
+       
+            </apex:pageBlockTable>
+           
+   
+    </apex:pageBlock>
+     <apex:outputpanel id="buttonid" rendered="{!vlstwrap.Size>0}">  
+       <center>  
+       <apex:panelGrid columns="5">  
+         <apex:commandButton style="background:none!important;border:none;padding:0!important;cursor:pointer;" value="◄◄" reRender="tableID,buttonid" action="{!first}"/>  
+         <apex:commandButton style="background:none!important;border:none;padding:0!important;cursor:pointer;" value="◄ avanti" reRender="tableID,buttonid" action="{!previous}" disabled="{!!hasPrevious}"/>  
+         <apex:outputLabel value="{!intPageNumber} of {!intNumberofPages}" /> 
+         <apex:commandButton style="background:none!important;border:none;padding:0!important;cursor:pointer;" value="indietro►" reRender="tableID,buttonid" action="{!next}" disabled="{!!hasNext}"/>  
+         <apex:commandButton style="background:none!important;border:none;padding:0!important;cursor:pointer;" value="►►" reRender="tableID,buttonid" action="{!last}"/>  
+       </apex:panelGrid>  
+       </center>  
+     </apex:outputpanel>  
+     
+                                     
+    </apex:form>
+</apex:page>

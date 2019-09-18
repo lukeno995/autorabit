@@ -1,0 +1,264 @@
+<apex:page standardController="Case" extensions="PO_RegistrationController" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false">
+    <html lang="en">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>open fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                .section-heading{
+                padding: 3px;
+                background: #6aafac;
+                color: white;
+                display: block;
+                }
+              
+                
+            </style>
+        </head>
+        <body>
+            
+            <div id="wrapper">
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <c:PO_SideBarComponent />
+                    
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" id="side-menu">
+                            </ul>
+                        </div>
+                        <!-- /.sidebar-collapse -->
+                    </div>
+                    <!-- /.navbar-static-side -->
+                </nav>
+                
+                <div id="page-wrapper">
+                    <div class="row">
+                        <div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i></i>Dettagli collegamento
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        
+                                        <div style="color:red;" id="showerror">
+                                            <apex:pageMessages id="errors" /> 
+                                        </div>
+                                        
+                                        
+                                        <apex:form styleClass="form-horizontal" id="theform">
+                                        <apex:pageMessages ></apex:pageMessages>
+                                            
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <div class="col-lg-1 col-offset-1">
+                                                    </div>
+                                                    
+                                                    <div class="col-lg-4 col-lg-4 col-lg-4">
+                                                    <apex:outputPanel id="sec2">
+                                                                          <apex:commandButton styleClass="btn btn-primary" value="Indietro" action="{!backtochild}" /> 
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <apex:commandButton styleClass="btn btn-primary" value="Edit" action="{!EditCaseInfo}" rendered="{!showedit}"/> 
+                                                        <!-- <apex:commandButton styleClass="btn btn-primary" value="Desospendi" action="{!StausUpdate}" rendered="{!showedit}"/> -->
+                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                         </apex:outputPanel>
+                                                        
+                                                    </div>
+                                                    <!--<div class="col-lg-4 col-lg-4 col-lg-4">
+                                                        
+                                                             <apex:outputPanel rendered="{!childCaseObj.Status=='Completo'}" id="sec1">
+                                                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Invia dati Ordine</button>
+                                                       
+                                                        </apex:outputPanel>         
+                                                        
+                                                        
+                                                    </div>-->
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="table-responsive">
+                                                <table id="theTable" class="table table-striped table-bordered table-condensed">
+                                                    <thead class="bg-primary">
+                                                        <tr >
+                                                            <th>ID Richiesta Collegamento </th>
+                                                            <th >ID Richiesta Offerta </th>
+                                                            <th >ID Ordine Collegamento</th>
+
+                                                            <th >Tipo Percorso</th>
+                                                            
+                                                            
+                                                            <th >Indirizzo Collegamento </th>
+                                                            <th >Comune</th>
+                                                            <th >Stato</th>
+                                                            </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <!--  <apex:repeat value="{!ChildCases}" var="cs"> -->
+                                                        <tr>
+                                                            
+                                                            <td>
+                                                                <apex:outputField id="Status" styleClass="form-control"  value="{!childCaseObj.CaseNumber}"/>
+                                                                
+                                                            </td>
+                                                            <td>
+                                                                <apex:outputField id="Collegamento" styleClass="form-control" value="{!childCaseObj.PO_Richiesta_a_fattibilit__r.casenumber}"/>
+                                                                
+                                                            </td>
+                                                            <td>
+                                                                
+                                                            </td>
+                                                            <td>
+                                                                <apex:outputfield id="Richiestafattibilità" styleClass="form-control" value="{!childCaseObj.PO_Tipo_percorso__c}"/>
+                                                                
+                                                            </td>
+                                                            <td>
+                                                                <apex:outputfield id="AreaGeografica" styleClass="form-control" value="{!childCaseObj.PO_IndrizoCal__c}"/>
+                                                               
+                                                            </td>
+                                                            <td>
+                                                                <apex:outputField id="PrimeContractor" styleClass="form-control" value="{!childCaseObj.PO_Nome_Comune__c}"/>
+                                                                
+                                                            </td>
+                                                            <td>
+                                                                <apex:outputField id="Numero" styleClass="form-control" value="{!childCaseObj.status}"/>
+                                                            </td>
+                                                         
+                                                        </tr>
+                                                        <!--  </apex:repeat>  -->
+                                                        
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            
+                                            <div class="modal fade" id="myModal" role="dialog">
+                                                <div class="modal-dialog">
+                                                    <apex:pageMessages id="pgmid"/>
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">Collegamento</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                          <form id="loginForm" method="post" class="form-horizontal">
+                                                              <div class="form-group has-error">
+                                                            <label class="control-label col-sm-3" for="date">Data Attivazione Richiesta Cliente</label>
+                                                            <div class="col-sm-6">
+                                                                <apex:input type="date"  value="{!childrecdate}" size="10" id="date"  onfocus="DatePicker.pickDate(false, 'myPage:myForm:demo', false);"  />
+                                                                 <!--<apex:inputfield value="{!childCaseObj.PO_Nome_E_Cognome_PM__c}"     />-->
+                                   
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-3" for="PMRiferimento">PM Riferimento</label>
+                                                            <div class="col-sm-6">
+                                                                <apex:inputfield value="{!childCaseObj.PO_Nome_E_Cognome_PM__c}" id="txtid1" required="{!ordercheck}"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-3" for="Telefono">Telefono PM</label>
+                                                            <div class="col-sm-6">
+                                                                <apex:inputfield value="{!childCaseObj.PO_Numero_Telefonico_PM__c}" id="txtid" required="{!ordercheck}"/>
+                                                            </div>
+                                                        </div> 
+                                                            </form>
+                                                        </div>
+                                                       
+                                                        <div class="modal-footer">
+                                                     
+                                                            <apex:commandButton value="Annulla" action="{!DisplayCaseInfo}" styleClass="btn btn-primary" rerender="theform"  onComplete="$('#myModal1').modal('hide');$('body').removeClass('modal-open');$('.modal-backdrop').remove()"  immediate="true"  html-formnovalidate="formnovalidate"/>
+                                                                                 <!--onclick="javascript:window.location.reload()"-->
+                                                            <apex:commandButton value="Salva" action="{!collegmentaDate}" styleClass="btn btn-primary" rerender="theform,sec1,sce2"   onComplete="$('#myModal1').modal('hide');$('body').removeClass('modal-open');$('.modal-backdrop').remove()"  onclick="javascript:window.location.reload()" id="loginFormSubmit" reRender="pgmid"/><!--onclick="javascript:window.location.reload()"-->
+                                                       
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            
+                                        </apex:form>  
+                                        
+                                    </div>
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>       
+                            <!-- /.col-lg-4 -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /#page-wrapper -->
+                    
+                </div>
+            </div>
+            <!-- /#wrapper -->
+            
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" />
+     
+           <apex:includeScript value="https://ajax.microsoft.com/ajax/jquery.validate/1.6/jquery.validate.min.js"/>
+            </body>
+            
+            </html>
+       <script type="text/javascript">
+  $('#loginForm').on('submit', function(e) {
+    var date = $('#date');
+
+    // Check if there is an entered value
+    if(!date.val()) {
+      // Add errors highlight
+      date.closest('.form-group').removeClass('has-success').addClass('has-error');
+
+      // Stop submission of the form
+      e.preventDefault();
+    } else {
+      // Remove the errors highlight
+      date.closest('.form-group').removeClass('has-error').addClass('has-success');
+    }
+  });
+            </script>    
+         
+            
+  </apex:page>

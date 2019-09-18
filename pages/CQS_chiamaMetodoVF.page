@@ -1,0 +1,18 @@
+<apex:page standardController="OF_CQS_Evento__c" extensions="CQS_HomeTipoEvento_cController" showHeader="false" action="{!salvaEventoSuccessivo}" >
+    <script>
+    /*function back(){
+               
+            open(location, '_self').close();
+             
+                 
+        }  */
+    
+    /*  function CloseAndRefresh(){
+        window.opener.location.href="/{!$CurrentPage.parameters.id}";
+        window.top.close();
+  
+    }*/
+    </script>
+ 
+    
+</apex:page>

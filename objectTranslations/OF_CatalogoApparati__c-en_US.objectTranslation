@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Catalogo Apparato</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Cataloghi Apparati</value>
+    </caseValues>
+    <fields>
+        <label><!-- OLO --></label>
+        <name>OF_OLO__c</name>
+        <relationshipLabel><!-- Cataloghi Apparati --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Tipologia apparato --></label>
+        <name>OF_TipologiaApparato__c</name>
+    </fields>
+    <layouts>
+        <layout>Catalogo Apparato Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

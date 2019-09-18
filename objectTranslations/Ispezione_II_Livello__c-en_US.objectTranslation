@@ -1,0 +1,1061 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Ispezione Service</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Ispezioni Services</value>
+    </caseValues>
+    <fields>
+        <help><!-- I dati inseriti nella Notifica Preliminari sono completi e corretti --></help>
+        <label><!-- Dati Notifica Prel completi e corretti --></label>
+        <name>CQS_Isp2L_AL2_Dati_NotPrel_ComplCorr__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Verifica dell’idoneità tecnico professionale delle imprese esecutrici --></help>
+        <label><!-- Idoneità Tecnico Professionale Imp Esec --></label>
+        <name>CQS_Isp2L_AL2_Idoneita_TecProf_ImpEsec__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Nomina del Coordinatore per la Sicurezza in fase di Esecuzione --></help>
+        <label><!-- Nomina Coord Sicurezza fase Esecuzione --></label>
+        <name>CQS_Isp2L_AL2_Nomina_CoordSic_faseEsec__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Nomina del Coordinatore per la Sicurezza in fase di Progettazione --></help>
+        <label><!-- Nomina Coord Sicurezza fase Progettazion --></label>
+        <name>CQS_Isp2L_AL2_Nomina_CoordSic_faseProg__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Verifica dell’operato del Coordinatore per la Sicurezza in fase di Esecuzione --></help>
+        <label><!-- Operato Coord.re Sicurezza fase Esec.ne --></label>
+        <name>CQS_Isp2L_AL2_OpCoordSic_faseEsec__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Partecipazione riunione di governance indette da O.F. --></help>
+        <label><!-- Partecipazione riunione governance OF --></label>
+        <name>CQS_Isp2L_AL2_Part_RiunGovern_OF__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Partecipazione alle Riunioni di Coordinamento periodiche --></help>
+        <label><!-- Partecipazione Riunioni Coord.to period --></label>
+        <name>CQS_Isp2L_AL2_PartecRiunCoordPeriod__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Il R.L. si dimostra collaborativo --></help>
+        <label><!-- Il RL si dimostra collaborativo --></label>
+        <name>CQS_Isp2L_AL2_RL_collaborativo__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Il R.L. si dimostra presente --></help>
+        <label><!-- Il RL si dimostra presente --></label>
+        <name>CQS_Isp2L_AL2_RL_presente__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Il R.L. si dimostra reattivo --></help>
+        <label><!-- Il RL si dimostra reattivo --></label>
+        <name>CQS_Isp2L_AL2_RL_reattivo__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Trasmissione dei nominativi dei Coordinatori per la Sicurezza alle imprese esecutrici --></help>
+        <label><!-- Trasmissione Coord Sicurezza ImpreseEsec --></label>
+        <name>CQS_Isp2L_AL2_Trasm_Coord_Sic_ImpEsec__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Trasmissione della Notifica Preliminare agli organi competenti --></help>
+        <label><!-- Trasm.ne Notif Prelim organi competenti --></label>
+        <name>CQS_Isp2L_AL2_Trasm_NotPrelim_orgComp__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Trasmissione del PSC alle imprese affidatarie --></help>
+        <label><!-- Trasmissione PSC imprese affidatarie --></label>
+        <name>CQS_Isp2L_AL2_Trasmissione_PSC_ImpAff__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Svolgimento controlli in fase di collaudo con redazione verbali e verifica di risoluzione irregolarità/difetti (vedi nota1) --></help>
+        <label><!-- Check collaudo,verbali risoluzione probl --></label>
+        <name>CQS_Isp2L_AL3_CheckCollVerbRisolProbl__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Verifica contabilità finale delle opere e della congruenza fra quanto dichiarato dagli Appaltatori e quanto verificato --></help>
+        <label><!-- Check congruenza Verifiche Appaltatori --></label>
+        <name>CQS_Isp2L_AL3_CheckCongrVerAppaltatori__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Verifica corretta corrispondenza tra le opere in corso di realizzazione ed il progetto dell&apos;opera --></help>
+        <label><!-- Check corrispondenza lavori e progetti --></label>
+        <name>CQS_Isp2L_AL3_CheckCorrispLavoriEProg__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Svolgimento dei controlli in corso d&apos;opera con redazione verbali e verifica di risoluzione irregolarità/difetti (Min 2/week) --></help>
+        <label><!-- Check,verbali,verifica,risoluz problemi --></label>
+        <name>CQS_Isp2L_AL3_CheckErisoluz_problemi__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Verifica corretta gestione dei rifiuti e della normativa in tema ambientale (verifica FIR e documenti carico/scarico) (Min 2/week) --></help>
+        <label><!-- Check gest rifiuti e norme tema ambiente --></label>
+        <name>CQS_Isp2L_AL3_CheckRifNormeAmbiente__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Svolgimento controlli dei ripristini provvisori e definitivi con redazione verbali e verifica di risoluzione irregolarità (Min 2/week) --></help>
+        <label><!-- Check ripristini,verbali, risol.ne probl --></label>
+        <name>CQS_Isp2L_AL3_CheckRiprVerbRisolProbl__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Convocazione delle riunioni di Stato di Avanzamento Lavori con le imprese (Min 1/mese) --></help>
+        <label><!-- Convoc.ne riunioni avanz.nto lav imprese --></label>
+        <name>CQS_Isp2L_AL3_ConvocRiunAvaLavImp__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Il D.L. si dimostra collaborativo --></label>
+        <name>CQS_Isp2L_AL3_DL_collaborativo__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Il D.L. si dimostra presente --></label>
+        <name>CQS_Isp2L_AL3_DL_presente__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Il D.L. si dimostra reattivo --></label>
+        <name>CQS_Isp2L_AL3_DL_reattivo__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Gestione delle varianti in corso d&apos;opera --></help>
+        <label><!-- Gestione delle varianti in corso d&apos;opera --></label>
+        <name>CQS_Isp2L_AL3_GestVarInCorsoDopera__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Monitoraggio rispetto del cronoprogramma lavori --></help>
+        <label><!-- Monitoraggio rispetto cronoprogramma lav --></label>
+        <name>CQS_Isp2L_AL3_MonitRispCronoprogrLav__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Partecipazione riunione di coordinamento indette dal CSE (Min 75%) --></help>
+        <label><!-- Partecipazione riunione coord.nto CSE --></label>
+        <name>CQS_Isp2L_AL3_PartecRiunCoordDaCSE__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Redazione di verbali (sospensione, ripresa, OdS, ecc) --></help>
+        <label><!-- Redazione verbali --></label>
+        <name>CQS_Isp2L_AL3_RedazioneVerbali__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Supporto nella “Gestione legale”. 
+Raccolta di documentazione, effettuazione verifiche in loco, tracciamento attività/sinistri --></help>
+        <label><!-- Supporto &quot;Gestione Legale&quot; --></label>
+        <name>CQS_Isp2L_AL3_SupportoGestioneLegale__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Il CSE partecipa attivamente alle riunioni periodiche --></help>
+        <label><!-- Partecipa attiva.nte riunioni periodiche --></label>
+        <name>CQS_Isp2L_AL4_CSE_AttivPartecRiunPer__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Il CSE si dimostra presente --></label>
+        <name>CQS_Isp2L_AL4_CSE_presente__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Il CSE si dimostra reattivo --></label>
+        <name>CQS_Isp2L_AL4_CSE_reattivo__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Convocazione Riunioni di Coordinamento periodiche (Min 1/mese) --></help>
+        <label><!-- Convoc.ne Riunioni Coord.nto periodiche --></label>
+        <name>CQS_Isp2L_AL4_ConvRiunCoordPeriod__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Esecuzione sopralluoghi e redazione dei verbali e segnalazione non conformità (Min 2/week) --></help>
+        <label><!-- Sopralluoghi verbali segnal.ni non conf --></label>
+        <name>CQS_Isp2L_AL4_SoprallVerbSegnNoConf__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Verifica ed approvazione dei documenti su portale Zucchetti Safety Solution in tempi congrui --></help>
+        <label><!-- Tempi check e approv.ne doc su ZSS ok --></label>
+        <name>CQS_Isp2L_AL4_TempiCheckDocSuZSSok__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Rendicontazione nella tempistica prevista tutti gli eventi lievi (Max 24h) --></help>
+        <label><!-- Tempi rendiconto eventi L come previsto --></label>
+        <name>CQS_Isp2L_AL4_TempiRendEventiLasPrevisto__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Rendicontazione nella tempistica prevista tutti gli eventi medi-gravi (Max 16h) --></help>
+        <label><!-- Tempi rendiconto eventi MG come previsto --></label>
+        <name>CQS_Isp2L_AL4_TempiRendEventiMGasPrev__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Rendicontazione nella tempistica prevista tutti gli infortuni (Max 6h) --></help>
+        <label><!-- Tempi rendiconto Infortuni come previsto --></label>
+        <name>CQS_Isp2L_AL4_TempiRendInfortasPrevisto__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Trasmissione del P.S.C. e dei suoi aggiornamenti al RL e alle imprese --></help>
+        <label><!-- Trasmissione PSC e aggiornamenti RL/Imp --></label>
+        <name>CQS_Isp2L_AL4_TrasmPSCeAggRLeImp__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Archiviazione della documentazione prodotta su portale Tempo box (verbali, OdS, comunicazioni, ecc) --></help>
+        <label><!-- Archiviazione documentazione Tempo box --></label>
+        <name>CQS_Isp2L_ArchDocTempoBox__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Distribuzione equa dei controlli per tutte le imprese o sbilanciamenti dovuti alla presenza di imprese &quot;critiche&quot; --></help>
+        <label><!-- Check Imp equi/sbil.to Imp &quot;critiche&quot; --></label>
+        <name>CQS_Isp2L_Check_EquiSbiltoImpCr__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Comune --></label>
+        <name>CQS_Isp2L_Comune__c</name>
+    </fields>
+    <fields>
+        <label><!-- LDO --></label>
+        <name>CQS_Isp2L_LDO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nominativo --></label>
+        <name>CQS_Isp2L_Nominativo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note Adempimenti Contrattuali --></label>
+        <name>CQS_Isp2L_Note_AdContr__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note Altro --></label>
+        <name>CQS_Isp2L_Note_Altro__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note Generali --></label>
+        <name>CQS_Isp2L_Note_Generali__c</name>
+    </fields>
+    <fields>
+        <label><!-- Progetto --></label>
+        <name>CQS_Isp2L_Progetto__c</name>
+        <relationshipLabel><!-- Ispezioni Services --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Redazione del P.S.C. e costante aggiornamento --></help>
+        <label><!-- Redazione PSC e costante aggiornamento --></label>
+        <name>CQS_Isp2L_RedPSCcostAgg__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Il R.L. assicura adeguato reporting al Field manager secondo le modalità e le tempistiche concordate? --></help>
+        <label><!-- Reporting Adeguato a FM come concordato --></label>
+        <name>CQS_Isp2L_ReportAdeguato_toFM__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- La risorsa svolge attività di controllo della correttezza dei progetti e della loro congruità in termini tecnico ed economici, supporta i progettisti esecutivi --></help>
+        <label><!-- Controllo supporto progettisti esecutivi --></label>
+        <name>CQS_IspIIL_AL1_ContrSupp_progeEsec__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Il numero di risorse operative è conforme a quanto previsto da contratto --></help>
+        <label><!-- N° risorse operative conforme contratto --></label>
+        <name>CQS_IspIIL_AL1_N_RisOp_ConfContratto__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Note Construction Management --></label>
+        <name>CQS_IspIIL_AL1_Note_ConstrManagement__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note Design Supervision &amp; Control --></label>
+        <name>CQS_IspIIL_AL1_Note_Design_Supervision_C__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note Permit Management --></label>
+        <name>CQS_IspIIL_AL1_Note_PermitManagement__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note Planning &amp; Program Management --></label>
+        <name>CQS_IspIIL_AL1_Note_PlanningProgramMan__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note Service --></label>
+        <name>CQS_IspIIL_AL1_Note_Service__c</name>
+    </fields>
+    <fields>
+        <help><!-- La risorsa verifica il rispetto dei tempi di esecuzione (verifica cronoprogramma, attività di walkin/walkout, ottenimento permessi, collaudi ecc) --></help>
+        <label><!-- Rispetto tempi esecuzione --></label>
+        <name>CQS_IspIIL_AL1_RispettoTempiEsec__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- La risorsa verifica il rispetto dei vincoli di budget --></help>
+        <label><!-- Rispetto vincoli di budget --></label>
+        <name>CQS_IspIIL_AL1_RispettoVincoliBudget__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Vengono messi a disposizione strumenti e mezzi adeguati allo svolgimento dell’incarico --></help>
+        <label><!-- Strumenti e mezzi adeguati per incarico --></label>
+        <name>CQS_IspIIL_AL1_StrumEmezzi_okIncarico__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- La risorsa svolge attività di supporto al Construction Management e alla direzione lavori --></help>
+        <label><!-- Supporta il Construction Management e DL --></label>
+        <name>CQS_IspIIL_AL1_SuppConsManDL__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- La risorsa supporta le imprese ed OF nei rapporti con gli enti, le amministrazioni ed i condomini --></help>
+        <label><!-- Supporto rapporti enti amm.ni condomini --></label>
+        <name>CQS_IspIIL_AL1_SuppRapp_EntiAmmCond__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- La risorsa verifica la tracciabilità delle informazioni e della documentazione --></help>
+        <label><!-- Tracciabilità info e documentazione --></label>
+        <name>CQS_IspIIL_AL1_Tracciabilit_infoEdoc__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- La risorsa verifica la conformità dell’opera realizzata rispetto agli elaborati progettuali --></help>
+        <label><!-- Verifica opera conforme a progetto --></label>
+        <name>CQS_IspIIL_AL1_VerOpera_conformeProg__c</name>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Data --></label>
+        <name>CQS_IspIIL_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- Service --></label>
+        <name>CQS_IspIIL_Service2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Service --></label>
+        <name>CQS_IspIIL_Service__c</name>
+        <relationshipLabel><!-- Ispezioni Services --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>CQS_IspIIL_AL1_RispettoAdempimentiContrSS</layout>
+        <sections>
+            <label><!-- Construction Management --></label>
+            <section>Construction Management</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Design Supervision &amp; Control --></label>
+            <section>Design Supervision &amp; Control</section>
+        </sections>
+        <sections>
+            <label><!-- Note Generali --></label>
+            <section>Note Generali</section>
+        </sections>
+        <sections>
+            <label><!-- Permit Management --></label>
+            <section>Permit Management</section>
+        </sections>
+        <sections>
+            <label><!-- Planning &amp; Program Management --></label>
+            <section>Planning &amp; Program Management</section>
+        </sections>
+        <sections>
+            <label><!-- Service --></label>
+            <section>Service</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CQS_IspIIL_AL2_RispettoAdempimentiContrRL</layout>
+        <sections>
+            <label><!-- Adempimenti Contrattuali --></label>
+            <section>Adempimenti Contrattuali</section>
+        </sections>
+        <sections>
+            <label><!-- Altro --></label>
+            <section>Altro</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CQS_IspIIL_AL3_RispettoAdempimentiContrDL</layout>
+        <sections>
+            <label><!-- Adempimenti Contrattuali --></label>
+            <section>Adempimenti Contrattuali</section>
+        </sections>
+        <sections>
+            <label><!-- Altro --></label>
+            <section>Altro</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Note --></label>
+            <section>Note</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CQS_IspIIL_AL4_RispettoAdempimentiContrCSE</layout>
+        <sections>
+            <label><!-- Adempimenti Contrattuali --></label>
+            <section>Adempimenti Contrattuali</section>
+        </sections>
+        <sections>
+            <label><!-- Altro --></label>
+            <section>Altro</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Note Generali --></label>
+            <section>Note Generali</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description><!-- Recordtype per l&apos;allegato1 relativo alle Verifiche del Rispetto degli Adempimenti Contrattuali delle Società di Servizio  effettuate dagli Ispettori di II Livello --></description>
+        <label><!-- Verifica Rispetto Adempimenti Contrattuali Societa di Servizio --></label>
+        <name>CQS_IspIIL_AL1_Verifica_Rispetto_Adempimenti_Contrattuali_SocietaServizio</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Recordtype per l&apos;allegato2 relativo alle Verifiche del Rispetto degli Adempimenti Contrattuali degli RL effettuate dall&apos;Ispettore di II Livello --></description>
+        <label><!-- Verifica Rispetto Adempimenti Contrattuali RL --></label>
+        <name>CQS_IspIIL_AL2_Verifica_Rispetto_Adempimenti_Contrattuali_RL</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Recordtype per l&apos;allegato3 relativo alle Verifiche del Rispetto degli Adempimenti Contrattuali dei DL effettuate dagli Ispettori di II Livello --></description>
+        <label><!-- Verifica Rispetto Adempimenti Contrattuali DL --></label>
+        <name>CQS_IspIIL_AL3_Verifica_Rispetto_Adempimenti_Contrattuali_DL</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Recordtype per l&apos;allegato4 relativo alle Verifiche del Rispetto degli Adempimenti Contrattuali dei CSE effettuate dagli Ispettori di II Livello --></description>
+        <label><!-- Verifica Rispetto Adempimenti Contrattuali CSE --></label>
+        <name>CQS_IspIIL_AL4_Verifica_Rispetto_Adempimenti_Contrattuali_CSE</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Recordtype per l&apos;allegato1 relativo alle Verifiche del Rispetto degli Adempimenti Contrattuali delle Società di Servizio effettuate dai CM --></description>
+        <label><!-- Verifica I Livello Rispetto Adempimenti Contrattuali Societa di Servizio --></label>
+        <name>CQS_IspIL_AL1VerificaRispettoAdempimentiContrattualiSS</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Recordtype per l&apos;allegato2 relativo alle Verifiche di I Livello del Rispetto degli Adempimenti Contrattuali degli RL effettuate dai CM --></description>
+        <label><!-- Verifica I Livello Rispetto Adempimenti Contrattuali RL --></label>
+        <name>CQS_IspIL_AL2VerificaRispettoAdempimentiContrattualiRL</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Recordtype per l&apos;allegato3 relativo alle Verifiche di I Livello del Rispetto degli Adempimenti Contrattuali dei DL effettuate dai CM --></description>
+        <label><!-- Verifica I Livello Rispetto Adempimenti Contrattuali DL --></label>
+        <name>CQS_IspIL_AL3VerificaRispettoAdempimentiContrattualiDL</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Recordtype per l&apos;allegato4 relativo alle Verifiche del Rispetto degli Adempimenti Contrattuali dei CSE effettuate dai CM --></description>
+        <label><!-- Verifica I Livello Rispetto Adempimenti Contrattuali CSE --></label>
+        <name>CQS_IspIL_AL4VerificaRispettoAdempimentiContrattualiCSE</name>
+    </recordTypes>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,93 @@
+<apex:component controller="PO_COMP_InsertIdRisorsa_Controller" allowDML="true">
+    <!-- Begin Default Content REMOVE THIS -->
+    <html lang="it"> 
+    <h1></h1>
+    
+    <!-- End Default Content REMOVE THIS -->
+     <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+                <meta http-equiv="X-UA-Compatible" content="IE=edge"/> 
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <title>Open Fiber</title>  
+                <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+                <!-- Bootstrap Core CSS -->
+                <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+                
+                <!-- MetisMenu CSS -->
+                <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+                
+                <!-- Custom CSS -->
+                <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+                
+                <!-- Morris Charts CSS -->
+                <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+                
+                <!-- Custom Fonts -->
+                <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+                
+                <!-- /#wrapper -->
+                  
+                <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+                
+                <!-- Bootstrap Core JavaScript -->
+                <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+                
+                
+                <!-- datetimepiker -->
+                <apex:includeScript value="{!URLFOR($Resource.moment, 'moment-develop/min/moment-with-locales.min.js')}"/>
+    
+                <apex:includeScript value="{!URLFOR($Resource.datetimepicker, 'bootstrap-datetimepicker-master/build/js/bootstrap-datetimepicker.min.js')}"/>
+                
+                <apex:stylesheet value="{!URLFOR($Resource.datetimepicker, 'bootstrap-datetimepicker-master/build/css/bootstrap-datetimepicker.min.css')}"/>
+                
+                <script src='https://www.google.com/recaptcha/api.js' >
+                </script>  
+                <style>
+                    .navbar {
+                    min-height: 105px;
+                    }
+                    .navbar-header {
+                    float: none;
+                    }
+                    .navbar-default {
+                    background-color: #ffffff;
+                    }
+                    .panel-default>.panel-heading {
+                    color: #ffffff;
+                    background-color: #337ab7;
+                    }
+                    span.dateFormat{
+                    
+                    display:none;
+                    
+                    }
+                    .red{color:red;}
+                    .form-check-input{ 
+                    margin-left: 45px !important;
+                    margin-top: 10px;
+                    }
+                    
+                    
+                </style>
+            </head>
+    
+                <!-- EC  -->
+                  <apex:form id="theForm">
+                      <apex:outputLabel value="Inserisci l'Id Risorsa su cui richiedere l'operazione" style="text-align:center;" for="idRisorsa"/>
+                        <apex:pageMessage id="valIdRisorsa" rendered="{!idRisorsaNonValido}" summary="Id Risorsa non valido" severity="error"/>
+                        <apex:panelGrid columns="3" style="margin-top:1em;">
+                          
+                        
+                          <apex:inputText required="true" styleClass="form-control" value="{!idRisorsa}" id="idRisorsa"/>&nbsp; &nbsp;
+                            
+                                <apex:commandButton id="submit" styleClass="btn btn-primary" action="{!routeRequest}" value="Inserisci" Id="btnChange"/>
+                           
+                          
+                        </apex:panelGrid> 
+                        </apex:form>  
+                
+                <!-- END EC -->
+                
+            
+            </html>
+    </apex:component>

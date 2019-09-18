@@ -1,0 +1,219 @@
+<apex:page controller="OF_CV_ElencoRegole_Controller" id="thePage" standardstylesheets="false" sidebar="true">
+    <apex:slds />
+    <html lang="en">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Open Fiber</title>
+
+        <style>
+            .fsWrapper {
+                width: 960px;
+                margin: 0 auto;
+            }
+            
+            .fontHeader {
+                font-size: 13px;
+            }
+            
+            .headerTitle {
+                font-family: arial, sans-serif;
+                font-size: 16px;
+                font-weight: 600;
+                color: #fff!important;
+                text-align: left;
+                text-transform: uppercase;
+                background: #4e75a3;
+                display: block;
+                padding: 10px;
+                margin: 0;
+            }
+            
+            .dataTable table {
+                width: 100%;
+                font-family: arial, sans-serif;
+                border: solid 1px #E0E3E5;
+                border-collapse: collapse;
+            }
+            
+            .dataTable th {
+                background: #999999;
+                border-top: solid 1px #E0E3E5;
+                border-right: solid 1px #E0E3E5;
+                color: #fff;
+                font-size: 0.8em;
+                font-weight: normal;
+                padding: 11px 2px 10px 5px;
+            }
+            
+            .dataTable td {
+                border-top: solid 1px #E0E3E5;
+                border-right: solid 1px #E0E3E5;
+                color: #797979;
+                font-size: 15px;
+                padding: 5px 2px 5px 5px;
+            }
+            
+            #buttons {
+                text-transform: uppercase;
+                padding-top: 10px;
+                padding-right: 10px;
+                padding-bottom: 10px;
+            }
+            
+            #btnConfirm {
+                text-transform: uppercase;
+                padding-top: 10px;
+                padding-right: 10px;
+                padding-bottom: 10px;
+                margin-left: 640px;
+            }
+            
+            .slds-scope .slds-button--brand,
+            .slds-scope .slds-button_brand {
+                background-color: rgb(52, 81, 138);
+                border-color: rgb(52, 81, 138);
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+        <apex:form id="form" styleClass="fsWrapper">
+            <apex:pageMessages id="errors" /> 
+            <apex:outputPanel id="outpan" styleClass="dataTable">
+                <apex:pageBlock id="pageB">
+                    <h2 class="headerTitle">ELENCO REGOLE</h2>
+                    <apex:pageBlockTable id="pageBtab" value="{!lstRegole}" var="regole" onRowClick="rowSelected(this)">
+                        <apex:facet name="caption"></apex:facet>
+                        <apex:facet name="header"></apex:facet>
+                        <apex:facet name="footer"></apex:facet>
+
+                        <apex:column id="col_codOp">
+                            <apex:facet name="header">
+                                <p class="fontHeader">REGOLA</p>
+                            </apex:facet>
+                            <apex:outputText id="name" value="{!regole.Id_Regola__c}" />
+                        </apex:column>
+
+                        <apex:column id="col_olo">
+                            <apex:facet name="header">
+                                <p class="fontHeader">OLO</p>
+                            </apex:facet>
+                            <apex:outputText id="Codice_OLO__c" value="{!regole.Codice_OLO__c}" />
+                        </apex:column>
+
+                        <apex:column id="col_serv">
+                            <apex:facet name="header">
+                                <p class="fontHeader">SERVIZIO</p>
+                            </apex:facet>
+                            <apex:outputText id="Servizio__c" value="{!regole.Servizio__c}" />
+                        </apex:column>
+
+
+                        <apex:column id="col_stato">
+                            <apex:facet name="header">
+                                <p class="fontHeader">STATO</p>
+                            </apex:facet>
+                            <apex:outputText id="Stato__c" value="{!regole.Stato__c}" />
+                        </apex:column>
+
+                        <apex:column id="col_blacklist">
+                            <apex:facet name="header">
+                                <p class="fontHeader">BLACKLIST</p>
+                            </apex:facet>
+                            <apex:outputText id="isBlacklist__c" value="{!regole.isBlacklist__c}" />
+                        </apex:column>
+                        <apex:column id="col_isBozza">
+                            <apex:facet name="header">
+                                <p class="fontHeader">STATUS</p>
+                            </apex:facet>
+                            <apex:outputText id="status" value="{!IF(AND(regole.IsBozza__c = true, regole.IsInviato__c = false), 'BOZZA', 'INVIATO')}"/>
+                        </apex:column>
+                        <apex:column id="col_isattiva">
+                            <apex:facet name="header">
+                                <p class="fontHeader">ATTIVA/DISATTIVA</p>
+                            </apex:facet>
+                            <apex:inputCheckbox id="f1" value="{!regole.isAttiva__c}" rendered="{!IF(AND(regole.IsBozza__c = true, regole.IsInviato__c = false), false, true)}"/>
+                        </apex:column>
+                        <apex:column id="col_id" style="display:none;">
+                            <apex:outputText id="id" value="{!regole.id}" />
+                        </apex:column>
+
+                    </apex:pageBlockTable>
+                    <div class="slds-form-element" id="btnConfirm">
+                        <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;"
+                            value="Conferma Scelta" action="{!confermaScelta}" />
+                    </div>
+                    <div class="slds-form-element" id="buttons">
+                        <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;"
+                            value="Crea Regola" action="{!creaRegola}" />
+                        <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;"
+                            value="Clona Regola" onclick="return isErrore()" action="{!clonaRegola}"
+                        />
+                        <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;"
+                            value="Modifica Regola" onclick="return isErrore()" action="{!modificaRegola}"
+                        />
+                        <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:10px;"
+                            value="Annulla" action="{!annulla}" />
+
+                    </div>
+                </apex:pageBlock>
+
+            </apex:outputPanel>
+
+            <apex:actionFunction name="echo" action="{!valorizzaDati}" reRender="resultPanel"
+                status="myStatus">
+                <apex:param name="id_regola" assignTo="{!id_regola}" value="" />
+                <apex:param name="servizio" assignTo="{!servizio}" value="" />
+                <apex:param name="olo" assignTo="{!olo}" value="" />
+            </apex:actionFunction>
+        </apex:form>
+   
+                 <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+            <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>  
+        <apex:includeScript value="{!URLFOR($Resource.sweetalert, '/sweetalert/sweetalert/sweetalert.min.js')}"
+        />
+
+        <script type="text/javascript">
+            $j = jQuery.noConflict();
+
+            var lastRow;
+            var id_regola = '';
+            var allStati = '';
+
+            function rowSelected(v) {
+                //debugger;
+                if (lastRow != undefined)
+                    lastRow.style.backgroundColor = 'white';
+
+                echo(v.cells[0].firstChild.innerHTML, v.cells[2].firstChild.innerHTML,
+                    v.cells[1].firstChild.innerHTML);
+                id_regola = v.cells[0].firstChild.innerHTML;
+                v.style.backgroundColor = 'lightblue';
+                lastRow = v;
+            }
+
+
+
+            function isErrore() {
+                //alert ('>>>>>>>>>>>>'+ id_regola +'<<<');
+                if (id_regola == '') {
+                    alert('Selezionare un elemento dalla lista!');
+                    return false;
+                }
+            }
+
+   
+
+        </script>
+
+    </body>
+
+    </html>
+
+</apex:page>

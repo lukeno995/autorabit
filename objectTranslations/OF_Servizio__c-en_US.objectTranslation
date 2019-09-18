@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Servizio</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Servizi</value>
+    </caseValues>
+    <fields>
+        <label><!-- Attivo --></label>
+        <name>OF_Attivo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Catalogo commerciale --></label>
+        <name>OF_CatalogoCommerciale__c</name>
+        <relationshipLabel><!-- Servizi --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Data fine validità --></label>
+        <name>OF_DataFineValidita__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data inizio validità --></label>
+        <name>OF_DataInizioValidita__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Durata_Servizio --></label>
+        <name>OF_Durata_Servizio__c</name>
+    </fields>
+    <fields>
+        <label><!-- Servizio Code --></label>
+        <name>OF_Servizio_Code__c</name>
+    </fields>
+    <layouts>
+        <layout>Servizio Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- La data di fine validità non è compresa tra le date di validità del Catalogo --></errorMessage>
+        <name>OF_DataFineValidita</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- La data di inizio validità non è compresa tra le date di validità del Catalogo --></errorMessage>
+        <name>OF_DataInizioValidita</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- La data di fine validità non può essere minore della data di inizio validità --></errorMessage>
+        <name>OF_ValiditaDataServizio</name>
+    </validationRules>
+</CustomObjectTranslation>

@@ -1,0 +1,1337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Notifica</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Notifiche</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Notifiche --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Asset --></label>
+        <name>Asset__c</name>
+        <relationshipLabel><!-- Notifiche --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Caso --></label>
+        <name>Caso__c</name>
+        <relationshipLabel><!-- Notifiche --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Causale Scarto --></label>
+        <name>Causale_Scarto__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Codice Comunicazione OLO già presente</masterLabel>
+            <translation><!-- Codice Comunicazione OLO già presente --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Formato dati errato o incompleto</masterLabel>
+            <translation><!-- Formato dati errato o incompleto --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Guasto Aperto come Post-Provisioning oltre i termini previsti</masterLabel>
+            <translation><!-- Guasto Aperto come Post-Provisioning oltre i termini previsti --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ID Risorsa inesistente</masterLabel>
+            <translation><!-- ID Risorsa inesistente --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ticket aperto per stesso ID risorsa</masterLabel>
+            <translation><!-- Ticket aperto per stesso ID risorsa --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Causale Sospensione --></label>
+        <name>Causale_Sospensione__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cliente Indisponibile</masterLabel>
+            <translation><!-- Cliente Indisponibile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cliente Irreperibile</masterLabel>
+            <translation><!-- Cliente Irreperibile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sede OLO/CLIENTE FINALE inaccessibile</masterLabel>
+            <translation><!-- Sede OLO/CLIENTE FINALE inaccessibile --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Codice Rifiuto Sospensione Annullamento --></label>
+        <name>Codice_Rifiuto_Sospensione_Annullamento__c</name>
+    </fields>
+    <fields>
+        <label><!-- Commercial element istanziato --></label>
+        <name>Commercial_element_istanziato__c</name>
+        <relationshipLabel><!-- Notifiche --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Contract --></label>
+        <name>Contract__c</name>
+        <relationshipLabel><!-- Notifiche --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- 1: Risolto: tratta verticale
+2: Risolto: tratta orizzontale
+3: Non riscontrato: Senza Uscita
+4: Non riscontrato: Con Uscita
+5: Risolto: Sbraccio
+6: Risolto: Borchia Ottica
+7: Non Risolvibile: Causa Impianto Cliente
+8: Non Risolvibile: Causa CPE --></help>
+        <label><!-- Descrizione Intervento Risoluzione --></label>
+        <name>Descrizione_Evento_Risoluzione__c</name>
+        <picklistValues>
+            <masterLabel>Non Riscontrato: Con Uscita</masterLabel>
+            <translation><!-- Non Riscontrato: Con Uscita --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non Riscontrato: Senza Uscita</masterLabel>
+            <translation><!-- Non Riscontrato: Senza Uscita --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non Risolvibile: Causa CPE Cliente</masterLabel>
+            <translation><!-- Non Risolvibile: Causa CPE Cliente --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non Risolvibile: Causa Impianto Cliente</masterLabel>
+            <translation><!-- Non Risolvibile: Causa Impianto Cliente --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non Risolvibile: Problemi Di Rete Cliente (Es. Wi-Fi Poco Performante Causa Disposizione Casa Cliente, Configurazione PC)</masterLabel>
+            <translation><!-- Non Risolvibile: Problemi Di Rete Cliente (Es. Wi-Fi Poco Performante Causa Disposizione Casa Cliente, Configurazione PC) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non Risolvibile: Problemi Di Rete OLO (Es. Problema di Scheda In Centrale OLO, Problema Di Configurazione OLO)</masterLabel>
+            <translation><!-- Non Risolvibile: Problemi Di Rete OLO (Es. Problema di Scheda In Centrale OLO, Problema Di Configurazione OLO) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ribaltamento Effettuato</masterLabel>
+            <translation><!-- Ribaltamento Effettuato --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto Mediante Intervento Congiunto</masterLabel>
+            <translation><!-- Risolto Mediante Intervento Congiunto --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto OLO/CLIENTE: Configurazione CPE/ONT Cliente</masterLabel>
+            <translation><!-- Risolto OLO/CLIENTE: Configurazione CPE/ONT Cliente --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto OLO/CLIENTE: Reset CPE/ONT Cliente</masterLabel>
+            <translation><!-- Risolto OLO/CLIENTE: Reset CPE/ONT Cliente --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto OLO/CLIENTE: Sostituzione Bretella Ottica</masterLabel>
+            <translation><!-- Risolto OLO/CLIENTE: Sostituzione Bretella Ottica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto OLO/CLIENTE: Sostituzione CPE Cliente</masterLabel>
+            <translation><!-- Risolto OLO/CLIENTE: Sostituzione CPE Cliente --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto OLO/CLIENTE: Sostituzione ONT Cliente</masterLabel>
+            <translation><!-- Risolto OLO/CLIENTE: Sostituzione ONT Cliente --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto Tratta Orizzontale: Centrale</masterLabel>
+            <translation><!-- Risolto Tratta Orizzontale: Centrale --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto Tratta Orizzontale: Rete Primaria</masterLabel>
+            <translation><!-- Risolto Tratta Orizzontale: Rete Primaria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto Tratta Orizzontale: Rete Secondaria</masterLabel>
+            <translation><!-- Risolto Tratta Orizzontale: Rete Secondaria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto: Borchia Ottica</masterLabel>
+            <translation><!-- Risolto: Borchia Ottica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto: Sbraccio</masterLabel>
+            <translation><!-- Risolto: Sbraccio --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risolto: Tratta Verticale</masterLabel>
+            <translation><!-- Risolto: Tratta Verticale --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Codice Comunicazione OLO --></label>
+        <name>EOF_Codice_Comunicazione_OLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Motivazione Rimodulazione --></label>
+        <name>EOF_Codice_Motivazione_Rimodulazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- EOF Codice Operatore --></label>
+        <name>EOF_Codice_Operatore__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Ordine EOF --></label>
+        <name>EOF_Codice_Ordine_EOF__c</name>
+    </fields>
+    <fields>
+        <label><!-- Codice Ordine OLO --></label>
+        <name>EOF_Codice_Ordine_OLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- CreatedDate_Formula --></label>
+        <name>EOF_CreatedDate_Formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Espletamento Ordine --></label>
+        <name>EOF_Data_Espletamento_Ordine__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Notifica FORMULA --></label>
+        <name>EOF_Data_Notifica_FORMULA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Notifica --></label>
+        <name>EOF_Data_Notifica__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data/Ora Creazione --></label>
+        <name>EOF_Data_Ora_Creazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data/Ora_Intervento_Congiunto --></label>
+        <name>EOF_Data_Ora_Intervento_Congiunto__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data/Ora Notifica Annullamento --></label>
+        <name>EOF_Data_Ora_Notifica_Annullamento__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data/Ora Notifica Chiusura --></label>
+        <name>EOF_Data_Ora_Notifica_Chiusura__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data/Ora Notifica Desospensione --></label>
+        <name>EOF_Data_Ora_Notifica_Desospensione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data/Ora Notifica Sospensione --></label>
+        <name>EOF_Data_Ora_Notifica_Sospensione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data/Ora Scarto --></label>
+        <name>EOF_Data_Ora_Scarto__c</name>
+    </fields>
+    <fields>
+        <label><!-- Descrizione Causale Scarto --></label>
+        <name>EOF_Descrizione_Causale_Scarto__c</name>
+    </fields>
+    <fields>
+        <label><!-- Esito Consegna Apparato --></label>
+        <name>EOF_Esito_Consegna_Apparato__c</name>
+        <picklistValues>
+            <masterLabel>Negativo</masterLabel>
+            <translation><!-- Negativo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Positivo</masterLabel>
+            <translation><!-- Positivo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Positivo e ribaltamento effettuato</masterLabel>
+            <translation><!-- Positivo e ribaltamento effettuato --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Esito Consegna Apparato ctrl --></label>
+        <name>EOF_Esito_Consegna_Apparato_ctrl__c</name>
+    </fields>
+    <fields>
+        <label><!-- GPON Attestazione --></label>
+        <name>EOF_GPON_Attestazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Apparato Consegnato --></label>
+        <name>EOF_ID_Apparato_Consegnato__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Notifica --></label>
+        <name>EOF_ID_Notifica__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Risorsa --></label>
+        <name>EOF_ID_Risorsa__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Splitter Secondario --></label>
+        <name>EOF_ID_Splitter_Secondario__c</name>
+    </fields>
+    <fields>
+        <label><!-- Impresa --></label>
+        <name>EOF_Impresa__c</name>
+    </fields>
+    <fields>
+        <label><!-- Intervento_Congiunto --></label>
+        <name>EOF_Intervento_Congiunto__c</name>
+        <picklistValues>
+            <masterLabel>N</masterLabel>
+            <translation><!-- N --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Y</masterLabel>
+            <translation><!-- Y --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Inviata --></label>
+        <name>EOF_Inviata__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note --></label>
+        <name>EOF_Note__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nuova DAC --></label>
+        <name>EOF_Nuova_DAC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Orario DAC --></label>
+        <name>EOF_Orario_DAC__c</name>
+        <picklistValues>
+            <masterLabel>08:30 - 10:30</masterLabel>
+            <translation><!-- 08:30 - 10:30 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11.30 - 13.30</masterLabel>
+            <translation><!-- 11.30 - 13.30 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>14:30 - 16:30</masterLabel>
+            <translation><!-- 14:30 - 16:30 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Parametri Trasmissivi Ottici --></label>
+        <name>EOF_Parametri_Trasmissivi_Ottici__c</name>
+    </fields>
+    <fields>
+        <label><!-- Posizione Splitter Secondario --></label>
+        <name>EOF_Posizione_Splitter_Secondario__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason Rimodulazione DAC --></label>
+        <name>EOF_Reason_Rimodulazione_DAC__c</name>
+        <picklistValues>
+            <masterLabel>Accettazione appuntamento OLO</masterLabel>
+            <translation><!-- Accettazione appuntamento OLO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Modifica/Comunicazione appuntamento ad OLO</masterLabel>
+            <translation><!-- Modifica/Comunicazione appuntamento ad OLO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rimodulazione per Sospensione provisioning causa EOF</masterLabel>
+            <translation><!-- Rimodulazione per Sospensione provisioning causa EOF --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ripianificazione appuntamento causa Cliente</masterLabel>
+            <translation><!-- Ripianificazione appuntamento causa Cliente --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ripianificazione appuntamento causa EOF</masterLabel>
+            <translation><!-- Ripianificazione appuntamento causa EOF --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ripianificazione appuntamento causa OLO</masterLabel>
+            <translation><!-- Ripianificazione appuntamento causa OLO --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Referente desospensione --></label>
+        <name>EOF_Referente_desospensione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rischedulazione Appuntamento --></label>
+        <name>EOF_Rischedulazione_Appuntamento__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stato Richiesta --></label>
+        <name>EOF_Stato_Richiesta__c</name>
+        <picklistValues>
+            <masterLabel>KO</masterLabel>
+            <translation><!-- KO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OK</masterLabel>
+            <translation><!-- OK --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Stato Richiesta ctrl --></label>
+        <name>EOF_Stato_Richiesta_ctrl__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tec_Eof --></label>
+        <name>EOF_Tec_Eof__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tel_Tec_Eof --></label>
+        <name>EOF_Tel_Tec_Eof__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipo Comunicazione ctrl --></label>
+        <name>EOF_Tipo_Comunicazione_ctrl__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipo di intervento --></label>
+        <name>EOF_Tipo_di_intervento__c</name>
+        <picklistValues>
+            <masterLabel>Borchia già installata</masterLabel>
+            <translation><!-- Borchia già installata --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Monofibra esterno</masterLabel>
+            <translation><!-- Monofibra esterno --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Monofibra interno</masterLabel>
+            <translation><!-- Monofibra interno --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sbraccio</masterLabel>
+            <translation><!-- Sbraccio --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Verticale strutturato e sbraccio</masterLabel>
+            <translation><!-- Verticale strutturato e sbraccio --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Tipo di intervento aggiuntivo --></label>
+        <name>EOF_Tipo_di_intervento_aggiuntivo__c</name>
+        <picklistValues>
+            <masterLabel>Installazione CPE</masterLabel>
+            <translation><!-- Installazione CPE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nessun Intervento</masterLabel>
+            <translation><!-- Nessun Intervento --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ribaltamento Impianto</masterLabel>
+            <translation><!-- Ribaltamento Impianto --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Flag Pagamento --></label>
+        <name>Flag_Pagamento__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Motivo Rifiuto Sospensione Annullamento --></label>
+        <name>Motivo_Rifiuto_Sospensione_Annullamento__c</name>
+        <picklistValues>
+            <masterLabel>Annullamento su richiesta OLO</masterLabel>
+            <translation><!-- Annullamento su richiesta OLO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Associazione ID Building-POP errata</masterLabel>
+            <translation><!-- Associazione ID Building-POP errata --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Borchia Ottica occupata da altro OLO</masterLabel>
+            <translation><!-- Borchia Ottica occupata da altro OLO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Building non RFC/RFA</masterLabel>
+            <translation><!-- Building non RFC/RFA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Building non collegabile RFA</masterLabel>
+            <translation><!-- Building non collegabile RFA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cliente irreperibile on-call</masterLabel>
+            <translation><!-- Cliente irreperibile on-call --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cliente rifiuta l&apos;intervento on-call</masterLabel>
+            <translation><!-- Cliente rifiuta l&apos;intervento on-call --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Data Attesa Consegna coincidente con un giorno festivo o con un sabato</masterLabel>
+            <translation><!-- Data Attesa Consegna coincidente con un giorno festivo o con un sabato --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Data Attesa Consegna non conforme agli SLA</masterLabel>
+            <translation><!-- Data Attesa Consegna non conforme agli SLA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GPON non confermata in Espletamento</masterLabel>
+            <translation><!-- GPON non confermata in Espletamento --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ID Building esistente ma non è quello per cui il cliente ha richiesto attivazione</masterLabel>
+            <translation><!-- ID Building esistente ma non è quello per cui il cliente ha richiesto attivazione --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ID Risorsa da cessare inesistente/errato</masterLabel>
+            <translation><!-- ID Risorsa da cessare inesistente/errato --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Identificativo Building Errato</masterLabel>
+            <translation><!-- Identificativo Building Errato --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In attesa realizzazione RFA</masterLabel>
+            <translation><!-- In attesa realizzazione RFA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Irreperibilità cliente on-field</masterLabel>
+            <translation><!-- Irreperibilità cliente on-field --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mancanza permessi di transito o accesso da terze parti</masterLabel>
+            <translation><!-- Mancanza permessi di transito o accesso da terze parti --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RFA - Attesa Permesso Amministratore</masterLabel>
+            <translation><!-- RFA - Attesa Permesso Amministratore --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RFA - Blocco Generico</masterLabel>
+            <translation><!-- RFA - Blocco Generico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RFA - Blocco tecnico provvisorio</masterLabel>
+            <translation><!-- RFA - Blocco tecnico provvisorio --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RFC - Attesa Permesso Amministratore</masterLabel>
+            <translation><!-- RFC - Attesa Permesso Amministratore --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RFC - Blocco Generico</masterLabel>
+            <translation><!-- RFC - Blocco Generico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RFC - Blocco tecnico provvisorio</masterLabel>
+            <translation><!-- RFC - Blocco tecnico provvisorio --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rifiuto cliente on-field</masterLabel>
+            <translation><!-- Rifiuto cliente on-field --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ripianificazione appuntamento con Cliente</masterLabel>
+            <translation><!-- Ripianificazione appuntamento con Cliente --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sbraccio non effettuabile</masterLabel>
+            <translation><!-- Sbraccio non effettuabile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Scala non collegabile RFA</masterLabel>
+            <translation><!-- Scala non collegabile RFA --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Numero Operatore --></label>
+        <name>Numero_Operatore__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- OF_Billing_OperationType --></label>
+        <name>OF_Billing_OperationType__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Billing_Type --></label>
+        <name>OF_Billing_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- CheckEspletamento --></label>
+        <name>OF_CheckEspletamento__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_JsonRequest --></label>
+        <name>OF_JsonRequest__c</name>
+    </fields>
+    <fields>
+        <label><!-- ID Notifica --></label>
+        <name>OF_TT_ID_Notifica__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipo Comunicazione Trouble Ticket --></label>
+        <name>OF_TT_Tipo_Comunicazione__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation><!-- 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11</masterLabel>
+            <translation><!-- 11 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12</masterLabel>
+            <translation><!-- 12 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>13</masterLabel>
+            <translation><!-- 13 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>20</masterLabel>
+            <translation><!-- 20 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>21</masterLabel>
+            <translation><!-- 21 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Notifica Annullamento</masterLabel>
+            <translation><!-- Notifica Annullamento --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Notifica Desospensione</masterLabel>
+            <translation><!-- Notifica Desospensione --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Notifica Presa in Carico</masterLabel>
+            <translation><!-- Notifica Presa in Carico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Notifica Richiesta Chiusura</masterLabel>
+            <translation><!-- Notifica Richiesta Chiusura --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Notifica Scarto</masterLabel>
+            <translation><!-- Notifica Scarto --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Notifica Sospensione</masterLabel>
+            <translation><!-- Notifica Sospensione --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Notifica Timeout OK</masterLabel>
+            <translation><!-- Notifica Timeout OK --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- isElaborato --></label>
+        <name>OF_isElaborato__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stato Ticket --></label>
+        <name>Stato_Ticket__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Annullato</masterLabel>
+            <translation><!-- Annullato --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chiuso</masterLabel>
+            <translation><!-- Chiuso --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Lavorazione</masterLabel>
+            <translation><!-- In Lavorazione --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Richiesta Chiusura</masterLabel>
+            <translation><!-- Richiesta Chiusura --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Scartato</masterLabel>
+            <translation><!-- Scartato --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sospeso</masterLabel>
+            <translation><!-- Sospeso --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Tipo Comunicazione --></label>
+        <name>Tipo_Comunicazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Updated --></label>
+        <name>Updated__c</name>
+    </fields>
+    <fields>
+        <label><!-- indice --></label>
+        <name>indice__c</name>
+    </fields>
+    <layouts>
+        <layout>Layout Accettazione</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Notifica --></label>
+            <section>Dettaglio Notifica</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+        <sections>
+            <label><!-- Sospensione/Annullamento --></label>
+            <section>Sospensione/Annullamento</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Layout Accettazione KO</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Notifica --></label>
+            <section>Dettaglio Notifica</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+        <sections>
+            <label><!-- Sospensione/Annullamento --></label>
+            <section>Sospensione/Annullamento</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Layout Acquisizione</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Notifica --></label>
+            <section>Dettaglio Notifica</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Layout Acquisizione KO</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Notifica --></label>
+            <section>Dettaglio Notifica</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+        <sections>
+            <label><!-- Sospensione/Annullamento --></label>
+            <section>Sospensione/Annullamento</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Layout Annullamento</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Notifica --></label>
+            <section>Dettaglio Notifica</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+        <sections>
+            <label><!-- Sospensione/Annullamento --></label>
+            <section>Sospensione/Annullamento</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Layout Cessazione</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Notifica --></label>
+            <section>Dettaglio Notifica</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+        <sections>
+            <label><!-- Sospensione/Annullamento --></label>
+            <section>Sospensione/Annullamento</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Layout Cessazione KO</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Notifica --></label>
+            <section>Dettaglio Notifica</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+        <sections>
+            <label><!-- Sospensione/Annullamento --></label>
+            <section>Sospensione/Annullamento</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Layout Desospensione</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Notifica --></label>
+            <section>Dettaglio Notifica</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Layout Espletamento</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Notifica --></label>
+            <section>Dettaglio Notifica</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Richiesta - Apparato --></label>
+            <section>Dettaglio Richiesta - Apparato</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+        <sections>
+            <label><!-- Sospensione/Annullamento --></label>
+            <section>Sospensione/Annullamento</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Layout Espletamento KO</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Notifica --></label>
+            <section>Dettaglio Notifica</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+        <sections>
+            <label><!-- Sospensione/Annullamento --></label>
+            <section>Sospensione/Annullamento</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Layout Notify</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Layout Rimodulazione DAC</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Notifica --></label>
+            <section>Dettaglio Notifica</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Rimodulazione DAC --></label>
+            <section>Dettaglio Rimodulazione DAC</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Layout Sospensione</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Notifica --></label>
+            <section>Dettaglio Notifica</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+        <sections>
+            <label><!-- Sospensione/Annullamento --></label>
+            <section>Sospensione/Annullamento</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PSM Layout Annullamento</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Notifica --></label>
+            <section>Dettaglio Notifica</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+        <sections>
+            <label><!-- Sospensione/Annullamento --></label>
+            <section>Sospensione/Annullamento</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PSM Layout Attivazione</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Notifica --></label>
+            <section>Dettaglio Notifica</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>PSM Layout Cessazione</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Apparato --></label>
+            <section>Dettaglio Apparato</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Notifica --></label>
+            <section>Dettaglio Notifica</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+        <sections>
+            <label><!-- Sospensione/Annullamento --></label>
+            <section>Sospensione/Annullamento</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TT Layout Annullamento</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettagli Annullamento --></label>
+            <section>Dettagli Annullamento</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Notifica --></label>
+            <section>Dettaglio Notifica</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TT Layout Desospensione</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettagli Desospensione --></label>
+            <section>Dettagli Desospensione</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Notifica --></label>
+            <section>Dettaglio Notifica</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TT Layout Presa in carico</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettagli Presa in carico --></label>
+            <section>Dettagli Presa in carico</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Notifica --></label>
+            <section>Dettaglio Notifica</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TT Layout Richiesta Chiusura</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Notifica --></label>
+            <section>Dettaglio Notifica</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Richiesta Chiusura --></label>
+            <section>Dettaglio Richiesta Chiusura</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TT Layout Scarto</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettagli Scarto --></label>
+            <section>Dettagli Scarto</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Notifica --></label>
+            <section>Dettaglio Notifica</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TT Layout Sospensione</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettagli Sospensione --></label>
+            <section>Dettagli Sospensione</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Notifica --></label>
+            <section>Dettaglio Notifica</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TT Layout Timeout OK</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettagli Timeout --></label>
+            <section>Dettagli Timeout</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Notifica --></label>
+            <section>Dettaglio Notifica</section>
+        </sections>
+        <sections>
+            <label><!-- Informazioni Generali --></label>
+            <section>Informazioni Generali</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- DOM Notifica di Attivazione --></label>
+        <name>DOM_Notifica_di_Attivazione</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Record Type per la gestione del WS per la sincronizzazione del billing dell&apos;account --></description>
+        <label><!-- Billing Account Record Type --></label>
+        <name>EOF_BILL_ACCCOUNT</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Record Type per la gestione del WS per la sincronizzazione del billing degli Asset --></description>
+        <label><!-- EOF_BILL_Asset --></label>
+        <name>EOF_BILL_Asset</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Record Type per la gestione del WS per la sincronizzazione del billing dei contratti --></description>
+        <label><!-- Billing Contract Record Type --></label>
+        <name>EOF_BILL_Contract</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Notifica di accettazione associata all&apos;ordine di lavoro su link fibra --></description>
+        <label><!-- Notifica di accettazione --></label>
+        <name>Notifica_di_accettazione</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Notifica di accettazione KO --></label>
+        <name>Notifica_di_accettazione_KO</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Notifica di acquisizione associata all&apos;ordine di lavoro su link fibra --></description>
+        <label><!-- Notifica di acquisizione --></label>
+        <name>Notifica_di_acquisizione</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Notifica di acquisizione KO --></label>
+        <name>Notifica_di_acquisizione_KO</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Notifica di annullamento associata all&apos;ordine di lavoro su link fibra --></description>
+        <label><!-- Notifica di annullamento --></label>
+        <name>Notifica_di_annullamento</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Notifica di cessazione associata all&apos;ordine di lavoro su link fibra --></description>
+        <label><!-- Notifica di cessazione --></label>
+        <name>Notifica_di_cessazione</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Notifica di cessazione KO --></label>
+        <name>Notifica_di_cessazione_KO</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Notifica di desospensione associata all&apos;ordine di lavoro su link fibra --></description>
+        <label><!-- Notifica di desospensione --></label>
+        <name>Notifica_di_desospensione</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Notifica di espletamento associata all&apos;ordine di lavoro su link fibra --></description>
+        <label><!-- Notifica di espletamento --></label>
+        <name>Notifica_di_espletamento</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Notifica di espletamento KO --></label>
+        <name>Notifica_di_espletamento_KO</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Notifica di rimodulazione DAC associata all&apos;ordine di lavoro su link fibra --></description>
+        <label><!-- Notifica di rimodulazione DAC --></label>
+        <name>Notifica_di_rimodulazione_DAC</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Notifica di sospensione associata all&apos;ordine di lavoro su link fibra --></description>
+        <label><!-- Notifica di sospensione --></label>
+        <name>Notifica_di_sospensione</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PSM Notifica di Annullamento --></label>
+        <name>PSM_Notifica_di_Annullamento</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PSM Notifica di Attivazione --></label>
+        <name>PSM_Notifica_di_Attivazione</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PSM Notifica di Cessazione --></label>
+        <name>PSM_Notifica_di_Cessazione</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Trouble Ticket - Notifica Presa In Carico --></label>
+        <name>Trouble_Ticket_Notifica_Presa_In_Carico</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Trouble Ticket - Notifica Scarto --></label>
+        <name>Trouble_Ticket_Notifica_Scarto</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Trouble Ticket - Notifica di Annullamento --></label>
+        <name>Trouble_Ticket_Notifica_di_Annullamento</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Trouble Ticket - Notifica di Desospensione --></label>
+        <name>Trouble_Ticket_Notifica_di_Desospensione</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Trouble Ticket - Notifica di Richiesta Chiusura --></label>
+        <name>Trouble_Ticket_Notifica_di_Richiesta_Chiusura</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Trouble Ticket - Notifica di Sospensione --></label>
+        <name>Trouble_Ticket_Notifica_di_Sospensione</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Trouble Ticket - Notifica di TimeoutOK --></label>
+        <name>Trouble_Ticket_Notifica_di_TimeoutOK</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Compilare i campi obbligatori Esito Consegna Apparato and ID Apparato Consegnato --></errorMessage>
+        <name>Apparato_Y</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Questa notifica non è più modificabile poichè è già stata inviata --></errorMessage>
+        <name>No_edit</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- In caso di Cliente Irreperibile la RIschedulazione Appuntamento non può essere valorizzata --></errorMessage>
+        <name>OF_TT_Cliente_Irreperibile</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- In caso di Intervento Congiunto non necessario, i seguenti campi NON devono essere compilati: Tec EOF, Tel Tec EOF e Data/Ora Intervento Congiunto --></errorMessage>
+        <name>OF_TT_Intervento_Congiunto_No</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- In caso di Intervento Congiunto devono essere compilati i campi: Tec EOF, Tel Tec EOF e Data/Ora Intervento Congiunto --></errorMessage>
+        <name>OF_TT_Intervento_Congiunto_Yes</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Questa notifica non è più modificabile poichè è già stata inviata --></errorMessage>
+        <name>OF_TT_No_Edit</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Nel campo Referente Desospensione inserire il Referente Sospensione --></errorMessage>
+        <name>OF_TT_Referente_Sospensione</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- La data di rischedulazione appuntamento non puo essere retroattiva --></errorMessage>
+        <name>OF_TT_rischedulazione_non_retroattiva</name>
+    </validationRules>
+</CustomObjectTranslation>

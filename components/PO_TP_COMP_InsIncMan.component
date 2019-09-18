@@ -1,0 +1,270 @@
+<apex:component controller="PO_TP_COMP_Ins_Incident_Controller" allowDML="true"> 
+<apex:attribute name="azione" description="This is the value for the component." 
+assignTo="{!slToInsert.PO_TP_Causale_Apertura_Segnalazione__c}" 
+type="String" required="true"/>
+<html lang="it"> 
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/> 
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <!-- <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+             -->
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <!-- /#wrapper -->
+              
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js' ></script>
+            
+            <apex:includeScript value="{!URLFOR($Resource.datepicker, 'datepicker/js/bootstrap-datepicker.js')}"/>
+           
+            <!--<apex:stylesheet value="{!URLFOR($Resource.datepicker, 'datepicker/css/datepicker.css')}"/>-->
+            
+            <apex:includeScript value="{!URLFOR($Resource.moment, 'moment-develop/min/moment-with-locales.min.js')}"/>
+
+            <apex:includeScript value="{!URLFOR($Resource.datetimepicker, 'bootstrap-datetimepicker-master/build/js/bootstrap-datetimepicker.min.js')}"/>
+            
+            <apex:stylesheet value="{!URLFOR($Resource.datetimepicker, 'bootstrap-datetimepicker-master/build/css/bootstrap-datetimepicker.min.css')}"/>
+            
+            <apex:includeScript value="{!URLFOR($Resource.jqvalidation, 'dist/jquery.validate.min.js')}"/>
+            
+            <apex:includeScript value="{!URLFOR($Resource.jqvalidation, 'dist/localization/messages_it.min.js')}"/>
+          
+            <apex:includeScript value="{!URLFOR($Resource.tooltip, 'tooltip/jquery-validate.bootstrap-tooltip.min.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.tooltip, 'tooltip/jquery-validate.bootstrap-tooltip.min.js')}"/>        
+
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+                .tooltip-inner {
+                background-color: #337ab7; 
+                }
+                
+            </style>
+        </head>
+            <body>
+            <div class="panel panel-default" id="panelDefault">
+                <div class="panel-heading"> 
+                   <!--
+                    <apex:outputPanel rendered="{!modifyMode}">
+                        <i></i>Modifica richiesta di Attivazione
+                    </apex:outputPanel>
+                     -->
+                        <i></i>Inserimento Incident Management
+                </div>
+                <div class="panel-body" id="panelBody">
+                    <div class="row" id="row1">  
+                        
+                        <apex:form id="myform">
+                            <div style="color:red;" id="showerror">
+                                <apex:pageMessages id="errors" /> 
+
+                            </div>
+                            <!--<form role="form" class="form-horizontal" id="form2">-->
+                                <!-- Hidden field -->
+                                <apex:outputText styleClass="hide" 
+                                value="{!slToInsert.EOF_Data_Ora_Inizio_Guasto__c}" 
+                                id="DataOraInizioGuastoHidden"/>
+                                <fieldset class="form-group" id="fieldset">
+                                     
+                                        <div class="col-lg-6"> 
+                                            <label>Causale Apertura Segnalazione*</label> &nbsp; &nbsp;
+                                            <apex:inputField id="idCausale" styleClass="form-control" 
+                                                value="{!slToInsert.PO_TP_Causale_Apertura_Segnalazione__c}" 
+                                                html-disabled="true" >                                       
+                                            </apex:inputField>
+                                             
+                                        </div>                                
+
+                                        <div class="col-lg-6">
+                                             <label>Descrizione Causale*</label> &nbsp;  &nbsp;
+                                             <apex:inputField id="DescrizioneCausale" 
+                                             styleClass="form-control" 
+                                             value="{!slToInsert.PO_TP_Descrizione_Causale__c}" 
+                                             required="true"/>
+                                         </div>
+                                         <apex:outputPanel id="idDettaglioRichiesta">
+                                         <div class="col-lg-6" >
+                                              <label>Dettaglio Richiesta*</label> &nbsp;  &nbsp;
+                                              <apex:inputText styleClass="form-control" required="true"
+                                              value="{!slToInsert.PO_TP_Dettaglio_Richiesta__c}" 
+                                              id="dettaglioRichiesta2" maxlength="4000"/>
+                                         </div>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel id="idSeverity">
+                                            <div class="col-lg-6" >
+                                                <label>Severity</label> &nbsp;  &nbsp;
+                                                <apex:selectList id="severity" size="1" value="{!slToInsert.Severity__c}" 
+                                                    styleClass="form-control">
+                                                    <apex:selectOptions value="{!elencoSeverity}" />		
+                                                </apex:selectList>  
+                                            </div>
+                                        </apex:outputPanel>
+                                        
+                                 </fieldset>
+                                 <div class="col-lg-6">
+                                         <div class="btn-group" role="group" aria-label="Basic example">                                      
+                                             <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px;" value="Annulla" action="{!AnnullaS}" html-formnovalidate="formnovalidate" immediate="true" />          
+                                         </div>
+                                 </div> 
+                                    <div class="col-lg-6" >
+          
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <apex:commandLink styleClass="btn btn-primary" style="margin-right:10px;" 
+                                            id="btn_inoltra" value="Inoltra"                                        
+                                            onclick="checkFields();return false" />
+                                            <apex:actionStatus id="statusId" styleclass="loading"/>
+                                        </div>
+                                        
+                                         <div class="btn-group" role="group" aria-label="Basic example">
+                                            <apex:commandLink styleClass="btn btn-primary" style="margin-right:10px;" 
+                                            id="btn_addAttach" value="Aggiungi Allegato"  onclick="checkDettRich(); return false"/>
+                                        </div>
+                                    </div>
+
+                            <!--</form>--> 
+                            <apex:actionFunction name="Escalate" action="{!vaiInEscalation}" onComplete="confirmEscalate()" rerender="null" /> 
+                            <apex:actionFunction name="salvaB" action="{!SalvaC}" onComplete="confirmMessage('{!statusTP}','{!caseId}')" />
+                            <!--Add by PG - 1-10 -->
+                            <apex:actionFunction name="aggiungiA" action="{!aggiungiAllegato}" />
+                        </apex:form> 
+                        
+                        <br/>  
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                </div>                
+            </body>
+            
+            <script>
+              
+            function confirmEscalate(){
+                alert('Segnalazione scalata correttamente');
+            }  
+              
+            function confirmMessage(status,caseId){
+                  
+                if(status!=null){ 
+                    alert(status);
+                    if(status=='Segnalazione inserita correttamente'){
+                        buttonEnabled(false);
+                        window.top.location.href ='/partnercommunity/PO_TP_InsertNewRequest?origId='+caseId+'&proc=TPVisualizzaIncident';
+                    }
+                }
+            }
+
+            function checkFields(){
+
+                if($('[id$=dettaglioRichiesta2]').val()=='')
+                {
+                    alert('Compilare il campo \'Dettaglio Richiesta\'');
+                    return;
+                }
+                else{             
+                    checkDoubleSubmit(this);
+                    //salvaB();
+                }
+            }
+            
+            //Add by PG - 1-10
+            function checkDettRich(){
+                
+                if($('[id$=dettaglioRichiesta2]').val()=='')
+                {
+                    alert('Compilare il campo \'Dettaglio Richiesta\'');
+                    return;
+                }
+                else{             
+                    aggiungiA();
+                }
+            }
+
+            //Add by PG - 08-05 - Questa funzione consente di abilitare o disabilitare il button Inoltra
+            function buttonEnabled(enabled) 
+            {
+                var $button = $('[id$=btn_inoltra]');
+                if (enabled === false) 
+                {
+                    $button.toggleClass('btnDisabled', true).attr('disabled', 'disabled');
+                    console.log('Button non attivo');
+                } 
+                else 
+                {
+                    $button.toggleClass('btnDisabled', false).attr('disabled', null);
+                    console.log('Button attivo');
+                } 
+            }
+
+            //Add by PG - 09-05
+            var isClicked = false;
+            function checkDoubleSubmit(obj)
+            {
+                isClicked = true;
+                buttonEnabled(false); //disabilito il button Inoltra
+                salvaB();
+                return false;
+            }
+
+            function goTo(){
+                alert('Segnalazione correttamente inviata alla Coda Territoriale');
+                if(sforce.console.isInConsole()){       
+                  testCloseTab(); 
+                }
+                else{
+                    window.top.location.href ='/{!caseId}';
+                }
+            }
+
+            function testCloseTab(){
+                //First find the ID of the current tab to close it
+                sforce.console.getEnclosingTabId(closeSubtab);
+            }
+                
+            var closeSubtab = function closeSubtab(result){
+                //Now that we have the tab ID, we can close it
+                var tabId = result.id;
+                sforce.console.closeTab(tabId);
+            };
+            </script>  
+    
+    </html>
+</apex:component>

@@ -1,0 +1,32 @@
+<apex:component controller="PO_Serv_DarkFiber_Controller" access="public" allowDML="true">
+
+    <ul class="nav">
+        <li id="perInfoFeservice" style="display:block;">
+            
+            <a href="#" ><i class="fa fa-arrow-circle-down fa-fw"></i>Dark Fiber</a>
+            
+            <ul class="nav">
+                <li id="perInfoFeservice" style="display:block;">
+                    <apex:outputPanel > 
+                        <apex:commandLink action="{!nuovaRichiesta}" target="_self">
+                        <apex:param name="bHinsNewReq" assignTo="{!sez}" value="DarkFiber"/> 
+                            Inserimento nuova richiesta
+                        </apex:commandLink>
+                    </apex:outputPanel></li>
+                <li id="perInfoFeservice" style="display:block;">
+                    <apex:outputPanel >
+                        <apex:commandLink action="{!richiesteInserite}" target="_self" >
+                            <!--
+                            <apex:param name="bHReqInserted" assignTo="{!sez}" value="DarkFiber"/> 
+                            --> 
+                            Richieste inserite                         
+                        </apex:commandLink>
+                    </apex:outputPanel>
+                </li>
+            </ul>
+            
+        </li>
+        
+    </ul>
+    
+</apex:component>

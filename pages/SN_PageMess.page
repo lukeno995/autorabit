@@ -1,0 +1,42 @@
+<apex:page standardController="case" extensions="EmailMessages" standardStylesheets="true" sidebar="true" showHeader="true" tabStyle="case">
+<apex:form >
+    
+        <apex:pageBlock title="Reply Email">
+            <apex:actionRegion >
+            <apex:pageBlockSection >
+                
+                <!--<apex:pageBlockSectionItem >
+                    From Address <apex:inputField value="{!replymail.FromAddress}"  />
+                </apex:pageBlockSectionItem><br/>-->
+                
+                <apex:outputLabel style="font-weight: bold; font-size: 13px;">Messaggio:</apex:outputLabel><br/>
+                <!--<apex:outputText id="namefrom" value="{!origMess}"/>-->
+                <apex:outputPanel >
+                    <apex:outputField id="x" value="{!oneMessage.TextBody}"/>
+                </apex:outputPanel>
+               <!--
+                <apex:pageBlockSectionItem > Body 
+                    <apex:inputTextarea value="{!emailbody}" richText="true"/>
+                </apex:pageBlockSectionItem>
+                
+                <br/>
+                <apex:pageBlockSectionItem > File Upload 
+                    <apex:inputFile style="width:100%" id="fileToUpload" value="{!fileBody}" filename="{!fileName}" />
+                </apex:pageBlockSectionItem>
+                
+            -->
+            
+            </apex:pageBlockSection>
+            </apex:actionRegion>
+            
+            <apex:pageBlockButtons location="Bottom">
+                <!-- <apex:commandlink action="{!replyEmailrelatedlist}"  value="Rispondi" /> &nbsp;&nbsp;&nbsp; -->
+                <!--<apex:commandLink value="Rispondi" target="_blank" styleClass="btn" action="{!action="{!Canceling}"}"/>-->
+                <apex:commandlink value="Cancel"  onclick="window.top.location='/{!idCaseEmail}'; return false" />
+            </apex:pageBlockButtons>
+               
+        </apex:pageBlock>
+        
+    </apex:form>
+  
+</apex:page>

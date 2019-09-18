@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>Read</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Open Fiber Roma HSFQ</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Open Fiber Roma HSEQ</name>
+    <opportunityAccessLevel>None</opportunityAccessLevel>
+    <parentRole>CQS_Relazioni_Esterne</parentRole>
+</Role>

@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssignmentRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignmentRule>
+        <fullName>Assegnazione Code</fullName>
+        <active>true</active>
+        <ruleEntry>
+            <assignedTo>integrazione@comptel.com</assignedTo>
+            <assignedToType>User</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>notEqual</operation>
+                <value>Trouble Ticket</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.EOF_Order_Manager__c</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <criteriaItems>
+                <field>Case.Status</field>
+                <operation>equals</operation>
+                <value>Acquisito,Accettato</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>EOF Caso Attivazione OPENSTREAM CeD,EOF Caso Cessazione OPENSTREAM CD,EOF SP Caso Attivazione CeD,EOF SP Caso Cessazione CeD,EOF_Caso_ChangeOrder_OPENSTREAM_CeD</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Coda_Operatori_BO</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <booleanFilter>5 AND((1 AND 2) OR (3 AND 4))</booleanFilter>
+            <criteriaItems>
+                <field>Case.Status</field>
+                <operation>equals</operation>
+                <value>Acquisito</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.EOF_Fase__c</field>
+                <operation>equals</operation>
+                <value>Da lavorare</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.EOF_Fase__c</field>
+                <operation>equals</operation>
+                <value>Desospeso</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Status</field>
+                <operation>equals</operation>
+                <value>Accettato</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>EOF Caso - Attivazione,EOF Caso - Cessazione</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Coda_Operatori_Tecnici</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Status</field>
+                <operation>equals</operation>
+                <value>Accettato</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.EOF_Fase__c</field>
+                <operation>equals</operation>
+                <value>Appuntamento Fissato</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>notEqual</operation>
+                <value>Trouble Ticket</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <criteriaItems>
+                <field>Case.Status</field>
+                <operation>equals</operation>
+                <value>Acquisito</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.EOF_Fase__c</field>
+                <operation>equals</operation>
+                <value>In Verifica BO</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>notEqual</operation>
+                <value>Trouble Ticket</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Trouble_Ticket_Coda_Analisi</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Status</field>
+                <operation>equals</operation>
+                <value>In Lavorazione</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.EOF_Fase__c</field>
+                <operation>equals</operation>
+                <value>Da lavorare</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Trouble Ticket</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.OwnerId</field>
+                <operation>notEqual</operation>
+                <value>Trouble Ticket - Coda Analisi</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Trouble_Ticket_Coda_On_FIeld</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Status</field>
+                <operation>equals</operation>
+                <value>In Lavorazione</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.EOF_Fase__c</field>
+                <operation>equals</operation>
+                <value>On Field</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Trouble Ticket</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.OwnerId</field>
+                <operation>notEqual</operation>
+                <value>Trouble Ticket - Coda on Field</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Trouble_Ticket_Coda_In_collaudo</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Status</field>
+                <operation>equals</operation>
+                <value>In Lavorazione</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.EOF_Fase__c</field>
+                <operation>equals</operation>
+                <value>In Collaudo</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Trouble Ticket</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.OwnerId</field>
+                <operation>notEqual</operation>
+                <value>Trouble Ticket - Coda in Collaudo</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Trouble_Ticket_Coda_Analisi</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Trouble Ticket</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Status</field>
+                <operation>equals</operation>
+                <value>Sospeso</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.EOF_Fase__c</field>
+                <operation>equals</operation>
+                <value>Sospeso Analisi</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.OwnerId</field>
+                <operation>notEqual</operation>
+                <value>Trouble Ticket - Coda Analisi</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Trouble_Ticket_Coda_On_FIeld</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Trouble Ticket</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Status</field>
+                <operation>equals</operation>
+                <value>Sospeso</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.EOF_Fase__c</field>
+                <operation>equals</operation>
+                <value>Sospeso On Field</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.OwnerId</field>
+                <operation>notEqual</operation>
+                <value>Trouble Ticket - Coda on Field</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Trouble_Ticket_Coda_In_collaudo</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Trouble Ticket</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Status</field>
+                <operation>equals</operation>
+                <value>Sospeso</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.EOF_Fase__c</field>
+                <operation>equals</operation>
+                <value>Sospeso Collaudo</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.OwnerId</field>
+                <operation>notEqual</operation>
+                <value>Trouble Ticket - Coda in Collaudo</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Trouble_Ticket_Coda_Analisi</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Status</field>
+                <operation>equals</operation>
+                <value>In Annullamento</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Trouble Ticket</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>antonio.triggiani@ttm.com</assignedTo>
+            <assignedToType>User</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Trouble Ticket</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Status</field>
+                <operation>equals</operation>
+                <value>Scartato,Annullato,Richiesta Chiusura,Chiuso</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>PO_Coda_Ordini_Fattibilita</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>PO Ordine Fiber Lease,PO Ordine Fiber Link,PO Ordine Misto Fiber Lease-Link per Fastweb,PO Ordine P2P,PO Ordine IRU</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Status</field>
+                <operation>equals</operation>
+                <value>Accettato</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.EOF_Fase__c</field>
+                <operation>equals</operation>
+                <value>In Verifica Supporto Vendite</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.OwnerId</field>
+                <operation>notEqual</operation>
+                <value>Coda Ordini Fattibilità Supporto Vendite</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>PO_Coda_Ordini_Network_Creation</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>AND( 
+OR( 
+RecordType.DeveloperName=&apos;PO_Ordine_Misto_Fiber_Lease_Link_per_Fastweb&apos;, 
+RecordType.DeveloperName=&apos;PO_Ordine_P2P&apos;, 
+RecordType.DeveloperName=&apos;PO_Ordine_Fiber_Lease&apos;, 
+RecordType.DeveloperName=&apos;PO_Ordine_Fiber_Link&apos;, 
+RecordType.DeveloperName=&apos;PO_Ordine_IRU&apos;), 
+PO_Comune2__r.PO_Titolarit_NC__c=&apos;MW&apos;, 
+ISPICKVAL(EOF_Fase__c, &apos;In Attesa Presa In Carico Network Creation&apos;), 
+ISPICKVAL(Status,&apos;In Lavorazione&apos;) 
+
+)</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>PO_Coda_Ordini_Delivery</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Status</field>
+                <operation>equals</operation>
+                <value>In Lavorazione</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.EOF_Fase__c</field>
+                <operation>equals</operation>
+                <value>In Attesa Presa In Carico Delivery</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>PO Ordine Fiber Lease,PO Ordine Fiber Link,PO Ordine Misto Fiber Lease-Link per Fastweb,PO Ordine P2P,PO Ordine IRU</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.OwnerId</field>
+                <operation>notEqual</operation>
+                <value>Coda Ordini Provisioning</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>SN_Coda_Social_Cases</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>AND(OR(RecordType.DeveloperName = &apos;SN_Social_Request&apos;,RecordType.DeveloperName = &apos;SN_Email_Request&apos;),  Owner:User.FirstName  = &apos;User&apos;,Owner:User.LastName = &apos;Social&apos;,  ISCHANGED(OwnerId) )</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Coda_Network_Creation_Ordini_Sud</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>AND( 
+OR( 
+RecordType.DeveloperName=&apos;PO_Ordine_Misto_Fiber_Lease_Link_per_Fastweb&apos;, 
+RecordType.DeveloperName=&apos;PO_Ordine_P2P&apos;, 
+RecordType.DeveloperName=&apos;PO_Ordine_Fiber_Lease&apos;, 
+RecordType.DeveloperName=&apos;PO_Ordine_Fiber_Link&apos;, 
+RecordType.DeveloperName=&apos;PO_Ordine_IRU&apos;), 
+PO_Comune2__r.PO_Titolarit_NC__c=&apos;EOF&apos;, 
+PO_Comune2__r.PO_Ripartizione_geografica_NC__c=&apos;Sud&apos;, 
+ISPICKVAL(EOF_Fase__c, &apos;In Attesa Presa In Carico Network Creation&apos;), 
+ISPICKVAL(Status,&apos;In Lavorazione&apos;))</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Coda_Network_Creation_Ordini_Centro</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>AND( 
+OR( 
+RecordType.DeveloperName=&apos;PO_Ordine_Misto_Fiber_Lease_Link_per_Fastweb&apos;, 
+RecordType.DeveloperName=&apos;PO_Ordine_P2P&apos;, 
+RecordType.DeveloperName=&apos;PO_Ordine_Fiber_Lease&apos;, 
+RecordType.DeveloperName=&apos;PO_Ordine_Fiber_Link&apos;, 
+RecordType.DeveloperName=&apos;PO_Ordine_IRU&apos;), 
+PO_Comune2__r.PO_Titolarit_NC__c=&apos;EOF&apos;, 
+PO_Comune2__r.PO_Ripartizione_geografica_NC__c=&apos;Centro&apos;, 
+ISPICKVAL(EOF_Fase__c, &apos;In Attesa Presa In Carico Network Creation&apos;), 
+ISPICKVAL(Status,&apos;In Lavorazione&apos;) )</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Coda_Network_Creation_Ordini_Nord</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>AND(
+OR(
+RecordType.DeveloperName=&apos;PO_Ordine_Misto_Fiber_Lease_Link_per_Fastweb&apos;,
+RecordType.DeveloperName=&apos;PO_Ordine_P2P&apos;,
+RecordType.DeveloperName=&apos;PO_Ordine_Fiber_Lease&apos;,
+RecordType.DeveloperName=&apos;PO_Ordine_Fiber_Link&apos;,
+RecordType.DeveloperName=&apos;PO_Ordine_IRU&apos;),
+PO_Comune2__r.PO_Titolarit_NC__c=&apos;EOF&apos;,
+PO_Comune2__r.PO_Ripartizione_geografica_NC__c=&apos;Nord&apos;,
+ISPICKVAL(EOF_Fase__c, &apos;In Attesa Presa In Carico Network Creation&apos;),
+ISPICKVAL(Status,&apos;In Lavorazione&apos;) )</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>PO_Coda_Ordini_Delivery</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>AND( 
+OR( 
+RecordType.DeveloperName=&apos;PO_Ordine_Misto_Fiber_Lease_Link_per_Fastweb&apos;, 
+RecordType.DeveloperName=&apos;PO_Ordine_P2P&apos;, 
+RecordType.DeveloperName=&apos;PO_Ordine_Fiber_Lease&apos;, 
+RecordType.DeveloperName=&apos;PO_Ordine_Fiber_Link&apos;, 
+RecordType.DeveloperName=&apos;PO_Ordine_IRU&apos;), 
+ISPICKVAL(EOF_Fase__c, &apos;In Attesa Presa In Carico Delivery&apos;), 
+ISPICKVAL(Status,&apos;In Lavorazione&apos;))</formula>
+        </ruleEntry>
+    </assignmentRule>
+</AssignmentRules>

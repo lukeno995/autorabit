@@ -1,0 +1,44 @@
+<apex:page controller="PO_PP_ExportKitConsegnaAttivi_Controller" contentType="application/vnd.ms-excel#Export_KitConsegnaAttivi_{!TODAY()}.xls" 
+action="{!fetchList}" showHeader="false" sidebar="false" standardStylesheets="false" cache="true" >
+<html> PO_PP_ExportKitConsegnaAttivi_Page.page 
+<head></head>
+<body>
+	<apex:pageBlock id="ExportKitConsegnaAttivi">
+	<apex:pageBlockTable value="{!listRichiesteKitWr}" var="r">
+		<apex:column >
+			<apex:facet name="header">NOME KIT</apex:facet> 
+				{!r.nomeKit}
+		</apex:column> 
+		<apex:column >
+			<apex:facet name="header">ID RISORSA</apex:facet>
+                {!r.idRisorsa}
+		</apex:column> 
+		<apex:column >
+			<apex:facet name="header">STATO</apex:facet>
+				{!r.stato}
+		</apex:column>
+		<apex:column >
+			<apex:facet name="header">POP</apex:facet>
+				{!r.pop}
+		</apex:column>
+		<apex:column >
+			<apex:facet name="header">BANDA</apex:facet>
+				{!r.banda}
+		</apex:column>
+		<apex:column >
+			<apex:facet name="header">INTERFACCIA</apex:facet>
+				{!r.interfaccia}
+		</apex:column>
+		<apex:column >
+			<apex:facet name="header">SERVIZIO COMMERCIALE</apex:facet>
+				{!r.servizioCommerciale}
+		</apex:column>
+        <apex:column >
+			<apex:facet name="header">DATA ATTIVAZIONE</apex:facet>
+			    {!r.DataAttivazione}
+		</apex:column> 
+	</apex:pageBlockTable>
+	</apex:pageBlock>
+</body>
+</html>
+</apex:page>

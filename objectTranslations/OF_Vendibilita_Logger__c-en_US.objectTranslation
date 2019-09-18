@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>OF_Vendibilita_Logger</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>OF_Vendibilita_Loggers</value>
+    </caseValues>
+    <fields>
+        <label><!-- Case --></label>
+        <name>OF_Caso__c</name>
+        <relationshipLabel><!-- OF_Vendibilita_Loggers --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- OF_Data --></label>
+        <name>OF_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_IdBuilding_OLO --></label>
+        <name>OF_IdBuilding_OLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_IdRequest --></label>
+        <name>OF_IdRequest__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Motivo --></label>
+        <name>OF_Motivo__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_OLO --></label>
+        <name>OF_OLO__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Request --></label>
+        <name>OF_Request__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Response --></label>
+        <name>OF_Response__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Vendibilita_Logger --></label>
+        <name>OF_Riferimento_Logger__c</name>
+        <relationshipLabel><!-- OF_Vendibilita_Loggers --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- OF_Servizio --></label>
+        <name>OF_Servizio__c</name>
+    </fields>
+    <fields>
+        <label><!-- OF_Source --></label>
+        <name>OF_Source__c</name>
+        <picklistValues>
+            <masterLabel>Da NI</masterLabel>
+            <translation><!-- Da NI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Da web service</masterLabel>
+            <translation><!-- Da web service --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non da NI</masterLabel>
+            <translation><!-- Non da NI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non da web service</masterLabel>
+            <translation><!-- Non da web service --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Request/Response --></label>
+        <name>Request_Response__c</name>
+    </fields>
+    <layouts>
+        <layout>OF_Vendibilita_Logger Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- OF_Logger --></label>
+        <name>OF_Logger</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

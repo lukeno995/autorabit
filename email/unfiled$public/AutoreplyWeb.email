@@ -1,0 +1,61 @@
+<center>
+	<table id="topTable" width="150" cellspacing="0" cellpadding="0">
+		<tbody>
+				<tr style="height: 36px;" valign="top">
+				<td style="background-color: #ff40a0; vertical-align: top; text-align: left; height: 36px;"><img id="r1sp1" src="https://openfiber.it/bundles/app/img/open_fibre_white.png" border="0" /><!-- </img> --></td>
+				</tr>
+				<tr style="height: 18px;" valign="top">
+				<td style="background-color: #ffffff; height: 18px;">&nbsp;</td>
+				</tr>
+				<tr style="height: 188.9px;" valign="top">
+				<td style="background-color: #ffffff; color: #000000; font-size: 11pt; font-family: arial; height: 188.9px;">
+				<table border="0" width="550" cellspacing="5" cellpadding="5">
+			<tbody>
+				<tr valign="top">
+					<td style="background-color: #ffffff; color: #000000; font-size: 11pt; font-family: arial; width: 527.333px;">
+						<div>
+							<p class="MsoNormal" style="color: #000000; font-family: arial; font-size: 11pt; line-height: 1;">Gentile&nbsp;{!Contact.Name},</p>
+							<p class="MsoNormal" style="color: #000000; font-family: arial; font-size: 11pt; line-height: 1;">
+								<span style="font-size: 11pt;">grazie per averci contattato. La tua richiesta &egrave; stata ricevuta e presa in carico.&nbsp;</span>
+							</p>
+							<p class="MsoNormal">
+								<span style="font-family: arial;">
+									<span style="font-size: 11pt; line-height: 1;">L&rsquo;identificativo della tua richiesta &egrave;:&nbsp;</span>
+								</span>
+								<span style="font-size: 11pt;"><strong><span style="line-height: 1;">{!Case.CaseNumber}</span></strong></span></p>
+							<p class="MsoNormal">
+								<span style="font-size: 11pt; line-height: 1;">Saluti</span>
+							</p>
+						</div>
+						<div style="color: #000000; font-family: arial; font-size: 11pt; line-height: 1;">
+							<div>Open Fiber</div>
+							<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+						
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td style="background-color: #ffffff; color: #000000; font-size: 11pt; font-family: arial; ">
+					<div style="color: #000000; font-family: arial; font-size: 11pt; line-height: 1;">
+						<p class="MsoNormal" style="color: #000000; font-family: arial; font-size: 11pt; line-height: 2;">
+							<span style="font-size: 11pt;">Questo &egrave; un messaggio automatico; pertanto, si prega di non rispondere all’email.</span>
+						</p>
+					</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		</td>
+		</tr>
+		<tr style="height: 18px;" valign="top">
+			<td style="background-color: #ffffff; height: 18px;">&nbsp;</td>
+		</tr>
+		<tr style="height: 18px;" valign="top">
+			<td style="background-color: #ffffff; vertical-align: top; height: 18px; text-align: left;">&nbsp;</td>
+		</tr>
+		<tr style="height: 18px;" valign="top">
+			<td style="background-color: #ffffff; height: 18px;">&nbsp;</td>
+		</tr>
+		</tbody>
+	</table>
+</center>

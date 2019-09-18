@@ -1,0 +1,71 @@
+<apex:page showHeader="true" sidebar="true" standardController="Case" extensions="PO_TP_EditFieldsCase" id="myPage" docType="html-5.0" >
+    <html lang="it">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+	        <apex:slds />
+            <!-- /#wrapper -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+            <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>   
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"/>
+            <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+            <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+            <link rel="stylesheet" href="/resources/demos/style.css"/>
+
+        </head>
+    <body>
+    <apex:form id="theForm">
+    <apex:pageBlock id="thePageBlock">
+        <div class="slds-section slds-is-open">
+            <h3 class="slds-section__title slds-theme_shade">
+                <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Modifica Dati</span>
+            </h3>
+        <div class="slds-form slds-form_horizontal">
+
+            <apex:outputPanel rendered="{!If(caseTP.PO_TP_Causale_Apertura_Segnalazione__c!='Segnalazione Provisioning',true,false)}">
+                <div class="slds-form-element" style="margin-bottom: 10px;">                                                        
+                    <label style="font-weight: bold;">Severity &nbsp;&nbsp;&nbsp;&nbsp;</label>                                               
+                    <apex:selectList id="severity" size="1" value="{!caseTP.PO_TP_Severity__c}" styleClass="slds-select" 
+                        style="width:10%; margin-right: 595px;">
+                        <apex:selectOptions value="{!elencoSeverity}" />		
+                    </apex:selectList>
+                </div>
+            </apex:outputPanel>
+            
+            <div class="slds-form-element" style="margin-left: 210px; ">
+                <!--<label class="slds-form-element__label" for="dataPrev">Data Prevista Chiusura :</label> -->
+                <apex:pageBlockSection >
+                    <apex:inputField value="{!caseTP.PO_TP_Data_Prevista_Chiusura__c}" style="width: 105px;"/>
+                </apex:pageBlockSection>
+            </div>
+
+            <br/>
+            <div class="slds-form-element" style="margin-right: 565px;">
+                <apex:outputPanel >                                                          
+                    <apex:commandLink id="updateDati" styleClass="slds-button slds-button--brand" style="margin-right:10px;" 
+                        value="Aggiorna dati" onclick="validateform(); return false;" />
+                        <apex:actionFunction action="{!aggiornaDati}" name="updateCase" />
+                    <apex:commandLink styleClass="slds-button slds-button--brand" style="margin-right:5px;" value="Annulla" action="{!annulla}" /> 
+                </apex:outputPanel>
+            </div>         
+        </div>    
+        </div>
+        <!-- FINE - Sezione Modifica -->
+    	</apex:pageBlock>
+	</apex:form>
+	
+	<script type='text/javascript'>
+	    
+    function validateform()
+    {
+    	 updateCase();
+    }    
+	</script>
+	</body>
+	</html>
+</apex:page>

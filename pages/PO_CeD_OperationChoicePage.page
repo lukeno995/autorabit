@@ -1,0 +1,399 @@
+<apex:page showHeader="true" sidebar="true" standardController="Case" extensions="PO_CeD_OperationChoiceController"
+docType="html-5.0">
+    <html lang="it">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <apex:slds />
+        <!-- /#wrapper -->
+        <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"
+        />
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"
+        />
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+        <style>
+            .red {
+                color: red;
+            }
+            
+            .form-check-input {
+                margin-left: 45px !important;
+                margin-top: 10px;
+            }
+            
+            .acquisito {
+                display: none;
+            }
+            
+            .accettato {
+                display: none;
+            }
+            
+            a.disabled {
+                pointer-events: none;
+                cursor: not-allowed;
+                background-color: rgb(229, 229, 229) !important;
+                color: #c0c0c0;
+            }
+
+        </style>
+    </head>
+
+  <body id="buttonBlock"> 
+    <apex:form style="padding-top: 10px" id="myForm">
+         <apex:pageMessages id="pm"/>
+            
+          <apex:pageBlock id="thePageBlock">
+
+                <!-- INIZIO - Sezione Modifica -->
+                <div class="slds-section slds-is-open" id="modulo">
+                    <h3 class="slds-section__title slds-theme_shade">
+                        <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Modifica Dati</span>
+                    </h3>
+                    
+                    <div class="slds-form slds-form_horizontal">
+                        <!-- INIZIO - Sezione Modifica se il case è in stato ACQUISITO-->
+                        
+                            <div class="slds-form-element">
+                                <apex:outputPanel rendered="{!showInputDataPrev}">
+                                    <label class="slds-form-element__label" for="dataPrev">Data Prevista Attivazione :</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField id="dataPrev" styleClass="slds-input" 
+                                            value="{!originalCase.EOF_Data_Prevista_Attivazione__c}"
+                                            style="width:50%;" />
+                                    </div>
+                                </apex:outputPanel>
+                            </div>
+    
+                            <div class="slds-form-element">
+                                <apex:outputPanel rendered="{!showInputDataPrev}">
+                                    <label class="slds-form-element__label" for="orario">Orario Appuntamento :</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField id="orario" html-placeholder="HH:MM:SS" 
+                                            styleClass="slds-input"
+                                            value="{!originalCase.EOF_Orario_Appuntamento__c}" style="width:50%;"/>
+                                    </div>
+                                </apex:outputPanel>
+                            </div>
+                            
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="note">Note :</label>
+                                <div class="slds-form-element__control">
+                                    <apex:inputTextArea id="note_olo" styleClass="slds-input" 
+                                        value="{!originalCase.EOF_Note__c}" 
+                                        style="width:50%; height:100px;" html-maxlength="254"/>
+                                </div>
+                            </div>
+                            
+                            <div class="slds-form-element">
+                                <apex:outputPanel rendered="{!showInputNoteInterne}">
+                                    <label class="slds-form-element__label" for="note">Note interne :</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputTextArea id="note_interne" styleClass="slds-input" 
+                                            value="{!originalCase.EOF_Note_Interne__c}" 
+                                            style="width:50%; height:100px;" html-maxlength="254"/>
+                                    </div>
+                                </apex:outputPanel>
+                            </div>
+                        
+                        <!-- FINE - Sezione Modifica se il case è in stato ACQUISITO-->
+                        
+                            <div class="slds-form-element">
+                                <apex:outputPanel rendered="{!showInputIdRisorsa}">
+                                    <label class="slds-form-element__label" for="id_risorsa">ID Risorsa :</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputText id="id_risorsa" styleClass="slds-input" 
+                                            onchange="checkIdRisorsa();"
+                                            value="{!id_risorsa}" style="width:50%;" />
+                                    </div>
+                                </apex:outputPanel>
+                            </div>
+                           
+                            <div class="slds-form-element">
+                                <apex:outputPanel rendered="{!showInputCodMotivazione}">
+                                    <label class="slds-form-element__label" for="cod_motivazione">Codice Motivazione :</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:selectList id="cod_motivazione" size="1" 
+                                            value="{!originalCase.OF_SA_Codice_Motivazione__c}"
+                                            styleClass="slds-select" style="width:10%; margin-right: 605px;" 
+                                            onchange="getCodMotivazione();">
+                                            <apex:selectOptions value="{!elencoCodMotivazioneEspKO}" 
+                                                                rendered="{!showCodMotivazioniEspKO}" />	
+                                            <apex:selectOptions value="{!elencoCodMotivazioneEspOK}" 
+                                                                rendered="{!showCodMotivazioniEspOK}" />
+                                            <apex:selectOptions value="{!elencoCodMotivazioneRDAC}" 
+                                                                rendered="{!showCodMotivazioniRDac}" />
+                                            <apex:selectOptions value="{!elencoCodMotivazioneSosp}" 
+                                                                rendered="{!showCodMotivazioniSosp}" />
+                                        </apex:selectList>
+                                    </div>
+                                </apex:outputPanel>
+                            </div>
+                            
+                            <div class="slds-form-element">
+                                <apex:outputPanel rendered="{!showInputMotivazione}">
+                                    <label class="slds-form-element__label" for="motivazione">Motivazione :</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:outputText id="motivazione" value="{!motivazione}" 
+                                            style="width:358px; height:60px;" />
+                                    </div>
+                                </apex:outputPanel>
+                            </div>
+                        
+                        <br/>
+                        <div class="slds-form-element" style="margin-right: 465px;">
+                            <apex:outputPanel id="panelButton" >
+                                <apex:commandbutton styleClass="slds-button slds-button--brand" style="margin-right:5px;"
+                                    value="Annulla" action="{!goBack}" />
+
+                                <!-- Add by PG - Gestione Operazioni C&D -->
+                                
+                                <apex:commandLink value="Invia in Accettato" reRender="buttonBlock" 
+                                        styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                                        action="{!accettazione}" rendered="{!mostraAccettazione}" oncomplete="refresh()">
+                                </apex:commandLink>
+                                
+                                <apex:commandLink value="Invia in Espletato OK" reRender="buttonBlock" 
+                                        id="btnEspOK"
+                                        styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                                        action="{!espletamento_OK}" rendered="{!mostraEspletatoOK}" oncomplete="refreshEsplOK()">
+                                </apex:commandLink>
+                            
+                                <apex:commandLink value="Invia in Espletato KO" reRender="buttonBlock" 
+                                        id="btnEspKO"
+                                        styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                                        action="{!espletamento_KO}" rendered="{!mostraEspletatoKO}" oncomplete="refresh()">
+                                </apex:commandLink>
+                                
+                                <apex:commandLink value="Invia in RDAC" reRender="buttonBlock, pm"
+                                        id="btnRDac"
+                                        styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                                        action="{!rimodulazioneDAC}" rendered="{!mostraRDAC}" oncomplete="refresh()">
+                                </apex:commandLink>
+
+                                <apex:commandLink value="Invia in Sospeso" reRender="buttonBlock"
+                                        id="btnSosp"
+                                        styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                                        action="{!sospensione}" rendered="{!mostraSospeso}" oncomplete="refresh()">
+                                </apex:commandLink>
+                                
+                                <apex:commandLink value="Invia in Desospeso" reRender="buttonBlock"
+                                        id="btnDesosp"
+                                        styleClass="slds-button slds-button--brand" style="margin-right:5px;" 
+                                        action="{!desospensione}" rendered="{!mostraDesospeso}" oncomplete="refresh()">
+                                </apex:commandLink>
+
+                                <!-- End by PG - Gestione Operazioni C&D -->
+
+                            </apex:outputPanel>
+                        </div>
+                    </div>
+                </div>
+                <!-- FINE - Sezione Modifica -->
+            </apex:pageBlock>
+            
+            <apex:actionFunction name="searchMotivazione" action="{!runSearchMotivazione}" rerender="motivazione">
+                <apex:param name="codice" value="" />
+            </apex:actionFunction>
+
+    </apex:form> 
+    
+    <script type='text/javascript'>
+    
+    $(document).ready(function(){
+
+        tipoOp = '{!tipoOp}';
+        console.log('OPERAZIONE SELEZIONATA: '+tipoOp);
+        
+        if(tipoOp=='ESP_OK'){
+            getCodMotivazione();
+            checkBtnEspOK(); 
+        }
+        else{
+            getCodMotivazione();
+        }
+    });
+    
+    function testCloseTab(){
+        //First find the ID of the current tab to close it
+        sforce.console.getEnclosingTabId(closeSubtab);
+    }
+        
+    var closeSubtab = function closeSubtab(result){
+        //Now that we have the tab ID, we can close it
+        var tabId = result.id;
+        sforce.console.closeTab(tabId);
+    };   
+    
+    function refresh(){
+        
+        getCodMotivazione();
+        
+        if (sforce.console.isInConsole()){
+            var refresh_subtab = function(result) {
+                var primaryTabId = result.id;
+                // open tabs
+                sforce.console.refreshPrimaryTabById(primaryTabId, true);
+            }﻿  
+            sforce.console.getEnclosingPrimaryTabId(refresh_subtab);
+        }
+        else if ("{!$User.UIThemeDisplayed}" == "Theme4d"){
+            sforce.one.navigateToURL("/{!Case.Id}");
+            sforce.one.back(true);
+        }
+        else{
+             window.top.location.href ="/{!Case.Id}";
+        }           
+    };
+    
+    function refreshEsplOK(){
+        
+       debugger;
+       var id_risorsa = $('[id$=id_risorsa]').val();
+       var motivazione = $('[id$=motivazione]').val();
+       var cod_motivazione = $("select[id$='cod_motivazione']").val();
+
+       console.log('ID Risorsa: '+id_risorsa);
+       console.log('Motivazione: '+motivazione);
+       console.log('Codice Motivazione: '+cod_motivazione);
+
+       if(!id_risorsa){
+            disableButton();
+            alert('Campo ID_RISORSA obbligatorio non valorizzato');  
+       } 
+       else if(!motivazione){
+            disableButton();
+            alert('Campo MOTIVAZIONE obbligatorio non valorizzato');
+       }
+       else if(!cod_motivazione){
+            disableButton();
+            alert('Campo CODICE MOTIVAZIONE obbligatorio non valorizzato');
+       }
+       else{
+            enableButton();
+            refresh();
+       }
+    };
+    
+    function checkIdRisorsa()
+    {
+        //alert('OnChange ID_Risorsa');
+        tipoOp = '{!tipoOp}';
+        console.log('OPERAZIONE SELEZIONATA: '+tipoOp);
+
+        var codice = $("select[id$='cod_motivazione']").val();
+        
+        if(tipoOp=='ESP_OK')
+        {
+            var id_risorsa = $('[id$=id_risorsa]').val();
+            console.log('id_risorsa : '+id_risorsa);
+            
+            if(id_risorsa.length==0 && codice=='None'){
+                disableButton();
+            }
+            if(id_risorsa.length>0 && codice=='None'){
+                disableButton();
+            }
+            else if(id_risorsa.length==0 && codice=='C07'){
+                disableButton();
+            }
+            else if(id_risorsa.length>0 && codice=='C07') //OK
+            {
+                enableButton();
+            }
+        }
+    }
+
+    function getCodMotivazione() 
+    {
+    	var codice = $("select[id$='cod_motivazione']").val();
+    	var id_risorsa = $('[id$=id_risorsa]').val();
+    	tipoOp = '{!tipoOp}';
+    	
+    	if(tipoOp!='ESP_OK')
+    	{		
+    		if(codice!='None'){
+    			console.log(codice);
+    			searchMotivazione(codice);       
+    			enableButton();
+    		}
+    		else{
+    			//sbianco motivazione se codice = None
+    			$('span[id$=motivazione]').text('');
+    			disableButton();			
+    		}
+    	}	
+    	else //Se tipoOp è ESP_OK
+    	{
+    	    if(codice!='None'){
+    			console.log(codice);
+    			searchMotivazione(codice);       
+    		}
+    		if(id_risorsa.length>0 && codice=='C07'){
+    		    console.log(codice);
+    			searchMotivazione(codice);       
+    			enableButton();
+    		}
+    		else if(id_risorsa.length==0 && codice=='C07'){	
+    		    console.log(codice);
+    			searchMotivazione(codice);
+    			$('[id$=btnEspOK]').addClass("disabled");
+    		}
+    		else if(id_risorsa.length>0 && codice=='None'){	
+    			//sbianco motivazione se codice = None
+    			$('span[id$=motivazione]').text('');
+    			//disabilito il bottone
+    			$('[id$=btnEspOK]').addClass("disabled");
+    		}
+    		else if(id_risorsa.length==0 && codice=='None'){	
+    			//sbianco motivazione se codice = None
+    			$('span[id$=motivazione]').text('');
+    			//disabilito il bottone
+    			$('[id$=btnEspOK]').addClass("disabled");
+    		}		
+    	}
+    }
+	
+	function enableButton() 
+	{
+	    console.log('enableButton');
+        $('[id$=btnEspOK]').removeClass("disabled");
+        $('[id$=btnEspKO]').removeClass("disabled");
+        $('[id$=btnRDac]').removeClass("disabled");
+        $('[id$=btnSosp]').removeClass("disabled");
+    }
+
+    function disableButton() 
+    {
+        console.log('disableButton');
+        $('[id$=btnEspKO]').addClass("disabled");
+        $('[id$=btnRDac]').addClass("disabled");
+        $('[id$=btnSosp]').addClass("disabled");
+    }
+    
+    function checkBtnEspOK() 
+    {
+        console.log('checkBtnEspOK');
+        
+        var id_risorsa = '{!originalCase.EOF_Id_Risorsa__c}';
+        var motivazione = '{!originalCase.OF_SA_Motivazione__c}';
+        var cod_motivazione = '{!originalCase.OF_SA_Codice_Motivazione__c}';
+        
+        if(id_risorsa && motivazione && cod_motivazione){
+            enableButton();
+        }
+        else{
+            $('[id$=btnEspOK]').addClass("disabled");
+        }
+    }
+		
+	</script>
+      
+  </body>    
+  </html>
+</apex:page>

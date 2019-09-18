@@ -1,0 +1,1084 @@
+<apex:page Controller="PO_P2PAttiva_EditLogInfoCntrl" docType="html-5.0" applyhtmltag="false" showheader="false" sidebar="false" standardstylesheets="false"
+           action="{!insertChildLog}" >
+    <!--  standardController="Case" id="pageID" extensions="PO_RegistrationController"  sostituisci controller con PO_P2PAttiva_EditLogInfoCntrl -->
+
+    <html lang="en">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>         
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>   
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            
+            
+            <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+            <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>            
+            <link rel = "stylesheet"  type = "text/css"  href = "//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+            
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+            </style>
+        </head>
+        <body>
+            <div id="wrapper" >
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <c:PO_SideBarComponent Rec="{!recordOfferta}" />                   
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" id="side-menu"></ul>
+                        </div>
+                        <!-- /.sidebar-collapse -->
+                    </div>
+                    <!-- /.navbar-static-side -->
+                </nav>
+                <div >
+                    <div style="color:red;" id="showerror">
+                        <apex:pageMessages id="errors" /> 
+                    </div>
+                    <apex:outputPanel id="testform">
+                    </apex:outputPanel>
+                </div>
+                
+                <div id="page-wrapper"   >
+                    <div class="row"   >
+                        <div class="col-lg-8" style="width:73.666667%;">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i></i>Sede
+
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <apex:form id="formID">
+                                            <form role="form" class="form-horizontal">
+                                                <apex:outputPanel >
+                                                    
+                                                    <div class="form-group">    
+                                                        <div class="col-lg-6">
+                                                            <label>Status : </label> &nbsp; &nbsp;
+                                                            <apex:outputField id="Status" styleClass="form-control"  value="{!childLog.EOF_Stato_Richiesta__c}"/>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <label>Collegamento : </label> &nbsp; &nbsp;
+                                                            <apex:outputField id="Collegamento" styleClass="form-control" value="{!childLog.EOF_Codice_Ordine_OLO__c}"/>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group">
+                                                        <div class="col-lg-6">
+                                                            <label>Data di Creazione : </label> &nbsp; &nbsp;
+                                                            <apex:outputField id="DatadiCreazione" styleClass="form-control"  value="{!childLog.CreatedDate}"/>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <label>Richiesta fattibilità : </label> &nbsp; &nbsp;
+                                                            <apex:outputfield id="Richiestafattibilità" styleClass="form-control" value="{!childLog.EOF_SL_Riferimento__r.EOF_Codice_Ordine_OLO__c}"/>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group">
+                                                        <div class="col-lg-6">
+                                                            <label>Comune*</label>
+                                                            <span class="glyphicon glyphicon-search"></span> 
+                                                            <apex:inputText id="comuneId" value="{!searchTerm}" styleClass="form-control" onkeypress="return noenter(event);"  />
+                                                            <apex:inputHidden id="searchcommuneId" value="{!selectedIdComune}" />
+                                                        </div>  
+                                                        
+                                                        <div class="col-lg-6">
+                                                            <label>Tipo di collegamento*</label>
+                                                            <apex:selectList id="tipodicolle" label="Tipo di collegamento*"  required="true" disabled="true" styleClass="form-control" onkeypress="return noenter(event);">
+                                                                <apex:selectOptions Value="{!opt}" />
+                                                            </apex:selectList>   
+                                                        </div>
+                                                        
+                                                    </div> 
+                                                    
+                                                    <div class="form-group">
+                                                        <div class="col-lg-6" style="margin-right: 10%;margin-left: 0%;">
+                                                            <label>Tipo percorso*</label>
+                                                            <apex:inputField id="Tipopercorso" styleClass="form-control" onkeypress="return noenter(event);" onchange="showTrafficBalance(this);" value="{!childLog.PO_Tipo_percorso__c}"/>
+                                                        </div>
+                                                        <div class="col-lg-6" style="margin-left: -10%;margin-right: 0%;">
+                                                            <label>Prime Contractor*</label>
+                                                            <apex:inputText id="PrimeContracto" styleClass="form-control"    value="{!accountN.Name}"/> <!-- modify 09/05/2019 P2P attiva-->
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    
+                                                    <div class="form-group" id="trafficfield">
+                                                        <div class="col-lg-6" >
+                                                            <label >Traffic Load Balancing*</label>
+                                                            <apex:selectList id="TrafficLoadBalancing" label="Traffic Load Balancing*" size="1" required="true"  styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.TrafficLoadBalancing__c}" disabled="true">
+                                                                <apex:selectOptions Value="{!optTraffic}" />
+                                                                <apex:inputHidden id="trafficValue" value="{!trafficLoadBalancing}" />
+                                                            </apex:selectList>   
+                                                            <!--<apex:inputField id="TrafficLoadBalancing" styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.TrafficLoadBalancing__c}"/>-->
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <label>Velocità di Banda*   </label> &nbsp; &nbsp;                                                             
+                                                            <apex:selectList id="velocitabanda" label="Velocità di Banda*" size="1" required="true"  styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.EOF_PROFILO__c}" onchange="changeTableProfilo(this);">
+                                                                <apex:selectOptions Value="{!optVelocitaBanda}" />
+                                                            </apex:selectList>
+                                                            <!--<apex:inputField id="Profilo" styleClass="form-control" value="{!childLog.EOF_PROFILO__c}" required="true"/>-->
+                                                            <!--<apex:outputpanel id="hiddenPanel">
+<apex:inputhidden id="check" value="{!verifyProfilo}" />
+</apex:outputpanel>
+<apex:outputpanel id="errProfilo">
+<apex:outputText id="errProfilo2" value="ATTENZIONE!! Il profilo inserito non è ammesso." rendered="{!viewError}" style="color:red;" /> 
+</apex:outputpanel>-->
+                                                        </div>
+                                                    </div>
+                             <!-- EC 2019 05 27 start inserimento chiusura outputpanel e apertura  di un altro outputPanel -->
+                                    </apex:outputPanel>
+                                       <apex:outputPanel >  
+							<!-- EC 2019 05 27 end inserimento chiusura outputpanel e apertura  di un altro outputPanel -->             
+
+                                                    <div class="form-group">
+                                                   <br/>
+                                                        <div class="col-lg-6">
+
+                                                            <h5 style="font-size:16px"><B> <u>Informazioni Sede da collegare </u> </B></h5>
+                                                            
+
+                                                            <label class="control-label col-sm-1" for="Indirizzo collegamento" style="width:150px;margin-top: 15%;">Indirizzo*</label>
+                                                            <apex:inputField id="Indirizzocollegamento" styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.PO_Indirizzo_collegamento__c}"  />
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            <div class="form-group">
+                                                                <div class="col-lg-14" >
+                                                                    <label class="control-label col-sm-1" for="Civico" style="width:150px;">Civico*</label>
+                                                                    <apex:inputField id="Civico" styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.PO_Civico__c}"  />
+                                                                </div>
+                                                                
+                                                                
+                                                                
+                                                            </div>
+                                                            <!--</apex:outputPanel>-->
+                                                        </div>
+                                                        <!-- END -->
+                                                        <div class="col-lg-6">
+
+                                                        </div> 
+                                                        
+                                                        
+                                                        
+                                                        
+                                                    </div> 
+                                                    
+                                                    
+                                                    
+                                                    <div class="form-group">
+                                                        <div class="col-lg-6" style="margin-left: -50%;margin-right: 50%;margin-top: 4%;">
+                                                            <label>Particella Toponomastica*</label>
+                                                            <apex:inputField id="Particellatoponomastica" styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.Particella_Toponomastica_1__c}"/>
+                                                        </div>  
+                                                        <div class="col-lg-6" style="margin-left: -50%;margin-right: 0%; margin-top: 4%;">
+                                                            <label class="control-label col-sm-1" for="Sito" style="width:150px;">Sede*</label>
+                                                            <apex:inputField id="Sito" styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.PO_Sito__c}" />
+                                                        </div>
+                                                    </div>
+                                             <!-- EC 2019 05 27 commento    </apex:outputPanel>  -->
+
+                                                <div class="form-group">
+                                                    
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <div class="col-lg-6" style="margin-top: 1%;">
+
+                                                        <label>ID Sede*</label>
+                                                        
+                                                        <apex:outputText id="IdSede" styleClass="form-control"  value="{!strSedeCalc}"/>
+                                                    </div> 
+                                                    <div class="col-lg-6" >
+                                                        <label class="control-label col-sm-1" for="Nota sede" style="width:150px;"> Nota Sede</label>
+                                                        <apex:inputField id="Notasede" styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.PO_Nota_sito__c}"   />
+                                                    </div>
+                                                </div>
+                                                
+                                            
+                                                <br/><br/><br/>
+                                                <!-- CPE SECTION -->
+                                                <div class="form-group">
+                                                    <div class="col-lg-8">
+                                                        <apex:outputPanel >
+                                                            <label>CPE  </label>
+                                                            
+                                                            
+                                                        </apex:outputPanel>
+                                                        
+                                                    </div>
+                                                    <div class="col-lg-6" style="margin-bottom:25%;">
+                                                        <label>Tipologia CPE*</label>
+                                                        <apex:inputField id="tipologiaCPE" styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.Tipologia_CPE__c }"/>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label>Tipologia Alimentazione*</label>
+                                                        <apex:inputField id="tipologiaAlimentazione" styleClass="form-control" onkeypress="return noenter(event);" value="{!childLog.Tipologia_Alimentazione__c }"/>
+                                                    </div>
+                                                    <div class="col-lg-6" style="margin-left: -50%;margin-right: 50%;">
+                                                        <label>Interfaccia CPE*</label>
+                                                        <apex:inputField id="interfacciaCPE" styleClass="form-control" onkeypress="return noenter(event);" onchange="showMessageforKIT(this);" value="{!childLog.Interfaccia_CPE__c }"/>
+                                                    </div>
+                                                    
+                                                </div> 
+                                                </apex:outputPanel>
+                                                
+                                                <div class="form-group">
+                                                    
+                                                    <div class="col-lg-8">
+                                                        <apex:outputPanel id="pgblckID">
+                                                            
+                                                            
+                                                            <apex:commandLink styleClass="btn btn-primary"  onclick="validateform('salva'); return false;"  value="Salva"/> &nbsp;&nbsp;
+                                                            <apex:actionFunction action="{!SaveParentChildLogInfo}" name="SaveParentChildCaseInfomethod" >
+                                                            </apex:actionFunction>
+                                                            <apex:commandButton styleClass="btn btn-primary"  action="{!Annulla}" value="Annulla" immediate="true" html-formnovalidate="formnovalidate"/> &nbsp;&nbsp;
+                                                            <apex:commandButton styleClass="btn btn-primary"  action="{!deleteChildAlone}" value="Elimina" rendered="{!childLog.EOF_Stato_Richiesta__c=='Bozza Portale'}" immediate="true" html-formnovalidate="formnovalidate"/>&nbsp;&nbsp;
+                                                            <apex:commandLink styleClass="btn btn-primary"    value="AggiungiKit" onclick="validateform('aggiungiKIT'); return false;"  rendered="{!isKit}" />
+                                                            <apex:actionFunction action="{!inserisciNuovoKit}" name="insertKit" >
+                                                            </apex:actionFunction>
+                                                            <apex:commandLink styleClass="btn btn-primary"  style="margin:2%;"  value="Scegli Profilo" onclick="validateform('scegliProfilo'); return false;"    rendered="{!isProfilo}"/>
+                                                            <apex:actionFunction action="{!insertVlan}" name="insertVLAN" >
+                                                            </apex:actionFunction>
+                                                            <!--<apex:commandButton styleClass="btn btn-primary"  id="addKIT" onclick="validateform('aggiungiKIT'); return false;" value="AggiungiKit" action="{!inserisciNuovoKit}" immediate="true" html-formnovalidate="formnovalidate" rendered="{!isKit}"/> &nbsp;&nbsp; -->
+                                                            <!--<apex:commandButton styleClass="btn btn-primary" id="sProfilo"   onclick="validateform(); return false;" action="{!insertVlan}" value="Scegli Profilo" immediate="true" html-formnovalidate="formnovalidate" /> &nbsp;&nbsp;-->
+                                                            <!--<apex:commandLink styleClass="btn btn-primary"    value="Aggiungi VLAN" onclick="validateform('aggiungiVlan'); return false;" rendered="{!childLog.EOF_Stato_Richiesta__c=='Bozza Portale' && vLanNoMax}"/>-->
+                                                            <apex:actionFunction action="{!insertNewVLAN}" name="insertVlan" />
+                                                            <apex:actionFunction action="{!getRecordProfili}" name="calcProfili" />
+                                                            
+                                                        </apex:outputPanel>
+                                                    </div>
+                                                     
+                                                    <div class="col-lg-4">
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">File allegati</button>
+                                                    </div>
+                                                    
+                                                    <div class="modal fade" id="myModal" role="dialog">
+                                                        <div class="modal-dialog">
+                                                            <apex:actionRegion > 
+                                                                <!-- Modal content-->
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                        <h4 class="modal-title">Upload Allegato</h4>
+                                                                    </div>
+                                                                    <div class="modal-body" >
+                                                                    <!--   <input type="file" style="width:100%" id="fileToUpload" value="{!fileBody}" name="{!fileName}"  /> EC 2019 06 05 così non funziona. -->
+																	<apex:inputFile style="width:100%" id="fileToUpload" value="{!fileBody}" filename="{!fileName}"  />
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <apex:commandButton value="Upload Allegato" action="{!upload}" styleClass="btn btn-primary"  />
+                                                                    </div>
+                                                                </div>
+                                                            </apex:actionRegion>    
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <apex:outputPanel rendered="{!vlanList.size>0}"> 
+                                                            <div class="col-lg-8" style="width:100%;margin-top: 5%;">
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-heading">
+                                                                        <i></i>Profili
+                                                                    </div>
+                                                                    <div class="panel-body">
+                                                                        <div class="row">
+                                                                            <apex:outputPanel >
+                                                                                <div class="form-group">    
+                                                                                    <div class="col-lg-10">
+                                                                                        <label>KIT Consegna VLAN : </label> &nbsp; &nbsp;
+                                                                                        <apex:outputField id="Status2" styleClass="form-control"  value="{!vlanList[0].OF_SA_KIT_CONSEGNA_VLAN__c}"/>
+                                                                                    </div>
+                                                                                    <div class="col-lg-6">
+                                                                                    </div>
+                                                                                </div> 
+                                                                                <div class="form-group">
+                                                                                    <div class="col-lg-6" style="float: initial;">
+                                                                                        <!--<label>Service VLAN : </label> &nbsp; &nbsp;
+<apex:outputField id="Collegamento" styleClass="form-control" value="{!vlanList[0].OF_SA_SERVICE_VLAN__c}"/>-->
+                                                                                    </div>
+                                                                                    <!--<div class="col-lg-10">
+                                                                                        <label>SVLAN ID : </label> &nbsp; &nbsp;
+                                                                                        <apex:outputField id="Status1" styleClass="form-control"  value="{!vlanList[0].SFL_SVLAN_ID__c}"/>
+                                                                                    </div>-->
+                                                                                </div>
+                                                                                <div class="col-sm-8" id="tablePr"  style="float: right;margin-top: -4%;">
+                                                                                    <apex:outputPanel id="tableProfili" >
+                                                                                        
+                                                                                        <table id="theTable"  class="table table-striped table-bordered" width="100%">
+                                                                                            <thead>
+                                                                                                <tr>
+                                                                                                    <th></th>
+                                                                                                    <th colspan="2">COS 5</th>
+                                                                                                    <th colspan="2">COS 3</th>
+                                                                                                    <th colspan="2">COS 1</th>
+                                                                                                </tr>
+                                                                                            </thead>
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td> 
+                                                                                                        <apex:outputText value="{!vlanList[0].PO_P2PAttiva_Opzione__c}"/>
+                                                                                                        
+                                                                                                        
+                                                                                                    </td>
+                                                                                                    <th>PIR</th> 
+                                                                                                    <th>CIR</th> 
+                                                                                                    <th>PIR</th>
+                                                                                                    <th>CIR</th>
+                                                                                                    <th>PIR</th>
+                                                                                                    <th>CIR</th>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    
+                                                                                                    <td>
+                                                                                                        <apex:outputText id="profilo" value="{!vlanList[0].OF_SA_PROFILO_VLAN__c}"/>
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <apex:outputText value="{!vlanList[0].COS5_PIR__c}"/>
+                                                                                                        
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <apex:outputText value="{!vlanList[0].COS5_CIR__c}"/>
+                                                                                                        
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <apex:outputText value="{!vlanList[0].COS3_PIR__c}"/>
+                                                                                                        
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <apex:outputText value="{!vlanList[0].COS3_CIR__c}"/>
+                                                                                                        
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <apex:outputText value="{!vlanList[0].COS1_PIR__c}"/>
+                                                                                                        
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <apex:outputText value="{!vlanList[0].COS1_CIR__c}"/>
+                                                                                                        
+                                                                                                    </td>
+                                                                                                    
+                                                                                                </tr>
+                                                                                                
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                        <apex:commandButton styleClass="btn btn-primary"  action="{!modifyProf}" value="Modifica Profilo" rendered="{!childLog.EOF_Stato_Richiesta__c=='Bozza Portale'}" immediate="true" html-formnovalidate="formnovalidate"/>&nbsp;&nbsp;
+                                                                                        
+                                                                                        
+                                                                                    </apex:outputPanel>
+                                                                                </div>      
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                            </apex:outputPanel>
+                                                                            <br/><br/><br/> 
+                                                                            <br/>
+                                                                        </div>
+                                                                        <!-- /.row (nested) -->
+                                                                    </div>
+                                                                    <!-- /.panel-body -->
+                                                                </div>      
+                                                            </div>
+                                                            
+                                                            <!-- /.row -->
+                                                        
+                                                </apex:outputPanel>
+                                            </form> 
+                                        </apex:form> 
+                                        <br/>
+                                    </div>
+                                    <!-- /.row (nested) -->
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>    
+                            
+                            <apex:outputPanel id="allToShow" rendered="{!showAllegati}"> <!-- giovanni 2018 - 12 - 21 inizio -->
+                                <div class="row">
+                                    <div class="col-lg-6" style="width:100%;">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <i></i>Allegati
+                                            </div>
+                                            <div>
+                                                <table id="theTable" class="table table-striped table-bordered" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Allegato </th>
+                                                            <th>Data Creazione </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <apex:repeat value="{!childcasedisplayattlist }" var="att">
+                                                            <tr>
+                                                                <td>
+                                                                    <apex:outputLink value="{!URLFOR($Action.Attachment.Download, att.Id)}" target="_blank">{!att.Name}</apex:outputLink>    
+                                                                </td> 
+                                                                <td>
+                                                                    <apex:outputField value="{!att.createdDate}" />
+                                                                </td>
+                                                            </tr> 
+                                                        </apex:repeat>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                
+                            </apex:outputPanel> <!-- giovanni 2018 - 12 - 21 fine -->                           
+                            
+                            <!-- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaa -->
+                            <!-- Iterazione Lista VLAN -->  
+                            <!-- EC 2019 05 15 Start nuova Table VLAN   -->
+                            
+                            <!--<apex:form id="Vlan">
+                                <apex:outputPanel id="vlanPanel">           
+                                    <apex:repeat value="{!listNephewVLAN}" var="slV" rendered="{!showVLAN}">
+                                        <div class="panel panel-default" style="margin-top:5px;">
+                                            <div class="panel-heading">
+                                                <i></i>Profilo: <!-- VLAN -->
+                                          <!--  </div>
+
+                                            <div class="panel-body">
+                                                <fieldset class="form-group">   
+                                                    <div class="form-group">
+                                                        <div class="col-lg-6">
+                                                            <label>Kit Consegna VLAN :   </label> &nbsp; &nbsp;
+                                                            <apex:outputText id="kitCons" >{!slV.OF_SA_KIT_CONSEGNA_VLAN__c}</apex:outputText>                                                                      
+                                                        </div>
+                                                        
+                                                        <div class="col-lg-6">
+                                                            <label>Service VLAN : </label> &nbsp; &nbsp;
+                                                            <apex:outputText id="serVLAN" >{!slV.OF_SA_SERVICE_VLAN__c}</apex:outputText>                                                
+                                                        </div>
+                                                        <table id="VlanTable" class="table table-striped table-bordered" width="100%">
+                                                            
+                                                            <tr>
+                                                                <td>      </td>
+                                                                <th>COS 5 </th>
+                                                                <th>COS 3 </th>
+                                                                <th>COS 1 </th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Opzione Selezionata</td>
+                                                                <td>PIR</td>
+                                                                <td>CIR</td>
+                                                                <td>PIR</td>
+                                                                <td>CIR</td>
+                                                                <td>PIR</td>
+                                                                <td>CIR</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Profilo Selezionato</td>
+                                                                <td>Valore num</td>
+                                                                <td>Valore num</td>
+                                                                <td>Valore num</td>
+                                                                <td>Valore num</td>
+                                                                <td>Valore num</td>
+                                                                <td>Valore num</td>
+                                                            </tr>
+                                                            
+                                                            
+                                                        </table>
+                                                        
+                                                    </div>
+                                                </fieldset>
+                                                <!-- Elimina vlan -->
+                                                <!--<div class="col-lg-6">
+
+                                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                                        <button id="cessazioneVlan" class='btn btn-primary to-disable btn-cess' style="margin-right:10px; margin-top:10px;"  name='{!slV.id}' >Elimina VLAN</button>   
+                                                    </div>
+                                                </div>
+                                                <!-- Modifica vlan -->
+                                                <!--<div class="col-lg-6"> 
+
+                                                    <div class="btn-group" role="group" aria-label="Basic example">                                       
+                                                        <button class='btn btn-primary to-disable' style="margin-right:10px; margin-top:10px;"  id='{!slV.id}' onclick="modVLAN(this.id)">Modifica VLAN</button>
+                                                    </div>
+                                                </div>                         
+                                            </div>
+                                        </div>                          
+                                    </apex:repeat> 
+                                </apex:outputPanel>
+                            <!--</apex:form>
+
+                            <apex:form > 
+                                <apex:actionFunction name="modifyVLAN" reRender="tabResult" action="{!modificaVLAN}" >
+                                    <apex:param assignTo="{!idVLAN}" name="idVLAN" value="" /> 
+                                </apex:actionFunction> 
+                            </apex:form> 
+                            <apex:form > 
+                                <apex:actionFunction name="deleteVLAN" reRender="tabResult" action="{!cessaVLAN}" >
+                                    <apex:param assignTo="{!idVLAN}" name="idVLAN" value="" /> 
+                                </apex:actionFunction> 
+                            </apex:form> -->
+
+                            
+                            <!--  EC 2019 05 15   commento 
+<apex:form id="Vlan">
+<apex:outputPanel id="vlanPanel">           
+<apex:repeat value="{!listNephewVLAN}" var="slV" rendered="{!showVLAN}">
+<div class="panel panel-default" style="margin-top:5px;">
+<div class="panel-heading">
+<i></i>VLAN:
+</div>
+<div class="panel-body">
+<fieldset class="form-group">   
+<div class="form-group">
+<div class="col-lg-6">
+<label>Kit Consegna VLAN :   </label> &nbsp; &nbsp;
+<apex:outputText id="kitCons" >{!slV.OF_SA_KIT_CONSEGNA_VLAN__c}</apex:outputText>                                                                      
+</div>
+<!-- 
+<div class="col-lg-6">
+<label>User VLAN :  </label> &nbsp; &nbsp;
+<apex:outputText id="userVLAN" >{!slV.OF_SA_USER_VLAN__c}</apex:outputText>                                 
+</div>
+<div class="col-lg-6">
+<label>Service VLAN : </label> &nbsp; &nbsp;
+<apex:outputText id="serviceVLAN" >{!slV.OF_SA_SERVICE_VLAN__c}</apex:outputText>                                               
+</div>
+-->
+                            <!-- EC 2019 05 15 commento                                <div class="col-lg-6">
+<label>Profilo VLAN : </label> &nbsp; &nbsp;
+<apex:outputText id="serVLAN" >{!slV.OF_SA_PROFILO_VLAN__c}</apex:outputText>                                                
+</div>
+<div class="col-lg-6">
+<label>Customer VLAN :</label> &nbsp; &nbsp;
+<apex:outputText id="custVLAN" >{!slV.OF_SA_CUSTOMER_VLAN__c} </apex:outputText>                                
+</div>                                                                                                                                                                                                   
+<div class="col-lg-6">
+<label>Modello Di Servizio VLAN : </label> &nbsp; &nbsp;
+<apex:outputText id="modelloVLAN" >{!slV.OF_SA_MODELLO_DI_SERVIZIO_VLAN__c} </apex:outputText>                                               
+</div>
+<div class="col-lg-6"> 
+<label> Informazioni VLAN :</label> &nbsp; &nbsp;
+<apex:outputText id="infoVLAN" >{!slV.OF_SA_INFORMAZIONI_VLAN__c} </apex:outputText>                                                
+</div>
+</div>
+</fieldset>
+<!-- Elimina vlan -->
+                            <!-- EC 2019 05 15 Commento                                               <div class="col-lg-6">
+<div class="btn-group" role="group" aria-label="Basic example">
+<button id="cessazioneVlan" class='btn btn-primary to-disable btn-cess' style="margin-right:10px; margin-top:10px;"  name='{!slV.id}' >Elimina VLAN</button>   
+</div>
+</div>
+<!-- Modifica vlan -->
+                            <!-- EC 2019 05 15 COmmento                                               <div class="col-lg-6"> 
+<div class="btn-group" role="group" aria-label="Basic example">                                       
+<button class='btn btn-primary to-disable' style="margin-right:10px; margin-top:10px;"  id='{!slV.id}' onclick="modVLAN(this.id)">Modifica VLAN</button>
+</div>
+</div>                         
+</div>
+</div>                          
+</apex:repeat> 
+</apex:outputPanel>
+</apex:form> 
+<apex:form > 
+<apex:actionFunction name="modifyVLAN" reRender="tabResult" action="{!modificaVLAN}" >
+<apex:param assignTo="{!idVLAN}" name="idVLAN" value="" /> 
+</apex:actionFunction> 
+</apex:form> 
+<apex:form > 
+<apex:actionFunction name="deleteVLAN" reRender="tabResult" action="{!cessaVLAN}" >
+<apex:param assignTo="{!idVLAN}" name="idVLAN" value="" /> 
+</apex:actionFunction> 
+</apex:form>EC end commento 2019 05 15 -->
+                            <!-- EC 2019 05 15 end Nuova table VLAN -->
+                            <!-- FINE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaa -->
+                            <div class="col-lg-4">        
+                            </div>
+                            <!-- /.col-lg-4 -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /#page-wrapper -->        
+                </div>
+                  </div>
+                
+              
+          
+            
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <!-- Cessa e modifica VLAN -->
+                <script>
+                //Modifica VLAN
+                function modVLAN(idVLAN) {
+                modifyVLAN(idVLAN);
+            }
+            
+            
+            function showKitandProfile(){
+                alert('onchange');
+            }
+        
+        
+        	function  changeTableProfilo (data){
+                debugger;
+                var vlanList='{!vlanList.size}';
+                if(data.value == '10G'){
+                    document.getElementById('j_id0:formID:interfacciaCPE').disabled =true;
+                    document.querySelector('[id$=interfacciaCPE]').value = 'Ottica';
+                }else{
+                    document.getElementById('j_id0:formID:interfacciaCPE').disabled =false;
+                }
+
+
+
+                if(data.value == '2G' ||  data.value == '3G' || data.value == '5G' || data.value == '10G'){
+                    document.getElementById('j_id0:formID:tipologiaCPE').disabled =true;
+                    document.querySelector('[id$=tipologiaCPE]').value = 'High-End';
+                }else{
+                    document.getElementById('j_id0:formID:tipologiaCPE').disabled =false;
+                    document.querySelector('[id$=tipologiaCPE]').value = 'Low-End';
+                }
+                //alert(vlanList);
+                if(vlanList>0 && data.value!='-- None --'){
+                    calcProfili();
+                }
+        	}
+            //Cessa VLAN
+            $(document).ready(function() {
+                debugger;
+                var urlParams = new URLSearchParams(window.location.search);
+                var cLogId = urlParams.get('cLogId');
+                if(cLogId==null){
+                    document.querySelector('[id$=Particellatoponomastica]').value = 'Via';
+                    document.querySelector('[id$=Tipopercorso]').value = 'Singola Via';
+                    document.querySelector('[id$=tipologiaCPE]').value = 'Low-End';
+                    document.querySelector('[id$=tipologiaAlimentazione]').value = 'AC';
+                    if( document.getElementById('j_id0:formID:velocitabanda').value == '10G'){
+                        document.getElementById('j_id0:formID:interfacciaCPE').disabled =true;
+                        document.querySelector('[id$=interfacciaCPE]').value = 'Ottica';
+                    }else{
+                        document.getElementById('j_id0:formID:interfacciaCPE').disabled =false;
+                    }
+                    if(document.getElementById('j_id0:formID:velocitabanda').value == '2G' ||  
+                       document.getElementById('j_id0:formID:velocitabanda').value == '3G' || 
+                       document.getElementById('j_id0:formID:velocitabanda').value == '5G' || 
+                       document.getElementById('j_id0:formID:velocitabanda').value == '10G'){
+                        document.getElementById('j_id0:formID:tipologiaCPE').disabled =true;
+                        document.querySelector('[id$=tipologiaCPE]').value = 'High-End';
+                    }else{
+                        document.getElementById('j_id0:formID:tipologiaCPE').disabled =false;
+                        document.querySelector('[id$=tipologiaCPE]').value = 'Low-End';
+                    }
+                }
+                   if( document.getElementById('j_id0:formID:velocitabanda').value == '10G'){
+                        document.getElementById('j_id0:formID:interfacciaCPE').disabled =true;
+                        document.querySelector('[id$=interfacciaCPE]').value = 'Ottica';
+                    }else{
+                        document.getElementById('j_id0:formID:interfacciaCPE').disabled =false;
+                    }
+                    if(document.getElementById('j_id0:formID:velocitabanda').value == '2G' ||  
+                       document.getElementById('j_id0:formID:velocitabanda').value == '3G' || 
+                       document.getElementById('j_id0:formID:velocitabanda').value == '5G' || 
+                       document.getElementById('j_id0:formID:velocitabanda').value == '10G'){
+                        document.getElementById('j_id0:formID:tipologiaCPE').disabled =true;
+                        document.querySelector('[id$=tipologiaCPE]').value = 'High-End';
+                    }else{
+                        document.getElementById('j_id0:formID:tipologiaCPE').disabled =false;
+                        document.querySelector('[id$=tipologiaCPE]').value = 'Low-End';
+                    }
+             
+                //checkFieldsToShowButtons();
+                var Tipopercorso = $('[id$=Tipopercorso]').val();
+                if(Tipopercorso =='Doppia Via'){
+                    var isDisabledTraffic=document.getElementById('j_id0:formID:TrafficLoadBalancing');
+                    document.querySelector('[id$=TrafficLoadBalancing]').value = 'ACTIVE/STANDBY';
+                    isDisabledTraffic.disabled=false;
+                    //document.getElementById('trafficfield').style.display='block';
+                }else{
+                    var isDisabledTraffic=document.getElementById('j_id0:formID:TrafficLoadBalancing');
+                    document.querySelector('[id$=TrafficLoadBalancing]').value = '--None--';
+                    isDisabledTraffic.disabled=true;
+                    //document.getElementById('trafficfield').style.display='none';
+                }
+                $( ".btn-cess" ).click(function( event ) {
+                    event.preventDefault();
+                    debugger;
+                    var name = this.getAttribute('name');
+                    deleteVLAN(name);  
+                });   
+            });
+            </script>
+            <!-- EC start profilo as OS 2018 - 08 - 08  -->
+            <script>
+            
+            
+            // luca modify visibility field trafficBalance onchange TipoPercorso
+            function showTrafficBalance(data){
+                debugger
+                var Tipopercorso = $('[id$=Tipopercorso]').val();
+                if(Tipopercorso =='Doppia Via'){
+                    var isDisabledTraffic=document.getElementById('j_id0:formID:TrafficLoadBalancing');
+                    document.querySelector('[id$=TrafficLoadBalancing]').value = 'ACTIVE/STANDBY';
+                    isDisabledTraffic.disabled=false;
+                    //document.getElementById('trafficfield').style.display='block';
+                }else{
+                    var isDisabledTraffic=document.getElementById('j_id0:formID:TrafficLoadBalancing');
+                    document.querySelector('[id$=TrafficLoadBalancing]').value = '--None--';
+                    isDisabledTraffic.disabled=true;
+                    //document.getElementById('trafficfield').style.display='none';
+                }
+            }
+            function showMessageforKIT(data){
+                debugger;
+                if(data.value =='Ottica'){
+                    alert('Optical Rate Limiting del KIT dovrà avere valore 10GB');
+                }else if(data.value =='Elettrica'){
+                    alert('Optical Rate Limiting del KIT dovrà avere valore 1GB');
+                }
+            }
+            //luca fine
+            
+        /*function doSearchProfilo() {
+                var TextProfilo = $("input[id$='Profilo']").val();
+                searchProfilo(TextProfilo);             
+            }*/
+            
+            function refreshRerender() {
+                rerenderResults();
+            }
+            
+            </script>
+            <!-- EC end profilo as OS 2018 - 08 - 08 -->
+            <script>
+            function mySC()
+            {
+                var str1 = document.getElementById('j_id0:myform:section:0:link').value;
+                document.getElementById('copage:changeorderform:SelParent').value=str1;
+            }
+            </script>
+            
+            
+            
+            <script type="text/javascript">
+        debugger;
+            var PLACEHOLDER = 'Inserisci qui il nome comune'; 
+            var comuneObjects;
+            var queryTerm;
+            $(document).ready(function() {
+                $('[id$=comuneId]').autocomplete({
+                    minLength: 2,
+                    source: function(request, response) {
+                        queryTerm = request.term;
+                        PO_P2PAttiva_EditLogInfoCntrl.searchComune(request.term, function(result, event){
+                            if(event.type == 'exception') {
+                                alert(event.message);
+                            } else {
+                                comuneObjects = result;
+                                 for(var i = 0 ; i <= comuneObjects.length-1 ; i++){
+                                    if(comuneObjects[i].OF_Comune__c!=undefined){
+                                        if(comuneObjects[i].OF_Comune__c.includes('&#39;')){ 
+                                            comuneObjects[i].OF_Comune__c=comuneObjects[i].OF_Comune__c.replace('&#39;','\'');
+                                        }
+                                    }
+                                }
+                                response(comuneObjects);
+                                comuneCheckList= [];
+                                comuneObjects.forEach(function(element) {
+                                    comuneCheckList.push(element.OF_Comune__c+' '+element.OF_Regione__c);
+                                });
+                            }
+                        });
+                    },
+                    focus: function( event, ui ) {
+                        //  $('[id$=comuneId]').val( ui.item.OF_Comune__c+' '+ui.item.OF_Regione__c );
+                        return false;
+                    },
+                    select: function( event, ui ) {
+                        $('[id$=comuneId]').val( ui.item.OF_Comune__c+' '+ui.item.OF_Regione__c );
+                        $('[id$=searchcommuneId]').val( ui.item.Id );
+                        return false;
+                    },
+                })
+                .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+                    var entry = "<a>" + item.OF_Comune__c+' '+item.OF_Regione__c;
+                    
+                    entry = entry + "</a>";
+                    entry = entry.replace(queryTerm, "<b>" + queryTerm + "</b>");
+                    return $( "<li></li>" )
+                    .data( "ui-autocomplete-item", item )
+                    .append( entry )
+                    .appendTo( ul );
+                };
+                
+                // Add or remove placeholder values
+                if(document.getElementById('j_id0:formID:comuneId').value!=''){
+                    PLACEHOLDER =document.getElementById('j_id0:formID:comuneId').value;  
+                }
+                $('[id$=comuneId]').val(PLACEHOLDER);
+                $('[id$=comuneId]').on("focus",  function(event){
+                    $tgt = $(event.target);
+                    if($tgt.val() === PLACEHOLDER ){
+                        $tgt.val('');
+                        $tgt.removeClass('placeHolder');
+                    }
+                });
+                $('[id$=comuneId]').on( "blur",  function(event){
+                    $tgt = $(event.target);
+                    if($tgt.val() === '' ){ 
+                        $tgt.val(PLACEHOLDER);
+                        $tgt.addClass('placeHolder');
+                    }
+                });
+                
+            });
+            </script>
+            
+            
+            <script type='text/javascript'>
+            function validateform(tipoSave){
+                debugger;
+                var invalidflg = false;
+                
+                var velocitaBanda = $('[id$=velocitabanda]').val();
+                var tipAlimentazione = $('[id$=tipologiaAlimentazione]').val();
+                var partToponomastica =    $('[id$=Particellatoponomastica]').val(); 
+                var tipCPE = $('[id$=tipologiaCPE]').val(); 
+                var comuneId = $('[id$=comuneId]').val();
+                var Tipopercorso = $('[id$=Tipopercorso]').val();
+                var tipodicolle = $('[id$=tipodicolle]').val();
+                //var Numerofibrerichieste = $('[id$=Numerofibrerichieste]').val();
+                var PrimeContractor =$('[id$=PrimeContracto]').val(); 
+                
+                var Sito = $('[id$=Sito]').val();
+                var Indirizzocollegamento = $('[id$=Indirizzocollegamento]').val();
+                var Civico = $('[id$=Civico]').val();
+                
+                var Sito1 = $('[id$=Sito1]').val();
+                var Indirizzopartenza = $('[id$=Indirizzopartenza]').val();
+                var Civico1 = $('[id$=Civico1]').val();
+                var Notasito1 = $('[id$=Notasito1]').val();
+                var interfCPE = $('[id$=interfacciaCPE]').val();         
+                
+                
+                var TrafficLoadBalancing = $('[id$=TrafficLoadBalancing]').val();
+                document.getElementById('j_id0:formID:trafficValue').value = TrafficLoadBalancing;
+                var PO_Offerta = '{!parentLog.PO_Offerta__c}';
+                
+                if(comuneId!='Inserisci qui il nome comune'){  
+                    if(comuneId!=PLACEHOLDER){
+                        if(typeof comuneCheckList == 'undefined' || !comuneCheckList.includes(comuneId)){
+                            $('[id$=comuneId]').next('div.red').remove();
+                            $('[id$=comuneId]').after('<div class="red">Il comune va selezionato dall\'elenco</div>');
+                            invalidflg = true;
+                        }
+                        else{
+                            $('[id$=comuneId]').next('div.red').remove();
+                        }
+                    }
+                    else{
+                        $('[id$=comuneId]').next('div.red').remove();
+                    }
+                } 
+                else{ 
+                    $('[id$=comuneId]').next('div.red').remove();
+                    $('[id$=comuneId]').after('<div class="red">Campo Obbligatorio</div>');
+                    invalidflg = true;
+                }
+                // luca modifiche
+                if(velocitaBanda=='-- None --'){
+                    $('[id$=velocitabanda]').next('div.red').remove();
+                    $('[id$=velocitabanda]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    var velocitaBandaValue = velocitaBanda; 
+                    $('[id$=velocitabanda]').next('div.red').remove();
+                }
+                
+                if(interfCPE==''){
+                    $('[id$=interfacciaCPE]').next('div.red').remove();
+                    $('[id$=interfacciaCPE]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=interfacciaCPE]').next('div.red').remove();
+                }
+                
+                
+                
+                
+                
+                if(partToponomastica.length==0){
+                    $('[id$=Particellatoponomastica]').next('div.red').remove();
+                    $('[id$=Particellatoponomastica]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    
+                    $('[id$=Particellatoponomastica]').next('div.red').remove();
+                }
+                if(tipCPE.length==0){
+                    $('[id$=tipologiaCPE]').next('div.red').remove();
+                    $('[id$=tipologiaCPE]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    
+                    $('[id$=tipologiaCPE]').next('div.red').remove();
+                }
+                
+                //fine luca
+                
+                
+                
+                if(Tipopercorso.length == 0){
+                    $('[id$=Tipopercorso]').next('div.red').remove();
+                    $('[id$=Tipopercorso]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=Tipopercorso]').next('div.red').remove();
+                }
+                
+                if(PrimeContractor==""){
+                    $('[id$=PrimeContracto]').next('div.red').remove();
+                    $('[id$=PrimeContracto]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=PrimeContracto]').next('div.red').remove();
+                }
+                
+                
+                if(tipodicolle.length == 0){
+                    $('[id$=tipodicolle]').next('div.red').remove();
+                    $('[id$=tipodicolle]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=tipodicolle]').next('div.red').remove();
+                }
+                if(tipAlimentazione.length==0){
+                    $('[id$=tipologiaAlimentazione]').next('div.red').remove();
+                    $('[id$=tipologiaAlimentazione]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    
+                    $('[id$=tipologiaAlimentazione]').next('div.red').remove();
+                }
+                
+                
+                /*if(Numerofibrerichieste.length == 0){
+                    $('[id$=Numerofibrerichieste]').next('div.red').remove();
+                    $('[id$=Numerofibrerichieste]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=Numerofibrerichieste]').next('div.red').remove();
+                }*/
+                
+                
+                
+                if(Sito.length == 0){
+                    $('[id$=Sito]').next('div.red').remove();
+                    $('[id$=Sito]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=Sito]').next('div.red').remove();
+                }
+                
+                
+                if(Indirizzocollegamento.length == 0){
+                    $('[id$=Indirizzocollegamento]').next('div.red').remove();
+                    $('[id$=Indirizzocollegamento]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=Indirizzocollegamento]').next('div.red').remove();
+                }
+                
+                
+                if(Civico.length == 0){
+                    $('[id$=Civico]').next('div.red').remove();
+                    $('[id$=Civico]').after('<div class="red">Campo obbligatorio</div>');
+                    invalidflg = true;
+                }else{
+                    $('[id$=Civico]').next('div.red').remove();
+                }
+                
+                if(invalidflg){
+                    return false;
+                }
+                if(tipoSave=='aggiungiVlan'){
+                    insertVlan();
+                }
+                else if(tipoSave=='scegliProfilo'){
+                    insertVLAN();
+                }
+                    else if(tipoSave=='aggiungiKIT'){
+                        insertKit();
+                    }
+                        else{
+                            SaveParentChildCaseInfomethod();
+                        }
+            }       
+            
+            
+            
+            </script>
+            
+            <script type='text/javascript'>
+            function noenter(e){  
+                
+                if(window.event){  
+                    key = window.event.keyCode;              
+                } 
+                else{                    
+                    key = e.which;               
+                }               
+                if(key == 13) {   
+                    var ele=document.getElementById('{!$Component.pageID:formID:SaveBttn}');                                          
+                    ele.click();                     
+                    return false;               
+                } else{                    
+                    return true;               
+                }           
+            }     
+            
+            
+            
+            </script> 
+        </body>
+    </html>
+</apex:page>

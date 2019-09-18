@@ -1,0 +1,182 @@
+<apex:page docType="html-5.0" standardController="OF_CQS_Ispezione__c" showHeader="false" sidebar="false" standardStylesheets="false" >
+   <!-- extensions="CQS_Isp_SignatureComponentController" -->
+    <!-- Nikita Mali,Priyanka,Megha 07122018 style start fixing of canvas position-->
+    <style>
+        .canvasContainer
+{
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 100px;
+    z-index: 1;
+    background-color: white;
+}
+
+.contextCanvas
+{   position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+}
+    </style>
+    <!-- Nikita Mali,Priyanka,Megha 07122018 style end-->
+    <apex:slds />
+    <apex:form id="formId">
+        <div class="canvasContainer">
+        <canvas id="demo" width="650" height="430" style="border: 3px solid antiquewhite; border-radius: 8px;" ></canvas><!--  -->
+        <apex:includeScript value="/soap/ajax/28.0/connection.js"/>
+        <apex:inputHidden id="Signature" value="{!OF_CQS_Ispezione__c.CQS_Isp_Firma_Impresa__c}"/>
+        <apex:commandButton value="Cancel" onclick="cancel()" rendered="{!IF(OF_CQS_Ispezione__c.CQS_Isp_Firma_Impresa__c!=null,false,true)}"
+                            styleClass="slds-button slds-button_destructive" />
+        <apex:commandButton value="Conferma" action="{!quicksave}" onclick="saveContext()" styleClass="slds-button slds-button_brand"
+                            rendered="{!IF(OF_CQS_Ispezione__c.CQS_Isp_Firma_Impresa__c!=null,false,true)}"/>
+      <!--   <apex:commandButton value="Back" onclick="back()" rendered="{!IF(OF_CQS_Ispezione__c.CQS_Isp_Firma_Impresa__c!=null,false,true)}"
+                            styleClass="slds-button slds-button_brand" /> -->
+
+        <script>
+        sforce.connection.sessionId = "{!$Api.Session_Id}";
+        var canvas = document.getElementById("demo");
+        var context = canvas.getContext("2d");
+        var mouseButton = 0;
+        var lastX = lastY = null;
+        
+        var strDataURI= '{!OF_CQS_Ispezione__c.CQS_Isp_Firma_Impresa__c}';   
+        var accID= '{!ID}'; 
+        
+        //sostituiamo back con CloseAndRefreh e testiamo in caso modificare EC - start 2018 - 06 - 22
+        
+        function CloseAndRefresh(){
+        window.opener.location.href="/{!$CurrentPage.parameters.id}";
+        window.top.close();
+  
+        }
+        //end 2018 - 06 - 22
+        function back(){
+           
+          open(location, '_self').close();
+         
+             
+            }  
+        if(strDataURI!=''){     
+            var img = new Image;
+            img.onload = function(){
+                context.drawImage(img,0,0); // Or at whatever offset you like
+            };
+            img.src = strDataURI;
+        }else{
+            
+            function saveContext(){
+                canvas = document.getElementById("demo");
+                ctx = canvas.toDataURL();
+                document.getElementById('{!$Component.Signature}').value=ctx;
+                if(document.getElementById('{!$Component.Signature}').value!= ''){
+              
+                }
+                //      CloseAndRefresh();
+             }
+            
+            function cancel(){
+             
+                canvas = document.getElementById("demo");
+                ctx = canvas.getContext("2d");
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+              
+            }
+             
+
+            function refresh(){
+             window.location.reload();//EC
+            }
+            
+            function processResult(result) {
+                alert(JSON.stringify(result));
+                window.location.href = '/'+OF_CQS_Ispezione__c.Id;
+            }
+            
+            function handleResult(result,event) {
+                if(result.success) {
+                //    window.top.location.href='/'+OF_CQS_Ispezione__cId;
+                } else {
+                    alert('Error: '+result.errorMessage);
+                }
+            }
+            
+            function handleEvent(event) {
+                if(event.type=="mousedown") {
+                    mouseButton = event.which;
+                    lastX = lastY = null;
+                }
+                if(event.type=="mouseup") {
+                    mouseButton = 0;
+                    lastX = lastY = null;
+                }
+                if(event.type=="mousemove" && mouseButton) {
+                    if(!lastX && !lastY) {
+                        lastX = event.offsetX;
+                        lastY = event.offsetY;
+                        context.beginPath();
+                        context.moveTo(lastX,lastY);
+                        context.lineTo(lastX,lastY,lastX,lastY);
+                        context.stroke();
+                    } else {
+                        context.beginPath();
+                        context.moveTo(lastX,lastY);
+                        context.lineTo(event.offsetX,event.offsetY);
+                        context.stroke();
+                        lastX = event.offsetX;
+                        lastY = event.offsetY;
+                    }
+                }
+                if(event.type=="mousedrag") {
+                    event.returnValue=false;
+                    event.stopPropagation();
+                }
+            }
+            
+            canvas.addEventListener("mousemove",handleEvent,true);
+            window.addEventListener("mousedown",handleEvent,true);
+            window.addEventListener("mouseup",handleEvent,true);
+            canvas.addEventListener("mousedrag",handleEvent,true);
+            canvas.addEventListener("selectstart",function(event) { event.stopPropagation(); event.returnValue = false; return false; },false);
+            
+            canvas.addEventListener("touchstart", function (e) {
+                mousePos = getTouchPos(canvas, e);
+                var touch = e.touches[0];
+                var mouseEvent = new MouseEvent("mousedown", {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+                canvas.dispatchEvent(mouseEvent);
+            }, false);
+            canvas.addEventListener("touchend", function (e) {
+                var mouseEvent = new MouseEvent("mouseup", {});
+                canvas.dispatchEvent(mouseEvent);
+            }, false);
+            canvas.addEventListener("touchmove", function (e) {
+                var touch = e.touches[0];
+                var mouseEvent = new MouseEvent("mousemove", {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+                canvas.dispatchEvent(mouseEvent);
+            }, false);
+            
+            // Get the position of a touch relative to the canvas
+            function getTouchPos(canvasDom, touchEvent) {
+                var rect = canvasDom.getBoundingClientRect();
+                return {
+                    x: touchEvent.touches[0].clientX - rect.left,
+                    y: touchEvent.touches[0].clientY - rect.top
+                };
+            }
+        }
+        </script>
+    <!--    <apex:pageBlockSectionItem labelTitle="Seconda firma da Component">
+         <c:CQS_Isp_SignatureComponent parentId="{!$CurrentPage.parameters.parentId}"/>      
+        </apex:pageBlockSectionItem> -->
+        </div>
+    </apex:form>
+</apex:page>

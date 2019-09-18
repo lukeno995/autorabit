@@ -1,0 +1,31 @@
+<apex:page controller="PO_Serv_Backhauling_Controller" action="{!fetchList}" contentType="application/vnd.ms-excel#Export_ListaRichiesteInserite.xls" showHeader="false" sidebar="false" standardStylesheets="false" cache="true" >
+<html> PO_COMP_ListaRichiesteInserite.page 
+<head></head>
+<body>
+    <apex:pageBlock id="ExportListaRichiesteInserite">
+    <apex:pageBlockTable value="{!listInseriteDaEsportare}" var="r">
+        <apex:column >
+            <apex:facet name="header">RICHIESTA</apex:facet> 
+                {!r.EOF_Codice_Ordine_OLO__c}
+        </apex:column> 
+        <apex:column >
+            <apex:facet name="header">OFFERTA</apex:facet>
+            {!r.PO_Offerta__c} 
+        </apex:column> 
+        <apex:column >
+            <apex:facet name="header">NOME PROGETTO</apex:facet>
+                {!r.PO_Nome_Progetto__c}
+        </apex:column>
+        <apex:column >
+            <apex:facet name="header">DATA DI CREAZIONE</apex:facet> 
+                {!r.PO_SA_Data_Inserimento_Ordine__c}
+        </apex:column>
+        <apex:column >
+            <apex:facet name="header">STATO</apex:facet>
+                {!r.EOF_STATO_ORDINE__c}
+        </apex:column>
+    </apex:pageBlockTable>
+    </apex:pageBlock>
+</body>
+</html>
+</apex:page>

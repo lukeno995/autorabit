@@ -1,0 +1,448 @@
+<apex:component controller="PO_COMP_TT_Visualizza_Controller" AllowDML="true"> 
+<html lang="it">   
+        <head> 
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <!-- /#wrapper -->
+              
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+ 			<apex:includeScript value="{!URLFOR($Resource.tooltip, 'tooltip/jquery-validate.bootstrap-tooltip.min.js')}"/>     
+ 			
+ 			<apex:includeScript value="{!URLFOR($Resource.sweetalert, '/sweetalert/sweetalert/sweetalert.min.js')}"/>        
+
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+                .tooltip-inner {
+  			    background-color: #337ab7; 
+				}
+            </style>
+            <script> 
+                //AA 17/07/18
+                function disableOnSubmit() {
+                    debugger;
+                    try{
+                        if ($('input').valid()) {
+                            setTimeout('disableAfterTimeout();', 50);
+                        }
+                    }catch(e){
+                        setTimeout('disableAfterTimeout();', 50);
+                    }
+                    
+                }
+                function disableAfterTimeout() {
+                    $('.btnDisable').attr('disabled', 'disabled');
+                } 
+            </script>
+        </head>  
+         
+            <body>
+            <apex:form >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <apex:outputPanel >
+                                <!--  
+                                <i></i>Attivazione {!EOF_Codice_ordine_olo__c}
+                                -->
+                                <i></i> Trouble Ticket 
+                        </apex:outputPanel>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <apex:outputPanel >
+                                <div class="panel-heading red" >
+                                    <i></i><apex:outputText value="{!inoltrato}" id="IDInoltrato"/>
+                               </div>
+                            </apex:outputPanel>
+                                
+                            <form role="form" class="form-horizontal">
+                                <fieldset class="form-group">
+                                     <div class="form-group">
+                                         <!-- <apex:outputPanel rendered="{!IF(SLogToView.EOF_STATO_ORDINE__c == 'Sospeso' && SLogToView.EOF_Data_Ora_Desospensione__c>=NOW() ,'true','false')}" > 
+                                         <div class="col-lg-12">
+                                             <label style="background-color: yellow;" >Attenzione: </label> &nbsp; &nbsp;
+                                             <apex:outputText id="A2b" style="background-color: yellow;" value="E' già presente nel sistema una richiesta di desospensione : {!SLogToView.EOF_Data_Ora_Desospensione__c}" />
+                                         </div>
+                                         </apex:outputPanel> -->  
+                                         <div class="col-lg-6">
+                                             <label>Codice Comunicazione Operatore : </label> &nbsp; &nbsp;
+                                             <apex:outputField id="A1" styleClass="form-control" value="{!SLogToView.EOF_Codice_Comunicazione_OLO__c}" />
+                                         </div>
+                                         <apex:outputPanel rendered="{!!bozza}" > 
+                                         <div class="col-lg-6">
+                                             <label>Stato Ordine : </label> &nbsp; &nbsp;
+                                             <apex:outputField id="A2" styleClass="form-control" value="{!SLogToView.EOF_STATO_ORDINE__c  }" />
+                                         </div>
+                                         </apex:outputPanel>
+                                         <!-- 
+                                         <div class="col-lg-6">
+                                             <label>Codice Operatore: </label> &nbsp; &nbsp;
+                                             <apex:outputField id="A3" styleClass="form-control" value="{!SLogToView.EOF_Codice_Operatore__c}" />
+                                         </div>
+                                          -->
+
+                                                                       
+                                         <div class="col-lg-6">
+                                             <label>Categoria Guasto </label> &nbsp; &nbsp;
+                                             <!-- 
+                                             <apex:outputField id="A4A" styleClass="form-control" value="GUASTO0"  rendered="{!IF(SLogToView.EOF_Categoria_Guasto__c=='0',true,false)}"/>
+                                             <apex:outputField id="A4B" styleClass="form-control" value="GUASTO1"  rendered="{!IF(SLogToView.EOF_Categoria_Guasto__c=='1',true,false)}"/>
+                                             <apex:outputField id="A4C" styleClass="form-control" value="GUASTO2"  rendered="{!IF(SLogToView.EOF_Categoria_Guasto__c=='2',true,false)}"/>
+                                               -->
+                                               <apex:outputPanel rendered="{!IF(SLogToView.EOF_Categoria_Guasto__c=='0',true,false)}">
+                                               Disservizio
+                                               </apex:outputPanel>
+                                           
+                                               <apex:outputPanel rendered="{!IF(SLogToView.EOF_Categoria_Guasto__c=='1',true,false)}">
+                                               Degrado
+                                               </apex:outputPanel>
+                                               <apex:outputPanel rendered="{!IF(SLogToView.EOF_Categoria_Guasto__c=='2',true,false)}">
+                                               Post Provisioning
+                                               </apex:outputPanel>
+                                               
+                                         </div> 
+                                         <!-- 
+                                         <div class="col-lg-6">                                      
+                                             <label>ID Notifica </label> &nbsp; &nbsp;
+                                             <apex:outputField id="A5" styleClass="form-control" value="{!SLogToView.EOF_ID_Notifica__c}" />
+                                         </div> 
+                                          -->
+                                         <div class="col-lg-6">                                                                               
+                                             <label>ID Risorsa </label> &nbsp; &nbsp;
+                                             <apex:outputField id="A6" styleClass="form-control" value="{!SLogToView.EOF_ID_Risorsa__c}" />
+                                         </div>
+                                         <apex:outputPanel rendered="{!!bozza}" >
+                                         <div class="col-lg-6">                                                                               
+                                             <label>Tipo Risorsa </label> &nbsp; &nbsp;
+                                             <apex:outputText id="A6B"  value="{!tipoRisorsa}" />
+                                         </div>
+                                         </apex:outputPanel>
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Causale Apertura </label> &nbsp; &nbsp;
+                                               <!-- <apex:outputField id="A7" styleClass="form-control" value="{!SLogToView.EOF_Causale_Apertura__c}" /> -->
+                                             
+                                               <apex:outputPanel rendered="{!IF(SLogToView.EOF_Causale_Apertura__c=='1',true,false)}">
+                                               Connettività non disponibile
+                                               </apex:outputPanel>
+                                           
+                                               <apex:outputPanel rendered="{!IF(SLogToView.EOF_Causale_Apertura__c=='2',true,false)}">
+                                               Connessione instabile
+                                               </apex:outputPanel>
+                                               <apex:outputPanel rendered="{!IF(SLogToView.EOF_Causale_Apertura__c=='3',true,false)}">
+                                               Lentezza di navigazione
+                                               </apex:outputPanel>
+                                               <apex:outputPanel rendered="{!IF(SLogToView.EOF_Causale_Apertura__c=='4',true,false)}">
+                                               Mai Navigato
+                                               </apex:outputPanel>                                                              
+                                         </div>
+                                         <!-- 
+                                        <div class="col-lg-6">                                                                               
+                                             <label>Tipo Comunicazione </label> &nbsp; &nbsp;
+                                             <apex:outputField id="A8" styleClass="form-control" value="{!SLogToView.EOF_Tipo_Comunicazione__c}" />
+                                         </div>
+										 -->
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Data/Ora Inizio Guasto </label> &nbsp; &nbsp;
+                                             <!--  <apex:outputField id="A10" styleClass="form-control" value="{!SLogToView.EOF_Data_Ora_Inizio_Guasto__c}" />-->
+                                                <apex:outputText value="{0,date,dd/MM/yyyy HH:mm:ss}">
+                                                     <apex:param value="{!SLogToView.EOF_Data_Ora_Inizio_Guasto__c+offset}"/>
+                                                </apex:outputText>
+                                         </div> 
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Nome Cliente </label> &nbsp; &nbsp;
+                                             <apex:outputField id="A11" styleClass="form-control" value="{!SLogToView.EOF_Nome_Cliente__c}" />
+                                         </div>  
+                                     
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Cognome Cliente </label> &nbsp; &nbsp;
+                                             <apex:outputField id="A12" styleClass="form-control" value="{!SLogToView.EOF_COgnome_CLiente__c}" />
+                                         </div> 
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Recapito Telefonico Cliente 1 </label> &nbsp; &nbsp;
+                                             <apex:outputField id="A13" styleClass="form-control" value="{!SLogToView.EOF_RECAPITO_TELEFONICO_CLIENTE_1__c}" />
+                                         </div>
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Recapito Telefonico Cliente 2 </label> &nbsp; &nbsp;
+                                             <apex:outputField id="A14" styleClass="form-control" value="{!SLogToView.EOF_RECAPITO_TELEFONICO_CLIENTE_2__c}" />
+                                         </div>
+                                                  
+                                        <div class="col-lg-6">                                                                               
+                                             <label>Nome Referente Tecnico Operatore</label> &nbsp; &nbsp;
+                                             <apex:outputField id="A15" styleClass="form-control" value="{!SLogToView.EOF_NOME_REFERENTE_TECNICO_OLO__c}" />
+                                         </div>
+                                         
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Telefono Referente Tecnico Operatore </label> &nbsp; &nbsp;
+                                             <apex:outputField id="A16" styleClass="form-control" value="{!SLogToView.EOF_TELEFONO_REFERENTE_TECNICO_OLO__c}" />
+                                         </div>   
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Email Referente Tecnico Operatore </label> &nbsp; &nbsp;
+                                             <apex:outputField id="A17" styleClass="form-control" value="{!SLogToView.EOF_EMAIL_REFERENTE_TECNICO_OLO__c}" />
+                                         </div>  
+                                          
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Verifica Apparato Cliente</label> &nbsp; &nbsp;
+                                             <apex:outputField id="A18" styleClass="form-control" value="{!SLogToView.EOF_Verifica_apparato_cliente__c}" />
+                                         </div>   
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Descrizione Problema </label> &nbsp; &nbsp;
+                                             <apex:outputField id="A19" styleClass="form-control" value="{!SLogToView.EOF_Descrizione_Problema__c}" />
+                                         </div>
+                                         <!-- 
+                                         EOF_Data_Ora_Intervento_Congiunto
+                                         EOF_Tel_Tec_Eof
+                                         EOF_Tec_Eof
+                                         EOF_Rischedulazione_Appuntamento
+                                         Descrizione_Evento_Risoluzione
+                                         Causale_Sospensione
+                                         EOF_Descrizione_Causale_Scarto
+                                         Causale_Scarto
+                                         EOF_Data_Ora_Notifica_Chiusura
+                                         EOF_Data_Ora_Notifica_Annullamento
+                                         EOF_Data_Ora_Notifica_Desospensione
+                                         EOF_Data_Ora_Notifica_Sospensione
+                                         EOF_Data_Ora_Creazione
+                                         EOF_Data_Ora_Scarto
+                                         -->
+                                         <apex:outputPanel rendered="{!!bozza}" >
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Intervento Congiunto </label> &nbsp; &nbsp;
+                                             <apex:outputField id="A19b" styleClass="form-control" value="{!SLogToView.EOF_Intervento_Congiunto__c}" />
+                                         	</div> 
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Data/Ora Intervento Congiunto</label> &nbsp; &nbsp;
+                                             
+                                             <apex:outputText value="{0,date,dd/MM/yyyy HH:mm:ss}">
+                                                     <apex:param value="{!SLogToView.EOF_Data_Ora_Intervento_Congiunto__c+offset}"/>
+                                            </apex:outputText>
+
+                                         </div>
+                                         </apex:outputPanel>
+                                         <!--  
+
+                                         -->
+                                         <apex:outputPanel rendered="{!!bozza}" > 
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Rischedulazione Appuntamento</label> &nbsp; &nbsp;
+                                             <!-- <apex:outputField id="B4" styleClass="form-control" value="{!SLogToView.EOF_Rischedulazione_Appuntamento__c}" />  -->
+                                             <apex:outputText value="{0,date,dd/MM/yyyy HH:mm:ss}">
+                                                     <apex:param value="{!SLogToView.EOF_Rischedulazione_Appuntamento__c+offset}"/>
+                                             </apex:outputText>
+                                         </div>
+										</apex:outputPanel>
+
+
+										 <apex:outputPanel rendered="{!!bozza}" > 
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Data/Ora Creazione</label> &nbsp; &nbsp;
+                                             <apex:outputText value="{0,date,dd/MM/yyyy HH:mm:ss}">
+                                                     <apex:param value="{!SLogToView.EOF_Data_Ora_Creazione__c+offset}"/>
+                                             </apex:outputText>
+                                         </div>
+                                         </apex:outputPanel>
+                                         <!--  <apex:outputPanel rendered="{!SLogToView.EOF_STATO_ORDINE__c=='Scartato'}" > -->
+                                         <apex:outputPanel rendered="{!!bozza}" > 
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Data/Ora Scarto</label> &nbsp; &nbsp;
+                                             <apex:outputText value="{0,date,dd/MM/yyyy HH:mm:ss}">
+                                                     <apex:param value="{!SLogToView.EOF_Data_Ora_Scarto__c+offset}"/>
+                                             </apex:outputText>
+                                         </div>
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Descrizione Causale Scarto</label> &nbsp; &nbsp;
+                                             <apex:outputField id="B7" styleClass="form-control" value="{!SLogToView.EOF_Descrizione_Causale_Scarto__c}" />
+                                         </div>
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Causale Scarto</label> &nbsp; &nbsp;
+                                             <apex:outputField id="B8" styleClass="form-control" value="{!SLogToView.Causale_Scarto__c}" />
+                                         </div>
+                                         </apex:outputPanel>
+                                         
+                                         <!-- <apex:outputPanel rendered="{!SLogToView.EOF_STATO_ORDINE__c=='Sospeso'}" >-->
+                                         <apex:outputPanel rendered="{!!bozza}" > 
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Data/Ora Notifica Sospensione</label> &nbsp; &nbsp;
+                                             <apex:outputText value="{0,date,dd/MM/yyyy HH:mm:ss}">
+                                                     <apex:param value="{!SLogToView.EOF_Data_Ora_Notifica_Sospensione__c+offset}"/>
+                                             </apex:outputText>
+                                         </div>
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Causale Sospensione</label> &nbsp; &nbsp;
+                                             <apex:outputField id="B6" styleClass="form-control" value="{!SLogToView.Causale_Sospensione__c}" />
+                                         </div>
+                                                                                 <div class="col-lg-6">                                                                               
+                                             <label>Data/Ora Desospensione</label> &nbsp; &nbsp;
+                                             
+                                             <apex:outputText value="{0,date,dd/MM/yyyy HH:mm:ss}">
+                                                     <apex:param value="{!SLogToView.EOF_Data_Ora_Desospensione__c+offset}"/>
+                                             </apex:outputText>
+                                         </div>
+                                        <div class="col-lg-6">                                                                               
+                                             <label>Data/Ora Notifica Desospensione</label> &nbsp; &nbsp;
+                                             
+                                             <apex:outputText value="{0,date,dd/MM/yyyy HH:mm:ss}">
+                                                     <apex:param value="{!SLogToView.EOF_Data_Ora_Notifica_Desospensione__c+offset}"/>
+                                             </apex:outputText>
+                                         </div>
+                                         </apex:outputPanel>
+                                         <!-- <apex:outputPanel rendered="{!SLogToView.EOF_STATO_ORDINE__c=='Annullato'}" > -->
+                                         <apex:outputPanel rendered="{!!bozza}" >
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Tec EOF </label> &nbsp; &nbsp;
+                                             <apex:outputField id="B2" styleClass="form-control" value="{!SLogToView.EOF_Tec_Eof__c}" />
+                                         </div>
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Telefono Tec EOF </label> &nbsp; &nbsp;
+                                             <apex:outputField id="B3" styleClass="form-control" value="{!SLogToView.EOF_Tel_Tec_Eof__c}" />
+                                         </div> 
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Data/Ora Notifica Annullamento</label> &nbsp; &nbsp;
+                                             
+                                             <apex:outputText value="{0,date,dd/MM/yyyy HH:mm:ss}">
+                                                     <apex:param value="{!SLogToView.EOF_Data_Ora_Notifica_Annullamento__c+offset}"/>
+                                             </apex:outputText>
+                                         </div>
+                                          </apex:outputPanel>
+                                          
+                                         <!--  <apex:outputPanel rendered="{!SLogToView.EOF_STATO_ORDINE__c=='Espletato'}" >-->
+                                         <apex:outputPanel rendered="{!!bozza}" > 
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Descrizione Evento Risoluzione</label> &nbsp; &nbsp;
+                                             <apex:outputField id="B5" styleClass="form-control" value="{!SLogToView.Descrizione_Evento_Risoluzione__c}" />
+                                         </div>
+
+
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Data/Ora Notifica Chiusura</label> &nbsp; &nbsp;
+                                             
+                                             <apex:outputText value="{0,date,dd/MM/yyyy HH:mm:ss}">
+                                                     <apex:param value="{!SLogToView.EOF_Data_Ora_Notifica_Chiusura__c+offset}"/>
+                                             </apex:outputText>
+                                         </div> 
+                                          </apex:outputPanel>
+                                         <div class="col-lg-6">                                                                              
+                                             <label>Note </label> &nbsp; &nbsp;
+                                             <apex:outputField id="A9" styleClass="form-control" value="{!SLogToView.EOF_NOTE__c}" />
+                                         </div>                                                
+                                     </div>
+                                 </fieldset>
+                                 
+                            </form>
+                        </div>
+                        <!-- Azioni pilotate dallo stato del case -->
+                        <apex:outputPanel rendered="{!bozza}" >
+                            <div class="col-lg-4" >
+                               <div class="btn-group" role="group" aria-label="">                                      
+                                   <apex:commandButton styleClass="btn btn-primary btnDisable" style="margin-right:10px;" value="Modifica" action="{!ToModifyCase}" onclick="disableOnSubmit();"/>       
+                               </div>
+                            </div> 
+                            <div class="col-lg-4" >
+                               <div class="btn-group" role="group" aria-label="">                                      
+                                   <apex:commandButton styleClass="btn btn-primary btnDisable" style="margin-right:10px;" value="Inoltra" action="{!ToInoltraCase}" onclick="disableOnSubmit();"/>       
+                               </div>
+                            </div> 
+                        
+                        </apex:outputPanel>
+                        <!-- Azioni pilotate dallo stato del case -->
+                        <apex:outputPanel rendered="{!inLavorazione}" >
+                            <div class="col-lg-4" >
+                               <div class="btn-group" role="group" aria-label="">                                      
+                                   <apex:commandButton styleClass="btn btn-primary btnDisable" style="margin-right:10px;" value="Annulla Richiesta" action="{!ToAnnulla}" onclick="disableOnSubmit();"/>       
+                               </div>
+                            </div> 
+                            <div class="col-lg-4" >
+
+                            </div>
+                        
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!richiestaChiusura}">
+                            <div class="col-lg-4" >
+                               <div class="btn-group" role="group" aria-label="">                                      
+                                   <apex:commandButton styleClass="btn btn-primary btnDisable" style="margin-right:10px;" value="Test OK" action="{!ToTestOK}" onclick="disableOnSubmit();"/>       
+                               </div>
+                            </div> 
+                            <div class="col-lg-4" >
+                               <div class="btn-group" role="group" aria-label="">                                      
+                                   <apex:commandButton styleClass="btn btn-primary btnDisable" style="margin-right:10px;" value="Test KO" action="{!ToTestKO}" onclick="disableOnSubmit();"/>       
+                               </div>
+                            </div> 
+                        
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!sospeso}">
+                            <div class="col-lg-4" >
+                               <div class="btn-group" role="group" aria-label="">                                      
+                                   <apex:commandButton styleClass="btn btn-primary btnDisable" style="margin-right:10px;" value="Desospensione" action="{!ToDesospensione}" onclick="disableOnSubmit();"/>       
+                               </div>
+                            </div> 
+                            <div class="col-lg-4" >
+                               <div class="btn-group" role="group" aria-label="">                                      
+                                   <apex:commandButton styleClass="btn btn-primary btnDisable" style="margin-right:10px;" value="Autoripristinato" action="{!ToAutoripristinato}" onclick="disableOnSubmit();"/>       
+                               </div>
+                            </div> 
+                        
+                        </apex:outputPanel>
+                        
+                        <!--  Azioni comuni
+                        <div class="col-lg-6">
+                            <div class="btn-group" role="group" aria-label="">                                      
+                                <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px; margin-top:10px;" value="Richieste Inserite" action="{!ListaRichiesteInserite}"/>        
+                            </div>
+                         </div>
+                         <div class="col-lg-6">
+                             <div class="btn-group" role="group" aria-label="">                                      
+                                 <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px; margin-top:10px;" value="Inserisci Nuova Richiesta" action="{!ReferenceNewInsertPage}"/>           
+                             </div>
+                         </div>
+                         -->
+                    </div>
+                </div>
+            </apex:form>                     
+        </body>
+    
+    </html>
+</apex:component>

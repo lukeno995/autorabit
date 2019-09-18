@@ -1,0 +1,35 @@
+<apex:page controller="PO_TP_ExportListaLineeAtt_Ctrl"  contentType="application/vnd.ms-excel#Export_ListaLineeAttive.xls" action="{!fetchList}" showHeader="false" sidebar="false" standardStylesheets="false" cache="true" >
+	<html> PO_TP_ExportListaLineeAttive.page 
+<head></head>
+<body>
+<apex:pageBlock id="ExportListaLineeAttive">
+	<apex:pageBlockTable value="{!listRichiesteW}" var="r">
+		<apex:column >
+			<apex:facet name="header">ID RISORSA</apex:facet> 
+				{!r.IDRisorsa}
+		</apex:column> 
+		<apex:column >
+			<apex:facet name="header">STATO</apex:facet>
+            {!r.Stato}
+		</apex:column> 
+		<apex:column >
+			<apex:facet name="header">LISTINO</apex:facet>
+				{!r.Listino}
+		</apex:column>
+		<apex:column >
+			<apex:facet name="header">PROFILO</apex:facet>
+				{!r.Profilo}
+		</apex:column>
+		<apex:column >
+			<apex:facet name="header">DATA ATTIVAZIONE</apex:facet>
+				{!r.DataAttivazione}
+		</apex:column>
+        <apex:column >
+			<apex:facet name="header">DATA CESSAZIONE</apex:facet>
+			{!r.DataCessazione}"
+		</apex:column> 
+	</apex:pageBlockTable>
+	</apex:pageBlock>
+</body>
+</html>
+</apex:page>

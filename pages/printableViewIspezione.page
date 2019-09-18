@@ -1,0 +1,70 @@
+<apex:page standardController="OF_CQS_Ispezione__c" sidebar="false" showheader="False" >
+<apex:image url="{!$Resource.CQS_OpenFiberLogo}" width="150" height="50"/>
+<script>
+window.onload = function removeButtons() {
+for(i=0;i<window.document.getElementsByName('edit').length;i++)
+{
+window.document.getElementsByName('edit')[i].style.display = 'none';
+}
+for(i=0;i<window.document.getElementsByName('share').length;i++)
+{
+window.document.getElementsByName('share')[i].style.display = 'none';
+}
+for(i=0;i<window.document.getElementsByName('newNote').length;i++)
+{
+ window.document.getElementsByName('newNote')[i].style.display = 'none';
+
+}
+for(i=0;i<window.document.getElementsByName('attachFile').length;i++)
+
+{
+window.document.getElementsByName('attachFile')[i].style.display = 'none';
+}
+for(i=0;i<window.document.getElementsByName('print_page').length;i++)
+
+{
+window.document.getElementsByName('print_page')[i].style.display = 'none';
+}
+    //
+for(i=0;i<window.document.getElementsByName('firma_impresa').length;i++)
+{
+window.document.getElementsByName('firma_impresa')[i].style.display = 'none';
+}
+for(i=0;i<window.document.getElementsByName('firma_impresa').length;i++)
+{
+window.document.getElementsByName('firma_impresa')[i].style.display = 'none';
+}     
+for(i=0;i<window.document.getElementsByName('cqs_isp_firma').length;i++)
+{
+window.document.getElementsByName('cqs_isp_firma')[i].style.display = 'none';
+}
+for(i=0;i<window.document.getElementsByName('firma_dl').length;i++)
+{
+window.document.getElementsByName('firma_dl')[i].style.display = 'none';
+}
+    
+}
+</script>
+<apex:form >
+            <style type="text/css">
+                             .fewerMore{display:none;}
+             a[href*='a?retURL=https%3A%2F%2Fopenfiber-it.my.salesforce.com%2Fapex%2FprintableviewIspezione']{ display: none;}
+             .chatter-avatarInline.chatter-avatarTiny.userLinkIconImage.chatter-avatar
+                           {
+                  display: none;
+               }
+            </style>
+
+<apex:commandLink style="padding-left:600px;" value="Print Page"  onclick="window.print();"/>
+<br></br>
+<!--<apex:commandLink style="padding-left:600px;" value="Close" onClick="window.history.go(-1); return false;"/>-->
+ <a  
+            style="padding-left:600px;"
+            href = "/{!OF_CQS_Ispezione__c.Id}"
+            target = "_self">
+            Cancel
+        </a>
+
+</apex:form>
+<apex:detail relatedList="true"/>
+</apex:page>

@@ -1,0 +1,3310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Ispezione</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Ispezioni</value>
+    </caseValues>
+    <fields>
+        <help><!-- In caso di lavorazioni in prossimità di rete E-Distribuzione, è presente modulistica autorizzativa Enel --></help>
+        <label><!-- Autorizzazioni ENEL prossimità E-Distrib --></label>
+        <name>Autorizzazioni_ENEL_prossimit_E_Distrib__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Rilevate inadempienze tali da mettere in pericolo immediato l’incolumità dei lavoratori. Pertanto, rilevando la condizione di pericolo grave e imminente, si sospendono le singole lavorazioni fino alla verifica degli avvenuti adeguamenti effettuati. --></help>
+        <label><!-- Inadempienze Gravi Sospensione Lavori --></label>
+        <name>CQSInadempienze_Gravi_Sospensione_Lavori__c</name>
+    </fields>
+    <fields>
+        <label><!-- Estintore con cartellino e revisione --></label>
+        <name>CQS_Estintore_con_cartellino_e_revisione__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Note Materiali --></label>
+        <name>CQS_ISPQ_NoteMateriali__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note organizzazione cantiere --></label>
+        <name>CQS_ISPQ_NoteOrgCant__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note Documentazione --></label>
+        <name>CQS_ISPQ_Note_Doc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note armadi --></label>
+        <name>CQS_ISPQ_Note_armadi__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note infrastrutture --></label>
+        <name>CQS_ISPQ_Note_infrastr__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note muffola PFP --></label>
+        <name>CQS_ISPQ_Note_muffola_PFP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note ripristino in corso --></label>
+        <name>CQS_ISPQ_Note_ripristino_in_corso__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note ripristino definitivo --></label>
+        <name>CQS_ISPQ_Note_ripristinodef__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note scavi --></label>
+        <name>CQS_ISPQ_Note_scavi__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note documentazione minima --></label>
+        <name>CQS_ISPS_NoteDocMin__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note  personale di cantiere --></label>
+        <name>CQS_ISPS_NotePersDiCant__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note Presidi --></label>
+        <name>CQS_ISPS_NotePresidi__c</name>
+    </fields>
+    <fields>
+        <label><!-- Note per Mezzi &amp; Strutture --></label>
+        <name>CQS_ISPS_noteMezStrutt__c</name>
+    </fields>
+    <fields>
+        <help><!-- L’accantieramento risulta conforme, ordinato e salubre --></help>
+        <label><!-- Accantieramento conforme --></label>
+        <name>CQS_ISP_Accantieramento_conforme__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Addetto Antincendio presente --></label>
+        <name>CQS_ISP_Addetto_Antincendio_presente__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Addetto al primo soccorso e antincendio presente --></help>
+        <label><!-- Addetto Pronto Soccorso presente --></label>
+        <name>CQS_ISP_Addetto_PS_presente__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Le attività e le imprese sono state preventivamente autorizzate da O.F. --></help>
+        <label><!-- Attività e Imprese autorizzate da OF --></label>
+        <name>CQS_ISP_Attivita_Imprese_autorizzate_OF__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Autorizzato --></label>
+        <name>CQS_ISP_Autorizzato10__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Autorizzato --></label>
+        <name>CQS_ISP_Autorizzato3__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Autorizzato --></label>
+        <name>CQS_ISP_Autorizzato4__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Autorizzato --></label>
+        <name>CQS_ISP_Autorizzato5__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Autorizzato --></label>
+        <name>CQS_ISP_Autorizzato6__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Autorizzato --></label>
+        <name>CQS_ISP_Autorizzato7__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Autorizzato --></label>
+        <name>CQS_ISP_Autorizzato8__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Autorizzato --></label>
+        <name>CQS_ISP_Autorizzato9__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Giunzione --></label>
+        <name>CQS_ISP_Autorizzazione_Giunzione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Infrastrutture --></label>
+        <name>CQS_ISP_Autorizzazione_Infrastrutture__c</name>
+    </fields>
+    <fields>
+        <label><!-- Posa Cavi --></label>
+        <name>CQS_ISP_Autorizzazione_Posa_cavi__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ripristini --></label>
+        <name>CQS_ISP_Autorizzazione_Ripristini__c</name>
+    </fields>
+    <fields>
+        <label><!-- Scavo --></label>
+        <name>CQS_ISP_Autorizzazione_Scavo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Verticale --></label>
+        <name>CQS_ISP_Autorizzazione_Verticale__c</name>
+    </fields>
+    <fields>
+        <help><!-- Autorizzazione amministrazione competente --></help>
+        <label><!-- Autorizzazione amministrazione competent --></label>
+        <name>CQS_ISP_Autorizzazione_amm_competente__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Buono stato della cartellonistica e dei coni --></help>
+        <label><!-- Buono stato della cartellonistica e coni --></label>
+        <name>CQS_ISP_Buono_stato_cartellonistica__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Tutti i lavoratori sono dotati di idonei e integri DPI --></help>
+        <label><!-- DPI idonei e integri in dotazione --></label>
+        <name>CQS_ISP_DPI_idonei_in_dotazione__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- In caso di lavorazioni in quota, sono utilizzati correttamente i DPI di 3°categoria --></help>
+        <label><!-- DPI di 3°categoria lavorazioni in quota --></label>
+        <name>CQS_ISP_DPI_lavorazioni_in_quota__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- In caso di rischio elettrico, sono utilizzati correttamente i DPI di 3°categoria --></help>
+        <label><!-- DPI di 3°categoria rischio elettrico --></label>
+        <name>CQS_ISP_DPI_rischio_elettrico__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- DURC regolare --></label>
+        <name>CQS_ISP_DURC_regolare__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Eventuali noli a freddo sono corredati da relativa documentazione (contratto e allegati) --></help>
+        <label><!-- Documentazione eventuali noli a freddo --></label>
+        <name>CQS_ISP_Documentazione_noli_a_freddo__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Presenza della documentazione relativa a controlli/verifiche di legge (libretti d&apos;uso e manutenzione e revisioni dei mezzi) --></help>
+        <label><!-- Libretti e revisione mezzi regolari --></label>
+        <name>CQS_ISP_Documentazione_verifiche_legge__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Qualora necessario i lavoratori sono dotati di DPI di 3° categoria (lavori in tensione, in quota, spazi confinati etc) --></help>
+        <label><!-- Dotazione DPI 3° Categoria se necessario --></label>
+        <name>CQS_ISP_Dotazione_DPI_3_Cat_eDist__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Esito del Dettaglio dei Lavoratori Presenti in Cantiere --></help>
+        <label><!-- Esito --></label>
+        <name>CQS_ISP_Esito_LavorPres__c</name>
+    </fields>
+    <fields>
+        <help><!-- Esito del Dettaglio delle lavorazioni --></help>
+        <label><!-- Esito --></label>
+        <name>CQS_ISP_Esito_dettLav__c</name>
+    </fields>
+    <fields>
+        <help><!-- Esposizione cartello di cantiere, ordinanza comunale, notifica --></help>
+        <label><!-- Esposizione Cartello,Ordinanza, Notifica --></label>
+        <name>CQS_ISP_Esposizione_Cartello__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Giunzione --></label>
+        <name>CQS_ISP_Giunzione_inEsecuzione__c</name>
+    </fields>
+    <fields>
+        <help><!-- La delimitazione del cantiere e delle aree di deposito è idonea --></help>
+        <label><!-- Delimitazione Aree Cantiere --></label>
+        <name>CQS_ISP_Idoneit_delimit_Cantiere_AD__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Infrastrutture --></label>
+        <name>CQS_ISP_Infrastrutture_inEsecuzione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lettera d&apos;Ordine --></label>
+        <name>CQS_ISP_LDO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lavorazioni --></label>
+        <name>CQS_ISP_Lavorazioni_Autorizzate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lavorazioni --></label>
+        <name>CQS_ISP_Lavorazioni_in_esecuzione__c</name>
+    </fields>
+    <fields>
+        <help><!-- Presenza marcatura CE, dichiarazione di conformità delle attrezzature --></help>
+        <label><!-- Marcatura CE, conformità attrezzatture --></label>
+        <name>CQS_ISP_Marcatura_CE__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- I mezzi e le attrezzature presenti in cantiere sono autorizzati --></help>
+        <label><!-- Mezzi e attrezzature sono autorizzati --></label>
+        <name>CQS_ISP_Mezzi_Attrezzature_autorizati__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Nome Cognome --></label>
+        <name>CQS_ISP_Nome_Cognome10__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nome Cognome --></label>
+        <name>CQS_ISP_Nome_Cognome3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nome Cognome --></label>
+        <name>CQS_ISP_Nome_Cognome4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nome Cognome --></label>
+        <name>CQS_ISP_Nome_Cognome5__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nome Cognome --></label>
+        <name>CQS_ISP_Nome_Cognome6__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nome Cognome --></label>
+        <name>CQS_ISP_Nome_Cognome7__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nome Cognome --></label>
+        <name>CQS_ISP_Nome_Cognome8__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nome Cognome --></label>
+        <name>CQS_ISP_Nome_Cognome9__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nome Cognome --></label>
+        <name>CQS_ISP_Nome_Cognome__c</name>
+    </fields>
+    <fields>
+        <help><!-- Notifica preliminare corretta ed in corso di validità --></help>
+        <label><!-- Notifica preliminare corretta e valida --></label>
+        <name>CQS_ISP_Notifica_prel_corretta_valida__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Opere di Site Preparation (POP) --></label>
+        <name>CQS_ISP_Opere_Site_Preparation_POP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Opere di Site Preparation (POP) --></label>
+        <name>CQS_ISP_Opere_Site_Preparation_inEsec__c</name>
+    </fields>
+    <fields>
+        <label><!-- POP --></label>
+        <name>CQS_ISP_POP__c</name>
+    </fields>
+    <fields>
+        <help><!-- POS presenza in cantiere, completezza firme, aggiornamento --></help>
+        <label><!-- POS --></label>
+        <name>CQS_ISP_POS__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- PSC presenza in cantiere, completezza firme, aggiornamento --></help>
+        <label><!-- PSC --></label>
+        <name>CQS_ISP_PSC__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- I passaggi sopra scavi sono protetti da idonee piastre metalliche --></help>
+        <label><!-- Protezione di Minitrincea con piastre --></label>
+        <name>CQS_ISP_Passaggi_su_scavi_idonei__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Percentuale Totale Punteggio --></label>
+        <name>CQS_ISP_Perc_Tot_Punt__c</name>
+    </fields>
+    <fields>
+        <label><!-- Posa Cavi --></label>
+        <name>CQS_ISP_Posa_Cavi_inEsecuzione__c</name>
+    </fields>
+    <fields>
+        <help><!-- I pozzetti aperti e/o gli scavi per i pozzetti stessi sono delimitati e non costituiscono pericolo --></help>
+        <label><!-- Protezione scavi pozzetti --></label>
+        <name>CQS_ISP_Pozzetti_non_pericolosi__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- E’ presente il preposto di cantiere --></help>
+        <label><!-- Preposto di Cantiere Presente --></label>
+        <name>CQS_ISP_Preposto_Cantiere_Presente__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- I lavoratori presenti in cantiere sono autorizzati ei nominativi risultano nell’elenco personale del POS --></help>
+        <label><!-- Autorizzati e presenti nel POS --></label>
+        <name>CQS_ISP_Presenti_autorizzati__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Qualora necessario sono presenti i Profili E-Distribuzione --></help>
+        <label><!-- Presenza Profili E-Distribuzione --></label>
+        <name>CQS_ISP_Presenza_Profili_E_Distrib__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Presenza di wc chimico o convenzione con esercizi commerciali limitrofi --></help>
+        <label><!-- Presenza WC chimico o convenzione --></label>
+        <name>CQS_ISP_Presenza_WC__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Presenza progetto e cartografie enti --></label>
+        <name>CQS_ISP_Presenza_prog_cartografie_enti__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Progetto --></label>
+        <name>CQS_ISP_Progetto2__c</name>
+        <relationshipLabel><!-- Ispezioni --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Progetto --></label>
+        <name>CQS_ISP_Progetto__c</name>
+        <relationshipLabel><!-- Ispezioni --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Punteggio Massimo Ispezione --></label>
+        <name>CQS_ISP_Punteggio_Max_Isp__c</name>
+    </fields>
+    <fields>
+        <label><!-- Punteggio Totale Ispezione --></label>
+        <name>CQS_ISP_Punteggio_Totale__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ripristini --></label>
+        <name>CQS_ISP_Ripristini_inEsecuzione__c</name>
+    </fields>
+    <fields>
+        <help><!-- Rispetto del Nuovo Codice della Strada e della Segnaletica stradale) --></help>
+        <label><!-- Rispetto Nuovo CDS e Segnaletica Stradal --></label>
+        <name>CQS_ISP_RispettoCodice_SegnaleticaStrada__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Scavo --></label>
+        <name>CQS_ISP_Scavo_inEsecuzione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Somma Totale Massimo Ispezione --></label>
+        <name>CQS_ISP_Somma_Tot_Max__c</name>
+    </fields>
+    <fields>
+        <label><!-- Somma Totale Domande Ispezione --></label>
+        <name>CQS_ISP_Somma_Totale_Domande__c</name>
+    </fields>
+    <fields>
+        <help><!-- Tesserino dei lavoratori indossato e rispondente al D.Lgs 81/2008 --></help>
+        <label><!-- Tesserino rispondente al D.Lgs 81/2008 --></label>
+        <name>CQS_ISP_Tesserino_Check__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Totale Massimo Documentazione Minima --></label>
+        <name>CQS_ISP_Tot_Max_Doc_min__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Massimo E-Distribuzione --></label>
+        <name>CQS_ISP_Tot_Max_E_Distr__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Massimo Mezzi Attrezzature --></label>
+        <name>CQS_ISP_Tot_Max_Mezzi_Attrezz__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Massimo Organizzazione Cantiere --></label>
+        <name>CQS_ISP_Tot_Max_Org_Cantiere__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Massimo Personale di Cantiere --></label>
+        <name>CQS_ISP_Tot_Max_Pers_Cantiere__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Massimo Presidi --></label>
+        <name>CQS_ISP_Tot_Max_Pres__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Divisore Punteggio Domande --></label>
+        <name>CQS_ISP_Totale_Divisore_PunteggioDomande__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Documentazione Minima --></label>
+        <name>CQS_ISP_Totale_Documentazione_Minima__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale E-Distribuzione --></label>
+        <name>CQS_ISP_Totale_E_Distribuzione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Mezzi e Attrezzature --></label>
+        <name>CQS_ISP_Totale_Mezzi_Attrezzature_del__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Organizzazione Del Cantiere --></label>
+        <name>CQS_ISP_Totale_Organizzazione_Cantiere__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Personale di Cantiere --></label>
+        <name>CQS_ISP_Totale_Personale_Cantiere__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Presidi --></label>
+        <name>CQS_ISP_Totale_Presidi__c</name>
+    </fields>
+    <fields>
+        <label><!-- Verticale --></label>
+        <name>CQS_ISP_Verticale_inEsecuzione__c</name>
+    </fields>
+    <fields>
+        <help><!-- Durante i lavori è assicurata la viabilità di persone e veicoli --></help>
+        <label><!-- Assicurata viabilità persone e veicoli --></label>
+        <name>CQS_ISP_assicurata_viabilita__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Eventuali attrezzature di sollevamento (fasce, catene, etc) sono idonee, revisionate e utilizzate in modalità corretto --></help>
+        <label><!-- Idoneità attrezzature sollevamento --></label>
+        <name>CQS_ISP_attrezzature_sollevamento__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- I mezzi e le attrezzature sono in buono stato e conformi allo scopo richiesto oltre che alla normativa vigente --></help>
+        <label><!-- Conformità mezzi e attrezzature --></label>
+        <name>CQS_ISP_conformita_mezzi_attrezzature__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Sono state eseguite le indagini preventive per lo scavo (tracciamento sotto-servizi, esecuzione georadar) --></help>
+        <label><!-- Indagini preventive per scavo eseguite --></label>
+        <name>CQS_ISP_indagini_preventive_scavo__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Ora fine sopralluogo --></label>
+        <name>CQS_ISP_ora_fine_sop__c</name>
+    </fields>
+    <fields>
+        <help><!-- Al momento del sopralluogo le lavorazioni non erano ancora iniziate oppure erano sospese --></help>
+        <label><!-- Lavorazioni Non Ancora Iniziati/Sospesi --></label>
+        <name>CQS_IS_Lavorazioni_Non_Iniziati_Sospesi__c</name>
+    </fields>
+    <fields>
+        <help><!-- Completo e corretto aggiornamento dei sistemi informativi GIS --></help>
+        <label><!-- Aggiornamento GIS completo/corretto --></label>
+        <name>CQS_IspQ_Agg_GIS_completo_corretto__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Corretta apposizione della cartellonistica di cantiere --></help>
+        <label><!-- Apposizione cartellonistica cantiere OK --></label>
+        <name>CQS_IspQ_Apposizione_cartelli_cantiereOK__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Corretta delimitazione dell’area di cantiere e stoccaggio materiali --></help>
+        <label><!-- Area Cantiere delimitata stocc materiali --></label>
+        <name>CQS_IspQ_AreaCantiere_del_stoc_materiali__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Conformità delle attività svolte rispetto al Progetto aggiornato e/o assenza di segnalazione preventiva di variante a DLL --></help>
+        <label><!-- Attività Conf e/o No Segn Prev Var DLL --></label>
+        <name>CQS_IspQ_Att_Conf_No_Segn_Var_DLL__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Il basamento PFS è in cls prefabbricato o in opera e altezza max 10cm --></help>
+        <label><!-- Basamento PFS --></label>
+        <name>CQS_IspQ_Basamento_PFS__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Sono stati evitati bruschi cambi di direzione e profondità --></help>
+        <label><!-- Cambi direzione profondità evitati --></label>
+        <name>CQS_IspQ_Cambi_Bruschi_evitati__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Il PFS ha le caratteristiche previste nelle NT --></help>
+        <label><!-- Caratteristiche PFS previste da NT --></label>
+        <name>CQS_IspQ_Caratteristiche_PFS_previste_NT__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Il PTE ha le caratteristiche previste nelle NT --></help>
+        <label><!-- Caratteristiche PTE previste nelle NT --></label>
+        <name>CQS_IspQ_Caratteristiche_PTE_previste_NT__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Chiusino complanare piano calpestio --></label>
+        <name>CQS_IspQ_Chiusino_compl_piano_calpestio__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Il chiusino è conforme alle specifiche tecniche --></help>
+        <label><!-- Chiusino	conforme specifiche tecniche --></label>
+        <name>CQS_IspQ_Chiusino_conf_sp_tecniche__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Conformità dello stoccaggio dei materiali, anche sciolti su sedime pubblico e/o privato --></help>
+        <label><!-- Conformità stoccaggio materiali --></label>
+        <name>CQS_IspQ_Conformita_stoccaggio_materiali__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Corretta cilindratura del rullo compressore --></help>
+        <label><!-- Corretta cilindratura rullo compressore --></label>
+        <name>CQS_IspQ_Corretta_cilindr_rullo_compr__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Corretta fratturazione pozzetto --></label>
+        <name>CQS_IspQ_Corretta_fratturazione_pozzetto__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- I lavoratori indossano i DPI previsti dall’attività --></help>
+        <label><!-- DPI previsti per attività indossati --></label>
+        <name>CQS_IspQ_DPI_previsti_indossati__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Esecuzione foro muro perim edificio OK --></label>
+        <name>CQS_IspQ_Esec_foro_muro_perim_edificioOK__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- E&apos; eseguita la sabbiatura sul manto si usura --></help>
+        <label><!-- Eseguita sabbiatura manto usura --></label>
+        <name>CQS_IspQ_Eseguita_sabbiatura_manto_usura__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Etichette identificative del cavo --></label>
+        <name>CQS_IspQ_Etichette_identificative_cavo1__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Etichette identificative del cavo --></label>
+        <name>CQS_IspQ_Etichette_identificative_cavo2__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Firma DL --></label>
+        <name>CQS_IspQ_Firma_DL__c</name>
+    </fields>
+    <fields>
+        <help><!-- Il fondo dello scavo risulta pulito --></help>
+        <label><!-- Fondo scavo pulito --></label>
+        <name>CQS_IspQ_Fondo_scavo_pulito__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Identificazione delle tipologie dei rifiuti presenti, in caso di deposito temporaneo. --></help>
+        <label><!-- Identificazione tipi rifiuti presenti --></label>
+        <name>CQS_IspQ_Identif_tipi_rifiuti_presenti__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Ingresso al building: posa a regola d’arte su muro/soffitto di tubo/canaletta mediante fissaggio con materiale accessori, staffe, collari, scatole di derivazione --></help>
+        <label><!-- Ingresso al building posa OK --></label>
+        <name>CQS_IspQ_Ingresso_al_building_posaOK__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Ingresso al building: esecuzione a regola d’arte di forature, sigillature e ripristini dei muri interni di qualsiasi natura nella tratta d’ingresso all’edificio fino al punto di installazione del PTE --></help>
+        <label><!-- Ingresso al building: esecuzione OK --></label>
+        <name>CQS_IspQ_Ingresso_building_esecuzione_OK__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- L&apos;ingresso dei minitubi nel pozzetto è adeguatamente protetto da monotubo --></help>
+        <label><!-- Ingresso minitubi pozz protetto monotubo --></label>
+        <name>CQS_IspQ_Ingresso_minitu_pozz_prot_mono__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Iscrizione Albo Gestori Ambientali/MUD --></label>
+        <name>CQS_IspQ_Iscr_Albo_Gest_Ambientali_MUD__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- La larghezza dello scavo è conforme a Norma Tecnica/Istruzioni/Progetto --></help>
+        <label><!-- Larghezza scavo conforme --></label>
+        <name>CQS_IspQ_Larghezza_scavo_conforme__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- L&apos;ingresso dei monotubi nei pozzetti è sigillato sia internamente che esternamente tramite malta cementizia --></help>
+        <label><!-- Malta cementizia sigilla ingr monotubi --></label>
+        <name>CQS_IspQ_Malta_sigilla_ingr_monotubi__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Il manto stradale è ripristinato correttamente --></help>
+        <label><!-- Manto strad ripristinato correttamente --></label>
+        <name>CQS_IspQ_Manto_stradale_ripristinato_OK__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Il manto di usura è ripristinato correttamente --></help>
+        <label><!-- Manto usura ripristinato correttamente --></label>
+        <name>CQS_IspQ_Manto_usura_ripristinato_OK__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Marcatura chiusini come NT/Istr/Prog --></label>
+        <name>CQS_IspQ_Marcatura_chiusini_NT_Istr_Prog__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Materiali conformi a specifiche tecniche di OF (cavi, fender, armadi, pozzetti ecc...) --></help>
+        <label><!-- Materiali Conformi Specifiche Tec OF --></label>
+        <name>CQS_IspQ_Mat_conformi_spec_tec_OF__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Il materiale di riempimento è conforme alle specifiche (200-250 kg/mc) --></help>
+        <label><!-- Materiale riempimento conforme spec --></label>
+        <name>CQS_IspQ_Mat_riempimento_conforme_spec__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Il materiale di risulta è trasportato a discarica autorizzata --></help>
+        <label><!-- Materiale trasportato discarica autorizz --></label>
+        <name>CQS_IspQ_Mat_trasp_discarica_autorizz__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- I minitubi sono posati in modo idoneo (senza intersezioni e incroci) --></help>
+        <label><!-- Minitubi posati in modo idoneo --></label>
+        <name>CQS_IspQ_Minitubi_posati_in_modo_idoneo__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- I tubi/minitubi posati sono per numero conformi a quanto previsto da progetto --></help>
+        <label><!-- N°mini/tubi posati conformi per progetto --></label>
+        <name>CQS_IspQ_N_tubi_posati_conformi_progetto__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Il riempimento dello scavo non presenta differenze di quota dal piano stradale --></help>
+        <label><!-- No diff quota p strad riempimento scavo --></label>
+        <name>CQS_IspQ_No_diff_quota_p_strad_riem_sc__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- NotificaPrel e permesso enti su Cartello --></label>
+        <name>CQS_IspQ_NotPrel_xmesso_enti_CartelloCar__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Opere di finitura della pavimentazione, mediante battitura, sigillatura e stuccatura con idonei materiali bituminosi e cementizi --></help>
+        <label><!-- Opere finitura della pavimentazione OK --></label>
+        <name>CQS_IspQ_Opere_finitura_pavimentazioneOK__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Il PTE è correttamente staffato --></label>
+        <name>CQS_IspQ_PTE_correttamente_staffato__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Permessi rilasciati dai Soggetti preposti (Comune, Enti Locali, Sovrintendenza, STB, ecc) comprensivi di eventuali deroghe alle prescrizioni vigenti (verifica scadenza) --></help>
+        <label><!-- Permessi rilasciati comprensivi deroghe --></label>
+        <name>CQS_IspQ_Permessi_rilasciati_con_deroghe__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Posa in opera del conglomerato mezzo vibrofinitrice --></help>
+        <label><!-- Posa in op conglom mezzo vibrofinitrice --></label>
+        <name>CQS_IspQ_Posa_opera_conglom_mezzo_vibrof__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Il PFS è posizionato conformemente a quanto previsto dalle NT /progetto o dalle prescrizioni ricevute --></help>
+        <label><!-- Posizione PFS conforme a NT/prog/prescr --></label>
+        <name>CQS_IspQ_Posiz_PFS_conf_NT_prog_prescr__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Il pozzetto è conforme alle specifiche tecniche --></help>
+        <label><!-- Pozzetto conforme specifiche tecniche --></label>
+        <name>CQS_IspQ_Pozzetto_conf_sp_tecniche__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Presenza eventuali licenze autotrasportatori conto terzi --></help>
+        <label><!-- Pres licenze autotrasportatori conto 3i --></label>
+        <name>CQS_IspQ_Pres_lic_autotrasp_conto_3i__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Presenza Progetto di lancio no-dig --></label>
+        <name>CQS_IspQ_Presenza_Progetto_lancio_noDig__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Presenza planimetrie enti gestori --></label>
+        <name>CQS_IspQ_Presenza_planimetrie_entige__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Presenza planimetrie georadar --></label>
+        <name>CQS_IspQ_Presenza_planimetrie_georadar__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- La profondità dello scavo è conforme a Norma Tecnica/Istruzioni/Progetto --></help>
+        <label><!-- Profondità scavo conforme --></label>
+        <name>CQS_IspQ_Profondita_scavo_conforme__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Progetto aggiornato relativo lavorazioni --></label>
+        <name>CQS_IspQ_Prog_aggiornato_x_lavorazioni__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Pulizia idonea al termine delle lavorazioni, come da NT/Istruzioni --></help>
+        <label><!-- Pulizia idonea post lavorazioni NT/Istr --></label>
+        <name>CQS_IspQ_Pulizia_ok_postLav_NT_Istr__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Pulizia idonea al termine delle lavorazioni, come da NT/Istruzioni --></help>
+        <label><!-- Pulizia post lavorazioni NT/Istr OK --></label>
+        <name>CQS_IspQ_Pulizia_post_lav_NT_Istr_OK_LT__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Il monotubo entra nel pozzetto per 10cm (5cm nel caso di pozzetti 40x75, 40x40) --></help>
+        <label><!-- Rientro monotubo nel pozzetto OK --></label>
+        <name>CQS_IspQ_Rientro_monotubo_pozzetto_OK__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Conformità del ripristino di primo o secondo tempo come da NT/Istruzioni/Progetto --></help>
+        <label><!-- Ripristino I/II t conforme NT/Istr/Prog --></label>
+        <name>CQS_IspQ_Ripr_1_2tempo_conf_NT_Istr_Prog__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Ripristino segnaletica orizzontale e verticale --></help>
+        <label><!-- Ripristino segnaletica orizz/vert --></label>
+        <name>CQS_IspQ_Ripr_segnaletica_orizz_vert__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- L&apos;ingresso della tubazioni nel basamento rispetta le NT --></help>
+        <label><!-- Rispetto NT ingr tubazioni nel basamento --></label>
+        <name>CQS_IspQ_Risp_NT_ingr_tub_nel_basamento__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- La sistemazione delle scorte di minicavo rispetta le NT --></help>
+        <label><!-- Rispetto NT sistemazione scorte minicavo --></label>
+        <name>CQS_IspQ_Rispetto_NT_scorte_minicavo__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Riutilizzo elementi pavimentazione prees --></label>
+        <name>CQS_IspQ_Riutilizzo_elementi_pavim_prees__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- La scarifica è idonea per larghezza e profondità --></help>
+        <label><!-- Scarifica idonea larghezza/profondità --></label>
+        <name>CQS_IspQ_Scarifica_idonea_largh_prof__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Il collegamento dei tubi al pozzetto è realizzato mediante scavo manuale e garantisce una discesa graduale nel rispetto del raggi di curvatura del tubo --></help>
+        <label><!-- Scavo manuale discesa tubi pozzetto --></label>
+        <name>CQS_IspQ_Scavo_man_discesa_tubi_pozzetto__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Lo scavo si presenta netto e lineare, senza bordi frastagliati e/o irregolari --></help>
+        <label><!-- Scavo netto e lineare --></label>
+        <name>CQS_IspQ_Scavo_netto_lineare__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Schede tecniche, dichiarazioni di conformità, documenti di trasporto, rapporti di prova --></help>
+        <label><!-- Schede tecniche,conformità,DT,rapp prova --></label>
+        <name>CQS_IspQ_Schede_tec_conf_DT_rapp_prova__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Corretta sistemazione dei cavi e tubetti in ingresso all’armadio --></help>
+        <label><!-- Sistemazione cavi tubetti ingr armadioOK --></label>
+        <name>CQS_IspQ_Sist_cavi_tubetti_ingr_arm_OK__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Sistemazione degli splitter, giunzione, numerazione e sistemazione delle fibre all’interno dei moduli di giunzione --></help>
+        <label><!-- Sistemazione spl,giunz,n° fibre mod giun --></label>
+        <name>CQS_IspQ_Sistem_spl_fibre_mod_giun__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Sono segnalati i sottoservizi sull&apos;asfalto --></help>
+        <label><!-- Sottoservizi segnalati sull&apos;asfalto --></label>
+        <name>CQS_IspQ_Sottoservizi_segnalati_asfalto__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Stendimento di idonea graniglia --></label>
+        <name>CQS_IspQ_Stendimento_idonea_graniglia__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- La superficie di appoggio del pozzetto è livellata e ne garantisce la posa stabile --></help>
+        <label><!-- Sup Appoggio pozzetto liv posa OK --></label>
+        <name>CQS_IspQ_SupAppoggio_pozzetto_OK2__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- La superficie di appoggio del pozzetto è livellata e ne garantisce la posa stabile. --></help>
+        <label><!-- Sup Appoggio pozzetto liv posa OK --></label>
+        <name>CQS_IspQ_SupAppoggio_pozzetto_OK__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Presenza TAG RFID e BARCODE su tutti gli elementi come da NT --></help>
+        <label><!-- TAG RFID e BARCODE su elementi come NT --></label>
+        <name>CQS_IspQ_TAG_RFID_BARCODE_su_elementi1__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Presenza TAG RFID e BARCODE su tutti gli elementi come da NT --></help>
+        <label><!-- TAG RFID e BARCODE su elementi come NT --></label>
+        <name>CQS_IspQ_TAG_RFID_BARCODE_su_elementi2__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Presenza TAG RFID e BARCODE su tutti gli elementi come da NT --></help>
+        <label><!-- TAG RFID e BARCODE su elementi come NT --></label>
+        <name>CQS_IspQ_TAG_RFID_BARCODE_su_elementi__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Tenuta pneumatica a pressione muffola --></label>
+        <name>CQS_IspQ_Tenuta_pneum_apressione_muff__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- E&apos; stata verificata la tenuta pneumatica della muffola (foto targa e collaudi attrezzature di prova) --></help>
+        <label><!-- Tenuta pneumatica muffola verificata --></label>
+        <name>CQS_IspQ_Tenuta_pneumatica_muffola_OK__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Totale Armadi PFS --></label>
+        <name>CQS_IspQ_Tot_Armadi_PFS__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Documentazione --></label>
+        <name>CQS_IspQ_Tot_Documentazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Gestione Rifiuti lav in corso --></label>
+        <name>CQS_IspQ_Tot_Gest_Rifiuti_lav_in_corso__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Gestione Rifiuti lav terminati --></label>
+        <name>CQS_IspQ_Tot_Gest_Rifiuti_lav_terminati__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Massimo Armadi PFS --></label>
+        <name>CQS_IspQ_Tot_Max_Armadi_PFS__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Massimo Documentazione --></label>
+        <name>CQS_IspQ_Tot_Max_Documentazione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tot Max Gestione Rifiuti Lav Terminate --></label>
+        <name>CQS_IspQ_Tot_Max_Gest_Rif_Lav_Terminate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tot Max Gestione Rifiuti Lav in corso --></label>
+        <name>CQS_IspQ_Tot_Max_Gest_rif_LavInCorso__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Massimo Infrastrutture --></label>
+        <name>CQS_IspQ_Tot_Max_Infrastrutture__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Massimo Materiali --></label>
+        <name>CQS_IspQ_Tot_Max_Materiali__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Massimo Muffola PFP --></label>
+        <name>CQS_IspQ_Tot_Max_Muffola_PFP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Massimo Organizzazione Cantiere --></label>
+        <name>CQS_IspQ_Tot_Max_Org_Cantiere__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tot Massimo Ripristini Lavori in corso --></label>
+        <name>CQS_IspQ_Tot_Max_Ripr_Lavori_in_corso__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Massimo Ripristino Definitivo --></label>
+        <name>CQS_IspQ_Tot_Max_Ripristino_Definitivo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Massimo Scavi --></label>
+        <name>CQS_IspQ_Tot_Max_Scavi__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Organizzazione Cantiere --></label>
+        <name>CQS_IspQ_Tot_Org_Cantiere__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Ripristini Lavorazioni In Corso --></label>
+        <name>CQS_IspQ_Tot_Ripr_Lavorazioni_In_Corso__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Ripristino Definitivo --></label>
+        <name>CQS_IspQ_Tot_Ripristino_Definitivo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Infrastrutture --></label>
+        <name>CQS_IspQ_Totale_Infrastrutture__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Materiali --></label>
+        <name>CQS_IspQ_Totale_Materiali__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Muffola PFP --></label>
+        <name>CQS_IspQ_Totale_Muffola_PFP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totale Scavi --></label>
+        <name>CQS_IspQ_Totale_Scavi__c</name>
+    </fields>
+    <fields>
+        <help><!-- Il tracciato è conforme al progetto e alle autorizzazioni --></help>
+        <label><!-- Tracciato conforme prog e autorizzazioni --></label>
+        <name>CQS_IspQ_Tracciato_conf_prog_aut__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Ubicazione ed istallazione della muffola prevista dalla N.T. e da progetto (staffaggio corretto) --></help>
+        <label><!-- Staffaggio corretto Muffola --></label>
+        <name>CQS_IspQ_UbiInstal_Muffola_StaffOK__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Verifica della tipologia di CLS utilizzato per i riempimenti (bolla di accompagnamento) --></help>
+        <label><!-- Verifica tipo CLS riempimenti --></label>
+        <name>CQS_IspQ_Verifica_tipo_CLS_riempimenti__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Corretta e completa compilazione della contabilità lavori circa gli elementi riconducibili ai sistemi informativi (ripristini, canalette ecc) --></help>
+        <label><!-- Contabilità lavori per elementi Sist Inf --></label>
+        <name>CQS_IspQ_contabilita_lavori_xSistInfOK__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Corretta gestione della compilazione dei FIR --></help>
+        <label><!-- Corretta gestione compilazione FIR --></label>
+        <name>CQS_IspQ_gestione_compilazione_FIR_OK__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- E&apos; stato posato il nastro segnalatore alla profondità di 30cm dal piano di calpestio (scavo tradizionale) --></help>
+        <label><!-- Nastro segnalatore a 30cm da piano calp --></label>
+        <name>CQS_IspQ_segnalatore_30cm_piano_calp__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Mini/tubi posati conformi per NT --></label>
+        <name>CQS_IspQ_tubi_posati_conformi_NT__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- L’accantieramento risulta ordinato e conforme alle prescrizioni del PSC --></help>
+        <label><!-- Accantieramento conforme a PSC --></label>
+        <name>CQS_IspS_Accantieramento_conforme_a_PSC__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Addetto primo soccorso presente --></label>
+        <name>CQS_IspS_Addetto_primo_soccorso_presente__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Autorizzati e presenti nel POS --></label>
+        <name>CQS_IspS_Autorizzati_e_presenti_nel_POS__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- In caso di lavorazioni particolari/specifici, sono utilizzati correttamente i DPI di 3°categoria (come opere elettriche, lavori in spazi confinati, lavori in altezza, lavori subacquei) --></help>
+        <label><!-- DPI 3°categoria utilizzati correttamente --></label>
+        <name>CQS_IspS_DPI_3_categoria_utilizzati_OK__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Tutto il personale è dotato di profilo professionale/qualificazione/ formazione richiesti per svolgere le attività in conformità con i regolamenti H&amp;S (come opere elettriche, lavori in spazi confinati, lavori in altezza, lavori subacquei) --></help>
+        <label><!-- Formazione H&amp;S conforme mansione --></label>
+        <name>CQS_IspS_Formazione_HS_conforme_mansione__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Libretti e revisione mezzi presenti --></label>
+        <name>CQS_IspS_Libretti_rev_mezzi_presenti__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Presenza cartografie enti --></label>
+        <name>CQS_IspS_Presenza_cartografie_enti__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Sono presenti in Cantiere i riferimenti da contattare in caso di emergenza --></help>
+        <label><!-- Presenza riferimenti di emergenza --></label>
+        <name>CQS_IspS_Presenza_riferimenti_emergenza__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Sono previste andatoie o passerelle per il passaggio di veicoli e pedoni, ove necessario --></help>
+        <label><!-- Protezione scavi in minitrincea --></label>
+        <name>CQS_IspS_Protezione_scavi_in_minitrincea__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- I pozzetti e gli scavi aperti sono adeguatamente delimitati --></help>
+        <label><!-- Protezione scavi tradizionali e pozzetti --></label>
+        <name>CQS_IspS_Protezione_scavi_trad_pozzetti__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- L’allestimento della Segnaletica stradale è sufficiente --></help>
+        <label><!-- Segnaletica stradale sufficiente --></label>
+        <name>CQS_IspS_Segnaletica_stradale_suff__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sono in buono stato --></label>
+        <name>CQS_IspS_Sono_in_buono_stato__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- In caso di Subappalto, autorizzato OF --></label>
+        <name>CQS_IspS_Subappalto_autorizzato_OF__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Qualora necessario, sono correttamente utilizzati DPC relativi ai rischi particolari (come opere elettriche, lavori in spazi confinati, lavori in altezza, lavori subacquei) --></help>
+        <label><!-- Utilizzo DPC rischi particolari --></label>
+        <name>CQS_IspS_Utilizzo_DPC_rischi_particolari__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Durante i lavori è assicurata la viabilità di persone e veicoli, in accordo con quanto prescritto dall’ordinanza comunale --></help>
+        <label><!-- Viabilità come da ordinanza --></label>
+        <name>CQS_IspS_Viabilit_come_ordinanza__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Autorizzato --></label>
+        <name>CQS_Isp_Autorizzato2__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Firma CSE --></label>
+        <name>CQS_Isp_Firma_CSE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Firma Impresa --></label>
+        <name>CQS_Isp_Firma_Impresa__c</name>
+    </fields>
+    <fields>
+        <help><!-- Corretta gestione della compilazione registro carico scarico --></help>
+        <label><!-- Gestione comp registro carico/scarico OK --></label>
+        <name>CQS_Isp_Gest_comp_registro_car_scar_OK__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Nome Cognome --></label>
+        <name>CQS_Isp_Nome_Cognome2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Punteggio Totale Massimo Ispezione --></label>
+        <name>CQS_Punteggio_Tot_Max_Isp__c</name>
+    </fields>
+    <fields>
+        <help><!-- Presenze e/o maestranze - Descrizione delle attività - Interferenze - Fasi critiche
+Segnalazioni, rischi, irregolarità o difformità rilevate - Cronoprogramma delle attività – Note e comunicazioni - Prescrizioni --></help>
+        <label><!-- RELAZIONE TECNICA --></label>
+        <name>CQS_RELAZIONE_TECNICA_DEL_COORDINATORE__c</name>
+    </fields>
+    <fields>
+        <help><!-- Contenuto cassetta primo soccorso presente e non scaduto --></help>
+        <label><!-- Cassetta primo soccorso conforme --></label>
+        <name>Cassetta_primo_soccorso_conforme__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Autorizzato --></label>
+        <name>Cqs_Isp_Autorizzato__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Evidenze/comunicazioni con la proprietà per l’ingresso alla sede cliente (POP) --></help>
+        <label><!-- Evidenze/comunic prop ingresso cliente --></label>
+        <name>Evidenze_comunicazioni_propriet_cliente__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Rilevate inadempienze tali da mettere in pericolo immediato l’incolumità dei lavoratori. Il sottoscritto provvederà ad inviare il verbale al Committente/RPE  cosicché egli possa ordinare all’impresa competente quanto necessario per eliminare il pericolo --></help>
+        <label><!-- Inadempienze Importanti Verbale Committ. --></label>
+        <name>Inadempienze_Importanti_Verbale_Committ__c</name>
+    </fields>
+    <fields>
+        <help><!-- Sono state rilevate inadempienze modeste e comunque tali da non mettere in pericolo immediato l’incolumità dei lavoratori --></help>
+        <label><!-- Inadempienze Modeste --></label>
+        <name>Inadempienze_Modeste__c</name>
+    </fields>
+    <fields>
+        <help><!-- I minitubi non utilizzati sono chiusi con idonei tappi --></help>
+        <label><!-- Minitubi non usati chiusi con idonei tap --></label>
+        <name>Minitubi_non_usati_chiusi_idonei_tappi__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Si</masterLabel>
+            <translation><!-- Si --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Committente Opera --></label>
+        <name>OF_CQS_Committente_Opera__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Ispezione --></label>
+        <name>OF_CQS_Data_Ispezione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Area Cavo --></label>
+        <name>OF_CQS_ISP_Area_Cavo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cap --></label>
+        <name>OF_CQS_ISP_CAP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comune --></label>
+        <name>OF_CQS_ISP_Comune__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Consegna Verbale --></label>
+        <name>OF_CQS_ISP_Data_Consegna_Verbale__c</name>
+    </fields>
+    <fields>
+        <label><!-- Esito Caso 2: --></label>
+        <name>OF_CQS_ISP_Esito_Caso_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Esito Caso 4: --></label>
+        <name>OF_CQS_ISP_Esito_Caso_4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Esito Caso 5: --></label>
+        <name>OF_CQS_ISP_Esito_Caso_5__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lotto --></label>
+        <name>OF_CQS_ISP_Lotto__c</name>
+    </fields>
+    <fields>
+        <label><!-- Numero Civico --></label>
+        <name>OF_CQS_ISP_Numero_Civico__c</name>
+    </fields>
+    <fields>
+        <label><!-- Esito Caso 3: --></label>
+        <name>OF_CQS_ISP_Possibilit_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Esito Caso 1: --></label>
+        <name>OF_CQS_ISP_Possibilit_Esito_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Provincia --></label>
+        <name>OF_CQS_ISP_Provincia__c</name>
+    </fields>
+    <fields>
+        <label><!-- VIA --></label>
+        <name>OF_CQS_ISP_VIA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Verbale N° --></label>
+        <name>OF_CQS_ISP_Verbale_N__c</name>
+    </fields>
+    <fields>
+        <help><!-- Al momento del sopralluogo le lavorazioni proseguivano regolarmente e non sono state riscontrate inadempienze rilevanti. --></help>
+        <label><!-- Nessuna Inadempienza Rilevante --></label>
+        <name>OF_CQS_IS_Nessuna_Inadempienza_Rilevante__c</name>
+    </fields>
+    <fields>
+        <label><!-- Impresa Ispezionata --></label>
+        <name>OF_CQS_Impresa_Ispezionata__c</name>
+        <relationshipLabel><!-- Ispezioni --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Impresa Affidataria --></label>
+        <name>OF_CQS_Impresa_Mandataria__c</name>
+        <relationshipLabel><!-- Ispezioni (Impresa Mandataria) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- N.B. --></label>
+        <name>OF_CQS_N_B_IS__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tipo Ispezione: --></label>
+        <name>OF_CQS_Tipo_Ispezione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ora Inizio Sopralluogo --></label>
+        <name>Ora_Inizio_Sopralluogo__c</name>
+    </fields>
+    <fields>
+        <help><!-- Tutto il personale è dotato di profilo professionale/qualificazione/ formazione richiesti per svolgere le attività in conformità con i regolamenti H&amp;S (come opere elettriche, lavori in spazi confinati, lavori in altezza, lavori subacquei) --></help>
+        <label><!-- Personale in possesso di formazione --></label>
+        <name>Personale_dotato_di_quanto_richiesto__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Qualora necessario è presente il moviere --></help>
+        <label><!-- Presenza Moviere qualora necessario --></label>
+        <name>Presenza_Moviere_qualora_necessario__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sì</masterLabel>
+            <translation><!-- Sì --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Progetto Sh --></label>
+        <name>Progetto_ISP_Sharing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prova DATETIME --></label>
+        <name>Prova_DATETIME__c</name>
+    </fields>
+    <layouts>
+        <layout>Ispezione Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Esito Ispezione --></label>
+            <section>Esito Ispezione</section>
+        </sections>
+        <sections>
+            <label><!-- Ispezione --></label>
+            <section>Ispezione</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Ispezione --></label>
+            <section>Luogo Ispezione</section>
+        </sections>
+        <sections>
+            <label><!-- Relazione Tecnica --></label>
+            <section>Relazione Tecnica</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Ispezione Layout_2018_01</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Lavorazioni --></label>
+            <section>Dettaglio Lavorazioni</section>
+        </sections>
+        <sections>
+            <label><!-- Documentazione minima --></label>
+            <section>Documentazione minima</section>
+        </sections>
+        <sections>
+            <label><!-- E-Distribuzione --></label>
+            <section>E-Distribuzione</section>
+        </sections>
+        <sections>
+            <label><!-- Ispezione --></label>
+            <section>Ispezione</section>
+        </sections>
+        <sections>
+            <label><!-- Lavoratori Presenti in Cantiere --></label>
+            <section>Lavoratori Presenti in Cantiere</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Ispezione --></label>
+            <section>Luogo Ispezione</section>
+        </sections>
+        <sections>
+            <label><!-- Mezzi e attrezzature --></label>
+            <section>Mezzi e attrezzature</section>
+        </sections>
+        <sections>
+            <label><!-- Organizzazione del cantiere --></label>
+            <section>Organizzazione del cantiere</section>
+        </sections>
+        <sections>
+            <label><!-- Personale di cantiere --></label>
+            <section>Personale di cantiere</section>
+        </sections>
+        <sections>
+            <label><!-- Presidi --></label>
+            <section>Presidi</section>
+        </sections>
+        <sections>
+            <label><!-- Relazione Tecnica --></label>
+            <section>Relazione Tecnica</section>
+        </sections>
+        <sections>
+            <label><!-- Responsabile Redazione Ispezione --></label>
+            <section>Responsabile Redazione Ispezione</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Ispezione Qualità</layout>
+        <sections>
+            <label><!-- Armadi --></label>
+            <section>Armadi</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Lavorazioni --></label>
+            <section>Dettaglio Lavorazioni</section>
+        </sections>
+        <sections>
+            <label><!-- Documentazione --></label>
+            <section>Documentazione</section>
+        </sections>
+        <sections>
+            <label><!-- Firma DL --></label>
+            <section>Firma DL</section>
+        </sections>
+        <sections>
+            <label><!-- Firma Impresa --></label>
+            <section>Firma Impresa</section>
+        </sections>
+        <sections>
+            <label><!-- Gestione Rifiuti --></label>
+            <section>Gestione Rifiuti</section>
+        </sections>
+        <sections>
+            <label><!-- Gestione Rifiuti Lavorazioni Terminate --></label>
+            <section>Gestione Rifiuti Lavorazioni Terminate</section>
+        </sections>
+        <sections>
+            <label><!-- Infrastrutture --></label>
+            <section>Infrastrutture</section>
+        </sections>
+        <sections>
+            <label><!-- Ispezione --></label>
+            <section>Ispezione</section>
+        </sections>
+        <sections>
+            <label><!-- Lavoratori Presenti in Cantiere --></label>
+            <section>Lavoratori Presenti in Cantiere</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Ispezione --></label>
+            <section>Luogo Ispezione</section>
+        </sections>
+        <sections>
+            <label><!-- Materiali --></label>
+            <section>Materiali</section>
+        </sections>
+        <sections>
+            <label><!-- Muffola PFP --></label>
+            <section>Muffola PFP</section>
+        </sections>
+        <sections>
+            <label><!-- Organizzazione del cantiere --></label>
+            <section>Organizzazione del cantiere</section>
+        </sections>
+        <sections>
+            <label><!-- Relazione Tecnica --></label>
+            <section>Relazione Tecnica</section>
+        </sections>
+        <sections>
+            <label><!-- Ripristini in corso --></label>
+            <section>Ripristini in corso</section>
+        </sections>
+        <sections>
+            <label><!-- Ripristino Definitivo --></label>
+            <section>Ripristino Definitivo</section>
+        </sections>
+        <sections>
+            <label><!-- Scavi --></label>
+            <section>Scavi</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Ispezione Sicurezza 2018 06</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Lavorazioni --></label>
+            <section>Dettaglio Lavorazioni</section>
+        </sections>
+        <sections>
+            <label><!-- Documentazione minima --></label>
+            <section>Documentazione minima</section>
+        </sections>
+        <sections>
+            <label><!-- Firma CSE --></label>
+            <section>Firma CSE</section>
+        </sections>
+        <sections>
+            <label><!-- Firma Impresa --></label>
+            <section>Firma Impresa</section>
+        </sections>
+        <sections>
+            <label><!-- Ispezione --></label>
+            <section>Ispezione</section>
+        </sections>
+        <sections>
+            <label><!-- Lavoratori Presenti in Cantiere --></label>
+            <section>Lavoratori Presenti in Cantiere</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Ispezione --></label>
+            <section>Luogo Ispezione</section>
+        </sections>
+        <sections>
+            <label><!-- Mezzi e attrezzature --></label>
+            <section>Mezzi e attrezzature</section>
+        </sections>
+        <sections>
+            <label><!-- Organizzazione del cantiere --></label>
+            <section>Organizzazione del cantiere</section>
+        </sections>
+        <sections>
+            <label><!-- Personale di cantiere --></label>
+            <section>Personale di cantiere</section>
+        </sections>
+        <sections>
+            <label><!-- Presidi --></label>
+            <section>Presidi</section>
+        </sections>
+        <sections>
+            <label><!-- Relazione Tecnica --></label>
+            <section>Relazione Tecnica</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Ispezione Tema Ambientale</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Lavorazioni --></label>
+            <section>Dettaglio Lavorazioni</section>
+        </sections>
+        <sections>
+            <label><!-- Documentazione minima --></label>
+            <section>Documentazione minima</section>
+        </sections>
+        <sections>
+            <label><!-- Firma CSE --></label>
+            <section>Firma CSE</section>
+        </sections>
+        <sections>
+            <label><!-- Firma Impresa --></label>
+            <section>Firma Impresa</section>
+        </sections>
+        <sections>
+            <label><!-- Ispezione --></label>
+            <section>Ispezione</section>
+        </sections>
+        <sections>
+            <label><!-- Lavoratori Presenti in Cantiere --></label>
+            <section>Lavoratori Presenti in Cantiere</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Ispezione --></label>
+            <section>Luogo Ispezione</section>
+        </sections>
+        <sections>
+            <label><!-- Mezzi e attrezzature --></label>
+            <section>Mezzi e attrezzature</section>
+        </sections>
+        <sections>
+            <label><!-- Organizzazione del cantiere --></label>
+            <section>Organizzazione del cantiere</section>
+        </sections>
+        <sections>
+            <label><!-- Personale di cantiere --></label>
+            <section>Personale di cantiere</section>
+        </sections>
+        <sections>
+            <label><!-- Presidi --></label>
+            <section>Presidi</section>
+        </sections>
+        <sections>
+            <label><!-- Relazione Tecnica --></label>
+            <section>Relazione Tecnica</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Ispezione di QualitaV2</layout>
+        <sections>
+            <label><!-- Armadi --></label>
+            <section>Armadi</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dettaglio Lavorazioni --></label>
+            <section>Dettaglio Lavorazioni</section>
+        </sections>
+        <sections>
+            <label><!-- Documentazione --></label>
+            <section>Documentazione</section>
+        </sections>
+        <sections>
+            <label><!-- Firma DL --></label>
+            <section>Firma DL</section>
+        </sections>
+        <sections>
+            <label><!-- Firma Impresa --></label>
+            <section>Firma Impresa</section>
+        </sections>
+        <sections>
+            <label><!-- Infrastrutture --></label>
+            <section>Infrastrutture</section>
+        </sections>
+        <sections>
+            <label><!-- Ispezione --></label>
+            <section>Ispezione</section>
+        </sections>
+        <sections>
+            <label><!-- Lavoratori Presenti in Cantiere --></label>
+            <section>Lavoratori Presenti in Cantiere</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Ispezione --></label>
+            <section>Luogo Ispezione</section>
+        </sections>
+        <sections>
+            <label><!-- Materiali --></label>
+            <section>Materiali</section>
+        </sections>
+        <sections>
+            <label><!-- Muffola PFP --></label>
+            <section>Muffola PFP</section>
+        </sections>
+        <sections>
+            <label><!-- Organizzazione del cantiere --></label>
+            <section>Organizzazione del cantiere</section>
+        </sections>
+        <sections>
+            <label><!-- Ripristini in corso --></label>
+            <section>Ripristini in corso</section>
+        </sections>
+        <sections>
+            <label><!-- Ripristino Definitivo --></label>
+            <section>Ripristino Definitivo</section>
+        </sections>
+        <sections>
+            <label><!-- Scavi --></label>
+            <section>Scavi</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Lotti Imprese</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Esito Ispezione --></label>
+            <section>Esito Ispezione</section>
+        </sections>
+        <sections>
+            <label><!-- Ispezione --></label>
+            <section>Ispezione</section>
+        </sections>
+        <sections>
+            <label><!-- Luogo Ispezione --></label>
+            <section>Luogo Ispezione</section>
+        </sections>
+        <sections>
+            <label><!-- Relazione Tecnica --></label>
+            <section>Relazione Tecnica</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description><!-- Nuovo record type per Ispezioni di qualita&apos; V2 (Gennaio 2019) --></description>
+        <label><!-- Ispezioni di Qualità --></label>
+        <name>CQS_IspQv2</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- CQS_Ispezione_Tema_Ambientale --></description>
+        <label><!-- Ispezione Tema Ambientale --></label>
+        <name>CQS_Isp_Ispezione_Tema_Ambientale</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Ispezioni a cura del DL --></description>
+        <label><!-- Ispezioni Qualità --></label>
+        <name>CQS_Ispezioni_Qualita</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Nuovo record Type di Giugno 2018 per censire con un nuovo form, senza andare a modificare i vecchi record con relative visualizzazioni. --></description>
+        <label><!-- Ispezione Sicurezza 2018 06 --></label>
+        <name>Ispezione_Sicurezza_2018_06</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Questo oggetto serve per censire le ispezioni a carico R.L. per quanto riguarda la qualità e la sicurezza. --></description>
+        <label><!-- Ispezioni Sicurezza --></label>
+        <name>OF_CQS_Ispezioni_DL</name>
+    </recordTypes>
+    <sharingReasons>
+        <label><!-- Progetto di competenza --></label>
+        <name>Progetto_di_competenza</name>
+    </sharingReasons>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- Il Comune specificato risulta non valido. Verificare la correttezza dei caratteri inseriti e la gestione di Open Fiber del Comune indicato. --></errorMessage>
+        <name>CQS_Controllo_Comuni_Ispezione</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Non è possibile inserire una data ispezione futura. --></errorMessage>
+        <name>Controllo_Data_Non_Futura</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- La data di consegna del Verbale non può essere antecedente alla data della relativa ispezione. --></errorMessage>
+        <name>Controllo_data_verbale_preced_ispezione</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Nel campo Cap è possibile inserire solo caratteri numerici. --></errorMessage>
+        <name>Controllo_solo_numeri_per_il_Cap</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- La data di consegna del Verbale non può essere impostata nel futuro --></errorMessage>
+        <name>Data_Consegna_Verbale_Futura_Impossibile</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Non è possibile procedere senza aver selezionato un solo possibile esito tra quelli presenti nella pagina --></errorMessage>
+        <name>Esito_Ispezione_solo_un_check_Parte1</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Non è possibile procedere senza aver selezionato un solo possibile esito tra quelli presenti nella pagina --></errorMessage>
+        <name>Esito_Ispezione_solo_un_check_Parte2</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Attenzione! Hai provato ad inserire una pratica per una città che non è di tua competenza! --></errorMessage>
+        <name>No_Comune_diverso_da_Perugia_ISP</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Nella sezione Lavoratori Presenti in Cantiere ci sono degli errori di compilazione. --></errorMessage>
+        <name>NomeCognome_Val_se_Autorizzato_val</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- CQS_Isp_Firma --></label>
+        <name>CQS_Isp_Firma</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Firma_DL --></label>
+        <name>Firma_DL</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Firma_Impresa --></label>
+        <name>Firma_Impresa</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Print_Page --></label>
+        <name>Print_Page</name>
+    </webLinks>
+</CustomObjectTranslation>

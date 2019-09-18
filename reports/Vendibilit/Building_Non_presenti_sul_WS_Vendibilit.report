@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>OF_Vendibilita_Logger__c$OF_Data__c</field>
+    </columns>
+    <columns>
+        <field>OF_Vendibilita_Logger__c$OF_IdBuilding_OLO__c</field>
+    </columns>
+    <columns>
+        <field>OF_Vendibilita_Logger__c$OF_OLO__c</field>
+    </columns>
+    <columns>
+        <field>OF_Vendibilita_Logger__c$OF_Servizio__c</field>
+    </columns>
+    <columns>
+        <field>OF_Vendibilita_Logger__c$OF_Source__c</field>
+    </columns>
+    <columns>
+        <field>OF_Vendibilita_Logger__c$OF_Motivo__c</field>
+    </columns>
+    <columns>
+        <field>OF_Vendibilita_Logger__c$OF_Request__c</field>
+    </columns>
+    <columns>
+        <field>OF_Vendibilita_Logger__c$OF_Response__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>OF_Vendibilita_Logger__c$OF_Source__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Non da web service</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>OF_Vendibilita_Logger__c$OF_Motivo__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Building non trovato</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Building Non presenti sul WS Vendibilità</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>OF_Vendibilita_Logger__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>OF_Vendibilita_Logger__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>

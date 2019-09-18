@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Configurazione VLAN</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Configurazione VLAN</value>
+    </caseValues>
+    <fields>
+        <label><!-- COS1CIR --></label>
+        <name>COS1CIR__c</name>
+    </fields>
+    <fields>
+        <label><!-- COS1PIR --></label>
+        <name>COS1PIR__c</name>
+    </fields>
+    <fields>
+        <label><!-- COS3CIR --></label>
+        <name>COS3CIR__c</name>
+    </fields>
+    <fields>
+        <label><!-- COS3PIR --></label>
+        <name>COS3PIR__c</name>
+    </fields>
+    <fields>
+        <label><!-- COS5CIR --></label>
+        <name>COS5CIR__c</name>
+    </fields>
+    <fields>
+        <label><!-- COS5PIR --></label>
+        <name>COS5PIR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Opzione --></label>
+        <name>Opzione__c</name>
+    </fields>
+    <fields>
+        <label><!-- Profilo --></label>
+        <name>Profilo__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

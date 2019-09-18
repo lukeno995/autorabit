@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Trouble Ticket - Parametri</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Trouble Ticket - Parametri</value>
+    </caseValues>
+    <fields>
+        <label><!-- Giorni Rip1 --></label>
+        <name>EOF_Giorni_Rip1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Giorni Rip2 --></label>
+        <name>EOF_Giorni_Rip2__c</name>
+    </fields>
+    <fields>
+        <help><!-- Numero di minuti prima dell&apos;appuntamento in cui il ticket ritorna in lavorazione e viene inviata notifica all&apos;OLO --></help>
+        <label><!-- Numero minuti ritorno in lavorazione --></label>
+        <name>EOF_Num_min_ritorno_in_lavorazione__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

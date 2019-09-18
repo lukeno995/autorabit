@@ -1,0 +1,11 @@
+Gentile Operatore,</BR></BR>
+
+La richiesta di risoluzione guasto {!EOF_EAI_Service_Log__c.EOF_Codice_Comunicazione_OLO__c}, da Lei inoltrata in data {!EOF_EAI_Service_Log__c.EOF_Data_Ora_Creazione__c}, ha ricevuto un aggiornamento, lo status ora è: {!EOF_EAI_Service_Log__c.EOF_STATO_ORDINE__c}.</BR></BR>
+
+Per vedere la richiesta clicchi sul seguente link:</BR></BR>
+
+<a href="https://open-fiber.force.com/partnercommunity/PO_TT_InsertNewRequest?origID={!EOF_EAI_Service_Log__c.Id}&proc=TTVisualizza">{!EOF_EAI_Service_Log__c.EOF_Codice_Comunicazione_OLO__c}</a>
+
+</BR></BR>
+
+Grazie

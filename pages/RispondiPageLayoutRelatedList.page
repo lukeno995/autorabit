@@ -1,0 +1,99 @@
+<apex:page standardController="case" extensions="EmailMessages" standardStylesheets="true" sidebar="true" showHeader="true" tabStyle="case">
+    <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+
+    <apex:form >
+        <div style="font-size:15px;color:red;">
+            <apex:messages />
+        </div>
+        <apex:pageBlock title="Reply Email">
+            <label id="avviso" style="font-weight: bold; font-size: 14px; margin-left: 10px; color:red;">Errore!! E' necessario prima effettuare la presa in carico del Case </label>
+            
+            <apex:actionRegion >
+            
+            <!--<apex:pageBlockSectionItem >
+                From Address <apex:inputField value="{!replymail.FromAddress}"  />
+            </apex:pageBlockSectionItem><br/>-->
+            <div id="panel_msg" style="margin: 10px;">
+            <apex:outputLabel style="font-weight: bold; font-size: 13px;" id="msg">Messaggio:</apex:outputLabel><br/><br/>
+                <!--<apex:outputText id="namefrom" value="{!origMess}"/>-->
+                <apex:outputPanel >
+                    <apex:outputField id="x" value="{!oneMessage.TextBody}"/>
+                </apex:outputPanel>
+            </div>
+            <br/>
+            
+            <div id="panel_header" style="margin: 10px;"> 
+                <apex:outputPanel >
+                    <apex:outputPanel >
+                        {!header1} <br/> {!header2}
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </div>
+            
+            <div id="panel_reply" style="margin: 10px;"> 
+                <apex:outputPanel >
+                    <apex:inputTextarea id="email_body" value="{!emailbody}" richText="false" rows="20" cols="80"  />
+                    <div id="panel_footer"> 
+                        <apex:outputPanel >
+                            <apex:outputPanel >
+                                Grazie, <br/>Open Fiber
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                    </div>
+                    <br/><br/>
+                    <apex:outputLabel style="font-weight: bold; font-size: 13px;"> File Upload </apex:outputLabel>
+                        <apex:inputFile style="width:100%" id="fileToUpload" value="{!fileBody}" filename="{!fileName}" />
+                </apex:outputPanel>
+            </div>
+            </apex:actionRegion>
+            <apex:pageBlockButtons location="Bottom">
+                <div id="btn_risp" style="float: left;">
+                    <apex:commandlink action="{!replyEmailrelatedlist}" value="Rispondi" onclick="return validateForm();"/> &nbsp;&nbsp;&nbsp;
+                </div>
+                <div id="btn_canc" >
+                <!--<apex:commandLink value="Rispondi" target="_blank" styleClass="btn" action="{!action="{!Canceling}"}"/>-->
+                    <apex:commandlink value="Cancel"  onclick="window.top.location='/{!idCaseEmail}'; return false" />
+                </div>
+            </apex:pageBlockButtons>
+                
+        </apex:pageBlock>
+        
+    </apex:form>
+    
+    <script>
+    window.onload = checkOwner();
+         
+        function checkOwner() {
+            
+            $('#avviso').hide(); 
+            
+            var ownerId = "{!caseOwnerId}";
+            var userId = "{!currentUserId}";
+            
+            var msg = document.getElementById('msg');
+            var div2 = document.getElementById('panel_reply');
+            
+            if (ownerId != userId)
+            {
+                //alert('KO');
+                $('#panel_msg').hide();  
+                $('#panel_reply').hide();  
+                $('#btn_risp').hide();
+                $('#panel_header').hide();
+                $('#avviso').show();  
+            }
+        }
+                    
+    </script>
+    <script>
+        function validateForm() {
+            var body = $('[id*=email_body]').val();
+            if(body == null || body == undefined || body == ''){
+                alert('Inserire il body del messaggio!!!');
+                return false;
+            }else{
+                return true;
+            }
+        }
+    </script>
+</apex:page>

@@ -1,0 +1,240 @@
+<apex:page showHeader="false" applyHtmlTag="fasle" standardController="OF_CQS_Evento__c" renderAs="PDF">
+    <head>
+        <script>
+        window.onload = function removeButtons() {
+            for(i=0;i<window.document.getElementsByName('edit').length;i++)
+            {
+                window.document.getElementsByName('edit')[i].style.display = 'none';
+            }
+            for(i=0;i<window.document.getElementsByName('share').length;i++)
+            {
+                window.document.getElementsByName('share')[i].style.display = 'none';
+            }
+            for(i=0;i<window.document.getElementsByName('newNote').length;i++)
+            {
+                window.document.getElementsByName('newNote')[i].style.display = 'none';
+                
+            }
+            for(i=0;i<window.document.getElementsByName('attachFile').length;i++)
+                
+            {
+                window.document.getElementsByName('attachFile')[i].style.display = 'none';
+            }
+            for(i=0;i<window.document.getElementsByName('print_page').length;i++)
+                
+            {
+                window.document.getElementsByName('print_page')[i].style.display = 'none';
+            }
+            for(i=0;i<window.document.getElementsByName('in_lavorazione').length;i++)
+                
+            {
+                window.document.getElementsByName('in_lavorazione')[i].style.display = 'none';
+            }
+            for(i=0;i<window.document.getElementsByName('chiudi_pratica').length;i++)
+                
+            {
+                window.document.getElementsByName('chiudi_pratica')[i].style.display = 'none';
+            }
+            for(i=0;i<window.document.getElementsByName('pratica_integrata').length;i++)
+                
+            {
+                window.document.getElementsByName('pratica_integrata')[i].style.display = 'none';
+            }
+            for(i=0;i<window.document.getElementsByName('rifiuta_integrazione').length;i++)
+                
+            {
+                window.document.getElementsByName('rifiuta_integrazione')[i].style.display = 'none';
+            }
+            
+            //    
+            
+            
+        }
+        </script>
+         <!---Rajani start 05-12-2018 For - fix 2 (pdf file) requirement-->
+        <style>
+            body {
+                background-repeat: repeat-x;
+                background-position: left top;
+                font-size: 75%;
+                font-family: 'Arial','Helvetica',sans-serif;
+                background-color: #fff;
+            }
+            
+            table {
+                display: table;
+                border-collapse: separate;
+                border-color: #ececec;
+            }
+            
+            tbody {
+                display: table-row-group;
+                vertical-align: middle;
+                border-color: #ececec;
+            }
+            
+            tr {
+                display: table-row;
+                vertical-align: middle;
+                border-color: #ececec;
+            }
+            
+            body, td {
+                margin: 0;
+                color: #333;
+                border-color: #ececec;
+            }
+            
+            body .bPageBlock .detailList tr td{
+                border-color: #ececec;
+            }
+            
+            .mainTitle{
+                font-family: Arial, Helvetica, sans-serif;
+                font-size:14px;
+                font-weight:bold;
+            }
+            
+            .bPageBlock .pbBody .pbSubheader{
+                border-width: 2px 0 0;
+                border-style: solid;
+                color: #27282e;
+                padding: 0px 3px;
+            }
+      
+            .bPageBlock .detailList {
+                width: 100%;
+            }
+            
+            .helpButton, .helpButtonOn {
+                position: relative;
+            
+            }
+          
+            .bDetailBlock.bPageBlock .pbBody .dataCol{
+                padding-top: 3px;
+                padding-bottom: 3px;
+            }
+            
+            .bPageBlock .detailList .dataCol {
+                width: 32%;
+            }
+            
+            .bPageBlock .dataCol {
+                padding-top: 2px;
+                padding-right: 2px;
+                padding-bottom: 2px;
+                padding-left: 10px;
+                text-align: left;
+            }
+             .labelCol {
+                padding-top: 2px;
+                padding-right: 10px;
+                padding-top: 3px;
+                padding-left: 2px;
+                text-align: right;
+                font-size: 91%;
+                font-weight: bold;
+                
+            }
+            
+            body .bRelatedList .bPageBlock {
+                border-left-color: #e0e3e5;
+                border-right-color: #e0e3e5;
+                border-bottom-color: #e0e3e5;
+                border-top-width: 3px;
+                background-color: #f8f8f8;
+                border-bottom: 1px solid #eaeaea;
+             }
+             
+             .bPageBlock {
+                border-top: 4px solid #222;
+             }
+            
+            .secondaryPalette .bPageBlock{
+                border-left: 1px solid #eaeaea;
+                border-right: 1px solid #eaeaea;
+                -moz-border-radius: 4px;
+                -webkit-border-radius: 4px;
+                border-radius: 4px;
+             }
+            
+            bPageBlock .pbTitle {
+                vertical-align: middle;
+                color: #222;
+                font-size: 91%;
+                width: 30%;
+                margin: 0;
+                }
+                
+            body .bRelatedList .bPageBlock .pbTitle {
+                padding: 0 5px;
+            }
+            
+            body .bRelatedList .bPageBlock .pbBody {
+                background-color: #f8f8f8;
+                margin: 6px;
+            }
+            
+            body .pbBody table.list tr.headerRow th {
+                background: #f2f3f3;
+                border-width: 0 0 1px 1px;
+                border-color: #e0e3e5;
+                color: #000;
+                font-size: .9em;
+                font-weight: bold;
+                padding: 5px 2px 4px 5px;
+            }   
+            
+            
+            body .pbBody table.list tr.dataRow td {
+               border-width: 0 0 1px 0;
+               vertical-align: middle;
+
+            }
+            
+            .list td, .list th{
+                padding: 4px 2px 4px 5px;
+            }
+            
+            .list tr.even th{
+                font-weight: normal;
+                white-space: normal;
+            }
+            
+            body .bRelatedList .pbBody table.list, body .apexp .pbBody table.list {
+                    border: 1px solid #e0e3e5;
+            }
+            
+            body .pbBody table.list tr.headerRow th:first-child, body .pbBody table.list tr.dataRow td:first-child {
+                border-left-width: 0;
+            }
+            
+            .list .actionColumn{
+                width:20%;
+            }   
+            
+            .backToTop{
+                display:none;
+            }
+            
+            .fewerMore{
+                display:none;
+                }
+            
+            
+        </style>
+         <!---Rajani End 05-12-2018 For - fix 2 (pdf file) requirement-->
+    </head>
+    <body>
+        <!--<object data="pdfFiles/interfaces.pdf" type="application/pdf">
+            <embed src=" pdfFiles/interfaces.pdf" type="application/pdf"/>  
+        </object> 
+        
+        <apex:form >
+            
+        </apex:form>-->
+        <apex:image url="{!$Resource.Open_Fiber_Logo1}" width="65" height="50"/>
+        <apex:detail relatedList="True"/>
+    </body>
+</apex:page>

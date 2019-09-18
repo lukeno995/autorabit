@@ -1,0 +1,234 @@
+<apex:component controller="PO_COMP_ModificaRichiesta_Controller" allowDML="true">
+<html lang="en"> 
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Open Fiber</title>  
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" /> 
+            <!-- Bootstrap Core CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/css/bootstrap.min.css')}"/>
+            
+            <!-- MetisMenu CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/metisMenu/metisMenu.min.css')}"/>
+            
+            <!-- Custom CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/dist/css/sbadmin2.css')}"/>
+            
+            <!-- Morris Charts CSS -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/morrisjs/morris.css')}"/>
+            
+            <!-- Custom Fonts -->
+            <apex:stylesheet value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/fontawesome/css/fontawesome.min.css')}"/>
+            
+            <!-- /#wrapper -->
+              
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/jquery/jquery.min.js')}"/>
+            
+            <!-- Bootstrap Core JavaScript -->
+            <apex:includeScript value="{!URLFOR($Resource.ENELfiles, 'ENELfiles/EnelStylesheets/files/vendor/bootstrap/js/bootstrap.min.js')}"/>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <style>
+                .navbar {
+                min-height: 105px;
+                }
+                .navbar-header {
+                float: none;
+                }
+                .navbar-default {
+                background-color: #ffffff;
+                }
+                .panel-default>.panel-heading {
+                color: #ffffff;
+                background-color: #337ab7;
+                }
+                span.dateFormat{
+                
+                display:none;
+                
+                }
+                .red{color:red;}
+                .form-check-input{ 
+                margin-left: 45px !important;
+                margin-top: 10px;
+                }
+                
+            </style>
+        </head>
+        
+         	<body>
+            
+            
+                <div class="panel-heading">
+                    <i></i>Modifica richiesta
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        
+                        <apex:form >
+                            <div style="color:red;" id="showerror">
+                                <apex:pageMessages id="errors" /> 
+                            </div>
+                            
+                            <form role="form" class="form-horizontal">
+                            	<fieldset class="form-group">
+                                 <div class="form-group">
+	                                     <div class="col-lg-6">
+	                                        <label>Codice Ordine Operatore : </label> &nbsp; &nbsp;
+	                                        <apex:inputField id="CodiceOrdineOLO" styleClass="form-control" style="border-color: red" value="{!sl.EOF_Codice_Ordine_OLO__c}" required="true"/>
+	                                     </div>    
+	                                     <div class="col-lg-6">
+	                                         <label>Id Notifica : </label> &nbsp; &nbsp;
+	                                         <apex:inputField id="IDNotifica" styleClass="form-control" value="{!sl.EOF_ID_Notifica__c}" style="border-color: red" required="true"/>
+	                                      </div>
+	                                 </div>
+	                                 
+	                                 <div class="form-group">
+	                                     <div class="col-lg-6">
+	                                         <label>Nome Referente Tecnico Operatore : </label> &nbsp; &nbsp;
+	                                         <apex:inputField id="NomeReferenteTecnicoOLO" styleClass="form-control" value="{!sl.EOF_NOME_REFERENTE_TECNICO_OLO__c}" style="border-color: red" required="true"/>
+	                                     </div>
+	                                     <div class="col-lg-6">
+											<label>Cognome Referente Tecnico Operatore :</label> &nbsp; &nbsp;
+	                                         <apex:inputField id="CognomeReferenteTecnicoOLO" styleClass="form-control" value="{!sl.EOF_COGNOME_REFERENTE_TECNICO_OLO__c}" style="border-color: red" required="true"/>
+	                                      </div>                                                                                                                                                    
+	                                 </div>
+	                                 
+	                                 <div class="form-group">                                                    
+	                                     <div class="col-lg-6">
+	                                        <label> Telefono Referente Tecnico Operatore :</label> &nbsp; &nbsp;
+	                                        <apex:inputField id="TelefonoReferenteTecnicoOLO" styleClass="form-control" value="{!sl.EOF_TELEFONO_REFERENTE_TECNICO_OLO__c }" style="border-color: red" required="true"/>
+	                                     </div>
+	                                     <div class="col-lg-6">
+	                                         <label>Email Referente Tecnico Operatore : </label> &nbsp; &nbsp;
+	                                         <apex:inputField id="EmailReferenteTecnicoOLO" styleClass="form-control"  value="{!sl.EOF_EMAIL_REFERENTE_TECNICO_OLO__c}" style="border-color: red" required="true"/>
+	                                     </div> 
+	                                 </div>
+	                                 <div class="form-group">                                                    
+	                                     <div class="col-lg-6">
+	                                         <label>Telefono Referente Operatore Onfield Notech : </label> &nbsp; &nbsp;
+	                                         <apex:inputField id="TelefonoReferenteOLOOnfieldNotech" styleClass="form-control"  value="{!sl.EOF_Telefono_Referente_OLO_Onfield_Notec__c }"/>
+	                                     </div>
+	                                 </div>
+	                                 <div class="form-group">
+	                                     <div class="col-lg-6">
+	                                          <label>Nome Cliente : </label> &nbsp; &nbsp;
+	                                          <apex:inputField id="NomeCliente" styleClass="form-control"  value="{!sl.EOF_Nome_Cliente__c}"/>
+	                                     </div> 
+	                                     <div class="col-lg-6">
+	                                         <label>Cognome Cliente : </label> &nbsp; &nbsp;
+	                                         <apex:inputField id="CognomeCliente" styleClass="form-control" value="{!sl.EOF_COgnome_CLiente__c}" style="border-color: red" required="true"/>
+	                                     </div>
+	                                 </div>
+	                                 
+	                                 <div class="form-group">
+	                                     
+	                                     <div class="col-lg-6">
+	                                          <label>Recapito Telefonico Cliente 1 : </label> &nbsp; &nbsp;
+	                                          <apex:inputField id="RecapitoTelefonicoCliente1" styleClass="form-control" value="{!sl.EOF_RECAPITO_TELEFONICO_CLIENTE_1__c}" style="border-color: red" required="true"/>
+	                                     </div> 
+	                                     <div class="col-lg-6">
+	                                         <label>Recapito Telefonico Cliente 2 : </label> &nbsp; &nbsp;
+	                                         <apex:inputField id="RecapitoTelefonicoCliente2" styleClass="form-control" required="false" value="{!sl.EOF_RECAPITO_TELEFONICO_CLIENTE_2__c}"/>
+	                                     </div>
+	                                 </div>
+	                                 <div class="form-group">
+	                                     <div class="col-lg-6">
+	                                          <label>Informazioni Logistica Apparati : </label> &nbsp; &nbsp;
+	                                          <apex:inputField id="InformazioniLogisticaApparati" styleClass="form-control" required="false" value="{!sl.EOF_INFORMAZIONI_LOGISTICA_APPARATI__c}"/>
+	                                     </div> 
+	                                     <div class="col-lg-6"> 
+	                                         <label>Data Prevista Attivazione :  </label> &nbsp; &nbsp;
+	                                
+	                                         <apex:inputField type="date" styleClass="form-control" id="EOFDataPrevistaAttivazione" value="{!sl.EOF_DATA_PREVISTA_ATTIVAZIONE__c}" onclick="openDatePicker()" style="border-color: red" required="true" />
+	                                            
+	                                     </div>
+	                                 </div>
+	                                 
+	                                 <div class="form-group">
+	                                     
+	                                     <div class="col-lg-6">
+	                                          <label>Orario Appuntamento :</label> &nbsp; &nbsp;
+	                                          <apex:inputField id="OrarioAppuntamento" styleClass="form-control" required="false" value="{!sl.EOF_ORARIO_APPUNTAMENTO__c}"/>
+	                                     </div> 
+	                                     <div class="col-lg-6">
+	                                         <label>Codice Progetto Speciale : </label> &nbsp; &nbsp;
+	                                         <apex:inputField id="CodiceProgettoSpeciale" styleClass="form-control" required="false" value="{!sl.EOF_CODICE_PROGETTO_SPECIALE__c}"/>
+	                                     </div>
+	                                 </div>
+	                                 <div class="form-group">
+	                                     
+	                                     <div class="col-lg-6">
+	                                          <label>Promozione : </label> &nbsp; &nbsp;
+	                                          <apex:inputField id="Promozione" styleClass="form-control" required="false" value="{!sl.EOF_PROMOZIONE__c}"/>
+	                                     </div> 
+	                                     <div class="col-lg-6">
+	                                         <label>Cluster Promozione : </label> &nbsp; &nbsp;
+	                                         <apex:inputField id="ClusterPromozione" styleClass="form-control" required="false" value="{!sl.EOF_CLUSTER_PROMOZIONE__c}"/>
+	                                     </div>
+	                                 </div>
+	                                 <div class="form-group">
+	                                     
+	                                     <div class="col-lg-6">
+	                                          <label>Note : </label> &nbsp; &nbsp;
+	                                          <apex:inputField id="Note" styleClass="form-control" required="false" value="{!sl.EOF_NOTE__c}"/>
+	                                     </div>
+	                                     <div class="col-lg-6">
+	                                         <label>ID Building : </label> &nbsp; &nbsp;
+	                                         <apex:inputField id="EOFIDBuilding" styleClass="form-control" value="{!sl.EOF_ID_BUILDING__c}" style="border-color: red" required="true"/>
+	                                     </div>
+	                                 </div>
+	                                 <div class="form-group">
+	                                     
+	                                     <div class="col-lg-6">
+	                                          <label>Scala Palazzina : </label> &nbsp; &nbsp;
+	                                          <apex:inputField id="ScalaPalazzina" styleClass="form-control" required="false" value="{!sl.EOF_SCALA_PALAZZINA__c}"/>
+	                                     </div>
+	                                     <div class="col-lg-6">
+	                                         <label>Numero Telefonico Principale Linea : </label> &nbsp; &nbsp;
+	                                         <apex:inputField id="NumeroTelefonicoPrincipaleLinea" styleClass="form-control" value="{!sl.EOF_NUMERO_TELEFONICO_PRINCIPALE_LINEA__c}" style="border-color: red" required="true"/>
+	                                     </div>
+	                                 </div>
+	                                 <div class="form-group">
+	                                     
+	                                     <div class="col-lg-6">
+	                                          <label>Recapito Test Linea :  </label> &nbsp; &nbsp;
+	                                          <apex:inputField id="RecapitoTestLinea" styleClass="form-control" required="false" value="{!sl.EOF_RECAPITO_TEST_LINEA__c}"/>
+	                                     </div> 
+	                                     <div class="col-lg-6">
+	                                         <label>Identificativo del POP :</label> &nbsp; &nbsp;
+	                                         <apex:inputField id="IdentificativodelPOP" styleClass="form-control" value="{!sl.EOF_ID_Pop__c}" style="border-color: red" required="true"/>
+	                                     </div>
+	                                 </div>
+	                                 <div class="form-group">
+	                                     
+	                                     <div class="col-lg-6">
+	                                          <label>Profilo :  </label> &nbsp; &nbsp;
+	                                          <apex:inputField id="Profilo" styleClass="form-control" value="{!sl.EOF_PROFILO__c}" style="border-color: red" required="true"/>
+	                                     </div>
+	                                     
+	                                 </div>
+                                 </fieldset> 
+                                 <div class="col-lg-6">
+                                     <div class="btn-group" role="group" aria-label="Basic example">                                      
+                                         <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px;" value="Annulla" action="{!annullasl}" html-formnovalidate="formnovalidate" immediate="true"/>         
+                                     </div>
+                                 </div> 
+                                 <div class="col-lg-6">
+                                     <div class="btn-group" role="group" aria-label="Basic example">                                      
+                                         <apex:commandButton styleClass="btn btn-primary" style="margin-right:10px;" value="Salva" action="{!savesl}"/>        
+                                     </div>
+                                 </div>
+                      
+                            </form> 
+                             
+                        </apex:form> 
+                        <br/>  
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                                
+            </body>
+    
+    </html>
+</apex:component>

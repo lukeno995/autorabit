@@ -1,0 +1,35 @@
+<apex:page standardController="case" extensions="EmailMessages" standardStylesheets="true" docType="html-5.0" sidebar="true" showheader="true">
+        <apex:form >
+         <apex:pageBlock >
+             <apex:pageBlockTable value="{!DisplayEmails}" var="email">
+                 
+                 <!--<apex:column headerValue="Action" >
+                 <apex:commandLink value="Rispondi" style="color:blue" action="{!redirectReplymailPagelayoutNew}"  target="_top"/>
+                                
+                 </apex:column>-->
+                 <apex:column headerValue="Action" >
+                    <!--<apex:commandLink value="Rispondi"  style="color:blue" onclick="window.top.location='/apex/RispondiReplyEmailPage?parentid={!replymail.parentid}'; return false" />-->
+                     <input type="submit" class="link" value="Rispondi" style="color:blue"  onclick="top.location.href = '/apex/RispondiPageLayoutRelatedList?parentid={!replyCase.id}&emailid={!email.id}';"/>
+                 </apex:column>
+                 <apex:column value="{!email.status}" headerValue="Status" />
+                 <apex:column headerValue="">
+                 <apex:image url="{!$Resource.EmailIcon}" width="15" height="15"/>
+
+                 </apex:column>
+                 <apex:column headerValue="Subject" >
+                
+                     <apex:commandLink action="{!redirectReplymailPagelayout}" onclick="top.location.href = '/apex/SN_PageMess?parentid={!replyCase.id}&emailid={!email.id}';"  value="Subject:">{!email.subject}</apex:commandLink><br/>
+                     
+                  <apex:outputField value="{!email.EmailBody__c}"/>
+                 </apex:column>
+                 <!-- <apex:column value="{!email.EmailBody__c}" headerValue="Body"/>-->
+                <apex:column value="{!email.ToAddress}" headerValue="Email Address" />
+                 <apex:column value="{!email.MessageDate}" headerValue="Message Date" />
+               
+             </apex:pageBlockTable>
+        
+        </apex:pageBlock>
+    
+    </apex:form>
+   
+</apex:page>

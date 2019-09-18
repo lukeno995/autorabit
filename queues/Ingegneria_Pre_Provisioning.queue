@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>true</doesSendEmailToMembers>
+    <name>Ingegneria Pre-Provisioning</name>
+    <queueMembers>
+        <users>
+            <user>alfinoandrea.testa@openfiber.it</user>
+            <user>claudio.valenti@openfiber.it</user>
+            <user>gerardomarco.daurelio@openfiber.it</user>
+            <user>marie.nitemzem@openfiber.it</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

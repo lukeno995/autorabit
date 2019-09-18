@@ -1,0 +1,75 @@
+<apex:page Controller="OF_AreaGeograficaPicklist" standardstylesheets="false" id="page">
+<script type="text/javascript">
+  function confirmSave()
+  {
+     var CompanyValue = document.getElementById('page:pgItem:pageB:theSection:theSectionItem1:regione').value;
+     
+     if( CompanyValue === 'Piemonte' || CompanyValue === 'Lombardia' )
+     {
+        alert('Ci sono più di 1000 Comuni associati!\nSeleziona prima una Provincia!\n');
+     }
+    
+  }
+  
+  </script>
+
+<apex:sectionHeader />
+  <apex:messages id="mess" />
+    
+  <apex:form id="pgItem">
+     <apex:pageMessages ></apex:pageMessages>
+       <apex:pageBlock title="Associazione Aree Geografiche" mode="edit" id="pageB">
+           <apex:pageMessages id="showmsg"/>
+              
+              <apex:pageBlockButtons > 
+                  <apex:commandButton action="{!save}"  value="Salva" reRender="showmsg"/>
+                  <apex:commandButton action="{!toReturn}" value="Ritorna al Contratto" />
+              </apex:pageBlockButtons>
+
+              <apex:pageBlockSection id="theSection">
+                   <!--Blocco Regione-->
+                 <apex:pageblockSectionItem id="theSectionItem1">
+                    <apex:outputLabel value="Regione"/>
+                        <apex:selectList size="1" value="{!Reg}" id="regione" required="true">
+                              <apex:selectoptions value="{!Regione}"/>
+                               <apex:actionSupport event="onchange" reRender="test" immediate="false" action="{!setProvPrecedente}" oncomplete="confirmSave();"/>
+                              </apex:selectList>
+                        </apex:pageblockSectionItem>
+           
+           </apex:pageBlockSection>
+
+    
+          <apex:pageBlockSection id="test">        
+           <!--Blocco Provincia-->
+           <apex:pageblockSectionItem >
+                  <apex:outputLabel value="Provincia"/>
+                       <apex:selectList size="1" value="{!Prov}" id="Provincia">
+                            <apex:selectoptions value="{!Provincia}"/>
+                            <apex:actionSupport event="onchange" reRender="comuneR"/>
+                       </apex:selectList>
+            </apex:pageblockSectionItem>
+           <apex:pageMessages ></apex:pageMessages>
+
+            <!--Blocco Comune-->
+           <apex:pageblockSectionItem >
+                  <apex:outputLabel value="Comune"/>
+                       <apex:selectList size="5"  value="{!Com}" id="comuneR" multiselect="true">
+                             <apex:selectoptions value="{!Comune}"/>
+                       </apex:selectList>
+           </apex:pageblockSectionItem>
+           
+           <!--Blocco Servizi-->
+           <apex:pageBlockSectionItem >
+                   <apex:outputLabel value="Servizio"/>
+                       <apex:selectList size="1"  value="{!Servizio}" id="ServizioR">
+                             <apex:selectoptions value="{!ServiziContr}"/>
+                       </apex:selectList>
+           </apex:pageBlockSectionItem>
+           
+   
+   </apex:pageBlockSection>
+ 
+ </apex:pageBlock>
+
+   </apex:form>
+</apex:page>
